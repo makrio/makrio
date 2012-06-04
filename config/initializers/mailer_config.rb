@@ -25,6 +25,17 @@ Diaspora::Application.configure do
       }
       sendmail_settings[:arguments] = "-i" if AppConfig[:sendmail_exim_fix]
       config.action_mailer.sendmail_settings = sendmail_settings
+    elsif AppConfig[:mailer_method] == 'mailgun'
+      ActionMailer::Base.smtp_settings = {
+        :port           => ENV['MAILGUN_SMTP_PORT'], 
+        :address        => ENV['MAILGUN_SMTP_SERVER'],
+        :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+        :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+        :domain         => 'makr.io',
+        :authentication => :plain,
+      }
+      ActionMailer::Base.delivery_method = :smtp
+
     else
       config.action_mailer.delivery_method = :smtp
       if AppConfig[:smtp_authentication] == "none"
