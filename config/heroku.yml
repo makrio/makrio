@@ -1,0 +1,10 @@
+defaults: &defaults
+  HEROKU: true
+  HOME_FILE_DESKTOP: 'app/views/home/_show.html.erb'
+  HOME_FILE_MOBILE: 'app/views/home/_show.mobile.erb'
+production:
+  app: makrio
+  stack: cedar
+  config:
+    <<: *defaults
+    BUNDLE_WITHOUT: "development:test"
