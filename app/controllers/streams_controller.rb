@@ -36,13 +36,9 @@ class StreamsController < ApplicationController
   end
 
   def multi
-    if params[:ex] && flag.new_stream?
-      @stream = Stream::Public.new(current_user, :max_time => max_time)
-      gon.stream = PostPresenter.collection_json(@stream.stream_posts, current_user)
-      render :nothing => true, :layout => "post"
-    else
-      stream_responder(Stream::Public)
-    end
+    @stream = Stream::Public.new(current_user, :max_time => max_time)
+    gon.stream = PostPresenter.collection_json(@stream.stream_posts, current_user)
+    render :nothing => true, :layout => "post"
   end
 
   def commented
