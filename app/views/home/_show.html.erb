@@ -1,0 +1,112 @@
+<% content_for :head do %>
+    <meta property="og:title" content="Diaspora*" />
+    <meta property="og:description" content="A creative way to remix your world" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://joindiaspora.com" />
+    <meta property="og:image" content="https://joindiaspora.com/icon_128.gif" />
+    <meta property="fb:app_id" content="120373411325347" />
+<% end %>
+
+<div id="landing">
+  <div id="banner" class="row" role="header">
+    <div class="fb-like" data-href="https://joindiaspora.com" data-send="false" data-width="450" data-show-faces="true" data-colorscheme="dark"></div>
+
+    <div id="controls">
+      <a href="https://twitter.com/joindiaspora">
+        <span class="label label-inverse" title="Follow @joindiaspora on Twitter">
+          <img src="https://d3mbmfe8268ud7.cloudfront.net/landing/home_twit@2x.png" class="twitter-bird" height=20 width=20 />
+        </span>
+      </a>
+
+      <a href="http://diaspora.github.com/diaspora">
+        <span class="label label-inverse" title="Fork the code on Github">
+          <img src="https://d3mbmfe8268ud7.cloudfront.net/landing/home_git@2x.png" class="github-octocat" height=20 width=20 />
+        </span>
+      </a>
+
+      <a href="/users/sign_in">
+        <span class="label label-inverse">
+          LOG IN
+        </span>
+      </a>
+
+    </div>
+
+    <div class="container">
+        <h1>DIASPORA</h1>
+        <h3>A creative way to remix your world</h3>
+      </div>
+  </div>
+
+  <div class="container">
+    <div id="content" class="row">
+      <div id="screens" class="span7">
+        <div id="s_container"></div>
+      </div>
+
+      <div id="sign_up" class="span5">
+        <h4>JOIN THE PARTY...</h4>
+        <h2>GET AN INVITE!</h2>
+
+
+        <form id="invites" class="form-horizontal block-form" action="http://joindiaspora.us1.list-manage.com/subscribe/post?u=d759919b94f9cdcf39d204f3f&amp;id=9caa14b8ec" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+          <fieldset>
+
+            <div class="control-group">
+              <label class="control-label" for="mce-EMAIL">
+                EMAIL
+              </label>
+
+              <div class="controls">
+                <input id="mce-EMAIL" type="email" name="EMAIL" required/>
+              </div>
+            </div>
+          </fieldset>
+
+          <input id="mc-embedded-subscribe" type="submit" class="new-btn" value="REGISTER"/>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    ‌© DIASPORA, INC. 2012
+  </div>
+</div>
+
+<!--image animation scripts-->
+<script>
+  $(function(){
+    var cdnRoot = 'https://d3mbmfe8268ud7.cloudfront.net'
+      , count = 4
+      , pause = 8000
+      , i = 1;
+
+    cycleIn();
+
+    function cycleIn(){
+        $("#s_container").removeClass("outtatime")
+        $("#s_container").html('<img src="' + cdnRoot + '/landing/c-' + i + '/1.png"/> <img src="' + cdnRoot + '/landing/c-' + i + '/2.png"/> <img src="' + cdnRoot + '/landing/c-' + i + '/3.png"/> <img src="' + cdnRoot + '/landing/c-' + i + '/4.png"/>');
+        setTimeout(cycleOut, pause);
+    }
+
+    function cycleOut(){
+      $("#s_container").addClass("outtatime")
+      if(++i >= count) {
+        i = 1;
+      }
+      setTimeout(cycleIn, 400)
+    }
+  });
+</script>
+
+<!--facebook scripts-->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=120373411325347";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
