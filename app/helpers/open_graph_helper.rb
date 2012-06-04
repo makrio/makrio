@@ -18,7 +18,7 @@ module OpenGraphHelper
   end
 
   def og_site_name
-    meta_tag_with_property('og:site_name', 'Diaspora*')
+    meta_tag_with_property('og:site_name', AppConfig[:pod_name])
   end
 
   def og_description(post)

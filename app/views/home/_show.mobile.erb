@@ -1,9 +1,9 @@
 <% content_for :head do %>
-    <meta property="og:title" content="Diaspora*" />
+    <meta property="og:title" content="<%= AppConfig[:pod_name] %>" />
     <meta property="og:description" content="A creative way to remix your world" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://joindiaspora.com" />
-    <meta property="og:image" content="https://joindiaspora.com/icon_128.gif" />
+    <meta property="og:url" content="https://makr.io" />
+    <meta property="og:image" content="https://makr.io/icon_128.gif" />
     <meta property="fb:app_id" content="120373411325347" />
 <% end %>
 
@@ -11,7 +11,7 @@
   <div class="row" role="header" style="padding:20px; background-color:rgba(0,0,0,0.7); box-shadow: 0 3px 40px rgba(0,0,0,0.8); z-index : 10; position : relative;">
     <div class="container">
         <div class="row" style="text-align:center;">
-          <h1 style="font-size : 40px; font-weight : 200;">DIASPORA</h1>
+          <h1 style="font-size : 40px; font-weight : 200;"><%= AppConfig[:pod_name] %></h1>
           <h3 style="color : rgb(42,156,235); font-weight : 200;">A creative way to remix your world</h3>
         </div>
     </div>

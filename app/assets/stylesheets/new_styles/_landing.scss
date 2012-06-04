@@ -203,8 +203,8 @@
     }
 
     form {
-      label.control-label { width : 50px !important; }
-      .controls { margin-left : 70px; }
+      label.control-label { width : 80px !important; }
+      .controls { margin-left : 100px; width : 180px; }
 
       input[type='submit'] {
         @include transition(background);
