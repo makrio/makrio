@@ -94,8 +94,9 @@ class ProfilesController < ApplicationController
     unless @profile_attrs[:tag_string].nil? || @profile_attrs[:tag_string] == I18n.t('profiles.edit.your_tags_placeholder')
       @profile_attrs[:tag_string].split( " " ).each do |extra_tag|
         extra_tag.strip!
-        unless extra_tag == ""
-          extra_tag = "##{extra_tag}" unless extra_tag.start_with?( "#" )
+        unless extra_tag.blank?
+          extra_tag = "##{extra_tag}" unless extra_tag.start_with?( "#" )    
+          params[:tags] ||=''
           params[:tags] += " #{extra_tag}"
         end
       end

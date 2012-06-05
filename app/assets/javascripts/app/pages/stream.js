@@ -2,7 +2,7 @@ app.pages.Stream = app.views.Base.extend({
   templateName : "stream",
 
   events : {
-    'activate .stream-frame-wrapper' : 'triggerInteractionLoad'
+    // 'activate .stream-frame-wrapper' : 'triggerInteractionLoad'
   },
 
   subviews : {
@@ -18,16 +18,16 @@ app.pages.Stream = app.views.Base.extend({
     this.interactionsView = new app.views.StreamInteractions()
 
     this.streamView.on('loadMore', this.updateUrlState, this);
-    this.stream.on("fetched", this.refreshScrollSpy, this)
+    // this.stream.on("fetched", this.refreshScrollSpy, this)
     this.stream.on("frame:interacted", this.selectFrame, this)
   },
 
   postRenderTemplate : function() {
     this.$("#header").css("background-image", "url(" + app.currentUser.get("wallpaper") + ")")
-    this.$el.imagesLoaded(function(){
-      _.defer(function(){console.log('foo');$('body').scrollspy({target : '.stream-frame-wrapper', offset : 155})})
-      }
-    )
+    // this.$el.imagesLoaded(function(){
+    //   _.defer(function(){console.log('foo');$('body').scrollspy({target : '.stream-frame-wrapper', offset : 155})})
+    //   }
+    // )
   },
 
   selectFrame : function(post){
@@ -60,8 +60,7 @@ app.pages.Stream = app.views.Base.extend({
 
   refreshScrollSpy : function(){
     this.$el.imagesLoaded(function(){
-      console.log('refreshing')
-      _.defer($('body').scrollspy('refresh'))
+      // _.defer($('body').scrollspy('refresh'))
     })
   }
 },
