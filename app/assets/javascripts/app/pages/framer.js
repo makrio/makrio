@@ -113,7 +113,6 @@ app.views.framerControls = app.views.Base.extend({
   },
 
   formAttrs : {
-    "input.aspect_ids" : "aspect_ids[]",
     "input.services" : "services[]"
   },
 
@@ -124,6 +123,7 @@ app.views.framerControls = app.views.Base.extend({
 
   saveFrame : function(){
     this.setFormAttrs()
+    this.model.set({"aspect_ids": ["public"]})
     if(this.inValidFrame()) {
       return false;
     } 
