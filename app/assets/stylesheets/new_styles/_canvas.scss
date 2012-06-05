@@ -444,7 +444,8 @@ color: white;
 
     .selected-frame {
       .content {
-        border: 10px solid red;
+        @include box-shadow(0, 10px, 30px, black);
+        opacity: 1;
       }
     }
   }
@@ -456,7 +457,7 @@ color: white;
 
     .content {
       width: 100%;
-
+      opacity: 0.4;
       /* cursor overrides */
       cursor : pointer;
     }
