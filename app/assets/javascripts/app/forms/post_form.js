@@ -13,6 +13,6 @@ app.forms.Post = app.views.Base.extend({
   postRenderTemplate : function() {
     Mentions.initialize(this.$("textarea.text"));
     Mentions.fetchContacts(); //mentions should use app.currentUser
-    this.$('textarea').autoResize({minHeight: '200', maxHeight:'300', animate: false});
+    this.$('textarea').autoResize({minHeight: '100', maxHeight:'300', animate: false});
   }
 });
