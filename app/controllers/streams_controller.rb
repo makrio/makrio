@@ -43,6 +43,7 @@ class StreamsController < ApplicationController
         gon.stream = stream_json
         render :nothing => true, :layout => "post"
       end
+      format.mobile { render 'layouts/main_stream' }
 
       format.json { render :json => stream_json }
     end
