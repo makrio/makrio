@@ -22,7 +22,7 @@ class RegistrationsController < Devise::RegistrationsController
       
       flash[:error] = @user.errors.full_messages.join(";")
       Rails.logger.info("event=registration status=failure errors='#{@user.errors.full_messages.join(', ')}'")
-      redirect_to :back, :error => flash[:error]
+      redirect_to new_user_registration_path, :error => flash[:error]
     end
   end
 
