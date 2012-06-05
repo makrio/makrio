@@ -81,10 +81,10 @@ describe RegistrationsController do
         flash[:notice].should_not be_blank
       end
 
-      it "redirects to the " do
+      it "redirects to the root url" do
         get :create, @valid_params
         response.should be_redirect
-        response.location.should match /people/
+        response.location.should match '/'
       end
 
       it 'makes the user beta' do
@@ -117,9 +117,9 @@ describe RegistrationsController do
         flash[:error].should_not be_blank
       end
 
-      it "re-renders the form" do
+      it "redirects back" do
         get :create, @invalid_params
-        response.should render_template("registrations/new")
+        response.should be_redirect
       end
     end
   end

@@ -106,7 +106,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    stored_location_for(:user) || current_user_redirect_path
+    stored_location_for(:user) || root_path
   end
 
   def max_time
@@ -119,8 +119,4 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def current_user_redirect_path
-    return person_path(current_user.person) if current_user.beta?
-    current_user.getting_started? ? getting_started_path : root_path
-  end
 end
