@@ -1,9 +1,9 @@
 <% content_for :head do %>
-    <meta property="og:title" content="#{AppConfig[:pod_name]}" />
-    <meta property="og:description" content="A creative way to remix your world" />
+    <meta property="og:title" content="<%= AppConfig[:pod_name] %>" />
+    <meta property="og:description" content="Make it uniquely you" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://joindiaspora.com" />
-    <meta property="og:image" content="https://joindiaspora.com/icon_128.gif" />
+    <meta property="og:url" content="<%= AppConfig[:pod_url] %>" />
+    <meta property="og:image" content="<%= AppConfig[:pod_url] %>/icon_128.gif" />
     <meta property="fb:app_id" content="120373411325347" />
 <% end %>
 
@@ -34,7 +34,7 @@
 
     <div class="container">
         <h1>makr.io</h1>
-        <h3>A creative way to remix your world</h3>
+        <h3>Make it uniquely you</h3>
       </div>
   </div>
 
@@ -46,10 +46,8 @@
 
       <div id="sign_up" class="span5">
         <h4>JOIN THE PARTY...</h4>
-        <h2>SIGN UP!</h2>
 
         <br/>
-
 
         <form accept-charset="UTF-8" action="/users" autocomplete="off" class="form-horizontal block-form" data-validate="true" id="new_user" method="post" novalidate="novalidate"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
           <fieldset>
