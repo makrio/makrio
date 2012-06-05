@@ -44,7 +44,6 @@ class StreamsController < ApplicationController
         render :nothing => true, :layout => "post"
       end
       format.mobile { render 'layouts/main_stream' }
-
       format.json { render :json => stream_json }
     end
   end
@@ -75,7 +74,9 @@ class StreamsController < ApplicationController
     respond_with do |format|
       format.html { render 'layouts/main_stream' }
       format.mobile { render 'layouts/main_stream' }
-      format.json { render :json => @stream.stream_posts.map {|p| LastThreeCommentsDecorator.new(PostPresenter.new(p, current_user)) }}
+      format.json do 
+        render :json => @stream.stream_posts.map {|p| LastThreeCommentsDecorator.new(PostPresenter.new(p, current_user)) }
+      end
     end
   end
 
