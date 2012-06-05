@@ -12,7 +12,7 @@ class Services::Facebook < Service
   def post(post, url='')
     Rails.logger.debug("event=post_to_service type=facebook sender_id=#{self.user_id}")
     if post.public?
-      post_to_facebook("https://graph.facebook.com/me/makr_app:frame", create_open_graph_params(post).to_param)
+      post_to_facebook("https://graph.facebook.com/me/makr_app:make", create_open_graph_params(post).to_param)
     else
       post_to_facebook("https://graph.facebook.com/me/feed", create_post_params(post).to_param)
     end
