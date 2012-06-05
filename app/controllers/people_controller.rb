@@ -91,13 +91,34 @@ class PeopleController < ApplicationController
     @stream = Stream::Person.new(current_user, @person, :max_time => max_time)
 
     respond_to do |format|
+      format.json { render :json => @stream.stream_posts.map { |p| LastThreeCommentsDecorator.new(PostPresenter.new(p, current_user)) }}
+
       format.html do
         @page = :experimental
         gon.person = PersonPresenter.new(@person, current_user)
         gon.stream = PostPresenter.collection_json(@stream.stream_posts, current_user)
         render :nothing => true, :layout => 'post'
       end
-      format.json { render :json => @stream.stream_posts.map { |p| LastThreeCommentsDecorator.new(PostPresenter.new(p, current_user)) }}
+
+      format.mobile do
+        @profile = @person.profile
+
+        if current_user
+          @block = current_user.blocks.where(:person_id => @person.id).first
+          @contact = current_user.contact_for(@person)
+          @aspects_with_person = []
+          if @contact && !params[:only_posts]
+            @aspects_with_person = @contact.aspects
+            @aspect_ids = @aspects_with_person.map(&:id)
+            @contacts_of_contact_count = @contact.contacts.count
+            @contacts_of_contact = @contact.contacts.limit(8)
+          else
+            @contact ||= Contact.new
+            @contacts_of_contact_count = 0
+            @contacts_of_contact = []
+          end
+        end
+      end
     end
   end
 
