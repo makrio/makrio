@@ -48,10 +48,6 @@ module OpenGraphHelper
 
   # This method compensates for hosting assets off of s3
   def default_image_url
-    if image_path('asterisk.png').include?("http")
-      image_path('asterisk.png')
-    else
-      "#{root_url.chop}#{image_path('asterisk.png')}"
-    end
+    current_user.person.profile.image_url
   end
 end
