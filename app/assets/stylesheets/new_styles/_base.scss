@@ -306,6 +306,56 @@ $bring-dark-accent-forward-color: #DDD;
   }
 }
 
+#sign_up_prompt {
+  @include box-shadow(0, -1px, 10px, rgba(0,0,0,0.3));
+  z-index : 999;
+  position : fixed;
+  bottom : 0;
+  left : 0;
+  width : 100%;
+
+  background-color : rgb(246, 50, 53);
+
+  text-align : center;
+
+  padding : 15px 0;
+
+  * {
+    display : inline;
+  }
+
+  h1 {
+    font : {
+      family : Roboto-Light;
+      size : 30px;
+    }
+    color : #fff;
+  }
+
+  .new-btn {
+    padding : 8px 20px;
+    position : relative;
+    top : -5px;
+    border : 1px solid rgba(0,0,0,0.6);
+    color : #444;
+    font-family : Roboto-Bold;
+
+    &:hover {
+      text-decoration : none;
+    }
+  }
+
+  .tagline {
+    position : relative;
+    top : -4px;
+    padding : 0 10px;
+    padding-right : 17px;
+    font-family : Roboto-Bold;
+    color : rgba(0,0,0,0.6);
+    font-size : 14px;
+  }
+}
+
 /* bootstrap label fixes for Roboto */
 .label {
   padding : 2px 5px;

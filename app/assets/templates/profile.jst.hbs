@@ -49,3 +49,21 @@
 
     <div id="paginate"><span class="loader hidden"/></div>
 </div>
+
+{{#unless current_user.guid}}
+    <div id="sign_up_prompt">
+        <div class="container">
+            <h1>
+                makr.io
+            </h1>
+
+            <div class="tagline">
+                make it uniquely you
+            </div>
+
+            <a href ="/users/sign_up" id="sign_up_button" class="new-btn">
+                Sign up
+            </a>
+        </div>
+    </div>
+{{/unless}}
