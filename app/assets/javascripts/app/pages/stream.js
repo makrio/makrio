@@ -25,7 +25,7 @@ app.pages.Stream = app.views.Base.extend({
   postRenderTemplate : function() {
     this.$("#header").css("background-image", "url(" + app.currentUser.get("wallpaper") + ")")
     this.$el.imagesLoaded(function(){
-      _.defer(function(){console.log('foo');$('body').scrollspy({target : '.stream-frame-wrapper', offset : 105})})
+      _.defer(function(){console.log('foo');$('body').scrollspy({target : '.stream-frame-wrapper', offset : 155})})
       }
     )
   },
