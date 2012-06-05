@@ -417,6 +417,10 @@ color: white;
     }
     margin-bottom : 40px;
 
+    .content {
+      @include transition(opacity);
+    }
+
     .stream-frame-feedback {
       float : right;
       margin-top : 8px;
@@ -444,8 +448,7 @@ color: white;
 
     .selected-frame {
       .content {
-        @include box-shadow(0, 10px, 30px, black);
-        opacity: 1;
+        @include opacity(1);
       }
     }
   }
