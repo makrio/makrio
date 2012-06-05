@@ -44,7 +44,7 @@ app.pages.Stream = app.views.Base.extend({
   },
 
   navigateToPost : function(post){
-    app.router.navigate(location.pathname + "?ex=true&max_time=" + post.createdAt(), {replace: true})
+    app.router.navigate(location.pathname + "?max_time=" + post.createdAt(), {replace: true})
   },
 
   triggerInteractionLoad : function(evt){
