@@ -81,15 +81,14 @@ describe RegistrationsController do
         flash[:notice].should_not be_blank
       end
 
-      it "redirects to the home path" do
+      it "redirects to the " do
         get :create, @valid_params
         response.should be_redirect
-        response.location.should match /^#{root_url}\??$/
+        response.location.should match /people/
       end
 
-      it 'with an invite code from a beta users, make the user beta' do
-        Role.add_beta(bob.person)
-        get :create, @valid_params.merge(:invite => {:token => bob.invitation_code.token})
+      it 'makes the user beta' do
+        get :create, @valid_params
         User.last.should be_beta
       end
     end
