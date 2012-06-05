@@ -30,7 +30,7 @@ describe("app.Pages.Stream", function(){
   context("when more posts are loaded", function(){
     it("navigates to the last post in the stream's max_time", function(){
       spyOn(app.router, 'navigate')
-      var url = location.pathname + "?ex=true&max_time=" + this.post.createdAt()
+      var url = location.pathname + "?max_time=" + this.post.createdAt()
         , options =  {replace: true}
 
       this.page.streamView.trigger('loadMore')

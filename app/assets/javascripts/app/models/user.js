@@ -10,7 +10,7 @@ app.models.User = Backbone.Model.extend({
   },
 
   expProfileUrl : function(){
-    return "/people/" + app.currentUser.get("guid") + "?ex=true"
+    return "/people/" + app.currentUser.get("guid")
   },
 
   isServiceConfigured : function(providerName) {
