@@ -35,7 +35,7 @@ module AnalyticsHelper
     include_analytics "chartbeat" do
       javascript_tag do
         <<-JS.html_safe
-          var _sf_async_config = { uid: "#{AppConfig[:chartbeat_uid]}", domain: "makrio.herokuapp.com" };
+          var _sf_async_config = { uid: #{AppConfig[:chartbeat_uid]}, domain: "makrio.herokuapp.com" };
           (function() {
             function loadChartbeat() {
               window._sf_endpt = (new Date()).getTime();
