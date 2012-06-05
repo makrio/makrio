@@ -42,8 +42,10 @@ var app = {
       app.header.render();
     }
 
-
     Backbone.history.start({pushState: true});
+
+    // track sign-ups
+    this.instrumentSignUps()
 
     // there's probably a better way to do this...
     $("a[rel=backbone]").live("click", function(evt){
@@ -77,6 +79,13 @@ var app = {
   instrument : function(type, name, object, callback) {
     if(!window.mixpanel) { return }
     window.mixpanel[type](name, object, callback)
+  },
+
+  instrumentSignUps : function() {
+    if(!window.mixpanel) { return }
+    window.mixpanel["track_links"]("#sign_up_button", "Click Sign Up", function(element){
+      return {'referrer' : $(element).data('type')}
+    });
   }
 };
 
