@@ -5,6 +5,7 @@
 module Jobs
   class Base
     Dir["#{Rails.root}/app/models/jobs/mail/*.rb"].each {|file| require file }
+    extend Resque::Heroku 
     
     #TODO these should be subclassed real exceptions
     DUMB_ERROR_MESSAGES = [

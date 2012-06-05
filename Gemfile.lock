@@ -372,6 +372,7 @@ GEM
       redis-namespace (~> 1.0.2)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
+    resque-heroku (0.0.5)
     resque-timeout (1.0.0)
       resque (~> 1.0)
     rest-client (1.6.7)
@@ -532,6 +533,7 @@ DEPENDENCIES
   redcarpet (= 2.1.1)
   remotipart (~> 1.0)
   resque (= 1.20.0)
+  resque-heroku
   resque-timeout (= 1.0.0)
   roxml!
   rpm_contrib (~> 2.1.7)
