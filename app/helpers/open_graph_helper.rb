@@ -13,7 +13,7 @@ module OpenGraphHelper
 
   def og_image(post)
     tags = post.photos.map{|x| meta_tag_with_property('og:image', x.url(:thumb_large))}
-    tags << meta_tag_with_property('og:image', default_image_url) if tags.empty?
+    tags << meta_tag_with_property('og:image', default_image_url(post.author)) if tags.empty?
     tags.join(' ')
   end
 
@@ -47,7 +47,7 @@ module OpenGraphHelper
   private
 
   # This method compensates for hosting assets off of s3
-  def default_image_url
-    current_user.person.profile.image_url
+  def default_image_url(author)
+    author.profile.image_url
   end
 end
