@@ -49,7 +49,7 @@
         <br/>
         <%= flash_messages %>
 
-        <form accept-charset="UTF-8" action="/users" autocomplete="off" class="form-horizontal block-form" data-validate="true" id="new_user" method="post" validate="validate"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+        <form accept-charset="UTF-8" action="/users" autocomplete="off" class="form-horizontal block-form" data-validate="true" id="new_user" method="post" validate="validate" data-type="landing_page"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
           <fieldset>
             <div class="control-group">
               <label class="control-label" for="user_email">
@@ -83,7 +83,7 @@
 
           </fieldset>
 
-          <input class="new-btn button" id="sign_up_button" name="commit" type="submit" value="Sign Up" data-type="landing_page">
+          <input class="new-btn button" name="commit" type="submit" value="Sign Up" />
         </form>
 
       </div>

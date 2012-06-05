@@ -21,7 +21,7 @@
             </h4>
 
             <%= flash_messages %>
-            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "form-horizontal block-form", :autocomplete => "off", :validate => "validate"}) do |f| %>
+            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "form-horizontal block-form", :autocomplete => "off", :validate => "validate", "data-type" => "sign_up_page"}) do |f| %>
                 <fieldset>
                   <div class="control-group">
                     <label class="control-label" for="user_email">
@@ -55,7 +55,7 @@
                   <%= invite_hidden_tag(invite) %>
                 </fieldset>
 
-              <%= f.submit t('.continue'), :class => "new-btn", :id => "sign_up_button", 'data-type' => "sign_up_page" %>
+              <%= f.submit t('.continue'), :class => "new-btn" %>
             <% end %>
         </div>
     </div>
