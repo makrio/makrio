@@ -375,9 +375,15 @@ $bring-dark-accent-forward-color: #DDD;
   }
 }
 
+#make-button {
+  float: left;
+  padding: 0 !important;
+}
+
 /* responsive */
 @media (max-width: 767px) {
   body {
     padding : 0;
  }
 }
+
