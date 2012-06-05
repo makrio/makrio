@@ -23,10 +23,12 @@ app.Router = Backbone.Router.extend({
   },
 
   composer : function(){
+    app.instrument("track", "Compose")
     this.renderPage(function(){ return new app.pages.Composer()});
   },
 
   framer : function(){
+    app.instrument("track", "Frame")
     this.renderPage(function(){ return new app.pages.Framer()});
   },
 
