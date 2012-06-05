@@ -24,7 +24,10 @@ app.pages.Stream = app.views.Base.extend({
 
   postRenderTemplate : function() {
     this.$("#header").css("background-image", "url(" + app.currentUser.get("wallpaper") + ")")
-   _.defer(function(){$('body').scrollspy({target : '.stream-frame-wrapper', offset : 205})})
+    this.$el.imagesLoaded(function(){
+      _.defer(function(){console.log('foo');$('body').scrollspy({target : '.stream-frame-wrapper', offset : 205})})
+      }
+    )
   },
 
   selectFrame : function(post){
@@ -56,7 +59,10 @@ app.pages.Stream = app.views.Base.extend({
   },
 
   refreshScrollSpy : function(){
-    _.defer($('body').scrollspy('refresh'))
+    this.$el.imagesLoaded(function(){
+      console.log('refreshing')
+      _.defer($('body').scrollspy('refresh'))
+    })
   }
 },
 
