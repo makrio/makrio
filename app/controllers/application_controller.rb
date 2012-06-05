@@ -116,7 +116,4 @@ class ApplicationController < ActionController::Base
   def flag
     @flag ||= FeatureFlagger.new(current_user)
   end
-
-  private
-
 end
