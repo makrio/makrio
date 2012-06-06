@@ -423,10 +423,6 @@ a.logo{
     }
     margin-bottom : 40px;
 
-    .content {
-      @include transition(opacity);
-    }
-
     .stream-frame-feedback {
       float : right;
       margin-top : 8px;
@@ -454,7 +450,10 @@ a.logo{
 
     .selected-frame {
       .content {
-        @include opacity(1);
+        border : 5px solid $link-blue;
+        margin-left : -5px;
+        margin-top : -5px;
+        margin-bottom : -5px;
       }
     }
   }
@@ -466,7 +465,6 @@ a.logo{
 
     .content {
       width: 100%;
-      opacity: 0.4;
       /* cursor overrides */
       cursor : pointer;
     }
