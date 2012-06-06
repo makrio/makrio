@@ -168,13 +168,6 @@ describe UsersController do
     end
   end
 
-  describe '#privacy_settings' do
-    it "returns a 200" do
-      get 'privacy_settings'
-      response.status.should == 200
-    end
-  end
-
   describe '#edit' do
     it "returns a 200" do
       get 'edit', :id => @user.id

@@ -1,7 +1,3 @@
--#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
--#   licensed under the Affero General Public License version 3 or later.  See
--#   the COPYRIGHT file.
-
 - content_for :page_title do
   = t('.edit_account')
 
@@ -70,65 +66,8 @@
   %br
   %br
   %hr
-
   %br
 
-  %h3#stream-preferences
-    = t('.stream_preferences')
-  = form_for current_user, :url => user_path, :html => { :method => :put } do |f|
-    = f.error_messages
-
-    %p.checkbox_select
-      = f.label :show_community_spotlight_in_stream, t('.show_community_spotlight')
-      = f.check_box :show_community_spotlight_in_stream
-
-    %br
-    = f.submit t('.change'), :class => 'button'
-
-  %br
-  %br
-  %hr
-  %br
-  
-  %h3#auto-follow-back-preferences
-    = t('.following')
-  = form_for current_user, :url => user_path, :html => { :method => :put } do |f|
-    = f.error_messages
-  
-    %p.checkbox_select
-      = f.label :auto_follow_back, t('.auto_follow_back')
-      = f.check_box :auto_follow_back
-    %br
-    %p.checkbox_select
-      %span{:style => "color: #999"}
-        = t('.auto_follow_aspect')
-      = f.select :auto_follow_back_aspect_id, aspect_options_for_select(current_user.aspects)
-    
-    %br
-    = f.submit t('.change'), :class => 'button'
-
-  %br
-  %br
-  %hr
-  %br
-
-
-  %h3#getting-started-preferences
-    = t('.show_getting_started') 
-  = form_for current_user, :url => user_path, :html => { :method => :put } do |f|
-    = f.error_messages
-
-    %p.checkbox_select
-      = f.label :getting_started, t('.show_getting_started')
-      = f.check_box :getting_started
-
-    %br
-    = f.submit t('.change'), :class => 'button'
-
-  %br
-  %br
-  %hr
-  %br
   %h3 
     = t('.receive_email_notifications')
   = form_for 'user', :url => user_path, :html => { :method => :put } do |f|
@@ -139,26 +78,11 @@
         %p.checkbox_select
           = type.label :also_commented, t('.also_commented')
           = type.check_box :also_commented, {:checked =>  @email_prefs['also_commented']}, false, true
-        %br
-        %p.checkbox_select
-          = type.label :mentioned, t('.mentioned') 
-          = type.check_box :mentioned, {:checked =>  @email_prefs['mentioned']}, false, true
-
 
         %br
         %p.checkbox_select
           = type.label :comment_on_post, t('.comment_on_post')
           = type.check_box :comment_on_post, {:checked =>  @email_prefs['comment_on_post']}, false, true
-
-        %br
-        %p.checkbox_select
-          = type.label :private_message, t('.private_message')
-          = type.check_box :private_message, {:checked =>  @email_prefs['private_message']}, false, true
-
-        %br
-        %p.checkbox_select
-          = type.label :started_sharing, t('.started_sharing')
-          = type.check_box :started_sharing, {:checked =>  @email_prefs['started_sharing']}, false, true
 
         %br
         %p.checkbox_select

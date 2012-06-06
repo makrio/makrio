@@ -33,9 +33,6 @@
       });
     });
 
-%h3
-  = t('profiles.edit.your_public_profile')
-
 = error_messages_for profile
 
 %h4
@@ -47,12 +44,6 @@
 = text_field_tag 'profile[last_name]', profile.last_name, :placeholder => "Sofaer"
 
 %br
-
-%h4
-  = t('profiles.edit.your_tags')
-
-= text_field_tag 'profile[tag_string]', "", :placeholder => t('profiles.edit.your_tags_placeholder')
-
 %br
 
 %h4
