@@ -85,10 +85,6 @@ describe ApplicationHelper do
   end
 
   describe '#pod_name' do
-    it 'defaults to Diaspora*' do
-      pod_name.should  match /DIASPORA/i
-    end
-
     it 'displays the supplied AppConfig[:pod_name] if it is set' do
       old_name = AppConfig[:pod_name]
       AppConfig[:pod_name] = "Catspora"

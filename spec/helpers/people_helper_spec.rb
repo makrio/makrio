@@ -43,14 +43,14 @@ describe PeopleHelper do
       @person.profile.first_name = nil
       @person.profile.last_name = nil
 
-      person_link(@person).should include @person.diaspora_handle
+      person_link(@person).should include @person.diaspora_handle.split("@").first
     end
 
     it 'uses diaspora handle if first name and first name are rails#blank?' do
       @person.profile.first_name = " "
       @person.profile.last_name = " "
 
-      person_link(@person).should include @person.diaspora_handle
+      person_link(@person).should include @person.diaspora_handle.split("@").first
     end
 
     it "should not allow basic XSS/HTML" do

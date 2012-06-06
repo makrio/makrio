@@ -5,7 +5,6 @@
 require 'spec_helper'
 
 describe Person do
-
   before do
     @user = bob
     @person = Factory(:person)
@@ -184,8 +183,8 @@ describe Person do
     end
 
     context 'without first nor last name' do
-      it 'should display their diaspora handle' do
-        Person.name_from_attrs(nil, nil, @profile.diaspora_handle).should == @profile.diaspora_handle
+      it 'should display their username' do
+        Person.name_from_attrs(nil, nil, @profile.diaspora_handle).should == @profile.diaspora_handle.split("@").first
       end
     end
   end

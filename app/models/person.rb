@@ -178,7 +178,7 @@ class Person < ActiveRecord::Base
   end
 
   def self.name_from_attrs(first_name, last_name, diaspora_handle)
-    first_name.blank? && last_name.blank? ? diaspora_handle : "#{first_name.to_s.strip} #{last_name.to_s.strip}".strip
+    first_name.blank? && last_name.blank? ? diaspora_handle.split("@").first : "#{first_name.to_s.strip} #{last_name.to_s.strip}".strip
   end
 
   def first_name
