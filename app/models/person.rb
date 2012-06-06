@@ -171,11 +171,9 @@ class Person < ActiveRecord::Base
   end
 
   def name(opts = {})
-    if self.profile.nil?
-      fix_profile
-    end
+    fix_profile if profile.nil?
 
-    @name ||= Person.name_from_attrs(self.profile.first_name, self.owner.username)
+    @name ||= self.profile.first_name || self.owner.username
   end
 
   def self.name_from_attrs(first_name, username)
