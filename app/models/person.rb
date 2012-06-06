@@ -174,11 +174,12 @@ class Person < ActiveRecord::Base
     if self.profile.nil?
       fix_profile
     end
-    @name ||= Person.name_from_attrs(self.profile.first_name, self.profile.last_name, self.diaspora_handle)
+
+    @name ||= Person.name_from_attrs(self.profile.first_name, self.owner.username)
   end
 
-  def self.name_from_attrs(first_name, last_name, diaspora_handle)
-    first_name.blank? && last_name.blank? ? diaspora_handle : "#{first_name.to_s.strip} #{last_name.to_s.strip}".strip
+  def self.name_from_attrs(first_name, username)
+    first_name.blank? ? username : first_name.to_s.strip
   end
 
   def first_name
