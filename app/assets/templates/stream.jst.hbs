@@ -12,18 +12,6 @@
                 <a href="/people/{{current_user.guid}}" id="profile-button">
                     <span class="label label-inverse">
                         <i class="icon-user icon-white"></i>
-                        <span>
-                            PROFILE
-                        </span>
-                    </span>
-                </a>
-
-                <a href="/" id="home-button">
-                    <span class="label label-inverse">
-                        <i class="icon-home icon-white"></i>
-                        <span>
-                            HOME
-                        </span>
                     </span>
                 </a>
 
@@ -43,11 +31,9 @@
             {{/if}}
         </div>
 
-        <h1>
-           <a href='/stream' class='logo'>
-            {{t "pod_name"}}
-          </a>
-        </h1>
+       <a href='/stream' class='logo'>
+         <img src="{{imageUrl "makr_home_logo@2x.png"}}" height=26 width=118 />
+       </a>
          <section id="make-button">
             <a href="/posts/new" id="composer-button" class="control small label label-inverse">
                 MAKE

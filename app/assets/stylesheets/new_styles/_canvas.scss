@@ -3,15 +3,20 @@
 }
 
 a.logo{
-text-decoration: none;
-color: white;
-float:left;
+  text-decoration: none;
+  color: white;
+  float:left;
   &:hover{
     text-decoration: none;
     color: white;
     cursor: pointer;
   }
+
+  img {
+    margin-top : 3px;
+  }
 }
+
 .no-post-message {
   text-align: center;
   margin-top: 50px;
