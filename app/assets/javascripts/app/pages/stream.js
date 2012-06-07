@@ -28,9 +28,19 @@ app.pages.Stream = app.views.Base.extend({
 
   postRenderTemplate : function() {
     this.$("#header").css("background-image", "url(" + app.currentUser.get("wallpaper") + ")")
-    $('body').scrollspy({target : '.stream-frame-wrapper', offset : 115})
-    this._resetPeriod = 500;
-    this.refreshScrollSpy()
+    //after all of the child divs have been added, initialize the scroll spy
+    _.defer(_.bind(function(){
+      $('body').scrollspy({target : '.stream-frame-wrapper', offset : 115})
+      this._resetPeriod = 500;
+      this.refreshScrollSpy()
+
+      //select frame needs a div to be in, so make sure this happens in a defer
+      this.stream.deferred.done(_.bind(function(){
+        var post = this.stream.items.models[0]
+        this.selectFrame(post)
+      }, this))
+    }, this))
+
   },
 
   presenter : function(){
