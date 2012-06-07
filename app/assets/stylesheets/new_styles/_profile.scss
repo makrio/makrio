@@ -141,6 +141,11 @@
   }
 }
 
+#composer-button.label.label-inverse{
+  background-color : #F63235;
+  color : #fff;
+}
+
 #profile-stats {
   i {
     @include transition(opacity);

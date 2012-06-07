@@ -366,6 +366,10 @@ $bring-dark-accent-forward-color: #DDD;
   cursor : move;
 }
 
+#composer-button.label.label-inverse {
+  background-color : #ff0000;
+}
+
 /* bootstrap label fixes for Roboto */
 .label {
   padding : 2px 5px;
