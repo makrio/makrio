@@ -16,6 +16,7 @@ app.Router = Backbone.Router.extend({
   },
 
   newStream : function() {
+    app.instrument("track", "Stream loaded")
     this.renderPage(function(){ return new app.pages.Stream()});
   },
 
