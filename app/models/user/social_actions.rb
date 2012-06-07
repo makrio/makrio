@@ -1,4 +1,8 @@
 module User::SocialActions
+  def participate!(target, opts={})
+    Participation::Generator.new(self, target).create!(opts)
+  end
+
   def comment!(target, text, opts={})
     find_or_create_participation!(target)
     comment = Comment::Generator.new(self, target, text).create!(opts)
@@ -6,14 +10,10 @@ module User::SocialActions
     comment
   end
 
-  def participate!(target, opts={})
-    Participation::Generator.new(self, target).create!(opts)
-  end
-
   def like!(target, opts={})
     find_or_create_participation!(target)
     like = Like::Generator.new(self, target).create!(opts)
-    open_graph_action('like', target)
+    open_graph_action('love', target)
     like
   end
 
@@ -30,11 +30,7 @@ module User::SocialActions
 
   def build_comment(options={})
     target = options.delete(:post)
-    comment = Comment::Generator.new(self, target, options.delete(:text)).build(options)
-
-    open_graph_action('comment', target)
-
-    comment
+    Comment::Generator.new(self, target, options.delete(:text)).build(options)
   end
 
   def find_or_create_participation!(target)

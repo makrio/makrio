@@ -17,6 +17,10 @@ module OpenGraphHelper
     tags.join(' ')
   end
 
+  def og_author(post)
+    meta_tag_with_property("#{AppConfig[:open_graph_namespace]}:author", post.author.name)
+  end
+
   def og_site_name
     meta_tag_with_property('og:site_name', AppConfig[:pod_name])
   end
@@ -37,7 +41,8 @@ module OpenGraphHelper
   def og_page_specific_tags(post)
     [og_title(post), og_type,
       og_url(post), og_image(post), 
-      og_description(post)].join(' ').html_safe
+      og_description(post),
+      og_author(post)].join(' ').html_safe
   end
 
   def meta_tag_with_property(name, content)
