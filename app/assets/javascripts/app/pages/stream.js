@@ -75,7 +75,6 @@ app.pages.Stream = app.views.Base.extend({
     var self = this;
     this._resetPeriod = this._resetPeriod || 2000
     _.delay(function(){
-      console.log("refreshing", self._resetPeriod)
       if(self._resetPeriod <= 10000) {
         $('body').scrollspy('refresh')
         self._resetPeriod = self._resetPeriod * 2
