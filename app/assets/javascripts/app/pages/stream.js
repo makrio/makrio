@@ -2,8 +2,8 @@ app.pages.Stream = app.views.Base.extend({
   templateName : "stream",
 
   events : {
-    // 'activate .stream-frame-wrapper' : 'triggerInteractionLoad'
-    "click .bookmarklet-button" : "bookmarkletInstructionsPrompt"
+    "click .bookmarklet-button" : "bookmarkletInstructionsPrompt",
+    "activate .stream-frame-wrapper" : 'triggerInteractionLoad'
   },
 
   subviews : {
@@ -17,14 +17,24 @@ app.pages.Stream = app.views.Base.extend({
 
     this.streamView = new app.pages.Stream.InfiniteScrollView({ model : this.stream })
     this.interactionsView = new app.views.StreamInteractions()
-
     this.streamView.on('loadMore', this.updateUrlState, this);
-    // this.stream.on("fetched", this.refreshScrollSpy, this)
+    this.stream.on("fetched", function(){
+      this._resetPeriod = 2000
+      this.refreshScrollSpy()
+    }, this)
     this.stream.on("frame:interacted", this.selectFrame, this)
+    this.on("refreshScrollSpy", this.refreshScrollSpy, this)
   },
 
   postRenderTemplate : function() {
+    var self = this;
     this.$("#header").css("background-image", "url(" + app.currentUser.get("wallpaper") + ")")
+    this.$el.imagesLoaded(function(){
+      _.defer(function(){
+        $('body').scrollspy({target : '.stream-frame-wrapper', offset : 55})
+        self.refreshScrollSpy.call(self)
+      })
+    })
   },
 
   presenter : function(){
@@ -36,11 +46,15 @@ app.pages.Stream = app.views.Base.extend({
   selectFrame : function(post){
     if(this.selectedPost == post) { return }
     this.selectedPost = post
-    
+
     this.$(".stream-frame-wrapper").removeClass("selected-frame")
     this.$(".stream-frame-wrapper[data-id=" + this.selectedPost.id +"]").addClass("selected-frame")
-    this.interactionsView.setInteractions(this.selectedPost)
+    this.throttledInteractions(this.selectedPost)
   },
+
+  throttledInteractions : _.throttle(function(post){
+    this.interactionsView.setInteractions(post)
+  }, 500),
 
   updateUrlState : function(){
     var post = this.stream.items.last();
@@ -54,17 +68,20 @@ app.pages.Stream = app.views.Base.extend({
   },
 
   triggerInteractionLoad : function(evt){
-    this._throttledInteractions = this._throttledInteractions || _.bind(_.throttle(function(id){
-      this.selectFrame(this.stream.items.get(id))
-    }, 500), this)
-
-    this._throttledInteractions($(evt.target).data("id"))
+      this.selectFrame(this.stream.items.get($(evt.target).data("id")))
   },
 
   refreshScrollSpy : function(){
-    this.$el.imagesLoaded(function(){
-      // _.defer($('body').scrollspy('refresh'))
-    })
+    var self = this;
+    this._resetPeriod = this._resetPeriod || 2000
+    _.delay(function(){
+      console.log("refreshing", self._resetPeriod)
+      if(self._resetPeriod <= 10000) {
+        $('body').scrollspy('refresh')
+        self._resetPeriod = self._resetPeriod * 2
+        self.trigger("refreshScrollSpy")
+      }
+    }, this._resetPeriod)
   },
 
   bookmarkletJS : function() {
