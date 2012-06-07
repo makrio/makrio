@@ -87,13 +87,7 @@ module EvilQuery
     end
 
     def post!
-      public_post.first
-    end
-
-    protected
-
-    def post
-      @class.where(@key => @id).where(@conditions)
+      @class.where(@key => @id).where(@conditions).first
     end
   end
 
