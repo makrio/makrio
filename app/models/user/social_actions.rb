@@ -37,13 +37,13 @@ module User::SocialActions
     participations.where(:target_id => target).first || participate!(target)
   end
 
-  private
-
   def open_graph_action(action, target)
     if facebook = facebook_connection
       facebook.queue_open_graph(action, target)
     end
   end
+
+  private
 
   def facebook_connection
     self.services.find_by_type("Services::Facebook")
