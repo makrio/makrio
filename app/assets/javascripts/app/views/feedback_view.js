@@ -6,7 +6,8 @@ app.views.Feedback = app.views.Base.extend({
   events: {
     "click *[rel='auth-required']" : "requireAuth",
     "click .like" : "toggleLike",
-    "click .reshare" : "resharePost"
+    "click .reshare" : "resharePost",
+    "click .comment" : "comment"
   },
 
   tooltipSelector : ".label",
@@ -39,6 +40,12 @@ app.views.Feedback = app.views.Base.extend({
     if(!window.confirm(Diaspora.I18n.t("reshares.post", {name: this.model.reshareAuthor().name}))) { return }
     this.model.interactions.reshare();
   },
+
+  comment : function(evt) {
+    /* dtemp hacks */
+    if(evt) { evt.preventDefault(); }
+  },
+
 
   requireAuth : function(evt) {
     if( app.currentUser.authenticated() ) { return }
