@@ -39,6 +39,14 @@ describe Services::Facebook do
     end
   end
 
+  describe "#open_graph_post" do
+    it "posts the supplied action to facebook's open graph" do
+      stub_request(:post, "https://graph.facebook.com/me/#{AppConfig[:open_graph_namespace]}:love").
+          to_return(:status => 200, :body => "", :headers => {})
+      @service.open_graph_post("love", @post)
+    end
+  end
+
   describe "#profile_photo_url" do
     it 'returns a large profile photo url' do
       @service.uid = "abc123"

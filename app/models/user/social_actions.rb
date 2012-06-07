@@ -1,7 +1,9 @@
 module User::SocialActions
   def comment!(target, text, opts={})
     find_or_create_participation!(target)
-    Comment::Generator.new(self, target, text).create!(opts)
+    comment = Comment::Generator.new(self, target, text).create!(opts)
+    open_graph_action('comment', target)
+    comment
   end
 
   def participate!(target, opts={})
@@ -10,7 +12,9 @@ module User::SocialActions
 
   def like!(target, opts={})
     find_or_create_participation!(target)
-    Like::Generator.new(self, target).create!(opts)
+    like = Like::Generator.new(self, target).create!(opts)
+    open_graph_action('like', target)
+    like
   end
 
   def reshare!(target, opts={})
@@ -18,14 +22,34 @@ module User::SocialActions
     reshare = build_post(:reshare, :root_guid => target.guid)
     reshare.save!
     Postzord::Dispatcher.defer_build_and_post(self, reshare)
+
+    open_graph_action('reshare', target)
+
     reshare
   end
 
   def build_comment(options={})
-    Comment::Generator.new(self, options.delete(:post), options.delete(:text)).build(options)
+    target = options.delete(:post)
+    comment = Comment::Generator.new(self, target, options.delete(:text)).build(options)
+
+    open_graph_action('comment', target)
+
+    comment
   end
 
   def find_or_create_participation!(target)
     participations.where(:target_id => target).first || participate!(target)
+  end
+
+  private
+
+  def open_graph_action(action, target)
+    if facebook = facebook_connection
+      facebook.queue_open_graph(action, target)
+    end
+  end
+
+  def facebook_connection
+    self.services.find_by_type("Services::Facebook")
   end
 end
