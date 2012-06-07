@@ -3,6 +3,7 @@ app.pages.Stream = app.views.Base.extend({
 
   events : {
     // 'activate .stream-frame-wrapper' : 'triggerInteractionLoad'
+    "click .bookmarklet-button" : "bookmarkletInstructionsPrompt"
   },
 
   subviews : {
@@ -24,10 +25,12 @@ app.pages.Stream = app.views.Base.extend({
 
   postRenderTemplate : function() {
     this.$("#header").css("background-image", "url(" + app.currentUser.get("wallpaper") + ")")
-    // this.$el.imagesLoaded(function(){
-    //   _.defer(function(){console.log('foo');$('body').scrollspy({target : '.stream-frame-wrapper', offset : 155})})
-    //   }
-    // )
+  },
+
+  presenter : function(){
+    return _.extend(this.defaultPresenter(), {
+      bookmarkletJS : this.bookmarkletJS()
+    })
   },
 
   selectFrame : function(post){
@@ -62,6 +65,15 @@ app.pages.Stream = app.views.Base.extend({
     this.$el.imagesLoaded(function(){
       // _.defer($('body').scrollspy('refresh'))
     })
+  },
+
+  bookmarkletJS : function() {
+    return "javascript:(function(){f='" + document.location.origin + "/posts/new?url='+encodeURIComponent(window.location.href)+'&title='+encodeURIComponent(document.title)+'&notes='+encodeURIComponent(''+(window.getSelection?window.getSelection():document.getSelection?document.getSelection():document.selection.createRange().text))+'&v=1&';a=function(){if(!window.open(f+'noui=1&jump=doclose','diasporav1','menubar=no,location=no,links=no,scrollbars=no,toolbar=no,width=980,height=520'))location.href=f+'jump=yes'};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})()"
+  },
+
+  bookmarkletInstructionsPrompt : function(evt) {
+    evt.preventDefault()
+    alert("Drag me to the bookmarks bar to post to makr.io from anywhere on the web")
   }
 },
 

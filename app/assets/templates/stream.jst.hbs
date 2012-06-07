@@ -1,8 +1,13 @@
 <div id="header">
     <div class="container" style="position:relative;">
-
         <div id="top-right-nav">
             {{#if current_user.guid}}
+                <a href="{{bookmarkletJS}}" title="Bookmarklet" class="bookmarklet-button">
+                    <span class="label label-inverse">
+                        Post to Makr.io
+                    </span>
+                </a>
+
                 <a href="/notifications" title="Notifications" id="notifications-button">
                     <span class="label label-inverse">
                         {{current_user.notifications_count}}

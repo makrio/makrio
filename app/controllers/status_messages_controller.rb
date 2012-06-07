@@ -31,18 +31,6 @@ class StatusMessagesController < ApplicationController
     end
   end
 
-  def bookmarklet
-    @aspects = current_user.aspects
-    @aspect_ids = @aspects.map{|x| x.id}
-    if ! is_mobile_device?
-      render :layout => nil
-    end
-  end
-
-  def new_bookmarklet
-    render :layout => nil
-  end
-
   def create
     params[:status_message][:aspect_ids] = [*params[:aspect_ids]]
     normalize_public_flag!

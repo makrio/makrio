@@ -362,6 +362,10 @@ $bring-dark-accent-forward-color: #DDD;
   }
 }
 
+.bookmarklet-button {
+  cursor : move;
+}
+
 /* bootstrap label fixes for Roboto */
 .label {
   padding : 2px 5px;

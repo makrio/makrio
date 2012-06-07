@@ -7,6 +7,7 @@ app.Router = Backbone.Router.extend({
     "u/:name": "newProfile",
 
     "posts/new" : "composer",
+    "posts/new?*params" : "composer", // bookmarklet has params
     "posts/:id": "singlePost",
     "posts/:id/next": "siblingPost",
     "posts/:id/previous": "siblingPost",

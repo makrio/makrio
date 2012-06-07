@@ -15,51 +15,6 @@ describe StatusMessagesController do
     alice.reload
   end
 
-  describe '#bookmarklet' do
-    def pass_test_args(text='cute kitty')
-      get :bookmarklet, {:url => 'https://www.youtube.com/watch?v=0Bmhjf0rKe8',
-                         :title => 'Surprised Kitty',
-                         :notes => text}
-    end
-
-    it 'succeeds' do
-      get :bookmarklet
-      response.should be_success
-    end
-
-    it 'contains a complete html document' do
-      get :bookmarklet
-
-      doc = Nokogiri(response.body)
-      doc.xpath('//head').count.should equal 1
-      doc.xpath('//body').count.should equal 1
-
-      save_fixture(html_for('body'), 'empty_bookmarklet') 
-    end
-
-    it 'accepts get params' do
-      pass_test_args
-      response.should be_success
-
-      save_fixture(html_for('body'), 'prefilled_bookmarklet')
-    end
-
-    it 'correctly deals with dirty input' do
-      test_text = "**love** This is such a\n\n great \"cute kitty\" '''blabla'''"
-      pass_test_args(test_text)
-      response.should be_success
-
-      save_fixture(html_for('body'), 'prefilled_bookmarklet_dirty')
-    end
-  end
-
-  describe '#new_bookmarklet' do
-    it 'works' do
-      get :new_bookmarklet
-      response.should be_success
-    end
-  end
-
   describe '#new' do
     it 'succeeds' do
       get :new,
