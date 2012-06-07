@@ -15,6 +15,7 @@ CarrierWave.configure do |config|
         :region                 => AppConfig[:s3_region]
     }
     config.fog_directory = AppConfig[:s3_bucket]
+    config.fog_host = ENV["ASSET_HOST"] if ENV["ASSET_HOST"]
   else
     config.storage = :file
   end
