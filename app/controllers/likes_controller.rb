@@ -29,7 +29,7 @@ class LikesController < ApplicationController
   def destroy
     @like = Like.find_by_id_and_author_id!(params[:id], current_user.person.id)
 
-    current_user.retract(@like)
+    @like.destroy
     respond_to do |format|
       format.json { render :nothing => true, :status => 204 }
     end
@@ -50,7 +50,7 @@ class LikesController < ApplicationController
 
   def target
     @target ||= if params[:post_id]
-      current_user.find_visible_shareable_by_id(Post, params[:post_id]) || raise(ActiveRecord::RecordNotFound.new)
+      Post.find_by_guid_or_id_with_user(params[:post_id], current_user)
     else
       Comment.find(params[:comment_id]).tap do |comment|
        raise(ActiveRecord::RecordNotFound.new) unless current_user.find_visible_shareable_by_id(Post, comment.commentable_id)

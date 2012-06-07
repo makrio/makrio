@@ -11,6 +11,7 @@ module User::SocialActions
   end
 
   def like!(target, opts={})
+    target || raise("liking needs a target")
     find_or_create_participation!(target)
     like = Like::Generator.new(self, target).create!(opts)
     open_graph_action('love', target)
