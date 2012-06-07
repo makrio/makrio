@@ -31,7 +31,7 @@ app.pages.Stream = app.views.Base.extend({
     this.$("#header").css("background-image", "url(" + app.currentUser.get("wallpaper") + ")")
     this.$el.imagesLoaded(function(){
       _.defer(function(){
-        $('body').scrollspy({target : '.stream-frame-wrapper', offset : 55})
+        $('body').scrollspy({target : '.stream-frame-wrapper', offset : 75})
         self.refreshScrollSpy.call(self)
       })
     })
