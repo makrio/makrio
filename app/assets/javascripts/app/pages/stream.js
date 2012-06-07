@@ -27,14 +27,10 @@ app.pages.Stream = app.views.Base.extend({
   },
 
   postRenderTemplate : function() {
-    var self = this;
     this.$("#header").css("background-image", "url(" + app.currentUser.get("wallpaper") + ")")
-    this.$el.imagesLoaded(function(){
-      _.defer(function(){
-        $('body').scrollspy({target : '.stream-frame-wrapper', offset : 75})
-        self.refreshScrollSpy.call(self)
-      })
-    })
+    $('body').scrollspy({target : '.stream-frame-wrapper', offset : 115})
+    this._resetPeriod = 500;
+    this.refreshScrollSpy()
   },
 
   presenter : function(){
