@@ -43,6 +43,11 @@ class PhotosController < ApplicationController
   def create
     rescuing_photo_errors do
       if remotipart_submitted?
+        unless params[:photo].present?
+          respond_to do |format|
+            format.json{ render :json =>{'success'=> false} }
+          end
+        end
         @photo = current_user.build_post(:photo, params[:photo])
         if @photo.save
           respond_to do |format|
