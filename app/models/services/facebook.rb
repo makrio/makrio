@@ -25,12 +25,12 @@ class Services::Facebook < Service
    "https://graph.facebook.com/#{self.uid}/picture?type=large&access_token=#{URI.escape(self.access_token)}"
   end
 
-  def open_graph_post(action, post)
-    post_to_facebook(og_action(action), create_open_graph_params(post))
+  def open_graph_post(action, post, opts={})
+    post_to_facebook(og_action(action), create_open_graph_params(post, opts))
   end
 
-  def queue_open_graph(action, post)
-    Resque.enqueue(Jobs::PublishOpenGraph, self.id, post.id, action)
+  def queue_open_graph(action, post, opts={})
+    Resque.enqueue(Jobs::PublishOpenGraph, self.id, post.id, action, opts)
   end
 
   private
@@ -43,8 +43,8 @@ class Services::Facebook < Service
     Faraday.post(url, body)
   end
 
-  def create_open_graph_params(post)
-    {:frame => "#{AppConfig[:pod_url]}#{short_post_path(post)}", :access_token => self.access_token}.to_param
+  def create_open_graph_params(post, opts={})
+    {:frame => "#{AppConfig[:pod_url]}#{short_post_path(post)}", :access_token => self.access_token}.merge(opts).to_param
   end
 
   def create_post_params(post)

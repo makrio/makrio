@@ -699,7 +699,7 @@ en:
       not_found: "Sorry, we couldn't find that post."
       photos_by:
         zero: "No photos by %{author}"
-        one: "One photo"
+        one: "Photo"
         two: "Two photos"
         few: "%{count} photos"
         many: "%{count} photos"

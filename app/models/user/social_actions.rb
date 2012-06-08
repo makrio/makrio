@@ -6,7 +6,7 @@ module User::SocialActions
   def comment!(target, text, opts={})
     find_or_create_participation!(target)
     comment = Comment::Generator.new(self, target, text).create!(opts)
-    open_graph_action('comment', target)
+    open_graph_action('comment', target, :text => text)
     comment
   end
 
@@ -38,9 +38,9 @@ module User::SocialActions
     participations.where(:target_id => target).first || participate!(target)
   end
 
-  def open_graph_action(action, target)
+  def open_graph_action(action, target, opts={})
     if facebook = facebook_connection
-      facebook.queue_open_graph(action, target)
+      facebook.queue_open_graph(action, target, opts)
     end
   end
 
