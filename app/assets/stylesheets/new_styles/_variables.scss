@@ -1,6 +1,6 @@
 $container-width : 1170;
 
-$margin-between-columns : 30;
+$margin-between-columns : 20;
 $column-width : 295 - $margin-between-columns;
 $raw-two-column-width : ($column-width * 2) + ($margin-between-columns * 2) ;
 $two-column-width : $raw-two-column-width - 30;  //simply subtract an arbitrary ammount :)

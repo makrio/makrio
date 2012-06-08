@@ -48,7 +48,7 @@ app.pages.Profile = app.views.Base.extend({
     var self = this;
     this.model.deferred
       .done(function () {
-        self.setPageTitleAndBackground()
+        self.setPageTitle()
         app.views.Base.prototype.render.call(self)
       })
       .done(function () {
@@ -73,11 +73,9 @@ app.pages.Profile = app.views.Base.extend({
       ]("pulse")
   },
 
-  setPageTitleAndBackground : function() {
-    console.log(this.model.attributes)
+  setPageTitle : function() {
     if(this.model.get("name")) {
       document.title = this.model.get("name")
-      this.$el.css("background-image", "url(" + this.model.get("wallpaper") + ")")
     }
   },
 

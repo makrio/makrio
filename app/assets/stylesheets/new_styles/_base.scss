@@ -302,9 +302,8 @@ $bring-dark-accent-forward-color: #DDD;
 
   color : #fff;
   background : {
-    color : #333;
-    size : cover;
-    attachment : fixed;
+    color : #111;
+    image : image-url('texture/dark-noise.gif');
   }
 
   h1 {
