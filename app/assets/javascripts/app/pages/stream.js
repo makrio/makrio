@@ -90,7 +90,14 @@ app.pages.Stream = app.views.Base.extend({
   },
 
   bookmarkletJS : function() {
-    return "javascript:(function(){f='" + document.location.origin + "/posts/new?url='+encodeURIComponent(window.location.href)+'&title='+encodeURIComponent(document.title)+'&notes='+encodeURIComponent(''+(window.getSelection?window.getSelection():document.getSelection?document.getSelection():document.selection.createRange().text))+'&v=1&';a=function(){if(!window.open(f+'noui=1&jump=doclose','diasporav1','menubar=no,location=no,links=no,scrollbars=no,toolbar=no,width=980,height=520'))location.href=f+'jump=yes'};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})()"
+    return "javascript:void(function(){ \
+    var head= document.getElementsByTagName('head')[0]; \
+    var script= document.createElement('script'); \
+    script.type= 'text/javascript'; \
+    script.src= 'http://makrio.dev/bookmarklet.js'; \
+    script.id= 'makrio-bm-script'; \
+    script.setAttribute('data-origin','" + document.location.origin + "'); \
+    head.appendChild(script);}());";
   },
 
   bookmarkletInstructionsPrompt : function(evt) {

@@ -28,6 +28,9 @@ Diaspora::Application.routes.draw do
     resources :comments, :only => [:new, :create, :destroy, :index]
   end
 
+  get '/bookmarklet.js' => 'bookmarklets#show'
+  resources :ingredients, :only => :create
+
   match "/framer" => redirect("/posts/new")
 
   get 'p/:id' => 'posts#show', :as => 'short_post'

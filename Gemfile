@@ -12,7 +12,7 @@ gem 'rails_autolink'
 
 # cross-origin resource sharing
 
-gem 'rack-cors', '~> 0.2.4', :require => 'rack/cors'
+gem 'rack-cors', '0.2.7', :require => 'rack/cors'
 
 # authentication
 

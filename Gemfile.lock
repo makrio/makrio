@@ -304,7 +304,7 @@ GEM
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
-    rack-cors (0.2.6)
+    rack-cors (0.2.7)
       rack
     rack-google-analytics (0.10.0)
     rack-mobile-detect (0.3.0)
@@ -521,7 +521,7 @@ DEPENDENCIES
   omniauth-tumblr
   omniauth-twitter
   pg
-  rack-cors (~> 0.2.4)
+  rack-cors (= 0.2.7)
   rack-google-analytics
   rack-piwik
   rack-rewrite (~> 1.2.1)
