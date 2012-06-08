@@ -30,7 +30,7 @@ app.pages.Stream = app.views.Base.extend({
     this.$("#header").css("background-image", "url(" + app.currentUser.get("wallpaper") + ")")
     //after all of the child divs have been added, initialize the scroll spy
     _.defer(_.bind(function(){
-      $('body').scrollspy({target : '.stream-frame-wrapper', offset : 115})
+      $('body').scrollspy({target : '.stream-frame-wrapper', offset : 115, streamElement : this.$("#stream")})
       this._resetPeriod = 500;
       this.refreshScrollSpy()
 
