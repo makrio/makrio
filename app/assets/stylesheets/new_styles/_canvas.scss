@@ -11,8 +11,7 @@ $stream-interactions-content-index : $stream-interactions-background-index;
 
 a.logo{
   text-decoration: none;
-  color: white;
-  float:left;
+
   &:hover{
     text-decoration: none;
     color: white;
@@ -60,7 +59,7 @@ a.logo{
 
   .content {
     @include transition(-webkit-transform);
-    @include box-shadow(0, 8px, 50px, rgba(0,0,0,0.9));
+    @include box-shadow(0, 2px, 8px, rgba(0,0,0,0.9));
 
     background-image : image_url("texture/paper.jpg");
 
@@ -421,7 +420,7 @@ a.logo{
   #meta-info-holder,
   #stream-interactions,
   #stream-content {
-    padding-top : 90px;
+    padding-top : 55px;
   }
 }
 
@@ -431,8 +430,7 @@ a.logo{
   position: fixed;
   top : 0;
   width: 100%;
-  background-color : rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid #333;
+  background-color : rgba(34, 34, 34, 0.95);
   display: block;
 }
 
@@ -447,6 +445,8 @@ a.logo{
 #stream-content {
   .stream-frame {
     margin-bottom : 40px;
+
+
 
     &:first-child {
       padding-top: $meta-info-holder-height + 10;
@@ -480,13 +480,17 @@ a.logo{
     .frame-meta {
       z-index : $frame-meta-z-index;
       position: relative;
-      width: 370px;
+      width: 591px;
+    }
+
+    .small-frame {
+      margin-left : 55px;
     }
 
     .selected-frame {
       .frame-meta {
         position: fixed;
-        top: 84px;
+        top: 56px;
         z-index: $selected-meta-index;
       }
     }

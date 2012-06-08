@@ -1,50 +1,56 @@
 <div id="header">
     <div class="container" style="position:relative;">
-        <div id="top-right-nav">
-            {{#if current_user.guid}}
-                <a href="{{bookmarkletJS}}" title="Bookmarklet" class="bookmarklet-button">
-                    <span class="label label-inverse">
-                        Post to Makr.io
-                    </span>
-                </a>
-
-                <a href="/notifications" title="Notifications" id="notifications-button">
-                    <span class="label label-inverse">
-                        {{current_user.notifications_count}}
-                    </span>
-                </a>
-
-                <a href="/people/{{current_user.guid}}" id="profile-button">
-                    <span class="label label-inverse">
-                        <i class="icon-user icon-white"></i>
-                    </span>
-                </a>
-
-                <a href="/users/sign_out" title="Log out" id="logout-button">
-                    <span class="label label-inverse">
-                        <i class="icon-off icon-white"></i>
-                    </span>
-                </a>
-            {{else}}
-                <a href="/" id="home-button">
-                    <span class="label label-inverse">
-                        <span>
-                            {{t "pod_name"}}
+            <div class="row">
+                <div class="span12">
+            <div id="top-right-nav">
+                {{#if current_user.guid}}
+                    <a href="{{bookmarkletJS}}" title="Bookmarklet" class="bookmarklet-button">
+                        <span class="label label-inverse">
+                            Post to Makr.io
                         </span>
-                    </span>
+                    </a>
+
+                    <a href="/notifications" title="Notifications" id="notifications-button">
+                        <span class="label label-inverse">
+                            {{current_user.notifications_count}}
+                        </span>
+                    </a>
+
+                    <a href="/people/{{current_user.guid}}" id="profile-button">
+                        <span class="label label-inverse">
+                            <i class="icon-user icon-white"></i>
+                        </span>
+                    </a>
+
+                    <a href="/users/sign_out" title="Log out" id="logout-button">
+                        <span class="label label-inverse">
+                            <i class="icon-off icon-white"></i>
+                        </span>
+                    </a>
+                {{else}}
+                    <a href="/" id="home-button">
+                        <span class="label label-inverse">
+                            <span>
+                                {{t "pod_name"}}
+                            </span>
+                        </span>
+                    </a>
+                {{/if}}
+            </div>
+
+           <div id="makr_header_centered">
+               <a href='/stream' class='logo'>
+                 <img src="{{imageUrl "makr_home_logo@2x.png"}}" height=26 width=118 />
+               </a>
+           </div>
+
+            <div id="make-button">
+                <a href="/posts/new" id="composer-button" class="control small label label-inverse">
+                    MAKE
                 </a>
-            {{/if}}
-        </div>
-
-       <a href='/stream' class='logo'>
-         <img src="{{imageUrl "makr_home_logo@2x.png"}}" height=26 width=118 />
-       </a>
-
-        <div id="make-button">
-            <a href="/posts/new" id="composer-button" class="control small label label-inverse">
-                MAKE
-            </a>
-        </div>
+            </div>
+                </div>
+       </div>
     </div>
 </div>
 
@@ -52,21 +58,20 @@
     <div id="meta-info-holder"/>
     <div class="container">
         <div class="row">
-            <div class="background offset5"></div>
+            <div class="background offset7"></div>
         </div>
 
         <div class="row">
-            <div class='span4 offset1'>
+            <div class='span6'>
                 <section id="stream-content" />
                 <div id="paginate">
                     <div class="loader"/>
                 </div>
             </div>
 
-
             <!--Since stream-interactions is fixed, we need a double span5 declaration here :(-->
-            <div class="span6">
-                <section id="stream-interactions" class="span6"/>
+            <div class="span4">
+                <section id="stream-interactions" class="span4 offset1"/>
             </div>
         </div>
     </div>
