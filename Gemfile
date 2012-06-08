@@ -50,7 +50,6 @@ end
 
 group :heroku do
   gem 'pg'
-  gem 'unicorn', '~> 4.3.0', :require => false
 end
 
 gem 'settingslogic', :git => 'git://github.com/binarylogic/settingslogic.git'
