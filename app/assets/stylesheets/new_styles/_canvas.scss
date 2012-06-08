@@ -447,7 +447,10 @@ a.logo{
 #stream-content {
   .stream-frame {
     margin-bottom : 40px;
-    padding-top: $meta-info-holder-height;
+
+    &:first-child {
+      padding-top: $meta-info-holder-height + 10;
+    }
 
     .stream-frame-feedback {
       float : right;
