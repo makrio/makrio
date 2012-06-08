@@ -32,6 +32,7 @@
       , href
     this.options = $.extend({}, $.fn.scrollspy.defaults, options)
     this.$scrollElement = $element.on('scroll.scroll.data-api', process)
+    this.$streamElement = this.options.streamElement
     this.selector = (this.options.target
       || ((href = $(element).attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
       || '')
@@ -70,8 +71,9 @@
 
     , process: function () {
         var scrollTop = this.$scrollElement.scrollTop() + this.options.offset
-          , scrollHeight = this.$scrollElement[0].scrollHeight || this.$body[0].scrollHeight
-          , maxScroll = scrollHeight - this.$scrollElement.height()
+          //firefox seems not to be updating body height when content is appended, hence the hax
+          , scrollHeight = this.$streamElement[0].scrollHeight
+          , maxScroll = scrollHeight - this.$body.height() //I think :/
           , offsets = this.offsets
           , targets = this.targets
           , activeTarget = this.activeTarget
