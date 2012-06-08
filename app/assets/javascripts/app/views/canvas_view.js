@@ -53,7 +53,7 @@ app.views.Canvas = app.views.InfScroll.extend({
         hiddenStyle : {scale : 0.001},
         containerStyle : {position : "relative"},
         masonry : {
-          columnWidth : 292.5
+          columnWidth : 1
         }
       })
     }
