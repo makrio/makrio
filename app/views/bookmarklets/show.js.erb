@@ -1,0 +1,116 @@
+(function(){
+
+    // the minimum version of jQuery we want
+    var v = "1";
+
+    // check prior inclusion and version
+    if (window.jQuery === undefined || window.jQuery.fn.jquery < v) {
+        var done = false;
+        var script = document.createElement("script");
+        script.src = "//ajax.googleapis.com/ajax/libs/jquery/" + v + "/jquery.min.js";
+        script.onload = script.onreadystatechange = function(){
+            if (!done && (!this.readyState || this.readyState == "loaded" || this.readyState == "complete")) {
+                done = true;
+                $.noConflict();
+                initMakrBookmarklet();
+            }
+        };
+        document.getElementsByTagName("head")[0].appendChild(script);
+    } else {
+        initMakrBookmarklet();
+    }
+
+    function initMakrBookmarklet() {
+        (window.makrio = {
+
+            VERSION : 0.1,
+            origin : function() {
+                return jQuery('#makrio-bm-script').data('origin');
+            },
+
+            initialize : function() {
+                this.showActive()
+                this.initImageClicks()
+            },
+
+            deactivate : function() {
+                jQuery(".makrio-bm-el").fadeOut(function(){
+                    jQuery('body').css('overflow')
+                    window.makrio = undefined
+                })
+            },
+
+            showActive : function() {
+                jQuery('body').css('overflow', 'hidden')
+
+                jQuery("<div/>", {
+                    text : "makr.io active",
+                    class : "makrio-bm-el",
+                    style : "position:fixed; bottom:0; left:0; width: 100%; height:100%; padding:10px;  overflow:scroll; background-color: red;  color: #fff; font-size: 20px; line-height: auto; z-index: 999;"
+                }).appendTo("body")
+            },
+
+            initImageClicks : function() {
+                var self = this;
+                var allImages = jQuery("img");
+
+                jQuery("img").each(function(index){
+                    var image = jQuery(this)
+                    var ratio = image.height() / image.width() 
+
+                    if((image.width() > 150) && (image.height() > 150)) {
+                        jQuery("<img/>", {
+                            class : "makrio",
+                            style : "position:relative; max-width: 200px;   padding:20px; border: 1px solid black;max-height:200px;float: left",
+                            src : jQuery(this).attr('src'),
+                        }).appendTo(".makrio-bm-el")
+                    } 
+                })
+
+
+                jQuery('.makrio').click(function(evt){
+                    console.log("clicked")
+                    evt.stopImmediatePropagation()
+                    evt.preventDefault()
+
+                    self.saveImage(jQuery(evt.target))
+                    return false;
+                })
+
+            },
+
+            imageUrl : function(src) {
+                var origin = src.search("//") == -1 ? document.location.origin + "/" : ""
+                return origin + src;
+            },
+
+            saveImage : function(element) {
+                var self = this
+                        , imageParams = {
+                            url : self.imageUrl(element.attr("src")),
+                            height : element.height(),
+                            width : element.width(),
+                        }
+
+                this.openPublisher(imageParams.url)
+            },
+
+             openPublisher : function(remoteUrl) {
+                var url = this.origin() + "/framer?remoteurl="+encodeURIComponent(remoteUrl)+'&v=1&';
+                var openFramer = function(){
+                    if(!window.open(url+'noui=1&jump=doclose','diasporav1','menubar=no,location=no,links=no,scrollbars=no,toolbar=no,width=1000px,height=600px'))location.href=url+'jump=yes'
+                };
+
+                if(/Firefox/.test(navigator.userAgent)){
+                    setTimeout(openFramer,0)
+                }
+                else{
+                    openFramer()
+                }
+            }
+
+        });
+
+        window.makrio.initialize();
+    }
+})();
