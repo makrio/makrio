@@ -26,7 +26,7 @@ module OpenGraphHelper
   end
 
   def og_description(post)
-    meta_tag_with_property('og:description', post_page_title(post, :length => 1000))
+    meta_tag_with_property('og:description', "Makr.io gives you the tools to collect the things that inspire you, generate new content, and inspire others to be makers too.")
   end
 
   def og_type
