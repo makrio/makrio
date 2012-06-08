@@ -106,7 +106,6 @@
 
     padding : 10px;
     padding-top : 10px;
-    margin-left : 8px;
 
     &#composer-button {
       position : relative;
@@ -139,6 +138,10 @@
       @include opacity(0.8);
     }
   }
+}
+
+#profile-controls {
+  margin-left : 8px;
 }
 
 #composer-button.label.label-inverse{
