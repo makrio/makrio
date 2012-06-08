@@ -17,7 +17,7 @@ class ResharesController < ApplicationController
   end
 
   def fb_create
-    Rails.loggger.info("PARAMS FROM FACEBOOK: #{params.inspect}")
-    render :nothing => true, :response => 500
+    Rails.logger.info("PARAMS FROM FACEBOOK: #{params.inspect}")
+    render :json => {"success" => false}, :format => :json
   end
 end
