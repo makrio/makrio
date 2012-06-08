@@ -15,4 +15,9 @@ class ResharesController < ApplicationController
 
     render :json => ExtremePostPresenter.new(@reshare, current_user), :status => 201
   end
+
+  def fb_create
+    Rails.loggger.info("PARAMS FROM FACEBOOK: #{params.inspect}")
+    render :nothing => true, :response => 500
+  end
 end
