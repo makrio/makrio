@@ -77,7 +77,8 @@
 
   .control {
     @include transition(opacity);
-    @include opacity(0.6);
+    @include opacity(1);
+
     @include border-radius(3px);
     @include box-shadow(0, 1px, 2px, rgba(0,0,0,0.8));
 
@@ -115,13 +116,13 @@
     }
 
     &:hover {
-      @include opacity(1);
+      @include opacity(0.8);
       background-color : #000;
       text-decoration : none;
     }
 
     &:active {
-      @include opacity(0.8);
+      @include opacity(0.6);
     }
   }
 }
