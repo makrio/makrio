@@ -6,9 +6,6 @@ require 'spec_helper'
 
 describe LikesController do
   before do
-    @alices_aspect = alice.aspects.where(:name => "generic").first
-    @bobs_aspect = bob.aspects.where(:name => "generic").first
-
     sign_in :user, alice
   end
 
@@ -30,16 +27,16 @@ describe LikesController do
 
         context "on my own post" do
           it 'succeeds' do
-            @target = alice.post :status_message, :text => "AWESOME", :to => @alices_aspect.id
+            @target = alice.post :status_message, :text => "AWESOME"
             @target = alice.comment!(@target, "hey") if class_const == Comment
             post :create, like_hash.merge(:format => :json)
             response.code.should == '201'
           end
         end
 
-        context "on a post from a contact" do
+        context "on a post from another user" do
           before do
-            @target = bob.post(:status_message, :text => "AWESOME", :to => @bobs_aspect.id)
+            @target = bob.post(:status_message, :text => "AWESOME")
             @target = bob.comment!(@target, "hey") if class_const == Comment
           end
 
@@ -63,7 +60,7 @@ describe LikesController do
 
       describe '#index' do
         before do
-          @message = alice.post(:status_message, :text => "hey", :to => @alices_aspect.id)
+          @message = alice.post(:status_message, :text => "hey")
           @message = alice.comment!(@message, "hey") if class_const == Comment
         end
 
@@ -87,7 +84,7 @@ describe LikesController do
 
       describe '#destroy' do
         before do
-          @message = bob.post(:status_message, :text => "hey", :to => @alices_aspect.id)
+          @message = bob.post(:status_message, :text => "hey")
           @message = bob.comment!(@message, "hey") if class_const == Comment
           @like = alice.like!(@message)
         end

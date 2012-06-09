@@ -18,8 +18,7 @@ describe CommentsController do
 
     context "on my own post" do
       before do
-        aspect_to_post = alice.aspects.where(:name => "generic").first
-        @post = alice.post :status_message, :text => 'GIANTS', :to => aspect_to_post
+        @post = alice.post :status_message, :text => 'GIANTS'
       end
 
       it 'responds to format json' do
@@ -36,8 +35,7 @@ describe CommentsController do
 
     context "on a post from a contact" do
       before do
-        aspect_to_post = bob.aspects.where(:name => "generic").first
-        @post = bob.post :status_message, :text => 'GIANTS', :to => aspect_to_post
+        @post = bob.post :status_message, :text => 'GIANTS'
       end
 
       it 'comments' do
@@ -63,8 +61,7 @@ describe CommentsController do
 
   describe '#destroy' do
     before do
-      aspect_to_post = bob.aspects.where(:name => "generic").first
-      @message = bob.post(:status_message, :text => "hey", :to => aspect_to_post)
+      @message = bob.post(:status_message, :text => "hey"
     end
 
     context 'your post' do
@@ -118,8 +115,7 @@ describe CommentsController do
 
   describe '#index' do
     before do
-      aspect_to_post = bob.aspects.where(:name => "generic").first
-      @message = bob.post(:status_message, :text => "hey", :to => aspect_to_post.id)
+      @message = bob.post(:status_message, :text => "hey"
     end
 
     it 'works for mobile' do

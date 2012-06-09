@@ -13,7 +13,6 @@ require File.join(Rails.root, "lib", "stream", "activity")
 
 class StreamsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :save_selected_aspects, :only => :aspects
   before_filter :redirect_unless_admin, :only => :public
 
   respond_to :html,
@@ -77,12 +76,6 @@ class StreamsController < ApplicationController
       format.json do 
         render :json => @stream.stream_posts.map {|p| LastThreeCommentsDecorator.new(PostPresenter.new(p, current_user)) }
       end
-    end
-  end
-
-  def save_selected_aspects
-    if params[:a_ids].present?
-      session[:a_ids] = params[:a_ids]
     end
   end
 end

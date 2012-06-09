@@ -43,6 +43,7 @@ describe Reshare do
       receive
       @root.resharers.should include(@reshare.author)
     end
+
     it 'does not error if the root author has a contact for the resharer' do
       bob.share_with @reshare.author, bob.aspects.first
       proc {

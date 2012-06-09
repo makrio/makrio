@@ -6,12 +6,9 @@ require 'spec_helper'
 
 describe PostsController do
   before do
-    aspect = alice.aspects.first
-    @message = alice.build_post :status_message, :text => "ohai", :to => aspect.id
+    @message = alice.build_post :status_message, :text => "ohai"
     @message.save!
-
-    alice.add_to_streams(@message, [aspect])
-    alice.dispatch_post @message, :to => aspect.id
+    alice.dispatch_post @message
   end
 
   describe '#show' do
@@ -63,7 +60,7 @@ describe PostsController do
     context 'user not signed in' do
       context 'given a public post' do
         before :each do
-          @status = alice.post(:status_message, :text => "hello", :public => true, :to => 'all')
+          @status = alice.post(:status_message, :text => "hello", :public => true)
         end
 
         it 'shows a public post' do
@@ -84,7 +81,7 @@ describe PostsController do
       end
 
       it 'does not show a private post' do
-        status = alice.post(:status_message, :text => "hello", :public => false, :to => 'all')
+        status = alice.post(:status_message, :text => "hello", :public => false)
         expect { get :show, :id => status.id }.to raise_error(ActiveRecord::RecordNotFound)
       end
 
@@ -93,7 +90,7 @@ describe PostsController do
       # guids set to hex(8) since we started using them.
       context 'id/guid switch' do
         before do
-          @status = alice.post(:status_message, :text => "hello", :public => true, :to => 'all')
+          @status = alice.post(:status_message, :text => "hello", :public => true)
         end
 
         it 'assumes guids less than 8 chars are ids and not guids' do
@@ -136,7 +133,7 @@ describe PostsController do
     end
 
     it 'let a user delete his message' do
-      message = alice.post(:status_message, :text => "hey", :to => alice.aspects.first.id)
+      message = alice.post(:status_message, :text => "hey")
       delete :destroy, :format => :js, :id => message.id
       response.should be_success
       StatusMessage.find_by_id(message.id).should be_nil
@@ -144,20 +141,20 @@ describe PostsController do
 
     it 'sends a retraction on delete' do
       controller.stub!(:current_user).and_return alice
-      message = alice.post(:status_message, :text => "hey", :to => alice.aspects.first.id)
+      message = alice.post(:status_message, :text => "hey")
       alice.should_receive(:retract).with(message)
       delete :destroy, :format => :js, :id => message.id
       response.should be_success
     end
 
     it 'will not let you destroy posts visible to you' do
-      message = bob.post(:status_message, :text => "hey", :to => bob.aspects.first.id)
+      message = bob.post(:status_message, :text => "hey")
       expect { delete :destroy, :format => :js, :id => message.id }.to raise_error(ActiveRecord::RecordNotFound)
       StatusMessage.exists?(message.id).should be_true
     end
 
     it 'will not let you destory posts you do not own' do
-      message = eve.post(:status_message, :text => "hey", :to => eve.aspects.first.id)
+      message = eve.post(:status_message, :text => "hey")
       expect { delete :destroy, :format => :js, :id => message.id }.to raise_error(ActiveRecord::RecordNotFound)
       StatusMessage.exists?(message.id).should be_true
     end

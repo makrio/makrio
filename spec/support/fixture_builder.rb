@@ -8,31 +8,13 @@ FixtureBuilder.configure do |fbuilder|
   # now declare objects
   fbuilder.factory do
     # Users
-    alice = Factory(:user_with_aspect, :username => "alice")
-    alices_aspect = alice.aspects.where(:name => "generic").first
-
-    eve   = Factory(:user_with_aspect, :username => "eve")
-    eves_aspect = eve.aspects.where(:name => "generic").first
-
-    bob   = Factory(:user_with_aspect, :username => "bob")
-    bobs_aspect = bob.aspects.where(:name => "generic").first
-    Factory(:aspect, :name => "empty", :user => bob)
-
-    connect_users(bob, bobs_aspect, alice, alices_aspect)
-    connect_users(bob, bobs_aspect, eve, eves_aspect)
+    Factory(:user, :username => "alice")
+    Factory(:user, :username => "eve")
+    Factory(:user, :username => "bob")
 
     # Set up friends - 2 local, 1 remote
-    local_luke = Factory(:user_with_aspect, :username => "luke")
-    lukes_aspect = local_luke.aspects.where(:name => "generic").first
-
-    local_leia = Factory(:user_with_aspect, :username => "leia")
-    leias_aspect = local_leia.aspects.where(:name => "generic").first
-
-    remote_raphael = Factory(:person, :diaspora_handle => "raphael@remote.net")
-
-    connect_users_with_aspects(local_luke, local_leia)
-
-    local_leia.contacts.create(:person => remote_raphael, :aspects => [leias_aspect])
-    local_luke.contacts.create(:person => remote_raphael, :aspects => [lukes_aspect])
+    Factory(:user, :username => "luke")
+    Factory(:user, :username => "leia")
+    Factory(:person, :diaspora_handle => "raphael@remote.net")
    end
 end

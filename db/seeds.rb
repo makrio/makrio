@@ -15,9 +15,9 @@ require 'factory_girl_rails'
 require File.join(File.dirname(__FILE__), "..", "spec", "helper_methods")
 include HelperMethods
 
-alice = Factory(:user_with_aspect, :username => "alice", :password => 'evankorth')
-bob   = Factory(:user_with_aspect, :username => "bob", :password => 'evankorth')
-eve   = Factory(:user_with_aspect, :username => "eve", :password => 'evankorth')
+alice = Factory(:user, :username => "alice", :password => 'evankorth')
+bob   = Factory(:user, :username => "bob", :password => 'evankorth')
+eve   = Factory(:user, :username => "eve", :password => 'evankorth')
 
 def url_hash(name)
   image_url = "/assets/user/#{name}.jpg"
@@ -33,12 +33,6 @@ print "Creating seeded users... "
 alice.person.profile.update_attributes({:first_name => "Alice", :last_name => "Smith"}.merge(url_hash('uma')))
 bob.person.profile.update_attributes({:first_name => "Bob", :last_name => "Grimm"}.merge(url_hash('wolf')))
 eve.person.profile.update_attributes({:first_name => "Eve", :last_name => "Doe"}.merge(url_hash('angela')))
-puts "done!"
-
-
-print "Connecting users... "
-connect_users(bob, bob.aspects.first, alice, alice.aspects.first)
-connect_users(bob, bob.aspects.first, eve, eve.aspects.first)
 puts "done!"
 
 print "making Bob an admin and beta... "

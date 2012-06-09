@@ -11,14 +11,6 @@ describe UserPresenter do
     end
   end
 
-  describe '#aspects' do
-    it 'provides an array of the jsonified aspects' do
-      aspect = bob.aspects.first
-      @presenter.aspects.first[:id].should == aspect.id
-      @presenter.aspects.first[:name].should == aspect.name
-    end
-  end
-
   describe '#services' do
     it 'provides an array of jsonifed services' do
       fakebook = stub(:provider => 'fakebook')

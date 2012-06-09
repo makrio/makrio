@@ -76,9 +76,6 @@ class Postzord::Receiver::Private < Postzord::Receiver
   def validate_object
     raise "Contact required unless request" if contact_required_unless_request
     raise "Relayable object, but no parent object found" if relayable_without_parent?
-
-    assign_sender_handle_if_request
-
     raise "Author does not match XML author" if author_does_not_match_xml_author?
 
     @object
@@ -108,16 +105,9 @@ class Postzord::Receiver::Private < Postzord::Receiver
   end
 
   def contact_required_unless_request
-    unless @object.is_a?(Request) || @user.contact_for(@sender)
+    unless @user.contact_for(@sender)
       FEDERATION_LOGGER.info("event=receive status=abort reason='sender not connected to recipient' recipient=#{@user_person.diaspora_handle} sender=#{@sender.diaspora_handle}")
       return true 
-    end
-  end
-
-  def assign_sender_handle_if_request
-    #special casey
-    if @object.is_a?(Request)
-      @object.sender_handle = @sender.diaspora_handle
     end
   end
 end

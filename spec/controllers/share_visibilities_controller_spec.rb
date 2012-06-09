@@ -6,7 +6,7 @@ require 'spec_helper'
 
 describe ShareVisibilitiesController do
   before do
-    @status = alice.post(:status_message, :text => "hello", :to => alice.aspects.first)
+    @status = alice.post(:status_message, :text => "hello")
     sign_in :user, bob
   end
 

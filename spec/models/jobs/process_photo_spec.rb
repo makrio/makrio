@@ -3,11 +3,9 @@ require 'spec_helper'
 describe Jobs::ProcessPhoto do
   before do
    @user = alice
-   @aspect = @user.aspects.first
-
    @fixture_name = File.join(File.dirname(__FILE__), '..', '..', 'fixtures', 'button.png')
 
-   @saved_photo = @user.build_post(:photo, :user_file => File.open(@fixture_name), :to => @aspect.id)
+   @saved_photo = @user.build_post(:photo, :user_file => File.open(@fixture_name))
    @saved_photo.save
   end
 
@@ -43,7 +41,7 @@ describe Jobs::ProcessPhoto do
   context 'when a gif is uploaded' do
     before do
       @fixture_name = File.join(File.dirname(__FILE__), '..', '..', 'fixtures', 'button.gif')
-      @saved_gif = @user.build_post(:photo, :user_file => File.open(@fixture_name), :to => @aspect.id)
+      @saved_gif = @user.build_post(:photo, :user_file => File.open(@fixture_name))
       @saved_gif.save
     end
 

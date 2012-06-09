@@ -6,9 +6,9 @@ require 'spec_helper'
 
 describe User::Querying do
   before do
-    @alices_aspect = alice.aspects.where(:name => "generic").first
-    @eves_aspect = eve.aspects.where(:name => "generic").first
-    @bobs_aspect = bob.aspects.where(:name => "generic").first
+    @alices_aspect = nil
+    @eves_aspect = nil
+    @bobs_aspect = nil
   end
 
   describe "#visible_shareable_ids" do
@@ -191,50 +191,6 @@ describe User::Querying do
     end
   end
 
-  context 'with two users' do
-    describe '#people_in_aspects' do
-      it 'returns people objects for a users contact in each aspect' do
-        alice.people_in_aspects([@alices_aspect]).should == [bob.person]
-      end
-
-      it 'returns local/remote people objects for a users contact in each aspect' do
-        local_user1 = Factory(:user)
-        local_user2 = Factory(:user)
-        remote_user = Factory(:user)
-
-        asp1 = local_user1.aspects.create(:name => "lol")
-        asp2 = local_user2.aspects.create(:name => "brb")
-        asp3 = remote_user.aspects.create(:name => "ttyl")
-
-        connect_users(alice, @alices_aspect, local_user1, asp1)
-        connect_users(alice, @alices_aspect, local_user2, asp2)
-        connect_users(alice, @alices_aspect, remote_user, asp3)
-
-        local_person = remote_user.person
-        local_person.owner_id = nil
-        local_person.save
-        local_person.reload
-
-        alice.people_in_aspects([@alices_aspect]).count.should == 4
-        alice.people_in_aspects([@alices_aspect], :type => 'remote').count.should == 1
-        alice.people_in_aspects([@alices_aspect], :type => 'local').count.should == 3
-      end
-
-      it 'does not return people not connected to user on same pod' do
-        3.times { Factory(:user) }
-        alice.people_in_aspects([@alices_aspect]).count.should == 1
-      end
-
-      it "only returns non-pending contacts" do
-        alice.people_in_aspects([@alices_aspect]).should == [bob.person]
-      end
-
-      it "returns an empty array when passed an aspect the user doesn't own" do
-        alice.people_in_aspects([@eves_aspect]).should == []
-      end
-    end
-  end
-
   context 'contact querying' do
     let(:person_one) { Factory :person }
     let(:person_two) { Factory :person }
@@ -309,24 +265,6 @@ describe User::Querying do
 
       @public_message = @user3.post(:status_message, :text => "hey there", :to => 'all', :public => true)
       @private_message = @user3.post(:status_message, :text => "hey there", :to => @aspect3.id)
-    end
-
-    it 'displays public posts for a non-contact' do
-      alice.posts_from(@user3.person).should include @public_message
-    end
-
-    it 'does not display private posts for a non-contact' do
-      alice.posts_from(@user3.person).should_not include @private_message
-    end
-
-    it 'displays private and public posts for a non-contact after connecting' do
-      connect_users(alice, @alices_aspect, @user3, @aspect3)
-      new_message = @user3.post(:status_message, :text=> "hey there", :to => @aspect3.id)
-
-      alice.reload
-
-      alice.posts_from(@user3.person).should include @public_message
-      alice.posts_from(@user3.person).should include new_message
     end
 
     it 'displays recent posts first' do

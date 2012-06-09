@@ -28,7 +28,6 @@ module User::Querying
   def visible_ids_from_sql(klass, opts={})
     opts = prep_opts(klass, opts)
     opts[:klass] = klass
-    opts[:by_members_of] ||= self.aspect_ids
 
     post_ids = klass.connection.select_values(visible_shareable_sql(klass, opts)).map { |id| id.to_i }
     post_ids += klass.connection.select_values("#{construct_public_followings_sql(opts).to_sql} LIMIT #{opts[:limit]}").map {|id| id.to_i }
@@ -62,19 +61,11 @@ module User::Querying
 
     query = opts[:klass].joins(:contacts).where(conditions)
 
-    if opts[:by_members_of]
-      query = query.joins(:contacts => :aspect_memberships).where(
-        :aspect_memberships => {:aspect_id => opts[:by_members_of]})
-    end
-
     ugly_select_clause(query, opts)
   end
 
   def construct_public_followings_sql(opts)
-    aspects = Aspect.where(:id => opts[:by_members_of])
-    person_ids = Person.connection.select_values(people_in_aspects(aspects).select("people.id").to_sql)
-
-    query = opts[:klass].where(:author_id => person_ids, :public => true, :pending => false)
+    query = opts[:klass].where(:public => true, :pending => false)
 
     unless(opts[:klass] == Photo)
       query = query.where(:type => opts[:type])
@@ -87,51 +78,7 @@ module User::Querying
     conditions = {:pending => false }
     conditions[:type] = opts[:type] if opts.has_key?(:type)
     query = self.person.send(opts[:klass].to_s.tableize).where(conditions)
-
-    if opts[:by_members_of]
-      query = query.joins(:aspect_visibilities).where(:aspect_visibilities => {:aspect_id => opts[:by_members_of]})
-    end
-
     ugly_select_clause(query, opts)
-  end
-
-  def contact_for(person)
-    return nil unless person
-    contact_for_person_id(person.id)
-  end
-
-  def aspects_with_shareable(base_class_name_or_class, shareable_id)
-    base_class_name = base_class_name_or_class
-    base_class_name = base_class_name_or_class.base_class.to_s if base_class_name_or_class.is_a?(Class)
-    self.aspects.joins(:aspect_visibilities).where(:aspect_visibilities => {:shareable_id => shareable_id, :shareable_type => base_class_name})
-  end
-
-  def contact_for_person_id(person_id)
-    Contact.where(:user_id => self.id, :person_id => person_id).includes(:person => :profile).first
-  end
-
-  # @param [Person] person
-  # @return [Boolean] whether person is a contact of this user
-  def has_contact_for?(person)
-    Contact.exists?(:user_id => self.id, :person_id => person.id)
-  end
-
-  def people_in_aspects(requested_aspects, opts={})
-    allowed_aspects = self.aspects & requested_aspects
-    aspect_ids = allowed_aspects.map(&:id)
-
-    people = Person.in_aspects(aspect_ids)
-
-    if opts[:type] == 'remote'
-      people = people.where(:owner_id => nil)
-    elsif opts[:type] == 'local'
-      people = people.where('people.owner_id IS NOT NULL')
-    end
-    people
-  end
-
-  def aspects_with_person person
-    contact_for(person).aspects
   end
 
   def posts_from(person)

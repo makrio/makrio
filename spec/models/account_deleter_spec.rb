@@ -133,14 +133,6 @@ describe AccountDeleter do
         @account_deletion.tombstone_person_and_profile
       end
     end
-     describe "#remove_conversation_visibilities" do
-      it "removes the conversation visibility for the deleted user" do
-        vis = stub
-        ConversationVisibility.should_receive(:where).with(hash_including(:person_id => bob.person.id)).and_return(vis)
-        vis.should_receive(:destroy_all)
-        @account_deletion.remove_conversation_visibilities
-      end
-    end
   end
 
   describe "#remove_person_share_visibilities" do

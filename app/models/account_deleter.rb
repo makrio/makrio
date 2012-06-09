@@ -7,7 +7,6 @@ class AccountDeleter
   # Things that are not removed from the database:
   # - Comments
   # - Likes
-  # - Messages
   # - NotificationActors
   #
   # Given that the User in question will be tombstoned, all of the
@@ -25,14 +24,12 @@ class AccountDeleter
   def perform!
     #person
     delete_standard_person_associations
-    remove_conversation_visibilities
     remove_share_visibilities_on_persons_posts
     delete_contacts_of_me
     tombstone_person_and_profile
     
     if self.user
       #user deletion methods
-      remove_share_visibilities_on_contacts_posts
       delete_standard_user_associations
       disassociate_invitations
       disconnect_contacts
@@ -42,15 +39,15 @@ class AccountDeleter
 
   #user deletions
   def normal_ar_user_associates_to_delete
-    [:tag_followings, :invitations_to_me, :services, :aspects, :user_preferences, :notifications, :blocks]
+    [:invitations_to_me, :services, :user_preferences, :notifications, :blocks]
   end
 
   def special_ar_user_associations
-    [:invitations_from_me, :person, :contacts, :auto_follow_back_aspect]
+    [:invitations_from_me, :person]
   end
 
   def ignored_ar_user_associations
-    [:followed_tags, :invited_by, :contact_people, :aspect_memberships, :ignored_people]
+    [:followed_tags, :invited_by, :ignored_people]
   end
 
   def delete_standard_user_associations
@@ -75,20 +72,6 @@ class AccountDeleter
     user.contacts.destroy_all
   end
 
-  # Currently this would get deleted due to the db foreign key constrainsts,
-  # but we'll keep this method here for completeness
-  def remove_share_visibilities_on_persons_posts
-    ShareVisibility.for_contacts_of_a_person(person).destroy_all
-  end
-
-  def remove_share_visibilities_on_contacts_posts
-    ShareVisibility.for_a_users_contacts(user).destroy_all
-  end
-
-  def remove_conversation_visibilities
-    ConversationVisibility.where(:person_id => person.id).destroy_all
-  end
-
   def tombstone_person_and_profile
     self.person.lock_access!
     self.person.clear_profile!
@@ -107,6 +90,6 @@ class AccountDeleter
   end
 
   def ignored_or_special_ar_person_associations
-    [:comments, :contacts, :notification_actors, :notifications, :owner, :profile ]
+    [:comments, :notification_actors, :notifications, :owner, :profile ]
   end
 end

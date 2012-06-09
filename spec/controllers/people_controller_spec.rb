@@ -7,7 +7,6 @@ require 'spec_helper'
 describe PeopleController do
   before do
     @user = alice
-    @aspect = @user.aspects.first
     sign_in :user, @user
   end
 
@@ -156,10 +155,7 @@ describe PeopleController do
       8.times do |n|
         user = Factory(:user)
         @users << user
-        aspect = user.aspects.create(:name => 'people')
-        connect_users(@user, @user.aspects.first, user, aspect)
-
-        @posts << @user.post(:status_message, :text => "hello#{n}", :to => aspect.id)
+        @posts << @user.post(:status_message, :text => "hello#{n}")
       end
       @posts.each do |post|
         @users.each do |user|
@@ -208,7 +204,6 @@ describe PeopleController do
       response.body.match(profile.first_name).should be_false
     end
 
-
     context "when the person is the current user" do
       it "succeeds" do
         get :show, :id => @user.person.to_param
@@ -225,18 +220,8 @@ describe PeopleController do
         assigns(:person).should == @user.person
       end
 
-      it "assigns all the user's posts" do
-        @user.posts.should be_empty
-        @user.post(:status_message, :text => "to one aspect", :to => @aspect.id)
-        @user.post(:status_message, :text => "to all aspects", :to => 'all')
-        @user.post(:status_message, :text => "public", :to => 'all', :public => true)
-        @user.reload.posts.length.should == 3
-        get :show, :id => @user.person.to_param
-        assigns(:stream).posts.map(&:id).should =~ @user.posts.map(&:id)
-      end
-
       it "renders the comments on the user's posts" do
-        message = @user.post :status_message, :text => 'test more', :to => @aspect.id
+        message = @user.post :status_message, :text => 'test more'
         @user.comment!(message, 'I mean it')
         get :show, :id => @user.person.to_param
         response.should be_success
@@ -262,18 +247,12 @@ describe PeopleController do
       context 'with posts' do
         before do
           @public_posts = []
-          @public_posts << bob.post(:status_message, :text => "first public ", :to => bob.aspects[0].id, :public => true)
-          bob.post(:status_message, :text => "to an aspect @user is not in", :to => bob.aspects[1].id)
-          bob.post(:status_message, :text => "to all aspects", :to => 'all')
-          @public_posts << bob.post(:status_message, :text => "public", :to => 'all', :public => true)
+          @public_posts << bob.post(:status_message, :text => "first public ", :public => true)
+          bob.post(:status_message, :text => "to an aspect @user is not in")
+          bob.post(:status_message, :text => "to everyone")
+          @public_posts << bob.post(:status_message, :text => "public", :public => true)
           @public_posts.first.created_at -= 1000
           @public_posts.first.save
-        end
-
-        it "posts include reshares" do
-          reshare = @user.post(:reshare, :public => true, :root_guid => Factory(:status_message, :public => true).guid, :to => alice.aspects)
-          get :show, :id => @user.person.to_param
-          assigns[:stream].posts.map { |x| x.id }.should include(reshare.id)
         end
 
         it "assigns only public posts" do
@@ -294,79 +273,7 @@ describe PeopleController do
         response.status.should == 404
       end
     end
-
-    context "when the person is a contact of the current user" do
-      before do
-        @person = bob.person
-      end
-
-      it "succeeds" do
-        get :show, :id => @person.to_param
-        response.should be_success
-      end
-
-      it 'succeeds on the mobile site' do
-        get :show, :id => @person.to_param, :format => :mobile
-        response.should be_success
-      end
-
-      it "assigns only the posts the current user can see" do
-        bob.posts.should be_empty
-        posts_user_can_see = []
-        aspect_user_is_in = bob.aspects.where(:name => "generic").first
-        aspect_user_is_not_in = bob.aspects.where(:name => "empty").first
-        posts_user_can_see << bob.post(:status_message, :text => "to an aspect @user is in", :to => aspect_user_is_in.id)
-        bob.post(:status_message, :text => "to an aspect @user is not in", :to => aspect_user_is_not_in.id)
-        posts_user_can_see << bob.post(:status_message, :text => "to all aspects", :to => 'all')
-        posts_user_can_see << bob.post(:status_message, :text => "public", :to => 'all', :public => true)
-        bob.reload.posts.length.should == 4
-
-        get :show, :id => @person.to_param
-        assigns(:stream).posts.map(&:id).should =~ posts_user_can_see.map(&:id)
-      end
-
-      it "posts include reshares" do
-        reshare = @user.post(:reshare, :public => true, :root_guid => Factory(:status_message, :public => true).guid, :to => alice.aspects)
-        get :show, :id => @user.person.to_param
-        assigns[:stream].posts.map { |x| x.id }.should include(reshare.id)
-      end
-    end
-
-    context "when the person is not a contact of the current user" do
-      before do
-        @person = eve.person
-      end
-
-      it "succeeds" do
-        get :show, :id => @person.to_param
-        response.should be_success
-      end
-
-      it 'succeeds on the mobile site' do
-        get :show, :id => @person.to_param, :format => :mobile
-        response.should be_success
-      end
-
-      it "assigns only public posts" do
-        eve.posts.should be_empty
-        eve.post(:status_message, :text => "to an aspect @user is not in", :to => eve.aspects.first.id)
-        eve.post(:status_message, :text => "to all aspects", :to => 'all')
-        public_post = eve.post(:status_message, :text => "public", :to => 'all', :public => true)
-        eve.reload.posts.length.should == 3
-
-        get :show, :id => @person.to_param
-        assigns[:stream].posts.map(&:id).should =~ [public_post].map(&:id)
-      end
-
-      it "posts include reshares" do
-        reshare = @user.post(:reshare, :public => true, :root_guid => Factory(:status_message, :public => true).guid, :to => alice.aspects)
-        get :show, :id => @user.person.to_param
-        assigns[:stream].posts.map { |x| x.id }.should include(reshare.id)
-      end
-    end
   end
-
-
 
   describe '#refresh_search ' do
     before(:each)do
@@ -390,23 +297,6 @@ describe PeopleController do
         get :refresh_search, :q => @korth.diaspora_handle
         JSON.parse( response.body )["search_count"].should == 1
       end
-    end
-  end
-
-
-  describe '#contacts' do
-    it 'assigns the contacts of a person' do
-      contact = alice.contact_for(bob.person)
-      contacts = contact.contacts
-      get :contacts, :person_id => bob.person.to_param
-      assigns(:contacts_of_contact).should =~ contacts
-      response.should be_success
-    end
-
-    it 'shows an error when invalid person id' do
-      get :contacts, :person_id => 'foo'
-      flash[:error].should be_present
-      response.should redirect_to people_path
     end
   end
 

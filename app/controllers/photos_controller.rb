@@ -13,20 +13,6 @@ class PhotosController < ApplicationController
 
     if @person
       @profile = @person.profile
-      @contact = current_user.contact_for(@person)
-      @is_contact = @person != current_user.person && @contact
-      @aspects_with_person = []
-
-      if @contact
-        @aspects_with_person = @contact.aspects
-        @contacts_of_contact = @contact.contacts
-        @contacts_of_contact_count = @contact.contacts.count
-      else
-        @contact = Contact.new
-        @contacts_of_contact = []
-        @contacts_of_contact_count = 0
-      end
-
       @posts = current_user.photos_from(@person)
       
       respond_to do |format|
@@ -56,8 +42,6 @@ class PhotosController < ApplicationController
         else
           respond_with @photo, :location => photos_path, :error => message
         end
-      else
-        legacy_create
       end
     end
   end
@@ -167,41 +151,6 @@ class PhotosController < ApplicationController
       Tempfile.send(:define_method, "content_type") {return att_content_type}
       Tempfile.send(:define_method, "original_filename") {return file_name}
       file
-    end
-  end
-
-  def legacy_create
-    if params[:photo][:aspect_ids] == "all"
-      params[:photo][:aspect_ids] = current_user.aspects.collect { |x| x.id }
-    elsif params[:photo][:aspect_ids].is_a?(Hash)
-      params[:photo][:aspect_ids] = params[:photo][:aspect_ids].values
-    end
-
-    params[:photo][:user_file] = file_handler(params)
-
-    @photo = current_user.build_post(:photo, params[:photo])
-
-    if @photo.save
-      aspects = current_user.aspects_from_ids(params[:photo][:aspect_ids])
-
-      unless @photo.pending
-        current_user.add_to_streams(@photo, aspects)
-        current_user.dispatch_post(@photo, :to => params[:photo][:aspect_ids])
-      end
-
-      if params[:photo][:set_profile_photo]
-        profile_params = {:image_url => @photo.url(:thumb_large),
-                          :image_url_medium => @photo.url(:thumb_medium),
-                          :image_url_small => @photo.url(:thumb_small)}
-        current_user.update_profile(profile_params)
-      end
-
-      respond_to do |format|
-        format.json{ render(:layout => false , :json => {"success" => true, "data" => @photo}.to_json )}
-        format.html{ render(:layout => false , :json => {"success" => true, "data" => @photo}.to_json )}
-      end
-    else
-      respond_with @photo, :location => photos_path, :error => message
     end
   end
 

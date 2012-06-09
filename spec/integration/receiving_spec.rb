@@ -170,7 +170,6 @@ describe 'a user receives a post' do
   end
 
   describe 'comments' do
-
     context 'remote' do
       before do
         fantasy_resque do

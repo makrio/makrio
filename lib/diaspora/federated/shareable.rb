@@ -65,11 +65,10 @@ module Diaspora
         def subscribers(user)
           if self.public?
             user.contact_people
-          else
-            user.people_in_aspects(user.aspects_with_shareable(self.class, self.id))
           end
         end
-         protected
+
+        protected
 
         # @return [Shareable,void]
         def persisted_shareable

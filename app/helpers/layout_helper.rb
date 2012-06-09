@@ -65,11 +65,7 @@ module LayoutHelper
   end
 
   def include_base_css_framework(use_bootstrap=false)
-    if use_bootstrap || @aspect == :getting_started || @page == :experimental
-      stylesheet_link_tag 'bootstrap-complete'
-    else
-      stylesheet_link_tag 'blueprint', :media => 'screen'
-    end
+    stylesheet_link_tag 'bootstrap-complete'
   end
 
   def old_browser_js_support

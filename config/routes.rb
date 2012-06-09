@@ -50,11 +50,6 @@ Diaspora::Application.routes.draw do
   get "mentions" => "streams#mentioned", :as => "mentioned_stream"
   get "liked" => "streams#liked", :as => "liked_stream"
   get "commented" => "streams#commented", :as => "commented_stream"
-  get "aspects" => "streams#aspects", :as => "aspects_stream"
-  
-  resources :aspects do
-    put :toggle_contact_visibility
-  end
 
   resources :photos, :except => [:index] do
     put :make_profile_photo
@@ -139,7 +134,6 @@ Diaspora::Application.routes.draw do
   resources :contacts,           :except => [:update, :create] do
     get :sharing, :on => :collection
   end
-  resources :aspect_memberships, :only  => [:destroy, :create]
   resources :share_visibilities,  :only => [:update]
   resources :blocks, :only => [:create, :destroy]
 
@@ -150,7 +144,6 @@ Diaspora::Application.routes.draw do
     resources :status_messages
     resources :photos
     get :contacts
-    get "aspect_membership_button" => :aspect_membership_dropdown, :as => "aspect_membership_button"
 
     member do
       get :last_post
@@ -175,7 +168,6 @@ Diaspora::Application.routes.draw do
     post 'receive/public'       => :receive_public
     get 'hub'                   => :hub
   end
-
 
 
   # External

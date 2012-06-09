@@ -8,8 +8,6 @@ class TagsController < ApplicationController
   skip_before_filter :set_grammatical_gender
   before_filter :ensure_page, :only => :show
 
-  helper_method :tag_followed?
-
   respond_to :html, :only => [:show]
   respond_to :json, :only => [:index, :show]
 
@@ -38,10 +36,6 @@ class TagsController < ApplicationController
       format.json{ render :json => PostPresenter.collection_json(@stream.stream_posts, current_user) }
     end
   end
-
- def tag_followed?
-   TagFollowing.user_is_following?(current_user, params[:name])
- end
 
   def prep_tags_for_javascript
     @tags.map! do |obj|

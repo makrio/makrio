@@ -8,28 +8,14 @@ class StatusMessagesController < ApplicationController
   respond_to :mobile,
              :json
 
+  # REMOVE
   # Called when a user clicks "Mention" on a profile page
   # @param person_id [Integer] The id of the person to be mentioned
   def new
-    if params[:person_id] && @person = Person.where(:id => params[:person_id]).first
-      @aspect = :profile
-      @contact = current_user.contact_for(@person)
-      @aspects_with_person = []
-      if @contact
-        @aspects_with_person = @contact.aspects
-        @aspect_ids = @aspects_with_person.map{|x| x.id}
-        @contacts_of_contact = @contact.contacts
-        render :layout => nil
-      end
-    else
-      @aspect = :all
-      @aspects = current_user.aspects
-      @aspect_ids = @aspects.map{ |a| a.id }
-    end
+    @aspect_ids = []
   end
 
   def create
-    params[:status_message][:aspect_ids] = [*params[:aspect_ids]]
     normalize_public_flag!
     services = [*params[:services]].compact
 
@@ -37,8 +23,6 @@ class StatusMessagesController < ApplicationController
     @status_message.attach_photos_by_ids(params[:photos])
 
     if @status_message.save
-      aspects = current_user.aspects_from_ids(destination_aspect_ids)
-      current_user.add_to_streams(@status_message, aspects)
       receiving_services = Service.titles(services)
 
       current_user.dispatch_post(@status_message, :url => short_post_url(@status_message.guid), :service_types => receiving_services)
@@ -59,14 +43,6 @@ class StatusMessagesController < ApplicationController
         format.mobile { redirect_to stream_path }
         format.json { render :nothing => true , :status => 403 }
       end
-    end
-  end
-
-  def destination_aspect_ids
-    if params[:status_message][:public] || params[:status_message][:aspect_ids].first == "all_aspects"
-      current_user.aspect_ids
-    else
-      params[:aspect_ids]
     end
   end
 

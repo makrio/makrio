@@ -28,7 +28,7 @@ describe Stream::Tag do
    end
 
    it 'displays a public post that was sent to no one' do
-     stranger = Factory(:user_with_aspect)
+     stranger = Factory(:user)
      stranger_post = stranger.post(:status_message, :text => "#what", :public => true, :to => 'all')
      @stream.posts.should == [stranger_post]
    end

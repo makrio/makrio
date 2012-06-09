@@ -267,7 +267,7 @@ describe Person do
   describe '.search' do
     before do
       Person.delete_all
-      @user = Factory(:user_with_aspect)
+      @user = Factory(:user)
       user_profile = @user.person.profile
       user_profile.first_name = "aiofj"
       user_profile.last_name = "asdji"

@@ -7,7 +7,6 @@ require File.join(Rails.root, 'lib/postzord/dispatcher')
 
 class User < ActiveRecord::Base
   include Encryptor::Private
-  include Connecting
   include Querying
   include SocialActions
 
@@ -37,15 +36,8 @@ class User < ActiveRecord::Base
 
   has_many :invitations_from_me, :class_name => 'Invitation', :foreign_key => :sender_id
   has_many :invitations_to_me, :class_name => 'Invitation', :foreign_key => :recipient_id
-  has_many :aspects, :order => 'order_id ASC'
 
-  belongs_to  :auto_follow_back_aspect, :class_name => 'Aspect'
   belongs_to :invited_by, :class_name => 'User'
-
-  has_many :aspect_memberships, :through => :aspects
-
-  has_many :contacts
-  has_many :contact_people, :through => :contacts, :source => :person
 
   has_many :services
 
@@ -70,15 +62,7 @@ class User < ActiveRecord::Base
                   :language,
                   :disable_mail,
                   :invitation_service,
-                  :invitation_identifier,
-                  :show_community_spotlight_in_stream,
-                  :auto_follow_back,
-                  :auto_follow_back_aspect_id
-
-
-  def self.all_sharing_with_person(person)
-    User.joins(:contacts).where(:contacts => {:person_id => person.id})
-  end
+                  :invitation_identifier
 
   def self.monthly_actives(start_day = Time.now)
     logged_in_since(start_day - 1.month)
@@ -98,10 +82,6 @@ class User < ActiveRecord::Base
 
   def unread_notifications
     notifications.where(:unread => true)
-  end
-
-  def unread_message_count
-    ConversationVisibility.sum(:unread, :conditions => "person_id = #{self.person.id}")
   end
 
   def beta?
@@ -233,24 +213,10 @@ class User < ActiveRecord::Base
     where(conditions).first
   end
 
-  # @param [Person] person
-  # @return [Boolean] whether this user can add person as a contact.
-  def can_add?(person)
-    return false if self.person == person
-    return false if self.contact_for(person).present?
-    true
-  end
-
   def confirm_email(token)
     return false if token.blank? || token != confirm_email_token
     self.email = unconfirmed_email
     save
-  end
-
-  ######### Aspects ######################
-  def add_contact_to_aspect(contact, aspect)
-    return true if AspectMembership.exists?(:contact_id => contact.id, :aspect_id => aspect.id)
-    contact.aspect_memberships.create!(:aspect => aspect)
   end
 
   ######## Posting ########
@@ -275,26 +241,13 @@ class User < ActiveRecord::Base
   end
 
   def notify_if_mentioned(post)
-    return unless self.contact_for(post.author) && post.respond_to?(:mentions?)
-
     post.notify_person(self.person) if post.mentions? self.person
   end
 
-  def add_to_streams(post, aspects_to_insert)
-    inserted_aspect_ids = aspects_to_insert.map{|x| x.id}
-
-    aspects_to_insert.each do |aspect|
-      aspect << post
-    end
-  end
-
-  def aspects_from_ids(aspect_ids)
-    if aspect_ids == "all" || aspect_ids == :all
-      self.aspects
-    else
-      aspects.where(:id => aspect_ids)
-    end
-  end
+  # REMOVE
+  def add_to_streams(post, aspects_to_insert) ; end
+  def aspects_from_ids(aspect_ids) ; end
+  def seed_aspects ; end
 
   def salmon(post)
     Salmon::EncryptedSlap.create_by_user_and_activity(self, post.to_diaspora_xml)
@@ -410,19 +363,6 @@ class User < ActiveRecord::Base
     "@#{AppConfig.bare_pod_uri}"
   end
 
-  def seed_aspects
-    self.aspects.create(:name => I18n.t('aspects.seed.family'))
-    self.aspects.create(:name => I18n.t('aspects.seed.friends'))
-    self.aspects.create(:name => I18n.t('aspects.seed.work'))
-    aq = self.aspects.create(:name => I18n.t('aspects.seed.acquaintances'))
-
-    unless AppConfig[:no_follow_diasporahq]
-      default_account = Webfinger.new('diasporahq@joindiaspora.com').fetch
-      self.share_with(default_account, aq) if default_account
-    end
-    aq
-  end
-
   def encryption_key
     OpenSSL::PKey::RSA.new(serialized_private_key)
   end
@@ -441,14 +381,6 @@ class User < ActiveRecord::Base
 
     if unconfirmed_email_changed?
       self.confirm_email_token = unconfirmed_email ? SecureRandom.hex(15) : nil
-    end
-  end
-
-  def reorder_aspects(aspect_order)
-    i = 0
-    aspect_order.each do |id|
-      self.aspects.find(id).update_attributes({ :order_id => i })
-      i += 1
     end
   end
 

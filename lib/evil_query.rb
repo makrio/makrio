@@ -51,17 +51,9 @@ module EvilQuery
     end
 
     def make_relation!
-      post_ids = aspects_post_ids! + ids!(followed_tags_posts!) + ids!(mentioned_posts)
+      post_ids = ids!(mentioned_posts)
       post_ids += ids!(community_spotlight_posts!) if @include_spotlight
       Post.where(:id => post_ids)
-    end
-
-    def aspects_post_ids!
-      @user.visible_shareable_ids(Post, :limit => 15, :order => "#{@order} DESC", :max_time => @max_time, :all_aspects? => true, :by_members_of => @user.aspect_ids)
-    end
-
-    def followed_tags_posts!
-      StatusMessage.public_tag_stream(@user.followed_tag_ids)
     end
 
     def mentioned_posts
@@ -105,8 +97,7 @@ module EvilQuery
       # perhaps they should the arrays should be merged and sorted
       # then the query at the bottom of this method can be paginated or something?
 
-      shareable_ids = contact.present? ? fetch_ids!(persons_private_visibilities, "share_visibilities.shareable_id") : []
-      shareable_ids += fetch_ids!(persons_public_posts, table_name + ".id")
+      shareable_ids = fetch_ids!(persons_public_posts, table_name + ".id")
 
       @class.where(:id => shareable_ids, :pending => false).
           select('DISTINCT '+table_name+'.*').
@@ -117,10 +108,6 @@ module EvilQuery
 
     def table_name
       @class.table_name
-    end
-
-    def contact
-      @contact ||= @querent.contact_for(@person)
     end
 
     def querents_posts

@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe PersonPresenter do
-  let(:profile_user) { Factory(:user_with_aspect) }
+  let(:profile_user) { Factory(:user) }
   let(:person) { profile_user.person }
 
   describe "#as_json" do

@@ -20,7 +20,6 @@ class ProfilesController < ApplicationController
 
   def edit
     @person = current_user.person
-    @aspect  = :person_edit
     @profile = @person.profile
 
     @tags = @profile.tags

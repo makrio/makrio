@@ -7,17 +7,8 @@ require 'spec_helper'
 describe UsersController do
   before do
     @user = alice
-    @aspect = @user.aspects.first
-    @aspect1 = @user.aspects.create(:name => "super!!")
     sign_in :user, @user
     @controller.stub(:current_user).and_return(@user)
-  end
-
-  describe '#export' do
-    it 'returns an xml file'  do
-      get :export
-      response.header["Content-Type"].should include "application/xml"
-    end
   end
 
   describe '#export_photos' do

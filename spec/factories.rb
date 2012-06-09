@@ -75,15 +75,6 @@ FactoryGirl.define do
     end
   end
 
-  factory :user_with_aspect, :parent => :user do
-    after_create { |u| Factory(:aspect, :user => u) }
-  end
-
-  factory :aspect do
-    name "generic"
-    association :user
-  end
-
   factory(:status_message) do
     sequence(:text) { |n| "jimmy's #{n} whales" }
     association :author, :factory => :person
@@ -124,10 +115,7 @@ FactoryGirl.define do
   factory :invitation do
     service "email"
     identifier "bob.smith@smith.com"
-    association :sender, :factory => :user_with_aspect
-    after_build do |i|
-      i.aspect = i.sender.aspects.first
-    end
+    association :sender, :factory => :user
   end
 
   factory :invitation_code do
@@ -191,11 +179,6 @@ FactoryGirl.define do
 
   factory(:tag_following) do
     association(:tag, :factory => :tag)
-    association(:user, :factory => :user)
-  end
-
-  factory(:contact) do
-    association(:person, :factory => :person)
     association(:user, :factory => :user)
   end
 

@@ -134,7 +134,6 @@ class StatusMessage < Post
       self.photos.update_all(:public => self.public)
       self.photos.each do |photo|
         if photo.pending
-          sender.add_to_streams(photo, self.aspects)
           sender.dispatch_post(photo)
         end
       end

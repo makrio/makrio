@@ -14,15 +14,14 @@ end
 describe Photo do
   before do
     @user = alice
-    @aspect = @user.aspects.first
 
     @fixture_filename  = 'button.png'
     @fixture_name      = File.join(File.dirname(__FILE__), '..', 'fixtures', @fixture_filename)
     @fail_fixture_name = File.join(File.dirname(__FILE__), '..', 'fixtures', 'msg.xml')
 
-    @photo  = @user.build_post(:photo, :user_file => File.open(@fixture_name), :to => @aspect.id)
-    @photo2 = @user.build_post(:photo, :user_file => File.open(@fixture_name), :to => @aspect.id)
-    @saved_photo = @user.build_post(:photo, :user_file => File.open(@fixture_name), :to => @aspect.id)
+    @photo  = @user.build_post(:photo, :user_file => File.open(@fixture_name))
+    @photo2 = @user.build_post(:photo, :user_file => File.open(@fixture_name))
+    @saved_photo = @user.build_post(:photo, :user_file => File.open(@fixture_name))
     @saved_photo.save
   end
 
@@ -174,7 +173,7 @@ describe Photo do
   describe 'serialization' do
     before do
       @saved_photo = with_carrierwave_processing do
-         @user.build_post(:photo, :user_file => File.open(@fixture_name), :to => @aspect.id)
+         @user.build_post(:photo, :user_file => File.open(@fixture_name))
       end
       @xml = @saved_photo.to_xml.to_s
     end
@@ -204,7 +203,6 @@ describe Photo do
       #security hax
       user2 = Factory(:user)
       aspect2 = user2.aspects.create(:name => "foobars")
-      connect_users(@user, @aspect, user2, aspect2)
 
       url = @saved_photo.url
       thumb_url = @saved_photo.url :thumb_medium
@@ -237,7 +235,7 @@ describe Photo do
 
   context "deletion" do
     before do
-      @status_message = @user.build_post(:status_message, :text => "", :to => @aspect.id)
+      @status_message = @user.build_post(:status_message, :text => "")
       @status_message.photos << @photo2
       @status_message.save
       @status_message.reload

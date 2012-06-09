@@ -168,52 +168,6 @@ describe Notifier do
     end
   end
 
-
-  describe ".private_message" do
-    before do
-      @user2 = bob
-      @participant_ids = @user2.contacts.map{|c| c.person.id} + [ @user2.person.id]
-
-      @create_hash = {
-        :author => @user2.person,
-        :participant_ids => @participant_ids,
-        :subject => "cool stuff",
-        :messages_attributes => [ {:author => @user2.person, :text => 'hey'} ]
-      }
-
-      @cnv = Conversation.create(@create_hash)
-
-      @mail = Notifier.private_message(bob.id, @cnv.author.id, @cnv.messages.first.id)
-    end
-
-    it 'TO: goes to the right person' do
-      @mail.to.should == [bob.email]
-    end
-
-    it "FROM: contains the sender's name" do
-      @mail["From"].to_s.should == "\"#{@cnv.author.name} (#{AppConfig[:pod_name]})\" <#{AppConfig[:smtp_sender_address]}>"
-    end
-
-    it 'SUBJECT: has a snippet of the post contents' do
-      @mail.subject.should == @cnv.subject
-    end
-
-    it 'SUBJECT: has "Re:" if not the first message in a conversation' do
-      @cnv.messages << Message.new(:text => 'yo', :author => eve.person)
-      @mail = Notifier.private_message(bob.id, @cnv.author.id, @cnv.messages.last.id)
-
-      @mail.subject.should == "Re: #{@cnv.subject}"
-    end
-
-    it 'BODY: contains the message text' do
-      @mail.body.encoded.should include(@cnv.messages.first.text)
-    end
-
-    it 'should not include translation fallback' do
-      @mail.body.encoded.should_not include(I18n.translate 'notifier.a_post_you_shared')
-    end
-  end
-
   context "comments" do
     let(:commented_post) {bob.post(:status_message, :text => "It's really sunny outside today, and this is a super long status message!  #notreally", :to => :all)}
     let(:comment) { eve.comment!(commented_post, "Totally is")}

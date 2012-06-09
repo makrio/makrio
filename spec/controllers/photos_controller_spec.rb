@@ -6,8 +6,8 @@ require 'spec_helper'
 
 describe PhotosController do
   before do
-    @alices_photo = alice.post(:photo, :user_file => uploaded_photo, :to => alice.aspects.first.id)
-    @bobs_photo = bob.post(:photo, :user_file => uploaded_photo, :to => bob.aspects.first.id, :public => true)
+    @alices_photo = alice.post(:photo, :user_file => uploaded_photo)
+    @bobs_photo = bob.post(:photo, :user_file => uploaded_photo, :public => true)
 
     @controller.stub!(:current_user).and_return(alice)
     sign_in :user, alice
@@ -17,7 +17,7 @@ describe PhotosController do
   describe '#create' do
     before do
       @params = {
-        :photo => {:aspect_ids => "all"},
+        :photo => {},
         :qqfile => Rack::Test::UploadedFile.new(
           File.join( Rails.root, "spec/fixtures/button.png" ),
           "image/png"
@@ -45,7 +45,7 @@ describe PhotosController do
   describe '#create' do
     before do
       @controller.stub!(:file_handler).and_return(uploaded_photo)
-      @params = {:photo => {:user_file => uploaded_photo, :aspect_ids => "all"} }
+      @params = {:photo => {:user_file => uploaded_photo} }
     end
 
     it "creates a photo" do
@@ -125,7 +125,7 @@ describe PhotosController do
     end
 
     it 'will not let you destroy posts you do not own' do
-      eves_photo = eve.post(:photo, :user_file => uploaded_photo, :to => eve.aspects.first.id, :public => true)
+      eves_photo = eve.post(:photo, :user_file => uploaded_photo, :public => true)
       delete :destroy, :id => eves_photo.id
       Photo.find_by_id(eves_photo.id).should be_true
     end

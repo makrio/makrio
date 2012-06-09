@@ -13,13 +13,6 @@ class ApplicationController < ActionController::Base
 
   inflection_method :grammatical_gender => :gender
 
-  helper_method :all_aspects,
-                :all_contacts_count,
-                :my_contacts_count,
-                :only_sharing_count,
-                :tag_followings,
-                :tags
-
   def ensure_http_referer_is_set
     request.env['HTTP_REFERER'] ||= '/'
   end
@@ -33,26 +26,6 @@ class ApplicationController < ActionController::Base
     else
       new_user_session_path
     end
-  end
-
-  def all_aspects
-    @all_aspects ||= current_user.aspects
-  end
-
-  def all_contacts_count
-    @all_contacts_count ||= current_user.contacts.count
-  end
-
-  def my_contacts_count
-    @my_contacts_count ||= current_user.contacts.receiving.count
-  end
-
-  def only_sharing_count
-    @only_sharing_count ||= current_user.contacts.only_sharing.count
-  end
-
-  def tags
-    @tags ||= current_user.followed_tags
   end
 
   def ensure_page

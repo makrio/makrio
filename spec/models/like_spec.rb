@@ -53,7 +53,6 @@ describe Like do
 
       @liker = Factory(:user)
       @liker_aspect = @liker.aspects.create(:name => "dummies")
-      connect_users(alice, alices_aspect, @liker, @liker_aspect)
       @post = alice.post(:status_message, :text => "huhu", :to => alices_aspect.id)
       @like = @liker.like!(@post)
       @xml = @like.to_xml.to_s

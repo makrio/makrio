@@ -70,7 +70,6 @@ describe Comment do
     before do
       @commenter = Factory(:user)
       @commenter_aspect = @commenter.aspects.create(:name => "bruisers")
-      connect_users(alice, @alices_aspect, @commenter, @commenter_aspect)
       @post = alice.post :status_message, :text => "hello", :to => @alices_aspect.id
       @comment = @commenter.comment!(@post, "Fool!")
       @xml = @comment.to_xml.to_s

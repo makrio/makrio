@@ -63,26 +63,6 @@ class Stream::Base
     Rails.application.routes.url_helpers.contacts_path
   end
 
-  # @return [Boolean]
-  def for_all_aspects?
-    true
-  end
-
-  #NOTE: MBS bad bad methods the fact we need these means our views are foobared. please kill them and make them
-  #private methods on the streams that need them
-  def aspects
-    user.aspects
-  end
-
-  # @return [Aspect] The first aspect in #aspects
-  def aspect
-    aspects.first
-  end
-
-  def aspect_ids
-    aspects.map{|x| x.id}
-  end
-
   def max_time=(time_string)
     @max_time = Time.at(time_string.to_i) unless time_string.blank?
     @max_time ||= (Time.now + 1)

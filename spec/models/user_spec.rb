@@ -359,28 +359,6 @@ describe User do
     end
   end
 
-  describe "#can_add?" do
-    it "returns true if there is no existing connection" do
-      alice.can_add?(eve.person).should be_true
-    end
-
-    it "returns false if the user and the person are the same" do
-      alice.can_add?(alice.person).should be_false
-    end
-
-    it "returns false if the users are already connected" do
-      alice.can_add?(bob.person).should be_false
-    end
-
-    it "returns false if the user has already sent a request to that person" do
-      alice.share_with(eve.person, alice.aspects.first)
-      alice.reload
-      eve.reload
-      alice.can_add?(eve.person).should be_false
-    end
-  end
-
-
   describe '#process_invite_acceptence' do
     it 'sets the inviter on user' do
       inv = InvitationCode.create(:user => bob)
@@ -577,26 +555,6 @@ describe User do
        alice.reload
        Resque.should_not_receive(:enqueue)
       alice.mail(Jobs::Mail::StartedSharing, alice.id, 'contactrequestid')
-    end
-  end
-
-  context "aspect management" do
-    before do
-      @contact = alice.contact_for(bob.person)
-      @original_aspect = alice.aspects.where(:name => "generic").first
-      @new_aspect = alice.aspects.create(:name => 'two')
-    end
-
-    describe "#add_contact_to_aspect" do
-      it 'adds the contact to the aspect' do
-        lambda {
-          alice.add_contact_to_aspect(@contact, @new_aspect)
-        }.should change(@new_aspect.contacts, :count).by(1)
-      end
-
-      it 'returns true if they are already in the aspect' do
-        alice.add_contact_to_aspect(@contact, @original_aspect).should be_true
-      end
     end
   end
 

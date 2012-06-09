@@ -7,22 +7,14 @@ module Diaspora
   module Shareable
     def self.included(model)
       model.instance_eval do
-
-        has_many :aspect_visibilities, :as => :shareable
-        has_many :aspects, :through => :aspect_visibilities
-
         has_many :share_visibilities, :as => :shareable
-        has_many :contacts, :through => :share_visibilities
-
         belongs_to :author, :class_name => 'Person'
-
 
         #scopes
         scope :all_public, where(:public => true, :pending => false)
 
         def self.owned_or_visible_by_user(user)
           self.joins("LEFT OUTER JOIN share_visibilities ON share_visibilities.shareable_id = posts.id AND share_visibilities.shareable_type = 'Post'").
-               joins("LEFT OUTER JOIN contacts ON contacts.id = share_visibilities.contact_id").
                where(
                   Contact.arel_table[:user_id].eq(user.id).or(
                     self.arel_table[:public].eq(true).or(

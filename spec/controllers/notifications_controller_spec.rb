@@ -114,7 +114,6 @@ describe NotificationsController do
 
         Nokogiri(response.body).css('.aspect_membership').should_not be_empty
       end
-      
     end
   end
 end

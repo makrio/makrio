@@ -41,7 +41,6 @@ class Person < ActiveRecord::Base
     diaspora_handle.downcase! unless diaspora_handle.blank?
   end
 
-  has_many :contacts, :dependent => :destroy # Other people's contacts for this person
   has_many :posts, :foreign_key => :author_id, :dependent => :destroy # This person's own posts
   has_many :photos, :foreign_key => :author_id, :dependent => :destroy # This person's own photos
   has_many :comments, :foreign_key => :author_id, :dependent => :destroy # This person's own comments
@@ -67,22 +66,6 @@ class Person < ActiveRecord::Base
   scope :remote, where('people.owner_id IS NULL')
   scope :local, where('people.owner_id IS NOT NULL')
   scope :for_json, select('DISTINCT people.id, people.guid, people.diaspora_handle').includes(:profile)
-
-  # @note user is passed in here defensively
-  scope :all_from_aspects, lambda { |aspect_ids, user|
-    joins(:contacts => :aspect_memberships).
-         where(:contacts => {:user_id => user.id}, :aspect_memberships => {:aspect_id => aspect_ids})
-  }
-
-  scope :unique_from_aspects, lambda{ |aspect_ids, user|
-    all_from_aspects(aspect_ids, user).select('DISTINCT people.*')
-  }
-
-  #not defensive
-  scope :in_aspects, lambda { |aspect_ids|
-    joins(:contacts => :aspect_memberships).
-        where(:contacts => { :aspect_memberships => {:aspect_id => aspect_ids}})
-  }
 
   scope :profile_tagged_with, lambda{|tag_name| joins(:profile => :tags).where(:profile => {:tags => {:name => tag_name}}).where('profiles.searchable IS TRUE') }
 
@@ -122,52 +105,6 @@ class Person < ActiveRecord::Base
 
   def to_param
     self.guid
-  end
-
-  def self.search_query_string(query)
-    query = query.downcase
-    like_operator = postgres? ? "ILIKE" : "LIKE"
-
-    where_clause = <<-SQL
-      profiles.full_name #{like_operator} ? OR
-      people.diaspora_handle #{like_operator} ?
-    SQL
-
-    q_tokens = []
-    q_tokens[0] = query.to_s.strip.gsub(/(\s|$|^)/) { "%#{$1}" }
-    q_tokens[1] = q_tokens[0].gsub(/\s/,'').gsub('%','')
-    q_tokens[1] << "%"
-
-    [where_clause, q_tokens]
-  end
-
-  def self.search(query, user)
-    return self.where("1 = 0") if query.to_s.blank? || query.to_s.length < 2
-
-    sql, tokens = self.search_query_string(query)
-
-    Person.searchable.where(sql, *tokens).joins(
-      "LEFT OUTER JOIN contacts ON contacts.user_id = #{user.id} AND contacts.person_id = people.id"
-    ).includes(:profile
-    ).order(search_order)
-  end
-
-  # @return [Array<String>] postgreSQL and mysql deal with null values in orders differently, it seems.
-  def self.search_order
-    @search_order ||= Proc.new {
-      order = if postgres?
-        "ASC"
-      else
-        "DESC"
-      end
-      ["contacts.user_id #{order}", "profiles.last_name ASC", "profiles.first_name ASC"]
-    }.call
-  end
-
-  def self.public_search(query, opts={})
-    return [] if query.to_s.blank? || query.to_s.length < 3
-    sql, tokens = self.search_query_string(query)
-    Person.searchable.where(sql, *tokens)
   end
 
   def name(opts = {})
@@ -307,11 +244,6 @@ class Person < ActiveRecord::Base
     people.each do |person|
       person.update_url(url)
     end
-  end
-
-  #gross method pulled out from controller, not exactly sure how it should be used.
-  def shares_with(user)
-    user.contacts.receiving.where(:person_id => self.id).first if user
   end
 
   # @param person [Person]

@@ -33,11 +33,6 @@ describe ProfilesController do
       assigns[:profile].should == eve.person.profile
     end
 
-    it 'sets the aspect to "person_edit" ' do
-      get :edit
-      assigns[:aspect].should == :person_edit
-    end
-
     it 'sets the person to the current users person' do
       get :edit
       assigns[:person].should == eve.person

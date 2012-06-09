@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   respond_to :html
 
   def edit
-    @aspect = :user_edit
     @user   = current_user
     @email_prefs = Hash.new(true)
     @user.user_preferences.each do |pref|
@@ -68,8 +67,6 @@ class UsersController < ApplicationController
           flash[:error] = I18n.t 'users.update.follow_settings_not_changed'
         end
       end
-    elsif aspect_order = params[:reorder_aspects]
-      @user.reorder_aspects(aspect_order)
     end
 
     respond_to do |format|

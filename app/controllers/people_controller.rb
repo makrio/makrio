@@ -19,7 +19,6 @@ class PeopleController < ApplicationController
   helper_method :search_query
 
   def index
-    @aspect = :search
     limit = params[:limit] ? params[:limit].to_i : 15
 
     @people = Person.search(search_query, current_user)
@@ -87,7 +86,6 @@ class PeopleController < ApplicationController
 
     @post_type = :all
     @aspect = :profile
-    @share_with = (params[:share_with] == 'true')
     @stream = Stream::Person.new(current_user, @person, :max_time => max_time)
 
     respond_to do |format|
