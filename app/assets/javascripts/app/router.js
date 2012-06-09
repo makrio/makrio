@@ -6,13 +6,17 @@ app.Router = Backbone.Router.extend({
     "people/:id": "newProfile",
     "u/:name": "newProfile",
 
-    "posts/new" : "composer",
     "posts/new?*params" : "composer", // bookmarklet has params
+    "posts/new" : "composer",
+    "framer": "framer",
+
+    "posts/:id?:params": "singlePost",
     "posts/:id": "singlePost",
-    "posts/:id/next": "siblingPost",
-    "posts/:id/previous": "siblingPost",
+    "p/:id?:params": "singlePost",
     "p/:id": "singlePost",
-    "framer": "framer"
+
+    "posts/:id/next": "siblingPost",
+    "posts/:id/previous": "siblingPost"
   },
 
   newStream : function() {
