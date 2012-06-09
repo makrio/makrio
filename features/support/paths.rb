@@ -3,12 +3,6 @@ module NavigationHelpers
     case page_name
       when /^the home(?: )?page$/
         stream_path
-      when /^step (\d)$/
-        if $1.to_i == 1
-          getting_started_path
-        else
-          getting_started_path(:step => $1)
-        end
       when /^the tag page for "([^\"]*)"$/
         tag_path($1)
       when /^its ([\w ]+) page$/

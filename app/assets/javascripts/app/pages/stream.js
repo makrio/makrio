@@ -3,7 +3,7 @@ app.pages.Stream = app.views.Base.extend({
 
   events : {
     "click .bookmarklet-button" : "bookmarkletInstructionsPrompt",
-    "activate .stream-frame-wrapper" : 'triggerInteractionLoad'
+    "activate .stream-frame-wrapper" : 'triggerInteractionLoad',
   },
 
   subviews : {
@@ -27,6 +27,11 @@ app.pages.Stream = app.views.Base.extend({
   },
 
   postRenderTemplate : function() {
+
+    if(app.currentUser.get("getting_started")) {
+      this.showGettingStarted()
+    }
+
     //after all of the child divs have been added, initialize the scroll spy
     _.defer(_.bind(function(){
       $('body').scrollspy({target : '.stream-frame-wrapper', offset : 115, streamElement : this.$("#stream")})
@@ -39,7 +44,6 @@ app.pages.Stream = app.views.Base.extend({
         this.selectFrame(post)
       }, this))
     }, this))
-
   },
 
   presenter : function(){
@@ -95,6 +99,12 @@ app.pages.Stream = app.views.Base.extend({
   bookmarkletInstructionsPrompt : function(evt) {
     evt.preventDefault()
     alert("Drag me to the bookmarks bar to post to makr.io from anywhere on the web")
+  },
+
+  showGettingStarted : function() {
+    var gettingStartedView = new app.views.GettingStarted()
+    $("body").addClass('lock')
+      .prepend(gettingStartedView.render().el)
   }
 },
 

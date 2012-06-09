@@ -5,8 +5,6 @@
 class StatusMessagesController < ApplicationController
   before_filter :authenticate_user!
 
-  before_filter :remove_getting_started, :only => [:create]
-
   respond_to :html,
              :mobile,
              :json
@@ -94,9 +92,5 @@ class StatusMessagesController < ApplicationController
     public_flag.to_s.match(/(true)|(on)/) ? public_flag = true : public_flag = false
     params[:status_message][:public] = public_flag
     public_flag
-  end
-
-  def remove_getting_started
-    current_user.disable_getting_started
   end
 end

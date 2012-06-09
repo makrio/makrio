@@ -14,7 +14,8 @@ class UserPresenter
         :services => services,
         :following_count => self.user.contacts.receiving.count,
         :configured_services => self.configured_services,
-        :wallpaper => self.wallpaper
+        :wallpaper => self.wallpaper,
+        :getting_started => self.user.getting_started?
       }
     ).to_json(options)
   end

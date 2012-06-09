@@ -66,11 +66,6 @@ en:
       select_all: "Select all"
       deselect_all: "Deselect all"
       no_aspects: "No aspects selected"
-    getting_started:
-      hey: "Hey, <%= name %>!"
-      no_tags: "Hey, you haven't followed any tags!  Continue anyway?"
-      alright_ill_wait: "Alright, I'll wait."
-      preparing_your_stream: "Preparing your personalized stream..."
     photo_uploader:
       looking_good: "OMG, you look awesome!"
     tags:

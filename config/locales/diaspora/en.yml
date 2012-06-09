@@ -1059,8 +1059,6 @@ en:
       email_awaiting_confirmation: "We have sent you an activation link to %{unconfirmed_email}. Until you follow this link and activate the new address, we will continue to use your original address %{email}."
       stream_preferences: "Stream Preferences"
       show_community_spotlight: "Show Community Spotlight in Stream?"
-      show_getting_started: 'Re-enable Getting Started'
-      getting_started: 'New User Prefrences'
       following: "Following Settings"
       auto_follow_back: "Automatically follow back if someone follows you"
       auto_follow_aspect: "Aspect for automatically followed users:"
@@ -1084,22 +1082,6 @@ en:
       success: "Your account has been locked.  It may take 20 minutes for us to finish closing your account.  Thank you for trying Diaspora."
       no_password: "Please enter your current password to close your account."
       wrong_password: "The entered password didn't match your current password."
-    getting_started:
-      well_hello_there: "Well, hello there!"
-      community_welcome: "Diaspora's community is happy to have you aboard!"
-
-      awesome_take_me_to_diaspora: "Awesome! Take me to Diaspora*"
-
-      who_are_you: "Who are you?"
-      we_can_speed_things_up: "We can speed things up a bit by"
-      hooking_up_fb: "hooking up your Facebook account"
-      what_facebook_does: "to Diaspora. This will pull your name and photo, and enable cross-posting."
-
-      what_are_you_in_to: "What are you into?"
-      hashtag_explanation: "Hashtags allow you to talk about and follow your interests.  They're also a great way to find new people on Diaspora."
-      hashtag_suggestions: "Try following tags like #art, #movies, #gif, etc."
-
-      saved: "Saved!"
 
     update:
       password_changed: "Password changed.  You can now log in with your new password."

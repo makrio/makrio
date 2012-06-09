@@ -51,11 +51,8 @@
     = flash_messages
 
     .container
-      - if @aspect == :getting_started
+      .span-24.last
         = yield
-      - else
-        .span-24.last
-          = yield
 
     = include_chartbeat
     = include_mixpanel_guid

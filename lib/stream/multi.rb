@@ -54,11 +54,6 @@ class Stream::Multi < Stream::Base
     prefill
   end
 
-  # @return [Boolean]
-  def welcome?
-    self.user.getting_started
-  end
-
   # @return [Array<Symbol>]
   def streams_included
     @streams_included ||= lambda do

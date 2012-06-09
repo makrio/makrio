@@ -107,19 +107,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def getting_started
-    @aspect   = :getting_started
-    @user     = current_user
-    @person   = @user.person
-    @profile  = @user.profile
-
-    render "users/getting_started"
-  end
-
   def getting_started_completed
-    user = current_user
-    user.update_attributes(:getting_started => false)
-    redirect_to stream_path
+    current_user.update_attributes(:getting_started => false)
+    render :json => {:success => true}, :format => :json
   end
 
   def export
