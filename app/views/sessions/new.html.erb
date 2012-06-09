@@ -27,6 +27,7 @@
             <div class="controls">
                 <%= f.password_field :password, :placeholder => "••••••••", :required => true, :pattern => "......+" %>
             </div>
+            <%= f.hidden_field :remember_me, :value => 'true' %>
           </div>
         </fieldset>
 
