@@ -1,14 +1,12 @@
-require File.join(Rails.root, "lib", "publisher")
 class Stream::Base
   TYPES_OF_POST_IN_STREAM = ['StatusMessage', 'Reshare', 'ActivityStreams::Photo']
 
-  attr_accessor :max_time, :order, :user, :publisher
+  attr_accessor :max_time, :order, :user
 
   def initialize(user, opts={})
     self.user = user
     self.max_time = opts[:max_time]
     self.order = opts[:order]
-    self.publisher = Publisher.new(self.user, publisher_opts)
   end
 
   #requied to implement said stream
@@ -110,11 +108,6 @@ class Stream::Base
     posts.each do |post|
       post.user_like = like_hash[post.id]
     end
-  end
-
-  # @return [Hash]
-  def publisher_opts
-    {}
   end
 
   # Memoizes all Contacts present in the Stream

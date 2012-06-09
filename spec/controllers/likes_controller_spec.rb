@@ -1,4 +1,4 @@
-  #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
 
@@ -59,19 +59,6 @@ describe LikesController do
             response.code.should == '422'
           end
         end
-
-        context "on a post from a stranger" do
-          before do
-            @target = eve.post :status_message, :text => "AWESOME", :to => eve.aspects.first.id
-            @target = eve.comment!(@target, "hey") if class_const == Comment
-          end
-
-          it "doesn't post" do
-            alice.should_not_receive(:like!)
-            post :create, like_hash
-            response.code.should == '422'
-          end
-        end
       end
 
       describe '#index' do
@@ -84,11 +71,6 @@ describe LikesController do
           get :index, id_field => @message.id
 
           save_fixture(response.body, "ajax_likes_on_#{class_const.to_s.underscore}")
-        end
-
-        it 'returns a 404 for a post not visible to the user' do
-          sign_in eve
-          expect{get :index, id_field => @message.id}.to raise_error(ActiveRecord::RecordNotFound)
         end
 
         it 'returns an array of likes for a post' do
@@ -126,7 +108,6 @@ describe LikesController do
           }.should raise_error(ActiveRecord::RecordNotFound)
 
           Like.count.should == like_count
-
         end
       end
     end

@@ -15,30 +15,14 @@ describe StatusMessagesController do
     alice.reload
   end
 
-  describe '#new' do
-    it 'succeeds' do
-      get :new,
-        :person_id => bob.person.id
-      response.should be_success
-    end
-
-    it 'generates a jasmine fixture', :fixture => true do
-      contact = alice.contact_for(bob.person)
-      aspect = alice.aspects.create(:name => 'people')
-      contact.aspects << aspect
-      contact.save
-      get :new, :person_id => bob.person.id, :layout => true
-      save_fixture(html_for("body"), "status_message_new")
-    end
-  end
-
   describe '#create' do
     let(:status_message_hash) {
       { :status_message => {
         :public  => "true",
         :text => "facebook, is that you?",
       },
-      :aspect_ids => [@aspect1.id.to_s] }
+      :aspect_ids => [@aspect1.id.to_s],
+      :format => :mobile}
     }
 
     it 'creates with valid html' do
@@ -73,11 +57,6 @@ describe StatusMessagesController do
       post :create, status_message_hash.merge(:status_message => { :text => "0123456789" * 7000 }, :format => 'mobile')
       response.status.should == 302
       response.should be_redirect
-    end
-    
-    it 'removes getting started from new users' do
-      @controller.should_receive(:remove_getting_started)
-      post :create, status_message_hash
     end
 
     it 'takes public in aspect ids' do
@@ -136,12 +115,6 @@ describe StatusMessagesController do
       StatusMessage.first.provider_display_name.should == 'mobile'
     end
 
-# disabled to fix federation
-#    it 'sends the errors in the body on js' do
-#      post :create, status_message_hash.merge!(:format => 'js', :status_message => {:text => ''})
-#      response.body.should include('Status message requires a message or at least one photo')
-#    end
-
     context 'with photos' do
       before do
         @photo1 = alice.build_post(:photo, :pending => true, :user_file=> File.open(photo_fixture_name), :to => @aspect1.id)
@@ -172,26 +145,6 @@ describe StatusMessagesController do
           @photo2.reload.pending.should be_false
         end
       end
-    end
-  end
-
-  describe '#remove_getting_started' do
-    it 'removes the getting started flag from new users' do
-      alice.getting_started = true
-      alice.save
-      expect{
-        @controller.remove_getting_started
-      }.should change{
-        alice.reload.getting_started
-      }.from(true).to(false)
-    end
-
-    it 'does nothing for returning users' do
-      expect{
-        @controller.remove_getting_started
-      }.should_not change{
-        alice.reload.getting_started
-      }
     end
   end
 end

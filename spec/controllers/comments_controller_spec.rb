@@ -59,15 +59,6 @@ describe CommentsController do
         old_comment.reload.text.should == 'hello'
       end
     end
-
-    it 'posts no comment on a post from a stranger' do
-      aspect_to_post = eve.aspects.where(:name => "generic").first
-      @post = eve.post :status_message, :text => 'GIANTS', :to => aspect_to_post
-
-      alice.should_not_receive(:comment)
-      post :create, comment_hash
-      response.code.should == '422'
-    end
   end
 
   describe '#destroy' do
@@ -145,14 +136,6 @@ describe CommentsController do
 
     it 'returns a 404 on a nonexistent post' do
       get :index, :post_id => 235236, :format => 'js'
-      response.status.should == 404
-    end
-
-    it 'returns a 404 on a post that is not visible to the signed in user' do
-      aspect_to_post = eve.aspects.where(:name => "generic").first
-      message = eve.post(:status_message, :text => "hey", :to => aspect_to_post.id)
-      bob.comment!(@message, "hey")
-      get :index, :post_id => message.id, :format => :json
       response.status.should == 404
     end
   end
