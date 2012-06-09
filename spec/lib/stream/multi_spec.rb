@@ -57,20 +57,4 @@ describe Stream::Multi do
       end
     end
   end
-
-  describe "#welcome?" do
-    before do
-      @stream = Stream::Multi.new(alice)
-    end
-
-    it 'returns true if user is getting started' do
-      alice.getting_started = true
-      @stream.send(:welcome?).should be_true
-    end
-
-    it 'returns false if user is getting started' do
-      alice.getting_started = false
-      @stream.send(:welcome?).should be_false
-    end
-  end
 end

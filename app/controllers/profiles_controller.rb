@@ -55,11 +55,7 @@ class ProfilesController < ApplicationController
       format.js { render :nothing => true, :status => 200 }
       format.html {
         flash[:notice] = I18n.t 'profiles.update.updated'
-        if current_user.getting_started?
-          redirect_to getting_started_path
-        else
-          redirect_to edit_profile_path
-        end
+        redirect_to edit_profile_path
       }
     end
   end

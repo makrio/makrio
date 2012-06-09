@@ -376,6 +376,52 @@ $bring-dark-accent-forward-color: #DDD;
   width : 100%;
 }
 
+#getting_started {
+  position : fixed;
+  display : table;
+
+  z-index : 999;
+
+  height : 100%;
+  width : 100%;
+
+  top : 0;
+  left : 0;
+
+  background-color : rgba(0,0,0,0.8);
+
+
+  .gs-container {
+    display : table-cell;
+    position : relative;
+
+    height : 100%;
+    width : 100%;
+
+    text-align : center;
+
+    vertical-align: middle;
+    vertical-position: middle;
+
+    .img-wrapper {
+      display : inline-block;
+      position : relative;
+    }
+
+    .gs-done {
+      position : absolute;
+      bottom : 100px;
+      left : 398px;
+      padding : 5px 15px;
+      color : #222;
+
+      &:hover {
+        text-decoration : none;
+      }
+    }
+  }
+}
+
 /* bootstrap label fixes for Roboto */
 .label {
   padding : 2px 5px;

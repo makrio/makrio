@@ -232,16 +232,4 @@ describe UsersController do
       request.flash[:notice].should be_blank
     end
   end
-
-  describe 'getting_started' do
-    it 'does not fail miserably' do
-      get :getting_started
-      response.should be_success
-    end
-
-    it 'does not fail miserably on mobile' do
-      get :getting_started, :format => :mobile
-      response.should be_success
-    end
-  end
 end

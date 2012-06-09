@@ -3,8 +3,6 @@ Then /^I should see the "(.*)" message$/ do |message|
            when "alice is excited"
              @alice ||= Factory(:user, :username => "Alice")
              I18n.translate('invitation_codes.excited', :name => @alice.name)
-           when "welcome to diaspora"
-             I18n.translate('users.getting_started.well_hello_there')
            when 'you are safe for work'
              I18n.translate('profiles.edit.you_are_safe_for_work')
            when 'you are nsfw'
