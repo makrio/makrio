@@ -421,7 +421,6 @@ a.logo{
   }
 
   #meta-info-holder,
-  #stream-interactions,
   #stream-content {
     padding-top : 55px;
   }
@@ -443,6 +442,7 @@ a.logo{
   bottom : 0;
   overflow-y : auto;
   z-index : $stream-interactions-content-index;
+  padding-top : 90px;
 }
 
 #stream-content {
@@ -450,7 +450,7 @@ a.logo{
     margin-bottom : 40px;
 
     &:first-child {
-      padding-top: $meta-info-holder-height + 10;
+      padding-top: $meta-info-holder-height;
     }
 
     .stream-frame-feedback {
@@ -490,7 +490,7 @@ a.logo{
     .selected-frame {
       .frame-meta {
         position: fixed;
-        top: 56px;
+        top: 50px;
         z-index: $selected-meta-index;
       }
     }
