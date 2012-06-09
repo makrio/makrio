@@ -45,11 +45,6 @@ class Stream::Tag < Stream::Base
     I18n.translate('streams.tags.tag_prefill_text', :tag_name => display_tag_name)
   end
 
-  # @return [Hash]
-  def publisher_opts
-    {:prefill => "#{tag_prefill_text}", :open => true}
-  end
-
   def construct_post_query
     posts = StatusMessage
     if user.present?

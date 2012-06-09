@@ -28,31 +28,6 @@ class Stream::Multi < Stream::Base
   end
 
   private
-  def publisher_opts
-    if welcome?
-      {:open => true, :prefill => publisher_prefill, :public => true}
-    else
-      super
-    end
-  end
-
-  # Generates the prefill for the publisher
-  #
-  # @return [String]
-  def publisher_prefill
-    prefill = I18n.t("shared.publisher.new_user_prefill.hello", :new_user_tag => I18n.t('shared.publisher.new_user_prefill.newhere'))
-    if self.user.followed_tags.size > 0
-      tag_string = self.user.followed_tags.map{|t| "##{t.name}"}.to_sentence
-      prefill << I18n.t("shared.publisher.new_user_prefill.i_like", :tags => tag_string)
-    end
-
-    if inviter = self.user.invited_by.try(:person)
-      prefill << I18n.t("shared.publisher.new_user_prefill.invited_by")
-      prefill << "@{#{inviter.name} ; #{inviter.diaspora_handle}}!"
-    end
-
-    prefill
-  end
 
   # @return [Array<Symbol>]
   def streams_included

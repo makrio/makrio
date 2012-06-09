@@ -185,14 +185,9 @@ describe User::Querying do
   end
 
   describe '#find_visible_shareable_by_id' do
-    it "returns a post if you can see it" do
+    it "returns a post" do
       bobs_post = bob.post(:status_message, :text => "hi", :to => @bobs_aspect.id, :public => false)
       alice.find_visible_shareable_by_id(Post, bobs_post.id).should == bobs_post
-    end
-    it "returns nil if you can't see that post" do
-      dogs = bob.aspects.create(:name => "dogs")
-      invisible_post = bob.post(:status_message, :text => "foobar", :to => dogs.id)
-      alice.find_visible_shareable_by_id(Post, invisible_post.id).should be_nil
     end
   end
 

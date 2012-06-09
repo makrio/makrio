@@ -5,8 +5,7 @@
 class StatusMessagesController < ApplicationController
   before_filter :authenticate_user!
 
-  respond_to :html,
-             :mobile,
+  respond_to :mobile,
              :json
 
   # Called when a user clicks "Mention" on a profile page
@@ -51,18 +50,12 @@ class StatusMessagesController < ApplicationController
 
       current_user.participate!(@status_message)
 
-      if coming_from_profile_page? # if this is a post coming from a profile page
-        flash[:notice] = successful_mention_message
-      end
-
       respond_to do |format|
-        format.html { redirect_to :back }
         format.mobile { redirect_to stream_path }
         format.json { render :json => PostPresenter.new(@status_message, current_user), :status => 201 }
       end
     else
       respond_to do |format|
-        format.html { redirect_to :back }
         format.mobile { redirect_to stream_path }
         format.json { render :nothing => true , :status => 403 }
       end
@@ -75,14 +68,6 @@ class StatusMessagesController < ApplicationController
     else
       params[:aspect_ids]
     end
-  end
-
-  def successful_mention_message
-    t('status_messages.create.success', :names => @status_message.mentioned_people_names)
-  end
-
-  def coming_from_profile_page?
-    request.env['HTTP_REFERER'].include?("people")
   end
 
   def normalize_public_flag!

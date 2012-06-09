@@ -103,11 +103,4 @@ describe Stream::Tag do
       stream.tag_name.should == 'what'
     end
   end
-
-  describe "#publisher" do
-    it 'creates a publisher with the tag prefill' do
-      Publisher.should_receive(:new).with(anything(), anything)
-      @stream = Stream::Tag.new(alice, "what")
-    end
-  end
 end
