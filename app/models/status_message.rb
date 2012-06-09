@@ -15,7 +15,8 @@ class StatusMessage < Post
   xml_name :status_message
   xml_attr :raw_message
 
-  has_many :photos, :dependent => :destroy, :foreign_key => :status_message_guid, :primary_key => :guid
+  has_many :photo_postings, :foreign_key => :post_id
+  has_many :photos, :through => :photo_postings, :dependent => :destroy
 
   # a StatusMessage is federated before its photos are so presence_of_content() fails erroneously if no text is present
   # therefore, we put the validation in a before_destory callback instead of a validation
@@ -60,7 +61,7 @@ class StatusMessage < Post
 
   def attach_photos_by_ids(photo_ids)
     return [] unless photo_ids.present?
-    self.photos << Photo.where(:id => photo_ids, :author_id => self.author_id).all
+    self.photos << Photo.where(:id => photo_ids).all
   end
 
   def nsfw
@@ -132,13 +133,6 @@ class StatusMessage < Post
   def update_and_dispatch_attached_photos(sender)
     if self.photos.any?
       self.photos.update_all(:public => self.public)
-      self.photos.each do |photo|
-        if photo.pending
-          sender.add_to_streams(photo, self.aspects)
-          sender.dispatch_post(photo)
-        end
-      end
-      self.photos.update_all(:pending => false)
     end
   end
 

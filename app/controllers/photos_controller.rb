@@ -98,11 +98,7 @@ class PhotosController < ApplicationController
         format.json{ render :nothing => true, :status => 204 }
         format.html do
           flash[:notice] = I18n.t 'photos.destroy.notice'
-          if StatusMessage.find_by_guid(photo.status_message_guid)
-              respond_with photo, :location => post_path(photo.status_message)
-          else
-            respond_with photo, :location => person_photos_path(current_user.person)
-          end
+          respond_with photo, :location => person_photos_path(current_user.person)
         end
       end
     else
@@ -183,11 +179,6 @@ class PhotosController < ApplicationController
 
     if @photo.save
       aspects = current_user.aspects_from_ids(params[:photo][:aspect_ids])
-
-      unless @photo.pending
-        current_user.add_to_streams(@photo, aspects)
-        current_user.dispatch_post(@photo, :to => params[:photo][:aspect_ids])
-      end
 
       if params[:photo][:set_profile_photo]
         profile_params = {:image_url => @photo.url(:thumb_large),

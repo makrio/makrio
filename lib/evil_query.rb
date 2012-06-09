@@ -108,7 +108,7 @@ module EvilQuery
       shareable_ids = contact.present? ? fetch_ids!(persons_private_visibilities, "share_visibilities.shareable_id") : []
       shareable_ids += fetch_ids!(persons_public_posts, table_name + ".id")
 
-      @class.where(:id => shareable_ids, :pending => false).
+      @class.where(:id => shareable_ids).
           select('DISTINCT '+table_name+'.*').
           order(table_name+".created_at DESC")
     end
@@ -124,7 +124,7 @@ module EvilQuery
     end
 
     def querents_posts
-      @querent.person.send(table_name).where(:pending => false).order("#{table_name}.created_at DESC")
+      @querent.person.send(table_name).order("#{table_name}.created_at DESC")
     end
 
     def persons_private_visibilities

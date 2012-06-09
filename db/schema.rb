@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120521191429) do
+ActiveRecord::Schema.define(:version => 20120609221537) do
 
   create_table "account_deletions", :force => true do |t|
     t.string  "diaspora_handle"
@@ -107,8 +107,6 @@ ActiveRecord::Schema.define(:version => 20120521191429) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "conversations", ["author_id"], :name => "conversations_author_id_fk"
-
   create_table "invitation_codes", :force => true do |t|
     t.string   "token"
     t.integer  "user_id"
@@ -146,7 +144,6 @@ ActiveRecord::Schema.define(:version => 20120521191429) do
     t.string   "target_type",             :limit => 60,                   :null => false
   end
 
-  add_index "likes", ["author_id"], :name => "likes_author_id_fk"
   add_index "likes", ["guid"], :name => "index_likes_on_guid", :unique => true
   add_index "likes", ["target_id", "author_id", "target_type"], :name => "index_likes_on_target_id_and_author_id_and_target_type", :unique => true
   add_index "likes", ["target_id"], :name => "index_likes_on_post_id"
@@ -172,7 +169,6 @@ ActiveRecord::Schema.define(:version => 20120521191429) do
   end
 
   add_index "messages", ["author_id"], :name => "index_messages_on_author_id"
-  add_index "messages", ["conversation_id"], :name => "messages_conversation_id_fk"
 
   create_table "notification_actors", :force => true do |t|
     t.integer  "notification_id"
@@ -204,7 +200,7 @@ ActiveRecord::Schema.define(:version => 20120521191429) do
     t.text   "data",                 :null => false
   end
 
-  add_index "o_embed_caches", ["url"], :name => "index_o_embed_caches_on_url", :length => {"url"=>255}
+  add_index "o_embed_caches", ["url"], :name => "index_o_embed_caches_on_url"
 
   create_table "participations", :force => true do |t|
     t.string   "guid"
@@ -235,13 +231,16 @@ ActiveRecord::Schema.define(:version => 20120521191429) do
   add_index "people", ["guid"], :name => "index_people_on_guid", :unique => true
   add_index "people", ["owner_id"], :name => "index_people_on_owner_id", :unique => true
 
+  create_table "photo_postings", :force => true do |t|
+    t.integer "post_id"
+    t.integer "photo_id"
+  end
+
   create_table "photos", :force => true do |t|
-    t.integer  "tmp_old_id"
-    t.integer  "author_id",                              :null => false
-    t.boolean  "public",              :default => false, :null => false
+    t.integer  "author_id",                            :null => false
+    t.boolean  "public",            :default => false, :null => false
     t.string   "diaspora_handle"
-    t.string   "guid",                                   :null => false
-    t.boolean  "pending",             :default => false, :null => false
+    t.string   "guid",                                 :null => false
     t.text     "text"
     t.text     "remote_photo_path"
     t.string   "remote_photo_name"
@@ -250,13 +249,9 @@ ActiveRecord::Schema.define(:version => 20120521191429) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "unprocessed_image"
-    t.string   "status_message_guid"
-    t.integer  "comments_count"
     t.integer  "height"
     t.integer  "width"
   end
-
-  add_index "photos", ["status_message_guid"], :name => "index_photos_on_status_message_guid"
 
   create_table "pods", :force => true do |t|
     t.string   "host"

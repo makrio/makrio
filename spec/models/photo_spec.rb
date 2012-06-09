@@ -222,12 +222,6 @@ describe Photo do
     end
   end
 
-  context "commenting" do
-    it "accepts comments if there is no parent status message" do
-      proc{ @user.comment!(@photo, "big willy style") }.should change(@photo.comments, :count).by(1)
-    end
-  end
-
   describe '#queue_processing_job' do
     it 'should queue a resque job to process the images' do
       Resque.should_receive(:enqueue).with(Jobs::ProcessPhoto, @photo.id)
@@ -243,27 +237,10 @@ describe Photo do
       @status_message.reload
     end
 
-    it 'is deleted with parent status message' do
+    it 'is not deleted with parent status message' do
       expect {
         @status_message.destroy
-      }.should change(Photo, :count).by(-1)
-    end
-
-    it 'will delete parent status message if message is otherwise empty' do
-      expect {
-        @photo2.destroy
-      }.should change(StatusMessage, :count).by(-1)
-    end
-
-    it 'will not delete parent status message if message had other content' do
-      @status_message.text = "Some text"
-      @status_message.save
-      @status_message.reload
-
-      expect {
-        @photo2.status_message.reload
-        @photo2.destroy
-      }.should_not change(StatusMessage, :count)
+      }.should change(Photo, :count).by(0)
     end
   end
 end

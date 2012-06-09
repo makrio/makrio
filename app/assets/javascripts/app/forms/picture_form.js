@@ -37,7 +37,8 @@ app.forms.Picture = app.forms.PictureBase.extend({
 
   postRenderTemplate : function(){
     this.$("input[name=authenticity_token]").val($("meta[name=csrf-token]").attr("content"))
-    this.$("input[name=photo_ids]").val(this.photos.pluck("id"))
+    var photoIds = this.photos.pluck("id")
+    this.$("input[name=photo_ids]").val(photoIds)
     this.renderPhotos();
   },
 

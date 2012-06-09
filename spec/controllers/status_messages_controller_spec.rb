@@ -117,8 +117,8 @@ describe StatusMessagesController do
 
     context 'with photos' do
       before do
-        @photo1 = alice.build_post(:photo, :pending => true, :user_file=> File.open(photo_fixture_name), :to => @aspect1.id)
-        @photo2 = alice.build_post(:photo, :pending => true, :user_file=> File.open(photo_fixture_name), :to => @aspect1.id)
+        @photo1 = alice.build_post(:photo,  :user_file=> File.open(photo_fixture_name), :to => @aspect1.id)
+        @photo2 = alice.build_post(:photo,  :user_file=> File.open(photo_fixture_name), :to => @aspect1.id)
 
         @photo1.save!
         @photo2.save!
@@ -136,14 +136,6 @@ describe StatusMessagesController do
       it "attaches all referenced photos" do
         post :create, @hash
         assigns[:status_message].photos.map(&:id).should =~ [@photo1, @photo2].map(&:id)
-      end
-
-      it "sets the pending bit of referenced photos" do
-        fantasy_resque do
-          post :create, @hash
-          @photo1.reload.pending.should be_false
-          @photo2.reload.pending.should be_false
-        end
       end
     end
   end

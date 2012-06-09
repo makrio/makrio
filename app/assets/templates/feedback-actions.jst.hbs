@@ -7,25 +7,14 @@
     {{likesCount}}
 </a>
 
-{{#if userCanReshare}}
-    <a href="#" rel="auth-required" class="label reshare" title="{{#if userReshare}} {{t "viewer.reshared"}} {{else}} {{t "viewer.reshare"}} {{/if}}">
-        {{#if userReshare}}
-            <i class="icon-retweet icon-blue"></i>
-        {{else}}
-            <i class="icon-retweet icon-white"></i>
-        {{/if}}
-        {{resharesCount}}
-    </a>
-{{else}}
-    <a class="label reshare-viewonly" title="{{#if userReshare}} {{t "viewer.reshared"}} {{else}} {{t "viewer.reshare"}} {{/if}}">
-        {{#if userReshare}}
-            <i class="icon-retweet icon-blue"></i>
-        {{else}}
-            <i class="icon-retweet icon-white"></i>
-        {{/if}}
-        {{resharesCount}}
-    </a>
-{{/if}}
+<a href="#" rel="auth-required" class="label reshare" title="{{#if userReshare}} {{t "viewer.reshared"}} {{else}} {{t "viewer.reshare"}} {{/if}}">
+    {{#if userReshare}}
+        <i class="icon-random icon-blue"></i>
+    {{else}}
+        <i class="icon-random icon-white"></i>
+    {{/if}}
+    {{resharesCount}}
+</a>
 
 <a href="#" class="label comment" rel="invoke-interaction-pane" title="{{t "viewer.comment"}}">
     <i class="icon-comment icon-white"></i>
