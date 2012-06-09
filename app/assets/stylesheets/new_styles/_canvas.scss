@@ -406,16 +406,19 @@ a.logo{
   color : #fff;
   background-color : #222;
 
-  .background {
-    @include box-shadow(-2px, 0, 7px, rgba(0,0,0,0.8));
+  #post-info {
+    @include box-shadow(0px, 2px, 7px, rgba(0,0,0,0.8));
     @include dark-hatched-bg();
 
     position : fixed;
-    height : 100%;
-    width : 100%;
-    z-index: $stream-interactions-background-index;
-  }
+    max-height : 100%;
 
+    .span5 {
+      padding : 0;
+      margin : 0;
+    }
+
+  }
 
   #meta-info-holder,
   #stream-interactions,
