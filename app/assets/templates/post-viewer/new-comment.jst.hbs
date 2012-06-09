@@ -1,8 +1,12 @@
 <div id="new-post-comment-container">
   <form class="form-inline">
-    <textarea class="new-comment-text" id="new-comment-text" placeholder="{{t "stream.comment"}}"></textarea>
-    <button type="submit" class="btn btn-small">
-      {{t "stream.comment"}}
-    </button>
+      <div class="new-comment-form media">
+          <div class="img">
+            <div class="profile-image-container smaller" style="background-image : url('{{current_user.avatar.large}}')"></div>
+          </div>
+          <div class="bd">
+            <textarea class="new-comment-text" id="new-comment-text" placeholder="{{t "stream.comment"}}"></textarea>
+          </div>
+      </div>
   </form>
 </div>
