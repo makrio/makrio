@@ -6,6 +6,7 @@ app.Router = Backbone.Router.extend({
     "people/:id": "newProfile",
     "u/:name": "newProfile",
 
+    "posts/:id/remix" : 'remix',
     "posts/new?*params" : "composer", // bookmarklet has params
     "posts/new" : "composer",
     "framer": "framer",
@@ -22,6 +23,16 @@ app.Router = Backbone.Router.extend({
   newStream : function() {
     app.instrument("track", "Stream loaded")
     this.renderPage(function(){ return new app.pages.Stream()});
+  },
+
+  remix : function(id){
+    var remixed = new app.models.StatusMessage({id : id})
+    remixed.fetch().success(_.bind(function(){
+
+      var new_mix = new app.models.StatusMessage(_.clone(remixed.attributes))
+      new_mix.prepareToRemix(remixed)
+      this.renderPage(function(){ return new app.pages.Composer({model : new_mix })});
+    }, this)).fail(function(){alert('bobby')});
   },
 
   newProfile : function(personId) {

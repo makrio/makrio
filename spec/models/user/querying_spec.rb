@@ -45,16 +45,6 @@ describe User::Querying do
       alice.visible_shareable_ids(Post).should_not include(invisible_post.id)
     end
 
-    it "does not contain pending posts" do
-      pending_post = bob.post(:status_message, :text => "hey", :public => true, :to => @bobs_aspect.id, :pending => true)
-      pending_post.should be_pending
-      alice.visible_shareable_ids(Post).should_not include pending_post.id
-    end
-
-    it "does not contain pending photos" do
-      pending_photo = bob.post(:photo, :pending => true, :user_file=> File.open(photo_fixture_name), :to => @bobs_aspect)
-      alice.visible_shareable_ids(Photo).should_not include pending_photo.id
-    end
 
     it "respects the :type option" do
       post = bob.post(:status_message, :text => "hey", :public => true, :to => @bobs_aspect.id, :pending => false)

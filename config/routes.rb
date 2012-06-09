@@ -22,6 +22,7 @@ Diaspora::Application.routes.draw do
       get :next
       get :previous
       get :interactions
+      get :remix, :action =>  'new'
     end
 
     resources :likes, :only => [:create, :destroy, :index ]

@@ -95,7 +95,7 @@ FactoryGirl.define do
   factory(:status_message_with_photo, :parent => :status_message) do
     sequence(:text) { |n| "There are #{n} ninjas in this photo." }
     after_build do |sm|
-      Factory(:photo, :author => sm.author, :status_message => sm, :pending => false, :public => public)
+      sm.photos <<  Factory(:photo, :author => sm.author, :public => public)
     end
   end
 

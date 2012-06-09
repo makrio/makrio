@@ -482,14 +482,6 @@ describe User do
         alice.profile.image_url_medium.should =~ Regexp.new(@photo.url(:thumb_medium))
         alice.profile.image_url_small.should =~ Regexp.new(@photo.url(:thumb_small))
       end
-
-      it 'unpends the photo' do
-        @photo.pending = true
-        @photo.save!
-        @photo.reload
-        alice.update_profile(@params).should be true
-        @photo.reload.pending.should be_false
-      end
     end
   end
 

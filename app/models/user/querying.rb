@@ -53,7 +53,6 @@ module User::Querying
 
   def construct_shareable_from_others_query(opts)
     conditions = {
-        :pending => false,
         :share_visibilities => {:hidden => opts[:hidden]},
         :contacts => {:user_id => self.id, :receiving => true}
     }
@@ -74,7 +73,7 @@ module User::Querying
     aspects = Aspect.where(:id => opts[:by_members_of])
     person_ids = Person.connection.select_values(people_in_aspects(aspects).select("people.id").to_sql)
 
-    query = opts[:klass].where(:author_id => person_ids, :public => true, :pending => false)
+    query = opts[:klass].where(:author_id => person_ids, :public => true) 
 
     unless(opts[:klass] == Photo)
       query = query.where(:type => opts[:type])
@@ -84,7 +83,7 @@ module User::Querying
   end
 
   def construct_shareable_from_self_query(opts)
-    conditions = {:pending => false }
+    conditions = {}
     conditions[:type] = opts[:type] if opts.has_key?(:type)
     query = self.person.send(opts[:klass].to_s.tableize).where(conditions)
 
