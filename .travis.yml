@@ -16,8 +16,7 @@ before_install:
 bundler_args: "--without development production heroku"
 before_script: "./script/ci/before.sh"
 script: "bundle exec rake travis"
-
-
+  
 notifications:
   irc:
     channels:

@@ -25,8 +25,8 @@ postgres_travis: &postgres_travis
 # if you want to use postgres
 common: &common
   # Choose one of the following
-  #<<: *mysql
-  <<: *postgres
+  <<: *mysql
+  #<<: *postgres
 
 
 # Normally you don't need to touch anything here
