@@ -313,8 +313,8 @@ STR
 
   describe '#after_dispatch' do
     before do
-      @photos = [alice.build_post(:photo, :pending => true, :user_file=> File.open(photo_fixture_name)),
-                 alice.build_post(:photo, :pending => true, :user_file=> File.open(photo_fixture_name))]
+      @photos = [alice.build_post(:photo, :user_file=> File.open(photo_fixture_name)),
+                 alice.build_post(:photo, :user_file=> File.open(photo_fixture_name))]
 
       @photos.each(&:save!)
 
@@ -324,10 +324,7 @@ STR
       @status_message.save!
       alice.add_to_streams(@status_message, alice.aspects)
     end
-    it 'sets pending to false on any attached photos' do
-      @status_message.after_dispatch(alice)
-      @photos.all?{|p| p.reload.pending}.should be_false
-    end
+    
     it 'dispatches any attached photos' do
       alice.should_receive(:dispatch_post).twice
       @status_message.after_dispatch(alice)

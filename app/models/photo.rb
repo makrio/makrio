@@ -6,7 +6,6 @@ class Photo < ActiveRecord::Base
   require 'carrierwave/orm/activerecord'
 
   include Diaspora::Federated::Shareable
-  include Diaspora::Commentable
   include Diaspora::Shareable
 
   # NOTE API V1 to be extracted
@@ -34,46 +33,26 @@ class Photo < ActiveRecord::Base
   xml_attr :remote_photo_name
 
   xml_attr :text
-  xml_attr :status_message_guid
 
   xml_attr :height
   xml_attr :width
 
-  belongs_to :status_message, :foreign_key => :status_message_guid, :primary_key => :guid
-  validates_associated :status_message
+  has_many :photo_postings, :foreign_key => :post_id
+  has_many :status_messages, :through => :photo_postings 
 
   attr_accessible :text, :pending
-  validate :ownership_of_status_message
 
   before_destroy :ensure_user_picture
-  after_destroy :clear_empty_status_message
 
   after_create do
     queue_processing_job if self.author.local?
   end
 
-  def clear_empty_status_message
-    if self.status_message_guid && self.status_message.text_and_photos_blank?
-      self.status_message.destroy
-    else
-      true
-    end
-  end
-
-  def ownership_of_status_message
-    message = StatusMessage.find_by_guid(self.status_message_guid)
-    if self.status_message_guid && message
-      self.diaspora_handle == message.diaspora_handle
-    else
-      true
-    end
-  end
 
   def self.diaspora_initialize(params = {})
     photo = self.new params.to_hash
     photo.author = params[:author]
     photo.public = params[:public] if params[:public]
-    photo.pending = params[:pending] if params[:pending]
     photo.diaspora_handle = photo.author.diaspora_handle
 
     photo.random_string = SecureRandom.hex(10)
@@ -127,10 +106,6 @@ class Photo < ActiveRecord::Base
       profile.image_url = nil
       profile.save
     }
-  end
-
-  def thumb_hash
-    {:thumb_url => url(:thumb_medium), :id => id, :album_id => nil}
   end
 
   def queue_processing_job

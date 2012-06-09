@@ -8,6 +8,14 @@ app.models.StatusMessage = app.models.Post.extend({
     'author' : app.currentUser ? app.currentUser.attributes : {}
   },
 
+  prepareToRemix : function(root){
+    this.unset('favorite')
+    this.unset('id')
+    this.unset('guid')
+    this.set('sourcePost', root)
+    this.photos = new Backbone.Collection(this.get("photos"))
+  },
+
   toJSON : function(){
     return {
       status_message : _.clone(this.attributes),
