@@ -44,48 +44,54 @@
         <div id="s_container"></div>
       </div>
 
-      <div id="sign_up" class="span5">
-        <h4>JOIN THE PARTY...</h4>
-        <br/>
-        <%= flash_messages %>
+      <div class='span5'>
+        <h3>Makr.io gives you the tools to quickly and easily 
+          collect the things that inspire you, and remix them to inspire others.
+        </h3>
+        <div id="sign_up">
 
-        <form accept-charset="UTF-8" action="/users" autocomplete="off" class="form-horizontal block-form" data-validate="true" id="new_user" method="post" validate="validate" data-type="landing_page"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
-          <fieldset>
-            <div class="control-group">
-              <label class="control-label" for="user_email">
-                EMAIL
-              </label>
+          <h4>JOIN THE PARTY...</h4>
+          <br/>
+          <%= flash_messages %>
 
-              <div class="controls">
-                <input data-validate="true" id="user_email" name="user[email]" placeholder="luke@hoth.net" required="required" size="30" title="Enter an email" type="email" value="">
+          <form accept-charset="UTF-8" action="/users" autocomplete="off" class="form-horizontal block-form" data-validate="true" id="new_user" method="post" validate="validate" data-type="landing_page"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+            <fieldset>
+              <div class="control-group">
+                <label class="control-label" for="user_email">
+                  EMAIL
+                </label>
+
+                <div class="controls">
+                  <input data-validate="true" id="user_email" name="user[email]" placeholder="luke@hoth.net" required="required" size="30" title="Enter an email" type="email" value="">
+                </div>
               </div>
-            </div>
 
-            <div class="control-group">
-              <label class="control-label" for="user_username">
-                USERNAME
-              </label>
+              <div class="control-group">
+                <label class="control-label" for="user_username">
+                  USERNAME
+                </label>
 
-              <div class="controls">
-                <input data-validate="true" id="user_username" name="user[username]" pattern="[A-Za-z0-9_]+" placeholder="jedi_guy" required="required" size="30" title="Pick a username (only letters, numbers, and underscores)" type="text">
+                <div class="controls">
+                  <input data-validate="true" id="user_username" name="user[username]" pattern="[A-Za-z0-9_]+" placeholder="jedi_guy" required="required" size="30" title="Pick a username (only letters, numbers, and underscores)" type="text">
+                </div>
               </div>
-            </div>
 
-            <div class="control-group">
-              <label class="control-label" for="user_password">
-                PASSWORD
-              </label>
+              <div class="control-group">
+                <label class="control-label" for="user_password">
+                  PASSWORD
+                </label>
 
-              <div class="controls">
-                <input data-validate="true" id="user_password" name="user[password]" pattern="......+" placeholder="••••••••" required="required" size="30" title="Enter a password (six character minimum)" type="password">
+                <div class="controls">
+                  <input data-validate="true" id="user_password" name="user[password]" pattern="......+" placeholder="••••••••" required="required" size="30" title="Enter a password (six character minimum)" type="password">
+                </div>
               </div>
-            </div>
 
-          </fieldset>
+            </fieldset>
 
-          <input class="new-btn button" name="commit" type="submit" value="Sign Up" />
-        </form>
+            <input class="new-btn button" name="commit" type="submit" value="Sign Up" />
+          </form>
 
+        </div>
       </div>
     </div>
   </div>
