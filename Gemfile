@@ -16,7 +16,7 @@ gem 'rack-cors', '~> 0.2.4', :require => 'rack/cors'
 
 # authentication
 
-gem 'devise', '~> 2.0.0'
+gem 'devise', '~> 2.1.0'
 
 gem 'remotipart', '~> 1.0'
 

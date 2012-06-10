@@ -136,9 +136,9 @@ GEM
     debugger-linecache (1.1.1)
       debugger-ruby_core_source (>= 1.1.1)
     debugger-ruby_core_source (1.1.3)
-    devise (2.0.4)
+    devise (2.1.0)
       bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.0.3)
+      orm_adapter (~> 0.0.7)
       railties (~> 3.1)
       warden (~> 1.1.1)
     diff-lcs (1.1.3)
@@ -480,7 +480,7 @@ DEPENDENCIES
   cucumber-rails (= 1.3.0)
   database_cleaner (= 0.7.1)
   debugger
-  devise (~> 2.0.0)
+  devise (~> 2.1.0)
   factory_girl_rails (= 1.7.0)
   faraday
   faraday_middleware
