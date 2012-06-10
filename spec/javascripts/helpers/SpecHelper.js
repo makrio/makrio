@@ -13,7 +13,10 @@ beforeEach(function() {
   $('#jasmine_content').html(spec.readFixture("underscore_templates"));
   jasmine.Clock.useMock();
 
-
+  mixpanel = {
+    name_tag :function(){},
+    track : function(){}
+  }
   Diaspora.Pages.TestPage = function() {
     var self = this;
     this.subscribe("page/ready", function() {
