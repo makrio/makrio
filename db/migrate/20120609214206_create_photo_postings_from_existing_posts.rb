@@ -10,7 +10,11 @@ class Post < ActiveRecord::Base
   def self.xml_attr(crap)
   end
 end
-class StatusMessage < ActiveRecord::Base
+
+def Post < ActiveRecord::Base
+end
+
+class StatusMessage < Post    
 end
 
 class Photo < ActiveRecord::Base
