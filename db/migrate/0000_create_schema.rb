@@ -153,17 +153,32 @@ class CreateSchema < ActiveRecord::Migration
       t.string :language
       t.string :email
 
-      t.database_authenticatable
+      ## Database authenticatable
+      t.string :email,              :null => false, :default => ""
+      t.string :encrypted_password, :null => false, :default => ""
+
+      ## Recoverable
+      t.string   :reset_password_token
 
       t.string   :invitation_token, :limit => 60
       t.datetime :invitation_sent_at
 
-      t.recoverable
-      t.rememberable
-      t.trackable
+      ## Rememberable
+      t.datetime :remember_created_at
+
+      ## Trackable
+      t.integer  :sign_in_count, :default => 0
+      t.datetime :current_sign_in_at
+      t.datetime :last_sign_in_at
+      t.string   :current_sign_in_ip
+      t.string   :last_sign_in_ip
+
+      #legacy devise
+      t.string :remember_token
 
       t.timestamps
     end
+
     add_index :users, :username, :unique => true
     add_index :users, :email, :unique => true
     add_index :users, :invitation_token
