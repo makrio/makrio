@@ -324,11 +324,6 @@ STR
       @status_message.save!
       alice.add_to_streams(@status_message, alice.aspects)
     end
-    
-    it 'dispatches any attached photos' do
-      alice.should_receive(:dispatch_post).twice
-      @status_message.after_dispatch(alice)
-    end
   end
 
   describe 'oembed' do
