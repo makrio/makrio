@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120610005225) do
+=======
+ActiveRecord::Schema.define(:version => 20120610024937) do
+>>>>>>> remixers now give credit
 
   create_table "account_deletions", :force => true do |t|
     t.string  "diaspora_handle"
@@ -293,7 +297,6 @@ ActiveRecord::Schema.define(:version => 20120610005225) do
     t.boolean  "favorite",                            :default => false
   end
 
-  add_index "posts", ["author_id", "root_guid"], :name => "index_posts_on_author_id_and_root_guid", :unique => true
   add_index "posts", ["author_id"], :name => "index_posts_on_person_id"
   add_index "posts", ["guid"], :name => "index_posts_on_guid", :unique => true
   add_index "posts", ["id", "type", "created_at"], :name => "index_posts_on_id_and_type_and_created_at"
@@ -454,6 +457,7 @@ ActiveRecord::Schema.define(:version => 20120610005225) do
   add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
+<<<<<<< HEAD
   add_foreign_key "aspect_memberships", "aspects", :name => "aspect_memberships_aspect_id_fk", :dependent => :delete
   add_foreign_key "aspect_memberships", "contacts", :name => "aspect_memberships_contact_id_fk", :dependent => :delete
 
@@ -485,4 +489,6 @@ ActiveRecord::Schema.define(:version => 20120610005225) do
   add_foreign_key "services", "users", :name => "services_user_id_fk", :dependent => :delete
 
   add_foreign_key "share_visibilities", "contacts", :name => "post_visibilities_contact_id_fk", :dependent => :delete
+=======
+>>>>>>> remixers now give credit
 end

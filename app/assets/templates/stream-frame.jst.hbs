@@ -10,7 +10,7 @@
         <div class="media author">
             {{#linkToPerson author}}
                 <div class="img">
-                    <div class="profile-image-container smaller" style="background-image : url('{{avatar.large}}')"></div>
+                    <div class="profile-image-container smaller" style="background-image : url('{{avatar.small}}')"></div>
                 </div>
             {{/linkToPerson}}
 
@@ -18,6 +18,12 @@
                 {{#linkToPerson author}}
                     {{name}}
                 {{/linkToPerson}}
+                {{#if root}}
+                     <i class="icon-random icon-white"></i> 
+                    {{#linkToPost root}}
+                        {{author.name}}
+                    {{/linkToPost}}
+                {{/if}}
             </div>
         </div>
     </section>

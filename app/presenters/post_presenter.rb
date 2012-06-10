@@ -32,6 +32,7 @@ class PostPresenter
         :photos => @post.photos.map {|p| p.as_api_response(:backbone)},
         :frame_name => @post.frame_name || template_name,
         :root => root,
+        # :absolute_root => absolute_root,
         :title => title,
         :next_post => next_post_path,
         :previous_post => previous_post_path,
@@ -63,8 +64,12 @@ class PostPresenter
   end
 
   def root
-    PostPresenter.new(@post.absolute_root, current_user).as_json if @post.respond_to?(:root) && @post.root.present?
+    PostPresenter.new(@post.root, current_user).as_json if @post.respond_to?(:root) && @post.root.present?
   end
+
+  # def absolute_root
+  #   PostPresenter.new(@post.absolute_root, current_user).as_json if @post.respond_to?(:root) && @post.root.present?
+  # end
 
   def user_like
     @post.like_for(@current_user).try(:as_api_response, :backbone)
