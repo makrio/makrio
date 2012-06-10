@@ -117,7 +117,12 @@ Diaspora::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "registrations",
                                       :password      => "devise/passwords",
-                                      :sessions      => "sessions"}
+                                      :sessions      => "sessions",
+                                      :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  devise_scope :user do
+    get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
+  end
 
   #legacy routes to support old invite routes
   get 'users/invitation/accept' => 'invitations#edit'
