@@ -118,7 +118,6 @@ Devise.setup do |config|
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key
   config.token_authentication_key = :auth_token
-  config.use_salt_as_remember_token = true
   config.reset_password_within = 6.hours
   # ==> Scopes configuration
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
