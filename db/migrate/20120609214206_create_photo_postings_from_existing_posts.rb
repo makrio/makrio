@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
   end
 end
 
-def Post < ActiveRecord::Base
+class Post < ActiveRecord::Base
 end
 
 class StatusMessage < Post    
