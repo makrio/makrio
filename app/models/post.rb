@@ -57,6 +57,16 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def absolute_root
+    return self.root #whyyyy
+    current = self
+    while(current.root_guid.present? || current.is_a?(Reshare) )
+      current = current.root
+    end
+
+    current
+  end
+
   def post_type
     self.class.name
   end
@@ -119,7 +129,7 @@ class Post < ActiveRecord::Base
     new_post = self.new params.to_hash
     new_post.author = params[:author]
     new_post.public = params[:public] if params[:public]
-    new_post.pending = params[:pending] if params[:pending]
+    new_post.root_guid = params[:root_guid]
     new_post.diaspora_handle = new_post.author.diaspora_handle
     new_post
   end

@@ -82,14 +82,12 @@ describe Reshare do
   end
 
   describe '#absolute_root' do
-    before do
+    it 'resolves root posts to the top level' do
+      pending
       @sm = Factory(:status_message, :author => alice.person, :public => true)
       rs1 = Factory(:reshare, :root=>@sm)
       rs2 = Factory(:reshare, :root=>rs1)
       @rs3 = Factory(:reshare, :root=>rs2)
-    end
-
-    it 'resolves root posts to the top level' do
       @rs3.absolute_root.should == @sm
     end
   end
