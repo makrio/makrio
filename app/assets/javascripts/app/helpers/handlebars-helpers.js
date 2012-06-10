@@ -15,7 +15,7 @@ Handlebars.registerHelper('linkToPerson', function(context, block) {
 })
 
 Handlebars.registerHelper('linkToPost', function(context, block) {
-  var html = "<a href=\"/post/" + context.guid + "\" class=\"author-name\">";
+  var html = "<a href=\"/posts/" + context.guid + "\" class=\"author-name\">";
       html+= block.fn(context);
       html+= "</a>";
 
