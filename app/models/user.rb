@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :timeoutable, :token_authenticatable, :lockable,
-         :lock_strategy => :none, :unlock_strategy => :none
+         :timeoutable, :token_authenticatable, :omniauthable, :lockable,
+         :lock_strategy => :none, :unlock_strategy => :none, :omniauth_providers => [:facebook]
 
   before_validation :strip_and_downcase_username
   before_validation :set_current_language, :on => :create
@@ -75,6 +75,31 @@ class User < ActiveRecord::Base
                   :auto_follow_back,
                   :auto_follow_back_aspect_id
 
+
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    service = Services::Facebook.find_by_uid(auth.uid) || Services::Facebook.new(:uid => auth.uid)
+    user = service.user
+    unless user
+      user = User.build( email: auth.info.email,
+                         password: Devise.friendly_token[0,20],
+                         person: {
+                             profile: {
+                               first_name: auth.name,
+                               image_url: auth.image,
+                               location: auth.location
+                             }
+                         }
+      )
+      user.save
+      service.user = user
+    end
+
+    service.access_token = auth.credentials.token
+    service.access_secret = auth.credentials.secret
+    service.save!
+
+    user
+  end
 
   def self.all_sharing_with_person(person)
     User.joins(:contacts).where(:contacts => {:person_id => person.id})
@@ -376,7 +401,6 @@ class User < ActiveRecord::Base
       false
     end
   end
-
 
   ###Helpers############
   def self.build(opts = {})
