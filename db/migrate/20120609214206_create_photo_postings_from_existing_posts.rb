@@ -10,6 +10,8 @@ class Post < ActiveRecord::Base
   def self.xml_attr(crap)
   end
 end
+class StatusMessage < ActiveRecord::Base
+end
 
 class Photo < ActiveRecord::Base
   belongs_to :status_message, :foreign_key => :status_message_guid, :primary_key => :guid
