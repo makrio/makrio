@@ -254,7 +254,6 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    messagebus_ruby_api (1.0.3)
     mime-types (1.18)
     mini_magick (3.4)
       subexec (~> 0.2.1)
@@ -505,7 +504,6 @@ DEPENDENCIES
   json
   linecache (= 0.46)
   markerb!
-  messagebus_ruby_api (= 1.0.3)
   mini_magick (= 3.4)
   mobile-fu
   mysql2 (= 0.3.11)
