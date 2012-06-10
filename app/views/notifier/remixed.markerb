@@ -1,0 +1,7 @@
+<%= "#{t('.remixed', :name => "#{@notification.sender.name}")}:" %>
+
+[<%= t('.view_post') %>][1]
+
+[1]: <%= post_url(@notification.remix) %>
+
+<%= t('.pithy_oneliner') %>

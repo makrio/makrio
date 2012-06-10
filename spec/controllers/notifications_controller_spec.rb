@@ -7,38 +7,30 @@ require 'spec_helper'
 describe NotificationsController do
   before do
     sign_in :user, alice
+    @note = Factory(:notification, :recipient => alice)
   end
 
   describe '#update' do
     it 'marks a notification as read if it gets no other information' do
-      note = mock_model( Notification )
-      Notification.should_receive( :where ).and_return( [note] )
-      note.should_receive( :set_read_state ).with( true )
-      get :update, "id" => note.id
+      get :update, "id" => @note.id
+      @note.reload.unread.should be_false
     end
+
     it 'marks a notification as read if it is told to' do
-      note = mock_model( Notification )
-      Notification.should_receive( :where ).and_return( [note] )
-      note.should_receive( :set_read_state ).with( true )
-      get :update, "id" => note.id, :set_unread => "false"
+      get :update, "id" => @note.id, :set_unread => "false"
+      @note.reload.unread.should be_false
     end
 
     it 'marks a notification as unread if it is told to' do
-      note = mock_model( Notification )
-      Notification.should_receive( :where ).and_return( [note] )
-      note.should_receive( :set_read_state ).with( false )
-      get :update, "id" => note.id, :set_unread => "true"
+      get :update, "id" => @note.id, :set_unread => "true"
+      @note.reload.unread.should be_true
+
     end
 
     it 'only lets you read your own notifications' do
-      user2 = bob
-
-      Factory(:notification, :recipient => alice)
-      note = Factory(:notification, :recipient => user2)
-
+      note = Factory(:notification, :recipient => bob)
       get :update, "id" => note.id, :set_unread => "false"
-
-      Notification.find(note.id).unread.should == true
+      note.reload.unread.should == true
     end
   end
 
@@ -48,7 +40,7 @@ describe NotificationsController do
       Factory(:notification, :recipient => alice)
       Factory(:notification, :recipient => alice)
 
-      Notification.where(:unread => true).count.should == 2
+      Notification.where(:unread => true).count.should == 3
       get :read_all
       Notification.where(:unread => true).count.should == 0
     end
@@ -84,37 +76,6 @@ describe NotificationsController do
     it 'succeeds on mobile' do
       get :index, :format => :mobile
       response.should be_success
-    end
-    
-    it 'paginates the notifications' do
-      25.times { Factory(:notification, :recipient => alice, :target => @post) }
-      get :index
-      assigns[:notifications].count.should == 25
-      get :index, "page" => 2
-      assigns[:notifications].count.should == 1
-    end
-
-    it "supports a limit per_page parameter" do
-      5.times { Factory(:notification, :recipient => alice, :target => @post) }
-      get :index, "per_page" => 5
-      assigns[:notifications].count.should == 5 
-    end
-
-    describe "special case for start sharing notifications" do
-      it "should not provide a contacts menu for standard notifications" do
-        2.times { Factory(:notification, :recipient => alice, :target => @post) }
-        get :index, "per_page" => 5
-
-        Nokogiri(response.body).css('.aspect_membership').should be_empty
-      end
-      it "should provide a contacts menu for start sharing notifications" do
-        2.times { Factory(:notification, :recipient => alice, :target => @post) }
-        eve.share_with(alice.person, eve.aspects.first)
-        get :index, "per_page" => 5
-
-        Nokogiri(response.body).css('.aspect_membership').should_not be_empty
-      end
-      
     end
   end
 end

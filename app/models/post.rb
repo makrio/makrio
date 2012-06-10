@@ -143,8 +143,8 @@ class Post < ActiveRecord::Base
     false
   end
 
-  def triggers_caching?
-    true
+  def notify_source!
+    Notifications::Remixed.create_from_post(self) if self.root.present?
   end
 
   def comment_email_subject
