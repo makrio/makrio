@@ -14,6 +14,15 @@ Handlebars.registerHelper('linkToPerson', function(context, block) {
   return html
 })
 
+Handlebars.registerHelper('linkToPost', function(context, block) {
+  var html = "<a href=\"/post/" + context.guid + "\" class=\"author-name\">";
+      html+= block.fn(context);
+      html+= "</a>";
+
+  return html
+})
+
+
 Handlebars.registerHelper('personImage', function(person, size, imageClass) {
   /* we return here if person.avatar is blank, because this happens when a
    * user is unauthenticated.  we don't know why this happens... */
