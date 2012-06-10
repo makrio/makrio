@@ -13,7 +13,7 @@ Diaspora::Application.routes.draw do
   get 'oembed' => 'posts#oembed', :as => 'oembed'
   # Posting and Reading
   resources :reshares
-  match "/fb_reshare" => "reshares#fb_create"
+  match "/fb_remix" => "reshares#fb_create"
 
   resources :status_messages, :only => [:new, :create]
 
@@ -179,7 +179,6 @@ Diaspora::Application.routes.draw do
     post 'receive/public'       => :receive_public
     get 'hub'                   => :hub
   end
-
 
 
   # External
