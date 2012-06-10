@@ -6,6 +6,7 @@ $meta-info-holder-height : 45px;
 $frame-meta-z-index : 10;
 $selected-meta-index : $frame-meta-z-index - 1;
 $meta-info-holder-index : $selected-meta-index - 1;
+$stream-post-index : $meta-info-holder-index - 1;
 $stream-interactions-background-index : $meta-info-holder-index + 1;
 $stream-interactions-content-index : $stream-interactions-background-index;
 
@@ -418,6 +419,8 @@ a.logo{
       margin : 0;
     }
 
+
+
   }
 
   #meta-info-holder,
@@ -449,6 +452,9 @@ a.logo{
   .stream-frame {
     margin-bottom : 40px;
 
+    .text-content {
+      z-index: $stream-post-index;
+    }
     &:first-child {
       padding-top: $meta-info-holder-height;
     }
