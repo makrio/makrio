@@ -180,12 +180,6 @@ describe UsersController do
       assigns[:email_prefs]['mentioned'].should be_false
     end
 
-    it 'does not allow token auth' do
-      sign_out :user
-      bob.reset_authentication_token!
-      get :edit, :auth_token => bob.authentication_token
-      response.should redirect_to new_user_session_path
-    end
   end
 
   describe '#destroy' do

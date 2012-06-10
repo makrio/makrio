@@ -5,11 +5,6 @@ class DropRequestsTable < ActiveRecord::Migration
     remove_foreign_key :requests, :column => :recipient_id
     remove_foreign_key :requests, :column => :sender_id
 
-    remove_index :requests, :mongo_id
-    remove_index :requests, :recipient_id
-    remove_index :requests, [:sender_id, :recipient_id]
-    remove_index :requests, :sender_id
-
     execute 'DROP TABLE requests'
 
     execute( <<SQL
@@ -26,10 +21,8 @@ SQL
       t.integer  :aspect_id
       t.datetime :created_at
       t.datetime :updated_at
-      t.string   :mongo_id
     end
 
-    add_index :requests, ["mongo_id"], :name => "index_requests_on_mongo_id"
     add_index :requests, ["recipient_id"], :name => "index_requests_on_recipient_id"
     add_index :requests, ["sender_id", "recipient_id"], :name => "index_requests_on_sender_id_and_recipient_id", :unique => true
     add_index :requests, ["sender_id"], :name => "index_requests_on_sender_id"

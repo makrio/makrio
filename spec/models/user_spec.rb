@@ -795,7 +795,7 @@ describe User do
   describe "#send_reset_password_instructions" do
     it "generates a reset password token if it's supposed to" do
       user = User.new
-      user.stub!(:should_generate_token?).and_return(true)
+      user.stub!(:reset_password_period_valid?).and_return(true)
       user.should_receive(:generate_reset_password_token)
       user.send_reset_password_instructions
     end
@@ -865,7 +865,6 @@ describe User do
           invitation_token
           invitation_sent_at
           reset_password_token
-          remember_token
           remember_created_at
           sign_in_count
           current_sign_in_at
