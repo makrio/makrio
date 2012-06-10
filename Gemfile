@@ -20,7 +20,7 @@ gem 'devise', '~> 2.1.0'
 
 gem 'remotipart', '~> 1.0'
 
-gem 'omniauth', '1.0.3'
+gem 'omniauth', '1.1'
 gem 'omniauth-facebook'
 gem 'omniauth-tumblr'
 gem 'omniauth-twitter'
