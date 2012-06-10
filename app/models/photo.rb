@@ -40,7 +40,7 @@ class Photo < ActiveRecord::Base
   has_many :photo_postings, :foreign_key => :post_id
   has_many :status_messages, :through => :photo_postings 
 
-  attr_accessible :text, :pending
+  attr_accessible :text
 
   before_destroy :ensure_user_picture
 

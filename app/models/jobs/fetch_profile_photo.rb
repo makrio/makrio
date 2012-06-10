@@ -16,7 +16,7 @@ module Jobs
 
       user = User.find(user_id)
 
-      @photo = Photo.diaspora_initialize(:author => user.person, :image_url => image_url, :pending => true)
+      @photo = Photo.diaspora_initialize(:author => user.person, :image_url => image_url)
       @photo.save!
       
       profile_params = {:image_url => @photo.url(:thumb_large),
