@@ -497,6 +497,13 @@ en:
       few: "%{actors} have reshared your %{post_link}."
       many: "%{actors} have reshared your %{post_link}."
       other: "%{actors} have reshared your %{post_link}."
+    remixed:
+      zero: "%{actors} have remixed your %{post_link}."
+      one: "%{actors} has remixed %{post_link}."
+      two: "%{actors} have remixed your %{post_link}."
+      few: "%{actors} have remixed your %{post_link}."
+      many: "%{actors} have remixed your %{post_link}."
+      other: "%{actors} have remixed your %{post_link}."
     post: "post"
     also_commented_deleted:
       zero: "%{actors} commented on a deleted post."
@@ -574,6 +581,10 @@ en:
     reshared:
         reshared: "%{name} reshared your post"
         view_post: "View post >"
+    remixed:
+        remixed: "%{name} remixed your post Aww yeah!"
+        view_post: "Check it out >"
+        pithy_oneliner: '"Remixing is the highest form of flattery" - Dennis'
     confirm_email:
         subject: "Please activate your new email address %{unconfirmed_email}"
         click_link: "To activate your new email address %{unconfirmed_email}, please follow this link:"

@@ -30,7 +30,6 @@
                         = timeago(note.created_at)
                       = link_to t('.mark_unread'), "#", :class => "unread-setter"
                       
-      = will_paginate @notifications
 
 :javascript
   $(document).ready(function(){

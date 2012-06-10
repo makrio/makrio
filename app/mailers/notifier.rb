@@ -58,6 +58,10 @@ class Notifier < ActionMailer::Base
     send_notification(:started_sharing, recipient_id, sender_id)
   end
 
+  def remixed(recipient_id, sender_id, remixed_post_id)
+    send_notification(:remixed, recipient_id, sender_id, remixed_post_id)
+  end
+
   def liked(recipient_id, sender_id, like_id)
     send_notification(:liked, recipient_id, sender_id, like_id)
   end

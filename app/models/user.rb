@@ -1,4 +1,4 @@
-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+j#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
 
@@ -129,6 +129,10 @@ class User < ActiveRecord::Base
 
   def unread_notifications
     notifications.where(:unread => true)
+  end
+
+  def recent_notifications
+    notifications.from_last_week.includes([:target, {:actors => :profile}])
   end
 
   def unread_message_count

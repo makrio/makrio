@@ -14,6 +14,14 @@ class Notification < ActiveRecord::Base
     self.where(opts.merge!(:recipient_id => recipient.id)).order('updated_at desc')
   end
 
+  def self.from_last_week
+    where('notifications.updated_at > ?', Time.now - 1.weeks).order('updated_at desc')
+  end
+
+  def self.mark_all_as_read!
+    update_all(:unread => false)
+  end
+
   def self.notify(recipient, target, actor)
     if target.respond_to? :notification_type
       if note_type = target.notification_type(recipient, actor)
