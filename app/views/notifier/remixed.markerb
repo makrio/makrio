@@ -1,3 +1,5 @@
+Remixing is the highest form of flattery. 
+
 <%= "#{t('.remixed', :name => "#{@notification.sender.name}")}:" %>
 
 [<%= t('.view_post') %>][1]
