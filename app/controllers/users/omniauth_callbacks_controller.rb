@@ -39,6 +39,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   protected
 
+  def auth
+    request.env["omniauth.auth"]
+  end
+  
   def associate_service_with_user
     if @user.present?
       validate_service_user_is_current_user
