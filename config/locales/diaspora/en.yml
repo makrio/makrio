@@ -584,7 +584,6 @@ en:
     remixed:
         remixed: "%{name} remixed your post Aww yeah!"
         view_post: "Check it out >"
-        pithy_oneliner: '"Remixing is the highest form of flattery" - Dennis'
     confirm_email:
         subject: "Please activate your new email address %{unconfirmed_email}"
         click_link: "To activate your new email address %{unconfirmed_email}, please follow this link:"
