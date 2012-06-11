@@ -20,7 +20,7 @@ describe Jobs::FetchProfilePhoto do
 
   it 'saves the profile image' do
     @photo_stub.should_receive(:save!).and_return(true)
-    Photo.should_receive(:diaspora_initialize).with(hash_including(:author => @user.person, :image_url => @url, :pending => true)).and_return(@photo_stub)
+    Photo.should_receive(:diaspora_initialize).with(hash_including(:author => @user.person, :image_url => @url)).and_return(@photo_stub)
 
     Jobs::FetchProfilePhoto.perform(@user.id, @service.id)
   end
@@ -36,7 +36,7 @@ describe Jobs::FetchProfilePhoto do
     it "fetches fallback if it's provided" do
       @photo_stub.should_receive(:save!).and_return(true)
       @service.stub!(:profile_photo_url).and_return(nil)
-      Photo.should_receive(:diaspora_initialize).with(hash_including(:author => @user.person, :image_url => "https://service.com/fallback_lowres.jpg", :pending => true)).and_return(@photo_stub)
+      Photo.should_receive(:diaspora_initialize).with(hash_including(:author => @user.person, :image_url => "https://service.com/fallback_lowres.jpg")).and_return(@photo_stub)
 
       Jobs::FetchProfilePhoto.perform(@user.id, @service.id, "https://service.com/fallback_lowres.jpg")
     end
