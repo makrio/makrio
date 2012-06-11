@@ -6,6 +6,7 @@ app.Router = Backbone.Router.extend({
     "people/:id": "newProfile",
     "u/:name": "newProfile",
 
+    "posts/:id/remix?*params" : 'remix', // facebook action links supply signed_request params
     "posts/:id/remix" : 'remix',
     "posts/new?*params" : "composer", // bookmarklet has params
     "posts/new" : "composer",
