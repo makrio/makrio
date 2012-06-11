@@ -76,7 +76,6 @@ class User < ActiveRecord::Base
 
 
   def self.find_for_facebook_oauth(auth)
-
     service = Services::Facebook.find_by_uid(auth.uid) || Services::Facebook.new(:uid => auth.uid)
     service.access_token = auth.credentials.token
     service.access_secret = auth.credentials.secret

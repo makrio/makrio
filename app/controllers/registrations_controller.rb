@@ -21,7 +21,15 @@ class RegistrationsController < Devise::RegistrationsController
     # set image url if this is from a FB login
     if session["devise.facebook_data"]
       @user.save # we need to save the user here before adjusting the user's profile
-      @user.person.profile.image_url = session["devise.facebook_data"].info.image
+
+      logger.info(@user.fb_uid)
+
+      # find and save service from uid
+      service = Services::Facebook.find_by_uid_and_access_secret(session["devise.facebook_data"].uid, session["devise.facebook_data"].credentials.secret)
+      service.user = @user
+      service.save
+
+      @user.reload.person.profile.image_url = session["devise.facebook_data"].info.image
       @user.person.profile.save
     end
 
