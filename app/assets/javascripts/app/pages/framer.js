@@ -38,9 +38,8 @@ app.pages.Framer = app.views.Base.extend({
   },
 
   defaultNavigation : function() {
-    var url = app.currentUser.expProfileUrl()
     // app.router.navigate(url, {trigger: true, replace: true})
-    window.location = url
+    window.location = '/stream'
   }
 });
 
