@@ -8,13 +8,21 @@ class RegistrationsController < Devise::RegistrationsController
   layout "post", :only => :new
 
   def create
+    if session["devise.facebook_data"]
+      params[:user].merge!({
+        :email => session["devise.facebook_data"].info.email,
+        :password => Devise.friendly_token[0,20]
+      })
+    end
+
     @user = User.build(params[:user])
     @user.process_invite_acceptence(invite) if invite.try(:present?)
 
     # set image url if this is from a FB login
     if session["devise.facebook_data"]
+      @user.save # we need to save the user here before adjusting the user's profile
       @user.person.profile.image_url = session["devise.facebook_data"].info.image
-      @user.password = Devise.friendly_token[0,20]
+      @user.person.profile.save
     end
 
     if @user.save
