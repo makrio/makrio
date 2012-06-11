@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :timeoutable, :token_authenticatable, :omniauthable, :lockable,
-         :lock_strategy => :none, :unlock_strategy => :none, :omniauth_providers => [:facebook]
+         :lock_strategy => :none, :unlock_strategy => :none, :omniauth_providers => [:facebook, :twitter, :tumblr]
 
   before_validation :strip_and_downcase_username
   before_validation :set_current_language, :on => :create
