@@ -1,5 +1,5 @@
 class ResharesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => :fb_create
   respond_to :json
 
   def create
@@ -17,8 +17,8 @@ class ResharesController < ApplicationController
   end
 
   def fb_create
-    signed_request = decode_data(params[:signed_request])
-    render :json => {:redirect => signed_request["objects"].first["url"] + "/remix"}
+    fb_json = decode_data(params[:signed_request])
+    render :json => {:redirect => fb_json["objects"].first["url"] + "/remix"}
   end
 
   protected
