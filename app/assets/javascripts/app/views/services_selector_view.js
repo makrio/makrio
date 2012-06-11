@@ -30,7 +30,7 @@ app.views.ServicesSelector = app.views.Base.extend({
   askForAuth : function(evt){
     var $target = $(evt.target);
 
-    if(false && app.currentUser.isServiceConfigured($target.data('provider'))) { return }
+    if(app.currentUser.isServiceConfigured($target.data('provider'))) { return }
 
     var serviceUrl = $target.data('url')
     window.open(serviceUrl, 'popup', 'height=400,width=500')
