@@ -75,16 +75,6 @@ class User < ActiveRecord::Base
                   :auto_follow_back_aspect_id
 
 
-  def self.find_for_facebook_oauth(auth)
-    service = Services::Facebook.find_by_uid(auth.uid) || Services::Facebook.new(:uid => auth.uid)
-    service.access_token = auth.credentials.token
-    service.access_secret = auth.credentials.secret
-    service.save!
-
-    service.user ? service.user : User.new
-  end
-  attr_accessor :fb_uid
-
   def self.new_with_session(params, session)
     #devise magic message
     super.tap do |user|

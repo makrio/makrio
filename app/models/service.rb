@@ -26,6 +26,16 @@ class Service < ActiveRecord::Base
     nil
   end
 
+
+  def self.find_and_update_from_omniauth!(auth)
+    service = find_by_uid(auth.uid) || new(:uid => auth.uid)
+    service.nickname = auth.info.nickname
+    service.access_token = auth.credentials.token
+    service.access_secret = auth.credentials.secret
+    service.save!
+    service
+  end
+
 end
 require File.join(Rails.root, 'app/models/services/facebook')
 require File.join(Rails.root, 'app/models/services/twitter')
