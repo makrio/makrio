@@ -200,7 +200,7 @@ ActiveRecord::Schema.define(:version => 20120610024937) do
     t.text   "data",                 :null => false
   end
 
-  add_index "o_embed_caches", ["url"], :name => "index_o_embed_caches_on_url"
+  add_index "o_embed_caches", ["url"], :name => "index_o_embed_caches_on_url", :length => {"url"=>255}
 
   create_table "participations", :force => true do |t|
     t.string   "guid"
@@ -484,5 +484,4 @@ ActiveRecord::Schema.define(:version => 20120610024937) do
   add_foreign_key "services", "users", :name => "services_user_id_fk", :dependent => :delete
 
   add_foreign_key "share_visibilities", "contacts", :name => "post_visibilities_contact_id_fk", :dependent => :delete
-
 end

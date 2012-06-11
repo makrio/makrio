@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :timeoutable, :token_authenticatable, :lockable,
-         :lock_strategy => :none, :unlock_strategy => :none
+         :timeoutable, :token_authenticatable, :omniauthable, :lockable,
+         :lock_strategy => :none, :unlock_strategy => :none, :omniauth_providers => [:facebook]
 
   before_validation :strip_and_downcase_username
   before_validation :set_current_language, :on => :create
@@ -63,7 +63,6 @@ class User < ActiveRecord::Base
   before_save :guard_unconfirmed_email,
               :save_person!
 
-
   attr_accessible :getting_started,
                   :password,
                   :password_confirmation,
@@ -74,6 +73,38 @@ class User < ActiveRecord::Base
                   :show_community_spotlight_in_stream,
                   :auto_follow_back,
                   :auto_follow_back_aspect_id
+
+
+  def self.find_for_facebook_oauth(auth)
+
+    service = Services::Facebook.find_by_uid(auth.uid) || Services::Facebook.new(:uid => auth.uid)
+    service.access_token = auth.credentials.token
+    service.access_secret = auth.credentials.secret
+    service.save!
+
+    logger.info(auth)
+    logger.info(service.inspect)
+    logger.info(service.user)
+
+
+    service.user ? service.user : User.new
+  end
+  attr_accessor :fb_uid
+
+  def self.new_with_session(params, session)
+    #devise magic message
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.username = data.name.gsub(/\s/, '').downcase
+        user.email = data.email
+        user.fb_uid = data.uid
+        user.person = Person.new({ profile: {
+            image_url: data.image
+          }
+        })
+      end
+    end
+  end
 
 
   def self.all_sharing_with_person(person)
@@ -376,7 +407,6 @@ class User < ActiveRecord::Base
       false
     end
   end
-
 
   ###Helpers############
   def self.build(opts = {})

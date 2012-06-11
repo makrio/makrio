@@ -9,24 +9,32 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.build(params[:user])
-    @user.process_invite_acceptence(invite) if invite.present?
+    @user.process_invite_acceptence(invite) if invite.try(:present?)
+
+    # set image url if this is from a FB login
+    if session["devise.facebook_data"]
+      @user.person.profile.image_url = session["devise.facebook_data"].info.image
+      @user.password = Devise.friendly_token[0,20]
+    end
 
     if @user.save
       flash[:notice] = I18n.t 'registrations.create.success'
       @user.seed_aspects
       Role.add_beta(@user.person) 
       sign_in_and_redirect(:user, @user)
-      Rails.logger.info("event=registration status=successful user=#{@user.diaspora_handle}")
     else
       @user.errors.delete(:person)
       
       flash[:error] = @user.errors.full_messages.join(";")
-      Rails.logger.info("event=registration status=failure errors='#{@user.errors.full_messages.join(', ')}'")
       redirect_to new_user_registration_path, :error => flash[:error]
     end
   end
 
   def new
+    #initializes a new user using devise magic, does User#new_with_session
+    logger.info(session["devise.facebook_data"].present?)
+
+    @fb_signup = session["devise.facebook_data"].present?
     super
   end
 

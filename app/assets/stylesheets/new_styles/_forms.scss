@@ -88,25 +88,71 @@ form.block-form {
 
 
 /* buttons to be extracted? */
-.new-btn {
+.new-btn,
+.fb-btn {
   @include transition(box-shadow);
   @include border-radius(5px);
-  @include linear-gradient(#fff, rgb(233,233,233));
   @include box-shadow(0, 1px, 2px, rgba(0,0,0,0));
 
-  background-color : rgb(233,233,233);
-  color : #888;
   border : 1px solid #888;
+
+  &:hover {
+    font-decoration : none;
+  }
 
   //font-family : Roboto-Bold;
   font-size : 14px;
+}
+
+.new-btn {
+  @include linear-gradient(#fff, rgb(233,233,233));
   text-shadow : 0 1px 2px #eee;
+  color : #888;
 
   &:hover {
     @include box-shadow(0, 1px, 2px, rgba(0,0,0,0.3));
+    text-decoration : none;
+    color : #888;
   }
 
   &:active {
     box-shadow : inset 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(255,255,255,0.7);
+  }
+}
+
+.fb-btn {
+  @include linear-gradient(lighten(#3B5998, 10%), #3B5998);
+  text-shadow : 0 1px 2px darken(#3B5998, 10%);
+
+  color : #fff;
+
+  .fb-f {
+    position : relative;
+    height : 15px;
+    width : 15px;
+    margin : {
+      left : -8px;
+      right : 5px;
+      top : -2px;
+    }
+
+    padding : {
+      right : 6px;
+      top : 4px;
+      bottom : 4px;
+    }
+    border-right : 1px solid rgba(255,255,255,0.5);
+  }
+
+  &:hover {
+    @include linear-gradient(lighten(#3B5998, 15%), lighten(#3B5998, 5%));
+    text-decoration : none;
+    color : #fff;
+  }
+
+  &:active {
+    @include linear-gradient(darken(#3B5998, 10%), #3B5998);
+
+    box-shadow : none;
   }
 }

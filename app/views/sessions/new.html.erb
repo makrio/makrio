@@ -7,6 +7,14 @@
     <%= AppConfig[:pod_name] %>
   </h1>
 
+  <% unless @linking_service %>
+      <%= link_to('/users/auth/facebook', :class => 'btn-large new-btn fb-btn', :style => "margin-right:10px;") do %>
+          <%= image_tag('logos/fb_f.png', :class => "fb-f") %>
+          Log in with Facebook
+      <% end %>
+      <hr/>
+  <% end %>
+
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal block-form"}, :autocomplete => 'off') do |f| %>
         <fieldset>
           <div class="control-group">
