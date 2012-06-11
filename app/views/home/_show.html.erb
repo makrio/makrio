@@ -54,44 +54,11 @@
           <br/>
           <%= flash_messages %>
 
-          <%= link_to "Sign in with Facebook", '/users/auth/facebook' %>
-
-          <form accept-charset="UTF-8" action="/users" autocomplete="off" class="form-horizontal block-form" data-validate="true" id="new_user" method="post" validate="validate" data-type="landing_page"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
-            <fieldset>
-              <div class="control-group">
-                <label class="control-label" for="user_email">
-                  EMAIL
-                </label>
-
-                <div class="controls">
-                  <input data-validate="true" id="user_email" name="user[email]" placeholder="luke@hoth.net" required="required" size="30" title="Enter an email" type="email" value="">
-                </div>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label" for="user_username">
-                  USERNAME
-                </label>
-
-                <div class="controls">
-                  <input data-validate="true" id="user_username" name="user[username]" pattern="[A-Za-z0-9_]+" placeholder="jedi_guy" required="required" size="30" title="Pick a username (only letters, numbers, and underscores)" type="text">
-                </div>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label" for="user_password">
-                  PASSWORD
-                </label>
-
-                <div class="controls">
-                  <input data-validate="true" id="user_password" name="user[password]" pattern="......+" placeholder="••••••••" required="required" size="30" title="Enter a password (six character minimum)" type="password">
-                </div>
-              </div>
-
-            </fieldset>
-
-            <input class="new-btn button" name="commit" type="submit" value="Sign Up" />
-          </form>
+          <%= link_to('/users/auth/facebook', :class => 'btn-large new-btn fb-btn', :style => "margin-right:10px;") do %>
+            <%= image_tag('logos/fb_f.png', :class => "fb-f") %>
+            Log in with Facebook
+          <% end %>
+          <%= link_to "Sign in with Email", '/users/sign_up', :class => 'btn-large new-btn' %>
 
         </div>
       </div>

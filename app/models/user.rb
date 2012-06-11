@@ -63,7 +63,6 @@ class User < ActiveRecord::Base
   before_save :guard_unconfirmed_email,
               :save_person!
 
-
   attr_accessible :getting_started,
                   :password,
                   :password_confirmation,
@@ -76,30 +75,37 @@ class User < ActiveRecord::Base
                   :auto_follow_back_aspect_id
 
 
-  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-    service = Services::Facebook.find_by_uid(auth.uid) || Services::Facebook.new(:uid => auth.uid)
-    user = service.user
-    unless user
-      user = User.build( email: auth.info.email,
-                         password: Devise.friendly_token[0,20],
-                         person: {
-                             profile: {
-                               first_name: auth.name,
-                               image_url: auth.image,
-                               location: auth.location
-                             }
-                         }
-      )
-      user.save
-      service.user = user
-    end
+  def self.find_for_facebook_oauth(auth)
 
+    service = Services::Facebook.find_by_uid(auth.uid) || Services::Facebook.new(:uid => auth.uid)
     service.access_token = auth.credentials.token
     service.access_secret = auth.credentials.secret
     service.save!
 
-    user
+    logger.info(auth)
+    logger.info(service.inspect)
+    logger.info(service.user)
+
+
+    service.user ? service.user : User.new
   end
+  attr_accessor :fb_uid
+
+  def self.new_with_session(params, session)
+    #devise magic message
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.username = data.name.gsub(/\s/, '').downcase
+        user.email = data.email
+        user.fb_uid = data.uid
+        user.person = Person.new({ profile: {
+            image_url: data.image
+          }
+        })
+      end
+    end
+  end
+
 
   def self.all_sharing_with_person(person)
     User.joins(:contacts).where(:contacts => {:person_id => person.id})

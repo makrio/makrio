@@ -2,62 +2,75 @@
   <div class="container">
 
     <div class="row">
-        <div class="span4" id="image-container">
-            <%= image_tag('signupimages@2x_mini.jpg', :id => "collage") %>
-        </div>
+      <div class="span4" id="image-container">
+        <%= image_tag('signupimages@2x_mini.jpg', :id => "collage") %>
+      </div>
 
-        <div class="span8">
-            <h1 id="create-something-text">
-              <%= t('.hey_make').html_safe %>
-            </h1>
+      <div class="span8">
+        <h1 id="create-something-text">
+          <%= t('.hey_make').html_safe %>
+        </h1>
 
-            <h3 id="diaspora-hearts">
-            </h3>
+        <h3 id="diaspora-hearts"></h3>
 
-            <h4 id="sign-up-text">
+        <div class="row">
+
+          <%= flash_messages %>
+
+          <div class="span4">
+            <h4 class="sign-up-text">
               <%= t('.sign_up') %>
-              for
-              <%= pod_name %>
             </h4>
 
-            <%= flash_messages %>
             <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "form-horizontal block-form", :autocomplete => "off", :validate => "validate", "data-type" => "sign_up_page"}) do |f| %>
                 <fieldset>
                   <div class="control-group">
-                    <label class="control-label" for="user_email">
-                        <%= t('.email') %>
+                    <label class="control-label" for="user_username">
+                      <%= t('.username') %>
                     </label>
 
                     <div class="controls">
-                        <%= f.email_field :email, :validate => {:presence => true}, :placeholder => "luke@hoth.net", :title => t('registrations.new.enter_email'), :required => true %>
+                      <%= f.text_field :username, :validate => {:presence => true}, :placeholder => "jedi_guy", :title => t('registrations.new.enter_username'), :required => true, :pattern => "[A-Za-z0-9_]+" %>
                     </div>
                   </div>
 
-                  <div class="control-group">
-                      <label class="control-label" for="user_username">
-                        <%= t('.username') %>
-                      </label>
+                  <% unless @fb_signup %>
+                      <div class="control-group">
+                        <label class="control-label" for="user_email">
+                          <%= t('.email') %>
+                        </label>
 
-                      <div class="controls">
-                        <%= f.text_field :username, :validate => {:presence => true}, :placeholder => "jedi_guy", :title => t('registrations.new.enter_username'), :required => true, :pattern => "[A-Za-z0-9_]+" %>
+                        <div class="controls">
+                          <%= f.email_field :email, :validate => {:presence => true}, :placeholder => "luke@hoth.net", :title => t('registrations.new.enter_email'), :required => true %>
+                        </div>
                       </div>
-                  </div>
 
-                  <div class="control-group">
-                    <label class="control-label" for="user_password">
-                        <%= t('.password') %>
-                    </label>
+                      <div class="control-group">
+                        <label class="control-label" for="user_password">
+                          <%= t('.password') %>
+                        </label>
 
-                    <div class="controls">
-                        <%= f.password_field :password, :validate => {:presence => true}, :placeholder => "••••••••", :title => t('registrations.new.enter_password'), :required => true, :pattern => "......+" %>
-                    </div>
-                  </div>
+                        <div class="controls">
+                          <%= f.password_field :password, :validate => {:presence => true}, :placeholder => "••••••••", :title => t('registrations.new.enter_password'), :required => true, :pattern => "......+" %>
+                        </div>
+                      </div>
+                  <% end %>
+
                   <%= invite_hidden_tag(invite) %>
                 </fieldset>
 
-              <%= f.submit t('.continue'), :class => "new-btn" %>
+                <%= f.submit "Create Account", :class => "new-btn" %>
+
+                <% if @fb_signup %>
+                    <div class="link-existing-account">
+                      or
+                      <%= link_to "Link an existing account", new_user_session_path %>
+                    </div>
+                <% end %>
             <% end %>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 </div>
