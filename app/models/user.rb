@@ -82,11 +82,6 @@ class User < ActiveRecord::Base
     service.access_secret = auth.credentials.secret
     service.save!
 
-    logger.info(auth)
-    logger.info(service.inspect)
-    logger.info(service.user)
-
-
     service.user ? service.user : User.new
   end
   attr_accessor :fb_uid
