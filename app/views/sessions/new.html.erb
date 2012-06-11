@@ -8,10 +8,7 @@
   </h1>
 
   <% unless @linking_service %>
-      <%= link_to('/users/auth/facebook', :class => 'btn-large new-btn fb-btn', :style => "margin-right:10px;") do %>
-          <%= image_tag('logos/fb_f.png', :class => "fb-f") %>
-          Log in with Facebook
-      <% end %>
+      <%= rad_fb_link("margin-right:10px;") %>
       <hr/>
   <% end %>
 

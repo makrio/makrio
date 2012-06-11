@@ -3,6 +3,12 @@
 #   the COPYRIGHT file.
 
 module ApplicationHelper
+  def rad_fb_link(evil_styles)
+    link_to('/users/auth/facebook', :class => 'btn-large new-btn fb-btn', :style => evil_styles ) do
+      image_tag('logos/fb_f.png', :class => "fb-f") + "Login in with Facebook".html_safe
+    end
+  end
+
   def pod_name
     AppConfig[:pod_name].present? ? AppConfig[:pod_name] : "DIASPORA*"
   end
