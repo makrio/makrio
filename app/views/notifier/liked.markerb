@@ -1,3 +1,5 @@
+I heard someone likes you…
+
 <%= "#{t('.liked', :name => "#{@notification.sender.name}")}:" %>
 
 <%= post_message(@notification.like.target, :process_newlines => true) %>
