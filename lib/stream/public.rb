@@ -13,7 +13,7 @@ class Stream::Public < Stream::Base
 
   # @return [ActiveRecord::Association<Post>] AR association of posts
   def posts
-    @posts ||= Post.all_public.order('created_at DESC')
+    @posts ||=  Post.all_public.order('created_at DESC')
   end
 
   def contacts_title

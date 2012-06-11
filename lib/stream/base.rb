@@ -1,7 +1,7 @@
 class Stream::Base
   TYPES_OF_POST_IN_STREAM = ['StatusMessage', 'Reshare', 'ActivityStreams::Photo']
 
-  attr_accessor :max_time, :order, :user
+  attr_accessor :max_time, :order, :user, :new_posts
 
   def initialize(user, opts={})
     self.user = user
@@ -36,9 +36,13 @@ class Stream::Base
 
   # @return [Array<Post>]
   def stream_posts
-    self.posts.for_a_stream(max_time, order, self.user).tap do |posts|
+    raw_posts.tap do |posts|
       like_posts_for_stream!(posts) #some sql person could probably do this with joins.
     end
+  end
+
+  def raw_posts
+    self.posts.for_a_stream(max_time, order, self.user)
   end
 
   # @return [ActiveRecord::Association<Person>] AR association of people within stream's given aspects

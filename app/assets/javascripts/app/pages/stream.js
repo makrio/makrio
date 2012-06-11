@@ -24,6 +24,7 @@ app.pages.Stream = app.views.Base.extend({
     }, this)
     this.stream.on("frame:interacted", this.selectFrame, this)
     this.on("refreshScrollSpy", this.refreshScrollSpy, this)
+    this.setUpStreamPoll();
   },
 
   postRenderTemplate : function() {
@@ -44,6 +45,16 @@ app.pages.Stream = app.views.Base.extend({
         this.selectFrame(post)
       }, this))
     }, this))
+  },
+
+  setUpStreamPoll : function(){
+    setInterval(_.bind(this.updateStream, this), 10000)
+  },
+
+  updateStream : function(){
+    jQuery.ajaxSetup({'cache': true}) 
+    this.stream.update();
+    jQuery.ajaxSetup({'cache': false}) 
   },
 
   presenter : function(){

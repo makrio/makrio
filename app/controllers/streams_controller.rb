@@ -37,14 +37,17 @@ class StreamsController < ApplicationController
 
   def multi
     @stream = Stream::Public.new(current_user, :max_time => max_time)
-    stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user)
-    respond_to do |format|
-      format.html do
-        gon.stream = stream_json
-        render :nothing => true, :layout => "post"
+
+    if stale?(:last_modified => @stream.raw_posts.maximum(:created_at).utc)
+      stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user)
+      respond_to do |format|
+        format.html do
+          gon.stream = stream_json
+          render :nothing => true, :layout => "post"
+        end
+        format.mobile { render 'layouts/main_stream' }
+        format.json { render :json => stream_json }
       end
-      format.mobile { render 'layouts/main_stream' }
-      format.json { render :json => stream_json }
     end
   end
 

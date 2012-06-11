@@ -15,13 +15,30 @@ app.models.Stream = Backbone.Collection.extend({
     return _.any(this.items.models) ? this.timeFilteredPath() : this.basePath()
   },
 
-  fetch: function() {
+  fetch : function() {
     if(this.isFetching()){ return false }
-    var url = this.url()
+    var url = this.url() 
+    this.deferred = this.items.fetch({
+        add : true,
+        url : url,
+    }).done(_.bind(this.triggerFetchedEvents, this))
+  },
+
+  update : function(){
+    if(this.isFetching()){ return false }
+    var self = this
+    var url = this.basePath();
     this.deferred = this.items.fetch({
         add : true,
         url : url
-    }).done(_.bind(this.triggerFetchedEvents, this))
+    }).done(function(resp){
+      console.log(resp) 
+      var respItems = self.items.parse(resp);
+      console.log(respItems.length)
+      self.trigger("fetched", self);
+    })
+
+
   },
 
   isFetching : function(){
