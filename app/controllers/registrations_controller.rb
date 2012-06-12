@@ -34,7 +34,8 @@ class RegistrationsController < Devise::RegistrationsController
     if @user.save
       flash[:notice] = I18n.t 'registrations.create.success'
       @user.seed_aspects
-      Role.add_beta(@user.person) 
+      Role.add_beta(@user.person)
+      session["devise.facebook_data"] = nil if session["devise.facebook_data"] #only do this after create
       sign_in_and_redirect(:user, @user)
     else
       @user.errors.delete(:person)
