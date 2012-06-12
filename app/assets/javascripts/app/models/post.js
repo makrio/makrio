@@ -64,6 +64,10 @@ app.models.Post = Backbone.Model.extend(_.extend({}, app.models.formatDateMixin,
     return this.get("photos") && this.get("photos").length > 0
   },
 
+  showInFeaturedStream : function(){
+    return this.get("featured") || this.get("author").id == app.currentUser.id
+  },
+
   hasText : function(){
     return $.trim(this.get("text")) !== ""
   }
