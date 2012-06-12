@@ -23,6 +23,7 @@ body {
 $link-blue : rgb(42,156,235);
 a { color : $link-blue  }
 
+.unread{ background-color:red;}
 /* bootstrap extentions */
 .icon-red   { background-image: image_url("img/glyphicons-halflings-red.png");   }
 .icon-blue  { background-image: image_url("img/glyphicons-halflings-blue.png");  }
