@@ -10,10 +10,10 @@
     {{/linkToPerson}}
 
     {{#if root}}
-    <i class="icon-retweet"></i>
-        {{#linkToPerson root.author}}
-          {{name}}
-        {{/linkToPerson}}
+    <i class="icon-random"></i>
+        {{#linkToPost root}}
+          {{author.name}}
+        {{/linkToPost}}
     {{/if}}
 
     <div class="post-time">
