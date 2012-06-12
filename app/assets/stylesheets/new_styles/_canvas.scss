@@ -419,6 +419,20 @@ a.logo{
       margin : 0;
     }
 
+    .love-message {
+      padding: 10px 0;
+      text-align: center;
+
+      a {
+        min-width : 35%;
+        
+        i {
+          margin-left: -5px;
+          margin-right: 5px;
+          margin-top: 2px;
+        }
+      }
+    }
 
 
   }
