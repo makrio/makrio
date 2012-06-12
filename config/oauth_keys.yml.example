@@ -1,3 +1,4 @@
+
 twitter:
   consumer_key: <%= AppConfig['twitter_consumer_key'] %>
   consumer_secret: <%= AppConfig['twitter_consumer_secret'] %>

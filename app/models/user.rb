@@ -78,13 +78,9 @@ class User < ActiveRecord::Base
   def self.new_with_session(params, session)
     #devise magic message
     super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.username = data.name.gsub(/\s/, '').downcase
-        user.email = data.email
-        user.person = Person.new({ profile: {
-            image_url: data.image
-          }
-        })
+      if data = session["devise.facebook_data"]
+        user.username = data[:name].gsub(/\s/, '').downcase
+        user.email = data[:email]
       end
     end
   end
