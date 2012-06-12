@@ -32,15 +32,12 @@ app.views.Feedback = app.views.Base.extend({
 
   toggleLike: function(evt) {
     if(evt) { evt.preventDefault(); }
-    this.model.interactions.toggleLike();
+    this.model.interactions.toggleLike({'referrer' : 'icon_with_count'});
   },
 
   resharePost : function(evt) {
     if(evt) { evt.preventDefault(); }
     window.location = this.model.url() + '/remix'
-    // app.router.navigate(this.model.url() + '/remix', {trigger:true})
-  //   if(!window.confirm(Diaspora.I18n.t("reshares.post", {name: this.model.reshareAuthor().name}))) { return }
-  //   this.model.interactions.reshare();
   },
 
   comment : function(evt) {
