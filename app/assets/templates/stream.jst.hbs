@@ -11,7 +11,8 @@
                     </a>
 
                     <a href="/notifications" title="Notifications" id="notifications-button">
-                        <span class="label label-inverse">
+                        <span class="label label-inverse {{#if current_user.notifications_count}}unread{{/if}}">
+                            <i class="icon-envelope icon-white"></i>
                             {{current_user.notifications_count}}
                         </span>
                     </a>
