@@ -57,6 +57,11 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def toggle_featured!
+    self.featured = !featured
+    save!
+  end
+
   def absolute_root
     return self.root #whyyyy
     current = self

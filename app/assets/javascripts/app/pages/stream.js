@@ -116,6 +116,14 @@ app.pages.Stream = app.views.Base.extend({
       this.collection = this.stream.items
       this.postClass = app.views.Post.StreamFrame
       this.setupInfiniteScroll()
+    },
+
+    createPostView : function(post){
+      if(post.showInFeaturedStream()){
+        return app.views.InfScroll.prototype.createPostView.call(this, post)
+      } else {
+        return new Backbone.View //stub it out if its not featured or yours
+      }
     }
   })
 });

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120611063925) do
+ActiveRecord::Schema.define(:version => 20120612201405) do
 
   create_table "account_deletions", :force => true do |t|
     t.string  "diaspora_handle"
@@ -295,6 +295,7 @@ ActiveRecord::Schema.define(:version => 20120611063925) do
     t.datetime "interacted_at"
     t.string   "frame_name"
     t.boolean  "favorite",                            :default => false
+    t.boolean  "featured",                            :default => false, :null => false
   end
 
   add_index "posts", ["author_id"], :name => "index_posts_on_person_id"
