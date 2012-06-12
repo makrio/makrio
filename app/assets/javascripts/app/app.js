@@ -46,7 +46,6 @@ var app = {
 
     // track sign-ups
     this.instrumentIncomingSignUpLinks()
-    this.instrumentSignUps()
 
     // there's probably a better way to do this...
     $("a[rel=backbone]").live("click", function(evt){
@@ -79,19 +78,16 @@ var app = {
   /* mixpanel wrapper function */
   instrument : function(type, name, object, callback) {
     if(!window.mixpanel) { return }
-    window.mixpanel[type](name, object, callback)
+    window.mixpanel[type](name, ensureObject(object), callback)
+
+    function ensureObject(object) {
+      return typeof(object) !== 'undefined' ? object : {};
+    }
   },
 
   instrumentIncomingSignUpLinks : function() {
     if(!window.mixpanel) { return }
     window.mixpanel["track_links"]("a#sign_up_button", "Click Sign Up", function(element){
-      return {'referrer' : $(element).data('type')}
-    });
-  },
-
-  instrumentSignUps : function() {
-    if(!window.mixpanel) { return }
-    window.mixpanel["track_forms"]("form#new_user", "Sign up", function(element){
       return {'referrer' : $(element).data('type')}
     });
   }

@@ -50,22 +50,22 @@ app.models.Post.Interactions = Backbone.Model.extend({
       return reshare.get("author") &&  reshare.get("author").guid == app.currentUser.get("guid")})[0]
   },
 
-  toggleLike : function() {
+  toggleLike : function(trackingOpts) {
     if(this.userLike()) {
-      this.unlike()
+      this.unlike(trackingOpts)
     } else {
-      this.like()
+      this.like(trackingOpts)
     }
   },
 
-  like : function() {
+  like : function(trackingOpts) {
     var self = this;
     this.likes.create({}, {success : function(){
       self.trigger("change")
       self.set({"likes_count" : self.get("likes_count") + 1})
     }})
 
-    app.instrument("track", "Like")
+    app.instrument("track", "Like", trackingOpts)
   },
 
   unlike : function() {
@@ -110,7 +110,7 @@ app.models.Post.Interactions = Backbone.Model.extend({
         interactions.trigger("change")
       });
 
-    app.instrument("track", "Reshare")
+    app.instrument("track", "Reshare", trackingOpts)
   },
 
   userCanReshare : function(){
