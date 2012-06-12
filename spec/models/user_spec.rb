@@ -864,6 +864,7 @@ describe User do
           language
           invitation_token
           invitation_sent_at
+          reset_password_sent_at
           reset_password_token
           remember_created_at
           sign_in_count
