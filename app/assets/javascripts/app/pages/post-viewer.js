@@ -5,7 +5,8 @@ app.pages.PostViewer = app.views.Base.extend({
     "#post-content" : "postView",
     "#post-nav" : "navView",
     "#post-interactions" : "interactionsView",
-    "#author-info" : "authorView"
+    "#author-info" : "authorView",
+    '#sign_up_prompt' : 'signUp'
   },
 
   initialize : function(options) {
@@ -24,6 +25,10 @@ app.pages.PostViewer = app.views.Base.extend({
     this.postView = app.views.Post.showFactory(this.model)
 
     this.render();
+  },
+
+  signUp : function(){
+    return new app.views.SignUpBanner({model : this.model}) 
   },
 
   bindEvents : function(){
@@ -92,5 +97,23 @@ app.pages.PostViewer = app.views.Base.extend({
   closePane : function(evt) {
     if(evt.keyCode != 27) { return }
     this.interactionsView.hidePane();
+  }
+});
+
+app.views.SignUpBanner = app.views.Base.extend({
+  id :'banner',
+  templateName : 'sign-up-banner',
+
+  events : {
+    'click #banner' : 'slideBanner'
+  },
+
+  initialize : function(){
+    console.log('fooooooooooo')
+  },
+
+  slideBanner : function(){
+    alert('foobar')
+    console.log('hi')
   }
 });
