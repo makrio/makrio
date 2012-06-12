@@ -162,6 +162,10 @@ class Profile < ActiveRecord::Base
     self.save
   end
 
+  def nickname
+    first_name.split.first
+  end
+
   protected
   def strip_names
     self.first_name.strip! if self.first_name

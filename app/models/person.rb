@@ -16,6 +16,7 @@ class Person < ActiveRecord::Base
     t.add :id
     t.add :guid
     t.add :name
+    t.add :nickname
     t.add lambda { |person|
       person.diaspora_handle
     }, :as => :diaspora_id
@@ -32,7 +33,7 @@ class Person < ActiveRecord::Base
   xml_attr :exported_key
 
   has_one :profile, :dependent => :destroy
-  delegate :last_name, :image_url, :to => :profile
+  delegate :last_name, :image_url, :nickname, :to => :profile
   accepts_nested_attributes_for :profile
 
   before_validation :downcase_diaspora_handle
