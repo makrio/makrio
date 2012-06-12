@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   has_many :contacts
   has_many :contact_people, :through => :contacts, :source => :person
 
-  has_many :services
+  has_many :services, :dependent => :delete_all
 
   has_many :user_preferences
 
