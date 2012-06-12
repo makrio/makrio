@@ -47,7 +47,7 @@ module NotifierHelper
     opts[:length] ||= 600
     text = truncate(comment.text, :length => opts[:length])
     text = process_newlines(text) if opts[:process_newlines]
-    text
+    "#{comment.author.nickname} says \"" + text + '"'
   end
 
   def invite_email_title
@@ -59,6 +59,6 @@ module NotifierHelper
   end
 
   def fortune_message
-    FORTUNE_MESSAGES.sample
+    '"' + FORTUNE_MESSAGES.sample + '"'
   end
 end
