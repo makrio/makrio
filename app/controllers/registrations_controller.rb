@@ -22,8 +22,6 @@ class RegistrationsController < Devise::RegistrationsController
     if session["devise.facebook_data"]
       @user.save # we need to save the user here before adjusting the user's profile
 
-      logger.info(@user.fb_uid)
-
       # find and save service from uid
       service = Services::Facebook.find_by_uid_and_access_secret(session["devise.facebook_data"].uid, session["devise.facebook_data"].credentials.secret)
       service.user = @user

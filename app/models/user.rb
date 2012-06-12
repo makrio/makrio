@@ -81,7 +81,6 @@ class User < ActiveRecord::Base
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
         user.username = data.name.gsub(/\s/, '').downcase
         user.email = data.email
-        user.fb_uid = data.uid
         user.person = Person.new({ profile: {
             image_url: data.image
           }
