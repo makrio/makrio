@@ -135,13 +135,9 @@ Then /^I should not see "([^\"]*)" in the last sent email$/ do |text|
   email_text.should_not match(text)
 end
 
-When /^"([^\"]+)" has posted a status message with a photo$/ do |email|
+When /^"([^\"]+)" has posted a public status message$/ do |email|
   user = User.find_for_database_authentication(:username => email)
-  post = Factory(:status_message_with_photo, :text => "Look at this dog", :author => user.person)
-  [post, post.photos.first].each do |p|
-    user.add_to_streams(p, user.aspects)
-    user.dispatch_post(p)
-  end
+  post = Factory(:status_message, :text => "Look at this dog", :author => user.person, :public => true)
 end
 
 Then /^my "([^\"]*)" should be "([^\"]*)"$/ do |field, value|
