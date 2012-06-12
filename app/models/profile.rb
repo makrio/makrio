@@ -163,7 +163,7 @@ class Profile < ActiveRecord::Base
   end
 
   def nickname
-    first_name.split.first
+    self.person.name.split.first
   end
 
   protected
