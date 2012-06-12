@@ -10,7 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     if session["devise.facebook_data"]
       params[:user].merge!({
-        :email => session["devise.facebook_data"].info.email,
+        :email => session["devise.facebook_data"][:email],
         :password => Devise.friendly_token[0,20]
       })
     end
@@ -20,14 +20,14 @@ class RegistrationsController < Devise::RegistrationsController
 
     # set image url if this is from a FB login
     if session["devise.facebook_data"]
-      @user.save # we need to save the user here before adjusting the user's profile
+      @user.save! # we need to save the user here before adjusting the user's profile
 
       # find and save service from uid
-      service = Services::Facebook.find_by_uid_and_access_secret(session["devise.facebook_data"].uid, session["devise.facebook_data"].credentials.secret)
+      service = Services::Facebook.find_by_uid_and_access_secret(session["devise.facebook_data"][:uid], session["devise.facebook_data"][:credentials][:secret])
       service.user = @user
       service.save
 
-      @user.reload.person.profile.image_url = session["devise.facebook_data"].info.image
+      @user.reload.person.profile.image_url = session["devise.facebook_data"][:image]
       @user.person.profile.save
     end
 
@@ -46,9 +46,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def new
-    #initializes a new user using devise magic, does User#new_with_session
-    logger.info(session["devise.facebook_data"].present?)
-
     @fb_signup = session["devise.facebook_data"].present?
     super
   end

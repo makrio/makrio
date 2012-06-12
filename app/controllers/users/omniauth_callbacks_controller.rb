@@ -70,7 +70,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
       sign_in_and_redirect @user, :event => :authentication
     else
-      session["devise.facebook_data"] = request.env["omniauth.auth"]
+      auth = request.env["omniauth.auth"]
+      raw = request.env["omniauth.auth"].extra.raw_info
+
+      #TODO: change this key to be something like parsed_fb_data
+      session["devise.facebook_data"] = {
+          credentials: auth.credentials,
+          name: raw[:name],
+          email: raw[:email],
+          uid: auth.uid,
+          image: raw.image
+      }
+
       redirect_to new_user_registration_url
     end
   end
