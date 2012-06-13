@@ -74,7 +74,7 @@ class Photo < ActiveRecord::Base
   end
 
   def url(opts = {})
-    "#{relative_image_url(opts)}"
+    processed? ? processed_image.url(opts) : unprocessed_image.url)
   end
 
   def hostname
