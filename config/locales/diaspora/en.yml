@@ -582,7 +582,7 @@ en:
         reshared: "%{name} reshared your post"
         view_post: "View post >"
     remixed:
-        remixed: "%{name} remixed your post Aww yeah!"
+        remixed: "%{name} remixed your post!"
         view_post: "Check it out >"
     confirm_email:
         subject: "Please activate your new email address %{unconfirmed_email}"
