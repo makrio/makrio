@@ -14,6 +14,7 @@ app.Router = Backbone.Router.extend({
 
     "posts/:id?:params": "singlePost",
     "posts/:id": "singlePost",
+    "posts/:id/frame": "singlePostFrame",
     "p/:id?:params": "singlePost",
     "p/:id": "singlePost",
 
@@ -54,6 +55,14 @@ app.Router = Backbone.Router.extend({
     this.renderPage(function(){ return new app.pages.PostViewer({ id: id })});
   },
 
+  singlePostFrame : function(id) {
+    model = new app.models.Post({ id : id });
+    var self = this;
+    model.preloadOrFetch().done(function(){
+      self.renderPage(function(){ return new app.pages.SinglePostFrame({ model:model})});
+    }) 
+  },
+  
   siblingPost : function(){ //next or previous
     var post = new app.models.Post();
     post.bind("change", setPreloadAttributesAndNavigate)
