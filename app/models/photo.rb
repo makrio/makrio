@@ -66,8 +66,6 @@ class Photo < ActiveRecord::Base
       photo.unprocessed_image.store!
     end
 
-    photo.update_remote_path
-
     photo
   end
 
@@ -75,30 +73,18 @@ class Photo < ActiveRecord::Base
     processed_image.path.present?
   end
 
-  def update_remote_path
-    unless self.unprocessed_image.url.match(/^https?:\/\//)
-      pod_url = AppConfig[:pod_url].dup
-      pod_url.chop! if AppConfig[:pod_url][-1,1] == '/'
-      remote_path = "#{pod_url}#{self.unprocessed_image.url}"
-    else
-      remote_path = self.unprocessed_image.url
-    end
+def url(opts = {})
+  "#{hostname}#{relative_image_url(opts)}"
+end
 
-    name_start = remote_path.rindex '/'
-    self.remote_photo_path = "#{remote_path.slice(0, name_start)}/"
-    self.remote_photo_name = remote_path.slice(name_start + 1, remote_path.length)
-  end
+def hostname
+  ENV['ASSET_HOST'] || AppConfig[:pod_url]
+end
 
-  def url(name = nil)
-    if remote_photo_path
-      name = name.to_s + '_' if name
-      remote_photo_path + name.to_s + remote_photo_name
-    elsif processed?
-      processed_image.url(name)
-    else
-      unprocessed_image.url(name)
-    end
-  end
+def relative_image_url(opts)
+  processed? ? processed_image.url(opts) : unprocessed_image.url
+end
+
 
   def ensure_user_picture
     profiles = Profile.where(:image_url => url(:thumb_large))

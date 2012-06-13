@@ -101,21 +101,6 @@ describe Photo do
     end
   end
 
-  describe '#update_remote_path' do
-    before do
-      image = File.open(@fixture_name)
-      @photo = Photo.diaspora_initialize(
-                :author => @user.person, :user_file => image)
-      @photo.processed_image.store!(@photo.unprocessed_image)
-      @photo.save!
-    end
-    it 'sets a remote url' do
-      @photo.update_remote_path
-
-      @photo.remote_photo_path.should include("http")
-      @photo.remote_photo_name.should include(".png")
-    end
-  end
 
   it 'should save a photo' do
     @photo.unprocessed_image.store! File.open(@fixture_name)
@@ -179,11 +164,6 @@ describe Photo do
       @xml = @saved_photo.to_xml.to_s
     end
 
-    it 'serializes the url' do
-      @xml.include?(@saved_photo.remote_photo_path).should be true
-      @xml.include?(@saved_photo.remote_photo_name).should be true
-    end
-
     it 'serializes the diaspora_handle' do
       @xml.include?(@user.diaspora_handle).should be true
     end
@@ -192,33 +172,6 @@ describe Photo do
       @xml.should include 'height'
       @xml.include?('width').should be true
       @xml.include?('40').should be true
-    end
-  end
-
-  describe 'remote photos' do
-    before do
-      Jobs::ProcessPhoto.perform(@saved_photo.id)
-    end
-
-    it 'should set the remote_photo on marshalling' do
-      #security hax
-      user2 = Factory(:user)
-      aspect2 = user2.aspects.create(:name => "foobars")
-      connect_users(@user, @aspect, user2, aspect2)
-
-      url = @saved_photo.url
-      thumb_url = @saved_photo.url :thumb_medium
-
-      xml = @saved_photo.to_diaspora_xml
-
-      @saved_photo.destroy
-      zord = Postzord::Receiver::Private.new(user2, :person => @photo.author)
-      zord.parse_and_receive(xml)
-
-      new_photo = Photo.where(:guid => @saved_photo.guid).first
-      new_photo.url.nil?.should be false
-      new_photo.url.include?(url).should be true
-      new_photo.url(:thumb_medium).include?(thumb_url).should be true
     end
   end
 

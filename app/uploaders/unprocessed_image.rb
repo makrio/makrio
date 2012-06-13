@@ -17,12 +17,7 @@ class UnprocessedImage < CarrierWave::Uploader::Base
     model.random_string + File.extname(@filename) if original_filename
   end
 
-  version :thumb_small
-  version :thumb_medium
-  version :thumb_large
-  version :scaled_full do
-    process :get_version_dimensions 
-  end
+  process :get_version_dimensions 
 
   def get_version_dimensions
     model.width, model.height = `identify -format "%wx%h " #{file.path}`.split(/x/)

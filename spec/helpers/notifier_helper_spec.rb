@@ -14,7 +14,7 @@ describe NotifierHelper do
 
     it 'truncates the comment' do
       opts = {:length => 2}
-      comment_message(@comment, opts).should == truncate(@comment.text, opts)
+      comment_message(@comment, opts).should include('...')
     end
   end
 end
