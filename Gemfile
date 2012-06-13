@@ -20,6 +20,10 @@ gem 'devise', '~> 2.1.0'
 
 gem 'remotipart', '~> 1.0'
 
+
+gem 'phantomjs.rb'
+gem 'screencap', :git => 'git://github.com/maxwell/screencap.git'
+
 gem 'omniauth', '1.1'
 gem 'omniauth-facebook'
 gem 'omniauth-tumblr'
