@@ -7,9 +7,9 @@ require Rails.root.join("app", "presenters", "post_presenter")
 class PostsController < ApplicationController
   include PostsHelper
   
-  before_filter :authenticate_user!, :except => [:show, :iframe, :oembed, :interactions]
+  before_filter :authenticate_user!, :except => [:show, :frame, :iframe, :oembed, :interactions]
   before_filter :set_format_if_malformed_from_status_net, :only => :show
-  before_filter :find_post, :only => [:show, :next, :previous, :interactions]
+  before_filter :find_post, :only => [:show, :frame, :next, :previous, :interactions]
 
   layout 'post'
 
@@ -37,6 +37,11 @@ class PostsController < ApplicationController
 
   def iframe
     render :text => post_iframe_url(params[:id]), :layout => false
+  end
+
+  def frame
+    gon.post = PostPresenter.new(@post, current_user); 
+    render :text => "", :layout => true
   end
 
   def oembed
