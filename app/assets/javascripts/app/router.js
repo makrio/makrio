@@ -56,10 +56,18 @@ app.Router = Backbone.Router.extend({
   },
 
   singlePostFrame : function(id) {
-    model = new app.models.Post({ id : id });
-    model.preloadOrFetch().done(_.bind(function(resp){
-      this.renderPage(function(){ return new app.views.Post.SmallFrame({model:resp}) });
-    }, this))
+    var model = new app.models.Post({ id : id })
+      , self = this;
+    
+    model.preloadOrFetch()
+      .done(function(resp){
+        self.renderPage(function(){
+           return new app.views.Post.SmallFrame({
+             model : resp,
+             className : "canvas-frame x2 height width"
+           })
+        })
+      })
   },
   
   siblingPost : function(){ //next or previous
