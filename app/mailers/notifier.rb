@@ -13,6 +13,20 @@ class Notifier < ActionMailer::Base
     mails
   end
 
+  def self.welcome(user, opts={})
+    @reciver = user
+    default_opts = {:to => @receiver.email,
+         :from => AppConfig[:smtp_sender_address],
+         :subject => "Welcome to makr.io!"),  :host => AppConfig[:pod_uri].host}
+    default_opts.merge!(opts)
+    with_recipient_locale do
+      mail(@notification.headers) do |format|
+        format.text
+        format.html
+      end
+    end
+  end
+
   def single_admin(string, recipient, opts={})
     @receiver = recipient
     @string = string.html_safe
