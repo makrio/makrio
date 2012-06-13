@@ -67,6 +67,8 @@
   #post-comments {
     text-align: left;
     padding-top: 0;
+    max-height: 350px;
+    overflow-y: auto;
   }
 
   #new-post-comment {
