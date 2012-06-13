@@ -37,9 +37,6 @@ app.forms.Picture = app.forms.PictureBase.extend({
 
   postRenderTemplate : function(){
     this.$("input[name=authenticity_token]").val($("meta[name=csrf-token]").attr("content"))
-    var photoIds = this.photos.pluck("id")
-    this.$("input[name=photo_ids]").val(photoIds)
-    this.renderPhotos();
   },
 
   onSubmit : function (){
@@ -48,14 +45,7 @@ app.forms.Picture = app.forms.PictureBase.extend({
 
   uploadSuccess : function(resp) {
     this.photos.add(new Backbone.Model(resp.data))
-  },
-
-  renderPhotos : function(){
-    var photoContainer = this.$(".photos")
-    this.photos.each(function(photo){
-      var photoView = new app.views.Photo({model : photo}).render().el
-      photoContainer.append(photoView)
-    })
+    this.trigger("uploaded")
   }
 });
 

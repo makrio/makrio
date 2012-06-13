@@ -4,8 +4,10 @@ app.models.StatusMessage = app.models.Post.extend({
   },
 
   defaults : {
-    'post_type' : 'StatusMessage',
-    'author' : app.currentUser ? app.currentUser.attributes : {}
+    post_type : 'StatusMessage',
+    text : "",
+    photos : new Backbone.Collection(),
+    author : app.currentUser ? app.currentUser.attributes : {}
   },
 
   prepareToRemix : function(root){

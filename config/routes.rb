@@ -31,10 +31,10 @@ Diaspora::Application.routes.draw do
     resources :comments, :only => [:new, :create, :destroy, :index]
   end
 
+<<<<<<< HEAD
   get '/bookmarklet.js' => 'bookmarklets#show'
-  resources :ingredients, :only => :create
 
-  match "/framer" => redirect("/posts/new")
+  get "/framer" => 'posts#new'
 
   get 'p/:id' => 'posts#show', :as => 'short_post'
   get 'posts/:id/iframe' => 'posts#iframe', :as => 'iframe'

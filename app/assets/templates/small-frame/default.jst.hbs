@@ -1,11 +1,11 @@
 <div class="content">
-    {{#if photos}}
-        <div class="image-container">
+    <div class="image-container">
+        {{#if photos}}
             {{#each photos}}
                 <img src="{{sizes.large}}" {{#if ../../adjustedImageHeight}}style="height:{{../../adjustedImageHeight}}px;"{{/if}} />
             {{/each}}
-        </div>
-    {{/if}}
+        {{/if}}
+    </div>
 
     {{#if object_url}}
         <div class="image-container">

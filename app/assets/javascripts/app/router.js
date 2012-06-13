@@ -8,8 +8,8 @@ app.Router = Backbone.Router.extend({
 
     "posts/:id/remix?*params" : 'remix', // facebook action links supply signed_request params
     "posts/:id/remix" : 'remix',
-    "posts/new?*params" : "composer", // bookmarklet has params
-    "posts/new" : "composer",
+
+    "framer?*params": "framer", // bookmarklet has params
     "framer": "framer",
 
     "posts/:id?:params": "singlePost",
@@ -33,7 +33,7 @@ app.Router = Backbone.Router.extend({
 
       var new_mix = new app.models.StatusMessage(_.clone(remixed.attributes))
       new_mix.prepareToRemix(remixed)
-      this.renderPage(function(){ return new app.pages.Composer({model : new_mix })});
+      this.renderPage(function(){ return new app.pages.Framer({model : new_mix })});
     }, this)).fail(function(){alert('bobby')});
   },
 
@@ -41,13 +41,8 @@ app.Router = Backbone.Router.extend({
     this.renderPage(function(){ return new app.pages.Profile({ personId : personId })});
   },
 
-  composer : function(){
-    app.instrument("track", "Compose")
-    this.renderPage(function(){ return new app.pages.Composer()});
-  },
-
   framer : function(){
-    app.instrument("track", "Frame")
+    app.instrument("track", "Compose")
     this.renderPage(function(){ return new app.pages.Framer()});
   },
 
@@ -58,7 +53,7 @@ app.Router = Backbone.Router.extend({
   singlePostFrame : function(id) {
     var model = new app.models.Post({ id : id })
       , self = this;
-    
+
     model.preloadOrFetch()
       .done(function(resp){
         self.renderPage(function(){
