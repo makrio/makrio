@@ -11,7 +11,9 @@ app.pages.Framer = app.views.Base.extend({
   },
 
   initialize : function(){
-    this.model = app.frame
+    this.model = this.model || new app.models.StatusMessage
+    this.model.photos = this.model.photos || new Backbone.Collection()
+
     if(!this.model.get("frame_name")) this.model.setFrameName()
 
     this.model.authorIsCurrentUser = function(){ return true }
@@ -52,7 +54,7 @@ app.views.framerContent = app.views.Base.extend({
 
   subviews : {
     ".preview" : "smallFrameView",
-    ".template-picker" : 'templatePicker'
+    ".photo-upload" : 'photoForm'
   },
 
   formAttrs : {
@@ -60,16 +62,34 @@ app.views.framerContent = app.views.Base.extend({
   },
 
   initialize : function(){
+    // we need to memoize the photo form here
+    this.photoForm = new app.forms.Picture({
+      model : this.model
+    })
+    this.photoForm.templateName = 'framer-photo-uploader'
+
     this.model.bind("change:frame_name", this.render, this)
+    this.model.bind("change:photos", this.render, this)
+
+    this.photoForm.bind("uploaded", this.setPhotosFromForm, this)
+  },
+
+  setPhotosFromForm : function() {
+    this.model.photos = this.photoForm.photos
+    this.model.set({"photos": this.model.photos.toJSON()})
+
+    this.model.unset("frame_name") && this.model.setFrameName()
   },
 
   smallFrameView : function() {
-    return new app.views.Post.EditableSmallFrame({model : this.model})
+    return new app.views.Post.EditableSmallFrame({
+      model : this.model, className : 'canvas-frame x2 height width'
+    })
   },
 
   presenter : function() {
     var selectedFrame = this.model.get("frame_name")
-      , templates = this.model.applicableTemplates();  //new app.models.Post.TemplatePicker(this.model).frameMoods;
+      , templates = this.model.applicableTemplates();
 
     return _.extend(this.defaultPresenter(), {
       templates : _.map(templates, function(template) {
@@ -103,7 +123,6 @@ app.views.framerControls = app.views.Base.extend({
 
   events : {
     "click input.done" : "saveFrame",
-    "click input.back" : "editFrame",
     "change input" : "setFormAttrs"
   },
 
@@ -145,10 +164,5 @@ app.views.framerControls = app.views.Base.extend({
 
   inValidFrame : function(){
     return (this.model.get('text').trim().length == 0)  && (this.model.get('photos').length == 0)
-  },
-
-  editFrame : function(){
-    app.router.renderPage(function(){return new app.pages.Composer({model : app.frame})})
-    app.router.navigate("/posts/new")
   }
 });

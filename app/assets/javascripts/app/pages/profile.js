@@ -41,7 +41,7 @@ app.pages.Profile = app.views.Base.extend({
     this.canvasView = new app.views.Canvas({ model : this.stream })
     this.wallpaperForm = new app.forms.Wallpaper()
     this.profileInfo = new app.views.ProfileInfo({ model : this.model })
-    this.composerView = new app.pages.Composer();
+    this.composerView = new app.pages.Framer();
   },
 
   render :function () {
@@ -91,7 +91,7 @@ app.pages.Profile = app.views.Base.extend({
     this.toggleComposer()
     this.$("#post_text").focus()
 
-    app.router.navigate("/posts/new")
+    app.router.navigate("/framer")
   },
 
   closeComposer : function(evt) {

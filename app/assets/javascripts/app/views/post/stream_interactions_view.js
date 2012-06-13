@@ -25,7 +25,8 @@ app.views.LoveView = app.views.Base.extend({
   templateName: 'love',
 
   events : {
-    "click .love-this" : "loveFrame"
+    "click .love-this" : "loveFrame",
+    "click .remix-this" : "remixFrame"
   },
 
   presenter : function() {
@@ -37,5 +38,10 @@ app.views.LoveView = app.views.Base.extend({
   loveFrame : function(evt) {
     if(evt){evt.preventDefault()}
     this.model.interactions.toggleLike({'referrer' : 'give_love_button'})
+  },
+
+  remixFrame : function(evt) {
+    if(evt){evt.preventDefault()}
+    app.router.navigate($(evt.target).attr("href"), {trigger : true})
   }
 })

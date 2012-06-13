@@ -213,7 +213,7 @@ GEM
       netrc (~> 0.7.4)
       rest-client (~> 1.6.1)
       rubyzip
-    heroku-api (0.2.4)
+    heroku-api (0.2.5)
       excon (~> 0.14.0)
     heroku_san (3.0.1)
       activesupport

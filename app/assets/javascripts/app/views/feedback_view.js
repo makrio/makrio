@@ -37,14 +37,13 @@ app.views.Feedback = app.views.Base.extend({
 
   resharePost : function(evt) {
     if(evt) { evt.preventDefault(); }
-    window.location = this.model.url() + '/remix'
+    app.router.navigate(this.model.url() + '/remix', {trigger : true})
   },
 
   comment : function(evt) {
     /* temp hacks */
     if(evt) { evt.preventDefault(); }
   },
-
 
   requireAuth : function(evt) {
     if( app.currentUser.authenticated() ) { return }
