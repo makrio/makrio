@@ -14,7 +14,7 @@ class UnprocessedImage < CarrierWave::Uploader::Base
   end
 
   def filename
-    model.random_string + File.extname(@filename) if @filename
+    model.random_string + File.extname(@filename) if original_filename
   end
 
   version :thumb_small
