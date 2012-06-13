@@ -70,21 +70,16 @@ class Photo < ActiveRecord::Base
   end
 
   def processed?
-    processed_image.path.present?
+    processed? ? processed_image.url(opts) : unprocessed_image.url
   end
 
-def url(opts = {})
-  "#{hostname}#{relative_image_url(opts)}"
-end
+  def url(opts = {})
+    "#{relative_image_url(opts)}"
+  end
 
-def hostname
-  ENV['ASSET_HOST'] || AppConfig[:pod_url]
-end
-
-def relative_image_url(opts)
-  processed? ? processed_image.url(opts) : unprocessed_image.url
-end
-
+  def hostname
+    ENV['ASSET_HOST'] || AppConfig[:pod_url]
+  end
 
   def ensure_user_picture
     profiles = Profile.where(:image_url => url(:thumb_large))
