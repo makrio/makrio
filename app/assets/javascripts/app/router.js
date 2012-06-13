@@ -57,10 +57,9 @@ app.Router = Backbone.Router.extend({
 
   singlePostFrame : function(id) {
     model = new app.models.Post({ id : id });
-    var self = this;
-    model.preloadOrFetch().done(function(){
-      self.renderPage(function(){ return new app.pages.SinglePostFrame({ model:model})});
-    }) 
+    model.preloadOrFetch().done(_.bind(function(resp){
+      this.renderPage(function(){ return new app.views.Post.SmallFrame({model:resp}) });
+    }, this))
   },
   
   siblingPost : function(){ //next or previous
