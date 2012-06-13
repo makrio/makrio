@@ -104,7 +104,6 @@ FactoryGirl.define do
     association :author, :factory => :person
     after_build do |p|
       p.unprocessed_image.store! File.open(File.join(File.dirname(__FILE__), 'fixtures', 'button.png'))
-      p.update_remote_path
     end
   end
 
