@@ -305,7 +305,6 @@ GEM
       omniauth-oauth (~> 1.0)
     orm_adapter (0.1.0)
     pg (0.13.2)
-    phantomjs.rb (0.0.2)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -522,8 +521,12 @@ DEPENDENCIES
   omniauth-tumblr
   omniauth-twitter
   pg
+<<<<<<< HEAD
   phantomjs.rb (= 0.0.2)
   rack-cors (= 0.2.7)
+=======
+  rack-cors (~> 0.2.4)
+>>>>>>> new strat for phantom
   rack-google-analytics
   rack-piwik
   rack-rewrite (~> 1.2.1)
