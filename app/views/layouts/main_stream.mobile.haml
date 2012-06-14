@@ -3,12 +3,6 @@
 -#   the COPYRIGHT file.
 
 .span12
-  %h2{:style => "padding:0 10px;display:none;"}
-    - if @stream.for_all_aspects?
-      = t('all_aspects')
-    - else
-      = @stream.aspect
-
   #main_stream.stream
     = render 'shared/stream', :posts => @stream.stream_posts
     -if @stream.stream_posts.length > 0
