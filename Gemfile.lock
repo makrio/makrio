@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: git://github.com/maxwell/screencap.git
-  revision: 62a561f9e206c802fc56fcc593fe20f440696aba
+  revision: b8a64980edb6286a714c38e9919e6a6733108338
   specs:
     screencap (0.0.3)
 
@@ -305,7 +305,6 @@ GEM
       omniauth-oauth (~> 1.0)
     orm_adapter (0.0.7)
     pg (0.13.2)
-    phantomjs.rb (0.0.2)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -522,7 +521,6 @@ DEPENDENCIES
   omniauth-tumblr
   omniauth-twitter
   pg
-  phantomjs.rb (= 0.0.2)
   rack-cors (~> 0.2.4)
   rack-google-analytics
   rack-piwik
