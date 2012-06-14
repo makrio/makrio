@@ -13,3 +13,9 @@
         = t('shared.stream_element.via', :link => link_to("#{post.provider_display_name}", post.actor_url)).html_safe
       - elsif post.provider_display_name == 'mobile'
         = t('shared.stream_element.via_mobile', :link => nil)
+    &ndash;
+    %span.scope_scope
+      - if post.public?
+        = t('public')
+      - else
+        = t('limited')
