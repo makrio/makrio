@@ -313,7 +313,10 @@ a.logo{
   }
 
   /* larger declarations */
-  &.x2.width .content { @include wide(); }
+  &.x2.width .content {
+    @include wide();
+    //font-size : 1.8em;
+  }
 
   &.sticky-note.x2.height  .content {
     min-height : $two-row-height + px;

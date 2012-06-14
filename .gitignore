@@ -43,6 +43,7 @@ public/uploads/*
 public/assets/*
 public/source.tar*
 public/.well-known
+public/screenshots/*
 tmp/**/*
 tmp/*
 *.sqlite3

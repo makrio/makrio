@@ -27,6 +27,7 @@ class Post < ActiveRecord::Base
   after_create do
     self.touch(:interacted_at)
   end
+
   mount_uploader :screenshot, ScreenshotUploader
   #scopes
   scope :includes_for_a_stream, includes(:o_embed_cache, {:author => :profile}, :mentions => {:person => :profile}) #note should include root and photos, but i think those are both on status_message
@@ -157,12 +158,15 @@ class Post < ActiveRecord::Base
 
   def screenshot!
     return false unless self.persisted?
-    div = '.canvas-frame:first'
-    frame_url = "#{AppConfig[:pod_url]}posts/#{self.guid}/frame" 
-    #maybe want to configure tmp directory, 
-    file = Screencap::Fetcher.new(frame_url).fetch(:div => '.canvas-frame:first', :output => Rails.root.join('tmp', 'screenshots', "#{self.guid}.png"))
+    frame_url = "#{AppConfig[:pod_url]}posts/#{self.guid}/frame"
+    #maybe want to configure tmp directory,
+    file = Screencap::Fetcher.new(frame_url).fetch(:div => '.canvas-frame:first', :output => Rails.root.join('tmp', 'screenshots', "#{self.guid}.jpg"))
     self.screenshot.store!(file)
     self.save!
+  end
+
+  def screenshot_url
+    screenshot.url
   end
 
   def nsfw
