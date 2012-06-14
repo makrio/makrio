@@ -17,6 +17,7 @@ config/deploy_config.yml
 .bundle
 vendor/bundle/*
 vendor/cache/*
+vendor/phantomjs
 config/database.yml
 .rvmrc_custom
 .rvmrc.local
