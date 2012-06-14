@@ -20,8 +20,7 @@ gem 'devise', '~> 2.1.0'
 
 gem 'remotipart', '~> 1.0'
 
-
-gem 'phantomjs.rb', :git => 'git://github.com/westoque/phantomjs.rb.git'
+gem 'phantomjs.rb', '0.0.2'
 gem 'screencap', :git => 'git://github.com/maxwell/screencap.git'
 
 gem 'omniauth', '1.1'
