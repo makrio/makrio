@@ -529,6 +529,31 @@ a.logo{
   }
 }
 
+.image-wrapper {
+  position : relative;
+}
+
+.remove-image {
+  display : none;
+}
+
+#framer .remove-image {
+  @include opacity(0.6);
+  @include transition(opacity);
+
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  cursor : pointer;
+
+  &:hover {
+    @include opacity(1);
+  }
+}
+
 /* responsive */
 @media (max-width: 767px) {
   body {
