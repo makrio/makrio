@@ -56,12 +56,7 @@ app.Router = Backbone.Router.extend({
 
     model.preloadOrFetch()
       .done(function(resp){
-        self.renderPage(function(){
-           return new app.views.Post.SmallFrame({
-             model : resp,
-             className : "canvas-frame x2 height width"
-           })
-        })
+        self.renderPage(function(){ return new app.pages.SinglePostFrame({model: resp}) })
       })
   },
   
