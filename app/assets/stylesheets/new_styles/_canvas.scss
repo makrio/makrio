@@ -204,14 +204,6 @@ a.logo{
     }
   }
 
-  .background-color {
-    height : 100%;
-    width : 100%;
-    position: absolute;
-    top : 0;
-    left : 0;
-  }
-
   .text-content {
     position : relative;
     z-index : 10;
@@ -324,8 +316,13 @@ a.logo{
   }
 
   &.wallpaper {
+
     .image-container {
-      background-color: black;
+      background-color: #000;
+
+      img {
+        @include transition(opacity);
+      }
     }
 
     &.has-text{

@@ -110,8 +110,22 @@ app.views.Post.EditableSmallFrame = app.views.Post.SmallFrame.extend({
   className : "canvas-frame editable",
 
   events : {
-    "keyup [contentEditable]" : "setFormAttrs",
+    "keydown [contentEditable]" : "setState",
     "click .remove-image" : "removeImage"
+  },
+
+  setState : function(evt) {
+    this.setFormAttrs()
+
+    if(this.model.get("frame_name") == "Wallpaper" ) {
+      if( !this.model.hasText(evt) ) {
+        this.$el.removeClass('has-text')
+          .addClass('no-text')
+      } else {
+        this.$el.removeClass('no-text')
+          .addClass('has-text')
+      }
+    }
   },
 
   formAttrs : {
