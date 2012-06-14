@@ -28,6 +28,7 @@ app.pages.Stream = app.views.Base.extend({
   },
 
   postRenderTemplate : function() {
+    this.$('.dropdown-toggle').dropdown()
 
     if(app.currentUser.get("getting_started")) {
       this.showGettingStarted()
