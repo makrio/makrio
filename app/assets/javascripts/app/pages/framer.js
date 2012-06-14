@@ -69,7 +69,7 @@ app.views.framerContent = app.views.Base.extend({
     this.photoForm.templateName = 'framer-photo-uploader'
 
     this.model.bind("change:frame_name", this.render, this)
-    this.model.bind("change:photos", this.render, this)
+    this.model.bind("change:photos", this.resetFrame, this)
 
     this.photoForm.bind("uploaded", this.setPhotosFromForm, this)
   },
@@ -78,6 +78,10 @@ app.views.framerContent = app.views.Base.extend({
     this.model.photos = this.photoForm.photos
     this.model.set({"photos": this.model.photos.toJSON()})
 
+    this.resetFrame()
+  },
+
+  resetFrame : function() {
     this.model.unset("frame_name") && this.model.setFrameName()
   },
 
@@ -106,11 +110,22 @@ app.views.Post.EditableSmallFrame = app.views.Post.SmallFrame.extend({
   className : "canvas-frame editable",
 
   events : {
-    "keyup [contentEditable]" : "setFormAttrs"
+    "keyup [contentEditable]" : "setFormAttrs",
+    "click .remove-image" : "removeImage"
   },
 
   formAttrs : {
     ".text-content p" : "text"
+  },
+
+  removeImage : function(evt) {
+    var imageId = $(evt.target).data('image-id')
+      , filteredPhotos = _.filter(this.model.get("photos"), function(item) {
+        return item.id !== imageId
+      });
+
+    this.model.set("photos", filteredPhotos)
+    this.model.photos = new Backbone.Collection(filteredPhotos)
   },
 
   postRenderTemplate : function(){
