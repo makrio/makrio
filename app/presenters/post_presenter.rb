@@ -37,6 +37,7 @@ class PostPresenter
         :title => title,
         :next_post => next_post_path,
         :previous_post => previous_post_path,
+        :screenshot_url => @post.screenshot_url,
 
         :interactions => {
             :likes => [user_like].compact,
