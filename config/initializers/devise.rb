@@ -44,7 +44,7 @@ Devise.setup do |config|
 
   config.omniauth :tumblr, SERVICES['tumblr']['consumer_key'], SERVICES['tumblr']['consumer_secret']
   config.omniauth :twitter, SERVICES['twitter']['consumer_key'], SERVICES['twitter']['consumer_secret']
-  config.omniauth :facebook, SERVICES['facebook']['app_id'], SERVICES['facebook']['app_secret'],  { :display => "popup", :scope => "email,publish_stream",
+  config.omniauth :facebook, SERVICES['facebook']['app_id'], SERVICES['facebook']['app_secret'],  { :display => "popup", :scope => "email,publish_actions",
                                                                                    :client_options => {:ssl => {:ca_file => EnviromentConfiguration.ca_cert_file_location}}}
 
   # Tell if authentication through request.params is enabled. True by default.
