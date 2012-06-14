@@ -4,9 +4,7 @@
 
 module StreamHelper
   def next_page_path(opts ={})
-    if controller.instance_of?(TagsController)
-      tag_path(:name => @stream.tag_name, :max_time => time_for_scroll(@stream))
-    elsif controller.instance_of?(PeopleController)
+    if controller.instance_of?(PeopleController)
       local_or_remote_person_path(@person, :max_time => time_for_scroll(@stream))
     elsif controller.instance_of?(PostsController)
       public_stream_path(:max_time => time_for_scroll(@stream))
