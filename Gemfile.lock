@@ -43,6 +43,13 @@ GIT
     markerb (1.0.0)
       redcarpet (>= 2.0)
 
+GIT
+  remote: git://github.com/westoque/phantomjs.rb.git
+  revision: 32cebc330d05fc212941718960d7858ba40559de
+  specs:
+    phantomjs.rb (0.0.4)
+      phantomjs-mac
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -306,8 +313,6 @@ GEM
     orm_adapter (0.0.7)
     pg (0.13.2)
     phantomjs-mac (0.0.3)
-    phantomjs.rb (0.0.4)
-      phantomjs-mac
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -524,7 +529,7 @@ DEPENDENCIES
   omniauth-tumblr
   omniauth-twitter
   pg
-  phantomjs.rb
+  phantomjs.rb!
   rack-cors (~> 0.2.4)
   rack-google-analytics
   rack-piwik
