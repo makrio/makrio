@@ -12,18 +12,76 @@ a {
 
 body {
   background: {
-    image: image-url('texture/hatched-light.jpg');
-    position: fixed;
-    /* scale background image down for iOS retina display */
-    size: 200px;
+    color : #000;
   }
-  padding-top: 55px;
+  padding: 40px 0 0 0;
+  max-width : 100%;
 }
 
 .message {
   padding: {
     left: 2px; };
 }
+
+.stream-element {
+  position : relative;
+  max-width : 100%;
+  x-overflow: hidden;
+  position: relative;
+  text-align: left;
+
+  * {
+    max-width: 100%;
+  }
+
+  min-height: 34px;
+  .avatar {
+    @include border-radius(4px);
+
+    float: left;
+    height: 35px;
+    width: 35px;
+    margin: {
+      right: 10px; }; }
+
+  .from {
+    a {
+      color: #444 !important;
+      font-weight: bold;
+    }
+    margin-bottom: 2px;
+    height: 45px;
+  }
+
+  .content-wrapper {
+    max-width : 100%;
+  }
+
+  .content {
+    z-index : -1;
+    border : {
+      left : 15px solid #000;
+      right : 15px solid #000;
+    }
+    padding : 0 10px;
+    padding-top : 40px;
+  }
+
+  .post-screenshot {
+    z-index : 20;
+    box-shadow : 0 2px 7px #000;
+
+    border : {
+      bottom : 1px solid rgba(0,0,0,0.8);
+    }
+  }
+}
+
+.stream {
+  background-color : #fff;
+}
+
+
 
 .stream_element,
 .comments {
