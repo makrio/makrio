@@ -37,6 +37,7 @@ class RegistrationsController < Devise::RegistrationsController
       Role.add_beta(@user.person)
       session["devise.facebook_data"] = nil if session["devise.facebook_data"] #only do this after create
       sign_in_and_redirect(:user, @user)
+      Resque.enqueue(Jobs::Mail::Welcome, @user.id)
     else
       @user.errors.delete(:person)
       
