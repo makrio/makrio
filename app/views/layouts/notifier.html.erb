@@ -1,20 +1,13 @@
 <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:14px;color:#333;">
   <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:14px;color:#333;">
     <tr width="100%">
-      <% if @sender %>
-        <td style="vertical-align:top;" width="80px">
-          <div style="background-color:#eee;height:70px;width:70px;">
-            <img alt="<%=@sender.name%>" src="<%=@sender.profile.image_url(:medium)%>" style="border:0;display:block;display:relative;top:0;left:0;" height="70px" width="70px">
-          </div>
-        </td>
-      <% end %>
       <td style="vertical-align:top;">
         <%= yield %>
         <br/> 
         <3 Makr.io
         <br/> 
         <br/> 
-        <i><%=fortune_message %></i>
+        <i><%= fortune_message %></i>
       </td>
     </tr>
   </table>
