@@ -35,11 +35,22 @@ app.models.Post = Backbone.Model.extend(_.extend({}, app.models.formatDateMixin,
     return this.get("author")
   },
 
+  toggleFavoriteUrl : function(){
+    return [this.urlRoot, this.id, "toggle_favorite"].join("/")
+  },
+
+  toggleFeaturedUrl : function(){
+    return [this.urlRoot, this.id, "toggle_featured"].join("/")
+  },
+
   toggleFavorite : function(options){
     this.set({favorite : !this.get("favorite")})
-
     /* guard against attempting to save a model that a user doesn't own */
-    if(options.save){ this.save() }
+    if(options.save){ this.save({}, { url: this.toggleFavoriteUrl()}) }
+  },
+
+  toggleFeatured : function(options){
+    this.save({featured : !this.get("featured")}, { url: this.toggleFeaturedUrl()})
   },
 
   headline : function() {

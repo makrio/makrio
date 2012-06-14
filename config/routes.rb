@@ -24,6 +24,8 @@ Diaspora::Application.routes.draw do
       get :interactions
       get :remix, :action =>  'new'
       get :frame
+      put :toggle_favorite
+      put :toggle_featured
     end
 
     resources :likes, :only => [:create, :destroy, :index ]
