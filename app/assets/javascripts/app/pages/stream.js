@@ -4,6 +4,7 @@ app.pages.Stream = app.views.Base.extend({
   events : {
     "click .bookmarklet-button" : "bookmarkletInstructionsPrompt",
     "activate .stream-frame-wrapper" : 'triggerInteractionLoad',
+    "click #composer-button" : 'compose'
   },
 
   subviews : {
@@ -50,6 +51,10 @@ app.pages.Stream = app.views.Base.extend({
     return _.extend(this.defaultPresenter(), {
       bookmarkletJS : this.bookmarkletJS()
     })
+  },
+
+  compose : function() {
+    app.router.navigate("/framer", {trigger : true})
   },
 
   selectFrame : function(post){
