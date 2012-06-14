@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   
   before_filter :authenticate_user!, :except => [:show, :frame, :iframe, :oembed, :interactions]
   before_filter :set_format_if_malformed_from_status_net, :only => :show
-  before_filter :find_post, :only => [:show, :frame, :next, :previous, :interactions]
+  before_filter :find_post, :only => [:show, :frame, :next, :previous, :interactions, :toggle_featured]
 
   layout 'post'
 
@@ -88,10 +88,16 @@ class PostsController < ApplicationController
     end
   end
 
-  def update
+  def toggle_favorite
     find_current_user_post(params[:id])
     @post.favorite = !@post.favorite
-    @post.save
+    @post.save!
+    render :nothing => true, :status => 202
+  end
+
+  def toggle_featured
+    raise("you can't do that") unless Role.is_admin?(current_user.person)
+    @post.toggle_featured!
     render :nothing => true, :status => 202
   end
 

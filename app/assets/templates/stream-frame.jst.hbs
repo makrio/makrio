@@ -24,6 +24,16 @@
                         {{author.name}}
                     {{/linkToPost}}
                 {{/if}}
+
+                {{#if current_user.admin}}
+                    <a href="#" class="toggle-featured">
+                        {{#featured}}
+                            unfeature
+                        {{else}}
+                            feature
+                        {{/featured}}
+                    </a>
+                {{/if}}
             </div>
         </div>
     </section>
