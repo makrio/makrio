@@ -1,59 +1,39 @@
-<div id="header">
-    <div class="container" style="position:relative;">
-            <div class="row">
-                <div class="span12">
-            <div id="top-right-nav">
-                {{#if current_user.guid}}
-                    <a href="{{bookmarkletJS}}" title="Bookmarklet" class="bookmarklet-button">
-                        <span class="label label-inverse">
-                            Post to Makr.io
-                        </span>
-                    </a>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <ul class="nav pull-right" style='z-index: 20;'>
+            <li>
+                <button href="/framer" id="composer-button" class="btn btn-danger" style="box-shadow: 0 -1px 2px #000, 0 1px 2px #444;"><i class="icon-plus icon-white"></i> Make</button>
+            </li>
 
-                    <a href="/notifications" title="Notifications" id="notifications-button">
-                        <span class="label label-inverse {{#if current_user.notifications_count}}unread{{/if}}">
-                            <i class="icon-envelope icon-white"></i>
-                            {{current_user.notifications_count}}
-                        </span>
-                    </a>
+            <li class="divider-vertical"></li>
 
-                    <a href="/people/{{current_user.guid}}" id="profile-button">
-                        <span class="label label-inverse">
-                            <i class="icon-user icon-white"></i>
-                        </span>
-                    </a>
-
-                    <a href="/users/sign_out" title="Log out" id="logout-button">
-                        <span class="label label-inverse">
-                            <i class="icon-off icon-white"></i>
-                        </span>
-                    </a>
-                {{else}}
-                    <a href="/" id="home-button">
-                        <span class="label label-inverse">
-                            <span>
-                                {{t "pod_name"}}
-                            </span>
-                        </span>
-                    </a>
-                {{/if}}
-            </div>
-
-           <div id="makr_header_centered">
-               <a href='/stream' class='logo'>
-                 <img src="{{imageUrl "makr_home_logo@2x.png"}}" height=26 width=118 />
-               </a>
-           </div>
-
-            <div id="make-button">
-                <a href="/framer" id="composer-button" class="control small label label-inverse">
-                    MAKE
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    {{current_user.nickname}}
+                    <b class="caret"></b>
                 </a>
-            </div>
-                </div>
-       </div>
+
+                <ul class="dropdown-menu">
+                    <li><a href="/people/{{current_user.guid}}">Profile</a></li>
+                    <li><a href="/notifications">Notifications
+                        {{#if current_user.notifications_count}}
+                            <span class="badge badge-info">{{current_user.notifications_count}}</span>
+                        {{/if}}
+                    </a></li>
+                    <li class="divider"></li>
+                    <li><a href="/users/sign_out">Log Out</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div id="makr_header_centered">
+            <a href='/stream' class='logo'>
+                <img src="{{imageUrl "makr_home_logo@2x.png"}}" height=26 width=118 />
+            </a>
+        </div>
     </div>
 </div>
+
 
 <div id="stream">
     <div id="meta-info-holder"/>

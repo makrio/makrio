@@ -273,6 +273,11 @@ article { //mood posts
 
 $bring-dark-accent-forward-color: #DDD;
 
+#top_right_nav {
+  float : right;
+
+}
+
 #top-right-nav {
   z-index: 10;
   position : absolute;
@@ -379,8 +384,9 @@ $bring-dark-accent-forward-color: #DDD;
 #makr_header_centered {
   position : absolute;
   text-align : center;
-
   width : 100%;
+
+  z-index : 1;
 }
 
 #getting_started {

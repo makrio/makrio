@@ -36,11 +36,9 @@
         {{#if is_own_profile}}
             <div id="composer" class="hidden"></div>
 
-            <a href="/posts/new" id="composer-button" class="control small label label-inverse">
-                MAKE
-            </a>
-            <a href="#" id="edit-mode-toggle" class="control small label label-inverse" title="Edit Posts" rel="tooltip">
-                <img src='{{imageUrl "buttons/edit2@2x.png"}}'/>
+            <button href="/framer" id="composer-button" class="btn btn-danger" style="box-shadow: 0 -1px 2px #000, 0 1px 2px #444;"><i class="icon-plus icon-white"></i> Make</button>
+            <a href="#" id="edit-mode-toggle" class="btn btn-inverse" title="Edit Posts" rel="tooltip" style="box-shadow: 0 -1px 2px #000, 0 1px 2px #444;">
+                <i class="icon-wrench icon-white"></i>
             </a>
         {{/if}}
     </section>
