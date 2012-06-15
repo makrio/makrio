@@ -40,7 +40,8 @@ class Postzord::Dispatcher
     if opts[:additional_subscribers].present?
       opts[:additional_subscribers] = [*opts[:additional_subscribers]].map(&:id)
     end
-    Resque.enqueue(Jobs::DeferredDispatch, user.id, object.class.to_s, object.id, opts)
+
+    Resque.enqueue(Jobs::FinalizePost, user.id, object.class.to_s, object.id, opts)
   end
 
   # @param object [Object]
