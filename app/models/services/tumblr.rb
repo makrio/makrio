@@ -36,7 +36,7 @@ class Services::Tumblr < Service
       :generator => 'makr.io', 
       :type => 'photo', 
       'click-through-url' => post_url,
-      'caption' => "made on <a href='#{profile_url}'>makr.io</a> | <a href='#{post_url}/remix'>remix this</a>",
+      'caption' => "made on <a href='https://www.makr.io'>makr.io</a> | <a href='#{post_url}/remix'>remix this</a>",
       :source => post.screenshot_url,
       :tags => "makr.io"
     }
