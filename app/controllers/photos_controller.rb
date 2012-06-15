@@ -41,20 +41,18 @@ class PhotosController < ApplicationController
   end
 
   def create
-    if remotipart_submitted?
-      unless params[:photo].present?
-        respond_to do |format|
-          format.json{ render :json =>{'success'=> false} }
-        end
+    unless params[:photo].present?
+      respond_to do |format|
+        format.any{ render :json =>{'success'=> false} }
       end
-      @photo = current_user.build_post(:photo, params[:photo])
-      if @photo.save
-        respond_to do |format|
-          format.json { render :json => {"success" => true, "data" => @photo.as_api_response(:backbone)} }
-        end
-      else
-        respond_with @photo, :location => photos_path, :error => message
+    end
+    @photo = current_user.build_post(:photo, params[:photo])
+    if @photo.save
+      respond_to do |format|
+        format.any{ render :json => {"success" => true, "data" => @photo.as_api_response(:backbone)} }
       end
+    else
+      respond_with @photo, :location => photos_path, :error => message
     end
   end
 
