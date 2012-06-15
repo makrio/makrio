@@ -9,12 +9,10 @@
     %meta{'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1'}
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}
 
-    %meta{:name => "description", :content => "#{AppConfig[:pod_name]}"}
-    %meta{:name => "author", :content => "Diaspora, Inc."}
     = og_site_name
 
     %link{:rel => 'shortcut icon', :href => "#{image_path('favicon.png')}" }
-    %link{:rel => 'apple-touch-icon', :href => "#{image_path('apple-touch-icon.png')}"}
+    %link{:rel => 'apple-touch-icon-precomposed', :href => "#{image_path('apple-touch-icon-precomposed.jpg')}"}
 
     %title
       = page_title yield(:page_title)

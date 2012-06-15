@@ -8,9 +8,6 @@
     %title
       = pod_name
 
-    %meta{:name => "description", :content => "#{AppConfig[:pod_name]} Mobile"}
-    %meta{:name => "author", :content => "Diaspora, Inc."}
-
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     / Viewport scale
     %meta{:name =>'viewport', :content => "width=device-width, minimum-scale=1 maximum-scale=1"}
@@ -20,9 +17,9 @@
     %meta{'http-equiv' => "cleartype", :content => 'on'}
     = og_site_name
     / Home screen icon (sized for retina displays)
-    %link{:rel => 'apple-touch-icon', :href => '/apple-touch-icon.png'}
+    %link{:rel => 'apple-touch-icon-precomposed', :href => "#{image_path('apple-touch-icon-precomposed.jpg')}"}
     / For Nokia devices
-    %link{:rel => 'shortcut icon', :href => '/apple-touch-icon.png'}
+    %link{:rel => 'shortcut icon', :href => "#{image_path('apple-touch-icon.jpg')}"}
 
     / iOS mobile web app indicator
     / NOTE(we will enable these once we don't have to rely on back/forward buttons anymore)
