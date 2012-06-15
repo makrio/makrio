@@ -110,7 +110,7 @@ app.views.Post.EditableSmallFrame = app.views.Post.SmallFrame.extend({
   className : "canvas-frame editable",
 
   events : {
-    "keydown [contentEditable]" : "setState",
+    "keyup [contentEditable]" : "setState",
     "click .remove-image" : "removeImage"
   },
 
