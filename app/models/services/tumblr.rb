@@ -30,15 +30,14 @@ class Services::Tumblr < Service
   end
 
   def build_tumblr_post(post, url)
-    {:generator => 'diaspora', :type => 'regular', :body => tumblr_template(post, url)}
-  end
-
-  def tumblr_template(post, url)
-    html = ''
-    post.photos.each do |photo|
-      html += "<img src='#{photo.url(:scaled_full)}'/><br>"
-    end
-    html += auto_link(post.text, :link => :urls)
+    post.screenshot! if Rails.env.production?
+    post_url = Rails.application.routes.url_helpers.short_post_url(post, :host => AppConfig[:pod_uri].host)
+    {
+      :generator => 'makr.io', 
+      :type => 'photo', 
+      'click-through-url' => post_url,
+      'caption' => "<a href='#{post_url}'>posted from makr.io</a>", 
+      :source => post.screenshot_url
+    }
   end
 end
-

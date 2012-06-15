@@ -78,7 +78,6 @@ class Postzord::Dispatcher
       self.deliver_to_local(local_people)
     end
 
-    self.deliver_to_remote(remote_people)
   end
 
   # @return [Array<Person>] Recipients of the object, minus any additional subscribers
@@ -94,22 +93,6 @@ class Postzord::Dispatcher
     User.where(:id => user_ids)
   end
 
-  # @param remote_people [Array<Person>] Recipients of the post on other pods
-  def deliver_to_remote(remote_people)
-    return if remote_people.blank?
-    queue_remote_delivery_job(remote_people)
-  end
-
-  # Enqueues a job in Resque
-  # @param remote_people [Array<Person>] Recipients of the post on other pods
-  # @return [void]
-  def queue_remote_delivery_job(remote_people)
-    Resque.enqueue(Jobs::HttpMulti,
-                   @sender.id,
-                   Base64.strict_encode64(@object.to_diaspora_xml),
-                   remote_people.map{|p| p.id},
-                   self.class.to_s)
-  end
 
   # @param people [Array<Person>] Recipients of the post
   def deliver_to_local(people)
@@ -131,17 +114,10 @@ class Postzord::Dispatcher
     Rails.logger.info("event=push route=local sender=#{@sender.person.diaspora_handle} recipients=#{ids.join(',')} payload_type=#{@object.class}")
   end
 
-  def deliver_to_hub
-    Rails.logger.debug("event=post_to_service type=pubsub sender_handle=#{@sender.diaspora_handle}")
-    Resque.enqueue(Jobs::PublishToHub, @sender.public_url)
-  end
 
   # @param url [String]
   # @param services [Array<Service>]
   def deliver_to_services(url, services)
-    if @object.respond_to?(:public) && @object.public
-      deliver_to_hub
-    end
     if @object.instance_of?(StatusMessage)
       services.each do |service|
         Resque.enqueue(Jobs::PostToService, service.id, @object.id, url)
