@@ -30,7 +30,7 @@ class Services::Tumblr < Service
   end
 
   def build_tumblr_post(post, url)
-    # post.screenshot! if Rails.env.production?
+    post.screenshot! if Rails.env.production?
     post_url = Rails.application.routes.url_helpers.post_url(post, :host => AppConfig[:pod_uri].host)
     profile_url = Rails.application.routes.url_helpers.person_url(post.author, :host => AppConfig[:pod_uri].host)
     {
