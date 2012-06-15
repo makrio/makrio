@@ -7,7 +7,7 @@ module Jobs
     @queue = :screenshot
     def self.perform(user_id, object_class, object_id, opts)
       # screenshot first to ensure it's there before posting to services
-      if object_class == StatusMessage && !AppConfig.single_process_mode?
+      if !AppConfig.single_process_mode?
         Post.find(post_id).screenshot!
       end
 
