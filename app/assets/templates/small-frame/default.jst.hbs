@@ -3,8 +3,8 @@
         {{#if photos}}
             {{#each photos}}
                 <div class="image-wrapper">
-                    <i class="icon-remove icon-white remove-image" data-image-id="{{id}}"></i>
                     <img src="{{sizes.large}}" {{#if ../../adjustedImageHeight}}style="height:{{../../adjustedImageHeight}}px;"{{/if}} />
+                    <i class="icon-remove icon-white remove-image" data-image-id="{{id}}"></i>
                 </div>
             {{/each}}
         {{/if}}

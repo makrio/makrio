@@ -550,12 +550,13 @@ a.logo{
 #framer .remove-image {
   @include opacity(0.6);
   @include transition(opacity);
+  @include border-radius(50%);
 
   display: inline-block;
   position: absolute;
   top: 5px;
   right: 5px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
 
   cursor : pointer;
 
