@@ -62,22 +62,8 @@ class PublicsController < ApplicationController
   end
 
   def receive
-    person = Person.find_by_guid(params[:guid])
-
-    if person.nil? || person.owner_id.nil?
-      Rails.logger.error("Received post for nonexistent person #{params[:guid]}")
-      render :nothing => true, :status => 404
-      return
-    end
-
-    @user = person.owner
-
-    FEDERATION_LOGGER.info("recieved a private message for user:#{@user.id}")
-    Resque.enqueue(Jobs::ReceiveEncryptedSalmon, @user.id, CGI::unescape(params[:xml]))
-
-    render :nothing => true, :status => 202
+    raise("receiving private federated messages, shouldn't be happening")
   end
-
 
   private
 
