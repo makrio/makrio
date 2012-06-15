@@ -3,6 +3,13 @@
 #   the COPYRIGHT file.
 
 module ApplicationHelper
+  def include_fb_canvas_redirect
+    javascript_tag <<-JS.html_safe
+      if(window.top.location.href != window.location.href)
+        window.top.location.href = window.location.href;
+    JS
+  end
+
   def frame_page?
     params[:action] == 'frame' 
   end
