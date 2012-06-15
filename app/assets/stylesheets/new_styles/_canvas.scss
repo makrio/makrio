@@ -308,7 +308,10 @@ a.logo{
   /* larger declarations */
   &.x2.width .content {
     @include wide();
-    //font-size : 1.8em;
+
+    p {
+      font-size : 1.5em;
+    }
   }
 
   &.sticky-note.x2.height  .content {
