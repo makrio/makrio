@@ -1,8 +1,8 @@
 app.forms.PictureBase = app.views.Base.extend({
   events : {
     'ajax:complete .new_photo' : "photoUploaded",
-    "change input[name='photo[user_file]']" : "submitForm",
-    "click .img-url" : "submitForm"
+    "change input[name='photo[user_file]']" : "submitUpload",
+    "click .img-url" : "submitURL"
   },
 
   onSubmit : $.noop,
@@ -12,10 +12,17 @@ app.forms.PictureBase = app.views.Base.extend({
     this.$("input[name=authenticity_token]").val($("meta[name=csrf-token]").attr("content"))
   },
 
-  submitForm : function (evt){
+  submitUpload : function (){
     this.$("form").submit();
     this.onSubmit();
   },
+
+  submitURL : function(){
+    if(this.$("form input[name='photo[image_url]']").val()){
+      this.submitUpload();
+    } 
+  },
+
 
   photoUploaded : function(evt, xhr) {
     resp = JSON.parse(xhr.responseText)
