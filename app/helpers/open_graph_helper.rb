@@ -12,7 +12,7 @@ module OpenGraphHelper
   end
 
   def og_image(post)
-    post.screenshot_url || meta_tag_with_property('og:image', default_image_url(post.author))
+    meta_tag_with_property('og:image', post.screenshot_url)
   end
 
   def og_author(post)
