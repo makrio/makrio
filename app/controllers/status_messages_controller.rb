@@ -38,6 +38,10 @@ class StatusMessagesController < ApplicationController
     @status_message.attach_photos_by_ids(params[:photos])
 
     if @status_message.save
+      # screenshot hax; seems model specific and shouldn't be here,
+      # but this will do the job for now.
+      Resque.enqueue(Jobs::ScreenshotPost, post.id)
+
       aspects = current_user.aspects_from_ids(destination_aspect_ids)
       current_user.add_to_streams(@status_message, aspects)
       receiving_services = Service.titles(services)
