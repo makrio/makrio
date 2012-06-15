@@ -73,8 +73,13 @@ class Photo < ActiveRecord::Base
     processed_image.path.present?
   end
 
-  def url(opts = {})
+  def base_url(opts = {})
     processed? ? processed_image.url(opts) : unprocessed_image.url
+  end
+
+  def url(opts = {})
+    #hostname + 
+    base_url(opts)
   end
 
   def hostname
