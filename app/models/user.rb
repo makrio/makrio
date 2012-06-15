@@ -201,7 +201,7 @@ class User < ActiveRecord::Base
   end
 
   def send_reset_password_instructions
-    generate_reset_password_token! if reset_password_period_valid?
+    generate_reset_password_token! if should_generate_reset_token?
     Resque.enqueue(Jobs::ResetPassword, self.id)
   end
 
