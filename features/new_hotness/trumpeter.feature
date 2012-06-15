@@ -11,9 +11,7 @@ Feature: Creating a new post
     And I finalize my frame
     When I go to "/stream"
     Then I should see "I love RMS" as the first post in my stream
-    And "I love RMS" should be a public post in my stream
     Then "I love RMS" should have the "button.gif" picture
-
 
 #  Scenario: Mention a contact
 #   Given a user named "Alice Smith" with email "alice@alice.alice"

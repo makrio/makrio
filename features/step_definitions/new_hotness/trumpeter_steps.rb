@@ -42,20 +42,22 @@ end
 
 def set_image_filename(file_name)
   @image_sources ||= {}
-  @image_sources[file_name] = all(".photos img").last["src"].tap {|src| src.should be_present}
+  @image_sources[file_name] = all(framer_image_selector).last["src"].tap {|src| src.should be_present}
 end
 
 def find_image_by_filename(filename)
   find("img[src='#{get_image_filename(filename)}']")
 end
 
-def upload_photo(file_name)
-  orig_photo_count = all(".photos img").size
+def framer_image_selector
+  ".image-wrapper img"
+end
 
-  within ".new_photo" do
-    attach_file "photo[user_file]", Rails.root.join("spec", "fixtures", file_name)
-    wait_until { all(".photos img").size == orig_photo_count + 1 }
-  end
+def upload_photo(file_name)
+  orig_photo_count = all(framer_image_selector).size
+
+  attach_file "photo[user_file]", Rails.root.join("spec", "fixtures", file_name)
+  wait_until { all(framer_image_selector).size == orig_photo_count + 1 }
 
   set_image_filename(file_name)
 end
@@ -65,7 +67,7 @@ When /^I trumpet$/ do
 end
 
 When /^I write "([^"]*)"(?:| with body "([^"]*)")$/ do |headline, body|
-  fill_in 'text', :with => [headline, body].join("\n")
+  fill_in_content_editable_text([headline, body].join("\n"))
 end
 
 Then /I type "([^"]*)" to mention "([^"]*)"$/ do |typed, user_name|
@@ -94,12 +96,14 @@ end
 
 When /^I make a new publisher post "([^"]*)"$/ do |post_text|
   visit new_post_path
+  fill_in_content_editable_text(post_text)
+  finalize_frame
+end
+
+def fill_in_content_editable_text(post_text)
   node = find(".text-content p")
-  find(".text-content p").visible?
   node.native.clear
   node.native.send_keys(post_text.to_s)
-  sleep 2
-  finalize_frame
 end
 
 When /^I go through the default framer$/ do
@@ -111,7 +115,9 @@ When /^I finalize my frame$/ do
 end
 
 Then /^"([^"]*)" should have (\d+) pictures$/ do |post_text, number_of_pictures|
-  find_post_by_text(post_text).all(".photo_attachments img").size.should == number_of_pictures.to_i
+  within find_post_by_text(post_text) do
+    all(framer_image_selector).size.should == number_of_pictures.to_i
+  end
 end
 
 Then /^I should see "([^"]*)" in the framer preview$/ do |post_text|
@@ -161,7 +167,9 @@ Then /^the post should mention "([^"]*)"$/ do |user_name|
 end
 
 When /^I click into the "([^"]*)" post$/ do |post_text|
-  find("#canvas .content:contains('#{post_text}') .permalink").click
+  within "#stream-content" do
+    find_post_by_text(post_text).find(".permalink-wrapper a").click
+  end
 end
 
 Then /^"([^"]*)" should be the first canvas frame$/ do |post_text|

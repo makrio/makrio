@@ -793,16 +793,17 @@ describe User do
   end
 
   describe "#send_reset_password_instructions" do
+    #devise hax
     it "generates a reset password token if it's supposed to" do
       user = User.new
-      user.stub!(:reset_password_period_valid?).and_return(true)
+      user.should_receive(:should_generate_reset_token?).and_return(true)  #devise private method
       user.should_receive(:generate_reset_password_token)
       user.send_reset_password_instructions
     end
 
     it "does not generate a reset password token if it's not supposed to" do
       user = User.new
-      user.stub!(:should_generate_token?).and_return(false)
+      user.should_receive(:should_generate_reset_token?).and_return(false)  #devise private method
       user.should_not_receive(:generate_reset_password_token)
       user.send_reset_password_instructions
     end
