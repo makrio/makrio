@@ -17,9 +17,9 @@
     %meta{'http-equiv' => "cleartype", :content => 'on'}
     = og_site_name
     / Home screen icon (sized for retina displays)
-    %link{:rel => 'apple-touch-icon-precomposed', :href => "#{image_path('apple-touch-icon-precomposed.png')}"}
+    %link{:rel => 'apple-touch-icon-precomposed', :href => image_path('apple-touch-icon-precomposed.png')}
     / For Nokia devices
-    %link{:rel => 'shortcut icon', :href => "#{image_path('apple-touch-icon.jpg')}"}
+    %link{:rel => 'shortcut icon', :href => image_path('apple-touch-icon-precomposed.png')}
 
     / iOS mobile web app indicator
     / NOTE(we will enable these once we don't have to rely on back/forward buttons anymore)
