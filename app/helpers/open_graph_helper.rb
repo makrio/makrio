@@ -16,7 +16,7 @@ module OpenGraphHelper
   end
 
   def og_author(post)
-    meta_tag_with_property("#{AppConfig[:open_graph_namespace]}:author", post.author.name)
+    meta_tag_with_property("author", post.author.name)
   end
 
   def og_site_name
