@@ -30,12 +30,6 @@ describe PublicsController do
       post :receive_public
       response.code.should == '422'
     end
-
-    it 'enqueues a ReceiveUnencryptedSalmon job' do
-      xml = "stuff"
-      Resque.should_receive(:enqueue).with(Jobs::ReceiveUnencryptedSalmon, xml)
-      post :receive_public, :xml => xml
-    end
   end
 
   describe '#receive' do

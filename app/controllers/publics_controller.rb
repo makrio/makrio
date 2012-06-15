@@ -58,9 +58,7 @@ class PublicsController < ApplicationController
   end
 
   def receive_public
-    FEDERATION_LOGGER.info("recieved a public message")
-    Resque.enqueue(Jobs::ReceiveUnencryptedSalmon, CGI::unescape(params[:xml]))
-    render :nothing => true, :status => :ok
+    raise("receiving public federated messages, shouldn't be happening")
   end
 
   def receive
