@@ -278,6 +278,11 @@ class User < ActiveRecord::Base
 
   def dispatch_post(post, opts={})
     FEDERATION_LOGGER.info("user:#{self.id} dispatching #{post.class}:#{post.guid}")
+
+    # screenshot hax; seems model specific and shouldn't be here,
+    # but this will do the job for now.
+    Resque.enqueue(Jobs::ScreenshotPost(post.id))
+
     Postzord::Dispatcher.defer_build_and_post(self, post, opts)
   end
 

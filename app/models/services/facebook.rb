@@ -10,11 +10,7 @@ class Services::Facebook < Service
   end
 
   def post(post, url='')
-    if post.public?
-      open_graph_post("make", post)
-    else
-      post_to_facebook("https://graph.facebook.com/me/feed", create_post_params(post))
-    end
+    open_graph_post("make", post)
   end
 
   def public_message(post, url)
