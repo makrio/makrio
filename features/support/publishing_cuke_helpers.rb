@@ -18,23 +18,23 @@ module PublishingCukeHelpers
   end
 
   def expand_first_post
-    find(".stream_element:first .expander").click
+    find(".stream_frame:first .expander").click
     wait_until{ !find(".expander").visible? }
   end
 
   def first_post_collapsed?
-    find(".stream_element:first .collapsible").should have_css(".expander")
-    find(".stream_element:first .collapsible").has_selector?(".collapsed")
+    find(".stream_frame:first .collapsible").should have_css(".expander")
+    find(".stream_frame:first .collapsible").has_selector?(".collapsed")
   end
 
   def first_post_expanded?
-    find(".stream_element:first .expander").should_not be_visible
-    find(".stream_element:first .collapsible").has_no_selector?(".collapsed")
-    find(".stream_element:first .collapsible").has_selector?(".opened")
+    find(".stream_frame:first .expander").should_not be_visible
+    find(".stream_frame:first .collapsible").has_no_selector?(".collapsed")
+    find(".stream_frame:first .collapsible").has_selector?(".opened")
   end
 
   def first_post_text
-    stream_element_numbers_content(1).text()
+    find(".stream-frame:nth-child(1) .text-content").text()
   end
 
   def frame_numbers_content(position)
@@ -45,12 +45,8 @@ module PublishingCukeHelpers
     find(".stream-frame:contains('#{text}')")
   end
 
-  def stream_element_numbers_content(position)
-    find(".stream_element:nth-child(#{position}) .post-content")
-  end
-
   def find_post_by_text(text)
-    find(".stream_element:contains('#{text}')")
+    find(".stream-frame:contains('#{text}')")
   end
 
   def like_post(post_text)
@@ -67,7 +63,7 @@ module PublishingCukeHelpers
   end
 
   def stream_posts
-    all('.stream_element')
+    all('.stream-frame')
   end
 
   def comment_on_post(post_text, comment_text)
