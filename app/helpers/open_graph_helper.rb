@@ -12,7 +12,7 @@ module OpenGraphHelper
   end
 
   def og_image(post)
-    tags = post.photos.map{|x| meta_tag_with_property('og:image', x.screenshot_url)}
+    tags = post.screenshot_url
     tags << meta_tag_with_property('og:image', default_image_url(post.author)) if tags.empty?
     tags.join(' ')
   end
