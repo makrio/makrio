@@ -281,7 +281,7 @@ class User < ActiveRecord::Base
 
     # screenshot hax; seems model specific and shouldn't be here,
     # but this will do the job for now.
-    Resque.enqueue(Jobs::ScreenshotPost(post.id))
+    Resque.enqueue(Jobs::ScreenshotPost, post.id)
 
     Postzord::Dispatcher.defer_build_and_post(self, post, opts)
   end
