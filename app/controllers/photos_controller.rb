@@ -41,24 +41,26 @@ class PhotosController < ApplicationController
   end
 
   def create
-    rescuing_photo_errors do
-      if remotipart_submitted?
-        unless params[:photo].present?
-          respond_to do |format|
-            format.json{ render :json =>{'success'=> false} }
-          end
+    if remotipart_submitted?
+      unless params[:photo].present?
+        respond_to do |format|
+          format.json{ render :json =>{'success'=> false} }
         end
-        @photo = current_user.build_post(:photo, params[:photo])
-        if @photo.save
-          respond_to do |format|
-            format.json { render :json => {"success" => true, "data" => @photo.as_api_response(:backbone)} }
-          end
-        else
-          respond_with @photo, :location => photos_path, :error => message
+      end
+      @photo = current_user.build_post(:photo, params[:photo])
+      if @photo.save
+        respond_to do |format|
+          format.json { render :json => {"success" => true, "data" => @photo.as_api_response(:backbone)} }
         end
       else
-        legacy_create
+        respond_with @photo, :location => photos_path, :error => message
       end
+    end
+  end
+
+  def legacy
+    rescuing_photo_errors do
+      legacy_create
     end
   end
 

@@ -59,6 +59,9 @@ Diaspora::Application.routes.draw do
 
   resources :photos, :except => [:index] do
     put :make_profile_photo
+    collection do
+      post :legacy
+    end
   end
 
   post "upload_wallpaper" => 'profiles#upload_wallpaper_image'
