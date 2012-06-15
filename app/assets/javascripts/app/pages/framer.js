@@ -143,7 +143,9 @@ app.views.Post.EditableSmallFrame = app.views.Post.SmallFrame.extend({
   },
 
   postRenderTemplate : function(){
-    this.$(".text-content p").attr("contentEditable", true)
+    var editable = this.$(".text-content p")
+    editable.attr("contentEditable", true)
+    if(!editable.text()){editable.html("&nbsp")} //needed for cucumber
   }
 });
 

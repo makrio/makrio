@@ -8,6 +8,7 @@ app.Router = Backbone.Router.extend({
 
     "posts/:id/remix?*params" : 'remix', // facebook action links supply signed_request params
     "posts/:id/remix" : 'remix',
+    "posts/new" : "redirectToFramer",
 
     "framer?*params": "framer", // bookmarklet has params
     "framer": "framer",
@@ -20,6 +21,10 @@ app.Router = Backbone.Router.extend({
 
     "posts/:id/next": "siblingPost",
     "posts/:id/previous": "siblingPost"
+  },
+
+  redirectToFramer : function(){
+    app.router.navigate("/framer", true)
   },
 
   newStream : function() {
