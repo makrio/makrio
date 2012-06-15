@@ -28,10 +28,6 @@ def select_from_dropdown(option_text, dropdown)
   end
 end
 
-def go_to_framer
-  find(".next").click()
-end
-
 def finalize_frame
   find(".done").click()
 end
@@ -98,18 +94,16 @@ end
 
 When /^I make a new publisher post "([^"]*)"$/ do |post_text|
   visit new_post_path
-  fill_in 'text', :with => post_text
-  go_to_framer
+  node = find(".text-content p")
+  find(".text-content p").visible?
+  node.native.clear
+  node.native.send_keys(post_text.to_s)
+  sleep 2
   finalize_frame
 end
 
 When /^I go through the default framer$/ do
-  go_to_framer
   finalize_frame
-end
-
-When /^I start the framing process$/ do
-  go_to_framer
 end
 
 When /^I finalize my frame$/ do
