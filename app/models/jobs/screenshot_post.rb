@@ -6,6 +6,7 @@ module Jobs
   class ScreenshotPost < Base
     @queue = :screenshot
     def self.perform(post_id)
+      return if AppConfig.single_process_mode?
       Post.find(post_id).screenshot!
     end
   end
