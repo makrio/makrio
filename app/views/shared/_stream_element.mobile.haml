@@ -8,22 +8,14 @@
       .shield
         = t("javascripts.stream.nsfw")
         = link_to t('javascripts.stream.show'), '#'
-  
-
-  - if post.is_a?(Reshare)
-    = render 'reshares/reshare', :reshare => post, :post => post.root
-
-  = render 'shared/photo_area', :post => post
 
   .content
     = render 'shared/post_info', :post => post
 
-    - if post.is_a?(StatusMessage)
-      = render 'status_messages/status_message', :post => post, :photos => post.photos
+  = image_tag post.screenshot_url
 
   .bottom_bar
     .floater
-      = mobile_reshare_icon(post)
       = mobile_comment_icon(post)
       = mobile_like_icon(post)
 
