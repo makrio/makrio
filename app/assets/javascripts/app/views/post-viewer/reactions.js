@@ -15,7 +15,8 @@ app.views.PostViewerReactions = app.views.Base.extend({
     return {
       likes : this.model.likes.toJSON(),
       comments : this.model.comments.toJSON(),
-      reshares : this.model.reshares.toJSON()
+      reshares : this.model.reshares.toJSON(),
+      remixes : this.model.remixes.toJSON()
     }
   },
 

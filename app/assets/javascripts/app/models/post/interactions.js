@@ -10,21 +10,25 @@ app.models.Post.Interactions = Backbone.Model.extend({
     this.comments = new app.collections.Comments(this.get("comments"), {post : this.post})
     this.likes = new app.collections.Likes(this.get("likes"), {post : this.post});
     this.reshares = new app.collections.Reshares(this.get("reshares"), {post : this.post});
+    this.remixes = new app.collections.Remixes(this.get("remixes"), {post : this.post});
   },
 
   parse : function(resp){
     this.comments.reset(resp.comments)
     this.likes.reset(resp.likes)
     this.reshares.reset(resp.reshares)
+    this.remixes.reset(resp.remixes)
 
     var comments = this.comments
       , likes = this.likes
       , reshares = this.reshares
+      , remixes = this.remixes
 
     return {
       comments : comments,
       likes : likes,
       reshares : reshares,
+      remixes : remixes,
       fetched : true
     }
   },

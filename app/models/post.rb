@@ -22,6 +22,9 @@ class Post < ActiveRecord::Base
   has_many :reshares, :class_name => "Reshare", :foreign_key => :root_guid, :primary_key => :guid
   has_many :resharers, :class_name => 'Person', :through => :reshares, :source => :author
 
+  has_many :remixes, :class_name => "Post", :foreign_key => :root_guid, :primary_key => :guid
+  has_many :remixers, :class_name => 'Person', :through => :reshares, :source => :author
+
   belongs_to :o_embed_cache
 
   after_create do
@@ -40,6 +43,10 @@ class Post < ActiveRecord::Base
   scope :liked_by, lambda { |person|
     joins(:likes).where(:likes => {:author_id => person.id})
   }
+
+  def remixes
+    Post.where(:root_guid => self.guid)
+  end
 
   def self.newer(post)
     where("posts.created_at > ?", post.created_at).reorder('posts.created_at ASC').first
