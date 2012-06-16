@@ -67,8 +67,15 @@
   #post-comments {
     text-align: left;
     padding-top: 0;
+  }
+
+  #post-remix-container {
     max-height: 350px;
     overflow-y: auto;
+  }
+
+  #remixes {
+    padding: 15px;
   }
 
   #new-post-comment {
