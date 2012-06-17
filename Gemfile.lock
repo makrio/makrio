@@ -521,16 +521,7 @@ DEPENDENCIES
   omniauth-tumblr
   omniauth-twitter
   pg
-<<<<<<< HEAD
-<<<<<<< HEAD
-  phantomjs.rb (= 0.0.2)
   rack-cors (= 0.2.7)
-=======
-  rack-cors (~> 0.2.4)
->>>>>>> new strat for phantom
-=======
-  rack-cors (= 0.2.7)
->>>>>>> bookmarklet wip
   rack-google-analytics
   rack-piwik
   rack-rewrite (~> 1.2.1)
