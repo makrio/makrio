@@ -27,11 +27,6 @@
             origin : function() {
                 return jQuery('#makrio-bm-script').data('origin');
             },
-            sessionId : "<%= @session_id %>",
-
-            endpoint : function(){
-                return this.origin() + '/ingredients'
-            },
 
             initialize : function() {
                 this.showActive()
@@ -40,33 +35,48 @@
 
             deactivate : function() {
                 jQuery(".makrio-bm-el").fadeOut(function(){
+                    jQuery('body').css('overflow')
                     window.makrio = undefined
                 })
             },
 
             showActive : function() {
+                jQuery('body').css('overflow', 'hidden')
+
                 jQuery("<div/>", {
                     text : "makr.io active",
                     class : "makrio-bm-el",
-                    style : "position:fixed; bottom:0; left:0; width: 100%; padding:10px; background-color: red; color: #fff; font-size: 20px; line-height: auto; z-index: 999;"
+                    style : "position:fixed; bottom:0; left:0; width: 100%; height:100%; padding:10px;  overflow:scroll; background-color: red;  color: #fff; font-size: 20px; line-height: auto; z-index: 999;"
                 }).appendTo("body")
             },
 
             initImageClicks : function() {
                 var self = this;
+                var allImages = jQuery("img");
 
-                jQuery("a img, img").live("click", function(evt){
+                jQuery("img").each(function(index){
+                    var image = jQuery(this)
+                    var ratio = image.height() / image.width() 
+
+                    if((image.width() > 300) && (image.height() > 100)) {
+                        jQuery("<img/>", {
+                            class : "makrio",
+                            style : "position:relative; max-width: 200px;   padding:20px; border: 1px solid black;max-height:200px;float: left",
+                            src : jQuery(this).attr('src'),
+                        }).appendTo(".makrio-bm-el")
+                    } 
+                })
+
+
+                jQuery('.makrio').click(function(evt){
+                    console.log("clicked")
                     evt.stopImmediatePropagation()
                     evt.preventDefault()
 
-                    var element = jQuery(evt.target)
-                    if(element.is("a")) {
-                        element = element.find("img")
-                    }
-
-                    self.saveImage(element)
+                    self.saveImage(jQuery(evt.target))
                     return false;
                 })
+
             },
 
             imageUrl : function(src) {
@@ -80,20 +90,25 @@
                             url : self.imageUrl(element.attr("src")),
                             height : element.height(),
                             width : element.width(),
-                            session_id : self.sessionId
                         }
 
-                console.log(self.sessionId)
+                this.openPublisher(imageParams.url)
+            },
 
-                jQuery.ajax({
-                    url : self.endpoint(),
-                    type : "post",
-                    data : imageParams,
-                })
-                .done(function(){
-                    console.log('party all the time')
-                })
+             openPublisher : function(remoteUrl) {
+                var url = this.origin() + "/framer?remoteurl="+encodeURIComponent(remoteUrl)+'&v=1&';
+                var openFramer = function(){
+                    if(!window.open(url+'noui=1&jump=doclose','diasporav1','menubar=no,location=no,links=no,scrollbars=no,toolbar=no,width=1000px,height=600px'))location.href=url+'jump=yes'
+                };
+
+                if(/Firefox/.test(navigator.userAgent)){
+                    setTimeout(openFramer,0)
+                }
+                else{
+                    openFramer()
+                }
             }
+
         });
 
         window.makrio.initialize();
