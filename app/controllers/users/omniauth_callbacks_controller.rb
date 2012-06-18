@@ -47,7 +47,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.present?
       validate_service_user_is_current_user
     else
-      current_user.services << @service
+      @user = current_user
+      @user.services << @service
       update_profile_from_omniauth
     end
 
@@ -62,7 +63,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def update_profile_from_omniauth
     #current_user.update_profile(current_user.person.profile.from_omniauth_hash(user))
     fetch_photo = current_user.person.profile[:image_url].blank?
-    Resque.enqueue(Jobs::FetchProfilePhoto, current_user.id, service.id, @user["image"]) if fetch_photo
+    Resque.enqueue(Jobs::FetchProfilePhoto, current_user.id, service.id, @user["image"]) if @user && fetch_photo
   end
 
   def sign_in_or_register_user_from_facebook
