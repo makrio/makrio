@@ -429,13 +429,24 @@ a.logo{
       text-align: center;
 
       a {
-        min-width : 35%;
+        min-width : 42%;
+        max-width: 42%;
+
         
         i {
           margin-left: -5px;
           margin-right: 5px;
           margin-top: 2px;
         }
+      }
+    }
+
+    .share-actions {
+      text-align: center;
+      padding-bottom: 20px;
+
+      a {
+        margin-left: 15px
       }
     }
 

@@ -15,4 +15,8 @@ class ServicesController < ApplicationController
     flash[:notice] = I18n.t 'services.destroy.success'
     redirect_to services_url
   end
+
+  def redirect_from_service
+    render :text => ("<script>window.close()</script>")
+  end
 end

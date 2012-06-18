@@ -197,6 +197,8 @@ Diaspora::Application.routes.draw do
   end
 
   resources :services, :only => [:index, :destroy]
+  
+  get "/done" => 'services#redirect_from_service'
 
   namespace :api do
     namespace :v0 do

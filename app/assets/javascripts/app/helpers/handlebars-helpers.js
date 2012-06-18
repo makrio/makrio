@@ -15,13 +15,12 @@ Handlebars.registerHelper('linkToPerson', function(context, block) {
 })
 
 Handlebars.registerHelper('linkToPost', function(context, block) {
-  var html = "<a href=\"/posts/" + context.guid + "\" class=\"author-name\">";
+  var html = "<a href=\"/p/" + context.guid + "\" class=\"author-name\">";
       html+= block.fn(context);
       html+= "</a>";
 
   return html
 })
-
 
 Handlebars.registerHelper('personImage', function(person, size, imageClass) {
   /* we return here if person.avatar is blank, because this happens when a
