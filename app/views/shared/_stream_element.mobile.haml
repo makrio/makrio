@@ -12,7 +12,7 @@
   .content
     = render 'shared/post_info', :post => post
 
-  = image_tag(post.screenshot_url) if screenshot_url.present?
+  = image_tag(post.screenshot_url) if post.screenshot_url.present?
 
   .bottom_bar
     .floater
