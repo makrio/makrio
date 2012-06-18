@@ -82,7 +82,7 @@ class PostsController < ApplicationController
   end
 
   def interactions
-    respond_with(PostInteractionPresenter.new(@post, current_user))
+    render :json => PostInteractionPresenter.new(@post, current_user).as_json
   end
 
   def destroy
