@@ -287,23 +287,22 @@ $bring-dark-accent-forward-color: #DDD;
 }
 
 #header {
-  @include box-shadow(0,2px,3px, rgba(0,0,0,0.2));
-  @include linear-gradient(#222, #111);
-
   position : fixed;
-  top : 0;
+  top : 20px;
   width : 100%;
   padding : 0;
-  z-index : 30;
-
-  border-bottom : 1px solid #000;
 
   color : #fff;
 
-
   .logo {
-    position : relative;
-    top : 2px;
+    float : left;
+    margin-left : 20px;
+  }
+
+  #composer-button {
+    float : right;
+    margin-right : 20px;
+    margin-top : 17px;
   }
 }
 
