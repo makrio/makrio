@@ -18,7 +18,6 @@ app.pages.Stream = app.views.Base.extend({
 
     this.streamView = new app.pages.Stream.InfiniteScrollView({ model : this.stream })
     this.interactionsView = new app.views.StreamInteractions()
-    this.streamView.on('loadMore', this.updateUrlState, this);
     this.stream.on("fetched", function(){
       this._resetPeriod = 2000
       this.refreshScrollSpy()
@@ -70,17 +69,6 @@ app.pages.Stream = app.views.Base.extend({
   throttledInteractions : _.throttle(function(post){
     this.interactionsView.setInteractions(post)
   }, 500),
-
-  updateUrlState : function(){
-    var post = this.stream.items.last();
-    if(post){
-      this.navigateToPost(post)
-    }
-  },
-
-  navigateToPost : function(post){
-    app.router.navigate(location.pathname + "?max_time=" + post.createdAt(), {replace: true})
-  },
 
   triggerInteractionLoad : function(evt){
       this.selectFrame(this.stream.items.get($(evt.target).data("id")))
