@@ -88,7 +88,7 @@ app.pages.Stream = app.views.Base.extend({
 
 
   bookmarkletJS : function() {
-    return "javascript:void(function(){ \
+    return "javascript:void(function(){ if(window.location.host.match(/makr/){return};\
     var head= document.getElementsByTagName('head')[0]; \
     var script= document.createElement('script'); \
     script.type= 'text/javascript'; \
