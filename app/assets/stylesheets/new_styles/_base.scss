@@ -471,6 +471,21 @@ $bring-dark-accent-forward-color: #DDD;
   padding: 0 !important;
 }
 
+.share-button-container {
+  margin: auto;
+  width: 30%;
+
+  .facebook-button {
+    margin-left: 14px;
+  }
+}
+
+#framer-complete {
+  text-align: center;
+  margin-top:20%;
+
+}
+
 /* responsive */
 @media (max-width: 767px) {
   body {

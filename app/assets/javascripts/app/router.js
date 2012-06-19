@@ -12,6 +12,7 @@ app.Router = Backbone.Router.extend({
 
     "framer": "framer",
     "framer?bookmarklet=true&*params": "bookmarklet", 
+    "framer/done/:id" : "doneFraming",
 
     "posts/:id?:params": "singlePost",
     "posts/:id": "singlePost",
@@ -50,6 +51,10 @@ app.Router = Backbone.Router.extend({
     var url = params.split('&')[0].replace('remoteurl=', '')
     app.remotePhotoUrl  = decodeURIComponent(url)
     this.framer()
+  },
+
+  doneFraming : function(id){
+    this.renderPage(function(){ return new app.pages.DoneFraming({ model_id : id})});
   },
 
   framer : function(){

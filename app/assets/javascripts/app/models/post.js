@@ -54,6 +54,7 @@ app.models.Post = Backbone.Model.extend(_.extend({}, app.models.formatDateMixin,
   },
 
   headline : function() {
+    if(!this.has('text')){ return '';}
     var headline = this.get("text").trim()
       , newlineIdx = headline.indexOf("\n")
     return (newlineIdx > 0 ) ? headline.substr(0, newlineIdx) : headline
