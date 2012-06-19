@@ -18,7 +18,15 @@ class UnprocessedImage < CarrierWave::Uploader::Base
   end
 
   process :get_version_dimensions 
+  process :orient_image
 
+  def orient_image
+    manipulate! do |img|
+      img.auto_orient
+      img
+    end
+  end
+  
   def get_version_dimensions
     model.width, model.height = `identify -format "%wx%h " #{file.path}`.split(/x/)
   end
