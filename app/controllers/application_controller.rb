@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   has_mobile_fu
   protect_from_forgery :except => :receive
 
+  before_filter :ensure_not_herokou
   before_filter :ensure_http_referer_is_set
   before_filter :set_locale
   before_filter :set_git_header if (AppConfig[:git_update] && AppConfig[:git_revision])
@@ -20,6 +21,12 @@ class ApplicationController < ActionController::Base
                 :only_sharing_count,
                 :tag_followings,
                 :tags
+
+  def ensure_not_herokou
+    if request.url.match(/heroku/)
+      redirect_to 'https://makr.io' + request.path, :status => :moved_permanently
+    end
+  end
 
   def ensure_http_referer_is_set
     request.env['HTTP_REFERER'] ||= '/'
