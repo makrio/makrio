@@ -34,7 +34,7 @@
             },
 
             deactivate : function() {
-                jQuery(".makrio-bm-el").fadeOut(function(){
+                jQuery(".makrio-bm-el").fadeOut(200, function(){
                     jQuery('body').attr('style', '')
                     window.makrio = undefined
                 })
@@ -45,27 +45,20 @@
 
                 jQuery("<div/>", {
                     'class' : "makrio-bm-el",
-                    style : "position:fixed; bottom:0; left:0; width: 100%; height:100%; padding:10px;  overflow:scroll; background-color: black;  color: #fff; font-size: 20px; line-height: auto; z-index: 100000;"
+                    style : "text-align: center; position:fixed; bottom:0; left:0; width: 100%; height:100%; overflow:scroll; background-color: rgba(20,20,20,0.95);  color: #fff; font-size: 20px; line-height: auto; z-index: 100000;"
                 }).appendTo("body")
 
-                jQuery("<h1/>", {
-                    style: 'size: 2em; position:relative; float:left;font:sans-serif; padding: 15px; width: 100%',
-                    text: "makr.io",
-                    'class' : 'makr-logo', 
+                jQuery("<div/>", {
+                    style: 'position:relative; padding: 10px 0; margin-bottom: 10px; left: 0; top: 0; width: 100%; background: #111; border-bottom: 1px solid #222; -webkit-box-shadow: 0 2px 8px #000; -mox-box-shadow: 0 2px 8px #000; box-shadow: 0 2px 8px #000;',
+                    html: "<img src='https://d2v75xn1eqsd0m.cloudfront.net/assets/makr_home_logo@2x.png' height=26 width=118 />",
+                    'class' : 'makr-logo'
                 }).appendTo('.makrio-bm-el')
 
                 jQuery("<a/>", {
-                    style : 'float:right; font-family:sans-serif; font-size: .5em; color:white; line-height:2em; margin-right:2em;',
+                    style : 'background-color: transparent !important; cursor: pointer; float: right; display: inline; font-family:sans-serif; margin-right: 15px; margin-top: 2px;',
                     onclick: "window.makrio.deactivate()",
-                    text: 'cancel'
-                }).appendTo('.makr-logo')
-                
-                jQuery("<div/>", {
-                    'class' : 'makrio-image-container',
-                    style : 'display:block; margin: auto; margin-top:50px;'
-                }).appendTo('.makrio-bm-el')
-
-
+                    html: "<img src='https://d2v75xn1eqsd0m.cloudfront.net/assets/buttons/close@2x.png' height=26 width=26 />"
+                }).prependTo('.makr-logo')
             },
 
             initImageClicks : function() {
@@ -76,21 +69,26 @@
                     var image = jQuery(this)
                     // var ratio = image.height() / image.width() 
 
-                    if((image.width() > 150) && (image.height() > 150)) {
+                    if((image.width() > 100) && (image.height() > 100)) {
                         var imgBox = jQuery("<div/>", {
                             class : "makrio-box",
-                            style : "width: 250px; height:250px; float:left; margin:10px;",
+                            style : "width: 200px; height:200px; display: inline-block; margin:20px;"
                         })
 
                         imgBox.html(jQuery("<img/>", {
                             class : "makrio",
-                            style : "position:relative; display:block; max-width: 250px; max-height: 250px;  margin: auto; border: 1px solid black;",
-                            src : jQuery(this).attr('src'),
-                        })).appendTo('.makrio-image-container')
-
-                    } 
+                            style : "cursor: pointer; position:relative; max-width: 192px; max-height: 192px;  margin: auto; -webkit-transition: border 0.1s; -moz-transition: border 0.1s; transition: border 0.1s; border: 4px solid #ccc; -webkit-box-shadow: 0 2px 8px #000; -mox-box-shadow: 0 2px 8px #000; box-shadow: 0 2px 8px #000;",
+                            src : jQuery(this).attr('src')
+                        })).appendTo('.makrio-bm-el')
+                    }
                 })
 
+                // hover styling in js
+                jQuery('.makrio').hover(function(evt){
+                    jQuery(evt.target).css("border-color", "#fff")
+                }, function(evt){
+                    jQuery(evt.target).css("border-color", "#ccc")
+                })
 
                 jQuery('.makrio').click(function(evt){
                     evt.stopImmediatePropagation()
@@ -98,7 +96,6 @@
                     self.saveImage(jQuery(evt.target))
                     return false;
                 })
-
             },
 
             imageUrl : function(src) {
