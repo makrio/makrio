@@ -36,11 +36,39 @@ module OpenGraphHelper
     "#{namespace}:frame"
   end
 
-  def og_page_specific_tags(post)
+  def og_page_specific_tags(object)
+    if object.is_a?(Post)
+      og_post_tags(object)
+    elsif object.is_a?(Person)
+      og_profile_tags(object)
+    end
+  end
+
+  def og_profile_tags(person)
+    tags = []
+
+    tags << meta_tag_with_property("og:type", "profile")
+    tags << meta_tag_with_property("og:url", "https://makr.io/u/#{person.owner.username}")
+    tags << meta_tag_with_property("og:image", person.profile.image_url(:scaled_full))
+    tags << meta_tag_with_property("og:title", person.name)
+    tags << meta_tag_with_property("og:description", "")
+    tags << meta_tag_with_property("profile:first_name", person.profile.first_name.split(/\s/).first)
+    tags << meta_tag_with_property("profile:last_name", person.profile.first_name.split(/\s/).last)
+    tags << meta_tag_with_property("profile:username", person.owner.username)
+
+    fb_service = person.owner.services.find_by_type("Services::Facebook")
+    if fb_service
+      tags << meta_tag_with_property("fb:profile_id", fb_service.uid)
+    end
+
+    tags.join(' ').html_safe
+  end
+
+  def og_post_tags(post)
     [og_title(post), og_type,
-      og_url(post), og_image(post), 
-      og_description(post),
-      og_author(post)].join(' ').html_safe
+     og_url(post), og_image(post),
+     og_description(post),
+     og_author(post)].join(' ').html_safe
   end
 
   def meta_tag_with_property(name, content)
