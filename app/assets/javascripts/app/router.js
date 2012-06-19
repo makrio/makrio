@@ -10,9 +10,8 @@ app.Router = Backbone.Router.extend({
     "posts/:id/remix" : 'remix',
     "posts/new" : "redirectToFramer",
 
-    "framer?*params": "framer", // bookmarklet has params
     "framer": "framer",
-    "framer?*params": "framer",
+    "framer?*params": "framer", // bookmarklet has params
 
     "posts/:id?:params": "singlePost",
     "posts/:id": "singlePost",
