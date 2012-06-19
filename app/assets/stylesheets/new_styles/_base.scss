@@ -41,7 +41,7 @@ a { color : $link-blue  }
 }
 
 .author-name {
-  font-family : Roboto;
+  font-family : Roboto, Helvetica, Arial, sans-serif;
   color: inherit;
 }
 
@@ -338,7 +338,7 @@ $bring-dark-accent-forward-color: #DDD;
 
   h1 {
     font : {
-      family : Roboto-Light;
+      family : Roboto-Light, Helvetica, Arial, sans-serif;
       size : 30px;
     }
     color : #fff;
