@@ -12,6 +12,7 @@ app.Router = Backbone.Router.extend({
 
     "framer?*params": "framer", // bookmarklet has params
     "framer": "framer",
+    "framer?*params": "framer",
 
     "posts/:id?:params": "singlePost",
     "posts/:id": "singlePost",
@@ -39,14 +40,18 @@ app.Router = Backbone.Router.extend({
       var new_mix = new app.models.StatusMessage(_.clone(remixed.attributes))
       new_mix.prepareToRemix(remixed)
       this.renderPage(function(){ return new app.pages.Framer({model : new_mix })});
-    }, this)).fail(function(){alert('bobby')});
+    }, this)).fail(function(){alert('There was an error loading the Remix. Please Try Refreshing.')});
   },
 
   newProfile : function(personId) {
     this.renderPage(function(){ return new app.pages.Profile({ personId : personId })});
   },
 
-  framer : function(){
+  framer : function(params){
+    if(params){
+      var url = params.split('&')[0].replace('remoteurl=', '')
+      app.remotePhotoUrl  = decodeURIComponent(url)
+    } 
     app.instrument("track", "Compose")
     this.renderPage(function(){ return new app.pages.Framer()});
   },

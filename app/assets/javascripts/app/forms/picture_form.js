@@ -45,10 +45,14 @@ app.forms.Picture = app.forms.PictureBase.extend({
 
   postRenderTemplate : function(){
     this.$("input[name=authenticity_token]").val($("meta[name=csrf-token]").attr("content"))
+    if(this.photos.length == 0 && app.remotePhotoUrl){
+      this.$("form input[name='photo[image_url]']").val(app.remotePhotoUrl)
+      _.defer(_.bind(this.submitURL, this));
+    }
   },
 
   onSubmit : function (){
-    this.$(".photos").append($('<span class="loader" style="margin-left: 80px;"></span>'))
+    this.$(".new_photo").append($('<span class="loader" style="margin-left: 5px;"></span>'))
   },
 
   uploadSuccess : function(resp) {
