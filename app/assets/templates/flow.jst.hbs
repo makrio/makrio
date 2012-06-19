@@ -1,32 +1,35 @@
 <div id="framer">
     <div class="container">
         <div class="row">
-            <div class="span8 offset2">
+            <div class="span6 offset3">
                 <div class="row">
-                    {{#if sourcePost}}
-                        <div id="reshare media author">
-                             <div class="media author">
-                                <h1> Remixing... </h1>
-                                {{#linkToPerson author}}
-                                    <div class="img">
-                                        <div class="profile-image-container smaller" style="background-image : url('{{avatar.large}}')"></div>
-                                    </div>
-                                {{/linkToPerson}}
+                    <div class="span6">
+                        {{#if sourcePost}}
+                            <div id="reshare media author">
 
-                                <div class="bd">
+                                 <div class="media author">
+                                    <h1> Remixing... </h1>
                                     {{#linkToPerson author}}
-                                        {{name}}
+                                        <div class="img">
+                                            <div class="profile-image-container smaller" style="background-image : url('{{avatar.large}}')"></div>
+                                        </div>
                                     {{/linkToPerson}}
-                                    <br/>
-                                    <a href='/posts/{{sourcePost.id}}' target='_blank'>source</a>
+
+                                    <div class="bd">
+                                        {{#linkToPerson author}}
+                                            {{name}}
+                                        {{/linkToPerson}}
+                                        <br/>
+                                        <a href='/posts/{{sourcePost.id}}' target='_blank'>source</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {{else}}
-                        <h2>
-                           Add Photos & Make Something!
-                        </h2>
-                    {{/if}}
+                        {{else}}
+                            <h2>
+                               Add Photos & Make Something!
+                            </h2>
+                        {{/if}}
+                    </div>
                 </div>
 
                 <div class="row">

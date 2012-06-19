@@ -1,4 +1,4 @@
-<form accept-charset="UTF-8" action="/photos" class="new_photo form-inline" data-remote="true" enctype="multipart/form-data" method="post" style='margin:;'>
+<form accept-charset="UTF-8" action="/photos" class="new_photo .form-inline" data-remote="true" enctype="multipart/form-data" method="post">
     <input name="authenticity_token" type="hidden"/>
     <div style="margin:0;padding:0;display:inline">
         <input name="utf8" type="hidden" value="?"/>
@@ -9,6 +9,6 @@
         <input name="photo[user_file]" type="file"/>
     </div>
     <span style="padding:0 5px">or</span> 
-    <input type="text"  class="input" name="photo[image_url]" placeholder='http://' />
+    <input type="text"  class="input" name="photo[image_url]" style="display:inline-block;margin-top:7px" placeholder='http://' />
     <a href='#' class='img-url btn btn-inverse'> Upload From URL</a>
 </form>
