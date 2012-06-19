@@ -91,14 +91,14 @@ class PeopleController < ApplicationController
     @stream = Stream::Person.new(current_user, @person, :max_time => max_time)
 
     respond_to do |format|
-      format.json { render :json => @stream.stream_posts.map { |p| LastThreeCommentsDecorator.new(PostPresenter.new(p, current_user)) }}
-
       format.html do
         @page = :experimental
         gon.person = PersonPresenter.new(@person, current_user)
         gon.stream = PostPresenter.collection_json(@stream.stream_posts, current_user)
         render :nothing => true, :layout => 'post'
       end
+
+      format.json { render :json => @stream.stream_posts.map { |p| LastThreeCommentsDecorator.new(PostPresenter.new(p, current_user)) }}
 
       format.mobile do
         @profile = @person.profile
