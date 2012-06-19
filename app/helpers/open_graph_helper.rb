@@ -78,7 +78,7 @@ module OpenGraphHelper
     tags << og_description(post)
     tags << og_author(post)
 
-    if post.root_guid.present?
+    if post.root.present?
       tags << meta_tag_with_property("#{AppConfig[:open_graph_namespace]}:original_frame", "https://makr.io/p/#{post.root.id}")
     end
 
