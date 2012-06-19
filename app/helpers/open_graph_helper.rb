@@ -69,10 +69,20 @@ module OpenGraphHelper
   end
 
   def og_post_tags(post)
-    [og_title(post), og_type,
-     og_url(post), og_image(post),
-     og_description(post),
-     og_author(post)].join(' ').html_safe
+    tags = []
+
+    tags << og_title(post)
+    tags << og_type
+    tags << og_url(post)
+    tags << og_image(post)
+    tags << og_description(post)
+    tags << og_author(post)
+
+    if post.root_guid.present?
+      tags << meta_tag_with_property("#{AppConfig[:open_graph_namespace]}:original_frame", "https://makr.io/p/#{post.root.id}")
+    end
+
+    tags.join(' ').html_safe
   end
 
   def meta_tag_with_property(name, content)
