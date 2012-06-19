@@ -8,7 +8,7 @@ module Jobs
     def self.perform(user_id, object_class, object_id, opts)
       # screenshot first to ensure it's there before posting to services
       unless AppConfig.single_process_mode?
-        Post.find(object_id).screenshot!
+        Post.find(object_id).screenshot! if((object_class == "StatusMessage") || (object_class == "Post"))
       end
 
       # post to services & notify participants of the thread
