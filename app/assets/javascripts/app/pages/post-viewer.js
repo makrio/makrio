@@ -30,8 +30,6 @@ app.pages.PostViewer = app.views.Base.extend({
     this.prepIdleHooks();
     this.bindNavHooks();
 
-    $(document).bind("keypress", _.bind(this.commentAnywhere, this))
-    $(document).bind("keypress", _.bind(this.invokePane, this))
     $(document).bind("keyup", _.bind(this.closePane, this))
   },
 
@@ -39,7 +37,6 @@ app.pages.PostViewer = app.views.Base.extend({
     $(document).unbind("idle.idleTimer")
     $(document).unbind("active.idleTimer")
     $(document).unbind('keydown')
-    $(document).unbind('keypress')
     $(document).unbind('keyup')
   },
 
@@ -74,19 +71,6 @@ app.pages.PostViewer = app.views.Base.extend({
 
   postRenderTemplate : function() {
     if(this.model.get("title")){ document.title = this.model.get("title"); }
-  },
-
-  commentAnywhere : function(evt) {
-    /* ignore enter, space bar, arrow keys */
-    if(_.include([13, 32, 37, 38, 39, 40], evt.keyCode)) { return }
-
-    this.interactionsView.invokePane();
-    $('#new-post-comment textarea').focus();
-  },
-
-  invokePane : function(evt) {
-    if(evt.keyCode != 32) { return }
-    this.interactionsView.invokePane();
   },
 
   closePane : function(evt) {
