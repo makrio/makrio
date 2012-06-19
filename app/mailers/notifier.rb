@@ -25,6 +25,33 @@ class Notifier < ActionMailer::Base
       end
   end
 
+  def new_inactive_user_prod(user)
+    @receiver = user
+    default_opts = {:to => @receiver.email,
+     :from => 'kayla@makr.io'
+       :subject => "Thanks for joining Makr.io!",  :host => AppConfig[:pod_uri].host}
+       
+      default_opts.merge!(opts)
+      mail(default_opts) do |format|
+        format.text
+        format.html
+      end
+  end 
+
+
+  def new_user_feedback(user)
+    @receiver = user
+    default_opts = {:to => @receiver.email,
+     :from => 'kayla@makr.io'
+       :subject => "How are you liking Makr.io?",  :host => AppConfig[:pod_uri].host}
+       
+      default_opts.merge!(opts)
+      mail(default_opts) do |format|
+        format.text
+        format.html
+      end
+  end 
+
   def single_admin(string, recipient, opts={})
     @receiver = recipient
     @string = string.html_safe
