@@ -11,7 +11,7 @@ app.Router = Backbone.Router.extend({
     "posts/new" : "redirectToFramer",
 
     "framer": "framer",
-    "framer?*params": "framer", // bookmarklet has params
+    "framer?bookmarklet=true&*params": "bookmarklet", 
 
     "posts/:id?:params": "singlePost",
     "posts/:id": "singlePost",
@@ -46,11 +46,13 @@ app.Router = Backbone.Router.extend({
     this.renderPage(function(){ return new app.pages.Profile({ personId : personId })});
   },
 
-  framer : function(params){
-    if(params){
-      var url = params.split('&')[0].replace('remoteurl=', '')
-      app.remotePhotoUrl  = decodeURIComponent(url)
-    } 
+  bookmarklet : function(params) {
+    var url = params.split('&')[0].replace('remoteurl=', '')
+    app.remotePhotoUrl  = decodeURIComponent(url)
+    this.framer()
+  },
+
+  framer : function(){
     app.instrument("track", "Compose")
     this.renderPage(function(){ return new app.pages.Framer()});
   },

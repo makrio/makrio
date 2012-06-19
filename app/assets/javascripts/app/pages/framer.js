@@ -28,8 +28,10 @@ app.pages.Framer = app.views.Base.extend({
   },
 
   navigateNext : function(){
-    if(parent.location.pathname == '/new_bookmarklet') {
-      this.bookmarkletNavigation()
+    if(opener) {
+      //from here, i want to render a new template that has all of a posts goodies
+      // view it, share it to fb, tweet it.
+      setTimeout(window.close, 2000)
     } else {
       this.defaultNavigation()
     }

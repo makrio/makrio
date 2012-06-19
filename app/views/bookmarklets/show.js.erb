@@ -112,7 +112,7 @@
             },
 
              openPublisher : function(remoteUrl) {
-                var url = this.origin() + "/framer?remoteurl="+encodeURIComponent(remoteUrl)+'&v=1&';
+                var url = this.origin() + "/framer?bookmarklet=true&remoteurl="+encodeURIComponent(remoteUrl)+'&v=1&';
                 var openFramer = function(){
                     if(!window.open(url+'noui=1&jump=doclose','diasporav1','menubar=no,location=no,links=no,scrollbars=no,toolbar=no,width=1000px,height=600px'))location.href=url+'jump=yes'
                 };
