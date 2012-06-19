@@ -35,7 +35,7 @@
 
             deactivate : function() {
                 jQuery(".makrio-bm-el").fadeOut(function(){
-                    jQuery('body').css('overflow')
+                    jQuery('body').attr('style', '')
                     window.makrio = undefined
                 })
             },
@@ -50,12 +50,19 @@
 
                 jQuery("<h1/>", {
                     style: 'size: 2em; position:relative; float:left;font:sans-serif; padding: 15px',
-                    text: "makr.io"
+                    text: "makr.io",
+                    'class' : 'makr-logo', 
                 }).appendTo('.makrio-bm-el')
+
+                jQuery("<a/>", {
+                    style : 'float:right; font-family:sans-serif; font-size: .5em; color:white; line-height:2em; padding-left:10px',
+                    onclick: "window.makrio.deactivate()",
+                    text: 'cancel'
+                }).appendTo('.makr-logo')
                 
                 jQuery("<div/>", {
                     'class' : 'makrio-image-container',
-                    style : 'display:block; margin: auto;'
+                    style : 'display:block; margin: auto; margin-top:50px;'
                 }).appendTo('.makrio-bm-el')
 
 
@@ -67,7 +74,6 @@
 
                 jQuery("img").each(function(index){
                     var image = jQuery(this)
-                    // var ratio = image.height() / image.width() 
 
                     if((image.width() > 150) && (image.height() > 150)) {
                         var imgBox = jQuery("<div/>", {
@@ -80,7 +86,6 @@
                             style : "position:relative; display:block; max-width: 250px; max-height: 250px;  margin: auto; border: 1px solid black;",
                             src : jQuery(this).attr('src'),
                         })).appendTo('.makrio-image-container')
-
                     } 
                 })
 
@@ -124,7 +129,6 @@
                     openFramer()
                 }
             }
-
         });
 
         window.makrio.initialize();
