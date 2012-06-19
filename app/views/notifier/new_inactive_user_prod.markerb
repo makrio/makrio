@@ -1,6 +1,6 @@
 Hey <%= @receiver.person.nickname %>,
 
-Thanks for joining our community! Since you're one of our first users, we think you're pretty cool already...but we'd love to see what you create.
+Thanks for joining our community. We believe that everyone can be creative, so don't be afraid to play! Since you're one of our first users, we think you're pretty cool already, and we're excited to see what conversations you spark.
 
 Make your own post or remix someone else's, then watch your posts get remixed. Go ahead, make something!
 
