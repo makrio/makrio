@@ -41,7 +41,6 @@ class Postzord::Dispatcher
       opts[:additional_subscribers] = [*opts[:additional_subscribers]].map(&:id)
     end
 
-    Resque.enqueue(Jobs::FinalizePost, user.id, object.class.to_s, object.id, opts)
   end
 
   # @param object [Object]
