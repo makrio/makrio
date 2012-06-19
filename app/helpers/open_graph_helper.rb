@@ -16,7 +16,7 @@ module OpenGraphHelper
   end
 
   def og_author(post)
-    meta_tag_with_property("#{AppConfig[:open_graph_namespace]}:author", post.author.name)
+    meta_tag_with_property("#{AppConfig[:open_graph_namespace]}:author", "https://makr.io/u/#{post.author.owner.username}")
   end
 
   def og_site_name
@@ -52,8 +52,12 @@ module OpenGraphHelper
     tags << meta_tag_with_property("og:image", person.profile.image_url(:scaled_full))
     tags << meta_tag_with_property("og:title", person.name)
     tags << meta_tag_with_property("og:description", "")
-    tags << meta_tag_with_property("profile:first_name", person.profile.first_name.split(/\s/).first)
-    tags << meta_tag_with_property("profile:last_name", person.profile.first_name.split(/\s/).last)
+
+    if person.profile.first_name
+      tags << meta_tag_with_property("profile:first_name", person.profile.first_name.split(/\s/).first)
+      tags << meta_tag_with_property("profile:last_name", person.profile.first_name.split(/\s/).last)
+    end
+    
     tags << meta_tag_with_property("profile:username", person.owner.username)
 
     fb_service = person.owner.services.find_by_type("Services::Facebook")
