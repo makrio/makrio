@@ -44,10 +44,21 @@
                 jQuery('body').css('overflow', 'hidden')
 
                 jQuery("<div/>", {
-                    text : "makr.io active",
-                    class : "makrio-bm-el",
-                    style : "position:fixed; bottom:0; left:0; width: 100%; height:100%; padding:10px;  overflow:scroll; background-color: red;  color: #fff; font-size: 20px; line-height: auto; z-index: 999;"
+                    'class' : "makrio-bm-el",
+                    style : "position:fixed; bottom:0; left:0; width: 100%; height:100%; padding:10px;  overflow:scroll; background-color: black;  color: #fff; font-size: 20px; line-height: auto; z-index: 999;"
                 }).appendTo("body")
+
+                jQuery("<h1/>", {
+                    style: 'padding: 15px',
+                    text: "makr.io active"
+                }).appendTo('.makrio-bm-el')
+                
+                jQuery("<div/>", {
+                    'class' : 'makrio-image-container',
+                    style : 'display:block; margin: auto;'
+                }).appendTo('.makrio-bm-el')
+
+
             },
 
             initImageClicks : function() {
@@ -56,20 +67,25 @@
 
                 jQuery("img").each(function(index){
                     var image = jQuery(this)
-                    var ratio = image.height() / image.width() 
+                    // var ratio = image.height() / image.width() 
 
                     if((image.width() > 150) && (image.height() > 150)) {
-                        jQuery("<img/>", {
+                        var imgBox = jQuery("<div/>", {
+                            class : "makrio-box",
+                            style : "width: 250px; height:250px; float:left; margin:10px;",
+                        })
+
+                        imgBox.html(jQuery("<img/>", {
                             class : "makrio",
-                            style : "position:relative; max-width: 200px;   padding:20px; border: 1px solid black;max-height:200px;float: left",
+                            style : "position:relative; display:block; max-width: 250px; max-height: 250px;  margin: auto; border: 1px solid black;",
                             src : jQuery(this).attr('src'),
-                        }).appendTo(".makrio-bm-el")
+                        })).appendTo('.makrio-image-container')
+
                     } 
                 })
 
 
                 jQuery('.makrio').click(function(evt){
-                    console.log("clicked")
                     evt.stopImmediatePropagation()
                     evt.preventDefault()
 
