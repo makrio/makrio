@@ -2,11 +2,14 @@ Hi <%= @receiver.person.nickname %>!
 
 My name is Kayla Holderbein and I'm helping create Makr.io. First of all, I want to thank you again for being a part of our project. This is a new community, so as one of our first users you are incredibly important in shaping the future of the site!
 
-I'd love to talk to you more about your experience with Makr.io, and get to know you better so we can give you the best experience possible as a user. I really want to know your thoughts on Makr.io and how we can improve, so please shoot me an email if you'd be willing to answer a few questions - I promise it's nothing too time-consuming, and it would be a huge help for the team! Or, if it's easier for you, call me directly at (925) 785-8917. 
+I'd love to talk to you more about your experience with Makr.io, and get to know you better so we can give you the best experience possible as a user. I really want to know your thoughts on Makr.io and how we can improve, so please shoot me an email if you'd be willing to answer a few questions - I promise it's nothing too time-consuming, and it would be a huge help for the team! Or, if it's easier for you, call me directly at (925) 785-8917. You can also chat with a team member on https://makr.io any time.
 
-I look forward to talking to you. In the meantime, get your remix on at [https://makr.io][1]!
+If you want up-to-date notifications from the Makr.io team, be sure to like our [Facebook page][1] . 
 
-[Log in Now >][1]
+I look forward to talking to you!
+
+
+[Log in to Makr.io Now >][2]
 
 Best,
 
@@ -14,5 +17,5 @@ Kayla Holderbein
 kayla@makr.io
 (925) 785-8917
 
-
-[1]: <%= new_user_session_url %>
+[1]: <%='https://www.facebook.com/makrapp' %>
+[2]: <%= new_user_session_url %>
