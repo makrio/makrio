@@ -1,9 +1,9 @@
 <% content_for :head do %>
     <meta property="og:title" content="<%= AppConfig[:pod_name] %>" />
-    <meta property="og:description" content="Make it uniquely you" />
+    <meta property="og:description" content="Makr.io gives you the tools to easily remix the things that inspire you." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="<%= AppConfig[:pod_url] %>" />
-    <meta property="og:image" content="<%= AppConfig[:pod_url] %>/icon_128.gif" />
+    <meta property="og:image" content='<%=AppConfig[:pod_url].chop + image_path('apple-touch-icon-precomposed.png') %>' />
     <meta property="fb:app_id" content="223055781146202" />
 <% end %>
 
