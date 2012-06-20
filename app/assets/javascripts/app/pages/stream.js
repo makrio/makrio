@@ -92,7 +92,7 @@ app.pages.Stream = app.views.Base.extend({
     var head= document.getElementsByTagName('head')[0]; \
     var script= document.createElement('script'); \
     script.type= 'text/javascript'; \
-    script.src= 'http://makrio.dev/bookmarklet.js'; \
+    script.src= '//" + document.location.origin +  "/bookmarklet.js';" \
     script.id= 'makrio-bm-script'; \
     script.setAttribute('data-origin','" + document.location.origin + "'); \
     head.appendChild(script);}());";
