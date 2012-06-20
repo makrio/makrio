@@ -54,11 +54,13 @@ describe PhotosController do
       }.should change(Photo, :count).by(1)
     end
 
-    it 'can set the photo as the profile photo' do
-      old_url = alice.person.profile.image_url
-      @params[:photo][:set_profile_photo] = true
-      post :create, @params
-      alice.reload.person.profile.image_url.should_not == old_url
+    context 'legacy' do
+      it 'can set the photo as the profile photo' do
+        old_url = alice.person.profile.image_url
+        @params[:photo][:set_profile_photo] = true
+        post :legacy, @params
+        alice.reload.person.profile.image_url.should_not == old_url
+      end
     end
   end
 
