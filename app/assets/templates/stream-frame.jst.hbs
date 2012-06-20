@@ -38,6 +38,11 @@
         </div>
     </section>
 
-    <!--<img src="{{screenshot_url}}" class="frame-shot"/>-->
-    <div class="small-frame"></div>
+    {{#if has_gif}}
+        <div class="small-frame"></div>
+    {{else}}
+        <div class="row">
+            <img src="{{screenshot_url}}" class="frame-shot span6"/>
+        </div>
+    {{/if}}
 </div>
