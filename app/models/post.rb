@@ -56,6 +56,10 @@ class Post < ActiveRecord::Base
     where("posts.created_at < ?", post.created_at).reorder('posts.created_at DESC').first
   end
 
+  def self.featured_and_by_author(author)
+    where(:featured => true) | where(:author_id => author.id)
+  end
+
   def self.visible_from_author(author, current_user=nil)
     if current_user.present?
       current_user.posts_from(author)

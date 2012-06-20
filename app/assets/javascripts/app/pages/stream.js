@@ -121,11 +121,7 @@ app.pages.Stream = app.views.Base.extend({
     },
 
     createPostView : function(post){
-      if(post.showInFeaturedStream()){
-        return app.views.InfScroll.prototype.createPostView.call(this, post)
-      } else {
-        return new Backbone.View //stub it out if its not featured or yours
-      }
+      return app.views.InfScroll.prototype.createPostView.call(this, post)
     }
   })
 });
