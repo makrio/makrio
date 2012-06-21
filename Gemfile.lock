@@ -513,7 +513,6 @@ DEPENDENCIES
   mini_magick (= 3.4)
   mobile-fu
   mysql2 (= 0.3.11)
-  newrelic_rpm
   nokogiri (= 1.5.2)
   oink
   omniauth (= 1.1)
