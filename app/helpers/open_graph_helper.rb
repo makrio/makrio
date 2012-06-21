@@ -31,9 +31,9 @@ module OpenGraphHelper
     meta_tag_with_property('og:type', og_namespace('frame'))
   end
 
-  def og_namespace
+  def og_namespace(object_type)
     namespace = AppConfig[:open_graph_namespace].present? ? AppConfig[:open_graph_namespace] : 'joindiaspora'
-    "#{namespace}:frame"
+    "#{namespace}:#{object_type}"
   end
 
   def og_page_specific_tags(object)
