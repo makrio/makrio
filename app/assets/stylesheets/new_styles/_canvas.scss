@@ -347,6 +347,11 @@ a.logo{
   }
 
   &.fridge {
+    .content {
+      padding : 2em;
+      box-sizing: border-box;
+    }
+
     p {
       font : {
         family : "Noteworthy", "Marker Felt", "Comic Sans";
@@ -354,6 +359,10 @@ a.logo{
       }
       font-size : 2em;
       line-height : 1.4em;
+    }
+
+    .text-content {
+      padding : 20px 0;
     }
   }
 
