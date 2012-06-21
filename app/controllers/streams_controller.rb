@@ -48,6 +48,20 @@ class StreamsController < ApplicationController
     end
   end
 
+  def popular
+    posts = Post.order("(posts.likes_count *3 + posts.comments_count *2 - extract(day from age(created_at))/5) DESC").limit(30).all
+
+    stream_json = PostPresenter.collection_json(posts, current_user)
+    respond_to do |format|
+      format.html do
+        gon.stream = stream_json
+        render :nothing => true, :layout => "post"
+      end
+      format.mobile { render 'layouts/main_stream' }
+      format.json { render :json => stream_json }
+    end
+  end
+
   def commented
     stream_responder(Stream::Comments)
   end

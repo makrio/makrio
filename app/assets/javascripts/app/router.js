@@ -6,6 +6,8 @@ app.Router = Backbone.Router.extend({
     "people/:id": "newProfile",
     "u/:name": "newProfile",
 
+    "popular": "popular",
+
     "posts/:id/remix?*params" : 'remix', // facebook action links supply signed_request params
     "posts/:id/remix" : 'remix',
     "posts/new" : "redirectToFramer",
@@ -26,6 +28,11 @@ app.Router = Backbone.Router.extend({
 
   redirectToFramer : function(){
     app.router.navigate("/framer", true)
+  },
+
+  popular : function() {
+    app.instrument("track", "Popular loaded")
+    this.renderPage(function(){ return new app.pages.Stream()});
   },
 
   newStream : function() {

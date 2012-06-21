@@ -54,7 +54,9 @@ Diaspora::Application.routes.draw do
   get "liked" => "streams#liked", :as => "liked_stream"
   get "commented" => "streams#commented", :as => "commented_stream"
   get "aspects" => "streams#aspects", :as => "aspects_stream"
-  
+
+  get "popular" => "streams#popular", :as => "popular"
+
   resources :aspects do
     put :toggle_contact_visibility
   end
