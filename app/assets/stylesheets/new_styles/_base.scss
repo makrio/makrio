@@ -99,7 +99,7 @@ a { color : $link-blue  }
   top : 0;
   left : 0;
 
-  img,
+  img:not(.vanilla),
   iframe {
     @include photo-shadow();
   }
