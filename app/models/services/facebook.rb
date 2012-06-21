@@ -26,7 +26,7 @@ class Services::Facebook < Service
   end
 
   def open_graph_post(action, post, opts={})
-    post_to_facebook(og_action(action), create_open_graph_params(post, opts))
+    post_to_facebook(og_action(action), create_open_graph_params(post, action, opts))
   end
 
   def queue_open_graph(action, post, opts={})
@@ -37,20 +37,28 @@ class Services::Facebook < Service
 
   def og_action(action)
     # use fb built-in like og action
-    namespaced_action = (action.downcase == "like" ? "og.likes" : "#{AppConfig[:open_graph_namespace]}:#{action}")
-    "https://graph.facebook.com/me/#{namespaced_action}"
+    if is_like?(action)
+      "https://graph.facebook.com/#{self.uid}/og.likes"
+    else
+      "https://graph.facebook.com/me/#{AppConfig[:open_graph_namespace]}:#{action}"
+    end
   end
 
   def post_to_facebook(url, body)
     Faraday.post(url, body)
   end
 
-  def create_open_graph_params(post, opts={})
-    {:frame => "#{AppConfig[:pod_url]}#{short_post_path(post)}", :access_token => self.access_token}.merge(opts).to_param
+  def create_open_graph_params(post, action, opts={})
+    key = (is_like?(action) ? :object : :frame)
+    {key => "#{AppConfig[:pod_url]}#{short_post_path(post)}", :access_token => self.access_token}.merge(opts).to_param
   end
 
   def create_post_params(post)
     message = post.text(:plain_text => true)
     {:message => message, :access_token => self.access_token, :link => URI.extract(message, ['https', 'http']).first}.to_param
+  end
+
+  def is_like?(action)
+    action.downcase == "like"
   end
 end
