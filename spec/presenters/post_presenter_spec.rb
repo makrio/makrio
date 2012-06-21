@@ -74,11 +74,24 @@ describe PostPresenter do
 
     context 'with posts without text' do
       it ' displays a messaage with the post class' do
-
         @sm = stub(:text => "", :author => bob.person)
         @presenter.post = @sm
         @presenter.title.should == "A post from #{@sm.author.name}"
       end
+    end
+  end
+
+  describe '#has_gif' do
+    it 'returns true if there is an image present with a .gif extension' do
+      @sm.photos = [Factory(:photo_gif)]
+      @sm.save
+      @presenter.has_gif?.should be_true
+    end
+
+    it 'returns false if there is an image present with a .gif extension' do
+      @sm.photos = [Factory(:photo)]
+      @sm.save
+      @presenter.has_gif?.should be_false
     end
   end
 end

@@ -38,6 +38,7 @@ class PostPresenter
         :next_post => next_post_path,
         :previous_post => previous_post_path,
         :screenshot_url => @post.screenshot_url,
+        :has_gif => self.has_gif?,
 
         :interactions => {
             :likes => [user_like].compact,
@@ -81,6 +82,11 @@ class PostPresenter
     @post.reshare_for(@current_user)
   end
 
+  def has_gif?
+    return false unless @post.photos.present?
+    @post.photos.detect{ |p| p.url.match(".gif") }.present?
+  end
+
   protected
 
   def person
@@ -90,7 +96,6 @@ class PostPresenter
   def user_signed_in?
     @current_user.present?
   end
-
 end
 
 class PostInteractionPresenter
