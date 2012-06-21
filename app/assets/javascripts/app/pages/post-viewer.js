@@ -21,7 +21,10 @@ app.pages.PostViewer = app.views.Base.extend({
     this.authorView = new app.views.PostViewerAuthor({ model : this.model });
     this.interactionsView = new app.views.PostViewerInteractions({ model : this.model });
     this.navView = new app.views.PostViewerNav({ model : this.model });
-    this.postView = app.views.Post.showFactory(this.model)
+    this.postView = new app.views.Post.SmallFrame({
+       model : this.model,
+       className : "canvas-frame x2 height width"
+    });
 
     this.render();
   },

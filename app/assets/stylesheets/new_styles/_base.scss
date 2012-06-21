@@ -68,19 +68,6 @@ a { color : $link-blue  }
 #post-author {
   margin : 0;
   padding : 10px;
-
-  &.status-with-photo-backdrop,
-  &.Wallpaper {
-    .author-name {
-      color : #fff;
-    }
-
-    .post-time,
-    .icon-retweet {
-      color: #fff;
-      @include opacity(0.5);
-    }
-  }
 }
 
 .post-view {
@@ -89,9 +76,9 @@ a { color : $link-blue  }
   width: 100%;
 }
 
-#post-content {
-  display: table;
-  position: absolute;
+#post-content-wrapper {
+  display : table;
+  position : absolute;
 
   height: 100%;
   width: 100%;
@@ -99,15 +86,20 @@ a { color : $link-blue  }
   top : 0;
   left : 0;
 
-  img,
-  iframe {
-    @include photo-shadow();
+  #post-content {
+    display : table-cell;
+    vertical-align : middle;
+    text-align : center;
   }
 
-  iframe {
-    width: 857px;
-    height: 480px;
-    max-width: 100%;
+  .canvas-frame {
+    float : none;
+    display : inline-block;
+    margin : 30px;
+
+    .content {
+      border : 8px solid #fff;
+    }
   }
 }
 
