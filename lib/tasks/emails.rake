@@ -13,8 +13,7 @@ namespace :emails do
   task :new_user_feedback do
     require Rails.root.join('config/environment')
     require Rails.root.join('app/mailers/notifier')
-
-    users = User.where('created_at > ?', 3.days.ago).where('created_at < ?', 2.days.ago).find_all do |user|
+    
     users = User.where('created_at > ?', 1.days.ago).all
     users.each{|user| puts "emailing #{user.username}"; Notifier.new_user_feedback(user)}
   end
