@@ -31,7 +31,7 @@ module OpenGraphHelper
     meta_tag_with_property('og:type', og_namespace('frame'))
   end
 
-  def og_namespace(object)
+  def og_namespace
     namespace = AppConfig[:open_graph_namespace].present? ? AppConfig[:open_graph_namespace] : 'joindiaspora'
     "#{namespace}:frame"
   end
@@ -57,7 +57,7 @@ module OpenGraphHelper
       tags << meta_tag_with_property("profile:first_name", person.profile.first_name.split(/\s/).first)
       tags << meta_tag_with_property("profile:last_name", person.profile.first_name.split(/\s/).last)
     end
-    
+
     tags << meta_tag_with_property("profile:username", person.owner.username)
 
     fb_service = person.owner.services.find_by_type("Services::Facebook")
