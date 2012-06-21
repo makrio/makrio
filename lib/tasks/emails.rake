@@ -5,12 +5,12 @@ namespace :emails do
       user.posts.count == 0
     end
 
-    users.each{|user| Notifier.new_inactive_user_prod(user)}
+    users.each{|user| puts "emailing #{user.username}";Notifier.new_inactive_user_prod(user)}
   end
 
   task :new_user_feedback => :environment do
     Rails.application.eager_load!
     users = User.where('created_at > ?', 1.days.ago).all
-    users.each{|user| Notifier.new_user_feedback(user)}
+    users.each{|user| puts "emailing #{user.username}"; Notifier.new_user_feedback(user)}
   end
 end
