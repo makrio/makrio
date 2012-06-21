@@ -107,14 +107,6 @@ FactoryGirl.define do
     end
   end
 
-  factory(:photo_gif, :parent => :photo) do
-    sequence(:random_string) {|n| SecureRandom.hex(10) }
-    association :author, :factory => :person
-    after_build do |p|
-      p.unprocessed_image.store! File.open(File.join(File.dirname(__FILE__), 'fixtures', 'button.gif'))
-    end
-  end
-
   factory(:remote_photo, :parent => :photo) do
     remote_photo_path 'https://photo.com/images/'
     remote_photo_name 'kittehs.jpg'
