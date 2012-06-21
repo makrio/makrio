@@ -231,33 +231,6 @@ a.logo{
     }
   }
 
-  &.cyan .background-color   { background-color : rgba($cyan, 0.2); }
-  &.green .background-color  { background-color : rgba($green, 0.2); }
-  &.yellow .background-color { background-color : rgba($yellow, 0.2); }
-  &.purple .background-color { background-color : rgba($purple, 0.2); }
-  &.lime-green .background-color { background-color : rgba($lime-green, 0.2); }
-  &.orange .background-color { background-color : rgba($orange, 0.2); }
-  &.red .background-color { background-color : rgba($red, 0.2); }
-  &.turquoise .background-color { background-color : rgba($turquoise, 0.2); }
-  &.sand .background-color { background-color : rgba($sand, 0.8); }
-
-  &.blog-text {
-    .text-content {
-      padding : 10px;
-      color : #222;
-
-      p {
-        text-shadow : none;
-
-        font-family : Palatino, Georgia, Times, serif;
-        font-weight : normal;
-        font-size : 0.8em;
-        line-height : 1.5em;
-        text-align : justify;
-      }
-    }
-  }
-
   &:no-text {
     img {
       border : none;
