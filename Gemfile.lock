@@ -277,7 +277,6 @@ GEM
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     netrc (0.7.4)
-    newrelic_rpm (3.4.0)
     nokogiri (1.5.2)
     oauth (0.4.6)
     oauth2 (0.6.1)
@@ -381,9 +380,6 @@ GEM
       resque (~> 1.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rpm_contrib (2.1.11)
-      newrelic_rpm (>= 3.1.1)
-      newrelic_rpm (>= 3.1.1)
     rspec (2.10.0)
       rspec-core (~> 2.10.0)
       rspec-expectations (~> 2.10.0)
@@ -535,7 +531,6 @@ DEPENDENCIES
   resque-heroku
   resque-timeout (= 1.0.0)
   roxml!
-  rpm_contrib (~> 2.1.7)
   rspec-instafail (>= 0.1.7)
   rspec-rails (~> 2.10)
   ruby-debug

@@ -33,7 +33,6 @@ gem 'twitter', '2.0.2'
 
 gem 'markerb', :git => 'git://github.com/plataformatec/markerb.git'
 gem 'airbrake'
-gem "rpm_contrib", "~> 2.1.7"
 
 group :production do # we don't install these on travis to speed up test runs
   gem 'rails_admin', '~> 0.0.3'
