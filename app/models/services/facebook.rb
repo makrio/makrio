@@ -49,8 +49,8 @@ class Services::Facebook < Service
   end
 
   def create_open_graph_params(post, action, opts={})
-    #key = (is_like?(action) ? :object : :frame)
-    {:frame => "#{AppConfig[:pod_url]}#{short_post_path(post)}", :access_token => self.access_token}.merge(opts).to_param
+    key = (is_like?(action) ? :object : :frame)
+    {key => "#{AppConfig[:pod_url]}#{short_post_path(post)}", :access_token => self.access_token}.merge(opts).to_param
   end
 
   def create_post_params(post)
