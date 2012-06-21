@@ -14,10 +14,7 @@ module User::SocialActions
     target || raise("liking needs a target")
     find_or_create_participation!(target)
     like = Like::Generator.new(self, target).create!(opts)
-
     open_graph_action('like', target)
-    open_graph_action('love', target) # to be removed as soon as og.likes is approved
-
     like
   end
 
