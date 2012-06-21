@@ -36,7 +36,9 @@ class Services::Facebook < Service
   private
 
   def og_action(action)
-    "https://graph.facebook.com/me/#{AppConfig[:open_graph_namespace]}:#{action}"
+    # use fb built-in like og action
+    namespaced_action = (action.downcase == "like" ? "og.likes" : "#{AppConfig[:open_graph_namespace]}:#{action}")
+    "https://graph.facebook.com/me/#{namespaced_action}"
   end
 
   def post_to_facebook(url, body)
