@@ -4,7 +4,7 @@
 
 class SessionsController < Devise::SessionsController
 
-  layout "post", :only => [:new]
+  layout "post", :only => [:new] #unless lambda{request.format == 'mobile'}
 
   def new
     @linking_service = session["devise.facebook_data"].present?

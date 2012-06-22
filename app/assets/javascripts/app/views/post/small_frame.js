@@ -52,7 +52,7 @@ app.views.Post.SmallFrame = app.views.Post.extend({
 
   textClasses : function() {
     var text = this.model.get("text")
-      , baseClass = "big-text"
+      , baseClass = (text.length < 40) ? "big-text" : ""
       , hasText = $.trim(text).length == 0 ? "no-text" : "has-text"
       , hasMedia = hasMediaObject(this.model) ? "has-media" : "";
 
