@@ -7,7 +7,7 @@ namespace :emails do
       user.posts.count == 0
     end
 
-    users.each{|user| puts "emailing #{user.username}";Notifier.new_inactive_user_prod(user)}
+    users.each{|user| puts "emailing #{user.username}";Notifier.new_inactive_user_prod(user).deliver!}
   end
 
   task :new_user_feedback do
@@ -15,6 +15,6 @@ namespace :emails do
     require Rails.root.join('app/mailers/notifier')
     
     users = User.where('created_at > ?', 1.days.ago).all
-    users.each{|user| puts "emailing #{user.username}"; Notifier.new_user_feedback(user)}
+    users.each{|user| puts "emailing #{user.username}"; Notifier.new_user_feedback(user).deliver!}
   end
 end
