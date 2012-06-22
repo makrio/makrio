@@ -43,7 +43,8 @@ class Notifier < ActionMailer::Base
     @receiver = user
     default_opts = {:to => @receiver.email,
      :from => 'kayla@makr.io',
-       :subject => "How are you liking Makr.io?",  :host => AppConfig[:pod_uri].host}
+       :subject => "How are you liking Makr.io?",  :host => AppConfig[:pod_uri].host
+     }
        
       default_opts.merge!(opts)
       mail(default_opts) do |format|
