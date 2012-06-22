@@ -6,14 +6,18 @@
 }
 
 .stream-frame {
+  @include transition(all);
+
+  $large-size : 500px;
+
   margin-bottom : 50px;
   padding-top : 10px;
   padding-bottom : 10px;
-  padding-left  : 70px;
+  margin-left  : 70px;
 
   max-width : 100%;
 
-  overflow : hidden;
+  //overflow : hidden;
   white-space : nowrap;
 
   .frame {
@@ -23,13 +27,14 @@
   .original-frame,
   .big-frame,
   .remix-frame {
+    @include transition(all);
     display : inline-block;
     text-align : center;
   }
 
   .original-frame,
   .remix-frame {
-    @include opacity(0.3);
+    @include opacity(0.5);
   }
 
   .original-frame {
@@ -38,11 +43,29 @@
   }
 
   .big-frame {
-    width : 500px;
+    width : $large-size;
   }
 
   .remix-frame {
     width : 250px;
     margin-left : 70px;
+  }
+
+  &:active {
+    margin-left : -230px;
+
+    .big-frame,
+    .remix-frame,
+    .original-frame {
+      @include opacity(1);
+
+      width : $large-size;
+      margin-left : 20px;
+    }
+
+    .original-frame {
+      margin-right : 0;
+      margin-left : 0;
+    }
   }
 }

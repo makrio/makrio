@@ -39,13 +39,14 @@ class PostPresenter
         :previous_post => previous_post_path,
         :screenshot_url => @post.screenshot_url,
         :show_screenshot => self.show_screenshot?,
+        :remixes => RemixPresenter.as_collection(@post.remixes),
 
         :interactions => {
             :likes => [user_like].compact,
             :reshares => [user_reshare].compact,
             :comments_count => @post.comments_count,
             :likes_count => @post.likes_count,
-            :reshares_count => @post.reshares_count,
+            :reshares_count => @post.reshares_count
         }
     }
   end

@@ -1,18 +1,15 @@
 <div class="original-frame">
-    <img src="https://d2v75xn1eqsd0m.cloudfront.net{{screenshot_url}}" class="frame"/>
+    {{#if remixes}}
+        <img src="https://d2v75xn1eqsd0m.cloudfront.net{{screenshot_url}}" class="frame"/>
+    {{/if}}
 </div>
 
 <div class="big-frame">
     <img src="https://d2v75xn1eqsd0m.cloudfront.net{{screenshot_url}}" class="frame"/>
 </div>
 
-<div class="remix-frame">
-    <img src="https://d2v75xn1eqsd0m.cloudfront.net{{screenshot_url}}" class="frame"/>
-</div>
-
-<div class="remix-frame">
-    <img src="https://d2v75xn1eqsd0m.cloudfront.net{{screenshot_url}}" class="frame"/>
-
-<div class="remix-frame">
-    <img src="https://d2v75xn1eqsd0m.cloudfront.net{{screenshot_url}}" class="frame"/>
-</div>
+{{#each remixes}}
+    <div class="remix-frame">
+        <img src="https://d2v75xn1eqsd0m.cloudfront.net{{screenshot_url}}" class="frame"/>
+    </div>
+{{/each}}
