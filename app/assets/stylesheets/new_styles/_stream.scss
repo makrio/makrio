@@ -2,31 +2,47 @@
 #stream-content {
   min-height : 100%;
   height : 100%;
-}
-
-#stream-content > div {
-  margin-left : 500px;
+  padding-top : 40px;
 }
 
 .stream-frame {
-  margin-bottom : 30px;
-  margin-left : -230px;
+  margin-bottom : 50px;
+  padding-top : 10px;
+  padding-bottom : 10px;
+  padding-left  : 70px;
 
-  .frame-shot {
-    @include box-shadow(0,1px,5px,#888);
+  max-width : 100%;
 
-    max-width : 500px;
-    max-height : 500px;
-    margin : 0 20px;
+  overflow : hidden;
+  white-space : nowrap;
+
+  .frame {
+    @include box-shadow(0,1px,5px,#666);
   }
 
-  //&.focused, // for now
-  //&:hover {
-  //  .frame-shot {
-  //    max-width : 700px;
-  //    max-height : 700px;
-  //
-  //    @include box-shadow(0,4px,20px,#000);
-  //  }
-  //}
+  .original-frame,
+  .big-frame,
+  .remix-frame {
+    display : inline-block;
+    text-align : center;
+  }
+
+  .original-frame,
+  .remix-frame {
+    @include opacity(0.3);
+  }
+
+  .original-frame {
+    width : 150px;
+    margin-right : 70px;
+  }
+
+  .big-frame {
+    width : 500px;
+  }
+
+  .remix-frame {
+    width : 250px;
+    margin-left : 70px;
+  }
 }
