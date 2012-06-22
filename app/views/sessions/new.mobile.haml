@@ -7,6 +7,11 @@
     %p{:class => "login_#{name}"}= msg
   #login_form
     .login-container
+      :erb
+        <% unless @linking_service %>
+          <%= rad_fb_link("margin-right:10px;") %>
+            <hr/>
+          <% end %>
       = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal'}) do |f|
         %fieldset
           %legend
