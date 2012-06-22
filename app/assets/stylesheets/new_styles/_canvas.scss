@@ -95,7 +95,7 @@ a.logo{
 
     /* used in masking photos with overflow: hidden; */
     .image-container {
-      overflow : hidden;
+      //overflow : hidden;
       width : 100%;
 
       img {
@@ -348,21 +348,48 @@ a.logo{
 
   &.fridge {
     .content {
-      padding : 2em;
+      @include border-radius(2px);
+
+      padding : 1.5em;
       box-sizing: border-box;
+
+      background-image : image_url('texture/ricepaper.jpg');
+    }
+
+    .image-wrapper {
+      @include box-shadow(0,0,3px,#222);
+    }
+
+    .image-wrapper,
+    .image-wrapper:after,
+    .image-wrapper img {
+      @include border-radius(4px);
+    }
+
+    .image-wrapper:after {
+      -moz-box-shadow: inset 0 0 10em #000;
+      -webkit-box-shadow: inset 0 0 10em #000;
+      box-shadow: inset 0 0 10em #000;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      content: "";
     }
 
     p {
       font : {
-        family : "Noteworthy", "Marker Felt", "Comic Sans";
-        style : italic;
+        family : "Shadows into light", "Noteworthy", "Marker Felt", "Comic Sans";
+        weight: bold;
+        size: 2em !important;
       }
-      font-size : 2em;
-      line-height : 1.4em;
+      line-height : 1em;
     }
 
     .text-content {
-      padding : 20px 0;
+      padding : 20px 5px 10px;
     }
   }
 

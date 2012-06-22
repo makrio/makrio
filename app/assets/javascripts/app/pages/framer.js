@@ -146,6 +146,10 @@ app.views.Post.EditableSmallFrame = app.views.Post.SmallFrame.extend({
     var editable = this.$(".text-content p")
     editable.attr("contentEditable", true)
     if(!editable.text()){editable.html("&nbsp")} //needed for cucumber
+
+    if(this.model.get("frame_name") == "Fridge") {
+      this.$("img").vintage();
+    }
   }
 });
 
