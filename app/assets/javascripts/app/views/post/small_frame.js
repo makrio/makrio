@@ -36,9 +36,9 @@ app.views.Post.SmallFrame = app.views.Post.extend({
   postRenderTemplate : function() {
     this.addStylingClasses()
 
-    if(this.model.get("frame_name") == "Fridge") {
-      this.$("img").vintage();
-    }
+    // if(this.model.get("frame_name") == "Fridge") {
+    //   this.$("img").vintage();
+    // }
   },
 
   addStylingClasses : function() {

@@ -147,9 +147,9 @@ app.views.Post.EditableSmallFrame = app.views.Post.SmallFrame.extend({
     editable.attr("contentEditable", true)
     if(!editable.text()){editable.html("&nbsp")} //needed so hover state so blue shows up, and for cukes
 
-    if(this.model.get("frame_name") == "Fridge") {
-      this.$("img").vintage();
-    }
+    // if(this.model.get("frame_name") == "Fridge") {
+    //   this.$("img").vintage();
+    // }
   }
 });
 

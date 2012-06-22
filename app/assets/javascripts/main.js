@@ -39,7 +39,6 @@
 //= require contact-list
 //= require aspect-sorting
 //= require mentions
-//= require vintage
 //= require bootstrap-tooltip
 //= require bootstrap-popover
 //= require bootstrap-dropdown
