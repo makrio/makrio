@@ -145,7 +145,7 @@ app.views.Post.EditableSmallFrame = app.views.Post.SmallFrame.extend({
   postRenderTemplate : function(){
     var editable = this.$(".text-content p")
     editable.attr("contentEditable", true)
-    if(!editable.text()){editable.html("&nbsp")} //needed for cucumber
+    if(!editable.text()){editable.html("&nbsp")} //needed so hover state so blue shows up, and for cukes
 
     if(this.model.get("frame_name") == "Fridge") {
       this.$("img").vintage();
@@ -182,6 +182,8 @@ app.views.framerControls = app.views.Base.extend({
       return false;
     } 
     this.$('input').prop('disabled', 'disabled')
+
+
     this.model.save()
 
     this.trackPost()

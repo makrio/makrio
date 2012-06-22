@@ -42,7 +42,7 @@ app.views.Post.SmallFrame = app.views.Post.extend({
   },
 
   addStylingClasses : function() {
-    this.$el.addClass([this.dimensionsClass(), this.colorClass(), this.frameClass()].join(' '))
+    this.$el.addClass([this.dimensionsClass(), this.textClasses(), this.frameClass()].join(' '))
   },
 
   frameClass : function(){
@@ -50,21 +50,17 @@ app.views.Post.SmallFrame = app.views.Post.extend({
     return name.toLowerCase()
   },
 
-  colorClass : function() {
+  textClasses : function() {
     var text = this.model.get("text")
-      , baseClass = $.trim(text).length == 0 ? "no-text" : "has-text"
-      , textClass;
+      , baseClass = "big-text"
+      , hasText = $.trim(text).length == 0 ? "no-text" : "has-text"
+      , hasMedia = hasMediaObject(this.model) ? "has-media" : "";
 
-    if(this.model.get("photos").length > 0 || this.model.get("o_embed_cache"))
-      baseClass += " has-media";
+    return [baseClass, hasText, hasMedia].join(" ")
 
-    if(baseClass == "no-text" || this.model.get("photos").length > 0 || this.model.get("o_embed_cache")) { return baseClass }
-
-    if(baseClass.search("no-text") != -1 || text.length < 40) {
-      textClass += " big-text"
+    function hasMediaObject(model){
+      return (model.get("photos").length > 0 || model.get("o_embed_cache"))
     }
-
-    return [baseClass, textClass].join(" ")
   },
 
   dimensionsClass : function() {

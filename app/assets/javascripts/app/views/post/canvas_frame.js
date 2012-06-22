@@ -13,7 +13,7 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
   adjustedImageHeight : function() {
     if(!(this.model.get("photos") || [])[0]) { return }
 
-    var modifiers = [this.dimensionsClass(), this.colorClass()].join(' ')
+    var modifiers = [this.dimensionsClass(), this.textClasses()].join(' ')
       , width;
 
     /* mobile width
