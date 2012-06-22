@@ -49,7 +49,7 @@ class StreamsController < ApplicationController
   end
 
   def popular
-    posts = Post.order("(posts.likes_count *3 + posts.comments_count *2 - extract(day from age(created_at))/5) DESC").limit(30).all
+    posts = Post.order("(exp(posts.likes_count) + posts.comments_count *2 - (exp(extract(day from age(created_at)) + 1))) DESC").limit(30).all
 
     stream_json = PostPresenter.collection_json(posts, current_user)
     respond_to do |format|
