@@ -196,6 +196,10 @@ jQuery.fn.vintage = function (options) {
                 ctx = canvas.getContext('2d');
                 //create image object
                 var image = new Image();
+
+                // fix webGL CORS issue
+                image.crossOrigin = '';
+
                 //set image source
                 image.src = obj.attr('src');
                 //bind onload function to manipulate the image
