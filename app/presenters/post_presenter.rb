@@ -17,6 +17,7 @@ class PostPresenter
         :id => @post.id,
         :guid => @post.guid,
         :text => @post.raw_message,
+        :plain_text => @post.text(:plain_text => true),
         :public => @post.public,
         :featured => @post.featured,
         :created_at => @post.created_at,
