@@ -70,6 +70,10 @@ class StatusMessage < Post
     self.raw_message.match(/#nsfw/i) || super
   end
 
+  def normalized_text
+    return self.raw_message.strip.gsub('<br>', ' ')
+  end
+
   def formatted_message(opts={})
     return self.raw_message unless self.raw_message
 

@@ -54,8 +54,7 @@ class Services::Facebook < Service
   end
 
   def create_post_params(post)
-    message = post.text(:plain_text => true)
-    {:message => message, :access_token => self.access_token, :link => URI.extract(message, ['https', 'http']).first}.to_param
+    {:message => post.normalized_text, :access_token => self.access_token, :link => URI.extract(message, ['https', 'http']).first}.to_param
   end
 
   def is_like?(action)

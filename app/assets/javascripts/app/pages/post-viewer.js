@@ -73,7 +73,7 @@ app.pages.PostViewer = app.views.Base.extend({
   },
 
   postRenderTemplate : function() {
-    if(this.model.get("title")){ document.title = this.model.get("title"); }
+    if(this.model.get("title")){ document.title = $.trim(this.model.get("title").replace(/<br>/g, ' ')); }
   },
 
   closePane : function(evt) {
