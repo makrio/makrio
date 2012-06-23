@@ -19,7 +19,8 @@ class Postzord::Dispatcher
     @opts = opts
 
     additional_subscribers = opts[:additional_subscribers] || []
-    @subscribers = subscribers_from_object | [*additional_subscribers]
+    sb = subscribers_from_object.each{|x| } ## ugly hax to ensure this is an array
+    @subscribers = sb | [*additional_subscribers]
   end
 
   # @return [Postzord::Dispatcher] Public or private dispatcher depending on the object's intended audience
