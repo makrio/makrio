@@ -13,8 +13,6 @@
     %meta{:name =>'viewport', :content => "width=device-width, minimum-scale=1 maximum-scale=1"}
     %meta{:name => "HandheldFriendly", :content => "True"}
     %meta{:name => "MobileOptimized", :content => "320"}
-
-
     / Force cleartype on WP7
     %meta{'http-equiv' => "cleartype", :content => 'on'}
     = og_site_name
@@ -24,10 +22,8 @@
     %link{:rel => 'shortcut icon', :href => image_path('apple-touch-icon-precomposed.png')}
 
     / iOS mobile web app indicator
-    %meta{:name => "apple-mobile-web-app-capable", :content => "yes"}
-    %meta{:name => "apple-mobile-web-app-status-bar-style", :content => "black"}
-
-    / needs to be updated!
+    / NOTE(we will enable these once we don't have to rely on back/forward buttons anymore)
+    /%meta{:name => "apple-mobile-web-app-capable", :content => "yes"}
     /%link{:rel => "apple-touch-startup-image", :href => "/images/apple-splash.png"}
 
     = chartbeat_head_block
