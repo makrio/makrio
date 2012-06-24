@@ -36,6 +36,7 @@ afterEach(function() {
   $("#jasmine_content").empty()
   expect(spec.loadFixtureCount).toBeLessThan(2);
   spec.loadFixtureCount = 0;
+  $('body').removeClass('lock') // gross hax
 });
 
 var context = describe;
