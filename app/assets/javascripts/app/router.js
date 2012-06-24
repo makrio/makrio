@@ -98,6 +98,11 @@ app.Router = Backbone.Router.extend({
     app.page && app.page.unbind && app.page.unbind() //old page might mutate global events $(document).keypress, so unbind before creating
     app.page = pageConstructor() //create new page after the world is clean (like that will ever happen)
     $("#container").html(app.page.render().el)
+  },
+
+  setLocation : function(location){
+    //I made this so we can stub it out nicely
+    window.location = location
   }
 });
 

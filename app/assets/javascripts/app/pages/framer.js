@@ -41,7 +41,7 @@ app.pages.Framer = app.views.Base.extend({
 
   defaultNavigation : function() {
     // app.router.navigate(url, {trigger: true, replace: true})
-    window.location = '/stream'
+    app.router.setLocation('/stream')
   }
 });
 
