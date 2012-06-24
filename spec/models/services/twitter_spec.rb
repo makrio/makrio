@@ -36,13 +36,13 @@ describe Services::Twitter do
 
     it "should not truncate a short message" do
       short_message = SecureRandom.hex(20)
-      short_post = stub(:text => short_message )
+      short_post = stub(:plain_text => short_message )
       @service.public_message(short_post, '').should include(short_message)
     end
 
     it "should truncate a long message" do
       long_message = SecureRandom.hex(220)
-      long_post = stub(:text => long_message, :id => 1 )
+      long_post = stub(:plain_text => long_message, :id => 1 )
       @service.public_message(long_post, '').should match long_message.first(100)
 
     end
@@ -65,7 +65,7 @@ describe Services::Twitter do
 
     it "should truncate a long message with an ftp url" do
       long_message = @long_message_start + " ftp://joindiaspora.com/a-very-long-url-name-that-will-be-shortened.html " + @long_message_end
-      long_post = stub(:text => long_message, :id => 1 )
+      long_post = stub(:plain_text => long_message, :id => 1 )
       answer = @service.public_message(long_post, '')
 
       answer.should match /\.\.\./

@@ -16,7 +16,7 @@ class Service < ActiveRecord::Base
     Rails.logger.info("Posting out to #{self.class}")
     url = Rails.application.routes.url_helpers.short_post_url(post, :host => AppConfig[:pod_uri].authority)
     space_for_url = 21 + 1
-    truncated = truncate(post.text(:plain_text => true), :length => (length - space_for_url))
+    truncated = truncate(post.plain_text, :length => (length - space_for_url))
     truncated = "#{truncated} #{url}"
     return truncated
   end
