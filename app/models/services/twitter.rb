@@ -20,7 +20,7 @@ class Services::Twitter < Service
 
   def public_message(post, url)
     buffer_amt = 0
-    URI.extract( post.normalized_text, ['http','https'] ) do |a_url|
+    URI.extract( post.plain_text, ['http','https'] ) do |a_url|
       buffer_amt += (a_url.length - SHORTENED_URL_LENGTH)
     end
 

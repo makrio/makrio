@@ -5,7 +5,6 @@
 class StatusMessage < Post
   include Diaspora::Taggable
 
-  include ActionView::Helpers::TextHelper
   include PeopleHelper
 
   acts_as_taggable_on :tags
@@ -70,14 +69,11 @@ class StatusMessage < Post
     self.raw_message.match(/#nsfw/i) || super
   end
 
-  def normalized_text
-    return self.raw_message.strip.gsub('<br>', ' ')
-  end
 
   def formatted_message(opts={})
     return self.raw_message unless self.raw_message
 
-    escaped_message = opts[:plain_text] ? self.raw_message.to_s.gsub(/\n/, '').gsub('<br>', '') : ERB::Util.h(self.raw_message)
+    escaped_message = opts[:plain_text] ?  plain_text : ERB::Util.h(self.raw_message)
     mentioned_message = self.format_mentions(escaped_message, opts)
     Diaspora::Taggable.format_tags(mentioned_message, opts.merge(:no_escape => true))
   end

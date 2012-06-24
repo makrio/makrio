@@ -33,7 +33,7 @@ app.views.ShareView = app.views.Base.extend({
   presenter : function() {
     return _.extend(this.defaultPresenter(),{
       url : window.location.origin + '/p/' + this.model.get('id'),
-      title : this.model.headline(), 
+      title : this.model.get('title'), 
       screenshotUrl : this.model.get('screenshot_url')
     })
   },

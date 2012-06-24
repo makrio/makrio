@@ -54,7 +54,7 @@ class Services::Facebook < Service
   end
 
   def create_post_params(post)
-    message = post.normalized_text
+    message = post.plain_text
     {:message => message, :access_token => self.access_token, :link => URI.extract(message, ['https', 'http']).first}.to_param
   end
 

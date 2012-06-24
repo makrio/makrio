@@ -10,7 +10,7 @@ module PostsHelper
       post_page_title(post.root)
     else
       if post.text.present?
-        truncate(post.normalized_text, :length => opts.fetch(:length, 20))
+        truncate(post.plain_text, :length => opts.fetch(:length, 20))
       elsif post.respond_to?(:photos) && post.photos.present?
         I18n.t "posts.show.photos_by", :count => post.photos.size
       end

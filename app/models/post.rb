@@ -7,6 +7,8 @@ class Post < ActiveRecord::Base
 
   include Diaspora::Federated::Shareable
 
+  
+  include ActionView::Helpers::TextHelper
   include Diaspora::Likeable
   include Diaspora::Commentable
   include Diaspora::Shareable
@@ -92,6 +94,10 @@ class Post < ActiveRecord::Base
   def mentioned_people; []; end
   def photos; []; end
   def text(opts={}); raw_message; end
+
+  def plain_text
+    sanitize(raw_message, :tags=>[]).gsub(/&nbsp;/i, ' ').squish
+  end
 
   def self.excluding_blocks(user)
     people = user.blocks.map{|b| b.person_id}

@@ -1,6 +1,7 @@
 require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'template_picker')
 
 class PostPresenter
+  include ActionView::Helpers::TextHelper
   attr_accessor :post, :current_user
 
   def initialize(post, current_user = nil)
@@ -17,7 +18,7 @@ class PostPresenter
         :id => @post.id,
         :guid => @post.guid,
         :text => @post.raw_message,
-        :plain_text => @post.text(:plain_text => true),
+        :plain_text => @post.plain_text,
         :public => @post.public,
         :featured => @post.featured,
         :created_at => @post.created_at,
@@ -60,7 +61,7 @@ class PostPresenter
   end
 
   def title
-    @post.text.present? ? @post.text(:plain_text => true) : I18n.translate('posts.presenter.title', :name => @post.author.name)
+    @post.text.present? ? truncate(@post.plain_text, :length => 118) : I18n.translate('posts.presenter.title', :name => @post.author.name)
   end
 
   def template_name #kill me, lol, I should be client side
