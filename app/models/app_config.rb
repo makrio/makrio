@@ -56,7 +56,11 @@ Please do the following:
       puts "Double check it's there and that you haven't set RAILS_ENV to something weired (check it for typos)"
       Process.exit(1)
     end
+    check_if_ssl_setup
+  end
 
+
+  def check_if_ssl_setup
     if !EnviromentConfiguration.heroku? && no_cert_file_in_prod?
       $stderr.puts <<-HELP
 ******** Diaspora does not know where your SSL-CA-Certificates file is. **********
