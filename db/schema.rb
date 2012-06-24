@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625054638) do
+ActiveRecord::Schema.define(:version => 20120625230946) do
 
   create_table "account_deletions", :force => true do |t|
     t.string  "diaspora_handle"
@@ -251,6 +251,7 @@ ActiveRecord::Schema.define(:version => 20120625054638) do
     t.string   "unprocessed_image"
     t.integer  "height"
     t.integer  "width"
+    t.string   "temporary_url"
   end
 
   create_table "pods", :force => true do |t|

@@ -97,7 +97,7 @@ class PostPresenter
 
   def has_gif?
     return false unless @post.photos.present?
-    @post.photos.detect{ |p| p.url.match(".gif") }.present?
+    @post.photos.detect{ |p| p.url && p.url.match(".gif") }.present?
   end
 end
 

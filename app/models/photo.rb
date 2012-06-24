@@ -62,8 +62,7 @@ class Photo < ActiveRecord::Base
       photo.unprocessed_image.store! image_file
 
     elsif params[:image_url]
-      photo.remote_unprocessed_image_url = params[:image_url]
-      photo.unprocessed_image.store!
+      photo.temporary_url = params[:image_url]
     end
 
     photo
@@ -74,7 +73,19 @@ class Photo < ActiveRecord::Base
   end
 
   def base_url(opts = {})
-    processed? ? processed_image.url(opts) : unprocessed_image.url
+    size = gif? ? nil : opts
+    processed_image.url(size)
+  end
+
+
+  def gif?
+    if processed_image.url.present? && processed_image.url.include?('gif')
+      true
+    elsif temporary_url.to_s.include?('.gif') 
+      true
+    else
+      false
+    end
   end
 
   def url(opts = {})
