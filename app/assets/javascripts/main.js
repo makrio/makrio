@@ -8,8 +8,6 @@
 //= require jquery.hotkeys
 //= require jquery.remotipart
 //= require jquery.autoresize
-//= require jquery-ui-1.8.9.custom.min
-//= require jquery.charcount
 //= require jquery.placeholder
 //= require timeago
 //= require facebox
@@ -34,10 +32,6 @@
 //= require_tree ./pages
 //= require_tree ./widgets
 //= require view
-//= require aspects-dropdown
-//= require contact-edit
-//= require contact-list
-//= require aspect-sorting
 //= require mentions
 //= require bootstrap-tooltip
 //= require bootstrap-popover
