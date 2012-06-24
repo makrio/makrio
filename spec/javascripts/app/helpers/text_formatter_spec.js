@@ -6,14 +6,12 @@ describe("app.helpers.textFormatter", function(){
   })
 
   describe("main", function(){
-    it("calls mentionify, hashtagify, and markdownify", function(){
+    it("calls mentionify, and markdownify", function(){
       spyOn(app.helpers.textFormatter, "mentionify")
-      spyOn(app.helpers.textFormatter, "hashtagify")
       spyOn(app.helpers.textFormatter, "markdownify")
 
       app.helpers.textFormatter(this.statusMessage.get("text"), this.statusMessage)
       expect(app.helpers.textFormatter.mentionify).toHaveBeenCalled()
-      expect(app.helpers.textFormatter.hashtagify).toHaveBeenCalled()
       expect(app.helpers.textFormatter.markdownify).toHaveBeenCalled()
     })
 
