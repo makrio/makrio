@@ -15,8 +15,9 @@ app.views.Post.SmallFrame = app.views.Post.extend({
 
   initialize : function(options) {
     this.stream = options.stream;
+    this.composing = options.composing || false
 
-    if(this.model.get("show_screenshot")) {
+    if(this.model.get("show_screenshot") && !this.composing) {
       this.templateName = "small-frame/screenshot"
       this.$el.addClass('frame-screenshot')
     } else {
@@ -40,7 +41,7 @@ app.views.Post.SmallFrame = app.views.Post.extend({
   },
 
   postRenderTemplate : function() {
-    if(!!this.model.get("show_screenshot")) { return; }
+    if(!!this.model.get("show_screenshot") && !this.composing) { return; }
     this.addStylingClasses()
   },
 
