@@ -183,6 +183,12 @@ class Post < ActiveRecord::Base
     self.save!
   end
 
+  def re_screenshot!
+    self.remove_screenshot = true
+    self.save!
+    self.screenshot!
+  end
+
   def screenshot_url
     screenshot.url
   end
