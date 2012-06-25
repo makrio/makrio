@@ -10,6 +10,16 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
     "click .delete" : "killPost"
   },
 
+  // copy pasta :(
+  initialize : function(options) {
+    this.stream = options.stream;
+    this.addStylingClasses()
+  },
+
+  postRenderTemplate : function() {
+    this.addStylingClasses()
+  },
+
   adjustedImageHeight : function() {
     if(!(this.model.get("photos") || [])[0]) { return }
 

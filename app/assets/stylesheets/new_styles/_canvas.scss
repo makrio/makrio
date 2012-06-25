@@ -1,7 +1,3 @@
-@mixin wide() {
-  width : $two-column-width + px;
-}
-
 $meta-info-holder-height : 45px;
 $frame-meta-z-index : 10;
 $selected-meta-index : $frame-meta-z-index - 1;
@@ -30,25 +26,44 @@ a.logo{
   font-size: 1.2em;
 }
 
+#canvas {
+  .canvas-frame {
+    float : left;
+    margin : 5px;
+    margin-bottom : 5px;
+
+    max-width : 100%;
+
+    /* expand / contract cursor declarations */
+    &.x2 .content {
+      cursor : nw-resize;
+      cursor : -moz-zoom-out;
+      cursor : -webkit-zoom-out;
+    }
+    .content {
+      cursor : nwse-resize;
+      cursor : -moz-zoom-in;
+      cursor : -webkit-zoom-in;
+    }
+  }
+}
+
+#canvas,
+.current-frame {
+  .canvas-frame {
+    /* larger declarations */
+    &.x2.width .content {
+      @include wide();
+
+      p {
+        font-size : 1.5em;
+        line-height : 1em;
+      }
+    }
+  }
+}
+
 .canvas-frame {
-  float : left;
-  margin : 5px;
-  margin-bottom : 5px;
-
-  max-width : 100%;
-
-  /* expand / contract cursor declarations */
-  &.x2 .content {
-    cursor : nw-resize;
-    cursor : -moz-zoom-out;
-    cursor : -webkit-zoom-out;
-  }
-  .content {
-    cursor : nwse-resize;
-    cursor : -moz-zoom-in;
-    cursor : -webkit-zoom-in;
-  }
-
   .content {
     /* default height to be overridden */
     min-height : $column-width + px;
@@ -276,16 +291,6 @@ a.logo{
 
   &.x2.big-text .text-content {
     width : $two-column-width - 40 + px;
-  }
-
-  /* larger declarations */
-  &.x2.width .content {
-    @include wide();
-
-    p {
-      font-size : 1.5em;
-      line-height : 1em;
-    }
   }
 
   &.sticky-note.x2.height  .content {

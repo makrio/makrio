@@ -15,7 +15,13 @@ app.views.Post.SmallFrame = app.views.Post.extend({
 
   initialize : function(options) {
     this.stream = options.stream;
-    this.addStylingClasses()
+
+    if(this.model.get("show_screenshot")) {
+      this.templateName = "small-frame/screenshot"
+      this.$el.addClass('frame-screenshot')
+    } else {
+      this.addStylingClasses()
+    }
   },
 
   oEmbedView : function(){
@@ -34,11 +40,8 @@ app.views.Post.SmallFrame = app.views.Post.extend({
   },
 
   postRenderTemplate : function() {
+    if(!!this.model.get("show_screenshot")) { return; }
     this.addStylingClasses()
-
-    // if(this.model.get("frame_name") == "Fridge") {
-    //   this.$("img").vintage();
-    // }
   },
 
   addStylingClasses : function() {

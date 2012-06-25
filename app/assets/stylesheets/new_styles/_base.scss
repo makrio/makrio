@@ -45,31 +45,6 @@ a { color : $link-blue  }
   color: inherit;
 }
 
-#author-info {
-  position : absolute;
-  z-index : 300;
-
-  .author-name {
-    color: #555;
-  }
-
-  .bd {
-    margin-top : 5px;
-    display: inline-block;
-  }
-
-  .post-time,
-  .icon-retweet {
-    color: #555;
-    @include opacity(0.5);
-  }
-}
-
-#post-author {
-  margin : 0;
-  padding : 10px;
-}
-
 .post-view {
   display: table;
   height: 100%;
@@ -130,6 +105,17 @@ a { color : $link-blue  }
     }
   }
 
+  .original-frame {
+    .author-name {
+      top : -7px;
+      left : -7px;
+    }
+  }
+
+  .current-frame {
+    @include wide();
+  }
+
   i.divider {
     margin : 0 20px;
   }
@@ -156,6 +142,10 @@ a { color : $link-blue  }
       display : none;
     }
   }
+}
+
+.canvas-frame.frame-screenshot img {
+  border : none !important;
 }
 
 article { //mood posts
@@ -301,6 +291,10 @@ article { //mood posts
   left: 0;
   height: 100%;
   width: 100%;
+}
+
+.frame {
+  @include box-shadow(0,2px,8px,rgba(0, 0, 0, 0.9));
 }
 
 .photo-backdrop {

@@ -114,3 +114,7 @@ $default-border-radius: 3px;
     bottom : 0;
   }
 }
+
+@mixin wide() {
+  width : $two-column-width + px;
+}
