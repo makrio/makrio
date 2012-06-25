@@ -48,17 +48,14 @@ a.logo{
   }
 }
 
-#canvas,
-.current-frame {
-  .canvas-frame {
-    /* larger declarations */
-    &.x2.width .content {
-      @include wide();
+.canvas-frame {
+  /* larger declarations */
+  &.x2.width .content {
+    @include wide();
 
-      p {
-        font-size : 1.5em;
-        line-height : 1em;
-      }
+    p {
+      font-size : 1.5em;
+      line-height : 1em;
     }
   }
 }
