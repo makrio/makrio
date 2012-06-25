@@ -73,7 +73,6 @@ a { color : $link-blue  }
 
   #info_row {
     display : table-cell;
-    vertical-align : middle;
     text-align : center;
     padding : 20px 0;
   }
@@ -118,6 +117,7 @@ a { color : $link-blue  }
 
   .current-frame {
     @include wide();
+    vertical-align : middle;
   }
 
   i.divider {
