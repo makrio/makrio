@@ -2,7 +2,7 @@ app.pages.PostViewer = app.views.Base.extend({
   templateName: "post-viewer",
 
   subviews : {
-    ".frame" : "postView",
+    "#featured_frame" : "postView",
     "#post-nav" : "navView",
     "#post-interactions" : "interactionsView"
   },
