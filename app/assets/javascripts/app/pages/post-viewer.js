@@ -2,23 +2,25 @@ app.pages.PostViewer = app.views.Base.extend({
   templateName: "post-viewer",
 
   subviews : {
-    "#post-content" : "postView",
+    ".frame" : "postView",
     "#post-nav" : "navView",
-    "#post-interactions" : "interactionsView",
-    "#author-info" : "authorView"
+    "#post-interactions" : "interactionsView"
   },
+
+  tooltipSelector : ".post-author",
 
   initialize : function(options) {
     this.model = new app.models.Post({ id : options.id });
     this.model.preloadOrFetch().done(_.bind(this.initViews, this));
     this.model.interactions.fetch() //async, yo, might want to throttle this later.
 
+    console.log(this.model.attributes)
+
     this.bindEvents()
   },
 
   initViews : function() {
     /* init view */
-    this.authorView = new app.views.PostViewerAuthor({ model : this.model });
     this.interactionsView = new app.views.PostViewerInteractions({ model : this.model });
     this.navView = new app.views.PostViewerNav({ model : this.model });
     this.postView = new app.views.Post.SmallFrame({
