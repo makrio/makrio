@@ -1,27 +1,27 @@
 describe("app.models.Reshare", function(){
    beforeEach(function(){
-     this.reshare = new app.models.Reshare({root: {a:"namaste", be : "aloha", see : "community"}})
+     this.reshare = new app.models.Reshare({parent: {a:"namaste", be : "aloha", see : "community"}})
    });
 
-   describe("rootPost", function(){
-     it("should be the root attrs", function(){
-       expect(this.reshare.rootPost().get("be")).toBe("aloha")
+   describe("parentPost", function(){
+     it("should be the parent attrs", function(){
+       expect(this.reshare.parentPost().get("be")).toBe("aloha")
      });
 
      it("should return a post", function(){
-       expect(this.reshare.rootPost() instanceof app.models.Post).toBeTruthy()
+       expect(this.reshare.parentPost() instanceof app.models.Post).toBeTruthy()
      });
 
      it("does not create a new object every time", function(){
-       expect(this.reshare.rootPost()).toBe(this.reshare.rootPost())
+       expect(this.reshare.parentPost()).toBe(this.reshare.parentPost())
      });
    });
 
    describe(".reshare", function(){
-     it("reshares the root post", function(){
-       spyOn(this.reshare.rootPost(), "reshare")
+     it("reshares the parent post", function(){
+       spyOn(this.reshare.parentPost(), "reshare")
        this.reshare.reshare()
-       expect(this.reshare.rootPost().reshare).toHaveBeenCalled()
+       expect(this.reshare.parentPost().reshare).toHaveBeenCalled()
      });
      
      it("returns something", function() {

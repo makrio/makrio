@@ -4,7 +4,7 @@ describe SignedRetraction do
   before do
     @post = Factory(:status_message, :author => bob.person, :public => true)
     @resharer = Factory(:user)
-    @post.reshares << Factory(:reshare, :root => @post, :author => @resharer.person)
+    @post.reshares << Factory(:reshare, :parent => @post, :author => @resharer.person)
     @post.save!
   end
   describe '#perform' do
@@ -21,8 +21,8 @@ describe SignedRetraction do
     end
     it 'relays the retraction onward even if the post does not exist' do
       remote_post = Factory(:status_message, :public => true)
-      bob.post(:reshare, :root_guid => remote_post.guid)
-      alice.post(:reshare, :root_guid => remote_post.guid)
+      bob.post(:reshare, :parent_guid => remote_post.guid)
+      alice.post(:reshare, :parent_guid => remote_post.guid)
 
       remote_retraction = SignedRetraction.new.tap{|r|
         r.target_type = remote_post.type

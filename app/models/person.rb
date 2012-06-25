@@ -89,7 +89,7 @@ class Person < ActiveRecord::Base
   scope :profile_tagged_with, lambda{|tag_name| joins(:profile => :tags).where(:tags => {:name => tag_name}).where('profiles.searchable IS TRUE') }
 
   scope :who_have_reshared_a_users_posts, lambda{|user|
-    joins(:posts).where(:posts => {:root_guid => StatusMessage.guids_for_author(user.person), :type => 'Reshare'} )
+    joins(:posts).where(:posts => {:parent_guid => StatusMessage.guids_for_author(user.person), :type => 'Reshare'} )
   }
 
   def self.community_spotlight

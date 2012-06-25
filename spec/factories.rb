@@ -124,7 +124,7 @@ FactoryGirl.define do
   end
 
   factory :reshare do
-    association(:root, :public => true, :factory => :status_message)
+    association(:parent, :public => true, :factory => :status_message)
     association(:author, :factory => :person)
   end
 

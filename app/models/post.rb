@@ -21,10 +21,10 @@ class Post < ActiveRecord::Base
 
   has_many :mentions, :dependent => :destroy
 
-  has_many :reshares, :class_name => "Reshare", :foreign_key => :root_guid, :primary_key => :guid
+  has_many :reshares, :class_name => "Reshare", :foreign_key => :parent_guid, :primary_key => :guid
   has_many :resharers, :class_name => 'Person', :through => :reshares, :source => :author
 
-  has_many :remixes, :class_name => "Post", :foreign_key => :root_guid, :primary_key => :guid
+  has_many :remixes, :class_name => "Post", :foreign_key => :parent_guid, :primary_key => :guid
   has_many :remixers, :class_name => 'Person', :through => :reshares, :source => :author
 
   belongs_to :o_embed_cache
@@ -47,7 +47,7 @@ class Post < ActiveRecord::Base
   }
 
   def remixes
-    Post.where(:root_guid => self.guid)
+    Post.where(:parent_guid => self.guid)
   end
 
   def self.newer(post)
@@ -76,10 +76,10 @@ class Post < ActiveRecord::Base
   end
 
   def absolute_root
-    return self.root #whyyyy
+    return self.parent #whyyyy
     current = self
-    while(current.root_guid.present? || current.is_a?(Reshare) )
-      current = current.root
+    while(current.parent_guid.present? || current.is_a?(Reshare) )
+      current = current.parent
     end
 
     current
@@ -89,7 +89,7 @@ class Post < ActiveRecord::Base
     self.class.name
   end
 
-  def root; end
+  def parent; end
   def raw_message; ""; end
   def mentioned_people; []; end
   def photos; []; end
@@ -152,7 +152,7 @@ class Post < ActiveRecord::Base
     new_post = self.new params.to_hash
     new_post.author = params[:author]
     new_post.public = params[:public] if params[:public]
-    new_post.root_guid = params[:root_guid]
+    new_post.parent_guid = params[:parent_guid]
     new_post.diaspora_handle = new_post.author.diaspora_handle
     new_post
   end
@@ -167,7 +167,7 @@ class Post < ActiveRecord::Base
   end
 
   def notify_source!
-    Notifications::Remixed.create_from_post(self) if self.root.present?
+    Notifications::Remixed.create_from_post(self) if self.parent.present?
   end
 
   def comment_email_subject

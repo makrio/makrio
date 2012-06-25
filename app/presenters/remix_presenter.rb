@@ -11,7 +11,7 @@ class RemixPresenter < BasePresenter
       :guid => @post.guid,
       :screenshot_url => @post.screenshot_url,
       :author => @post.author.as_api_response(:backbone),
-      :root_guid => @post.root_guid
+      :parent_guid => @post.parent_guid
     }
   end
 end

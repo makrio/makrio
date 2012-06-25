@@ -58,7 +58,7 @@ time_interval = 1000
     if(n%3==1)
       post = u.post :status_message, :text => "#{u.username} - #{n} - #seeded", :to => u.aspects.first.id
     elsif(n%3==2)
-      post =u.post(:reshare, :root_guid => Factory(:status_message, :public => true).guid, :to => 'all')
+      post =u.post(:reshare, :parent_guid => Factory(:status_message, :public => true).guid, :to => 'all')
     else
       post = Factory(:activity_streams_photo, :public => true, :author => u.person)
       u.add_to_streams(post, u.aspects)

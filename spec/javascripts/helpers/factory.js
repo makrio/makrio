@@ -65,7 +65,7 @@ factory = {
       "text" : "jasmine is bomb",
       "id" : this.id.next(),
       "object_url" : null,
-      "root" : null,
+      "parent" : null,
       "post_type" : "StatusMessage",
       "interactions" : {
         "reshares_count" : 0,

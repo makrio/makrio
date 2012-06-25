@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ResharesController do
   describe '#create' do
     let(:post_request!) {
-      post :create, :format => :json, :root_guid => @post_guid
+      post :create, :format => :json, :parent_guid => @post_guid
     }
 
     before do

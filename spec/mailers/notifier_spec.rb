@@ -147,7 +147,8 @@ describe Notifier do
   describe ".reshared" do
     before do
       @sm = Factory(:status_message, :author => alice.person, :public => true)
-      @reshare = Factory(:reshare, :root => @sm, :author => bob.person)
+      @reshare = Factory(:reshare, :parent => @sm, :author => bob.person)
+
       @mail = Notifier.reshared(alice.id, @reshare.author.id, @reshare.id)
     end
 

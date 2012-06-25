@@ -1,16 +1,16 @@
 app.models.Reshare = app.models.Post.extend({
   urlRoot : "/reshares",
 
-  rootPost : function(){
-    this._rootPost = this._rootPost || new app.models.Post(this.get("root"));
-    return this._rootPost
+  parentPost : function(){
+    this._parentPost = this._parentPost || new app.models.Post(this.get("parent"));
+    return this._parentPost
   },
 
   reshare : function(){
-    return this.rootPost().reshare()
+    return this.parentPost().reshare()
   },
 
   reshareAuthor : function(){
-    return this.rootPost().reshareAuthor()
+    return this.parentPost().reshareAuthor()
   }
 });
