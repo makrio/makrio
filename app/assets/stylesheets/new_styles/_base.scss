@@ -320,7 +320,6 @@ $bring-dark-accent-forward-color: #DDD;
 
 #top_right_nav {
   float : right;
-
 }
 
 #top-right-nav {
@@ -339,6 +338,13 @@ $bring-dark-accent-forward-color: #DDD;
       @include opacity(0.75);
       text-decoration : none;
     }
+  }
+}
+
+.navbar {
+  .logo {
+    float : left;
+    margin : 0 .6em;
   }
 }
 
@@ -424,14 +430,6 @@ $bring-dark-accent-forward-color: #DDD;
 
 #composer-button.label.label-inverse {
   background-color : #ff0000;
-}
-
-#makr_header_centered {
-  position : absolute;
-  text-align : center;
-  width : 100%;
-
-  z-index : 1;
 }
 
 #getting_started {
