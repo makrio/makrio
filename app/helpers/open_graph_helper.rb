@@ -78,8 +78,8 @@ module OpenGraphHelper
     tags << og_description(post)
     tags << og_author(post)
 
-    if post.root.present?
-      tags << meta_tag_with_property("#{AppConfig[:open_graph_namespace]}:original_frame", "https://makr.io/p/#{post.root.id}")
+    if post.parent.present?
+      tags << meta_tag_with_property("#{AppConfig[:open_graph_namespace]}:original_frame", "https://makr.io/p/#{post.parent.id}")
     end
 
     tags.join(' ').html_safe

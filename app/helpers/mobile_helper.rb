@@ -6,13 +6,13 @@ module MobileHelper
 
   def mobile_reshare_icon(post)
     if (post.public? || reshare?(post)) && (user_signed_in? && post.author != current_user.person)
-      root = reshare?(post) ? post.root : post
+      parent = reshare?(post) ? post.parent : post
 
-      if root.author != current_user.person.id
+      if parent.author != current_user.person.id
         reshare = Reshare.where(:author_id => current_user.person.id,
-                                :root_guid => root.guid).first
+                                :parent_guid => parent.guid).first
         klass = reshare.present? ? "active" : "inactive"
-        link_to '', reshares_path(:root_guid => root.guid), :title => t('reshares.reshare.reshare_confirmation', :author => root.author.name), :class => "image_link reshare_action #{klass}"
+        link_to '', reshares_path(:parent_guid => parent.guid), :title => t('reshares.reshare.reshare_confirmation', :author => parent.author.name), :class => "image_link reshare_action #{klass}"
       end
     end
   end

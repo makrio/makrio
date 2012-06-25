@@ -44,11 +44,11 @@ describe PostPresenter do
   end
   
   describe '#root' do
-    it 'does not raise if the root does not exists' do
+    it 'does not raise if the parent does not exists' do
       reshare = Factory :reshare
-      reshare.root = nil
+      reshare.parent = nil
       expect {
-        PostPresenter.new(reshare).root
+        PostPresenter.new(reshare).parent
       }.to_not raise_error
     end
   end

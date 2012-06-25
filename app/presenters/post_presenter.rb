@@ -34,7 +34,7 @@ class PostPresenter
         :mentioned_people => @post.mentioned_people.as_api_response(:backbone),
         :photos => @post.photos.map {|p| p.as_api_response(:backbone)},
         :frame_name => @post.frame_name || template_name,
-        :root => (options.fetch(:include_root, true) ? root : nil),
+        :parent => (options.fetch(:include_root, true) ? parent : nil),
         # :absolute_root => absolute_root,
         :title => title,
         :next_post => next_post_path,
@@ -68,14 +68,9 @@ class PostPresenter
     @template_name ||= TemplatePicker.new(@post).template_name
   end
 
-  def root
-    PostPresenter.new(@post.root, current_user).as_json(:include_root => false) if @post.respond_to?(:root) && @post.root.present?
+  def parent
+    PostPresenter.new(@post.parent, current_user).as_json(:include_root => false) if @post.respond_to?(:parent) && @post.parent.present?
   end
-
-
-  # def absolute_root
-  #   PostPresenter.new(@post.absolute_root, current_user).as_json if @post.respond_to?(:root) && @post.root.present?
-  # end
 
   def user_like
     @post.like_for(@current_user).try(:as_api_response, :backbone)

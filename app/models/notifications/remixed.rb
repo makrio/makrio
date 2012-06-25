@@ -7,7 +7,7 @@ class Notifications::Remixed < Notification
     note = self.create! do |notification|
       notification.target = post
       notification.actors << post.author
-      notification.recipient = post.root.author.owner
+      notification.recipient = post.parent.author.owner
     end
 
     note.email!

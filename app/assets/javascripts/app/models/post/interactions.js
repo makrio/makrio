@@ -119,10 +119,11 @@ app.models.Post.Interactions = Backbone.Model.extend({
 
   userCanReshare : function(){
     var isReshare = this.post.get("post_type") == "Reshare"
-      , rootExists = (isReshare ? this.post.get("root") : true)
+      , parentExists = (isReshare ? this.post.get("parent") : true)
       , publicPost = this.post.get("public")
       , userIsNotAuthor = this.post.get("author").diaspora_id != app.currentUser.get("diaspora_id")
-      , userIsNotRootAuthor = rootExists && (isReshare ? this.post.get("root").author.diaspora_id != app.currentUser.get("diaspora_id") : true)
+      , userIsNotRootAuthor = parentExists && (isReshare ? this.post.get("parent").author.diaspora_id != app.currentUser.get("diaspora_id") : true)
+
 
     return publicPost && app.currentUser.authenticated() && userIsNotAuthor && userIsNotRootAuthor;
   }

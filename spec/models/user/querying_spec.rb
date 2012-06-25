@@ -48,7 +48,7 @@ describe User::Querying do
 
     it "respects the :type option" do
       post = bob.post(:status_message, :text => "hey", :public => true, :to => @bobs_aspect.id, :pending => false)
-      reshare = bob.post(:reshare, :pending => false, :root_guid => post.guid, :to => @bobs_aspect)
+      reshare = bob.post(:reshare, :pending => false, :parent_guid => post.guid, :to => @bobs_aspect)
       alice.visible_shareable_ids(Post, :type => "Reshare").should include(reshare.id)
       alice.visible_shareable_ids(Post, :type => 'StatusMessage').should_not include(reshare.id)
     end

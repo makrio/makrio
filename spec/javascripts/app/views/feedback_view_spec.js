@@ -87,7 +87,7 @@ describe("app.views.Feedback", function(){
       });
 
       it("does not show a reshare_action link if the original post has been deleted", function(){
-        this.post.set({post_type : "Reshare", root : null})
+        this.post.set({post_type : "Reshare", parent : null})
         this.view.render();
         expect(this.view.$("a.reshare")).not.toExist()
       })
@@ -96,7 +96,7 @@ describe("app.views.Feedback", function(){
     context("when the post is not public", function(){
       beforeEach(function(){
         this.post.attributes.public = false;
-        this.post.attributes.root = {author : {name : "susan"}};
+        this.post.attributes.parent = {author : {name : "susan"}};
         this.view.render();
       })
 
@@ -126,7 +126,7 @@ describe("app.views.Feedback", function(){
   describe("resharePost", function(){
     beforeEach(function(){
       this.post.attributes.public = true
-      this.post.attributes.root = {author : {name : "susan"}};
+      this.post.attributes.parent = {author : {name : "susan"}};
       this.view.render();
     })
 

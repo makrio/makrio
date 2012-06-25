@@ -10,12 +10,12 @@ app.models.StatusMessage = app.models.Post.extend({
     author : app.currentUser ? app.currentUser.attributes : {}
   },
 
-  prepareToRemix : function(root){
+  prepareToRemix : function(parent){
     this.unset('favorite')
     this.unset('id')
     this.unset('guid')
-    this.set('sourcePost', root)
-    this.set('root_guid', root.get('guid'))
+    this.set('sourcePost', parent)
+    this.set('parent_guid', parent.get('guid'))
     this.photos = new Backbone.Collection(this.get("photos"))
   },
 
@@ -24,7 +24,7 @@ app.models.StatusMessage = app.models.Post.extend({
       status_message : _.clone(this.attributes),
       aspect_ids : this.get("aspect_ids"),
       photos : this.photos && this.photos.pluck("id"),
-      root_guid : this.get('root_guid'),
+      parent_guid : this.get('parent_guid'),
       services : this.get("services")
     }
   }

@@ -21,7 +21,7 @@ class User
         aspects = self.aspects_from_ids(opts[:to])
         add_to_streams(p, aspects)
         dispatch_opts = {:url => post_url(p), :to => opts[:to]}
-        dispatch_opts.merge!(:additional_subscribers => p.root.author) if class_name == :reshare
+        dispatch_opts.merge!(:additional_subscribers => p.parent.author) if class_name == :reshare
         dispatch_post(p, dispatch_opts)
       end
       unless opts[:created_at]

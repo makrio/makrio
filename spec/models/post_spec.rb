@@ -337,7 +337,7 @@ describe Post do
     describe 'when post has been reshared exactly 1 time' do
       before :each do
         @post.reshares.size.should == 0
-        @reshare = Factory(:reshare, :root => @post)
+        @reshare = Factory(:reshare, :parent => @post)
         @post.reload
         @post.reshares.size.should == 1
       end
@@ -350,9 +350,9 @@ describe Post do
     describe 'when post has been reshared more than once' do
       before :each do
         @post.reshares.size.should == 0
-        Factory(:reshare, :root => @post)
-        Factory(:reshare, :root => @post)
-        Factory(:reshare, :root => @post)
+        Factory(:reshare, :parent => @post)
+        Factory(:reshare, :parent => @post)
+        Factory(:reshare, :parent => @post)
         @post.reload
         @post.reshares.size.should == 3
       end
@@ -368,6 +368,8 @@ describe Post do
       post = Factory(:status_message)
       post.interacted_at.should_not be_blank
     end
+
+    it 'sets the root guid'
   end
 
 

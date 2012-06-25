@@ -1,16 +1,16 @@
 <div class="reshare">
 
-  {{#if root}}
+  {{#if parent}}
 
     <div class="media">
 
-      {{#with root}}
+      {{#with parent}}
         <a href="/people/{{author.guid}}" class="img">
           <img src="{{author.avatar.small}}" class="avatar" />
         </a>
       {{/with}}
 
-      {{#with root}}
+      {{#with parent}}
         <div class="bd">
           <div>
             <a href="/people/{{author.guid}}" class="author">

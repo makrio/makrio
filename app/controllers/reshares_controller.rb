@@ -5,12 +5,12 @@ class ResharesController < ApplicationController
   def create
     #TODO make this use current_user.reshare! instead of having logic in the controller
 
-    @reshare = current_user.build_post(:reshare, :root_guid => params[:root_guid])
+    @reshare = current_user.build_post(:reshare, :parent_guid => params[:parent_guid])
     if @reshare.save
       current_user.add_to_streams(@reshare, current_user.aspects)
-      current_user.dispatch_post(@reshare, :url => post_url(@reshare), :additional_subscribers => @reshare.root.author)
+      current_user.dispatch_post(@reshare, :url => post_url(@reshare), :additional_subscribers => @reshare.parent.author)
 
-      current_user.open_graph_action('reshare', @reshare.root)
+      current_user.open_graph_action('reshare', @reshare.parent)
     end
 
     render :json => ExtremePostPresenter.new(@reshare, current_user), :status => 201

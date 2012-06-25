@@ -780,7 +780,7 @@ describe User do
 
       it 'adds resharers of target post as additional subsctibers' do
         person = Factory(:person)
-        reshare = Factory(:reshare, :root => @post, :author => person)
+        reshare = Factory(:reshare, :parent => @post, :author => person)
         @post.reshares << reshare
 
         dispatcher = mock

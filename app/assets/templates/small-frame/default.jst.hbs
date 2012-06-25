@@ -36,10 +36,10 @@
     </div>
 
     <div class="info permalink">
-        {{#if root}}
-        {{#linkToPerson root.author}}
-        {{{personImage this}}
-        {{/linkToPerson}}
+        {{#if parent}}
+            {{#linkToPerson parent.author}}
+                {{{personImage this}}
+            {{/linkToPerson}}
         {{/if}}
 
         <i class="icon-time timestamp" title="{{created_at}}" rel="tooltip"></i>

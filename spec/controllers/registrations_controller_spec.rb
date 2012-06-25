@@ -81,7 +81,7 @@ describe RegistrationsController do
         flash[:notice].should_not be_blank
       end
 
-      it "redirects to the root url" do
+      it "redirects to the parent url" do
         get :create, @valid_params
         response.should be_redirect
         response.location.should match '/'

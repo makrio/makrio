@@ -10,7 +10,7 @@ class Services::Facebook < Service
   end
 
   def post(post, url='')
-    if post.root_guid.present?
+    if post.parent_guid.present?
       open_graph_post("remix", post)
     else
       open_graph_post("make", post)

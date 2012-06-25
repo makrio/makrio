@@ -7,7 +7,7 @@ module PostsHelper
     if post.is_a?(Photo)
       I18n.t "posts.show.photos_by", :count => 1
     elsif post.is_a?(Reshare)
-      post_page_title(post.root)
+      post_page_title(post.parent)
     else
       if post.text.present?
         truncate(post.plain_text, :length => opts.fetch(:length, 20))
