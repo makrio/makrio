@@ -27,10 +27,16 @@ class Post < ActiveRecord::Base
   has_many :remixes, :class_name => "Post", :foreign_key => :parent_guid, :primary_key => :guid
   has_many :remixers, :class_name => 'Person', :through => :reshares, :source => :author
 
+
+  belongs_to :parent, :class_name => 'Post', :foreign_key => :parent_guid, :primary_key => :guid
+  belongs_to :root, :class_name => 'Post', :foreign_key => :root_guid, :primary_key => :guid
+
+
   belongs_to :o_embed_cache
 
   after_create do
     self.touch(:interacted_at)
+    self.set_root_guid
   end
 
   mount_uploader :screenshot, ScreenshotUploader
@@ -75,21 +81,46 @@ class Post < ActiveRecord::Base
     save!
   end
 
+  def set_absolute_root!
+    self.root = absolute_root
+    self.save!
+  end
+
+  def remix_siblings
+    base_guid = original? ? guid : self.parent.root_guid
+    Post.where(:root_guid => base_guid) 
+  end
+
   def absolute_root
-    return self.parent #whyyyy
+    return nil if parent_guid.blank?
+
     current = self
-    while(current.parent_guid.present? || current.is_a?(Reshare) )
+    while(current.parent.present? || current.is_a?(Reshare))
       current = current.parent
     end
 
     current
   end
 
+  def set_root_guid
+    return true if original?
+
+    if self.parent.original?
+      self.root_guid = self.parent.guid
+    else
+      self.root_guid = self.parent.root_guid
+    end
+    self.save!
+  end
+
+  def original?
+    parent_guid.blank? && root_guid.blank?
+  end
+
   def post_type
     self.class.name
   end
 
-  def parent; end
   def raw_message; ""; end
   def mentioned_people; []; end
   def photos; []; end
