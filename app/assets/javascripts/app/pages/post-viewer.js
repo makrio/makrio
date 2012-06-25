@@ -14,8 +14,6 @@ app.pages.PostViewer = app.views.Base.extend({
     this.model.preloadOrFetch().done(_.bind(this.initViews, this));
     this.model.interactions.fetch() //async, yo, might want to throttle this later.
 
-    console.log(this.model.attributes)
-
     this.bindEvents()
   },
 
