@@ -49,7 +49,9 @@ app.pages.Stream = app.views.Base.extend({
 
   presenter : function(){
     return _.extend(this.defaultPresenter(), {
-      bookmarkletJS : this.bookmarkletJS()
+      bookmarkletJS : this.bookmarkletJS(),
+      onLatest : function() { return document.location.pathname.search("stream") !== -1},
+      onPopular : function() { return document.location.pathname.search("popular") !== -1 }
     })
   },
 
