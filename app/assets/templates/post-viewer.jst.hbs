@@ -4,14 +4,14 @@
     </a>
 
     <div id="info_row">
-        {{#if root}}
+        {{#if parent}}
             <div class="original-frame">
                 <div class="original-frame-wrapper">
-                    {{#linkToPerson root.author}}
+                    {{#linkToPerson parent.author}}
                         <div class="profile-image-container micro post-author" style="background-image : url('{{avatar.small}}');" title="{{name}}" data-placement="right"></div>
                     {{/linkToPerson}}
-                    <a href="/p/{{root.id}}">
-                        <img src="{{root.screenshot_url}}" class="frame" />
+                    <a href="/p/{{parent.id}}">
+                        <img src="{{parent.screenshot_url}}" class="frame" />
                     </a>
                 </div>
             </div>
