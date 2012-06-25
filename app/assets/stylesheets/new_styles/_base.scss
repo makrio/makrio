@@ -528,8 +528,19 @@ $bring-dark-accent-forward-color: #DDD;
 #framer-complete {
   text-align: center;
   margin-top:20%;
-
 }
+
+#share-actions {
+  text-align : left;
+  margin-top : 10px;
+
+  .fb-like {
+    position : relative;
+    top : -3px;
+    margin-left : 5px;
+  }
+}
+
 
 /* responsive */
 @media (max-width: 767px) {
