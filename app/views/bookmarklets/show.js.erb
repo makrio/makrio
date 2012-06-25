@@ -58,7 +58,7 @@
                     style : 'background-color: transparent !important; cursor: pointer; float: right; display: inline; font-family:sans-serif; margin-right: 15px; margin-top: 2px;',
                     onclick: "window.makrio.deactivate()",
                     html: "<img src='https://d2v75xn1eqsd0m.cloudfront.net/assets/buttons/close@2x.png' height=26 width=26 />"
-                }).prependTo('.makr-logo')
+                }).appendTo('.makr-logo')
             },
 
             initImageClicks : function() {
@@ -79,7 +79,7 @@
                             class : "makrio",
                             style : "cursor: pointer; position:relative; max-width: 192px; max-height: 192px;  margin: auto; -webkit-transition: border 0.1s; -moz-transition: border 0.1s; transition: border 0.1s; border: 4px solid #ccc; -webkit-box-shadow: 0 2px 8px #000; -mox-box-shadow: 0 2px 8px #000; box-shadow: 0 2px 8px #000;",
                             src : jQuery(this).attr('src')
-                        })).appendTo('.makrio-bm-el')
+                        })).insertAfter('.makr-logo')
                     }
                 })
 
