@@ -208,7 +208,7 @@ class PhotosController < ApplicationController
       respond_with @photo, :location => photos_path, :error => message
 
     rescue RuntimeError => e
-      message = I18n.t 'photos.create.runtime_error'
+      message = e.message
       respond_with @photo, :location => photos_path, :error => message
       raise e
     end
