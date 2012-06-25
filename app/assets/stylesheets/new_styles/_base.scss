@@ -45,6 +45,10 @@ a { color : $link-blue  }
   color: inherit;
 }
 
+.canvas-frame {
+  float : left;
+}
+
 .post-view {
   display: table;
   height: 100%;
