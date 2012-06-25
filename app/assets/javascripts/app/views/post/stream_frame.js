@@ -15,13 +15,8 @@ app.views.Post.StreamFrame = app.views.Base.extend({
   },
 
   events : {
-    'click .content' : 'triggerInteracted',
-    "click a.permalink" : "goToPost",
+    "click a.frame-link" : "goToPost",
     "click a.toggle-featured" : "toggleFeatured"
-  },
-
-  triggerInteracted : function() {
-    this.stream.trigger("frame:interacted", this.model)
   },
 
   toggleFeatured : function(evt){
