@@ -4,6 +4,7 @@ gem 'bundler', '> 1.1.0'
 ruby '1.9.3' if ENV['HEROKU']
 
 gem "newrelic_rpm"
+gem 'newrelic-middleware'
 
 gem 'rails', '3.2.6'
 

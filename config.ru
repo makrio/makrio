@@ -7,6 +7,7 @@
 require ::File.expand_path('../config/environment',  __FILE__)
 require ::File.expand_path('../lib/rack/chrome_frame',  __FILE__)
 
+use NewRelicMiddleware::TrackingSupport
 use Rack::Deflater
 use Rack::ChromeFrame, :minimum => 8
 run Diaspora::Application
