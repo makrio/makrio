@@ -55,6 +55,10 @@ app.pages.Stream = app.views.Base.extend({
     })
   },
 
+  unbind : function() {
+    $(window).unbind("scroll")
+  },
+
   compose : function() {
     app.router.navigate("/framer", {trigger : true})
   },
