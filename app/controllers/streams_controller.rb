@@ -9,6 +9,7 @@ require File.join(Rails.root, "lib", "stream", "likes")
 require File.join(Rails.root, "lib", "stream", "mention")
 require File.join(Rails.root, "lib", "stream", "followed_tag")
 require File.join(Rails.root, "lib", "stream", "activity")
+require File.join(Rails.root, "lib", "stream", "popular")
 
 
 class StreamsController < ApplicationController
@@ -49,9 +50,9 @@ class StreamsController < ApplicationController
   end
 
   def popular
-    posts = Post.order("(exp(posts.likes_count) + posts.comments_count *2 - (exp(extract(day from age(created_at)) + 1))) DESC").limit(30).all
+    @stream = Stream::Popular.new(current_user, :max_time => max_time)
+    stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user)
 
-    stream_json = PostPresenter.collection_json(posts, current_user)
     respond_to do |format|
       format.html do
         gon.stream = stream_json
