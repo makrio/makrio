@@ -10,26 +10,37 @@ class ProcessedImage < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-    %w(jpg jpeg png gif tiff)
+    %w(jpg jpeg png gif)
+  end
+
+  def default_url  
+    # "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+    model.temporary_url
   end
 
   def filename
     model.random_string + File.extname(@filename) if original_filename
   end
+  
+  process :get_version_dimensions 
+  process :orient_image
 
-  version :thumb_small do
+  version :thumb_small, :if => :not_gif? do
     process :resize_to_fill => [50,50]
     process :strip
   end
-  version :thumb_medium do
+  
+  version :thumb_medium, :if => :not_gif?  do
     process :resize_to_limit => [100,100]
     process :strip
   end
-  version :thumb_large do
+  
+  version :thumb_large, :if => :not_gif?  do
     process :resize_to_limit => [300,300]
     process :strip
   end
-  version :scaled_full do
+
+  version :scaled_full, :if => :not_gif?  do
     process :resize_to_limit => [700,700]
     process :strip
   end
@@ -42,4 +53,18 @@ class ProcessedImage < CarrierWave::Uploader::Base
     end
   end
 
+  def orient_image
+    manipulate! do |img|
+      img.auto_orient
+      img
+    end
+  end
+
+  def get_version_dimensions
+    model.width, model.height = `identify -format "%wx%h " #{file.path}`.split(/x/)
+  end
+
+  def not_gif?(new_file)
+    !original_filename.include?('.gif')
+  end
 end

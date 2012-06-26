@@ -8,11 +8,16 @@ module Jobs
     @queue = :photos
     def self.perform(id)
       photo = Photo.find(id)
-      unprocessed_image = photo.unprocessed_image
 
-      return false if photo.processed? || unprocessed_image.path.try(:include?, ".gif")
-
-      photo.processed_image.store!(unprocessed_image)
+      # old way to process photos ie. via a normal file upload form
+      if photo.unprocessed_image.path.present?
+        unprocessed_image = photo.unprocessed_image
+        return false if photo.processed? || unprocessed_image.path.try(:include?, ".gif")
+        photo.processed_image.store!(unprocessed_image)
+      else #new hotness, if a vaild URL is supplied with the photo
+        photo.remote_processed_image_url = photo.temporary_url
+        photo.processed_image.store!
+      end
 
       photo.save!
     end
