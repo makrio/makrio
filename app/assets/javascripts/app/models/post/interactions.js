@@ -41,6 +41,10 @@ app.models.Post.Interactions = Backbone.Model.extend({
     return this.get("fetched") ? this.reshares.models.length : this.get("reshares_count")
   },
 
+  remixCount : function(){
+    return this.get("remix_count")
+  },
+
   commentsCount : function(){
     return this.get("fetched") ? this.comments.models.length : this.get("comments_count")
   },

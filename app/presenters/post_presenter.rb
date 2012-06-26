@@ -48,6 +48,7 @@ class PostPresenter
             :comments_count => @post.comments_count,
             :likes_count => @post.likes_count,
             :reshares_count => @post.reshares_count,
+            :remix_count => @post.remix_siblings.count
         }
     }
   end

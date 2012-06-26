@@ -88,8 +88,8 @@ class Post < ActiveRecord::Base
   end
 
   def remix_siblings
-    base_guid = original? ? guid : self.parent.root_guid
-    Post.where(:root_guid => base_guid) 
+    base_guid = original? ? guid : self.root_guid
+    Post.where(:root_guid => base_guid)
   end
 
   def absolute_root

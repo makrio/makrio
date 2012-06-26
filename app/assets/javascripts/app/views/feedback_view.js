@@ -24,6 +24,7 @@ app.views.Feedback = app.views.Base.extend({
       commentsCount : interactions.commentsCount(),
       likesCount : interactions.likesCount(),
       resharesCount : interactions.resharesCount(),
+      remixCount : interactions.remixCount(),
       userCanReshare : interactions.userCanReshare(),
       userLike : interactions.userLike(),
       userReshare : interactions.userReshare()
