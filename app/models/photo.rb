@@ -72,29 +72,18 @@ class Photo < ActiveRecord::Base
     processed_image.path.present?
   end
 
-  def unprocessed?
-    unprocessed_image.path.present? && temporary_url.blank?
-  end
-
-  def hotlinked?
-    temporary_url.present? && !processed? && !unprocessed?
+  def old_file_upload?
+    unprocessed_image.path.present? && temporary_url.blank? && !processed?
   end
 
   def base_url(opts = {})
-    return unprocessed_image.url if unprocessed?
-    size = gif? ? nil : opts
+    return unprocessed_image.url if old_file_upload?
+    size = opts unless gif? 
     processed_image.url(size)
   end
 
-
   def gif?
-    if processed_image.url.present? && processed_image.url.include?('gif')
-      true
-    elsif temporary_url.to_s.include?('.gif') 
-      true
-    else
-      false
-    end
+    processed_image.url.try(:include?, 'gif') || temporary_url.to_s.include?('.gif')
   end
 
   def url(opts = {})

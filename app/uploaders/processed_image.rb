@@ -10,7 +10,7 @@ class ProcessedImage < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-    %w(jpg jpeg png gif tiff)
+    %w(jpg jpeg png gif)
   end
 
   def default_url  
@@ -64,24 +64,7 @@ class ProcessedImage < CarrierWave::Uploader::Base
     model.width, model.height = `identify -format "%wx%h " #{file.path}`.split(/x/)
   end
 
-
   def not_gif?(new_file)
-
-    !(original_filename.include?('.gif'))
+    !original_filename.include?('.gif')
   end
-
- 
-  # def detect_extension(file_name)
-  #   mime_type = %x(file --mime-type #{file_name}|cut -f2 -d' ').gsub("\n", "")
-  #   case mime_type
-  #   when 'image/jpeg'
-  #     'jpg'
-  #   when 'image/jpg'
-  #     'jpg'
-  #   when 'image/png'
-  #     'png'
-  #   when 'image/gif'
-  #     'gif'
-  #   end
-  # end
 end

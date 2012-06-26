@@ -9,15 +9,15 @@ app.forms.PictureBase = app.views.Base.extend({
   onSubmit : $.noop,
   uploadSuccess : $.noop,
 
-  invokeFilePicker : function(){
-    filepicker.setKey('7nluBwH4SbyxSKdCamQD');
+  // invokeFilePicker : function(){
+  //   filepicker.setKey('7nluBwH4SbyxSKdCamQD');
     
-    var self = this;
-    filepicker.getFile('image/*', {'modal' : true, 'services': ['My Computer', 'Images', 'Webcam']}, function(url, metadata) {
-      self.$("form input[name='photo[image_url]']").val(url + '+' + metadata.filename)
-      self.submitURL()
-    })
-  },
+  //   var self = this;
+  //   filepicker.getFile('image/*', {'modal' : true, 'services': ['My Computer', 'Images', 'Webcam']}, function(url, metadata) {
+  //     self.$("form input[name='photo[image_url]']").val(url + '+' + metadata.filename)
+  //     self.submitURL()
+  //   })
+  // },
 
   postRenderTemplate : function(){
     this.$("input[name=authenticity_token]").val($("meta[name=csrf-token]").attr("content"))
