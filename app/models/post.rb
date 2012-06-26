@@ -34,9 +34,10 @@ class Post < ActiveRecord::Base
 
   belongs_to :o_embed_cache
 
+  before_create :set_root_guid
+
   after_create do
     self.touch(:interacted_at)
-    self.set_root_guid
   end
 
   mount_uploader :screenshot, ScreenshotUploader
@@ -110,7 +111,6 @@ class Post < ActiveRecord::Base
     else
       self.root_guid = self.parent.root_guid
     end
-    self.save!
   end
 
   def original?
