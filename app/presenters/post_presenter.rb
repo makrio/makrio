@@ -48,7 +48,7 @@ class PostPresenter
             :comments_count => @post.comments_count,
             :likes_count => @post.likes_count,
             :reshares_count => @post.reshares_count,
-            :remix_count => @post.remix_siblings.count
+            :remix_count => @post.remixes.count
         }
     }
   end
@@ -85,7 +85,6 @@ class PostPresenter
     @post.screenshot_url.present? && !has_gif?
   end
 
-
   protected
 
   def person
@@ -114,7 +113,7 @@ class PostInteractionPresenter
         :reshares => PostPresenter.collection_json(@post.reshares, @current_user),
         :comments => CommentPresenter.as_collection(@post.comments.order("created_at ASC")),
         :participations => as_api(@post.participations),
-        # :remixes => RemixPresenter.as_collection(@post.remixes)
+        #:remixes => RemixPresenter.as_collection(@post.remixes)
     }
   end
 

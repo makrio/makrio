@@ -18,7 +18,6 @@ class StatusMessage < Post
   has_many :photos, :through => :photo_postings, :dependent => :destroy
   belongs_to :parent, :class_name => 'Post', :foreign_key => :parent_guid, :primary_key => :guid
 
-
   # a StatusMessage is federated before its photos are so presence_of_content() fails erroneously if no text is present
   # therefore, we put the validation in a before_destory callback instead of a validation
   before_destroy :presence_of_content
@@ -68,7 +67,6 @@ class StatusMessage < Post
   def nsfw
     self.raw_message.match(/#nsfw/i) || super
   end
-
 
   def formatted_message(opts={})
     return self.raw_message unless self.raw_message
