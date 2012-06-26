@@ -53,9 +53,6 @@ class Post < ActiveRecord::Base
     joins(:likes).where(:likes => {:author_id => person.id})
   }
 
-  def remixes
-    Post.where(:parent_guid => self.guid)
-  end
 
   def self.newer(post)
     where("posts.created_at > ?", post.created_at).reorder('posts.created_at ASC').first
@@ -206,7 +203,7 @@ class Post < ActiveRecord::Base
   end
 
   def screenshot!
-    return false unless self.persisted?
+    return false unless self.persisted? && !Rails.env.test?
     frame_url = "https://www.makr.io/posts/#{self.guid}/frame"
     #maybe want to configure tmp directory,
     file = Screencap::Fetcher.new(frame_url).fetch(:div => '.canvas-frame:first', :output => Rails.root.join('tmp', "#{self.guid}.jpg"))
