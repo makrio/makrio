@@ -4,8 +4,7 @@ app.pages.Stream = app.views.Base.extend({
   events : {
     "click .bookmarklet-button" : "bookmarkletInstructionsPrompt",
     "activate .stream-frame-wrapper" : 'triggerInteractionLoad',
-    "click #composer-button" : 'compose',
-    "click #main-tabs a" : 'navigateToTab'
+    "click #composer-button" : 'compose'
   },
 
   subviews : {
@@ -110,11 +109,6 @@ app.pages.Stream = app.views.Base.extend({
     var gettingStartedView = new app.views.GettingStarted()
     $("body").addClass('lock')
       .prepend(gettingStartedView.render().el)
-  },
-
-  navigateToTab : function(evt) {
-    evt.preventDefault()
-    app.router.navigate($(evt.target).attr("href"), true)
   }
 },
 
