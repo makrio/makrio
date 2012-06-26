@@ -92,7 +92,7 @@ describe Photo do
         url = "https://service.com/user/profile_image"
 
         photo_stub = stub.as_null_object
-        photo_stub.should_receive(:remote_unprocessed_image_url=).with(url)
+        photo_stub.should_receive(:temporary_url=).with(url)
         Photo.stub(:new).and_return(photo_stub)
 
         Photo.diaspora_initialize(
@@ -100,7 +100,6 @@ describe Photo do
       end
     end
   end
-
 
   it 'should save a photo' do
     @photo.unprocessed_image.store! File.open(@fixture_name)

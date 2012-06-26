@@ -9,7 +9,7 @@ module Jobs
     def self.perform(id)
       photo = Photo.find(id)
 
-      if photo.unprocessed_image.present?
+      if photo.unprocessed_image.path.present?
         unprocessed_image = photo.unprocessed_image
         return false if photo.processed? || unprocessed_image.path.try(:include?, ".gif")
         photo.processed_image.store!(unprocessed_image)

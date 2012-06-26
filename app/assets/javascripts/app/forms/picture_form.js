@@ -1,7 +1,8 @@
 app.forms.PictureBase = app.views.Base.extend({
   events : {
     'ajax:complete .new_photo' : "photoUploaded",
-    'click #photo_upload_button' : 'invokeFilePicker',
+    "change input[name='photo[user_file]']" : "submitUpload",
+    // 'click #photo_upload_button' : 'invokeFilePicker',
     "click .img-url" : "submitURL"
   },
 

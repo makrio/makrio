@@ -72,7 +72,16 @@ class Photo < ActiveRecord::Base
     processed_image.path.present?
   end
 
+  def unprocessed?
+    unprocessed_image.path.present? && temporary_url.blank?
+  end
+
+  def hotlinked?
+    temporary_url.present? && !processed? && !unprocessed?
+  end
+
   def base_url(opts = {})
+    return unprocessed_image.url if unprocessed?
     size = gif? ? nil : opts
     processed_image.url(size)
   end
