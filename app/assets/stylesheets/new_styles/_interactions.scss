@@ -172,7 +172,6 @@
 
 .comment-content h1, .comment-content h2, .comment-content h3, .comment-content h4, .comment-content h5, .comment-content h6 {
   color: white;
-  text-shadow: 1px 1px black;
   text-rendering: optimizelegibility;
 }
 
@@ -206,8 +205,6 @@
       bottom: 1px solid #666;
     }
   }
-
-  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 
   a:hover {
     color: #99CCFF

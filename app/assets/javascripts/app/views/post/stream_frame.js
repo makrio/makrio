@@ -8,6 +8,8 @@ app.views.Post.StreamFrame = app.views.Base.extend({
     ".stream-frame-feedback" : "feedbackView"
   },
 
+  tooltipSelector : ".post-author",
+
   initialize : function(options) {
     this.stream = options.stream
     this.smallFrameView = new app.views.Post.SmallFrame({model : this.model})
