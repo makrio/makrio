@@ -199,18 +199,9 @@ class PhotosController < ApplicationController
   def rescuing_photo_errors
     begin
       yield
-    rescue TypeError
-      message = I18n.t 'photos.create.type_error'
-      respond_with @photo, :location => photos_path, :error => message
-
-    rescue CarrierWave::IntegrityError
-      message = I18n.t 'photos.create.integrity_error'
-      respond_with @photo, :location => photos_path, :error => message
-
-    rescue RuntimeError => e
-      message = e.message
-      respond_with @photo, :location => photos_path, :error => message
-      raise e
+    rescue => e
+      logger.error e.message
+      render :nothing => true, :status => 500
     end
   end
 end
