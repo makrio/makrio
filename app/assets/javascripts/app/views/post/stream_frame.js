@@ -17,7 +17,6 @@ app.views.Post.StreamFrame = app.views.Base.extend({
   },
 
   events : {
-    "click a.frame-link" : "goToPost",
     "click a.toggle-featured" : "toggleFeatured"
   },
 
@@ -27,9 +26,5 @@ app.views.Post.StreamFrame = app.views.Base.extend({
       this.model.toggleFeatured()
       this.remove()
     }
-  },
-
-  goToPost : function(evt) {
-    this.smallFrameView.goToPost(evt)
   }
 });
