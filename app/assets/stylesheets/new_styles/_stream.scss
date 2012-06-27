@@ -65,7 +65,6 @@
     }
 
     .divider {
-      @include opacity(.5);
       margin-left: 25px;
     }
   }
@@ -177,10 +176,6 @@
       position : absolute;
       top : 5px;
       right : 5px;
-
-      i {
-        @include opacity(.5);
-      }
     }
 
     &:hover {
@@ -218,7 +213,6 @@
         cursor : default;
 
         span {
-          @include opacity(.5);
           margin-left : 5px;
         }
       }

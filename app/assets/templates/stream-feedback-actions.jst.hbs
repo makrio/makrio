@@ -1,13 +1,13 @@
 <a href="/p/{{id}}" rel="auth-required" class="permalink btn new-btn" title="Permalink">
-    <i class="icon-share-alt"></i>
+    <i class="icon-share-alt icon-grey"></i>
 </a>
 
 <a href="#" rel="auth-required" class="reshare btn new-btn" title="{{t "viewer.reshare"}}">
-    <i class="icon-random"></i> Remix
+    <i class="icon-random icon-grey"></i> Remix
 </a>
 
 <a href="#" rel="auth-required" class="like btn new-btn {{#if userLike}}disabled{{/if}}" title="{{#if userLike}} {{t "viewer.unlike"}} {{else}} {{t "viewer.like"}} {{/if}}">
-    <i class="icon-heart"></i>
+    <i class="icon-heart icon-grey"></i>
     {{#if userLike}}
         Liked
     {{else}}
