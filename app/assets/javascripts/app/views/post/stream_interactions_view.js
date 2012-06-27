@@ -4,13 +4,14 @@ app.views.StreamInteractions = app.views.Base.extend({
   subviews:{
     ".comments" : "comments",
     ".new-comment" : "newCommentView",
-    ".love-message" : "loveView",
     ".share-actions" : "shareView"
   },
 
   templateName : "stream-interactions",
 
   setInteractions : function (model) {
+    this.model = model;
+
     model.interactions.fetch().done(
       _.bind(function () {
         this.render()
@@ -18,7 +19,6 @@ app.views.StreamInteractions = app.views.Base.extend({
 
     this.comments = new app.views.PostViewerReactions({ model: model.interactions })
     this.newCommentView = new app.views.PostViewerNewComment({ model : model })
-    this.loveView = new app.views.LoveView({ model : model })
     this.shareView = new app.views.ShareView({ model : model })
   }
 });
@@ -69,28 +69,3 @@ app.views.ShareView = app.views.Base.extend({
     window.open(url, 'shareWindow', 'height=255, width=550, top='+($(window).height()/2 - 225) +', left='+$(window).width()/2 +', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
   }
 });
-
-app.views.LoveView = app.views.Base.extend({
-  templateName: 'love',
-
-  events : {
-    "click .love-this" : "loveFrame",
-    "click .remix-this" : "remixFrame"
-  },
-
-  presenter : function() {
-    return _.extend(this.defaultPresenter(),{
-      userLike : this.model.interactions.userLike(),
-    })
-  },
-
-  loveFrame : function(evt) {
-    if(evt){evt.preventDefault()}
-    this.model.interactions.toggleLike({'referrer' : 'give_love_button'})
-  },
-
-  remixFrame : function(evt) {
-    if(evt){evt.preventDefault()}
-    app.router.navigate($(evt.target).attr("href"), {trigger : true})
-  }
-})

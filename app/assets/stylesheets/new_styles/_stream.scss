@@ -18,6 +18,7 @@
     .frame-link {
       display : inline-block;
       position : relative;
+      vertical-align : middle;
     }
 
     .frame-screenshot {
@@ -28,6 +29,7 @@
       @include transition(all);
       @include opacity(.5);
       @include box-shadow(0,2px,8px,rgba(0, 0, 0, 0.9));
+      @include acceleration();
 
       z-index : 5;
 
@@ -68,7 +70,6 @@
   }
 
   #post-info {
-    position : fixed;
     max-height : 100%;
 
     .love-message {
@@ -110,16 +111,59 @@
   left : 710px;
   overflow-y : auto;
   z-index : $stream-interactions-content-index;
-  padding-top : 40px;
+  padding-top : 60px;
 
   .span5 {
     margin : 0;
+  }
+
+  .avatar {
+    @include border-radius(3px);
+    border : none;
+  }
+
+  /* well overrides */
+  .well {
+    @include box-shadow(0,0,0,0);
+    background: none;
+    border: none;
+
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+    overflow : auto;
+    max-height : none;
+
+    .author-name {
+      margin-right : 1px;
+    }
+  }
+
+  #new-post-comment-container {
+    padding : 0;
+  }
+
+  #post-comments {
+    margin-top : -10px;
+  }
+
+  .post-comment {
+    -moz-box-shadow: 0 3px 7px -5px #666;
+    -webkit-box-shadow: 0 3px 7px -5px #666;
+    box-shadow: 0 3px 7px -5px #666;
+
+    border : none;
+    padding-left : 0;
+
+    time {
+      color: #aaa;
+    }
   }
 }
 
 #stream-content {
   .stream-frame {
-    margin-bottom : 40px;
+    margin-bottom : 50px;
 
     .text-content {
       z-index: $stream-post-index;
@@ -165,4 +209,11 @@
       cursor : pointer;
     }
   }
+}
+
+#stream-interactions-divider {
+  position: fixed;
+  left: 670px;
+  top: 20px;
+  width : 10px;
 }

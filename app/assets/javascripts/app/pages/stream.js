@@ -92,7 +92,6 @@ app.pages.Stream = app.views.Base.extend({
     }, this._resetPeriod)
   },
 
-
   bookmarkletJS : function() {
     return "javascript:void(function(){ if(window.location.host.match(/makr/)){alert('Your trying to use the bookmarklet on makr.io, but you can remix directly on the site!');return};\
     var head= document.getElementsByTagName('head')[0]; \

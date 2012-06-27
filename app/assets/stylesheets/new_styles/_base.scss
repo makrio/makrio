@@ -112,7 +112,8 @@ a { color : $link-blue  }
   .original-frame {
     .author-name {
       top : -7px;
-      left : -7px;
+      left : auto;
+      right : -7px;
     }
   }
 

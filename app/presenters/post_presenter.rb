@@ -113,7 +113,7 @@ class PostInteractionPresenter
         :reshares => PostPresenter.collection_json(@post.reshares, @current_user),
         :comments => CommentPresenter.as_collection(@post.comments.order("created_at ASC")),
         :participations => as_api(@post.participations),
-        #:remixes => RemixPresenter.as_collection(@post.remixes)
+        :remixes => RemixPresenter.as_collection(@post.remix_siblings.limit(3))
     }
   end
 

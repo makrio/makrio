@@ -70,15 +70,17 @@
   }
 
   #post-remix-container {
-    max-height: 350px;
-    overflow-y: auto;
-  }
+    text-align : left;
+    position : relative;
 
-  #remixes {
-    padding: 15px;
+    margin-bottom : 20px;
 
-    img {
-      width : 170px;
+    .remix-wrapper {
+      @include box-shadow(0,1px,3px,rgba(0,0,0,.4));
+
+      vertical-align: top;
+      width : 32.5%;
+      display : inline-block;
     }
   }
 

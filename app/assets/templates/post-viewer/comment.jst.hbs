@@ -8,15 +8,11 @@
 
 <div class="img">
     {{#linkToPerson author}}
-        <div class="profile-image-container smaller" style="background-image : url('{{avatar.large}}')"></div>
+        {{{personImage this "small" "small"}}}
     {{/linkToPerson}}
 </div>
 
 <div class="bd">
-    <a href="/people/{{author.guid}}" class="author author-name">
-        {{author.name}}
-    </a>
-
     <div class="collapsible comment-content">
         {{{text}}}
     </div>
