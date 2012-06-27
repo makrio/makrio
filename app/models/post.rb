@@ -89,7 +89,7 @@ class Post < ActiveRecord::Base
 
   def remix_siblings
     base_guid = original? ? guid : self.root_guid
-    Post.where(:root_guid => base_guid).where("posts.guid <> '#{base_guid}'")
+    Post.where(:root_guid => base_guid).where("posts.guid <> '#{self.guid}'").order("created_at DESC")
   end
 
   def absolute_root
