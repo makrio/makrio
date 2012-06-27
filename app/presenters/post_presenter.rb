@@ -41,15 +41,7 @@ class PostPresenter
         :previous_post => previous_post_path,
         :screenshot_url => @post.screenshot_url,
         :show_screenshot => self.show_screenshot?,
-
-        :interactions => {
-            :likes => [user_like].compact,
-            :reshares => [user_reshare].compact,
-            :comments_count => @post.comments_count,
-            :likes_count => @post.likes_count,
-            :reshares_count => @post.reshares_count,
-            :remix_count => @post.remixes.count
-        }
+        :interactions => PostInteractionPresenter.new(@post, current_user).as_json
     }
   end
 
