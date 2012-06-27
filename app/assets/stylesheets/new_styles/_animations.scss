@@ -40,3 +40,22 @@
 	0%     { @include opacity(1); -ms-transform : scale(1); }
 	100%   { @include opacity(0); -ms-transform : scale(1.3); }
 }
+
+@-webkit-keyframes bump-right {
+	0%     { left : 0; }
+	60%    { left : 55px; }
+    75%    { left : 48px; }
+	100%   { @include opacity(1); left : 50px; }
+}
+@-moz-keyframes bump-right {
+	0%     { left : 0; }
+	60%    { left : 55px; }
+    75%    { left : 48px; }
+	100%   { @include opacity(1); left : 50px; }
+}
+@-ms-keyframes bump-right {
+	0%     { left : 0; }
+	60%    { left : 55px; }
+    75%    { left : 48px; }
+	100%   { @include opacity(1); left : 50px; }
+}

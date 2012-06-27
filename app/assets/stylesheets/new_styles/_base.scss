@@ -112,7 +112,8 @@ a { color : $link-blue  }
   .original-frame {
     .author-name {
       top : -7px;
-      left : -7px;
+      left : auto;
+      right : -7px;
     }
   }
 
@@ -506,8 +507,8 @@ $bring-dark-accent-forward-color: #DDD;
 }
 
 .toggle-featured {
-  float: right;
-  margin-right: 10px;
+  float: left;
+  margin-top: 10px;
 }
 
 #make-button {

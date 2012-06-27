@@ -1,39 +1,42 @@
 <div id="{{guid}}" data-id="{{id}}" data-target="#{{guid}}" class="stream-frame-wrapper">
-        <section class="frame-meta span6">
-        <div class='stream-frame-feedback'></div>
+    <div class="stream-row">
+        {{#if parent}}
+            <div class="original-frame-wrapper">
+                {{#linkToPerson parent.author}}
+                    <div class="profile-image-container micro post-author" style="background-image : url('{{avatar.small}}');" title="{{name}}" data-placement="right"></div>
+                {{/linkToPerson}}
+                <a href="/p/{{parent.id}}" class="original-frame">
+                    <img src="{{parent.screenshot_url}}" />
+                </a>
+            </div>
+            <i class="icon-random divider"></i>
+        {{else}}
+            <div class="original-frame holder"></div>
+        {{/if}}
 
-        <div class="media author">
+        <div class="frame-link">
             {{#linkToPerson author}}
                 <div class="img">
-                    <div class="profile-image-container smaller" style="background-image : url('{{avatar.small}}')"></div>
+                    <div class="profile-image-container small post-author" style="background-image : url('{{avatar.small}}')" title="{{name}}" data-placement="left"></div>
                 </div>
             {{/linkToPerson}}
 
-            <div class="bd">
-                {{#linkToPerson author}}
-                    {{name}}
-                {{/linkToPerson}}
-                {{#if parent}}
-                     <i class="icon-random icon-white"></i> 
-                    {{#linkToPost parent}}
-                        {{author.name}}
-                    {{/linkToPost}}
-                {{/if}}
+            <a href="/p/{{id}}">
+                <div class="small-frame"></div>
+            </a>
 
-                {{#if current_user.admin}}
-                    <a href="#" class="toggle-featured">
-                        {{#featured}}
-                            unfeature
-                        {{else}}
-                            feature
-                        {{/featured}}
-                    </a>
-                {{/if}}
-            </div>
+            {{#if current_user.admin}}
+                <a href="#" class="toggle-featured" style="float:left;">
+                    {{#featured}}
+                        unfeature
+                    {{else}}
+                        feature
+                    {{/featured}}
+                </a>
+            {{/if}}
+
+            <div class='stream-frame-feedback'></div>
         </div>
-    </section>
 
-    <a href="/p/{{id}}" class="frame-link">
-        <div class="small-frame"></div>
-    </a>
+    </div>
 </div>

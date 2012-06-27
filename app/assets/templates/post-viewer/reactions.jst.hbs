@@ -1,47 +1,38 @@
+{{#if remixes}}
+    <div id='post-remix-container'>
+      <h6>
+        Related Remixes
+      </h6>
+
+      <div id='remixes'>
+        {{#each remixes}}
+          <div class="remix-wrapper">
+            <a href='/p/{{id}}'><img src='{{screenshot_url}}' /></a>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+{{/if}}
+
 {{# if likes}}
-  <div id="post-likes">
-    <div class="well media">
-      <div class="img">
-        <i class="icon-heart icon-red"></i>
-      </div>
-      <div class="bd">
-        {{#each likes}}
-          {{#linkToPerson author}}
-            {{{personImage this "small" "micro"}}}
-          {{/linkToPerson}}
-        {{/each}}
-      </div>
+    <div id="post-likes">
+        <h6>
+            Likes
+        </h6>
+
+        <div class="well">
+            {{#each likes}}
+                {{#linkToPerson author}}
+                {{{personImage this "small"}}}
+                {{/linkToPerson}}
+            {{/each}}
+        </div>
     </div>
-  </div>
 {{/if}}
 
-{{# if reshares}}
-  <div id="post-reshares">
-    <div class="well media">
-      <div class="img">
-        <i class="icon-retweet icon-blue"></i>
-      </div>
-      <div class="bd">
-        {{#each reshares}}
-          {{#linkToPerson author}}
-            {{{personImage this "small" "micro"}}}
-          {{/linkToPerson}}
-        {{/each}}
-      </div>
-    </div>
-  </div>
-{{/if}}
-
-<div id='post-remix-container'>
-  <div id='remixes'>
-    {{#each remixes}}
-      <a href='/posts/{{guid}}'><img src='{{screenshot_url}}' /></a>
-    {{/each}}
-  </div>
-
-  <div id="post-comments"> </div>
-
+<div id='post-comments-container'>
+    <h6>
+        Comments
+    </h6>
+    <div id="post-comments"> </div>
 </div>
-
-
-

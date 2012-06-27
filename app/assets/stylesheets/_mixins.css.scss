@@ -118,3 +118,8 @@ $default-border-radius: 3px;
 @mixin wide() {
   width : $two-column-width + px;
 }
+
+@mixin acceleration() {
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+}
