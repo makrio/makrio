@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: git://github.com/maxwell/screencap.git
-  revision: b8a64980edb6286a714c38e9919e6a6733108338
+  revision: e35c3d692dff8ea237083ff6f6c1e0a74c0e0334
   specs:
     screencap (0.0.3)
 
