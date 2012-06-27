@@ -34,7 +34,7 @@ class StatusMessagesController < ApplicationController
     services = [*params[:services]].compact
 
     @status_message = current_user.build_post(:status_message, params[:status_message])
-    @status_message.featured = true;
+    @status_message.featured = true unless current_user.guid == "e4e0dc57f61fcb1c"
     @status_message.attach_photos_by_ids(params[:photos])
 
     if @status_message.save
