@@ -24,6 +24,17 @@
             <a href="/p/{{id}}">
                 <div class="small-frame"></div>
             </a>
+
+            {{#if current_user.admin}}
+                <a href="#" class="toggle-featured" style="float:left;">
+                    {{#featured}}
+                        unfeature
+                    {{else}}
+                        feature
+                    {{/featured}}
+                </a>
+            {{/if}}
+
             <div class='stream-frame-feedback'></div>
         </div>
 
