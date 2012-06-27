@@ -2,7 +2,9 @@
     <div class="navbar-inner">
         <ul class="nav pull-right" style='z-index: 20;'>
             <li>
-                <a href='{{bookmarkletJS}}' onclick='alert("Drag Me to your bookmarks bar to Remix on makr.io from anywhere!");return false;'><i class='icon-bookmark icon-white'>  </i>Remix</a>
+                <a class='bookmarklet' data-title="<div style='text-align:left;padding:6px'>Drag the 'Remix' button to your bookmarks bar to easily remix any photo while you browse the web!</div>" 
+                href='{{bookmarkletJS}}' >
+                <i class='icon-bookmark icon-white'></i>Remix</a>
             </li>
             <li>
                 <button href="/framer" id="composer-button" class="btn btn-primary" style="box-shadow: 0 -1px 2px #000, 0 1px 2px #444;"><i class="icon-plus icon-white"></i> New Remix</button>
