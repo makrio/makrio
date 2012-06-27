@@ -6,9 +6,11 @@
 
       <div id='remixes'>
         {{#each remixes}}
-          <div class="remix-wrapper">
-            <a href='/p/{{id}}'><img src='{{screenshot_url}}' /></a>
-          </div>
+          {{#if screenshot_url}}
+              <div class="remix-wrapper">
+                <a href='/p/{{id}}'><img src='{{screenshot_url}}' /></a>
+              </div>
+          {{/if}}
         {{/each}}
       </div>
     </div>
