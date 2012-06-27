@@ -5,7 +5,7 @@
 
     .author-name {
       position : absolute;
-      z-index : 2;
+      z-index : 5;
       top : -10px;
       left : -10px;
     }
@@ -171,8 +171,22 @@
     }
 
     .stream-frame-feedback {
-      float : right;
-      margin-top : 5px;
+      @include transition(opacity);
+      @include opacity(0);
+
+      position : absolute;
+      top : 5px;
+      right : 5px;
+
+      i {
+        @include opacity(.5);
+      }
+    }
+
+    &:hover {
+      .stream-frame-feedback {
+        @include opacity(1);
+      }
     }
 
     .photo-backdrop .text-content p,
@@ -188,6 +202,26 @@
 
     a.toggle-featured {
       color: #888;
+    }
+
+    .stream-post-info {
+      margin-top : 10px;
+
+      .detail {
+        float : right;
+
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+
+        cursor : default;
+
+        span {
+          @include opacity(.5);
+          margin-left : 5px;
+        }
+      }
     }
 
     .small-frame {

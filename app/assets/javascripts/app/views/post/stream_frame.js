@@ -12,8 +12,8 @@ app.views.Post.StreamFrame = app.views.Base.extend({
 
   initialize : function(options) {
     this.stream = options.stream
-    this.smallFrameView = new app.views.Post.SmallFrame({model : this.model})
-    this.feedbackView =  new app.views.FeedbackActions({ model: this.model })
+    this.smallFrameView = new app.views.Post.SmallFrame({ model : this.model })
+    this.feedbackView =  new app.views.StreamFeedbackActions({ model: this.model })
   },
 
   events : {

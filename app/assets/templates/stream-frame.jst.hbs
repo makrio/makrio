@@ -25,14 +25,28 @@
                 <div class="small-frame"></div>
             </a>
 
-            {{#if current_user.admin}}
-                <a href="#" class="toggle-featured" style="float:left;">
-                    {{#featured}}
-                        unfeature
-                    {{else}}
-                        feature
-                    {{/featured}}
-                </a>
+            <div class="stream-post-info">
+                {{#if current_user.admin}}
+                    <a href="#" class="toggle-featured">
+                        {{#featured}}
+                            unfeature
+                        {{else}}
+                            feature
+                        {{/featured}}
+                    </a>
+
+                    <div class="detail">
+                        <span>
+                            <i class="icon-heart"></i> {{interactions.likes_count}}
+                        </span>
+                        <span>
+                            <i class="icon-random"></i> {{interactions.remix_count}}
+                        </span>
+                        <span>
+                            <i class="icon-comment"></i> {{interactions.comments_count}}
+                        </span>
+                    </div>
+                </div>
             {{/if}}
 
             <div class='stream-frame-feedback'></div>

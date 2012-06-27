@@ -1,0 +1,12 @@
+<a href="#" rel="auth-required" class="reshare btn new-btn" title="{{t "viewer.reshare"}}">
+    <i class="icon-random"></i> Remix
+</a>
+
+<a href="#" rel="auth-required" class="like btn new-btn {{#if userLike}}disabled{{/if}}" title="{{#if userLike}} {{t "viewer.unlike"}} {{else}} {{t "viewer.like"}} {{/if}}">
+    <i class="icon-heart"></i>
+    {{#if userLike}}
+        Liked
+    {{else}}
+        Like
+    {{/if}}
+</a>
