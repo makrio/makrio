@@ -1,6 +1,7 @@
 #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
+require 'timeout'
 
 class PhotosController < ApplicationController
   before_filter :authenticate_user!, :except => :show
@@ -198,7 +199,7 @@ class PhotosController < ApplicationController
 
   def rescuing_photo_errors
     begin
-      yield
+      Timeout::timeout(15) { yield }
     rescue => e
       logger.error e.message
       render :nothing => true, :status => 500
