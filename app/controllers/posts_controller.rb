@@ -43,11 +43,8 @@ class PostsController < ApplicationController
   end
 
   def screenshot
-    unless user_signed_in? && current_user.admin?
-      redirect_to post_path @post
-      return
-    end
-    render :layout => false
+    @post.re_screenshot_async
+    redirect_to post_path @post
   end
 
   def oembed

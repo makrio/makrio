@@ -204,7 +204,7 @@ class Post < ActiveRecord::Base
 
   def screenshot!
     return false unless self.persisted? && !Rails.env.test?
-    frame_url = "https://www.makr.io/posts/#{self.guid}/frame"
+    frame_url = AppConfig[:pod_url] + "posts/#{self.guid}/frame"
     #maybe want to configure tmp directory,
     file = Screencap::Fetcher.new(frame_url).fetch(:div => '.canvas-frame:first', :output => Rails.root.join('tmp', "#{self.guid}.jpg"))
     self.screenshot.store!(file)
@@ -219,6 +219,10 @@ class Post < ActiveRecord::Base
 
   def screenshot_url
     screenshot.url
+  end
+
+  def re_screenshot_async
+    Resque.enqueue(Jobs::Screenshot, id)
   end
 
   def nsfw
