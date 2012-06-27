@@ -42,7 +42,7 @@ class Reshare < Post
   end
 
   def photos
-    self.parent ? parent.photos : []
+    self.parent ? parent.photos : super
   end
 
   def frame_name

@@ -31,7 +31,7 @@ class PostPresenter
         :nsfw => @post.nsfw,
         :author => @post.author.as_api_response(:backbone),
         :o_embed_cache => @post.o_embed_cache.try(:as_api_response, :backbone),
-        :mentioned_people => @post.mentioned_people.as_api_response(:backbone),
+        :mentioned_people => [],#@post.mentioned_people.as_api_response(:backbone),
         :photos => @post.photos.map {|p| p.as_api_response(:backbone)},
         :frame_name => @post.frame_name || template_name,
         :parent => (options.fetch(:include_root, true) ? parent : nil),
@@ -113,7 +113,8 @@ class PostInteractionPresenter
         :reshares => PostPresenter.collection_json(@post.reshares, @current_user),
         :comments => CommentPresenter.as_collection(@post.comments.order("created_at ASC")),
         :participations => as_api(@post.participations),
-        :remixes => RemixPresenter.as_collection(@post.remix_siblings.limit(3))
+        :remixes => RemixPresenter.as_collection(@post.remix_siblings.includes(:author => :profile).limit(3))
+
     }
   end
 

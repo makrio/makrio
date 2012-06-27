@@ -28,6 +28,9 @@ class Post < ActiveRecord::Base
   has_many :remixers, :class_name => 'Person', :through => :reshares, :source => :author
 
 
+  has_many :photo_postings, :foreign_key => :post_id
+  has_many :photos, :through => :photo_postings, :dependent => :destroy
+
   belongs_to :parent, :class_name => 'Post', :foreign_key => :parent_guid, :primary_key => :guid
   belongs_to :root, :class_name => 'Post', :foreign_key => :root_guid, :primary_key => :guid
 
@@ -42,7 +45,7 @@ class Post < ActiveRecord::Base
 
   mount_uploader :screenshot, ScreenshotUploader
   #scopes
-  scope :includes_for_a_stream, includes(:o_embed_cache, {:author => :profile}, :mentions => {:person => :profile}) #note should include root and photos, but i think those are both on status_message
+  scope :includes_for_a_stream, includes(:o_embed_cache, {:author => :profile}, :photos) #note should include root and photos, but i think those are both on status_message
 
 
   scope :commented_by, lambda { |person|
@@ -120,7 +123,6 @@ class Post < ActiveRecord::Base
 
   def raw_message; ""; end
   def mentioned_people; []; end
-  def photos; []; end
   def text(opts={}); raw_message; end
 
   def plain_text
@@ -136,6 +138,11 @@ class Post < ActiveRecord::Base
     end
 
     scope
+  end
+  
+  def attach_photos_by_ids(photo_ids)
+    return [] unless photo_ids.present?
+    self.photos << Photo.where(:id => photo_ids).all
   end
 
   def self.excluding_hidden_shareables(user)

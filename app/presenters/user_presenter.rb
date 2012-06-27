@@ -7,12 +7,10 @@ class UserPresenter
 
   def to_json(options = {})
     self.user.person.as_api_response(:backbone).update(
-      { :notifications_count => notifications_count,
-        :unread_messages_count => unread_messages_count,
+      { 
+        :notifications_count => notifications_count,
         :admin => admin,
-        :aspects => aspects,
         :services => services,
-        :following_count => self.user.contacts.receiving.count,
         :configured_services => self.configured_services,
         :wallpaper => self.wallpaper,
         :getting_started => self.user.getting_started?

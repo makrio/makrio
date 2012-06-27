@@ -14,10 +14,6 @@ class StatusMessage < Post
   xml_name :status_message
   xml_attr :raw_message
 
-  has_many :photo_postings, :foreign_key => :post_id
-  has_many :photos, :through => :photo_postings, :dependent => :destroy
-  belongs_to :parent, :class_name => 'Post', :foreign_key => :parent_guid, :primary_key => :guid
-
   # a StatusMessage is federated before its photos are so presence_of_content() fails erroneously if no text is present
   # therefore, we put the validation in a before_destory callback instead of a validation
   before_destroy :presence_of_content
@@ -59,10 +55,6 @@ class StatusMessage < Post
     write_attribute(:text, text)
   end
 
-  def attach_photos_by_ids(photo_ids)
-    return [] unless photo_ids.present?
-    self.photos << Photo.where(:id => photo_ids).all
-  end
 
   def nsfw
     self.raw_message.match(/#nsfw/i) || super
