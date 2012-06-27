@@ -1,4 +1,8 @@
-%ul#settings_nav
-  %li= link_to_unless_current t('profile'), edit_profile_path
-  %li= link_to_unless_current t('account'), edit_user_path
-  %li= link_to_unless_current t('_services'), services_path
+%h3= link_to '< back to makr.io', root_path
+#section_header
+  %h2
+    = t('settings')
+  %ul#settings_nav
+    %li= link_to_unless_current t('profile'), edit_profile_path
+    %li= link_to_unless_current t('account'), edit_user_path
+    %li= link_to_unless_current t('_services'), services_path
