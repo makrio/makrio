@@ -10,16 +10,23 @@ app.views.StreamInteractions = app.views.Base.extend({
   templateName : "stream-interactions",
 
   setInteractions : function (model) {
-    this.model = model;
-
-    model.interactions.fetch().done(
-      _.bind(function () {
-        this.render()
-      }, this));
+    var self = this;
+    this.model = model
 
     this.comments = new app.views.PostViewerReactions({ model: model.interactions })
     this.newCommentView = new app.views.PostViewerNewComment({ model : model })
     this.shareView = new app.views.ShareView({ model : model })
+
+    _.defer(_.bind(this.render, this))
+    _.delay(function(){
+        var modelStillSelected = model.id && $(".stream-frame .active").data("id") == model.id
+        if(modelStillSelected){
+          model.interactions.fetch().done(function(){
+            self.render()
+          });
+        }
+      }, 1000
+    )
   }
 });
 

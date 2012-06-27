@@ -74,7 +74,7 @@ app.pages.Stream = app.views.Base.extend({
 
   throttledInteractions : _.throttle(function(post){
     this.interactionsView.setInteractions(post)
-  }, 500),
+  }, 200), //so fast scrolling doesn't crash things
 
   triggerInteractionLoad : function(evt){
       this.selectFrame(this.stream.items.get($(evt.target).data("id")))
