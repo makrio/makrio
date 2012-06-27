@@ -13,6 +13,8 @@ app.views.StreamInteractions = app.views.Base.extend({
     var self = this;
     this.model = model
 
+    this.cleanupOldviews()
+
     this.comments = new app.views.PostViewerReactions({ model: model.interactions })
     this.newCommentView = new app.views.PostViewerNewComment({ model : model })
     this.shareView = new app.views.ShareView({ model : model })
@@ -27,6 +29,10 @@ app.views.StreamInteractions = app.views.Base.extend({
         }
       }, 1000
     )
+  },
+
+  cleanupOldviews : function(){
+    this.comments && this.comments.unbind()
   }
 });
 

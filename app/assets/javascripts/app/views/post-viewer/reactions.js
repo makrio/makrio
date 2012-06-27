@@ -8,7 +8,12 @@ app.views.PostViewerReactions = app.views.Base.extend({
 
   initialize : function() {
     this.model.on('change', this.render, this);
-    this.model.comments.bind("add", this.appendComment, this)
+    this.model.comments.on("add", this.appendComment, this)
+  },
+
+  unbind : function(){
+    this.model.off("change", this.render, this)
+    this.model.comments.off("add", this.appendComment, this)
   },
 
   presenter : function(){
