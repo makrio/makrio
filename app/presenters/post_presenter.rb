@@ -103,7 +103,7 @@ class PostInteractionPresenter
     {
         :likes => as_api(@post.likes),
         :comments => CommentPresenter.as_collection(@post.comments.includes(:author => :profile).order("created_at ASC")),
-        :remixes => RemixPresenter.as_collection(@post.remix_siblings.includes(:author => :profile).limit(2)),
+        :remixes => RemixPresenter.as_collection(@post.remix_siblings.includes(:author => :profile).limit(3)),
         :comments_count => @post.comments_count,
         :likes_count => @post.likes_count,
         :remix_count => @post.remixes.count

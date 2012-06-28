@@ -84,27 +84,6 @@
       .remix-screenshot {
         @include box-shadow(0,1px,3px,rgba(0,0,0,.4));
       }
-
-      &.action {
-        a {
-          @include transition(all);
-
-          border : 1px dashed #ccc;
-
-          display : block;
-          width : 98%;
-          height : 100px;
-
-          background-image : image_url('icons/post_remix@2x.png');
-          background-size : 50%;
-          background-repeat : no-repeat;
-          background-position : center;
-
-          &:hover {
-            background-image : image_url('icons/post_remix_hover@2x.png');
-          }
-        }
-      }
     }
   }
 
