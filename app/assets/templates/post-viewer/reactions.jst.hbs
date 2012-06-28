@@ -1,20 +1,22 @@
-{{#if remixes}}
-    <div id='post-remix-container'>
-      <h6>
-        Related Remixes
-      </h6>
+<div id='post-remix-container'>
+  <h6>
+    Related Remixes
+  </h6>
 
-      <div id='remixes'>
-        {{#each remixes}}
-          {{#if screenshot_url}}
-              <div class="remix-wrapper">
-                <a href='/p/{{id}}'><img src='{{screenshot_url}}' /></a>
-              </div>
-          {{/if}}
-        {{/each}}
-      </div>
+  <div id='remixes'>
+    <div class="remix-wrapper action">
+        <a href='/posts/{{post_id}}/remix'></a>
     </div>
-{{/if}}
+
+    {{#each remixes}}
+      {{#if screenshot_url}}
+          <div class="remix-wrapper">
+            <a href='/p/{{id}}'><img src='{{screenshot_url}}' class="remix-screenshot" /></a>
+          </div>
+      {{/if}}
+    {{/each}}
+  </div>
+</div>
 
 {{# if likes}}
     <div id="post-likes">
