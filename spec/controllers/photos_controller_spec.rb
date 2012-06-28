@@ -64,34 +64,6 @@ describe PhotosController do
     end
   end
 
-  describe '#index' do
-    it "succeeds without any available pictures" do
-      get :index, :person_id => Factory(:person).guid.to_s
-
-      response.should be_success
-    end
-
-    it "displays the logged in user's pictures" do
-      get :index, :person_id => alice.person.guid.to_s
-      assigns[:person].should == alice.person
-      assigns[:posts].should == [@alices_photo]
-    end
-
-    it "displays another person's pictures" do
-      get :index, :person_id => bob.person.guid.to_s
-      assigns[:person].should == bob.person
-      assigns[:posts].should == [@bobs_photo]
-    end
-
-    it "returns json when requested" do
-      request.env['HTTP_ACCEPT'] = 'application/json'
-      get :index, :person_id => alice.person.guid.to_s
-
-      response.headers['Content-Type'].should match 'application/json.*'
-      save_fixture(response.body, "photos_json")
-    end
-  end
-
   describe '#edit' do
     it "succeeds when user owns the photo" do
       get :edit, :id => @alices_photo.id

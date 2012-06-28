@@ -114,10 +114,6 @@ class User < ActiveRecord::Base
     notifications.from_last_week.includes([:target, {:actors => :profile}])
   end
 
-  def unread_message_count
-    ConversationVisibility.sum(:unread, :conditions => "person_id = #{self.person.id}")
-  end
-
   def beta?
     @beta ||= Role.is_beta?(self.person)
   end

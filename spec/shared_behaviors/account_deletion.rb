@@ -29,11 +29,6 @@ describe 'deleteing your account' do
       @person.profile.reload.last_name.should  be_blank
     end
 
-    it 'deletes only the converersation visibility for the deleted user' do
-      ConversationVisibility.where(:person_id => alice.person.id).should_not be_empty
-      ConversationVisibility.where(:person_id => @person.id).should be_empty
-    end
-
     it "deletes the share visibilities on the person's posts" do
       ShareVisibility.for_contacts_of_a_person(@person).should be_empty
     end

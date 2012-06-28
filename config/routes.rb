@@ -75,11 +75,6 @@ Diaspora::Application.routes.draw do
     resources :photos, :controller => "photos", :only => [:create]
   end
 
-  resources :conversations do
-    resources :messages, :only => [:create, :show]
-    delete 'visibility' => 'conversation_visibilities#destroy'
-  end
-
   get 'notifications/read_all' => 'notifications#read_all'
   resources :notifications, :only => [:index, :update] do
   end

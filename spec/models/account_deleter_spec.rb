@@ -27,8 +27,8 @@ describe AccountDeleter do
     person_removal_methods = [:delete_contacts_of_me,
      :delete_standard_person_associations,
      :tombstone_person_and_profile,
-     :remove_share_visibilities_on_persons_posts,
-     :remove_conversation_visibilities]
+     :remove_share_visibilities_on_persons_posts
+    ]
 
     context "user deletion" do
       after do
@@ -131,14 +131,6 @@ describe AccountDeleter do
       it 'calls lock_access! on person' do
         @account_deletion.person.should_receive(:lock_access!)
         @account_deletion.tombstone_person_and_profile
-      end
-    end
-     describe "#remove_conversation_visibilities" do
-      it "removes the conversation visibility for the deleted user" do
-        vis = stub
-        ConversationVisibility.should_receive(:where).with(hash_including(:person_id => bob.person.id)).and_return(vis)
-        vis.should_receive(:destroy_all)
-        @account_deletion.remove_conversation_visibilities
       end
     end
   end

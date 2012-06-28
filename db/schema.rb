@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120626190905) do
+ActiveRecord::Schema.define(:version => 20120628055448) do
 
   create_table "account_deletions", :force => true do |t|
     t.string  "diaspora_handle"
@@ -87,26 +87,6 @@ ActiveRecord::Schema.define(:version => 20120626190905) do
   add_index "contacts", ["person_id"], :name => "index_contacts_on_person_id"
   add_index "contacts", ["user_id", "person_id"], :name => "index_contacts_on_user_id_and_person_id", :unique => true
 
-  create_table "conversation_visibilities", :force => true do |t|
-    t.integer  "conversation_id",                :null => false
-    t.integer  "person_id",                      :null => false
-    t.integer  "unread",          :default => 0, :null => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-  end
-
-  add_index "conversation_visibilities", ["conversation_id", "person_id"], :name => "index_conversation_visibilities_usefully", :unique => true
-  add_index "conversation_visibilities", ["conversation_id"], :name => "index_conversation_visibilities_on_conversation_id"
-  add_index "conversation_visibilities", ["person_id"], :name => "index_conversation_visibilities_on_person_id"
-
-  create_table "conversations", :force => true do |t|
-    t.string   "subject"
-    t.string   "guid",       :null => false
-    t.integer  "author_id",  :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "invitation_codes", :force => true do |t|
     t.string   "token"
     t.integer  "user_id"
@@ -156,19 +136,6 @@ ActiveRecord::Schema.define(:version => 20120626190905) do
   add_index "mentions", ["person_id", "post_id"], :name => "index_mentions_on_person_id_and_post_id", :unique => true
   add_index "mentions", ["person_id"], :name => "index_mentions_on_person_id"
   add_index "mentions", ["post_id"], :name => "index_mentions_on_post_id"
-
-  create_table "messages", :force => true do |t|
-    t.integer  "conversation_id",         :null => false
-    t.integer  "author_id",               :null => false
-    t.string   "guid",                    :null => false
-    t.text     "text",                    :null => false
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-    t.text     "author_signature"
-    t.text     "parent_author_signature"
-  end
-
-  add_index "messages", ["author_id"], :name => "index_messages_on_author_id"
 
   create_table "notification_actors", :force => true do |t|
     t.integer  "notification_id"
@@ -467,18 +434,10 @@ ActiveRecord::Schema.define(:version => 20120626190905) do
 
   add_foreign_key "contacts", "people", :name => "contacts_person_id_fk", :dependent => :delete
 
-  add_foreign_key "conversation_visibilities", "conversations", :name => "conversation_visibilities_conversation_id_fk", :dependent => :delete
-  add_foreign_key "conversation_visibilities", "people", :name => "conversation_visibilities_person_id_fk", :dependent => :delete
-
-  add_foreign_key "conversations", "people", :name => "conversations_author_id_fk", :column => "author_id", :dependent => :delete
-
   add_foreign_key "invitations", "users", :name => "invitations_recipient_id_fk", :column => "recipient_id", :dependent => :delete
   add_foreign_key "invitations", "users", :name => "invitations_sender_id_fk", :column => "sender_id", :dependent => :delete
 
   add_foreign_key "likes", "people", :name => "likes_author_id_fk", :column => "author_id", :dependent => :delete
-
-  add_foreign_key "messages", "conversations", :name => "messages_conversation_id_fk", :dependent => :delete
-  add_foreign_key "messages", "people", :name => "messages_author_id_fk", :column => "author_id", :dependent => :delete
 
   add_foreign_key "notification_actors", "notifications", :name => "notification_actors_notification_id_fk", :dependent => :delete
 

@@ -40,7 +40,7 @@ RailsAdmin.config do |config|
 
   #  ==> Included models
   # Add all excluded models here:
-  config.excluded_models = [ActivityStreams::Photo, AspectMembership, AspectVisibility, ShareVisibility, ConversationVisibility,  NotificationActor, Notifications::AlsoCommented, Notifications::CommentOnPost, Notifications::Liked, Notifications::Mentioned, Notifications::PrivateMessage, Notifications::RequestAccepted, Notifications::Reshared, Notifications::StartedSharing, Reshare, Services::Facebook, Services::Tumblr, Services::Twitter,  UserPreference]
+  config.excluded_models = [ActivityStreams::Photo, AspectMembership, AspectVisibility, ShareVisibility,  NotificationActor, Notifications::AlsoCommented, Notifications::CommentOnPost, Notifications::Liked, Notifications::Mentioned, Notifications::RequestAccepted, Notifications::Reshared, Notifications::StartedSharing, Reshare, Services::Facebook, Services::Tumblr, Services::Twitter,  UserPreference]
 
   # Add models here if you want to go 'whitelist mode':
   # config.included_models = [AccountDeletion, ActivityStreams::Photo, ActsAsTaggableOn::Tag, Aspect, AspectMembership, AspectVisibility, Block, Comment, Contact, Conversation, ConversationVisibility, Invitation, InvitationCode, Like, Mention, Message, Notification, NotificationActor, Notifications::AlsoCommented, Notifications::CommentOnPost, Notifications::Liked, Notifications::Mentioned, Notifications::PrivateMessage, Notifications::RequestAccepted, Notifications::Reshared, Notifications::StartedSharing, OEmbedCache, Participation, Person, Photo, Pod, Post, Profile, Reshare, Service, ServiceUser, Services::Facebook, Services::Tumblr, Services::Twitter, ShareVisibility, StatusMessage, TagFollowing, User, UserPreference]
@@ -285,42 +285,6 @@ RailsAdmin.config do |config|
   #   create do; end
   #   update do; end
   # end
-  # config.model Conversation do
-  #   # Found associations:
-  #     configure :author, :belongs_to_association 
-  #     configure :conversation_visibilities, :has_many_association 
-  #     configure :participants, :has_many_association 
-  #     configure :messages, :has_many_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :subject, :string 
-  #     configure :guid, :string 
-  #     configure :author_id, :integer         # Hidden 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime   #   # Sections:
-  #   list do; end
-  #   export do; end
-  #   show do; end
-  #   edit do; end
-  #   create do; end
-  #   update do; end
-  # end
-  # config.model ConversationVisibility do
-  #   # Found associations:
-  #     configure :conversation, :belongs_to_association 
-  #     configure :person, :belongs_to_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :conversation_id, :integer         # Hidden 
-  #     configure :person_id, :integer         # Hidden 
-  #     configure :unread, :integer 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime   #   # Sections:
-  #   list do; end
-  #   export do; end
-  #   show do; end
-  #   edit do; end
-  #   create do; end
-  #   update do; end
-  # end
   # config.model Invitation do
   #   # Found associations:
   #     configure :sender, :belongs_to_association 
@@ -388,26 +352,6 @@ RailsAdmin.config do |config|
   #     configure :id, :integer 
   #     configure :post_id, :integer         # Hidden 
   #     configure :person_id, :integer         # Hidden   #   # Sections:
-  #   list do; end
-  #   export do; end
-  #   show do; end
-  #   edit do; end
-  #   create do; end
-  #   update do; end
-  # end
-  # config.model Message do
-  #   # Found associations:
-  #     configure :conversation, :belongs_to_association 
-  #     configure :author, :belongs_to_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :conversation_id, :integer         # Hidden 
-  #     configure :author_id, :integer         # Hidden 
-  #     configure :guid, :string 
-  #     configure :text, :text 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :author_signature, :text 
-  #     configure :parent_author_signature, :text   #   # Sections:
   #   list do; end
   #   export do; end
   #   show do; end

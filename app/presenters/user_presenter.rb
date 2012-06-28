@@ -38,10 +38,6 @@ class UserPresenter
     @notification_count ||= user.unread_notifications.count
   end
 
-  def unread_messages_count
-    @unread_message_count ||= user.unread_message_count
-  end
-
   def admin
     user.admin?
   end

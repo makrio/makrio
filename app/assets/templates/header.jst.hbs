@@ -28,15 +28,6 @@
       </a>
     </div>
 
-    <div class="badge badge-inverse" id="message_inbox_badge">
-      <a href="/conversations" title="{{t "header.messages"}}">
-        <img alt="{{t "header.messages"}}" src="{{imageUrl "icons/mail_grey.png"}}" />
-        <div class="badge_count {{#unless current_user.unread_messages_count}} hidden {{/unless}}">
-          {{current_user.unread_messages_count}}
-        </div>
-      </a>
-    </div>
-
 
       <div id="notification_dropdown">
         <div class="header">

@@ -24,21 +24,6 @@ describe("app.views.Header", function() {
       })
     })
 
-    context("messages badge", function(){
-      it("displays a count when the current user has a notification", function(){
-        loginAs(_.extend(this.userAttrs, {unread_messages_count : 1}))
-        this.view.render();
-        expect(this.view.$("#message_inbox_badge .badge_count").hasClass('hidden')).toBe(false);
-        expect(this.view.$("#message_inbox_badge .badge_count").text()).toContain("1");
-      })
-
-      it("does not display a count when the current user has a notification", function(){
-        loginAs(_.extend(this.userAttrs, {unread_messages_count : 0}))
-        this.view.render();
-        expect(this.view.$("#message_inbox_badge .badge_count").hasClass('hidden')).toBe(true);
-      })
-    })
-
     context("admin link", function(){
       it("displays if the current user is an admin", function(){
         loginAs(_.extend(this.userAttrs, {admin : true}))

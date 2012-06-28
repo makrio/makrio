@@ -19,9 +19,6 @@ describe 'deleteing your account' do
       @bob2.like!(@alices_post)
       @bob2.comment!(@alices_post, "here are some thoughts on your post")
 
-      #conversations
-      create_conversation_with_message(alice, @bob2.person, "Subject", "Hey @bob2")
-
       #join tables
       @users_sv = ShareVisibility.where(:contact_id => @bobs_contact_ids).all
       @persons_sv = ShareVisibility.where(:contact_id => bob.person.contacts.map(&:id)).all
@@ -121,9 +118,6 @@ describe 'deleteing your account' do
       @mentions = 3.times do
         Factory(:mention, :person => @person)
       end
-
-      #conversations
-      create_conversation_with_message(alice, @person, "Subject", "Hey @bob2")
 
       AccountDeleter.new(@person.diaspora_handle).perform!
       @person.reload

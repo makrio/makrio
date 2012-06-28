@@ -8,39 +8,6 @@ class PhotosController < ApplicationController
 
   respond_to :html, :json
 
-  def index
-    @post_type = :photos
-    @person = Person.find_by_guid(params[:person_id])
-
-    if @person
-      @profile = @person.profile
-      @contact = current_user.contact_for(@person)
-      @is_contact = @person != current_user.person && @contact
-      @aspects_with_person = []
-
-      if @contact
-        @aspects_with_person = @contact.aspects
-        @contacts_of_contact = @contact.contacts
-        @contacts_of_contact_count = @contact.contacts.count
-      else
-        @contact = Contact.new
-        @contacts_of_contact = []
-        @contacts_of_contact_count = 0
-      end
-
-      @posts = current_user.photos_from(@person)
-      
-      respond_to do |format|
-        format.all { render 'people/show' }
-        format.json{ render_for_api :backbone, :json => @posts, :root => :photos }
-      end
-
-    else
-      flash[:error] = I18n.t 'people.show.does_not_exist'
-      redirect_to people_path
-    end
-  end
-
   def create
     unless params[:photo].present?
       respond_to do |format|

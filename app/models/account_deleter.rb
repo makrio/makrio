@@ -25,7 +25,6 @@ class AccountDeleter
   def perform!
     #person
     delete_standard_person_associations
-    remove_conversation_visibilities
     remove_share_visibilities_on_persons_posts
     delete_contacts_of_me
     tombstone_person_and_profile
@@ -83,10 +82,6 @@ class AccountDeleter
 
   def remove_share_visibilities_on_contacts_posts
     ShareVisibility.for_a_users_contacts(user).destroy_all
-  end
-
-  def remove_conversation_visibilities
-    ConversationVisibility.where(:person_id => person.id).destroy_all
   end
 
   def tombstone_person_and_profile
