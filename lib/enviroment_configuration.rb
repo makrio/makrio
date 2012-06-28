@@ -26,6 +26,7 @@ module EnviromentConfiguration
       puts 'heroku app detected; using session secret from config vars...'
       Rails.application.config.secret_token = ENV['SECRET_TOKEN'] 
     elsif secret_token_initializer_is_not_present?
+      puts "generating secret_token file"
       `rake generate:secret_token`
       require  File.join(Rails.root, 'config', 'initializers', 'secret_token.rb')
     else
