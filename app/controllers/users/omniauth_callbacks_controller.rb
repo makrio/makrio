@@ -1,5 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   attr_reader :service
+  has_no_mobile_fu_for :tumblr
+  
   def facebook
     @service = Services::Facebook.find_and_update_from_omniauth!(request.env["omniauth.auth"])
     @user = service.user
