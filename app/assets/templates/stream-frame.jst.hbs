@@ -23,6 +23,12 @@
 
             <div class="small-frame"></div>
 
+            {{#if canRemove}}
+                <a href="#" class="remove-post" title="Remove">
+                    <i class="icon-remove"></i>
+                </a>
+            {{/if}}
+
             <div class="stream-post-info">
                 {{#if current_user.admin}}
                     <a href="#" class="toggle-featured">

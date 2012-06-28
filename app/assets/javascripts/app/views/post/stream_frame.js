@@ -17,7 +17,18 @@ app.views.Post.StreamFrame = app.views.Base.extend({
   },
 
   events : {
-    "click a.toggle-featured" : "toggleFeatured"
+    "click a.toggle-featured" : "toggleFeatured",
+    "click a.remove-post" : "destroyModel"
+  },
+
+  presenter : function() {
+    return _.extend(this.defaultPresenter(), {
+      canRemove : this.canRemove()
+    })
+  },
+
+  canRemove : function() {
+    return this.model.get("author").guid == app.currentUser.get("guid")
   },
 
   toggleFeatured : function(evt){
