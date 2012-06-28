@@ -102,11 +102,11 @@ class PostInteractionPresenter
   def as_json(options={})
     {
         :likes => as_api(@post.likes),
-        :reshares => PostPresenter.collection_json(@post.reshares, @current_user),
-        :comments => CommentPresenter.as_collection(@post.comments.order("created_at ASC")),
-        :participations => as_api(@post.participations),
+        :comments => CommentPresenter.as_collection(@post.comments.includes(:author => :profile).order("created_at ASC")),
         :remixes => RemixPresenter.as_collection(@post.remix_siblings.includes(:author => :profile).limit(3))
-
+        :comments_count => @post.comments_count,
+        :likes_count => @post.likes_count,
+        :remix_count => @post.remixes.count
     }
   end
 
