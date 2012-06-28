@@ -60,7 +60,7 @@ app.pages.Stream = app.views.Base.extend({
   },
 
   compose : function() {
-    app.router.navigate("/framer", {trigger : true})
+    app.router.setLocation("/framer", {trigger : true})
   },
 
   selectFrame : function(post){
