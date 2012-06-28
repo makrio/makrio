@@ -1,47 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
+  <title>Something went wrong! (500)</title>
   <style type="text/css">
+    @font-face{font-family:Roboto;src:url(https://s3.amazonaws.com/joindiaspora/fonts/Roboto-Regular.ttf)}
+    @font-face{font-family:Roboto-BoldCondensed;src:url(https://s3.amazonaws.com/joindiaspora/fonts/Roboto-BoldCondensed.ttf)}
+
+    body,
+    html {
+      overflow-y : hidden;
+    }
+
     body {
-			text-align: center;
-			background-color: rgb(252,252,252);
-			color: #444;
-			font-family: 'helvetica neue', 'helvetica', 'arial', sans-serif;
-			margin: 0; 
-			padding: 1em;
-		}
+      margin-bottom: 0;
+      padding-bottom: 0;
+      margin-top: 5%;
+      background-color: #fff;
+      color: #666;
+      text-align: center;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      background-image: url(https://joindiaspora.s3.amazonaws.com/assets/pattern-4deadcd0b3ee298c791c9055bdef3377.png);
+      text-shadow: 0 1px 0 #fff;
+    }
 
-    header {
-			height: 100px;
-			background-color: #333;
-			position:relative;
-		}
+    #big-number {
+      font-family: Roboto-BoldCondensed, Helvetica, Arial, sans-serif;
+      font-size: 250px;
+      text-shadow: 0 2px 0 #fff, 0 -1px 0 #999;
+      color: #ddd;
+    }
 
-		#diaspora_logo {
-			position: relative;
-			margin-top: 50px;
-		}
+    a {
+      text-decoration : none;
+      color : rgb(42,156,235);
+    }
 
-    h1 {
-			font-size: 100%;
-			color: #444;
-			line-height: 1.5em;
-		}
-	</style>
+    a:hover {
+      text-decoration : underline;
+    }
+
+    .transparent {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+      filter: alpha(opacity=80);
+      -moz-opacity: 0.8;
+      -khtml-opacity: 0.8;
+      opacity: 0.8;
+    }
+
+    #cat-footer {
+      width: 100%;
+      position: fixed;
+      text-align: center;
+      bottom : -8px;
+      left : 0;
+    }
+
+  </style>
 </head>
 
 <body>
   <!-- This file lives in public/500.html -->
-  <header>
-		<img id="diaspora_logo" src="/assets/branding/logo_large.png"/>
-  </header>
+  <div id="big-number" class="transparent">
+    500
+  </div>
 
-	<h1>
-		500: Internal server error.
-	</h1>
-	<h3>
-		Our bad! Sorry about that. :(
-	</h3>
+  Kittens are all up in our tubes. Sorry about that :/
+  <br/>
+  <br/>
+  <a href="/">
+    Go Back?
+  </a>
+
+  <div id="cat-footer" class="transparent">
+    <img src="https://s3.amazonaws.com/joindiaspora/peeping-tom.png">
+  </div>
 </body>
 </html>
