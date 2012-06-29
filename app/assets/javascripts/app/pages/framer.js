@@ -40,7 +40,7 @@ app.pages.Framer = app.views.Base.extend({
   },
 
   defaultNavigation : function() {
-    // app.router.navigate(url, {trigger: true, replace: true})
+//    app.router.navigate("/stream", {trigger: true, replace: true})
     app.router.setLocation('/stream')
   }
 });

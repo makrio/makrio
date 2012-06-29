@@ -16,15 +16,22 @@ app.pages.Stream = app.views.Base.extend({
   initialize : function(){
     this.stream = this.model = new app.models.Stream()
     this.stream.preloadOrFetch()
-
     this.streamView = new app.pages.Stream.InfiniteScrollView({ model : this.stream })
     this.interactionsView = new app.views.StreamInteractions()
-    this.stream.on("fetched", function(){
-      this._resetPeriod = 2000
-      this.refreshScrollSpy()
-    }, this)
+    this.bindEvents()
+  },
+
+  bindEvents : function(){
+    this.stream.on("fetched", this.resetScrollSpy, this)
     this.stream.on("frame:interacted", this.selectFrame, this)
     this.on("refreshScrollSpy", this.refreshScrollSpy, this)
+  },
+
+  unbind : function(){
+    this.stream.off("fetched", this.resetScrollSpy, this)
+    this.stream.off("frame:interacted", this.selectFrame, this)
+    this.off("refreshScrollSpy", this.refreshScrollSpy, this)
+//    $("body").data("scrollspy", undefined)
   },
 
   postRenderTemplate : function() {
@@ -91,6 +98,11 @@ app.pages.Stream = app.views.Base.extend({
         self.trigger("refreshScrollSpy")
       }
     }, this._resetPeriod)
+  },
+
+  resetScrollSpy : function(){
+    this._resetPeriod = 2000
+    this.refreshScrollSpy()
   },
 
   bookmarkletJS : function() {
