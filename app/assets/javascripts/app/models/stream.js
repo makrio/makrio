@@ -20,8 +20,6 @@ app.collections.PostPoller = app.collections.Posts.extend({
   },
 
   fetchMore:function() {
-    console.log("yo dawg, I hurd you like fetching moar")
-
     var self = this
     this.fetch({add:true}).done(function() {
       if (self.models.length) {
