@@ -5,7 +5,8 @@ app.pages.Stream = app.views.Base.extend({
     "click .bookmarklet-button" : "bookmarkletInstructionsPrompt",
     "activate .stream-frame-wrapper" : 'triggerInteractionLoad',
     "click #composer-button" : 'compose',
-    "click #notifications-button" : 'goToNotifications'
+    "click #notifications-button" : 'goToNotifications',
+    "click .post-notifier" : "loadNewPosts"
   },
 
   subviews : {
@@ -16,22 +17,56 @@ app.pages.Stream = app.views.Base.extend({
   initialize : function(){
     this.stream = this.model = new app.models.Stream()
     this.stream.preloadOrFetch()
+
+    this._pageTitle = document.title
+
     this.streamView = new app.pages.Stream.InfiniteScrollView({ model : this.stream })
     this.interactionsView = new app.views.StreamInteractions()
     this.bindEvents()
   },
 
   bindEvents : function(){
+    this.stream.on("hasMoar", this.notifyUserOfMorePosts, this)
     this.stream.on("fetched", this.resetScrollSpy, this)
     this.stream.on("frame:interacted", this.selectFrame, this)
     this.on("refreshScrollSpy", this.refreshScrollSpy, this)
   },
 
   unbind : function(){
+    this.stream.unbind()
+    this.stream.off("hasMoar", this.notifyUserNewPosts, this)
     this.stream.off("fetched", this.resetScrollSpy, this)
     this.stream.off("frame:interacted", this.selectFrame, this)
     this.off("refreshScrollSpy", this.refreshScrollSpy, this)
-//    $("body").data("scrollspy", undefined)
+
+    $(window).unbind("scroll")
+//    $("body").data("scrollspy", undefined) //this is for the stream scroller when we navigate to not bind millions of times i love you when we don't page navigate :)
+  },
+
+  loadNewPosts : function(){
+    this.stream.trigger("loadNew")
+    this.notificationDiv.remove()
+    delete this.notificationDiv
+
+    document.title = this._pageTitle;
+
+    this.resetScrollSpy()
+    $(window).trigger("scroll")
+  },
+
+  notifyUserOfMorePosts : function(){
+    this.notificationDiv = this.notificationDiv || createDiv()
+    var count = this.stream.poller.models.length
+      , noun = count == 1 ? "Post" : "Posts";
+
+    this.notificationDiv.text(count + " New " + noun)
+    document.title = "(" + count + ") " + this._pageTitle
+
+    function createDiv(){
+      var div = $("<div/>", {class : "post-notifier" })
+      this.$("#stream-content").prepend(div)
+      return div
+    }
   },
 
   postRenderTemplate : function() {
@@ -63,10 +98,6 @@ app.pages.Stream = app.views.Base.extend({
     })
   },
 
-  unbind : function() {
-    $(window).unbind("scroll")
-  },
-
   compose : function() {
     app.router.setLocation("/framer", {trigger : true})
   },
@@ -89,21 +120,24 @@ app.pages.Stream = app.views.Base.extend({
   },
 
   refreshScrollSpy : function(){
-    var self = this;
     this._resetPeriod = this._resetPeriod || 2000
-    _.delay(function(){
-      if(self._resetPeriod <= 10000) {
-        $('body').scrollspy('refresh')
-        self._resetPeriod = self._resetPeriod * 2
-        self.trigger("refreshScrollSpy")
-      }
-    }, this._resetPeriod)
+    _.delay(_.bind(this.doRefresh, this), this._resetPeriod)
+  },
+
+  doRefresh : function(){
+    if(this._resetPeriod <= 10000) {
+      $('body').scrollspy('refresh')
+      this._resetPeriod = this._resetPeriod * 2
+      this.trigger("refreshScrollSpy")
+    }
   },
 
   resetScrollSpy : function(){
     this._resetPeriod = 2000
     this.refreshScrollSpy()
+    this.doRefresh()
   },
+
 
   bookmarkletJS : function() {
     return "javascript:void(function(){ if(window.location.host.match(/makr/)){alert('Drag the \"Remix\" button to your bookmarks bar to easily remix any photo while you browse the web!');return};\

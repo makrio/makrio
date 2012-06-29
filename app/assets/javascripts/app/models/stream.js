@@ -1,12 +1,56 @@
 //= require ../collections/posts
 //= require ../collections/photos
+
+app.collections.PostPoller = app.collections.Posts.extend({
+  url:function () {
+    return "/stream/updated?last_post_id=" + this.stream.items.first().id
+  },
+
+  initialize:function (models, options) {
+    this.stream = options.stream
+    this.bindEvents()
+  },
+
+  bindEvents : function(){
+    this.on("FetchMoar", this.fetchMore, this)
+  },
+
+  unbind : function(){
+    this.off("FetchMoar", this.fetchMore, this)
+  },
+
+  fetchMore:function() {
+    console.log("yo dawg, I hurd you like fetching moar")
+
+    var self = this
+    this.fetch({add:true}).done(function() {
+      if (self.models.length) {
+        self.stream.trigger("hasMoar")
+      }
+      _.delay(function(){
+        self.trigger("FetchMoar")
+      }, 20000)
+    })
+  }
+})
+
 app.models.Stream = Backbone.Collection.extend({
   initialize : function(models, options){
     var collectionClass = options && options.collection || app.collections.Posts;
     this.items = new collectionClass([], this.collectionOptions());
+    this.on("loadNew", this.addPollerPosts, this)
   },
 
-  collectionOptions :function(){
+  addPollerPosts : function(){
+    this.add(this.poller.models)
+    this.poller.reset()
+  },
+
+  unbind : function(){
+    this.poller && this.poller.unbind()
+  },
+
+  collectionOptions : function(){
       var order = this.sortOrder();
       return { comparator : function(item) { return -item[order](); } }
   },
@@ -51,7 +95,7 @@ app.models.Stream = Backbone.Collection.extend({
   },
 
   sortOrder : function() {
-    return this.basePath().match(/activity/) ? "interactedAt" : "createdAt"
+    return "createdAt"
   },
 
   add : function(models){
@@ -59,7 +103,14 @@ app.models.Stream = Backbone.Collection.extend({
   },
 
   preloadOrFetch : function(){ //hai, plz test me THNX
-    return $.when(app.hasPreload("stream") ? this.preload() : this.fetch())
+    var deferred =  $.when(app.hasPreload("stream") ? this.preload() : this.fetch())
+
+    if(window.location.pathname.search(/^\/stream/) != -1) {
+      this.poller = new app.collections.PostPoller([], {stream : this})
+      deferred.done(_.bind(this.poller.fetchMore, this.poller))
+    }
+
+    return deferred
   },
 
   preload : function(){

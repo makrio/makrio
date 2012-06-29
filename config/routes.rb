@@ -43,17 +43,9 @@ Diaspora::Application.routes.draw do
   end
 
   # Streams
-  get "participate" => "streams#activity", :as => "activity_stream" # legacy
-  get "explore" => "streams#multi", :as => "stream"                 # legacy
-
-  get "activity" => "streams#activity", :as => "activity_stream"
-  get "stream" => "streams#multi", :as => "stream"
-  get "public" => "streams#public", :as => "public_stream"
-  get "followed_tags" => "streams#followed_tags", :as => "followed_tags_stream"
-  get "mentions" => "streams#mentioned", :as => "mentioned_stream"
-  get "liked" => "streams#liked", :as => "liked_stream"
-  get "commented" => "streams#commented", :as => "commented_stream"
-  get "aspects" => "streams#aspects", :as => "aspects_stream"
+  resource :stream, :only => [:show] do
+    get :updated
+  end
 
   get "popular" => "streams#popular", :as => "popular"
 

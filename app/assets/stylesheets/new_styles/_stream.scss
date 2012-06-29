@@ -329,3 +329,31 @@
     color : #999;
   }
 }
+
+.post-notifier {
+  @include border-radius(3px);
+  @include box-shadow(0, 2px, 3px, rgba(0, 0, 0, .7));
+  @include transition(all);
+
+  position: fixed;
+  top: 0;
+  left: 318px;
+  z-index: 15;
+
+  background-color: #BD362F;
+  cursor: pointer;
+
+  color: white;
+  font-family: Roboto-Bold;
+
+  padding : {
+    top : 43px;
+    left : 40px;
+    right : 40px;
+    bottom : 5px;
+  }
+
+  &:hover {
+    background-color : #EE5F5B;
+  }
+}

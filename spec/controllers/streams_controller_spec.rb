@@ -9,20 +9,6 @@ describe StreamsController do
     sign_in alice
   end
 
-  describe "#public" do
-    it 'will succeed if admin' do
-      Role.add_admin(alice.person)
-      get :public
-      response.should be_success
-    end
-
-    it 'will redirect if not' do
-      AppConfig[:admins] = []
-      get :public
-      response.should be_redirect
-    end
-  end
-
   describe '#multi' do
     before do
       @old_spotlight_value = AppConfig[:community_spotlight]
@@ -34,36 +20,19 @@ describe StreamsController do
 
     it 'succeeds' do
       AppConfig[:community_spotlight] = [bob.person.diaspora_handle]
-      get :multi
+      get :show
       response.should be_success
     end
 
     it 'succeeds without AppConfig[:community_spotlight]' do
       AppConfig[:community_spotlight] = nil
-      get :multi
+      get :show
       response.should be_success
     end
 
     it 'succeeds on mobile' do
-      get :multi, :format => :mobile
+      get :show, :format => :mobile
       response.should be_success
-    end
-  end
-
-  streams = {
-      :liked => Stream::Likes,
-      :mentioned => Stream::Mention,
-      :followed_tags => Stream::FollowedTag,
-      :activity => Stream::Activity
-  }
-
-  streams.each do |stream_path, stream_class|
-    describe "a GET to #{stream_path}" do
-      it 'assigns a stream of the proper class' do
-        get stream_path
-        response.should be_success
-        assigns[:stream].should be_a stream_class
-      end
     end
   end
 end
