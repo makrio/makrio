@@ -44,6 +44,7 @@
   .current-frame {
     @include wide();
     vertical-align : middle;
+    z-index: 0;
   }
 
   i.divider {
