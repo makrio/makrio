@@ -56,101 +56,6 @@ a { color : $link-blue  }
   width: 100%;
 }
 
-#post-content {
-  display : table;
-  position : absolute;
-
-  height: 100%;
-  width: 100%;
-
-  top : 0;
-  left : 0;
-
-  .logo {
-    position : absolute;
-    top : 10px;
-    left : 10px;
-  }
-
-  #info_row {
-    display : table-cell;
-    vertical-align : middle;
-    text-align : center;
-    padding : 20px 0;
-  }
-
-  .original-frame-wrapper {
-    @include transition(all);
-    @include opacity(.5);
-    @include box-shadow(0,2px,8px,rgba(0, 0, 0, 0.9));
-
-    position : relative;
-    display : inline-block;
-
-    &:hover {
-      @include opacity(1);
-    }
-  }
-
-  .frame,
-  .original-frame,
-  .current-frame {
-    position : relative;
-    display : inline-block;
-
-    .canvas-frame {
-      float : none;
-    }
-
-    .author-name {
-      position : absolute;
-      top : -10px;
-      left : -10px;
-      z-index : 20;
-    }
-  }
-
-  .original-frame {
-    .author-name {
-      top : -7px;
-      left : auto;
-      right : -7px;
-    }
-  }
-
-  .current-frame {
-    @include wide();
-    vertical-align : middle;
-  }
-
-  i.divider {
-    margin : 0 20px;
-  }
-
-  .original-frame {
-    height : 200px;
-    width : 200px;
-
-    margin-left : -270px;
-
-    .frame {
-      max-width : 200px;
-    }
-  }
-
-  .canvas-frame {
-    max-height : 100%;
-
-    .content {
-      pointer : default !important;
-    }
-
-    .info {
-      display : none;
-    }
-  }
-}
-
 .canvas-frame.frame-screenshot img {
   border : none !important;
 }
@@ -537,11 +442,9 @@ $bring-dark-accent-forward-color: #DDD;
   }
 }
 
-
 /* responsive */
 @media (max-width: 767px) {
   body {
     padding : 0;
  }
 }
-

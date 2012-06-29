@@ -1,0 +1,108 @@
+#post-content {
+  display : table;
+  position : absolute;
+
+  height: 100%;
+  width: 100%;
+
+  overflow-x : hidden;
+
+  top : 0;
+  left : 0;
+
+  .logo {
+    position : absolute;
+    top : 10px;
+    left : 10px;
+  }
+
+  #info_row {
+    display : table-cell;
+    vertical-align : middle;
+    text-align : center;
+    margin : 20px 0;
+  }
+
+  .remix-frame,
+  .original-frame,
+  .current-frame {
+    position : relative;
+    display : inline-block;
+
+    .canvas-frame {
+      float : none;
+    }
+
+    .author-name {
+      position : absolute;
+      top : -10px;
+      left : -10px;
+      z-index : 20;
+    }
+  }
+
+  .current-frame {
+    @include wide();
+    vertical-align : middle;
+  }
+
+  i.divider {
+    margin : 0 20px;
+  }
+
+  .remix-frame,
+  .original-frame {
+    @include transition(all);
+    @include opacity(.5);
+
+    width : 200px;
+
+    &:hover {
+      @include opacity(1);
+    }
+
+    .frame {
+      width : 100%;
+    }
+
+    .author-name {
+      top : -7px;
+      left : auto;
+      right : -7px;
+    }
+  }
+
+  .remix-frame-section {
+    width : 700px;
+    margin-right : -710px;
+    display : inline-block;
+    white-space : nowrap;
+    vertical-align : middle;
+    text-align : left;
+  }
+
+  .remix-frame {
+    margin-right : 20px;
+
+    .author-name {
+      right : auto;
+      left : -7px;
+    }
+  }
+
+  .original-frame {
+    margin-left : -270px;
+  }
+
+  .canvas-frame {
+    max-height : 100%;
+
+    .content {
+      pointer : default !important;
+    }
+
+    .info {
+      display : none;
+    }
+  }
+}

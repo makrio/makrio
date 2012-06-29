@@ -5,16 +5,16 @@
 
     <div id="info_row">
         {{#if parent}}
-            <div class="original-frame">
-                <div class="original-frame-wrapper">
-                    {{#linkToPerson parent.author}}
+            {{#with parent}}
+                <div class="original-frame">
+                    {{#linkToPerson author}}
                         <div class="profile-image-container micro post-author" style="background-image : url('{{avatar.small}}');" title="{{name}}" data-placement="right"></div>
                     {{/linkToPerson}}
-                    <a href="/p/{{parent.id}}">
-                        <img src="{{parent.screenshot_url}}" class="frame" />
+                    <a href="/p/{{id}}">
+                        <img src="{{screenshot_url}}" class="frame" />
                     </a>
                 </div>
-            </div>
+            {{/with}}
 
             <i class="icon-random icon-grey divider"></i>
         {{/if}}
@@ -30,6 +30,27 @@
                 <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div>
             </div>
         </div>
+
+        {{#if interactions.remixes}}
+            <div class="remix-frame-section">
+
+                <i class="icon-random icon-grey divider"></i>
+
+                {{#each interactions.remixes}}
+                    {{#if screenshot_url}}
+                        <div class="remix-frame">
+                            {{#linkToPerson author}}
+                                <div class="profile-image-container micro post-author" style="background-image : url('{{avatar.small}}');" title="{{name}}" data-placement="right"></div>
+                            {{/linkToPerson}}
+                            <a href='/p/{{id}}'>
+                                <img src='{{screenshot_url}}' class="frame" />
+                            </a>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        {{/if}}
+
     </div>
 </div>
 
