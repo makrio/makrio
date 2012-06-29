@@ -193,24 +193,16 @@
 
       z-index : 10;
 
-      text-align : center;
-      vertical-align : middle;
-
       position : absolute;
-      top : 0px;
-      left : 0px;
+      top : 10px;
+      right : 10px;
 
-      height : 100%;
-      width : 100%;
-
-      background-color : rgba(0,0,0,.7);
+      cursor : pointer;
 
       .info {
         @include border-radius(5px);
         display : inline-block;
-        margin-top : 20px;
         background-color : rgba(0,0,0,.7);
-        cursor : pointer;
 
         .reshare,
         .like {
@@ -244,7 +236,6 @@
           }
         }
       }
-
     }
 
     .frame-link:hover {
