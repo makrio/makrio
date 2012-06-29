@@ -87,7 +87,8 @@ app.views.Base = Backbone.View.extend({
 
     function getFieldValue($element){
       if($element.attr('contenteditable')){
-        return $element.html().replace(/<div>/g, '\n').replace(/<\/div>/g, "")
+        var output = $element.html().replace(/\n/g, '<br>').replace(/<div>/g, '\n').replace(/<\/div>/g, "")
+        return output
       } else {
         return $element.val() || $element.text();
       }
