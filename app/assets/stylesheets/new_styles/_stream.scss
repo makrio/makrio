@@ -238,15 +238,9 @@
 
         .like {
           background-image : image_url('icons/post_love@2x.png');
-          &:hover {
-            background-image : image_url('icons/post_love_int@2x.png');
-          }
 
           &.liked {
             background-image : image_url('icons/post_love_hover@2x.png');
-            &:hover {
-              background-image : image_url('icons/post_love_int@2x.png');
-            }
           }
         }
       }
