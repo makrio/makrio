@@ -106,7 +106,7 @@ gem 'typhoeus'
 # views
 
 gem 'haml', '3.1.6.rc.1'
-gem 'mobile-fu'
+gem 'mobile-fu', :git => 'git://github.com/makrio/mobile-fu.git'
 
 gem 'will_paginate'
 gem 'client_side_validations'
