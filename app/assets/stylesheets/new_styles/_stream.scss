@@ -159,6 +159,16 @@
       color: #aaa;
     }
   }
+
+  .permalink {
+    a {
+      padding : 0 3px;
+    }
+
+    i {
+      margin-top : 6px;
+    }
+  }
 }
 
 #stream-content {
