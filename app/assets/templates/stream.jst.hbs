@@ -10,6 +10,12 @@
                 <button href="/framer" id="composer-button" class="btn btn-primary" style="box-shadow: 0 -1px 2px #000, 0 1px 2px #444;"><i class="icon-plus icon-white"></i> New Remix</button>
             </li>
 
+            <li>
+                <button href="/notifications" id="notifications-button" class="btn {{#if current_user.notifications_count}}btn-danger{{else}}btn-inverse{{/if}}" style="box-shadow: 0 -1px 2px #000, 0 1px 2px #444;" title="Notifications">
+                    {{current_user.notifications_count}}
+                </button>
+            </li>
+
             <li class="divider-vertical"></li>
 
             <li class="dropdown">
@@ -21,11 +27,6 @@
 
                 <ul class="dropdown-menu">
                     <li><a href="/people/{{current_user.guid}}">Profile</a></li>
-                    <li><a href="/notifications">Notifications
-                        {{#if current_user.notifications_count}}
-                            <span class="badge badge-info">{{current_user.notifications_count}}</span>
-                        {{/if}}
-                    </a></li>
                     <li><a href="/user/edit">Settings</a></li>
                     <li class="divider"></li>
                     <li><a href="/users/sign_out">Log Out</a></li>

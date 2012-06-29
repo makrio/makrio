@@ -4,7 +4,8 @@ app.pages.Stream = app.views.Base.extend({
   events : {
     "click .bookmarklet-button" : "bookmarkletInstructionsPrompt",
     "activate .stream-frame-wrapper" : 'triggerInteractionLoad',
-    "click #composer-button" : 'compose'
+    "click #composer-button" : 'compose',
+    "click #notifications-button" : 'goToNotifications'
   },
 
   subviews : {
@@ -112,6 +113,10 @@ app.pages.Stream = app.views.Base.extend({
     var gettingStartedView = new app.views.GettingStarted()
     $("body").addClass('lock')
       .prepend(gettingStartedView.render().el)
+  },
+
+  goToNotifications : function(evt) {
+    window.location = $(evt.target).attr("href")
   }
 },
 

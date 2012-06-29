@@ -321,3 +321,11 @@
   top: 20px;
   width : 10px;
 }
+
+#notifications-button {
+  font-weight : bold;
+
+  &.btn-inverse {
+    color : #999;
+  }
+}
