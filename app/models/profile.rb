@@ -92,6 +92,12 @@ class Profile < ActiveRecord::Base
     self.attributes.merge(update_hash){|key, old, new| old.blank? ? new : old}
   end
 
+  def update_profile_image_from_photo(photo)
+    self.image_url_small = photo.url(:thumb_small)
+    self.image_url_medium = photo.url(:thumb_medium)
+    self.image_url = photo.url
+  end
+
   def image_url= url
     return image_url if url == ''
     if url.nil? || url.match(/^https?:\/\//)
