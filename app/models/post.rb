@@ -66,7 +66,8 @@ class Post < ActiveRecord::Base
   end
 
   def self.featured_and_by_author(author)
-    where(:featured => true) | where(:author_id => author.id)
+    scoped = where(:featured => true)
+    author ? scoped | where(:author_id => author.id) : scoped
   end
 
   def self.visible_from_author(author, current_user=nil)

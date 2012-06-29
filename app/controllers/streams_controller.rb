@@ -7,8 +7,6 @@ require File.join(Rails.root, "lib", "stream", "popular")
 
 
 class StreamsController < ApplicationController
-  before_filter :authenticate_user!
-
   respond_to :html,
              :mobile,
              :json
@@ -22,7 +20,7 @@ class StreamsController < ApplicationController
   end
 
   def updated
-    @posts = Post.where("id > ?", params[:last_post_id]).where(:featured => true)
+    @posts = Post.where("id > ?", params[:last_post_id]).where(:featured => true).limit(25)
     respond_to do |format|
       format.json { render :json => PostPresenter.collection_json(@posts, current_user) }
     end
@@ -35,10 +33,11 @@ class StreamsController < ApplicationController
     stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user)
     respond_to do |format|
       format.html do
+        authenticate_user!
         gon.stream = stream_json
         render :nothing => true, :layout => "post"
       end
-      format.mobile { render 'layouts/main_stream' }
+      format.mobile {authenticate_user!; render 'layouts/main_stream' }
       format.json { render :json => stream_json }
     end
   end
