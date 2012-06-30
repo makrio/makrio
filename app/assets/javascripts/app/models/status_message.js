@@ -17,7 +17,9 @@ app.models.StatusMessage = app.models.Post.extend({
     this.set('sourcePost', parent)
     this.set('parent_guid', parent.get('guid'))
     this.photos = new Backbone.Collection(this.get("photos"))
+    return this
   },
+
 
   toJSON : function(){
     return {

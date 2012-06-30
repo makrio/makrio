@@ -4,9 +4,9 @@ app.pages.Stream = app.views.Base.extend({
   events : {
     "click .bookmarklet-button" : "bookmarkletInstructionsPrompt",
     "activate .stream-frame-wrapper" : 'triggerInteractionLoad',
-    "click #composer-button" : 'compose',
+    "click a.notification" : "readNotificationAndNavigate",
     "click .post-notifier" : "loadNewPosts",
-    "click a.notification" : "readNotificationAndNavigate"
+    "click *[data-remix-id]" : 'showModalFramer'
   },
 
   subviews : {
@@ -22,6 +22,7 @@ app.pages.Stream = app.views.Base.extend({
 
     this.streamView = new app.pages.Stream.InfiniteScrollView({ model : this.stream })
     this.interactionsView = new app.views.StreamInteractions()
+    _.bindAll(this.showModalFramer)
     this.bindEvents()
   },
 
@@ -52,6 +53,15 @@ app.pages.Stream = app.views.Base.extend({
 
     this.resetScrollSpy()
     $(window).trigger("scroll")
+  },
+
+  showModalFramer : function(evt){
+    evt.preventDefault();
+    var post_id = $(evt.target).data('remix-id')
+    var post = (post_id =='new') ? undefined : this.stream.items.get(post_id).buildRemix()
+
+    this.framer = new app.pages.InlineFramer({model : post})
+    this.framer.show()
   },
 
   notifyUserOfMorePosts : function(){
@@ -97,10 +107,6 @@ app.pages.Stream = app.views.Base.extend({
       onLatest : function() { return document.location.pathname.search("stream") !== -1},
       onPopular : function() { return document.location.pathname.search("popular") !== -1 }
     })
-  },
-
-  compose : function() {
-    app.router.setLocation("/framer", {trigger : true})
   },
 
   selectFrame : function(post){

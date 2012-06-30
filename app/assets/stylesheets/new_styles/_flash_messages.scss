@@ -22,6 +22,8 @@
 #flash_alert,
 #flash_notice,
 #flash_alert {
+  z-index : 1031;
+
   position : fixed;
   top : -100px;
   left : 0;

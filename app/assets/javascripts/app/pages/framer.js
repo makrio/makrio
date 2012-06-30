@@ -3,7 +3,7 @@
 app.pages.Framer = app.views.Base.extend({
   templateName : "flow",
 
-  id : "post-content",
+  id : "framer",
 
   subviews : {
     ".flow-content" : "framerContent",
@@ -17,6 +17,8 @@ app.pages.Framer = app.views.Base.extend({
     if(!this.model.get("frame_name")) this.model.setFrameName()
 
     this.model.authorIsCurrentUser = function(){ return true }
+
+
     this.model.bind("sync", this.navigateNext, this)
 
     this.framerContent = new app.views.framerContent({model : this.model})

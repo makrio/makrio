@@ -2,22 +2,11 @@ app.forms.PictureBase = app.views.Base.extend({
   events : {
     'ajax:complete .new_photo' : "photoUploaded",
     "change input[name='photo[user_file]']" : "submitUpload",
-    // 'click #photo_upload_button' : 'invokeFilePicker',
     "click .img-url" : "submitURL"
   },
 
   onSubmit : $.noop,
   uploadSuccess : $.noop,
-
-  // invokeFilePicker : function(){
-  //   filepicker.setKey('7nluBwH4SbyxSKdCamQD');
-    
-  //   var self = this;
-  //   filepicker.getFile('image/*', {'modal' : true, 'services': ['My Computer', 'Images', 'Webcam']}, function(url, metadata) {
-  //     self.$("form input[name='photo[image_url]']").val(url + '+' + metadata.filename)
-  //     self.submitURL()
-  //   })
-  // },
 
   postRenderTemplate : function(){
     this.$("input[name=authenticity_token]").val($("meta[name=csrf-token]").attr("content"))
@@ -28,12 +17,12 @@ app.forms.PictureBase = app.views.Base.extend({
     this.onSubmit();
   },
 
-  submitURL : function(){
+  submitURL : function(evt){
+    evt && evt.preventDefault()
     if(this.$("form input[name='photo[image_url]']").val()){
       this.submitUpload();
     } 
   },
-
 
   photoUploaded : function(evt, xhr) {
     resp = JSON.parse(xhr.responseText)

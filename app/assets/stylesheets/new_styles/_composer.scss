@@ -14,24 +14,28 @@
   padding-top : 100px;
 }
 
+#facebox {
+  #framer {
+    width: 800px;
+  }
+}
+
 #framer {
   color : #fff;
-  background-color : rgba(0,0,0,0.8);
-
- background-image : image_url("texture/hatched-dark.png");
+  background : {
+    color : rgba(0,0,0,0.8);
+    image : image_url("texture/hatched-dark.png");
+  }
 
   z-index : 200;
-
-  text-align : left;
-
-  position : absolute;
-  left : 0;
-  top : 0;
+  text-align : center;
 
   height : 100%;
-  width : 100%;
 
-  overflow : auto;
+  #framer-wrapper {
+    display : inline-block;
+    text-align : left;
+  }
 
   .new_picture{
     margin-top: 4%;
@@ -52,14 +56,13 @@
   }
 
   .template-picker {
-    float : left;
+    display : inline-block;
+
     margin-left : 10px;
-    margin-right : -100px; // prevent the picker from being bumped down under the frame.
 
     input {
       display : none;
     }
-
 
     label {
       @include transition(background-color);
@@ -110,7 +113,11 @@
   }
 
   .preview {
+    display : inline-block;
+    vertical-align : top;
+
     .canvas-frame {
+      float : none;
       margin-left : 0;
 
       &:hover {
@@ -139,51 +146,8 @@
   }
 
   .flow-controls {
-    padding: 20px 0;
-    max-height: 68px;
-
-    .aspect-selector {
-      display : inline-block;
-
-      .aspects_dropdown {
-        display : inline-block;
-      }
-
-      form {
-        margin: 0
-      }
-
-      i, input {
-        display: none;
-      }
-
-      input:checked + label i {
-        display: inline-block;
-        position: absolute;
-        left : 3px;
-        margin-top : 1px;
-      }
-
-      label {
-        margin : 0;
-        padding : 5px 0;
-
-        &:hover {
-          background-color : #eee;
-        }
-
-        span:not(.caret) {
-          padding-left: 21px;
-        }
-      }
-    }
-
     .service-selector {
       display : inline-block;
-    }
-
-    .dropdown-menu {
-      text-align: left;
     }
   }
 

@@ -1,44 +1,32 @@
-<div id="framer">
-    <div class="container">
-        <div class="row">
-            <div class="span10 offset2">
-                <div class="row">
-                    {{#if sourcePost}}
-                        <div id="reshare media author">
-                             <div class="media author">
-                                <h1> Remixing... </h1>
-                                {{#linkToPerson author}}
-                                    <div class="img">
-                                        <div class="profile-image-container smaller" style="background-image : url('{{avatar.large}}')"></div>
-                                    </div>
-                                {{/linkToPerson}}
-
-                                <div class="bd">
-                                    {{#linkToPerson author}}
-                                        {{name}}
-                                    {{/linkToPerson}}
-                                    <br/>
-                                    <a href='/posts/{{sourcePost.id}}' target='_blank'>source</a>
-                                </div>
-                            </div>
-                        </div>
-                    {{else}}
-                        <h2>
-                           Add Photos & Make Something!
-                        </h2>
-                    {{/if}}
-                </div>
-
-                <div class="row">
-                    <div class="flow-content"/>
-                </div>
-                <div class="row">
-                    <div class="flow-controls span5 offset2">
-                        <div class="controls"/>
+<div id="framer-wrapper">
+    {{#if sourcePost}}
+        <div id="reshare media author">
+             <div class="media author">
+                <h1> Remixing... </h1>
+                {{#linkToPerson author}}
+                    <div class="img">
+                        <div class="profile-image-container smaller" style="background-image : url('{{avatar.large}}')"></div>
                     </div>
+                {{/linkToPerson}}
+
+                <div class="bd">
+                    {{#linkToPerson author}}
+                        {{name}}
+                    {{/linkToPerson}}
+                    <br/>
+                    <a href='/posts/{{sourcePost.id}}' target='_blank'>source</a>
                 </div>
             </div>
         </div>
+        {{else}}
+        <h2>
+           Add Photos & Make Something!
+        </h2>
+        {{/if}}
+
+    <div class="flow-content"/>
+
+    <div class="flow-controls">
+        <div class="controls"/>
     </div>
 </div>
-

@@ -17,7 +17,7 @@
   box-shadow:0 0 10px rgba(0,0,0,0.8), 0 2px 200px rgba(255,255,255,0.2);;
 }
 
-#facebox .content {
+#facebox .popup > .content {
   display:table;
   width: 370px;
   padding: 20px;
@@ -27,10 +27,10 @@
   border-radius:2px;
 }
 
-#facebox .content > p:first-child{
+#facebox .popup > .content > p:first-child{
   margin-top:0;
 }
-#facebox .content > p:last-child{
+#facebox .popup > .content > p:last-child{
   margin-bottom:0;
 }
 

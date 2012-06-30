@@ -204,7 +204,7 @@
         display : inline-block;
         background-color : rgba(0,0,0,.7);
 
-        .reshare,
+        .remix,
         .like {
           @include transition(all);
 
@@ -221,7 +221,7 @@
           }
         }
 
-        .reshare {
+        .remix {
           background-image : image_url('icons/post_remix@2x.png');
           &:hover {
             background-image : image_url('icons/post_remix_hover@2x.png');

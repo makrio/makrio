@@ -43,9 +43,8 @@ app.Router = Backbone.Router.extend({
   remix : function(id){
     var remixed = new app.models.StatusMessage({id : id})
     remixed.fetch().success(_.bind(function(){
+      var new_mix = remixed.buildRemix()
 
-      var new_mix = new app.models.StatusMessage(_.clone(remixed.attributes))
-      new_mix.prepareToRemix(remixed)
       this.renderPage(function(){ return new app.pages.Framer({model : new_mix })});
     }, this)).fail(function(){alert('There was an error loading the Remix. Please Try Refreshing.')});
   },
@@ -63,6 +62,11 @@ app.Router = Backbone.Router.extend({
   doneFraming : function(id){
     this.renderPage(function(){ return new app.pages.DoneFraming({ model_id : id})});
   },
+
+//  inlineFramer :function(model){
+//    app.modal = new app.pages.InlineFramer({model : model});
+//    app.modal.invoke()
+//  },
 
   framer : function(){
     app.instrument("track", "Compose")

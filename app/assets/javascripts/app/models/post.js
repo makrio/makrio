@@ -82,7 +82,13 @@ app.models.Post = Backbone.Model.extend(_.extend({}, app.models.formatDateMixin,
 
   hasText : function(){
     return $.trim(this.get("text")) !== ""
-  }
+  },
+
+
+  buildRemix : function(){
+    return new app.models.StatusMessage(_.clone(this.attributes)).prepareToRemix(this)
+  },
+
 }), {
   headlineLimit : 118,
 
