@@ -14,7 +14,9 @@ class Stream::Popular < Stream::Base
 
   # @return [ActiveRecord::Association<Post>] AR association of posts
   def posts
-    @posts ||= Post.order("(exp(posts.likes_count) + posts.comments_count *2 - (exp(extract(day from age(created_at)) + 1))) DESC")
+    # we also need to factor in remixes here in the future
+    # for increased performance, we should use a stored procedure
+    @posts ||= Post.order("(exp(posts.likes_count) + posts.comments_count*2 - (exp(extract(hour from age(created_at))/24))) DESC")
   end
 
   def contacts_title
