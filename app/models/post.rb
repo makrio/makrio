@@ -127,7 +127,8 @@ class Post < ActiveRecord::Base
   def text(opts={}); raw_message; end
 
   def plain_text
-    sanitize(raw_message, :tags=>[]).gsub(/&nbsp;/i, ' ').squish
+    message = raw_message.gsub(/<br>/, ' ')
+    sanitize(message, :tags=>[]).gsub(/&nbsp;/i, ' ').squish
   end
 
   def self.excluding_blocks(user)
