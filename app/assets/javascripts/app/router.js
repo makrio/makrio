@@ -7,7 +7,7 @@ app.Router = Backbone.Router.extend({
     "u/:name": "newProfile",
 
     "popular": "popular",
-    "hearts": "hearts",
+    "likes": "likes",
 
     "posts/:id/remix?*params" : 'remix', // facebook action links supply signed_request params
     "posts/:id/remix" : 'remix',
@@ -31,7 +31,7 @@ app.Router = Backbone.Router.extend({
     app.router.navigate("/framer", true)
   },
 
-  hearts : function() {
+  likes : function() {
     app.instrument("track", "Likes loaded")
     this.renderPage(function(){ return new app.pages.Stream()});
   },
