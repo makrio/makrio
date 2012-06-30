@@ -231,6 +231,7 @@
         .like {
           background-image : image_url('icons/post_love@2x.png');
 
+          &:hover,
           &.liked {
             background-image : image_url('icons/post_love_hover@2x.png');
           }
