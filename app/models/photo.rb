@@ -42,7 +42,7 @@ class Photo < ActiveRecord::Base
 
   attr_accessible :text
 
-  validates_format_of :temporary_url, :with => URI::regexp(%w(http https))
+  validates_format_of :temporary_url, :with => URI::regexp(%w(http https)), :allow_nil => true
 
   before_destroy :ensure_user_picture
 
