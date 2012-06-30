@@ -73,11 +73,10 @@
     max-height : 100%;
 
     .interaction-title {
-      img {
-        margin-top: 13px;
-
+      margin : {
+        left: 0;
+        right : 0;
       }
-      margin-left: 0px;
     }
 
     .share-actions {
