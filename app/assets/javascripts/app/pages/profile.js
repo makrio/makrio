@@ -7,21 +7,17 @@ app.pages.Profile = app.views.Base.extend({
   subviews : {
     "#profile-info" : "profileInfo",
     "#canvas" : "canvasView",
-    "#wallpaper-upload" : "wallpaperForm",
-    "#composer" : "composerView"
+    "#wallpaper-upload" : "wallpaperForm"
   },
 
   events : {
-    "click #edit-mode-toggle" : "toggleEdit",
-    "click #logout-button" : "logOutConfirm",
-    "click #composer-button" : "showComposer"
+    "click #edit-mode-toggle" : "toggleEdit"
   },
 
   tooltipSelector : "*[rel=tooltip]",
 
   personGUID : null,
   editMode : false,
-  composeMode : false,
 
   initialize : function(options) {
     this.personGUID = options.personId
@@ -31,17 +27,12 @@ app.pages.Profile = app.views.Base.extend({
     this.stream.preloadOrFetch()
 
     this.initViews()
-
-    /* binds */
-    this.stream.items.bind("remove", this.pulsateNewPostControl, this)
-    $(window).on("keydown", _.bind(this.closeComposer, this))
   },
 
   initViews : function(){
     this.canvasView = new app.views.Canvas({ model : this.stream })
     this.wallpaperForm = new app.forms.Wallpaper()
     this.profileInfo = new app.views.ProfileInfo({ model : this.model })
-    this.composerView = new app.pages.Framer();
   },
 
   render :function () {
@@ -50,9 +41,6 @@ app.pages.Profile = app.views.Base.extend({
       .done(function () {
         self.setPageTitle()
         app.views.Base.prototype.render.call(self)
-      })
-      .done(function () {
-        self.stream.deferred.done(_.bind(self.pulsateNewPostControl, self));
       })
 
     return self
@@ -65,14 +53,6 @@ app.pages.Profile = app.views.Base.extend({
       {text : this.model && app.helpers.textFormatter(bio, this.model) })
   },
 
-  pulsateNewPostControl : function() {
-    this.$("#composer-button")[
-      this.stream.items.length == 0
-        ? 'addClass'
-        : 'removeClass'
-      ]("pulse")
-  },
-
   setPageTitle : function() {
     if(this.model.get("name")) {
       document.title = this.model.get("name")
@@ -83,44 +63,5 @@ app.pages.Profile = app.views.Base.extend({
     if(evt) { evt.preventDefault() }
     this.editMode = !this.editMode
     this.$el.toggleClass("edit-mode")
-  },
-
-  showComposer : function(evt) {
-    if(evt) { evt.preventDefault() }
-
-    this.toggleComposer()
-    this.$("#post_text").focus()
-
-    app.router.navigate("/framer")
-  },
-
-  closeComposer : function(evt) {
-    if(!evt) { return }
-
-    if(this.composeMode && evt.keyCode == 27) {
-      this.toggleComposer()
-      evt.preventDefault()
-
-      // we should check for text and fire a warning prompt before exiting & clear the form
-      app.router.navigate(app.currentUser.expProfileUrl(), {replace : true})
-    }
-  },
-
-  toggleComposer : function(){
-    this.composeMode = !this.composeMode
-    $("body").toggleClass("lock")
-
-    if(!this.composeMode) {
-      this.$("#composer").toggleClass("zoom-out")
-      setTimeout('this.$("#composer").toggleClass("hidden").toggleClass("zoom-out")', 200)
-    } else {
-      this.$("#composer").toggleClass("hidden")
-    }
-    this.$("#composer").toggleClass("zoom-in")
-  },
-
-  logOutConfirm : function(evt) {
-    if(!confirm("Are you sure you want to log out?"))
-      evt.preventDefault();
-  },
+  }
 });
