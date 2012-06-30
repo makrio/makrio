@@ -72,28 +72,17 @@
   #post-info {
     max-height : 100%;
 
-    .love-message {
-      padding: 10px 0;
-      text-align: center;
+    .interaction-title {
+      img {
+        margin-top: 13px;
 
-      a {
-        min-width : 42%;
-        max-width: 42%;
-
-        i {
-          margin-left: -5px;
-          margin-right: 5px;
-          margin-top: 2px;
-        }
       }
+      margin-left: 0px;
     }
 
     .share-actions {
-      text-align: center;
-      padding-bottom: 20px;
-
       a {
-        margin-left: 15px
+        margin-right: 15px
       }
     }
   }
@@ -111,7 +100,7 @@
   left : 710px;
   overflow-y : auto;
   z-index : $stream-interactions-content-index;
-  padding-top : 60px;
+  padding-top : 35px;
 
   .span5 {
     margin : 0;

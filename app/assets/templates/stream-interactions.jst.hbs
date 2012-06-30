@@ -1,11 +1,19 @@
 <div class="span5">
-    <h2>
-        {{author.name}}'s Remix <a href="/p/{{id}}" class="permalink" title="Permalink"><i class="icon-chevron-right icon-grey"></i></a>
-    </h2>
-    <br/>
+   <div class='media interaction-title'> 
 
-    <div class="feedback"/>
-    <div class="comments"/>
-    <div class="new-comment"/>
-    <div class='share-actions'/>
+    <div class='img'> 
+      {{{personImage author "small"}}}
+    </div>
+    <div class='bd'>
+      <h2>{{author.name}}'s Remix <a href="/p/{{id}}" class="permalink" title="Permalink"><i class="icon-chevron-right icon-grey"></i></a></h2>
+
+      <div class='share-actions'/>
+    </div>
+  </div>
+
+  <br/>
+
+  <div class="feedback"/>
+  <div class="comments"/>
+  <div class="new-comment"/>
 </div>
