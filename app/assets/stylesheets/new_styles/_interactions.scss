@@ -22,6 +22,11 @@
 
   margin-top: -33px;
 
+  h6 {
+    text-align: left;
+    margin-left: 10px;
+  }
+
   #post-info-container {
     @include info-container();
   }
@@ -35,7 +40,6 @@
     padding: 5px;
     text-align: left;
 
-    max-height: 20px;
     overflow: hidden;
 
     background: {
@@ -162,10 +166,11 @@
 .invoker {
   display: block;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -6px;
+  left: -2px;
   width: 100%;
   height: 100%;
+  padding: 10px;
 }
 
 #post-feedback:hover {
