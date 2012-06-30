@@ -4,7 +4,7 @@
 
 require File.join(Rails.root, "lib", "stream", "multi")
 require File.join(Rails.root, "lib", "stream", "popular")
-
+require File.join(Rails.root, "lib", "stream", "likes")
 
 class StreamsController < ApplicationController
   respond_to :html,
