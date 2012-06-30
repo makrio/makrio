@@ -5,8 +5,8 @@ app.pages.Stream = app.views.Base.extend({
     "click .bookmarklet-button" : "bookmarkletInstructionsPrompt",
     "activate .stream-frame-wrapper" : 'triggerInteractionLoad',
     "click #composer-button" : 'compose',
-    "click #notifications-button" : 'goToNotifications',
-    "click .post-notifier" : "loadNewPosts"
+    "click .post-notifier" : "loadNewPosts",
+    "click a.notification" : "readNotificationAndNavigate"
   },
 
   subviews : {
@@ -92,6 +92,7 @@ app.pages.Stream = app.views.Base.extend({
 
   presenter : function(){
     return _.extend(this.defaultPresenter(), {
+      notifications : this.notifications(),
       bookmarkletJS : this.bookmarkletJS(),
       onLatest : function() { return document.location.pathname.search("stream") !== -1},
       onPopular : function() { return document.location.pathname.search("popular") !== -1 }
@@ -138,7 +139,6 @@ app.pages.Stream = app.views.Base.extend({
     this.doRefresh()
   },
 
-
   bookmarkletJS : function() {
     return "javascript:void(function(){ if(window.location.host.match(/makr/)){alert('Drag the \"Remix\" button to your bookmarks bar to easily remix any photo while you browse the web!');return};\
     if(document.getElementsByTagName('head').length ==0){document.getElementsByTagName('html')[0].appendChild(document.createElement('head'))} \
@@ -156,14 +156,29 @@ app.pages.Stream = app.views.Base.extend({
     alert("Drag me to the bookmarks bar to post to makr.io from anywhere on the web")
   },
 
+  notifications : function() {
+    return window.preloads && window.preloads.notifications
+  },
+
   showGettingStarted : function() {
     var gettingStartedView = new app.views.GettingStarted()
     $("body").addClass('lock')
       .prepend(gettingStartedView.render().el)
   },
 
-  goToNotifications : function(evt) {
-    window.location = $(evt.target).attr("href")
+  readNotificationAndNavigate : function(evt) {
+    evt && evt.preventDefault()
+    var link = $(evt.target).closest("a")
+      , href = link.attr("href")
+      , notificationId = link.data("notification-id")
+
+    // mark the thing as read with this ghetto legacy endpoint
+    $.ajax({
+      url : "/notifications/" + notificationId,
+      type : "PUT"
+    })
+
+    window.location = href
   }
 },
 

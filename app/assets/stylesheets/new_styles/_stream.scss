@@ -352,3 +352,40 @@
     background-color : #EE5F5B;
   }
 }
+
+#notifications-dropdown {
+  li > a {
+    white-space : normal;
+    width : 300px;
+    min-height : 50px;
+
+    &.see-all {
+      min-height : 0;
+      text-align : center;
+      font-family : Roboto-Bold;
+      padding-top : 7px;
+      padding-bottom : 5px;
+    }
+  }
+
+  .object {
+    font-family : Roboto-Bold;
+  }
+
+  .media {
+    margin : 0;
+  }
+
+  .divider {
+    margin : 0;
+  }
+
+  .notification-img-wrapper {
+    @include border-radius(3px);
+    width : 50px;
+    height : 50px;
+
+    background-size : cover;
+    background-position : center;
+  }
+}

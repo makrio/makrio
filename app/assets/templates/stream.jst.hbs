@@ -10,11 +10,44 @@
                 <button href="/framer" id="composer-button" class="btn btn-primary" style="box-shadow: 0 -1px 2px #000, 0 1px 2px #444;"><i class="icon-plus icon-white"></i> New Remix</button>
             </li>
 
-            <li>
-                <button href="/notifications" id="notifications-button" class="btn {{#if current_user.notifications_count}}btn-danger{{else}}btn-inverse{{/if}}" style="box-shadow: 0 -1px 2px #000, 0 1px 2px #444;" title="Notifications">
+            <li class="dropdown">
+                <button id="notifications-button" data-toggle="dropdown" class="btn dropdown-toggle {{#if current_user.notifications_count}}btn-danger{{else}}btn-inverse{{/if}}" style="box-shadow: 0 -1px 2px #000, 0 1px 2px #444;" title="Notifications">
                     {{current_user.notifications_count}}
                 </button>
+
+                <ul id="notifications-dropdown" class="dropdown-menu">
+                    {{#each notifications}}
+                        <li><a href="/p/{{post.id}}" class="notification" data-notification-id={{id}} >
+                            <div class="media attribution">
+                                <span class="img">
+                                    <div class="notification-img-wrapper" style="background-image:url('{{post.screenshot_url}}');">
+                                    </div>
+                                </span>
+
+                                <div class="bd">
+                                    {{#each people}}
+                                        <span class="object">
+                                            {{name}}
+                                        </span>
+                                    {{/each}}
+                                    {{action}}
+                                    <span class="object">
+                                        {{post.title}}
+                                    </span>
+                                    <br/>
+
+                                    <i class="icon-{{icon_prefix}}"></i>
+                                    <time class="timeago" datetime="{{time}}"/>
+                                </div>
+                            </div>
+                        </a></li>
+                        <li class="divider"></li>
+                    {{/each}}
+
+                    <li><a href="/notifications" class="see-all">See all notifications</a></li>
+                </ul>
             </li>
+
 
             <li class="divider-vertical"></li>
 

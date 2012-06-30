@@ -1,4 +1,4 @@
-class PersonPresenter
+class PersonPresenter < BasePresenter
   def initialize(person, current_user = nil)
     @person = person
     @current_user = current_user
