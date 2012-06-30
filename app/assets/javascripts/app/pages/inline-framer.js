@@ -11,18 +11,11 @@ app.pages.InlineFramer = app.views.Base.extend({
   },
 
   bindEvents : function(){
-    $(document).on('afterClose.facebox', function(){
-      console.log('closing facebox')
-    })
-
-    var self = this;
-    this.framer.on('complete', function(){
-      self.teardown();
-    })
+    this.framer.on('complete', this.teardown, this)
   },
 
-  unBindEvents : function(){
-    //afterclose
+  unbindEvents : function(){
+    this.framer.off('complete')
   },
 
   show : function(){
@@ -37,5 +30,6 @@ app.pages.InlineFramer = app.views.Base.extend({
       success: true,
       notice: "Remix Posted!"
     });
+    this.unbindEvents()
   }
 })

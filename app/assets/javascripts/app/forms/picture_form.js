@@ -29,7 +29,8 @@ app.forms.PictureBase = app.views.Base.extend({
     if(resp.success) {
       this.uploadSuccess(resp)
     } else {
-      alert("Upload failed!  Please try again. " + resp.error);
+      alert("Upload failed!  Check your URL.");
+      this.render()
     }
   }
 });

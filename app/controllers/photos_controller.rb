@@ -20,7 +20,7 @@ class PhotosController < ApplicationController
         format.any{ render :json => {"success" => true, "data" => @photo.as_api_response(:backbone)} }
       end
     else
-      respond_with @photo, :location => photos_path, :error => message
+      render :json => {'error' => @photo.errors.full_messages}, :status => 422
     end
   end
 
