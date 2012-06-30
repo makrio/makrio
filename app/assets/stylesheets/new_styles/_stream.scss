@@ -191,7 +191,11 @@
       .info {
         @include border-radius(5px);
         display : inline-block;
-        background-color : rgba(0,0,0,.7);
+        background-color : rgba(0,0,0,.3);
+
+        &:hover {
+          background-color : rgba(0,0,0,.7);
+        }
 
         .remix,
         .like {
