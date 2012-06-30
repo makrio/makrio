@@ -13,7 +13,7 @@ class Stream::Likes < Stream::Base
 
   # @return [ActiveRecord::Association<Post>] AR association of posts
   def posts
-    @posts ||= EvilQuery::LikedPosts.new(user).posts
+    @posts ||= EvilQuery::LikedPosts.new(user).posts.order('likes.created_at desc')
   end
 
   def contacts_title

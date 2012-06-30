@@ -105,7 +105,8 @@ app.pages.Stream = app.views.Base.extend({
       notifications : this.notifications(),
       bookmarkletJS : this.bookmarkletJS(),
       onLatest : function() { return document.location.pathname.search("stream") !== -1},
-      onPopular : function() { return document.location.pathname.search("popular") !== -1 }
+      onPopular : function() { return document.location.pathname.search("popular") !== -1 },
+      onHearts : function() { return document.location.pathname.search("hearts") !== -1 }
     })
   },
 

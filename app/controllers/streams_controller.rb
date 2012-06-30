@@ -19,6 +19,10 @@ class StreamsController < ApplicationController
     stream_responder(Stream::Popular)
   end
 
+  def likes
+    stream_responder(Stream::Likes)
+  end
+
   def updated
     @posts = Post.where("id > ?", params[:last_post_id]).where(:featured => true).limit(25)
     respond_to do |format|

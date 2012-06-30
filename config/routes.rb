@@ -48,6 +48,7 @@ Diaspora::Application.routes.draw do
   end
 
   get "popular" => "streams#popular", :as => "popular"
+  get "hearts" => "streams#likes", :as => "likes_stream"
 
   resources :aspects do
     put :toggle_contact_visibility
@@ -81,12 +82,6 @@ Diaspora::Application.routes.draw do
   resources "tag_followings", :only => [:create]
 
   get 'tags/:name' => 'tags#show', :as => 'tag'
-
-  resources :apps, :only => [:show]
-
-  #Cubbies info page
-
-  resource :token, :only => :show
 
   # Users and people
 
@@ -177,33 +172,15 @@ Diaspora::Application.routes.draw do
   end
 
 
-  # External
-
-  resources :authorizations, :only => [:index, :destroy]
-  scope "/oauth", :controller => :authorizations, :as => "oauth" do
-    get "authorize" => :new
-    post "authorize" => :create
-    post :token
-  end
-
   resources :services, :only => [:index, :destroy]
   
   get "/done" => 'services#redirect_from_service'
 
-  namespace :api do
-    namespace :v0 do
-      get "/users/:username" => 'users#show', :as => 'user'
-      get "/tags/:name" => 'tags#show', :as => 'tag'
-    end
-  end
 
   get 'community_spotlight' => "contacts#spotlight", :as => 'community_spotlight'
   # Mobile site
 
   get 'mobile/toggle', :to => 'home#toggle_mobile', :as => 'toggle_mobile'
-
-  #Protocol Url
-  get 'protocol' => redirect("https://github.com/diaspora/diaspora/wiki/Diaspora%27s-federation-protocol")
 
   # Resque web
   if AppConfig[:mount_resque_web]
