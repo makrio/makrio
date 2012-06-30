@@ -24,11 +24,24 @@ class NotificationsPresenter < BasePresenter
   private
 
   def action
-    @notification.is_a?(Notifications::Liked) ? "liked" : "commented on"
+    case @notification.class.to_s
+      when "Notifications::Liked"
+        "liked"
+      when "Notifications::Remixed"
+        "remixed"
+      else
+        "commented on"
+    end
   end
 
   def icon_prefix
-    @notification.is_a?(Notifications::Liked) ? "heart" : "comment"
-
+    case @notification.class.to_s
+      when "Notifications::Liked"
+        "heart"
+      when "Notifications::Remixed"
+        "random"
+      else
+        "comment"
+    end
   end
 end
