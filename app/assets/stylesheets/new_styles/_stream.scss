@@ -12,6 +12,7 @@
 
     .frame-link {
       margin-left : 30px;
+      padding-right : 30px;
     }
 
     .original-frame,
@@ -180,7 +181,7 @@
       @include opacity(0);
       position : absolute;
       top : 10px;
-      right : 0px;
+      right : 25px;
     }
 
     .stream-frame-feedback {
@@ -191,7 +192,7 @@
 
       position : absolute;
       top : 10px;
-      right : 10px;
+      right : 40px;
 
       cursor : pointer;
 
@@ -246,7 +247,7 @@
 
       .remove-post {
         @include opacity(0.7);
-        right : -25px;
+        right : 10px;
 
         &:hover {
           @include opacity(1);
