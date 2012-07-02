@@ -9,32 +9,14 @@
 
 <div id="landing">
   <div id="banner" class="row" role="header">
-    <div class="fb-like" data-href="https://makr.io" data-send="false" data-width="450" data-show-faces="true" data-colorscheme="dark"></div>
-
+    <div class="fb-like" data-href="https://makr.io" data-layout="button_count" data-send="false" data-width="450" data-show-faces="false" data-colorscheme="light"></div>
     <div id="controls">
-      <a href="https://twitter.com/makrioapp">
-        <span class="label label-inverse" title="Follow @makrapp on Twitter">
-          <img src="https://d3mbmfe8268ud7.cloudfront.net/landing/home_twit@2x.png" class="twitter-bird" height=20 width=20 />
-        </span>
-      </a>
-
-      <a href="http://github.com/makrio/makrio">
-        <span class="label label-inverse" title="Fork the code on Github">
-          <img src="https://d3mbmfe8268ud7.cloudfront.net/landing/home_git@2x.png" class="github-octocat" height=20 width=20 />
-        </span>
-      </a>
-
-      <a href="/users/sign_in">
-        <span class="label label-inverse">
-          LOG IN
-        </span>
-      </a>
-
+      <a href="/users/sign_in" class="btn new-btn">Log in</a>
     </div>
 
     <div class="container">
-        <%= image_tag 'logos/large@2x.png', :height => 94, :width => 448 %>
-        <h3>Find & Remix</h3>
+        <%= image_tag 'logos/large_dark@2x.png', :height => 94, :width => 448 %>
+        <h2>Reimagine how you play with the web.</h2>
       </div>
   </div>
 
@@ -45,12 +27,10 @@
       </div>
 
       <div class='span5'>
-        <h3>Makr.io gives you the tools to easily remix the things that inspire you.
-        </h3>
-        <div id="sign_up">
 
-          <h4>JOIN THE PARTY...</h4>
-          <br/>
+        <div id="sign_up">
+          <h3>Makr.io lets you easily remix the things you love on the web for simple, social creativity.</h3>
+
           <%= flash_messages %>
 
           <%= link_to('/users/auth/facebook', :class => 'btn-large new-btn fb-btn', :style => "margin-right:10px;") do %>
@@ -65,7 +45,7 @@
   </div>
 
   <div id="footer">
-    ‌© 2012
+    ‌© 2012  <a href="#">code</a>  <a href="#">twitter</a>
   </div>
 </div>
 
