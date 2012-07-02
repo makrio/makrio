@@ -160,6 +160,14 @@
 }
 
 #stream-content {
+  .stream-frame .selected-frame {
+    .stream-frame-feedback {
+      @include opacity(1);
+      /*@include opacity(1)*/
+      /*background-color : rgba(0,0,0,.7);*/
+    }
+
+  }
   .stream-frame {
     margin-bottom : 50px;
 
