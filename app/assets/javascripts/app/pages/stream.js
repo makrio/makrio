@@ -52,7 +52,7 @@ app.pages.Stream = app.views.Base.extend({
     document.title = this._pageTitle;
 
     this.resetScrollSpy()
-    $(window).trigger("scroll")
+    $(window).trigger("scroll").scrollTop(0)
   },
 
   showModalFramer : function(evt){
