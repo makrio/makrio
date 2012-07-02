@@ -101,6 +101,15 @@ app.views.Base = Backbone.View.extend({
       this.model.destroy();
       this.remove();
     }
-  }
+  },
+
+  showModalFramer : function(evt){
+    evt.preventDefault();
+    var post_id = $(evt.target).data('remix-id')
+    var post = (post_id =='new') ? undefined : this.stream.items.get(post_id).buildRemix()
+
+    this.framer = new app.pages.InlineFramer({model : post})
+    this.framer.show()
+  },
 });
 

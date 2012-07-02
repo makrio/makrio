@@ -2,28 +2,30 @@ app.pages.Stream = app.views.Base.extend({
   templateName : "stream",
 
   events : {
-    "click .bookmarklet-button" : "bookmarkletInstructionsPrompt",
-    "activate .stream-frame-wrapper" : 'triggerInteractionLoad',
-    "click a.notification" : "readNotificationAndNavigate",
     "click .post-notifier" : "loadNewPosts",
+    "activate .stream-frame-wrapper" : 'triggerInteractionLoad',
     "click *[data-remix-id]" : 'showModalFramer'
   },
 
   subviews : {
+    "#stream-header" : "headerView",
     "#stream-content" : "streamView",
-    "#stream-interactions" : "interactionsView"
+    "#stream-interactions" : "interactionsView",
   },
 
   initialize : function(){
     this.stream = this.model = new app.models.Stream()
     this.stream.preloadOrFetch()
 
+    this.initSubviews()
+    this.bindEvents()
     this._pageTitle = document.title
+  },
 
+  initSubviews : function(){
+    this.headerView = new app.views.Header({model : this.stream})
     this.streamView = new app.pages.Stream.InfiniteScrollView({ model : this.stream })
     this.interactionsView = new app.views.StreamInteractions()
-    _.bindAll(this.showModalFramer)
-    this.bindEvents()
   },
 
   bindEvents : function(){
@@ -55,15 +57,6 @@ app.pages.Stream = app.views.Base.extend({
     $(window).trigger("scroll").scrollTop(0)
   },
 
-  showModalFramer : function(evt){
-    evt.preventDefault();
-    var post_id = $(evt.target).data('remix-id')
-    var post = (post_id =='new') ? undefined : this.stream.items.get(post_id).buildRemix()
-
-    this.framer = new app.pages.InlineFramer({model : post})
-    this.framer.show()
-  },
-
   notifyUserOfMorePosts : function(){
     this.notificationDiv = this.notificationDiv || createDiv()
     var count = this.stream.poller.models.length
@@ -80,12 +73,6 @@ app.pages.Stream = app.views.Base.extend({
   },
 
   postRenderTemplate : function() {
-    this.$('.dropdown-toggle').dropdown()
-    this.$('.bookmarklet').tooltip({placement: 'bottom'});
-    if(app.currentUser.get("getting_started")) {
-      this.showGettingStarted()
-    }
-
     //after all of the child divs have been added, initialize the scroll spy
     _.defer(_.bind(function(){
       $('body').scrollspy({target : '.stream-frame-wrapper', offset : 150, streamElement : this.$("#stream")})
@@ -98,16 +85,6 @@ app.pages.Stream = app.views.Base.extend({
         this.selectFrame(post)
       }, this))
     }, this))
-  },
-
-  presenter : function(){
-    return _.extend(this.defaultPresenter(), {
-      notifications : this.notifications(),
-      bookmarkletJS : this.bookmarkletJS(),
-      onLatest : function() { return document.location.pathname.search("stream") !== -1},
-      onPopular : function() { return document.location.pathname.search("popular") !== -1 },
-      onHearts : function() { return document.location.pathname.search("hearts") !== -1 }
-    })
   },
 
   selectFrame : function(post){
@@ -145,48 +122,6 @@ app.pages.Stream = app.views.Base.extend({
     this.refreshScrollSpy()
     this.doRefresh()
   },
-
-  bookmarkletJS : function() {
-    return "javascript:void(function(){ if(window.location.host.match(/makr/)){alert('Drag the \"Remix\" button to your bookmarks bar to easily remix any photo while you browse the web!');return};\
-    if(document.getElementsByTagName('head').length ==0){document.getElementsByTagName('html')[0].appendChild(document.createElement('head'))} \
-    var head= document.getElementsByTagName('head')[0]; \
-    var script= document.createElement('script'); \
-    script.type= 'text/javascript'; \
-    script.src= '" + document.location.origin +  "/bookmarklet.js'; \
-    script.id= 'makrio-bm-script'; \
-    script.setAttribute('data-origin','" + document.location.origin + "'); \
-    head.appendChild(script);}());";
-  },
-
-  bookmarkletInstructionsPrompt : function(evt) {
-    evt.preventDefault()
-    alert("Drag me to the bookmarks bar to post to makr.io from anywhere on the web")
-  },
-
-  notifications : function() {
-    return window.preloads && window.preloads.notifications
-  },
-
-  showGettingStarted : function() {
-    var gettingStartedView = new app.views.GettingStarted()
-    $("body").addClass('lock')
-      .prepend(gettingStartedView.render().el)
-  },
-
-  readNotificationAndNavigate : function(evt) {
-    evt && evt.preventDefault()
-    var link = $(evt.target).closest("a")
-      , href = link.attr("href")
-      , notificationId = link.data("notification-id")
-
-    // mark the thing as read with this ghetto legacy endpoint
-    $.ajax({
-      url : "/notifications/" + notificationId,
-      type : "PUT"
-    })
-
-    window.location = href
-  }
 },
 
 //static methods

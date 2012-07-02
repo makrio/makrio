@@ -1,108 +1,80 @@
-<div class="container" style="position:relative;">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <ul class="nav pull-right" style='z-index: 20;'>
+            <li>
+                <a class='bookmarklet' data-title="<div style='text-align:left;padding:6px'>Drag the 'Remix' button to your bookmarks bar to easily remix any photo while you browse the web!</div>"
+                   href='{{bookmarkletJS}}' >
+                    <i class='icon-bookmark icon-white'></i>Remix</a>
+            </li>
+            <li>
+                <button href="/framer" data-remix-id='new' id="composer-button" class="btn btn-primary" style="box-shadow: 0 -1px 2px #000, 0 1px 2px #444;"><i class="icon-plus icon-white"></i> New Remix</button>
+            </li>
 
-  <a href="/stream">
-    <img alt="Logo_small" class="diaspora_header_logo" height="38px" width="65px" src="{{imageUrl "branding/header-logo.png"}}" />
-  </a>
+            <li class="dropdown">
+                <button id="notifications-button" data-toggle="dropdown" class="btn dropdown-toggle {{#if current_user.notifications_count}}btn-danger{{else}}btn-inverse{{/if}}" style="box-shadow: 0 -1px 2px #000, 0 1px 2px #444;" title="Notifications">
+                    {{current_user.notifications_count}}
+                </button>
 
-  <span class="header-nav">
-    <span>
-        <a href="/stream">
-          {{t "my_stream"}}
+                <ul id="notifications-dropdown" class="dropdown-menu">
+                    {{#each notifications}}
+                    <li><a href="/p/{{post.id}}" class="notification" data-notification-id={{id}} >
+                        <div class="media attribution">
+                                <span class="img">
+                                    <div class="notification-img-wrapper" style="background-image:url('{{post.screenshot_url}}');">
+                                    </div>
+                                </span>
+
+                            <div class="bd">
+                                {{#each people}}
+                                        <span class="object">
+                                            {{name}}
+                                        </span>
+                                {{/each}}
+                                {{action}}
+                                    <span class="object">
+                                        {{post.title}}
+                                    </span>
+                                <br/>
+
+                                <i class="icon-{{icon_prefix}}"></i>
+                                <time class="timeago" datetime="{{time}}"/>
+                            </div>
+                        </div>
+                    </a></li>
+                    <li class="divider"></li>
+                    {{/each}}
+
+                    <li><a href="/notifications" class="see-all">See all notifications</a></li>
+                </ul>
+            </li>
+
+
+            <li class="divider-vertical"></li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-user icon-white"></i>
+                    {{current_user.nickname}}
+                    <b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li><a href="/people/{{current_user.guid}}">Profile</a></li>
+                    <li><a href="/user/edit">Settings</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/users/sign_out">Log Out</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <a href='/stream' class='logo'>
+            <img src="{{imageUrl "makr_home_logo@2x.png"}}" height=26 width=118 />
         </a>
-    </span>
 
-    <span>
-        <a href="/activity">
-          {{t "my_activity"}}
-        </a>
-     </span>
-  </span>
-
-  <div id="nav_badges">
-    <div class="badge badge-inverse" id="notification_badge">
-      <a href="/notifications" title="{{t "header.notifications"}}">
-        <img alt="{{t "header.notifications"}}" id="notification-flag" src="{{imageUrl "icons/notifications_grey.png"}}" />
-        <div class="badge_count {{#unless current_user.notifications_count}} hidden {{/unless}}">
-          {{current_user.notifications_count}}
-        </div>
-      </a>
+        <ul class="nav" style="z-index:100;">
+            <li {{#if onLatest}}class="active"{{/if}}><a href="/"><i class="icon-time icon-white"></i> Latest</a></li>
+            <li {{#if onPopular}}class="active"{{/if}}><a href="/popular"><i class="icon-star icon-white"></i> Popular</a></li>
+            <li {{#if onHearts}}class="active"{{/if}}><a href="/likes"><i class="icon-heart icon-white"></i> My Likes</a></li>
+        </ul>
     </div>
-
-
-      <div id="notification_dropdown">
-        <div class="header">
-          <div class="right">
-            <a href="#" id="mark_all_read_link">
-              {{t "header.mark_all_as_read"}}
-            </a>
-            |
-            <a href="/notifications" id="view_all_notifications">
-              {{t "header.view_all"}}
-            </a>
-          </div>
-
-          <h4>
-            {{t "header.recent_notifications"}}
-          </h4>
-        </div>
-
-        <div class="notifications">
-          <div class="ajax_loader">
-            <img alt="Ajax-loader" src="{{imageUrl "ajax-loader.gif"}}">
-          </div>
-        </div>
-      </div>
-  </div>
-
-
-  <div id="hovercard_container">
-    <div id="hovercard">
-      <img class="avatar">
-      <h4>
-        <a class="person"></a>
-      </h4>
-      <p class="handle"></p>
-      <div id="hovercard_dropdown_container"></div>
-      <div class="hovercard_footer">
-        <div class="footer_container">
-          <div class="hashtags"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <ul class="dropdown" id="user_menu">
-    <li>
-    <div class="right">
-      ▼
-    </div>
-    <img alt="{{current_user.name}}" class="avatar" src="{{current_user.avatar.small}}" title="{{current_user.name}}" />
-    <a href="#">{{current_user.name}}</a>
-    </li>
-    <li><a href="/people/{{current_user.guid}}">{{t "header.profile"}}</a></li>
-    <li><a href="/contacts">{{t "header.contacts"}}</a></li>
-    <li><a href="/user/edit">{{t "header.settings"}}</a></li>
-    {{#if current_user.admin}}
-      <li><a href="/admins/user_search">{{t "header.admin"}}</a></li>
-    {{/if}}
-    <li><a href="/users/sign_out">{{t "header.log_out"}}</a></li>
-  </ul>
-
-
-  <div id="global_search">
-    <form accept-charset="UTF-8" action="/people" class="search_form" method="get">
-      <input name="utf8" type="hidden" value="✓">
-      <input id="q" name="q" placeholder="{{t "header.search"}}" results="5" type="search" autocomplete="off" class="ac_input">
-    </form>
-  </div>
-
-  <div id="lightbox">
-    <div id="lightbox-content">
-      <a href="#" id="lightbox-close-link">[x] {{t "header.close"}}</a>
-      <img id="lightbox-image">
-      <div id="lightbox-imageset"></div>
-    </div>
-  </div>
-  <div id="lightbox-backdrop"></div>
-
 </div>

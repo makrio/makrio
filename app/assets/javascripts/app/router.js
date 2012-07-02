@@ -33,7 +33,7 @@ app.Router = Backbone.Router.extend({
 
   likes : function() {
     app.instrument("track", "Likes loaded")
-    this.renderPage(function(){ return new app.pages.Stream()});
+    this.renderPage(function(){ return new app.pages.Likes()});
   },
 
   popular : function() {

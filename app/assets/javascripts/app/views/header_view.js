@@ -1,35 +1,69 @@
 app.views.Header = app.views.Base.extend({
-
   templateName : "header",
-
-  className : "dark-header",
-
   events : {
-    "click ul.dropdown li:first-child" : "toggleDropdown"
+    "click .bookmarklet-button" : "bookmarkletInstructionsPrompt",
+    "click a.notification" : "readNotificationAndNavigate",
+    "click *[data-remix-id]" : 'showModalFramer'
   },
 
-  initialize : function(options) {
-    $(document.body).click($.proxy(this.hideDropdown, this));
-    return this;
+  presenter : function(){
+    return _.extend(this.defaultPresenter(), {
+      notifications : this.notifications(),
+      bookmarkletJS : this.bookmarkletJS(),
+      onLatest : function() { return document.location.pathname.search("stream") !== -1},
+      onPopular : function() { return document.location.pathname.search("popular") !== -1 },
+      onHearts : function() { return document.location.pathname.search("hearts") !== -1 }
+    })
   },
 
-  menuElement : function() {
-    return this.$("ul.dropdown");
-  },
-
-  toggleDropdown : function(evt) {
-    if(evt){ evt.preventDefault(); }
-
-    this.menuElement().toggleClass("active");
-
-    if($.browser.msie) {
-      this.$("header").toggleClass('ie-user-menu-active');
+  postRenderTemplate : function() {
+    this.$('.dropdown-toggle').dropdown()
+    this.$('.bookmarklet').tooltip({placement: 'bottom'});
+    if(app.currentUser.get("getting_started")) {
+      this.showGettingStarted()
     }
   },
 
-  hideDropdown : function(evt) {
-    if(this.menuElement().hasClass("active") && !$(evt.target).parents("#user_menu").length) {
-      this.menuElement().removeClass("active");
-    }
+  bookmarkletInstructionsPrompt : function(evt) {
+    evt.preventDefault()
+    alert("Drag me to the bookmarks bar to post to makr.io from anywhere on the web")
+  },
+
+  bookmarkletJS : function() {
+    return "javascript:void(function(){ if(window.location.host.match(/makr/)){alert('Drag the \"Remix\" button to your bookmarks bar to easily remix any photo while you browse the web!');return};\
+    if(document.getElementsByTagName('head').length ==0){document.getElementsByTagName('html')[0].appendChild(document.createElement('head'))} \
+    var head= document.getElementsByTagName('head')[0]; \
+    var script= document.createElement('script'); \
+    script.type= 'text/javascript'; \
+    script.src= '" + document.location.origin +  "/bookmarklet.js'; \
+    script.id= 'makrio-bm-script'; \
+    script.setAttribute('data-origin','" + document.location.origin + "'); \
+    head.appendChild(script);}());";
+  },
+
+
+  notifications : function() {
+    return window.preloads && window.preloads.notifications
+  },
+
+  showGettingStarted : function() {
+    var gettingStartedView = new app.views.GettingStarted()
+    $("body").addClass('lock')
+      .prepend(gettingStartedView.render().el)
+  },
+
+  readNotificationAndNavigate : function(evt) {
+    evt && evt.preventDefault()
+    var link = $(evt.target).closest("a")
+      , href = link.attr("href")
+      , notificationId = link.data("notification-id")
+
+    // mark the thing as read with this ghetto legacy endpoint
+    $.ajax({
+      url : "/notifications/" + notificationId,
+      type : "PUT"
+    })
+
+    window.location = href
   }
 });
