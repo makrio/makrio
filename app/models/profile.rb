@@ -98,6 +98,15 @@ class Profile < ActiveRecord::Base
     self.image_url = photo.url
   end
 
+  def update_photo
+    return nil if image_url == '/assets/user/default.png'
+    retun nil if image_url != image_url_medium
+    if photo = Photo.find_from_filename(image_url)
+      update_profile_image_from_photo(photo)
+      save!
+    end
+  end
+
   def image_url= url
     return image_url if url == ''
     if url.nil? || url.match(/^https?:\/\//)

@@ -105,6 +105,11 @@ class Photo < ActiveRecord::Base
     end
   end
 
+  #this is a gross h@x to fix out stupid profile images
+  def self.from_filename(filename)
+    Photo.find_by_random_string(filename.split('/').last.split('.').first)
+  end
+  
   def ensure_user_picture
     profiles = Profile.where(:image_url => full_image_url)
     profiles.each { |profile|
