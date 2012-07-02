@@ -88,7 +88,7 @@ app.pages.Stream = app.views.Base.extend({
 
     //after all of the child divs have been added, initialize the scroll spy
     _.defer(_.bind(function(){
-      $('body').scrollspy({target : '.stream-frame-wrapper', offset : 115, streamElement : this.$("#stream")})
+      $('body').scrollspy({target : '.stream-frame-wrapper', offset : 150, streamElement : this.$("#stream")})
       this._resetPeriod = 500;
       this.refreshScrollSpy()
 
