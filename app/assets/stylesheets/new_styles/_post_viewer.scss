@@ -45,6 +45,10 @@
     @include wide();
     vertical-align : middle;
     z-index: 0;
+
+    .content {
+      width : 100%;
+    }
   }
 
   i.divider {
