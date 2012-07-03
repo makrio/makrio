@@ -48,33 +48,36 @@ a.logo{
     cursor : -moz-zoom-in;
     cursor : -webkit-zoom-in;
   }
-  .canvas-frame {
-    /* larger declarations */
-    &.x2.width .content {
-      @include wide();
+}
 
-      p {
-        font-size : 1.5em;
-        line-height : 1em;
-      }
-    }
+.canvas-frame {
+  /* larger declarations */
+  &.x2.width .content {
+    @include wide();
 
-    &.x2.width.wallpaper .content {
-      @include wide();
-
-      p {
-        font-size : 29px;
-        line-height: 34.75px;
-      }
-    }
-
-    &:not(.x2) .content{
-      p {
-        line-height: 1em;
-        font-size: .6em;
-      }
+    p {
+      font-size : 1.5em;
+      line-height : 1em;
     }
   }
+
+  &.x2.width.wallpaper .content {
+    @include wide();
+
+    p {
+      font-size : 29px;
+      line-height: 34.75px;
+    }
+  }
+
+  &:not(.x2) .content{
+    p {
+      line-height: 1em;
+      font-size: .6em;
+    }
+  }
+
+
 }
 
 .canvas-frame {
