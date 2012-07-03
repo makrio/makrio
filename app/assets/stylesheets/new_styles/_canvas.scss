@@ -37,6 +37,13 @@ a.logo{
 
     max-width : 100%;
 
+    &:not(.x2) .content{
+      p {
+        line-height: 1em;
+        font-size: .6em;
+      }
+    }
+
     /* expand / contract cursor declarations */
     &.x2 {
       cursor : nw-resize;
@@ -69,15 +76,6 @@ a.logo{
       line-height: 34.75px;
     }
   }
-
-  &:not(.x2) .content{
-    p {
-      line-height: 1em;
-      font-size: .6em;
-    }
-  }
-
-
 }
 
 .canvas-frame {
