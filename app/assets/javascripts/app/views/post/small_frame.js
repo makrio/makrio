@@ -68,7 +68,7 @@ app.views.Post.SmallFrame = app.views.Post.extend({
   },
 
   dimensionsClass : function() {
-    return (this.model.get("favorite")) ?  "x2 width height" : ""
+    return (this.model.get("favorite")) ? "x2 width" : ""
   },
 
   goToPost : function(evt) {

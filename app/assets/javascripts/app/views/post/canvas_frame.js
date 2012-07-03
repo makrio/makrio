@@ -13,31 +13,31 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
   // copy pasta :(
   initialize : function(options) {
     this.stream = options.stream;
-    this.addStylingClasses()
+
+    if(this.model.get("show_screenshot")) {
+      this.templateName = "small-frame/screenshot"
+      this.$el.addClass('frame-screenshot')
+    } else {
+      this.addStylingClasses()
+    }
   },
 
   postRenderTemplate : function() {
-    this.addStylingClasses()
+    this.$el.addClass(this.dimensionsClass())
   },
 
   adjustedImageHeight : function() {
     if(!(this.model.get("photos") || [])[0]) { return }
 
     var modifiers = [this.dimensionsClass(), this.textClasses()].join(' ')
-      , width;
+      , firstPhoto = this.model.get("photos")[0]
+      , width = (modifiers.search("x2") != -1 ? this.DOUBLE_COLUMN_WIDTH : this.SINGLE_COLUMN_WIDTH)
+      , ratio = width / firstPhoto.dimensions.width
+      , returnValue = ratio * firstPhoto.dimensions.height;
 
-    /* mobile width
-     *
-     *  currently does not re-calculate on orientation change */
-    if($(window).width() <= 767) {
-      width = $(window).width();
-    }
+    returnValue = this.model.get("show_screenshot") ? returnValue + 10 : returnValue;
 
-    var firstPhoto = this.model.get("photos")[0]
-      , width = width || (modifiers.search("x2") != -1 ? this.DOUBLE_COLUMN_WIDTH : this.SINGLE_COLUMN_WIDTH)
-      , ratio = width / firstPhoto.dimensions.width;
-
-    return(ratio * firstPhoto.dimensions.height)
+    return(returnValue)
   },
 
   presenter : function(){

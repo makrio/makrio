@@ -57,8 +57,15 @@ a { color : $link-blue  }
   width: 100%;
 }
 
-.canvas-frame.frame-screenshot img {
-  border : none !important;
+.canvas-frame.frame-screenshot {
+  .content {
+    min-height : 0;
+    background : none;
+  }
+
+  img {
+    border : none !important;
+  }
 }
 
 article { //mood posts

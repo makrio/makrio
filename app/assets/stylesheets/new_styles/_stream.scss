@@ -22,10 +22,6 @@
       vertical-align : middle;
     }
 
-    .frame-screenshot {
-      @include box-shadow(0px,2px,8px,rgba(0,0,0,0.9));
-    }
-
     .original-frame-wrapper {
       @include transition(all);
       @include opacity(.5);

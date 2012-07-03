@@ -25,6 +25,10 @@ a.logo{
   font-size: 1.2em;
 }
 
+.canvas-frame {
+  @include box-shadow(0,2px,5px,rgba(0,0,0,.5));
+}
+
 #canvas {
   .canvas-frame {
     float : left;
@@ -34,16 +38,15 @@ a.logo{
     max-width : 100%;
 
     /* expand / contract cursor declarations */
-    &.x2 .content {
+    &.x2 {
       cursor : nw-resize;
       cursor : -moz-zoom-out;
       cursor : -webkit-zoom-out;
     }
-    .content {
-      cursor : nwse-resize;
-      cursor : -moz-zoom-in;
-      cursor : -webkit-zoom-in;
-    }
+
+    cursor : nwse-resize;
+    cursor : -moz-zoom-in;
+    cursor : -webkit-zoom-in;
   }
 }
 
@@ -53,7 +56,7 @@ a.logo{
     @include wide();
 
     p {
-       font-size : 1.5em;
+      font-size : 1.5em;
       line-height : 1em;
     }
   }
@@ -81,19 +84,12 @@ a.logo{
   }
 
   .content {
-    @include transition(-webkit-transform);
-    @include box-shadow(0, 2px, 8px, rgba(0,0,0,0.9));
-
     background-image : image_url("texture/paper.jpg");
 
     &:hover {
       .info {
         top : 0;
       }
-    }
-
-    &:active {
-      -webkit-transform : scale(0.99);
     }
 
     img {
@@ -173,12 +169,9 @@ a.logo{
 
   .info {
     @include transition(top);
-    @include box-shadow(0,1px,3px,rgba(0,0,0,0.3));
-    @include opacity(0.8);
-
     cursor : pointer;
 
-    background-color : rgba(255,255,255,0.8);
+    background-color : #fff;
     border-bottom : 1px solid #fff;
 
     color : #000;
@@ -192,10 +185,6 @@ a.logo{
     z-index : 30;
 
     padding : 5px 0;
-
-    &:hover {
-      @include opacity(0.9);
-    }
 
     i {
       margin-left:  3px;
@@ -304,18 +293,17 @@ a.logo{
     min-height : $two-row-height + px;
   }
 
-  &.wallpaper {
-
+  &.wallpaper:not(.frame-screenshot) {
     .image-container {
       background-color: #000;
 
-      img {
+      .image-wrapper img {
         @include transition(opacity);
       }
     }
 
     &.has-text{
-      img {
+      .image-wrapper img {
         //image container background is black, lowering opacity darkens image
         @include opacity(0.7);
       }
@@ -434,24 +422,6 @@ a.logo{
 
 .remove-image {
   display : none;
-}
-
-#framer .remove-image {
-  @include opacity(0.6);
-  @include transition(opacity);
-  @include border-radius(50%);
-
-  display: inline-block;
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: rgba(0, 0, 0, 0.5);
-
-  cursor : pointer;
-
-  &:hover {
-    @include opacity(1);
-  }
 }
 
 /* responsive */
