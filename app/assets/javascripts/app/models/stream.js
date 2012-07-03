@@ -11,6 +11,10 @@ app.collections.PostPoller = app.collections.Posts.extend({
     this.bindEvents()
   },
 
+  comparator: function(post){
+    return post.createdAt()
+  },
+
   bindEvents : function(){
     this.on("FetchMoar", this.fetchMore, this)
   },
@@ -40,7 +44,9 @@ app.models.Stream = Backbone.Collection.extend({
   },
 
   addPollerPosts : function(){
-    this.add(this.poller.models)
+    this.poller.each(_.bind(function(post){
+      this.add(post)
+    }, this))
     this.poller.reset()
   },
 

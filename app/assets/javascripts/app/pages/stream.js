@@ -132,10 +132,6 @@ app.pages.Stream = app.views.Base.extend({
       this.collection = this.stream.items
       this.postClass = app.views.Post.StreamFrame
       this.setupInfiniteScroll()
-    },
-
-    createPostView : function(post){
-      return app.views.InfScroll.prototype.createPostView.call(this, post)
     }
   })
 });
