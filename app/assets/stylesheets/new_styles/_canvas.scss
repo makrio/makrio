@@ -70,6 +70,13 @@ a.logo{
     }
   }
 
+  &:not(.x2) .content{
+    p {
+      line-height: .8em;
+      font-size: .8em;
+    }
+  }
+
 
 }
 
