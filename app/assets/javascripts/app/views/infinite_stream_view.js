@@ -7,6 +7,8 @@
 //    a call to setupInfiniteScroll
 
 app.views.InfScroll = app.views.Base.extend({
+  scrollOffset : 2000,
+
   setupInfiniteScroll : function() {
     this.postViews = this.postViews || []
 
@@ -68,7 +70,7 @@ app.views.InfScroll = app.views.Base.extend({
     var $window = $(window)
       , distFromTop = $window.height() + $window.scrollTop()
       , distFromBottom = $(document).height() - distFromTop
-      , bufferPx = 2000;
+      , bufferPx = this.scrollOffset;
 
     if(distFromBottom < bufferPx) {
       this.trigger("loadMore")

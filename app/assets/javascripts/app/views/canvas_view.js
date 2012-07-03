@@ -1,4 +1,6 @@
 app.views.Canvas = app.views.InfScroll.extend({
+  scrollOffset : 500,
+
   initialize: function(){
     this.stream = this.model
     this.collection = this.stream.items
