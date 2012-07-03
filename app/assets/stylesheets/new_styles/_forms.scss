@@ -5,6 +5,7 @@ input:-webkit-autofill{
 }
 
 
+
 form.block-form {
   display : inline-block;
 
@@ -20,9 +21,7 @@ form.block-form {
       -moz-box-shadow : none;
       box-shadow : none;
       box-shadow : none;
-
       border : none;
-      color : #555;
     }
   }
 
@@ -87,6 +86,8 @@ form.block-form {
 }
 
 
+input::-webkit-input-placeholder  { color: #aaa; }
+input:-moz-placeholder { color:#aaa; }
 /* buttons to be extracted? */
 .new-btn,
 .fb-btn {
