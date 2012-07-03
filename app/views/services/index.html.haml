@@ -10,3 +10,27 @@
 .span-19.prepend-5.last
   = render 'shared/add_remove_services'
 
+%br
+%br
+%br
+%br
+%br
+.span-19.prepend-5.last
+  %h2 Goodies
+  %h3
+    Remix Button 
+  %p
+    Remix on your webpage! Just point the url of the image you want to remix.
+  %p
+    = remix_button_url
+    %i
+      your_base64_encoded_image_url
+  %h3
+    Bookmarklet
+  %p
+    Drag the "Remix" button to your bookmarks bar to
+    easily remix any photo while you browse the web!      
+    %br
+    = link_to "Remix it!", bookmarklet_url
+
+
