@@ -20,7 +20,8 @@ module AnalyticsHelper
     include_analytics "mixpanel" do
       javascript_tag do
         <<-JS.html_safe
-          mixpanel.identify("#{current_user.username}");
+          mixpanel.name_tag("#{current_user.username}");
+          mixpanel.identify("#{current_user.id}");
           mixpanel.people.set({
             "$created": "#{current_user.created_at}"
           })
