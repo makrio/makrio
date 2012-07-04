@@ -6,6 +6,7 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
 
   events : {
     "click .content" : "goToOrFavoritePost",
+    "click .stack-el" : "goToOrFavoritePost",
     "click .delete" : "killPost"
   },
 
