@@ -89,6 +89,7 @@ class Post < ActiveRecord::Base
   def toggle_staff_picked!
     if staff_picked_at.present?
       self.staff_picked_at = nil
+      self.save
     else
       self.touch(:staff_picked_at)
     end
