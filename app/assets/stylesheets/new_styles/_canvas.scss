@@ -46,6 +46,8 @@ a.logo{
 }
 
 .canvas-frame {
+  position : relative;
+
   &:not(.normalized) {
     @include box-shadow(0,2px,5px,rgba(0,0,0,.5));
   }
@@ -365,23 +367,95 @@ a.logo{
   }
 }
 
-/* responsive */
-@media (max-width: 767px) {
-  body {
-    padding : 0;
+// feedback actions
+.canvas-frame {
+  &:hover {
+    .stream-frame-feedback {
+      @include opacity(1);
+    }
   }
 
-  .canvas-frame {
+  .stream-frame-feedback {
+    @include transition(opacity);
+    @include opacity(0);
+
+    z-index : 10;
+
+    position : absolute;
+    top : 10px;
+    right : 10px;
+
+    cursor : pointer;
+
+    .info {
+      @include border-radius(5px);
+      display : inline-block;
+      background-color : rgba(0,0,0,.7);
+
+      .remix,
+      .like {
+        @include transition(all);
+
+        cursor : pointer;
+
+        display : inline-block;
+        height : 100px;
+        width : 100px;
+
+        background : {
+          size : 80px;
+          repeat : no-repeat;
+          position : center;
+        }
+      }
+
+      .remix {
+        background-image : image_url('icons/post_remix@2x.png');
+        &:hover {
+          background-image : image_url('icons/post_remix_hover@2x.png');
+        }
+      }
+
+      .like {
+        background-image : image_url('icons/post_love@2x.png');
+
+        &:hover,
+        &.liked {
+          background-image : image_url('icons/post_love_hover@2x.png');
+        }
+      }
+    }
+  }
+}
+
+#canvas {
+  .stream-frame-feedback {
+    top : 0;
+    left : 0;
     width : 100%;
-    margin-left : 0;
-    margin-right : 0;
 
-    margin-bottom : 10px;
+    .info {
+      @include border-radius(0);
 
-    .content {
-      font-size : 0.9em;
-      margin : 0;
-      width : auto !important;
+      display : block;
+      text-align : center;
+      height: 50px;
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+      a {
+        width: 49%;
+        height : 100%;
+        background-size: 50px;
+
+        &:hover {
+          background-color : #000;
+        }
+      }
+
+      .remix {
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+      }
     }
   }
 }

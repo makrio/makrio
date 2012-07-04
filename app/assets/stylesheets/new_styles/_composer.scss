@@ -138,14 +138,10 @@
 
     .content {
       cursor : auto;
+    }
 
-      &:active {
-        -webkit-transform : none;
-      }
-
-      .info {
-        display : none;
-      }
+    .stream-frame-feedback {
+      display : none;
     }
   }
 

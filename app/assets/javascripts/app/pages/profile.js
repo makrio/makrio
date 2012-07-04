@@ -4,6 +4,10 @@ app.pages.Profile = app.views.Base.extend({
   templateName : "profile",
   id : "profile",
 
+  events : {
+    "click *[data-remix-id]" : 'showModalFramer'
+  },
+
   subviews : {
     "#profile-info" : "profileInfo",
     "#canvas" : "canvasView"

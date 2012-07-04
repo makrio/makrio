@@ -5,17 +5,6 @@
   -ms-animation:     opacity-pulse 1s infinite;
 }
 
-/* functionality under edit mode */
-.edit-mode {
-  #edit-mode-toggle.control {
-    display : auto;
-  }
-
-  .canvas-frame .info {
-    display : none;
-  }
-}
-
 #profile-header {
  text-align : center;
  padding : 50px;

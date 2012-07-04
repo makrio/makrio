@@ -160,10 +160,7 @@
   .stream-frame .selected-frame {
     .stream-frame-feedback {
       @include opacity(1);
-      /*@include opacity(1)*/
-      /*background-color : rgba(0,0,0,.7);*/
     }
-
   }
   .stream-frame {
     margin-bottom : 50px;
@@ -180,67 +177,7 @@
       right : 25px;
     }
 
-    .stream-frame-feedback {
-      @include transition(opacity);
-      @include opacity(0);
-
-      z-index : 10;
-
-      position : absolute;
-      top : 10px;
-      right : 40px;
-
-      cursor : pointer;
-
-      .info {
-        @include border-radius(5px);
-        display : inline-block;
-        background-color : rgba(0,0,0,.3);
-
-        &:hover {
-          background-color : rgba(0,0,0,.7);
-        }
-
-        .remix,
-        .like {
-          @include transition(all);
-
-          cursor : pointer;
-
-          display : inline-block;
-          height : 100px;
-          width : 100px;
-
-          background : {
-            size : 80px;
-            repeat : no-repeat;
-            position : center;
-          }
-        }
-
-        .remix {
-          background-image : image_url('icons/post_remix@2x.png');
-          &:hover {
-            background-image : image_url('icons/post_remix_hover@2x.png');
-          }
-        }
-
-        .like {
-          background-image : image_url('icons/post_love@2x.png');
-
-          &:hover,
-          &.liked {
-            background-image : image_url('icons/post_love_hover@2x.png');
-          }
-        }
-      }
-    }
-
     .frame-link:hover {
-      .stream-frame-feedback {
-        @include opacity(1);
-      }
-
       .remove-post {
         @include opacity(0.7);
         right : 10px;
@@ -254,12 +191,6 @@
     .photo-backdrop .text-content p,
     .status-with-photo-backdrop .text-content p {
       color: #111;
-    }
-
-    .canvas-frame {
-      .info {
-        display : none;
-      }
     }
 
     a.toggle-featured {
@@ -302,8 +233,6 @@
 
     .content {
       width: 100%;
-
-
     }
   }
 }

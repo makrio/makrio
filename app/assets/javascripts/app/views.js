@@ -13,11 +13,6 @@ app.views.Base = Backbone.View.extend({
       //this should be in streamobjects view
       this.model.bind('remove', this.remove, this);
     }
-
-    // this line is too generic.  we usually only want to re-render on
-    // feedback changes as the post content, author, and time do not change.
-    //
-    // this.model.bind('change', this.render, this);
   },
 
   defaultPresenter : function(){
@@ -104,12 +99,12 @@ app.views.Base = Backbone.View.extend({
   },
 
   showModalFramer : function(evt){
-    evt.preventDefault();
+    evt && evt.preventDefault();
     var post_id = $(evt.target).data('remix-id')
-    var post = (post_id =='new') ? undefined : this.stream.items.get(post_id).buildRemix()
+      , post = (post_id =='new') ? undefined : this.stream.items.get(post_id).buildRemix()
 
     this.framer = new app.pages.InlineFramer({model : post})
     this.framer.show()
-  },
+  }
 });
 

@@ -1,9 +1,13 @@
 app.pages.Likes = app.views.Base.extend({
   templateName : "likes-page",
 
+  events : {
+    "click *[data-remix-id]" : 'showModalFramer'
+  },
+
   subviews : {
     "#canvas" : "canvasView",
-    "header" : "headerView",
+    "header" : "headerView"
   },
 
   initialize : function(){

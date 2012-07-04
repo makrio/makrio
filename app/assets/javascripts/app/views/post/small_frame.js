@@ -6,7 +6,8 @@ app.views.Post.SmallFrame = app.views.Post.extend({
   templateName : "small-frame/default",  // default to fall back to
 
   subviews : {
-    '.embed-frame' : "oEmbedView"
+    '.embed-frame' : "oEmbedView",
+    ".stream-frame-feedback" : "feedbackView"
   },
 
   initialize : function(options) {
@@ -27,6 +28,10 @@ app.views.Post.SmallFrame = app.views.Post.extend({
 
   oEmbedView : function(){
     return new app.views.OEmbed({model : this.model})
+  },
+
+  feedbackView : function() {
+    return new app.views.StreamFeedbackActions({ model: this.model })
   },
 
   smallFramePresenter : function(){

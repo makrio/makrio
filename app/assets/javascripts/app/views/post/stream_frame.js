@@ -4,8 +4,7 @@ app.views.Post.StreamFrame = app.views.Base.extend({
   templateName : "stream-frame",
 
   subviews : {
-    ".small-frame" : "smallFrameView",
-    ".stream-frame-feedback" : "feedbackView"
+    ".small-frame" : "smallFrameView"
   },
 
   tooltipSelector : ".post-author",
@@ -13,7 +12,7 @@ app.views.Post.StreamFrame = app.views.Base.extend({
   initialize : function(options) {
     this.stream = options.stream
     this.smallFrameView = new app.views.Post.SmallFrame({ model : this.model })
-    this.feedbackView =  new app.views.StreamFeedbackActions({ model: this.model })
+    this.feedbackView = new app.views.StreamFeedbackActions({ model: this.model })
   },
 
   events : {
