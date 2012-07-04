@@ -15,5 +15,5 @@ app.pages.Likes = app.views.Base.extend({
   initSubviews : function(){
     this.canvasView = new app.views.Canvas({model : this.stream})
     this.headerView = new app.views.Header({model : this.stream})
-  },
+  }
 })

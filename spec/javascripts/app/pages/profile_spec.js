@@ -63,14 +63,6 @@ describe("app.pages.Profile", function(){
         this.page.render()
       });
 
-      context("profile control pane", function(){
-        it("shows the edit and create buttons if it's your profile", function() {
-          this.page.model.set({is_own_profile : true})
-          this.page.render()
-          expect(this.page.$("#profile-controls .control").length).toBe(2)
-        })
-      })
-
       context("clicking fav", function(){
         beforeEach(function(){
           spyOn(this.post, 'toggleFavorite')

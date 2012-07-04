@@ -19,7 +19,6 @@
 #profile-header {
  text-align : center;
  padding : 50px;
- padding-bottom : 0;
 }
 
 .profile-image-container {
@@ -56,70 +55,6 @@
     width : 24px;
     border : 2px solid #fff;
   }
-}
-
-#profile-controls,
-#make-button {
-  text-align : right;
-  padding : 10px 16px;
-
-  /* when our buttons aren't there, we still want to maintain a persistent height */
-  min-height : 40px;
-
-  .control {
-    @include transition(opacity);
-    @include opacity(1);
-
-    @include border-radius(3px);
-    @include box-shadow(0, 1px, 2px, rgba(0,0,0,0.8));
-
-    font-family : Roboto-Bold, Helvetica, Arial, sans-serif;
-    color : #ccc;
-
-    position : relative;
-    top : 11px;
-
-    background-color : #000;
-    border : 1px solid #666;
-
-    padding : 10px;
-    padding-top : 10px;
-
-    &#composer-button {
-      position : relative;
-      font-size : 14px;
-      line-height : 14px;
-      padding-bottom : 8px;
-      padding-top : 9px;
-      padding-right : 8px;
-    }
-
-    &#edit-mode-toggle {
-      top : 10px;
-      padding-bottom : 10px;
-      img {
-        margin-top : -5px;
-      }
-    }
-
-    img {
-      height : 16px;
-    }
-
-    &:hover {
-      @include opacity(0.8);
-      background-color : #000;
-      text-decoration : none;
-    }
-
-    &:active {
-      @include opacity(0.6);
-    }
-  }
-}
-
-#profile-controls {
-  margin-left : 8px;
 }
 
 #composer-button.label.label-inverse{
@@ -202,31 +137,5 @@
     display : inline-block;
     width : $two-column-width + px;
     text-align : center;
-  }
-}
-
-/* responsive */
-@media (max-width: 767px) {
-  #profile {
-    background-size : 767px;
-  }
-
-  .profile-image-container {
-    height : 100px;
-    width : 100px;
-    border-width : 2px;
-  }
-
-  #profile-controls {
-    display : none;
-  }
-
-  #profile-header {
-    padding : 20px;
-  }
-
-  #wallpaper-upload,
-  .edit-control {
-    display : none;
   }
 }

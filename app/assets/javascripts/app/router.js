@@ -56,6 +56,7 @@ app.Router = Backbone.Router.extend({
   },
 
   newProfile : function(personId) {
+    app.onProfilePage = true;
     this.renderPage(function(){ return new app.pages.Profile({ personId : personId })});
   },
 
@@ -68,11 +69,6 @@ app.Router = Backbone.Router.extend({
   doneFraming : function(id){
     this.renderPage(function(){ return new app.pages.DoneFraming({ model_id : id})});
   },
-
-//  inlineFramer :function(model){
-//    app.modal = new app.pages.InlineFramer({model : model});
-//    app.modal.invoke()
-//  },
 
   framer : function(){
     app.instrument("track", "Compose")
@@ -108,6 +104,7 @@ app.Router = Backbone.Router.extend({
     app.page && app.page.unbind && app.page.unbind() //old page might mutate global events $(document).keypress, so unbind before creating
     app.page = pageConstructor() //create new page after the world is clean (like that will ever happen)
     $("#container").html(app.page.render().el)
+    $(window).scrollTop(0)
   },
 
   setLocation : function(location){

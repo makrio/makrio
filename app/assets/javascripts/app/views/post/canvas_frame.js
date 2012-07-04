@@ -5,8 +5,7 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
   DOUBLE_COLUMN_WIDTH : 560,
 
   events : {
-    "click .info" : "goToPost", // the only event copied from SmallFrame
-    "click .content" : "favoritePost",
+    "click .content" : "goToOrFavoritePost",
     "click .delete" : "killPost"
   },
 
@@ -26,6 +25,11 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
     this.$el.addClass(this.dimensionsClass())
   },
 
+  isNormalizedCollection : function() {
+    var pathName = document.location.pathname;
+    return pathName.search("/likes") != -1 || pathName.search("/people/") != -1 || pathName.search("/u/")
+  },
+
   adjustedImageHeight : function() {
     if(!(this.model.get("photos") || [])[0]) { return }
 
@@ -42,8 +46,14 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
 
   presenter : function(){
     return _.extend(this.smallFramePresenter(), {
-      adjustedImageHeight : this.adjustedImageHeight()
+      adjustedImageHeight : this.adjustedImageHeight(),
+      showInfo : this.isNormalizedCollection(),
+      onProfilePage : app.onProfilePage
     })
+  },
+
+  goToOrFavoritePost : function() {
+    this.isNormalizedCollection() ? this.goToPost() : this.favoritePost()
   },
 
   favoritePost : function(evt) {

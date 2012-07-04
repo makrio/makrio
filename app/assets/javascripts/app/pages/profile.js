@@ -6,18 +6,12 @@ app.pages.Profile = app.views.Base.extend({
 
   subviews : {
     "#profile-info" : "profileInfo",
-    "#canvas" : "canvasView",
-    "#wallpaper-upload" : "wallpaperForm"
-  },
-
-  events : {
-    "click #edit-mode-toggle" : "toggleEdit"
+    "#canvas" : "canvasView"
   },
 
   tooltipSelector : "*[rel=tooltip]",
 
   personGUID : null,
-  editMode : false,
 
   initialize : function(options) {
     this.personGUID = options.personId
@@ -31,7 +25,6 @@ app.pages.Profile = app.views.Base.extend({
 
   initViews : function(){
     this.canvasView = new app.views.Canvas({ model : this.stream })
-    this.wallpaperForm = new app.forms.Wallpaper()
     this.profileInfo = new app.views.ProfileInfo({ model : this.model })
   },
 
@@ -49,19 +42,14 @@ app.pages.Profile = app.views.Base.extend({
   presenter : function(){
     var bio =  this.model.get("bio") || ''
 
-    return _.extend(this.defaultPresenter(),
-      {text : this.model && app.helpers.textFormatter(bio, this.model) })
+    return _.extend(this.defaultPresenter(), {
+      text : this.model && app.helpers.textFormatter(bio, this.model)
+    })
   },
 
   setPageTitle : function() {
     if(this.model.get("name")) {
       document.title = this.model.get("name")
     }
-  },
-
-  toggleEdit : function(evt) {
-    if(evt) { evt.preventDefault() }
-    this.editMode = !this.editMode
-    this.$el.toggleClass("edit-mode")
   }
 });

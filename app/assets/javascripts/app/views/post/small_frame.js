@@ -5,17 +5,13 @@ app.views.Post.SmallFrame = app.views.Post.extend({
 
   templateName : "small-frame/default",  // default to fall back to
 
-  events : {
-    "click .info" : "goToPost"
-  },
-
   subviews : {
     '.embed-frame' : "oEmbedView"
   },
 
   initialize : function(options) {
     this.stream = options.stream;
-    this.composing = options.composing || false
+    this.composing = options.composing || false;
 
     if(this.model.get("show_screenshot") && !this.composing) {
       this.templateName = "small-frame/screenshot"
@@ -23,6 +19,10 @@ app.views.Post.SmallFrame = app.views.Post.extend({
     } else {
       this.addStylingClasses()
     }
+  },
+
+  isNormalizedCollection : function() {
+    return false;
   },
 
   oEmbedView : function(){
@@ -68,6 +68,8 @@ app.views.Post.SmallFrame = app.views.Post.extend({
   },
 
   dimensionsClass : function() {
+    if(this.isNormalizedCollection() && !app.onProfilePage) { return "" }
+
     return (this.model.get("favorite")) ? "x2 width" : ""
   },
 

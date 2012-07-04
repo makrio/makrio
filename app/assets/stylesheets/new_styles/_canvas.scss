@@ -25,15 +25,11 @@ a.logo{
   font-size: 1.2em;
 }
 
-.canvas-frame {
-  @include box-shadow(0,2px,5px,rgba(0,0,0,.5));
-}
-
 #canvas {
   .canvas-frame {
     float : left;
     margin : 5px;
-    margin-bottom : 5px;
+    margin-bottom : 6px;
 
     max-width : 100%;
 
@@ -44,20 +40,18 @@ a.logo{
       }
     }
 
-    /* expand / contract cursor declarations */
-    &.x2 {
-      cursor : nw-resize;
-      cursor : -moz-zoom-out;
-      cursor : -webkit-zoom-out;
-    }
-
-    cursor : nwse-resize;
-    cursor : -moz-zoom-in;
-    cursor : -webkit-zoom-in;
+    @include box-shadow(0,1px,1px,rgba(0, 0, 0, 0.1));
+    cursor : pointer;
   }
 }
 
 .canvas-frame {
+  &:not(.normalized) {
+    @include box-shadow(0,2px,5px,rgba(0,0,0,.5));
+  }
+
+  background-color : #fff;
+
   /* larger declarations */
   &.x2.width .content {
     @include wide();
@@ -76,6 +70,17 @@ a.logo{
       line-height: 34.75px;
     }
   }
+
+  .vitals {
+    color : #999;
+    padding : 10px;
+    text-align : right;
+
+    .author-name {
+      float : left;
+      font-family : Roboto-Bold;
+    }
+  }
 }
 
 .canvas-frame {
@@ -89,8 +94,6 @@ a.logo{
   }
 
   .content {
-    background-image : image_url("texture/paper.jpg");
-
     &:hover {
       .info {
         top : 0;
@@ -139,83 +142,6 @@ a.logo{
       height : 100%;
       width : 100%;
       max-height: 222px;
-    }
-  }
-
-  .controls{
-    position : absolute;
-    z-index : 100;
-    top : 10px;
-    right : 10px;
-
-    display : none;
-
-    .edit-mode & {
-      display : inline-block;
-    }
-
-    a, span {
-      display : inline-block;
-      background-size : 30px 30px;
-      height : 30px;
-      width : 30px;
-      text-decoration : none;
-    }
-
-    .delete {
-      background-image : image_url('buttons/delete.png');
-
-      &:hover {
-        background-image : image_url('buttons/delete_hover.png');
-      }
-    }
-  }
-
-  .info {
-    @include transition(top);
-    cursor : pointer;
-
-    background-color : #fff;
-    border-bottom : 1px solid #fff;
-
-    color : #000;
-
-    position : absolute;
-    top : -32px;
-    right : 0;
-    text-align : center;
-    width : 100%;
-
-    z-index : 30;
-
-    padding : 5px 0;
-
-    i {
-      margin-left:  3px;
-    }
-
-    .avatar {
-      position : absolute;
-      top : 0;
-      left : 0;
-
-      height : 29px;
-      width : 29px;
-    }
-
-    .timestamp,
-    .permalink {
-      margin : 1px 7px;
-    }
-
-    .timestamp {
-      float : left;
-      margin-top : 2px;
-    }
-
-    .permalink {
-      cursor : pointer;
-      float : right;
     }
   }
 
