@@ -11,7 +11,6 @@ app.views.Content = app.views.Base.extend({
     });
   },
 
-
   largePhoto : function() {
     var photos = this.model.get("photos")
     if(!photos || photos.length == 0) { return }
@@ -65,10 +64,6 @@ app.views.Content = app.views.Base.extend({
 
 app.views.StatusMessage = app.views.Content.extend({
   templateName : "status-message"
-});
-
-app.views.Reshare = app.views.Content.extend({
-  templateName : "reshare"
 });
 
 app.views.ActivityStreams__Photo = app.views.Content.extend({

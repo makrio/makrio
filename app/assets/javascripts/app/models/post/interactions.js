@@ -9,25 +9,21 @@ app.models.Post.Interactions = Backbone.Model.extend({
     this.post = options.post
     this.comments = new app.collections.Comments(this.get("comments"), {post : this.post})
     this.likes = new app.collections.Likes(this.get("likes"), {post : this.post});
-    this.reshares = new app.collections.Reshares(this.get("reshares"), {post : this.post});
     this.remixes = new app.collections.Remixes(this.get("remixes"), {post : this.post});
   },
 
   parse : function(resp){
     this.comments.reset(resp.comments)
     this.likes.reset(resp.likes)
-    this.reshares.reset(resp.reshares)
     this.remixes.reset(resp.remixes)
 
     var comments = this.comments
       , likes = this.likes
-      , reshares = this.reshares
       , remixes = this.remixes
 
     return {
       comments : comments,
       likes : likes,
-      reshares : reshares,
       remixes : remixes,
       fetched : true
     }
@@ -35,10 +31,6 @@ app.models.Post.Interactions = Backbone.Model.extend({
 
   likesCount : function(){
     return (this.get("fetched") ? this.likes.models.length : this.get("likes_count") )
-  },
-
-  resharesCount : function(){
-    return this.get("fetched") ? this.reshares.models.length : this.get("reshares_count")
   },
 
   remixCount : function(){
@@ -51,11 +43,6 @@ app.models.Post.Interactions = Backbone.Model.extend({
 
   userLike : function(){
     return this.likes.select(function(like){ return like.get("author").guid == app.currentUser.get("guid")})[0]
-  },
-
-  userReshare : function(){
-    return this.reshares.select(function(reshare){
-      return reshare.get("author") &&  reshare.get("author").guid == app.currentUser.get("guid")})[0]
   },
 
   toggleLike : function(trackingOpts) {
@@ -98,37 +85,5 @@ app.models.Post.Interactions = Backbone.Model.extend({
     this.trigger("change") //updates count in an eager manner
 
     app.instrument("track", "Comment")
-  },
-
-  reshare : function(){
-    var interactions = this
-      , reshare = this.post.reshare()
-
-    reshare.save({}, {
-      success : function(resp){
-        var flash = new Diaspora.Widgets.FlashMessages;
-        flash.render({
-          success: true,
-          notice: Diaspora.I18n.t("reshares.successful")
-        });
-      }
-    }).done(function(){
-        interactions.reshares.add(reshare)
-      }).done(function(){
-        interactions.trigger("change")
-      });
-
-    app.instrument("track", "Reshare", trackingOpts)
-  },
-
-  userCanReshare : function(){
-    var isReshare = this.post.get("post_type") == "Reshare"
-      , parentExists = (isReshare ? this.post.get("parent") : true)
-      , publicPost = this.post.get("public")
-      , userIsNotAuthor = this.post.get("author").diaspora_id != app.currentUser.get("diaspora_id")
-      , userIsNotRootAuthor = parentExists && (isReshare ? this.post.get("parent").author.diaspora_id != app.currentUser.get("diaspora_id") : true)
-
-
-    return publicPost && app.currentUser.authenticated() && userIsNotAuthor && userIsNotRootAuthor;
   }
 });

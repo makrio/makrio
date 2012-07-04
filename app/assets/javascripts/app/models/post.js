@@ -27,14 +27,6 @@ app.models.Post = Backbone.Model.extend(_.extend({}, app.models.formatDateMixin,
     return this.timeOf("interacted_at");
   },
 
-  reshare : function(){
-    return this._reshare = this._reshare || new app.models.Reshare({parent_guid : this.get("guid")});
-  },
-
-  reshareAuthor : function(){
-    return this.get("author")
-  },
-
   toggleFavoriteUrl : function(){
     return [this.urlRoot, this.id, "toggle_favorite"].join("/")
   },
@@ -84,10 +76,9 @@ app.models.Post = Backbone.Model.extend(_.extend({}, app.models.formatDateMixin,
     return $.trim(this.get("text")) !== ""
   },
 
-
   buildRemix : function(){
     return new app.models.StatusMessage(_.clone(this.attributes)).prepareToRemix(this)
-  },
+  }
 
 }), {
   headlineLimit : 118,

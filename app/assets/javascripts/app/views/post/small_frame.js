@@ -40,7 +40,6 @@ app.views.Post.SmallFrame = app.views.Post.extend({
       {
         text : this.model && app.helpers.textFormatter(this.model.get("text"), this.model),
         likesCount : this.model.interactions.likesCount(),
-        resharesCount : this.model.interactions.resharesCount(),
         commentsCount : this.model.interactions.commentsCount()
       })
   },

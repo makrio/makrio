@@ -6,7 +6,7 @@ app.views.Feedback = app.views.Base.extend({
   events: {
     "click *[rel='auth-required']" : "requireAuth",
     "click .like" : "toggleLike",
-    "click .reshare" : "resharePost",
+    "click .reshare" : "remixPost",
     "click .comment" : "comment"
   },
 
@@ -23,11 +23,8 @@ app.views.Feedback = app.views.Base.extend({
     return _.extend(this.defaultPresenter(),{
       commentsCount : interactions.commentsCount(),
       likesCount : interactions.likesCount(),
-      resharesCount : interactions.resharesCount(),
       remixCount : interactions.remixCount(),
-      userCanReshare : interactions.userCanReshare(),
-      userLike : interactions.userLike(),
-      userReshare : interactions.userReshare()
+      userLike : interactions.userLike()
     })
   },
 
@@ -36,7 +33,7 @@ app.views.Feedback = app.views.Base.extend({
     this.model.interactions.toggleLike({'referrer' : 'icon_with_count'});
   },
 
-  resharePost : function(evt) {
+  remixPost : function(evt) {
     if(evt) { evt.preventDefault(); }
     app.router.navigate(this.model.url() + '/remix', {trigger : true})
   },

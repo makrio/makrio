@@ -70,10 +70,6 @@ class PostPresenter
     @post.like_for(@current_user).try(:as_api_response, :backbone)
   end
 
-  def user_reshare
-    @post.reshare_for(@current_user)
-  end
-
   def show_screenshot?
     @post.screenshot_url.present? && !has_gif?
   end

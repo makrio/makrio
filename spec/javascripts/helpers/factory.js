@@ -68,12 +68,10 @@ factory = {
       "parent" : null,
       "post_type" : "StatusMessage",
       "interactions" : {
-        "reshares_count" : 0,
         "likes_count" : 0,
         "comments_count" : 0,
         "comments" : [],
-        "likes" : [],
-        "reshares" : []
+        "likes" : []
       }
     }
   },
