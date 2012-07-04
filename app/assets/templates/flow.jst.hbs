@@ -1,28 +1,11 @@
 <div id="framer-wrapper">
-    {{#if sourcePost}}
-        <div id="reshare media author">
-             <div class="media author">
-                <h1> Remixing... </h1>
-                {{#linkToPerson author}}
-                    <div class="img">
-                        <div class="profile-image-container smaller" style="background-image : url('{{avatar.large}}')"></div>
-                    </div>
-                {{/linkToPerson}}
-
-                <div class="bd">
-                    {{#linkToPerson author}}
-                        {{name}}
-                    {{/linkToPerson}}
-                    <br/>
-                    <a href='/posts/{{sourcePost.id}}' target='_blank'>source</a>
-                </div>
-            </div>
-        </div>
+    <h2 style="margin:20px 0;">
+        {{#if sourcePost}}
+            Remixing {{author.name}}'s <a href="/p/{{sourcePost.id}}" target="_blank">Post</a>
         {{else}}
-        <h2>
-           Add Photos & Make Something!
-        </h2>
+           Add Photos & Text
         {{/if}}
+    </h2>
 
     <div class="flow-content"/>
 

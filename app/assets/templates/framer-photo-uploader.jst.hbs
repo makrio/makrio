@@ -1,4 +1,3 @@
-
 <form accept-charset="UTF-8" action="/photos" class="new_photo form-inline" data-remote="true" enctype="multipart/form-data" method="post" style='margin:;'>
     <input name="authenticity_token" type="hidden"/>
     <div style="margin:0;padding:0;display:inline">
@@ -6,10 +5,10 @@
     </div>
 
     <div id='photo_upload_button' style='display:inline-block'>
-        <a class='btn btn-inverse'>+ <i class="icon-camera icon-white" style="display:inline-block;margin-right:4px;"></i></a>
+        <a class='btn new-btn'>+ <i class="icon-camera icon-grey" style="display:inline-block;margin-right:4px;"></i></a>
         <input name="photo[user_file]" type="file" size='1'/>
     </div>
     <span style="padding:0 5px">or</span> 
-    <input type="text"  class="input" name="photo[image_url]" placeholder='http://' />
-    <a href='#' class='img-url btn btn-inverse'> Upload From URL</a>
+    <input type="text" class="input" name="photo[image_url]" placeholder='http://' />
+    <a href='#' class='img-url btn new-btn'>Upload From URL</a>
 </form>

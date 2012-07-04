@@ -21,11 +21,7 @@
 }
 
 #framer {
-  color : #fff;
-  background : {
-    color : rgba(0,0,0,0.8);
-    image : image_url("texture/hatched-dark.png");
-  }
+  background-image : image_url("texture/light-bg.png");
 
   z-index : 200;
   text-align : center;

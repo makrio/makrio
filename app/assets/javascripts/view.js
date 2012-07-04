@@ -15,7 +15,7 @@ var View = {
     /* facebox */
     $.facebox.settings.closeImage = '/assets/facebox/closelabel.png';
     $.facebox.settings.loadingImage = '/assets/facebox/loading.gif';
-    $.facebox.settings.opacity = 0.75;
+    $.facebox.settings.opacity = 0.9;
 
     $('a[rel*=facebox]').facebox();
 
