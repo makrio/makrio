@@ -124,6 +124,10 @@
         [contentEditable] {
           @include box-shadow(0,0,5px,$link-blue);
         }
+
+        .remove-image {
+          display : inline-block;
+        }
       }
 
       [contentEditable]:focus {
