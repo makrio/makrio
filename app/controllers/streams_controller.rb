@@ -40,13 +40,15 @@ class StreamsController < ApplicationController
   def stream_responder(stream_klass)
     @stream = stream_klass.new(current_user, :max_time => max_time)
     stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user)
-    notifications_json = NotificationsPresenter.as_collection(current_user.recent_notifications.where(:unread => true).limit(5))
+    if user_signed_in?
+      notifications_json = NotificationsPresenter.as_collection(current_user.recent_notifications.where(:unread => true).limit(5))
+    end
 
     respond_to do |format|
       format.html do
-        authenticate_user!
+        # authenticate_user!
         gon.stream = stream_json
-        gon.notifications = notifications_json
+        gon.notifications = notifications_json if user_signed_in?
         render :nothing => true, :layout => "post"
       end
       format.mobile {authenticate_user!; render 'layouts/main_stream' }
