@@ -165,7 +165,6 @@ app.views.framerControls = app.views.Base.extend({
   },
 
   subviews:{
-    ".aspect-selector" : "aspectsDropdown",
     ".service-selector" : "servicesSelector"
   },
 
@@ -174,7 +173,6 @@ app.views.framerControls = app.views.Base.extend({
   },
 
   initialize : function(){
-    this.aspectsDropdown = new app.views.AspectsDropdown({model:this.model});
     this.servicesSelector = new app.views.ServicesSelector({model:this.model});
   },
 

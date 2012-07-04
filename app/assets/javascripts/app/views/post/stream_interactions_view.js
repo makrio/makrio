@@ -40,7 +40,8 @@ app.views.ShareView = app.views.Base.extend({
   templateName : 'share',
   events : {
     'click .tweet-button' : 'tweet',
-    'click .facebook-button' : 'facebook'
+    'click .facebook-button' : 'facebook',
+    'click .tumblr-button' : 'tumblr'
   },
 
   presenter : function() {
@@ -74,6 +75,20 @@ app.views.ShareView = app.views.Base.extend({
     "&link=" + shareDetails.permalink + 
     "&redirect_uri=https://makr.io/done" +
     "&display=popup"
+
+    this.launchWindow(url)
+  },
+
+  tumblr : function(evt) {
+    evt && evt.preventDefault()
+
+    var remixUrl = "https://makr.io/posts/" + this.model.id + "/remix"
+      , caption = "made on <a href='https://www.makr.io'>makr.io</a> | <a href='" + remixUrl + "'>remix this</a>"
+      , source = "https://makr.io/p/" + this.model.id
+      , url = "http://www.tumblr.com/share/photo?" +
+              "source=" + encodeURIComponent(source) +
+              "&caption=" + encodeURIComponent(caption) +
+              "&clickthru=" + encodeURIComponent(source)
 
     this.launchWindow(url)
   },

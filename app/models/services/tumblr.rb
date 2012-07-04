@@ -30,12 +30,10 @@ class Services::Tumblr < Service
   end
 
   def build_tumblr_post(post, url)
-    post_url = Rails.application.routes.url_helpers.post_url(post, :host => AppConfig[:pod_uri].host)
-    profile_url = Rails.application.routes.url_helpers.person_url(post.author, :host => AppConfig[:pod_uri].host)
     {
       :generator => 'makr.io', 
       :type => 'photo', 
-      'click-through-url' => post_url,
+      'click-through-url' => Rails.application.routes.url_helpers.post_url(post, :host => AppConfig[:pod_uri].host),
       'caption' => "made on <a href='https://www.makr.io'>makr.io</a> | <a href='#{post_url}/remix'>remix this</a>",
       :source => post.screenshot_url,
       :tags => "makr.io"
