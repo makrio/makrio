@@ -23,10 +23,6 @@ app.models.Post = Backbone.Model.extend(_.extend({}, app.models.formatDateMixin,
     return new app.models.Post.TemplatePicker(this).applicableTemplates()
   },
 
-  staffPickedAt : function() {
-    return this.timeOf("staff_picked_at");
-  },
-
   toggleFavoriteUrl : function(){
     return [this.urlRoot, this.id, "toggle_favorite"].join("/")
   },
