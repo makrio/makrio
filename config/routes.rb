@@ -23,6 +23,7 @@ Diaspora::Application.routes.draw do
       get :frame
       put :toggle_favorite
       put :toggle_featured
+      put :toggle_staff_picked
     end
 
     resources :likes, :only => [:create, :destroy, :index ]
@@ -49,6 +50,7 @@ Diaspora::Application.routes.draw do
 
   get "popular" => "streams#popular", :as => "popular"
   get "likes" => "streams#likes", :as => "likes_stream"
+  get "staff_picks" => "streams#staff_picks", :as => "staff_picks_stream"
 
   resources :aspects do
     put :toggle_contact_visibility

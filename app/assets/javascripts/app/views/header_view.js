@@ -12,7 +12,8 @@ app.views.Header = app.views.Base.extend({
       bookmarkletJS : this.bookmarkletJS(),
       onLatest : function() { return document.location.pathname.search("stream") !== -1},
       onPopular : function() { return document.location.pathname.search("popular") !== -1 },
-      onLikes : function() { return document.location.pathname.search("likes") !== -1 }
+      onLikes : function() { return document.location.pathname.search("likes") !== -1 },
+      onStaffPicks: function() { return document.location.pathname.search("staff") !== -1 }
     })
   },
 

@@ -31,6 +31,10 @@ app.models.Post = Backbone.Model.extend(_.extend({}, app.models.formatDateMixin,
     return [this.urlRoot, this.id, "toggle_favorite"].join("/")
   },
 
+  toggleStaffPickUrl : function(){
+    return [this.urlRoot, this.id, "toggle_staff_picked"].join("/")
+  },
+
   toggleFeaturedUrl : function(){
     return [this.urlRoot, this.id, "toggle_featured"].join("/")
   },
@@ -43,6 +47,10 @@ app.models.Post = Backbone.Model.extend(_.extend({}, app.models.formatDateMixin,
 
   toggleFeatured : function(options){
     this.save({featured : !this.get("featured")}, { url: this.toggleFeaturedUrl()})
+  },
+
+  toggleStaffPicked : function(options){
+    this.save({}, { url: this.toggleStaffPickUrl()})
   },
 
   headline : function() {

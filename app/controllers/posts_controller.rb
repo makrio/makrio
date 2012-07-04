@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   
   before_filter :authenticate_user!, :except => [:show, :frame, :iframe, :screenshot, :oembed, :interactions]
   before_filter :set_format_if_malformed_from_status_net, :only => :show
-  before_filter :find_post, :only => [:show, :screenshot, :frame, :next, :previous, :interactions, :toggle_featured]
+  before_filter :find_post, :only => [:show, :screenshot, :frame, :next, :previous, :interactions, :toggle_featured, :toggle_staff_picked]
 
   layout 'post'
 
@@ -101,6 +101,12 @@ class PostsController < ApplicationController
   def toggle_featured
     raise("you can't do that") unless Role.is_admin?(current_user.person)
     @post.toggle_featured!
+    render :nothing => true, :status => 202
+  end
+
+  def toggle_staff_picked
+    raise("you can't do that") unless Role.is_admin?(current_user.person)
+    @post.toggle_staff_picked!
     render :nothing => true, :status => 202
   end
 

@@ -8,6 +8,7 @@ app.Router = Backbone.Router.extend({
 
     "popular": "popular",
     "likes": "likes",
+    "staff_picks": "staffPicks",
 
     "posts/:id/remix?*params" : 'remix', // facebook action links supply signed_request params
     "posts/:id/remix" : 'remix',
@@ -33,8 +34,14 @@ app.Router = Backbone.Router.extend({
 
   likes : function() {
     app.instrument("track", "Likes loaded")
-    this.renderPage(function(){ return new app.pages.Likes()});
+    this.renderPage(function(){ return new app.pages.GenericCanvas()});
   },
+
+  staffPicks : function() {
+    app.instrument("track", "Staff Picks loaded")
+    this.renderPage(function(){ return new app.pages.GenericCanvas()});
+  },
+
 
   popular : function() {
     app.instrument("track", "Popular loaded")

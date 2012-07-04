@@ -23,6 +23,7 @@ class PostPresenter
         :public => @post.public,
         :featured => @post.featured,
         :created_at => @post.created_at,
+        :staff_picked_at => @post.staff_picked_at,
         :interacted_at => @post.interacted_at,
         :provider_display_name => @post.provider_display_name,
         :post_type => @post.post_type,

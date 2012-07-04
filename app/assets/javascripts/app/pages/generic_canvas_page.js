@@ -1,5 +1,5 @@
-app.pages.Likes = app.views.Base.extend({
-  templateName : "likes-page",
+app.pages.GenericCanvas = app.views.Base.extend({
+  templateName : "generic-canvas-page",
 
   events : {
     "click *[data-remix-id]" : 'showModalFramer'
@@ -11,7 +11,7 @@ app.pages.Likes = app.views.Base.extend({
   },
 
   initialize : function(){
-    this.stream = this.model = new app.models.Stream()
+    this.stream = this.model = new app.models.Stream([], { collectionOptions: {} })
     this.stream.preloadOrFetch()
     this.initSubviews()
   },

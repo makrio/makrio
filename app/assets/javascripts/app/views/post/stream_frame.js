@@ -7,6 +7,13 @@ app.views.Post.StreamFrame = app.views.Base.extend({
     ".small-frame" : "smallFrameView"
   },
 
+  events : {
+    "click .toggle-featured" : "toggleFeatured",
+    "click .toggle-staff-picked" : "toggleStaffPicked",
+    "click a.remove-post" : "destroyModel"
+  },
+
+
   tooltipSelector : ".post-author",
 
   initialize : function(options) {
@@ -15,10 +22,6 @@ app.views.Post.StreamFrame = app.views.Base.extend({
     this.feedbackView = new app.views.StreamFeedbackActions({ model: this.model })
   },
 
-  events : {
-    "click a.toggle-featured" : "toggleFeatured",
-    "click a.remove-post" : "destroyModel"
-  },
 
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
@@ -30,6 +33,16 @@ app.views.Post.StreamFrame = app.views.Base.extend({
     return this.model.get("author").guid == app.currentUser.get("guid")
   },
 
+
+  toggleStaffPicked : function(evt){
+    evt.preventDefault()
+    if(confirm("u sure you want to staff pick?")){
+      console.log(this.model)
+      this.model.toggleStaffPicked()
+      // this.render()
+    }
+  },
+  
   toggleFeatured : function(evt){
     evt.preventDefault()
     if(confirm("u shore bro?")){

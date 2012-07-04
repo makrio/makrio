@@ -56,6 +56,9 @@ class Post < ActiveRecord::Base
     joins(:likes).where(:likes => {:author_id => person.id})
   }
 
+  def self.staff_picked
+    where("staff_picked_at IS NOT NULL")
+  end
 
   def self.newer(post)
     where("posts.created_at > ?", post.created_at).reorder('posts.created_at ASC').first
@@ -81,6 +84,14 @@ class Post < ActiveRecord::Base
   def toggle_featured!
     self.featured = !featured
     save!
+  end
+
+  def toggle_staff_picked!
+    if staff_picked_at.present?
+      self.staff_picked = nil
+    else
+      self.touch(:staff_picked_at)
+    end
   end
 
   def set_absolute_root!

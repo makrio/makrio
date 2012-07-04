@@ -5,6 +5,7 @@
 require File.join(Rails.root, "lib", "stream", "multi")
 require File.join(Rails.root, "lib", "stream", "popular")
 require File.join(Rails.root, "lib", "stream", "likes")
+require File.join(Rails.root, "lib", "stream", "staff_picks")
 
 class StreamsController < ApplicationController
   respond_to :html,
@@ -23,6 +24,10 @@ class StreamsController < ApplicationController
     stream_responder(Stream::Likes)
   end
 
+  def staff_picks 
+    stream_responder(Stream::StaffPicks)
+  end
+  
   def updated
     @posts = Post.where("id > ?", params[:last_post_id]).where(:featured => true).limit(25)
     respond_to do |format|
