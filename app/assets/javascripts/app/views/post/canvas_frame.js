@@ -48,8 +48,14 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
     return _.extend(this.smallFramePresenter(), {
       adjustedImageHeight : this.adjustedImageHeight(),
       showInfo : this.isNormalizedCollection(),
-      onProfilePage : app.onProfilePage
+      onProfilePage : app.onProfilePage,
+      stacks : this.stacks()
     })
+  },
+
+  stacks : function() {
+    var remixCount = this.model.interactions.get("remix_count");
+    return (remixCount > 5 ? _.range(5) : _.range(remixCount))
   },
 
   goToOrFavoritePost : function() {
