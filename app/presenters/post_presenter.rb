@@ -4,7 +4,7 @@ class PostPresenter
   include ActionView::Helpers::TextHelper
   attr_accessor :post, :current_user
 
-  def initialize(post, current_user = nil)
+  def initialize(post, current_user=nil)
     @post = post
     @current_user = current_user
     @person = @current_user.try(:person)
@@ -67,10 +67,6 @@ class PostPresenter
     PostPresenter.new(@post.parent, current_user).as_json(:include_root => false) if @post.respond_to?(:parent) && @post.parent.present?
   end
 
-  def user_like
-    @post.like_for(@current_user).try(:as_api_response, :backbone)
-  end
-
   def show_screenshot?
     @post.screenshot_url.present? && !has_gif?
   end
@@ -92,7 +88,7 @@ class PostPresenter
 end
 
 class PostInteractionPresenter
-  def initialize(post, current_user)
+  def initialize(post, current_user=nil)
     @post = post
     @current_user = current_user
   end
@@ -111,6 +107,32 @@ class PostInteractionPresenter
   def as_api(collection)
     collection.includes(:author => :profile).all.map do |element|
       element.as_api_response(:backbone)
+    end
+  end
+
+  class Lite
+    def initialize(post, current_user=nil)
+      @post = post
+      @current_user = current_user
+    end
+
+    def as_json
+      {
+          :likes => [user_like].compact,
+          :reshares => [user_reshare].compact,
+          :comments_count => @post.comments_count,
+          :likes_count => @post.likes_count,
+          :reshares_count => @post.reshares_count,
+          :remix_count => @post.remixes.count
+      }
+    end
+
+    def user_like
+      @post.like_for(@current_user).try(:as_api_response, :backbone)
+    end
+
+    def user_reshare
+      @post.reshare_for(@current_user)
     end
   end
 end
