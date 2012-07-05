@@ -78,9 +78,12 @@ a.logo{
     padding : 10px;
     text-align : right;
 
-    .author-name {
+    .post-author {
       float : left;
-      font-family : Roboto-Bold;
+
+      .author-name {
+        font-family : Roboto-Bold;
+      }
     }
   }
 

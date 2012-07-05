@@ -6,11 +6,17 @@
 
 {{#if showInfo}}
     <div class="vitals">
-        {{#unless onProfilePage}}
-            {{#linkToPerson author}}
-                {{name}}
-            {{/linkToPerson}}
-        {{/unless}}
+        <div class="post-author">
+            {{#if staff_picked_at}}
+                <i class="icon-star icon-grey"></i>
+            {{/if}}
+
+            {{#unless onProfilePage}}
+                {{#linkToPerson author}}
+                    {{name}}
+                {{/linkToPerson}}
+            {{/unless}}
+        </div>
 
         <i class="icon-heart icon-grey"></i> {{likesCount}}
         <i class="icon-random icon-grey"></i> {{interactions.remix_count}}
