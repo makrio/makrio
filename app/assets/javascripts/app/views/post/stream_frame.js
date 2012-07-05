@@ -33,17 +33,12 @@ app.views.Post.StreamFrame = app.views.Base.extend({
     return this.model.get("author").guid == app.currentUser.get("guid")
   },
 
-  toggleStaffPicked : function(evt){
-    evt.preventDefault()
-    if(confirm("u sure you want to staff pick?")){
-      console.log(this.model)
-      this.model.toggleStaffPicked()
-      // this.render()
-    }
+  toggleStaffPicked : function(){
+    this.feedbackView.toggleStaffPicked()
   },
   
   toggleFeatured : function(evt){
-    evt.preventDefault()
+    evt && evt.preventDefault()
     if(confirm("u shore bro?")){
       this.model.toggleFeatured()
       this.remove()

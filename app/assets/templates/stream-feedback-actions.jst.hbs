@@ -1,6 +1,10 @@
 <a href="#" rel="auth-required" class="remix" data-remix-id='{{id}}' title="{{t "viewer.reshare"}}"></a>
 <a href="#" rel="auth-required" class="like {{#if userLike}}liked{{/if}}" title="{{#if userLike}} {{t "viewer.unlike"}} {{else}} {{t "viewer.like"}} {{/if}}"></a>
 
+{{#if current_user.admin}}
+    <a href="#" rel="auth-required" class="staff-pick {{#if staff_picked_at}}picked{{/if}}" title="Feature in 'Staff Picked'"></a>
+{{/if}}
+
 {{#if canRemove}}
     <a href="#" rel="auth-required" class="delete" title="Delete"></a>
 {{/if}}

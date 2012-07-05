@@ -7,7 +7,8 @@ app.views.Feedback = app.views.Base.extend({
     "click *[rel='auth-required']" : "requireAuth",
     "click .like" : "toggleLike",
     "click .reshare" : "remixPost",
-    "click .comment" : "comment"
+    "click .comment" : "comment",
+    "click .staff-pick" : "toggleStaffPicked"
   },
 
   tooltipSelector : ".label",
@@ -30,18 +31,24 @@ app.views.Feedback = app.views.Base.extend({
   },
 
   toggleLike: function(evt) {
-    if(evt) { evt.preventDefault(); }
+    evt && evt.preventDefault()
     this.model.interactions.toggleLike({'referrer' : 'icon_with_count'});
   },
 
   remixPost : function(evt) {
-    if(evt) { evt.preventDefault(); }
+    evt && evt.preventDefault()
     app.router.navigate(this.model.url() + '/remix', {trigger : true})
   },
 
   comment : function(evt) {
-    /* temp hacks */
-    if(evt) { evt.preventDefault(); }
+    evt && evt.preventDefault()
+  },
+
+  toggleStaffPicked : function(evt){
+    evt && evt.preventDefault()
+    if(confirm("u sure you want to staff pick?")){
+      this.model.toggleStaffPicked()
+    }
   },
 
   requireAuth : function(evt) {

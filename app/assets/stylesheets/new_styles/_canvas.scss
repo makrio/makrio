@@ -420,7 +420,8 @@ a.logo{
           position : center;
         }
 
-        &.delete {
+        &.delete,
+        &.staff-pick {
           display : none;
         }
       }
@@ -445,6 +446,14 @@ a.logo{
         background-image : image_url('icons/post_delete@2x.png');
         &:hover {
           background-image : image_url('icons/post_delete_hover@2x.png');
+        }
+      }
+
+      .staff-pick {
+        background-image : image_url('icons/post_feat@2x.png');
+        &:hover,
+        &.picked {
+          background-image : image_url('icons/post_feat_hover@2x.png');
         }
       }
     }
@@ -492,7 +501,8 @@ a.logo{
         border-right : $border;
         width : auto;
 
-        &.delete {
+        &.delete,
+        &.staff-pick {
           display : table-cell;
         }
 
