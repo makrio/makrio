@@ -33,7 +33,6 @@ app.views.Post.StreamFrame = app.views.Base.extend({
     return this.model.get("author").guid == app.currentUser.get("guid")
   },
 
-
   toggleStaffPicked : function(evt){
     evt.preventDefault()
     if(confirm("u sure you want to staff pick?")){

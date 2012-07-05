@@ -82,6 +82,10 @@ app.models.Post = Backbone.Model.extend(_.extend({}, app.models.formatDateMixin,
 
   buildRemix : function(){
     return new app.models.StatusMessage(_.clone(this.attributes)).prepareToRemix(this)
+  },
+
+  canRemove : function() {
+    return this.get("author").guid == app.currentUser.get("guid")
   }
 
 }), {

@@ -24,7 +24,8 @@ app.views.Feedback = app.views.Base.extend({
       commentsCount : interactions.commentsCount(),
       likesCount : interactions.likesCount(),
       remixCount : interactions.remixCount(),
-      userLike : interactions.userLike()
+      userLike : interactions.userLike(),
+      canRemove : this.model.canRemove()
     })
   },
 

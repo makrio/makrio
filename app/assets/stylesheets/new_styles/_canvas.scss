@@ -398,23 +398,30 @@ a.logo{
 
     .info {
       @include border-radius(5px);
-      display : inline-block;
-      background-color : rgba(0,0,0,.7);
 
-      .remix,
-      .like {
+      display : table;
+
+      background-color : rgba(0,0,0,.7);
+      width : 200px;
+      height: 100px;
+
+      a {
         @include transition(all);
 
         cursor : pointer;
 
-        display : inline-block;
-        height : 100px;
+        display : table-cell;
         width : 100px;
+        height : 100%;
 
         background : {
           size : 80px;
           repeat : no-repeat;
           position : center;
+        }
+
+        &.delete {
+          display : none;
         }
       }
 
@@ -431,6 +438,13 @@ a.logo{
         &:hover,
         &.liked {
           background-image : image_url('icons/post_love_hover@2x.png');
+        }
+      }
+
+      .delete {
+        background-image : image_url('icons/post_delete@2x.png');
+        &:hover {
+          background-image : image_url('icons/post_delete_hover@2x.png');
         }
       }
     }
@@ -460,28 +474,35 @@ a.logo{
     width : 100%;
 
     .info {
+      $border : 1px solid rgba(255, 255, 255, 0.2);
       @include border-radius(0);
+
+      width : 100%;
 
       padding-top : 10px;
 
-      display : block;
       text-align : center;
       height: 50px;
 
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: $border;
 
       a {
-        width: 49%;
-        height : 100%;
+        margin-right : -3px;
         background-size: 50px;
+        border-right : $border;
+        width : auto;
+
+        &.delete {
+          display : table-cell;
+        }
 
         &:hover {
           background-color : #000;
         }
-      }
 
-      .remix {
-        border-right: 1px solid rgba(255, 255, 255, 0.2);
+        &:last-child {
+          border-right-color : rgba(255,255,255,0);
+        }
       }
     }
   }
