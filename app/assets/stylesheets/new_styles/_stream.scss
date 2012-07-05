@@ -43,7 +43,6 @@
       &:hover {
         @include opacity(1);
         @include animation(bump-right);
-        -webkit-animation-fill-mode: forwards;
 
         left: 50px;
       }

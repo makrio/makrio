@@ -94,6 +94,9 @@ $default-border-radius: 3px;
   -webkit-animation: $name $speed $easing;
   -moz-animation: $name $speed $easing;
   -ms-animation: $name $speed $easing;
+
+  // 'sticky' animations
+  -webkit-animation-fill-mode: forwards;
 }
 
 @mixin video-overlay(){

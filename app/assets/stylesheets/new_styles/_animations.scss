@@ -59,3 +59,22 @@
     75%    { left : 48px; }
 	100%   { @include opacity(1); left : 50px; }
 }
+
+@-webkit-keyframes bump-down {
+	0%     { top : -60px; }
+	60%    { top : -5px; }
+    75%    { top : -12px; }
+	100%   { top : -10px; }
+}
+@-moz-keyframes bump-down {
+	0%     { top : -60px; }
+	60%    { top : -5px; }
+    75%    { top : -12px; }
+	100%   { top : -10px; }
+}
+@-ms-keyframes bump-down {
+	0%     { top : -60px; }
+	60%    { top : -5px; }
+    75%    { top : -12px; }
+	100%   { top : -10px; }
+}

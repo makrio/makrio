@@ -438,13 +438,31 @@ a.logo{
 }
 
 #canvas {
+  .canvas-frame {
+    overflow : hidden;
+  }
+
+  .canvas-frame:hover {
+    .stream-frame-feedback {
+      @include animation(bump-down);
+      top : -10px;
+    }
+  }
+
   .stream-frame-feedback {
-    top : 0;
+    @include transition(top);
+    @include opacity(1);
+    @include acceleration();
+
+    top : -60px;
+
     left : 0;
     width : 100%;
 
     .info {
       @include border-radius(0);
+
+      padding-top : 10px;
 
       display : block;
       text-align : center;
