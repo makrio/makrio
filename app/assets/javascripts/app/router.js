@@ -38,6 +38,7 @@ app.Router = Backbone.Router.extend({
   },
 
   staffPicks : function() {
+    app.onStaffPicks = true;
     app.instrument("track", "Staff Picks loaded")
     this.renderPage(function(){ return new app.pages.GenericCanvas()});
   },

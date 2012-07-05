@@ -74,7 +74,7 @@ app.views.Post.SmallFrame = app.views.Post.extend({
   dimensionsClass : function() {
     if(this.isNormalizedCollection() && !app.onProfilePage) { return "" }
 
-    return (this.model.get("favorite")) ? "x2 width" : ""
+    return (this.model.get("favorite")) ? "x2" : ""
   },
 
   goToPost : function(evt) {
