@@ -6,15 +6,8 @@ class HomeController < ApplicationController
   def show
     if current_user
       redirect_to stream_path
-    elsif is_mobile_device?
-      unless(File.exist?("#{Rails.root}/app/views/home/_show.mobile.erb"))
-        redirect_to user_session_path
-      else
-        render :show, :layout => 'post'
-      end
     else
-      @landing_page = true
-      render :show, :layout => 'post'
+      render :nothing => true, :layout => 'post'
     end
   end
 

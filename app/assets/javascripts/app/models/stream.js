@@ -88,6 +88,9 @@ app.models.Stream = Backbone.Collection.extend({
   },
 
   basePath : function(){
+    if(document.location.pathname == "/") {
+      return (app.currentUser.authenticated() ? "/stream" : "/staff_picks")
+    }
     return document.location.pathname;
   },
 

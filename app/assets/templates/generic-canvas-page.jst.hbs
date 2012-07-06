@@ -1,4 +1,21 @@
 <header/>
+
 <div class="container" style="margin-top:70px;">
+
+    {{#unless loggedIn}}
+        <div id="welcome" class="hero-unit">
+            <h1>Feeling creative?</h1>
+            <p>Makr.io is a place for remixing things around the web.</p>
+
+            <div class="sign-up-btns">
+                <a href="/users/auth/facebook" class="btn-large new-btn fb-btn" style="margin-right:10px;">
+                    <img src="{{imageUrl "/logos/fb_f.png"}}" class="fb-f" />
+                    Log in with Facebook
+                </a>
+                <a href="/users/sign_up" class="btn-large new-btn">Sign up with Email</a>
+            </div>
+        </div>
+    {{/unless}}
+
     <section id="canvas"/>
 </div>

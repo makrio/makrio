@@ -450,9 +450,23 @@ $bring-dark-accent-forward-color: #DDD;
   }
 }
 
-/* responsive */
-@media (max-width: 767px) {
-  body {
-    padding : 0;
- }
+#welcome {
+  @include border-radius(0);
+  position : relative;
+
+  background : none;
+  padding : {
+    left : 5px;
+    right : 5px;
+  }
+
+  margin-top : -30px;
+  margin-bottom : 0;
+  padding-bottom : 30px;
+
+  .sign-up-btns {
+    position : absolute;
+    top : 95px;
+    left : 480px;
+  }
 }

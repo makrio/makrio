@@ -1,5 +1,7 @@
 app.Router = Backbone.Router.extend({
   routes: {
+    "" : "staffPicks",
+
     //new hotness
     "stream": "newStream",
     "stream?*params": "newStream",
@@ -42,7 +44,6 @@ app.Router = Backbone.Router.extend({
     app.instrument("track", "Staff Picks loaded")
     this.renderPage(function(){ return new app.pages.GenericCanvas()});
   },
-
 
   popular : function() {
     app.instrument("track", "Popular loaded")
