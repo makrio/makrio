@@ -16,6 +16,10 @@ class Stream::StaffPicks < Stream::Base
     @posts ||= Post.all_public.staff_picked.featured_and_by_author(self.user.try(:person)).reorder('posts.staff_picked_at desc')
   end
 
+  def order
+    'staff_picked_at'
+  end
+
   def contacts_title
     I18n.translate('streams.like_stream.contacts_title')
   end
