@@ -21,6 +21,7 @@ Diaspora::Application.routes.draw do
       get :interactions
       get :remix, :action =>  'new'
       get :frame
+      get :styleguide, :action => :frame
       put :toggle_favorite
       put :toggle_featured
       put :toggle_staff_picked

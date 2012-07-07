@@ -23,6 +23,7 @@ app.Router = Backbone.Router.extend({
     "posts/:id?:params": "singlePost",
     "posts/:id": "singlePost",
     "posts/:id/frame": "singlePostFrame",
+    "posts/:id/styleguide": "styleGuide",
     "p/:id?:params": "singlePost",
     "p/:id": "singlePost",
 
@@ -34,6 +35,15 @@ app.Router = Backbone.Router.extend({
     app.router.navigate("/framer", true)
   },
 
+  styleGuide : function(id){
+    var model = new app.models.Post({ id : id })
+      , self = this;
+
+    model.preloadOrFetch()
+      .done(function(resp){
+        self.renderPage(function(){ return new app.pages.StyleGuide({model: resp}) })
+      })
+  },
   likes : function() {
     app.instrument("track", "Likes loaded")
     this.renderPage(function(){ return new app.pages.GenericCanvas()});
