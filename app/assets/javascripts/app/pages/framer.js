@@ -89,7 +89,7 @@ app.views.framerContent = app.views.Base.extend({
 
   smallFrameView : function() {
     return new app.views.Post.EditableSmallFrame({
-      model : this.model, className : 'canvas-frame x2 height width',
+      model : this.model, className : 'canvas-frame height width stream-size',
       composing : true
     })
   },

@@ -109,6 +109,12 @@
   }
 
   .preview {
+    .stream-size {
+      width: 500px;
+      .content {
+        width:500px;
+      }
+    }
     display : inline-block;
     vertical-align : top;
 
