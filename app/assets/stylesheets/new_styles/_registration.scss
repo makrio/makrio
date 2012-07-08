@@ -2,11 +2,11 @@
   position : absolute;
   top : 0;
   left : 0;
-  background-color : #afc652;
+  /*background-color : #afc652;*/
   min-height : 100%;
   min-width : 100%;
 
-  color : #fff;
+  color : #333;
 
   .container {
     margin-top : 100px;
@@ -29,7 +29,6 @@
 
   .sign-up-text {
     font-family : Roboto-Bold, Helvetica, Arial, sans-serif;
-    color : #7f9448;
     margin-bottom : 0.5em;
   }
 

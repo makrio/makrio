@@ -3,7 +3,7 @@
 
     <div class="row">
       <div class="span4" id="image-container">
-        <%= image_tag('signupimages@2x_mini.jpg', :id => "collage") %>
+        <%= image_tag('signup_imgs@2x.jpg', :id => "collage") %>
       </div>
 
       <div class="span8">
@@ -66,7 +66,13 @@
                       or
                       <%= link_to "Link an existing account", new_user_session_path %>
                     </div>
+                <% else %>
+                <br/>
+                <hr>
+                <br/>
+                <%= rad_fb_link("padding-right:164px;") %>
                 <% end %>
+
             <% end %>
           </div>
         </div>
