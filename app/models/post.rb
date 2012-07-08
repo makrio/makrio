@@ -226,17 +226,26 @@ class Post < ActiveRecord::Base
   def screenshot!
     return false if !self.persisted? || Rails.env.test?
     puts "screenshoting"
-    frame_url = AppConfig[:pod_url] + "posts/#{self.guid}/frame"
-    #maybe want to configure tmp directory,
-    file = Screencap::Fetcher.new(frame_url).fetch(:div => '.canvas-frame:first', :output => Rails.root.join('tmp', "#{self.guid}.jpg"))
-    self.screenshot.store!(file)
+    self.screenshot.store!(raw_screenshot)
     self.save!
   end
 
+  def raw_screenshot
+    Screencap::Fetcher.new(frame_url).fetch(:div => '.canvas-frame:first', :output => Rails.root.join('tmp', "#{self.guid}.jpg"))
+  end
+
   def re_screenshot!
+    puts "rescreenshoting"
     self.remove_screenshot = true
     self.save!
-    self.screenshot!
+    uploader = ScreenshotUploader.new
+    uploader.store!(raw_screenshot)
+    self.screenshot = uploader
+    self.save!
+  end
+
+  def frame_url
+    frame_url = AppConfig[:pod_url] + "posts/#{self.guid}/frame"
   end
 
   def screenshot_url
