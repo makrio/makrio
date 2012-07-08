@@ -33,7 +33,8 @@ app.views.Post.StreamFrame = app.views.Base.extend({
     return this.model.get("author").guid == app.currentUser.get("guid")
   },
 
-  toggleStaffPicked : function(){
+  toggleStaffPicked : function(evt){
+    evt && evt.preventDefault()
     this.feedbackView.toggleStaffPicked()
   },
   
