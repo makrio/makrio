@@ -160,6 +160,7 @@ app.views.framerControls = app.views.Base.extend({
   templateName : 'framer-controls',
 
   events : {
+    "click *[rel='auth-required']" : "requireAuth",
     "click input.done" : "saveFrame",
     "change input" : "setFormAttrs"
   },

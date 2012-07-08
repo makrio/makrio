@@ -70,7 +70,7 @@
                 </li>
             {{else}}
                 <li>
-                    <a href="/users/sign_in">Log In</a>
+                    <a href="/users/sign_in">Log In or Sign Up</a>
                 </li>
             {{/if}}
         </ul>
@@ -80,12 +80,12 @@
         </a>
 
 
-        {{#if loggedIn}}
             <ul class="nav" style="z-index:100;">
                 <li {{#if onLatest}}class="active"{{/if}}><a href="/stream"><i class="icon-time icon-white"></i> Latest</a></li>
                 <li {{#if onStaffPicks}}class="active"{{/if}}><a href="/staff_picks"><i class="icon-star icon-white"></i> Staff Picks</a></li>
-                <li {{#if onLikes}}class="active"{{/if}}><a href="/likes"><i class="icon-heart icon-white"></i> My Likes</a></li>
+                {{#if loggedIn}}
+                    <li {{#if onLikes}}class="active"{{/if}}><a href="/likes"><i class="icon-heart icon-white"></i> My Likes</a></li>
+                {{/if}}
             </ul>
-        {{/if}}
     </div>
 </div>

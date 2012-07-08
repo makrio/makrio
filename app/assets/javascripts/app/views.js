@@ -101,10 +101,18 @@ app.views.Base = Backbone.View.extend({
   showModalFramer : function(evt){
     evt && evt.preventDefault();
     var post_id = $(evt.target).data('remix-id')
-      , post = (post_id =='new') ? undefined : this.stream.items.get(post_id).buildRemix()
+      , post = (post_id =='new') ? undefined : (this.stream && this.stream.items.get(post_id).buildRemix()) || this.model.buildRemix()
 
     this.framer = new app.pages.InlineFramer({model : post})
     this.framer.show()
+  },
+
+ requireAuth : function(evt) {
+    if( app.currentUser.authenticated() ) { return true }
+    evt && evt.preventDefault()
+    app.router.setLocation('/users/sign_up')
+    return false;
   }
+
 });
 

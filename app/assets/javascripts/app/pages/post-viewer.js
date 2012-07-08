@@ -4,7 +4,14 @@ app.pages.PostViewer = app.views.Base.extend({
   subviews : {
     "#featured_frame" : "postView",
     "#post-nav" : "navView",
-    "#post-interactions" : "interactionsView"
+    "#post-interactions" : "interactionsView",
+    'header' : 'headerView'
+
+  },
+
+  events : {
+    "click *[data-remix-id]" : 'showModalFramer'
+
   },
 
   tooltipSelector : ".post-author",
@@ -26,6 +33,7 @@ app.pages.PostViewer = app.views.Base.extend({
        className : "canvas-frame x2 height width"
     });
 
+    this.headerView = new app.views.Header({})
     this.render();
   },
 

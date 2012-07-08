@@ -49,11 +49,5 @@ app.views.Feedback = app.views.Base.extend({
     if(confirm("u sure you want to staff pick?")){
       this.model.toggleStaffPicked()
     }
-  },
-
-  requireAuth : function(evt) {
-    if( app.currentUser.authenticated() ) { return }
-    alert("you must be logged in to do that!")
-    return false;
   }
 });

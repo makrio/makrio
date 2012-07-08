@@ -16,9 +16,11 @@ app.views.PostViewerNewComment = app.views.Base.extend({
   createComment: function(evt) {
     if(evt.keyCode == 13){
       evt.preventDefault()
-      this.model.comment(this.$("textarea").val());
-      this.render() //clear text field
-      this.scrollToBottom()
+      if(this.requireAuth(evt)){
+        this.model.comment(this.$("textarea").val());
+        this.render() //clear text field
+        this.scrollToBottom()
+      }
     }
   },
 

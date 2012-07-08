@@ -1,2 +1,4 @@
-<div class="service-selector"/>
-<input type="image" src="{{imageUrl "buttons/done_hov@2x.png"}}" class="done" />
+{{#if loggedIn}}
+  <div class="service-selector"/>
+{{/if}}
+<input type="image" rel='auth-required' src="{{imageUrl "buttons/done_hov@2x.png"}}" class="done" />
