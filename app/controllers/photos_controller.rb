@@ -9,18 +9,22 @@ class PhotosController < ApplicationController
   respond_to :html, :json
 
   def create
-    unless params[:photo].present?
-      respond_to do |format|
-        format.any{ render :json =>{'success'=> false} }
+    begin
+      unless params[:photo].present?
+        respond_to do |format|
+          format.any{ render :json =>{'success'=> false} }
+        end
       end
-    end
-    @photo = current_user.build_post(:photo, params[:photo])
-    if @photo.save
-      respond_to do |format|
-        format.any{ render :json => {"success" => true, "data" => @photo.as_api_response(:backbone)} }
+      @photo = current_user.build_post(:photo, params[:photo])
+      if @photo.save
+        respond_to do |format|
+          format.any{ render :json => {"success" => true, "data" => @photo.as_api_response(:backbone)} }
+        end
+      else
+        render :json => {'error' => @photo.errors.full_messages}, :status => 422
       end
-    else
-      render :json => {'error' => @photo.errors.full_messages}, :status => 422
+    rescue => e
+      render :json => {'error' => e.message}, :status => 422
     end
   end
 
