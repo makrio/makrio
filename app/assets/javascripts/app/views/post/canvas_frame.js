@@ -37,6 +37,7 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
 
   adjustedImageHeight : function() {
     if(!(this.model.get("photos") || [])[0]) { return }
+    if(this.model.get('frame_name') != 'Wallpaper'){return}
 
     var modifiers = [this.dimensionsClass(), this.textClasses(), this.$el.attr('class')].join(' ')
       , firstPhoto = this.model.get("photos")[0]
