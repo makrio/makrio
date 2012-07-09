@@ -37,6 +37,7 @@
             deactivate : function() {
                 jQuery(".makrio-bm-el").fadeOut(200, function(){
                     jQuery('body').attr('style', '')
+                    $(this).remove()
                     window.makrio = undefined
                 })
             },
