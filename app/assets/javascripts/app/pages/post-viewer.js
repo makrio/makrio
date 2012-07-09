@@ -5,8 +5,8 @@ app.pages.PostViewer = app.views.Base.extend({
     "#featured_frame" : "postView",
     "#post-nav" : "navView",
     "#post-interactions" : "interactionsView",
+    "#share-actions" : "shareView",
     'header' : 'headerView'
-
   },
 
   events : {
@@ -35,6 +35,10 @@ app.pages.PostViewer = app.views.Base.extend({
 
     this.headerView = new app.views.Header({})
     this.render();
+  },
+
+  shareView : function() {
+    return new app.views.ShareView({model : this.model})
   },
 
   bindEvents : function(){
