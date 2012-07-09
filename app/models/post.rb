@@ -236,12 +236,10 @@ class Post < ActiveRecord::Base
 
   def re_screenshot!
     puts "rescreenshoting"
-    self.remove_screenshot = true
+    self.remove_screenshot!
+    self.update_column(:screenshot, nil)
     self.save!
-    uploader = ScreenshotUploader.new
-    uploader.store!(raw_screenshot)
-    self.screenshot = uploader
-    self.save!
+    self.screenshot!
   end
 
   def frame_url
