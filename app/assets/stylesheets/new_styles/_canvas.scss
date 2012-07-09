@@ -39,6 +39,14 @@ a.logo{
   p {
     float: left;
     clear:both;
+    padding-bottom: 10px;
+    line-height: 1.2em;
+    color: #666;
+    font : {
+      size: 1.6em;
+      family: Roboto-Light;
+      
+    };
   }
 
   #logo-title {
