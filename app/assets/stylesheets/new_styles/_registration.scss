@@ -21,10 +21,8 @@
 
   #diaspora-hearts {
     font-family : Roboto-Light, Helvetica, Arial, sans-serif;
-    font-size : 24px;
-    margin-top : 0.2em;
-    margin-bottom : 1em;
-    white-space : nowrap;
+    font-size: 3.5em;
+    line-height: 1.5em;
   }
 
   .sign-up-text {
@@ -37,5 +35,11 @@
     height : auto;
 
     max-width : 95%;
+  }
+
+  #login-helper-links {
+    width:100%;
+    text-align: center;
+    display: inline-block;
   }
 }

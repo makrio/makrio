@@ -3,7 +3,6 @@
         <ul class="nav pull-right" style='z-index: 20;'>
 
             {{#if loggedIn}}
-
                 <li>
                     <a class='bookmarklet' data-title="<div style='text-align:left;padding:6px'>Drag the 'Remix' button to your bookmarks bar to easily remix any photo while you browse the web!</div>"
                        href='{{bookmarkletJS}}' >
@@ -70,8 +69,13 @@
                 </li>
             {{else}}
                 <li>
-                    <a href="/users/sign_in">Log In or Sign Up</a>
+                    <a href="/users/sign_in">Log In</a>
                 </li>
+
+                <li>
+                    <a href="/users/sign_up">Sign Up</a>
+                </li>
+
             {{/if}}
         </ul>
 
