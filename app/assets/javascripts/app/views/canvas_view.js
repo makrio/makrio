@@ -34,7 +34,8 @@ app.views.Canvas = app.views.InfScroll.extend({
   },
 
   addPostView : function(post) {
-    _.defer(_.bind(function(){ this.$el.isotope("insert", this.createPostView(post).render().$el) }, this))
+    var isotope = this.$el.data('isotope')
+    _.defer(_.bind(function(){ isotope && this.$el.isotope("insert", this.createPostView(post).render().$el) }, this))
   },
 
   mason : function() {
@@ -61,12 +62,16 @@ app.views.Canvas = app.views.InfScroll.extend({
     }
   },
 
+  isotopeLoaded : function(){
+    this.$el.data('isotope')
+  },
+
   triggerRelayoutAfterImagesLoaded : function(){
     //event apparently only fires once
     this.$el.imagesLoaded(_.bind(this.reLayout, this))
   },
 
   reLayout : function(){
-    this.$el.isotope("reLayout")
+    this.isotopeLoaded() && this.$el.isotope("reLayout")
   }
 });
