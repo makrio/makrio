@@ -19,10 +19,33 @@ a.logo{
   }
 }
 
+.steps {
+  background-color: #666 ;
+  width: 100%;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+.featured-title {
+  padding-left: 4px;
+}
+
 .no-post-message {
   text-align: center;
   margin-top: 50px;
   font-size: 1.2em;
+}
+
+.hero-unit{
+  p {
+    float: left;
+    clear:both;
+  }
+
+  #logo-title {
+    float:left;
+  }
+
+
 }
 
 #canvas {

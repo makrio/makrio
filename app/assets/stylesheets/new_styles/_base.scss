@@ -465,8 +465,9 @@ $bring-dark-accent-forward-color: #DDD;
   padding-bottom : 30px;
 
   .sign-up-btns {
-    position : absolute;
-    top : 95px;
-    left : 480px;
+    position:relative;
+    float: left;
+    line-height: 54px;
+    margin-left: 40px;
   }
 }
