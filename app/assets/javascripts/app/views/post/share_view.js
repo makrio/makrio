@@ -21,12 +21,13 @@ app.views.ShareView = app.views.Base.extend({
   },
 
   prepareShare : function(evt){
-    evt.preventDefault();
-    var target = $(evt.target)
-    var details = {}
-    details.permalink = encodeURIComponent(target.attr('href'))
-    details.title = encodeURIComponent(target.data('title'))
-    return details
+    evt && evt.preventDefault()
+    var link = $(evt.target).parent("a")
+
+    return {
+        permalink : encodeURIComponent(link.data('url')),
+        title : encodeURIComponent(link.data('title'))
+      }
   },
 
   facebook : function(evt){
