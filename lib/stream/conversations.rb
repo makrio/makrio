@@ -14,7 +14,7 @@ class Stream::Conversations < Stream::Base
 
   # @return [ActiveRecord::Association<Post>] AR association of posts
   def posts
-    @posts ||= Post.all_original.featured_and_by_author(@user.person)
+    @posts ||= Post.all_original.featured_and_by_author(@user.try(:person))
   end
 
   def contacts_title
