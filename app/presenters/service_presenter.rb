@@ -3,7 +3,7 @@ class ServicePresenter < BasePresenter
     @service = service
   end
 
-  def as_json
+  def as_json(opts ={})
     {
       :provider => @service.provider
     }

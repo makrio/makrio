@@ -102,7 +102,11 @@ class Post < ActiveRecord::Base
 
   def remix_siblings
     base_guid = original? ? guid : self.root_guid
-    Post.where(:root_guid => base_guid).where("posts.guid <> '#{self.guid}'").order("created_at DESC")
+    @remix_siblings ||=Post.where(:root_guid => base_guid).where("posts.guid <> '#{self.guid}'").order("created_at DESC")
+  end
+
+  def remix_authors
+    @remix_authors ||= Person.where(:id => remix_siblings.pluck(:author_id).push(self.author_id)).select("DISTINCT people.*")
   end
 
   def absolute_root
@@ -124,6 +128,10 @@ class Post < ActiveRecord::Base
     else
       self.root_guid = self.parent.root_guid
     end
+  end
+
+  def conversation_id
+    self.original? ? self.id : root.id
   end
 
   def original?

@@ -14,6 +14,8 @@ Diaspora::Application.routes.draw do
 
   resources :status_messages, :only => [:new, :create]
 
+  resources :conversations, :only => [:show]
+
   resources :posts do
     member do
       get :next

@@ -1,7 +1,7 @@
 <header/>
 
+<!--to remove-->
 <div class="container" style="margin-top:35px;">
-
     {{#unless loggedIn}}
         <div id="welcome" class="hero-unit">
             <img id='logo-title' src='{{imageUrl "landing_title@2x.jpg"}}' width="55%" />
@@ -16,14 +16,15 @@
         </div>
     {{/unless}}  
 </div>
-
-{{#unless loggedIn}} 
-<div class='steps'>
-    <div class="container image-wrap"> 
-        <img class='steps' src='{{imageUrl "landing_steps@2x_mini.jpg"}}' />
+{{#unless loggedIn}}
+    <div class='steps'>
+        <div class="container image-wrap">
+            <img class='steps' src='{{imageUrl "landing_steps@2x_mini.jpg"}}' />
+        </div>
     </div>
-</div>
-{{/unless}} 
+{{/unless}}
+<!--to remove-->
+
 <div class="container"> 
     {{#unless loggedIn}} 
        <h2 class='featured-title'>Featured Remixes <small><a href='/stream' >See what people are remixing right now!</a></small></h2>

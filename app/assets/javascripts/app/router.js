@@ -28,7 +28,9 @@ app.Router = Backbone.Router.extend({
     "p/:id": "singlePost",
 
     "posts/:id/next": "siblingPost",
-    "posts/:id/previous": "siblingPost"
+    "posts/:id/previous": "siblingPost",
+
+    "conversations/:id" : "conversation"
   },
 
   redirectToFramer : function(){
@@ -44,6 +46,12 @@ app.Router = Backbone.Router.extend({
         self.renderPage(function(){ return new app.pages.StyleGuide({model: resp}) })
       })
   },
+
+  conversation : function() {
+    app.instrument("track", "Conversation loaded")
+    this.renderPage(function(){ return new app.pages.Conversations()});
+  },
+
   likes : function() {
     app.instrument("track", "Likes loaded")
     this.renderPage(function(){ return new app.pages.GenericCanvas()});

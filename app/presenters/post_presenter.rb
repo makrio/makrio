@@ -10,8 +10,8 @@ class PostPresenter
     @person = @current_user.try(:person)
   end
 
-  def self.collection_json(collection, current_user)
-    collection.map {|post| PostPresenter.new(post, current_user)}
+  def self.collection_json(collection, current_user, opts={})
+    collection.map {|post| PostPresenter.new(post, current_user).as_json(opts)}
   end
 
   def as_json(options={})
@@ -43,7 +43,8 @@ class PostPresenter
         :previous_post => previous_post_path,
         :screenshot_url => @post.screenshot_url,
         :show_screenshot => self.show_screenshot?,
-        :interactions => PostInteractionPresenter.new(@post, current_user).as_json
+        :conversation_id => @post.conversation_id,
+        :interactions => options.fetch(:lite?, false) ? lite_interactions : heavy_interactions
     }
   end
 
@@ -53,6 +54,14 @@ class PostPresenter
 
   def previous_post_path
     Rails.application.routes.url_helpers.previous_post_path(@post)
+  end
+
+  def heavy_interactions
+    PostInteractionPresenter.new(@post, current_user).as_json
+  end
+
+  def lite_interactions
+    PostInteractionPresenter::Lite.new(@post, current_user).as_json
   end
 
   def title
