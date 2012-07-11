@@ -13,6 +13,9 @@
                 {{location}}
             </span>
         {{/if}}
+       {{#if current_user.admin}}
+            <span> {{diaspora_id}} </span>
+       {{/if}} 
 
         <!--{{#if birthday}}-->
             <!--<span class="stat">-->
