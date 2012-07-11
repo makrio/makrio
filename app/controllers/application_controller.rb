@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_git_header if (AppConfig[:git_update] && AppConfig[:git_revision])
   before_filter :set_grammatical_gender
   before_filter :tablet_device_fallback
+  before_filter :set_notifications
 
   inflection_method :grammatical_gender => :gender
 
@@ -115,5 +116,11 @@ class ApplicationController < ActionController::Base
 
   def flag
     @flag ||= FeatureFlagger.new(current_user)
+  end
+
+  def set_notifications
+    if user_signed_in? && request.format.html?
+      gon.notifications = NotificationsPresenter.as_collection(current_user.recent_notifications.where(:unread => true).limit(5))
+    end
   end
 end
