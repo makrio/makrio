@@ -36,9 +36,9 @@ gem 'twitter', '2.0.2'
 
 gem 'markerb', :git => 'git://github.com/plataformatec/markerb.git'
 gem 'airbrake'
+gem 'rails_admin'
 
 group :production do # we don't install these on travis to speed up test runs
-  gem 'rails_admin', '~> 0.0.3'
   gem 'fastercsv', '1.5.5', :require => false
   gem 'rack-ssl', :require => 'rack/ssl'
   gem 'rack-rewrite', '~> 1.2.1', :require => false

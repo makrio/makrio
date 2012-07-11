@@ -1,6 +1,6 @@
 # RailsAdmin config file. Generated on March 24, 2012 15:34
 # See github.com/sferik/rails_admin for more informations
-if Rails.env.production?
+if Rails.env.production? || true
 # Recommended way to deal with Kaminari vs. WillPaginate issues
 if defined?(WillPaginate)
   Kaminari.configure do |config|
@@ -25,7 +25,7 @@ RailsAdmin.config do |config|
   # config.audit_with :paper_trail, User
 
   # Set the admin name here (optional second array element will appear in a beautiful RailsAdmin red ©)
-  config.main_app_name = ['Diaspora', 'Admin']
+  config.main_app_name = ['makr.io', 'Admin']
   # or for a dynamic name:
   # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
 
@@ -40,10 +40,10 @@ RailsAdmin.config do |config|
 
   #  ==> Included models
   # Add all excluded models here:
-  config.excluded_models = [ActivityStreams::Photo, AspectMembership, AspectVisibility, ShareVisibility,  NotificationActor, Notifications::AlsoCommented, Notifications::CommentOnPost, Notifications::Liked, Notifications::Mentioned, Notifications::RequestAccepted, Notifications::Reshared, Notifications::StartedSharing, Reshare, Services::Facebook, Services::Tumblr, Services::Twitter,  UserPreference]
+  # config.excluded_models = [ActivityStreams::Photo, AspectMembership, AspectVisibility, ShareVisibility,  NotificationActor, Notifications::AlsoCommented, Notifications::CommentOnPost, Notifications::Liked, Notifications::Mentioned, Notifications::RequestAccepted, Notifications::Reshared, Notifications::StartedSharing, Reshare, Services::Facebook, Services::Tumblr, Services::Twitter,  UserPreference]
 
   # Add models here if you want to go 'whitelist mode':
-  # config.included_models = [AccountDeletion, ActivityStreams::Photo, ActsAsTaggableOn::Tag, Aspect, AspectMembership, AspectVisibility, Block, Comment, Contact, Conversation, ConversationVisibility, Invitation, InvitationCode, Like, Mention, Message, Notification, NotificationActor, Notifications::AlsoCommented, Notifications::CommentOnPost, Notifications::Liked, Notifications::Mentioned, Notifications::PrivateMessage, Notifications::RequestAccepted, Notifications::Reshared, Notifications::StartedSharing, OEmbedCache, Participation, Person, Photo, Pod, Post, Profile, Reshare, Service, ServiceUser, Services::Facebook, Services::Tumblr, Services::Twitter, ShareVisibility, StatusMessage, TagFollowing, User, UserPreference]
+  config.included_models = [Person, User, Post, Photo, Profile, Like]
 
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
@@ -976,11 +976,11 @@ RailsAdmin.config do |config|
   #   create do; end
   #   update do; end
   # end
-  # config.model User do
+config.model User do
   #   # Found associations:
   #     configure :invited_by, :belongs_to_association 
   #     configure :auto_follow_back_aspect, :belongs_to_association 
-  #     configure :person, :has_one_association 
+      configure :person, :has_one_association 
   #     configure :invitations_from_me, :has_many_association 
   #     configure :invitations_to_me, :has_many_association 
   #     configure :aspects, :has_many_association 
@@ -996,13 +996,13 @@ RailsAdmin.config do |config|
   #     configure :notifications, :has_many_association 
   #     configure :authorizations, :has_many_association         # Hidden 
   #     configure :applications, :has_many_association         # Hidden   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :username, :string 
+      configure :id, :integer 
+      configure :username, :string 
   #     configure :serialized_private_key, :text 
   #     configure :getting_started, :boolean 
   #     configure :disable_mail, :boolean 
   #     configure :language, :string 
-  #     configure :email, :string 
+      configure :email, :string 
   #     configure :password, :password         # Hidden 
   #     configure :password_confirmation, :password         # Hidden 
   #     configure :reset_password_token, :string         # Hidden 
@@ -1010,12 +1010,12 @@ RailsAdmin.config do |config|
   #     configure :invitation_token, :string 
   #     configure :invitation_sent_at, :datetime 
   #     configure :remember_created_at, :datetime 
-  #     configure :sign_in_count, :integer 
-  #     configure :current_sign_in_at, :datetime 
-  #     configure :last_sign_in_at, :datetime 
-  #     configure :current_sign_in_ip, :string 
-  #     configure :last_sign_in_ip, :string 
-  #     configure :created_at, :datetime 
+      configure :sign_in_count, :integer 
+      # configure :current_sign_in_at, :datetime 
+      configure :last_sign_in_at, :datetime 
+      # configure :current_sign_in_ip, :string 
+      # configure :last_sign_in_ip, :string 
+      configure :created_at, :datetime 
   #     configure :updated_at, :datetime 
   #     configure :invitation_service, :string 
   #     configure :invitation_identifier, :string 
@@ -1030,13 +1030,20 @@ RailsAdmin.config do |config|
   #     configure :auto_follow_back, :boolean 
   #     configure :auto_follow_back_aspect_id, :integer         # Hidden 
   #     configure :hidden_shareables, :serialized   #   # Sections:
-  #   list do; end
-  #   export do; end
-  #   show do; end
-  #   edit do; end
-  #   create do; end
-  #   update do; end
-  # end
+    list do; 
+      field :id
+      field :username
+      field :email
+      field :created_at
+      field :last_sign_in_at
+      field :sign_in_count
+    end
+    export do; end
+    show do; end
+    edit do; end
+    create do; end
+    update do; end
+  end
   # config.model UserPreference do
   #   # Found associations:
   #     configure :user, :belongs_to_association   #   # Found columns:
