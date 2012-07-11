@@ -3,7 +3,7 @@ class AspectPresenter < BasePresenter
     @aspect = aspect
   end
 
-  def as_json
+  def as_json(opts ={})
     { :id => @aspect.id,
       :name => @aspect.name,
     }

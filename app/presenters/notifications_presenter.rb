@@ -3,7 +3,7 @@ class NotificationsPresenter < BasePresenter
     @notification = notification
   end
 
-  def as_json
+  def as_json(opts ={})
     # we shouldn't have to do this if we have constraints!!
     return { :id => @notification.id } unless @notification.target.present?
 
