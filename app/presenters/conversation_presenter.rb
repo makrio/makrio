@@ -11,8 +11,8 @@ class ConversationPresenter < BasePresenter
         :info => self.info_json,
         :original => self.original_json,
         :remix_siblings => self.remix_siblings_json,
-        :most_liked => self.most_liked,
-        :latest => self.remix_siblings_json.last
+        :most_liked => PostPresenter.new(self.most_liked, @current_user).as_json(lite?: true),
+        :latest => PostPresenter.new(self.all_posts.last, @current_user).as_json(lite?: true)
     }
   end
 
@@ -29,7 +29,7 @@ class ConversationPresenter < BasePresenter
   end
 
   def all_posts
-    @all_posts ||= @remix_siblings.push(@post)
+    @all_posts ||= @remix_siblings.unshift(@post)
   end
 
   def post_count
