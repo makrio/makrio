@@ -432,6 +432,22 @@ $bring-dark-accent-forward-color: #DDD;
   .facebook-button {
     margin-left: 14px;
   }
+
+
+}
+
+#share-actions {
+    span {
+    position: relative;
+    input {
+      position: absolute;
+      top: -6px;
+      cursor: text;
+      font-size:smaller;
+      width:12em;
+
+    }
+  }
 }
 
 #framer-complete {
