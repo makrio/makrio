@@ -33,9 +33,10 @@ app.views.ShareView = app.views.Base.extend({
   facebook : function(evt){
     var shareDetails = this.prepareShare(evt)
 
-    var url = "https://www.facebook.com/dialog/feed?" +
+    var url = "https://www.facebook.com/sharer/sharer.php?" +
       "app_id=" + '223055781146202' +
       "&link=" + shareDetails.permalink +
+      "&u=" + shareDetails.permalink +
       "&redirect_uri=https://makr.io/done" +
       "&display=popup"
 
