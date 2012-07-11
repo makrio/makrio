@@ -30,7 +30,8 @@ app.Router = Backbone.Router.extend({
     "posts/:id/next": "siblingPost",
     "posts/:id/previous": "siblingPost",
 
-    "conversations/:id" : "conversation"
+    "conversations/:id" : "conversation",
+    "conversations": "conversations"
   },
 
   redirectToFramer : function(){
@@ -45,6 +46,11 @@ app.Router = Backbone.Router.extend({
       .done(function(resp){
         self.renderPage(function(){ return new app.pages.StyleGuide({model: resp}) })
       })
+  },
+
+  conversations : function(){
+    app.instrument("track", "Conversations index loaded")
+    this.renderPage(function(){ return new app.pages.GenericCanvas()});
   },
 
   conversation : function() {

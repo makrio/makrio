@@ -34,6 +34,7 @@ class Post < ActiveRecord::Base
   belongs_to :parent, :class_name => 'Post', :foreign_key => :parent_guid, :primary_key => :guid
   belongs_to :root, :class_name => 'Post', :foreign_key => :root_guid, :primary_key => :guid
 
+  scope :all_original, where(:parent_guid => nil)
 
   belongs_to :o_embed_cache
 

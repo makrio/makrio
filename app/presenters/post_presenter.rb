@@ -11,7 +11,7 @@ class PostPresenter
   end
 
   def self.collection_json(collection, current_user, opts={})
-    collection.map {|post| PostPresenter.new(post, current_user).as_json(opts)}
+    collection.map {|post| self.new(post, current_user).as_json(opts)}
   end
 
   def as_json(options={})
@@ -37,7 +37,6 @@ class PostPresenter
         :photos => @post.photos.map {|p| p.as_api_response(:backbone)},
         :frame_name => @post.frame_name || template_name,
         :parent => (options.fetch(:include_root, true) ? parent : nil),
-        # :absolute_root => absolute_root,
         :title => title,
         :next_post => next_post_path,
         :previous_post => previous_post_path,
