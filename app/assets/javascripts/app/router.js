@@ -50,7 +50,7 @@ app.Router = Backbone.Router.extend({
 
   conversations : function(){
     app.instrument("track", "Conversations index loaded")
-    this.renderPage(function(){ return new app.pages.GenericCanvas()});
+    this.renderPage(function(){ return new app.pages.ConversationsIndex()});
   },
 
   conversation : function() {
