@@ -30,7 +30,7 @@ app.pages.PostViewer = app.views.Base.extend({
     this.navView = new app.views.PostViewerNav({ model : this.model });
     this.postView = new app.views.Post.SmallFrame({
        model : this.model,
-       className : "canvas-frame x2 height width"
+       className : "canvas-frame x2"
     });
 
     this.headerView = new app.views.Header({})

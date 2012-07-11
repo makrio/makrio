@@ -54,7 +54,7 @@ app.views.Canvas = app.views.InfScroll.extend({
 
     function triggerIsotope(element) {
       return element.isotope({
-        itemSelector : '.canvas-frame',
+        itemSelector : '.mason',
         visibleStyle : {scale : 1},
         hiddenStyle : {scale : 0.001},
         containerStyle : {position : "relative"},

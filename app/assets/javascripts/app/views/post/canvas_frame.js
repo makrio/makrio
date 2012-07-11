@@ -4,9 +4,14 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
   SINGLE_COLUMN_WIDTH : 265,
   DOUBLE_COLUMN_WIDTH : 560,
 
+  className : "mason canvas-frame",
+
+  subviews : {
+    ".p-info" : "infoView"
+  },
+
   events : {
     "click .content" : "goToOrFavoritePost",
-    "click .stack-el" : "goToOrFavoritePost",
     "click .delete" : "killPost"
   },
 
@@ -24,6 +29,12 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
     } else {
       this.addStylingClasses()
     }
+
+  },
+
+  infoView : function() {
+    if(!this.isNormalizedCollection()) { return }
+    return new app.views.Info({model : this.model})
   },
 
   postRenderTemplate : function() {
@@ -53,15 +64,7 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
   presenter : function(){
     return _.extend(this.smallFramePresenter(), {
       adjustedImageHeight : this.adjustedImageHeight(),
-      showInfo : this.isNormalizedCollection(),
-      onProfilePage : app.onProfilePage,
-      stacks : this.stacks()
     })
-  },
-
-  stacks : function() {
-    var remixCount = this.model.interactions.get("remix_count");
-    return (remixCount > 5 ? _.range(5) : _.range(remixCount))
   },
 
   goToOrFavoritePost : function() {
