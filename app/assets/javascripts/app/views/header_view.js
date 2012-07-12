@@ -20,7 +20,7 @@ app.views.Header = app.views.Base.extend({
 
   postRenderTemplate : function() {
     this.$('.dropdown-toggle').dropdown()
-    this.$('.bookmarklet, .nav-tab li').tooltip({placement: 'bottom', delay: { show: 500, hide: 100 }});
+    this.$('.bookmarklet, .nav-tab li, .navbar-inner button').tooltip({placement: 'bottom', delay: { show: 500, hide: 100 }});
     if(app.currentUser.get("getting_started")) {
       this.showGettingStarted()
     }
