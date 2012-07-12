@@ -6,7 +6,8 @@ app.views.Feedback = app.views.Base.extend({
   events: {
     "click *[rel='auth-required']" : "requireAuth",
     "click .like" : "toggleLike",
-    "click .reshare" : "remixPost",
+    "click .reshare" : "showModalFramer",
+    "click .remix" : "showModalFramer",
     "click .comment" : "comment",
     "click .staff-pick" : "toggleStaffPicked"
   },
@@ -33,11 +34,6 @@ app.views.Feedback = app.views.Base.extend({
   toggleLike: function(evt) {
     evt && evt.preventDefault()
     this.model.interactions.toggleLike({'referrer' : 'icon_with_count'});
-  },
-
-  remixPost : function(evt) {
-    evt && evt.preventDefault()
-    app.router.navigate(this.model.url() + '/remix', {trigger : true})
   },
 
   comment : function(evt) {

@@ -3,7 +3,7 @@ app.views.Header = app.views.Base.extend({
   events : {
     "click .bookmarklet-button" : "bookmarkletInstructionsPrompt",
     "click a.notification" : "readNotificationAndNavigate",
-    "click *[data-remix-id]" : 'showModalFramer'
+    "click #composer-button" : 'showModalFramer'
   },
 
   presenter : function(){

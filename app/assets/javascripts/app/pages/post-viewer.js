@@ -9,10 +9,6 @@ app.pages.PostViewer = app.views.Base.extend({
     "#viewer-feedback" : "feedbackView"
   },
 
-  events : {
-    "click *[data-remix-id]" : 'showModalFramer'
-  },
-
   tooltipSelector : ".post-author",
 
   initialize : function(options) {

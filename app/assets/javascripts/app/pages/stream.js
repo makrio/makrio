@@ -4,7 +4,6 @@ app.pages.Stream = app.views.Base.extend({
   events : {
     "click .post-notifier" : "loadNewPosts",
     "activate .stream-frame-wrapper" : 'triggerInteractionLoad',
-    "click *[data-remix-id]" : 'showModalFramer'
   },
 
   subviews : {

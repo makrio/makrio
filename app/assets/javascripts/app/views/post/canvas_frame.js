@@ -7,6 +7,7 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
   className : "mason canvas-frame",
 
   subviews : {
+    ".stream-frame-feedback" : "feedbackView",
     ".p-info" : "infoView"
   },
 
