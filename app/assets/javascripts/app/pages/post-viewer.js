@@ -26,7 +26,7 @@ app.pages.PostViewer = app.views.Base.extend({
 
     this.postView = new app.views.Post.SmallFrame({
        model : this.model,
-       className : "canvas-frame x2"
+       className : "canvas-frame"
     });
 
     this.headerView = new app.views.Header({})
