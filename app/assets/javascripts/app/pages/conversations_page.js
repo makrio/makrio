@@ -6,7 +6,8 @@ app.pages.Conversations = app.pages.GenericCanvas.extend({
   subviews : {
     "#canvas" : "canvasView",
     "header" : "headerView",
-    '#root-frame' : 'rootFrame'
+    '#root-frame' : 'rootFrame',
+    "#share-actions" : "shareView"
   },
 
   initialize : function(){
@@ -21,6 +22,13 @@ app.pages.Conversations = app.pages.GenericCanvas.extend({
       model : this.model.original,
       className : "canvas-frame x2",
       composing : true
+    })
+  },
+
+  shareView : function() {
+    return new app.views.ShareView({
+      model : this.model,
+      title : this.model.original.get("title")
     })
   }
 });

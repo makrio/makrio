@@ -1,52 +1,47 @@
 <header/>
-<div class="container" style="margin-top: 60px;">
-
-    {{#with original}}
-        <h1>
-            {{title}}
-            <small>
-                started by <a href="/people/{{author.guid}}">{{author.name}}</a>
-            </small>
-        </h1>
-    {{/with}}
-    <br />
-
+<div class="container" style="margin-top: 80px;">
     <div class="conversation-original" style="margin-left:5px;">
         <div id="root-frame"/>
     </div>
 
     <div id="conversation-info" class="canvas-frame x2" style="margin-left:10px;">
-        <div class="content">
-            <div class="text-content">
+        <div class="content" style="padding:10px; width:540px;">
+            {{#with original}}
+                <h1>
+                    {{title}}
+                </h1>
+                <h4>
+                    Conversation started by <a href="/people/{{author.guid}}">{{author.name}}</a>
+                </h4>
+            {{/with}}
+            <hr />
+
+            <div class="info-row">
                 <h1>{{info.post_count}} <small>Remixes</small></h1>
-                <h6>Created <time class="timeago" datetime="{{info.created}}"/></h6>
 
-                actions
-
-                love | remix | (follow)
-
-                invite
-                share
-                top poster
-
-                most loved post
+                <a href="/posts/{{original.id}}/remix" id="cnv_rmx_btn" data-remix-id="{{original.id}}" class="btn new-btn btn-large">New Remix</a>
             </div>
-        </div>
-    </div>
 
-    <div id="conversation-participants" class="canvas-frame" style="margin-top:10px; margin-left:10px;">
-        <div class="content" style="min-height:0;">
-            <div class="text-content">
-                <h1>{{info.likes_count}} <small>Likes</small></h1>
-            </div>
-        </div>
-    </div>
+            {{#with info}}
+                <div class="info-row">
+                    <h1>{{participants_count}} <small>Makrs</small></h1>
 
-    <div id="conversation-likes" class="canvas-frame" style="margin-left:10px; margin-top:10px;">
-        <div class="content" style="min-height:0;">
-            <div class="text-content">
-                <h1>{{info.participants_count}} <small>Makrs</small></h1>
-            </div>
+                    {{#each participants}}
+                        {{{personImage this "small"}}}
+                    {{/each}}
+                </div>
+
+                <div class="info-row">
+                    <h1>{{likes_count}} <small>Likes</small></h1>
+
+                    {{#each people_liked}}
+                        {{{personImage this "small"}}}
+                    {{/each}}
+                </div>
+            {{/with}}
+
+            <hr />
+            <div id="share-actions"/>
         </div>
     </div>
 

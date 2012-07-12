@@ -27,7 +27,6 @@ class Post < ActiveRecord::Base
   has_many :remixes, :class_name => "Post", :foreign_key => :parent_guid, :primary_key => :guid
   has_many :remixers, :class_name => 'Person', :through => :reshares, :source => :author
 
-
   has_many :photo_postings, :foreign_key => :post_id
   has_many :photos, :through => :photo_postings, :dependent => :destroy
 
@@ -103,7 +102,7 @@ class Post < ActiveRecord::Base
 
   def remix_siblings
     base_guid = original? ? guid : self.root_guid
-    @remix_siblings ||=Post.where(:root_guid => base_guid).where("posts.guid <> '#{self.guid}'").order("created_at DESC")
+    @remix_siblings ||= Post.where(:root_guid => base_guid).where("posts.guid <> '#{self.guid}'").order("created_at DESC")
   end
 
   def remix_authors

@@ -8,10 +8,22 @@ app.views.ShareView = app.views.Base.extend({
 
   presenter : function() {
     return _.extend(this.defaultPresenter(),{
-      url : window.location.origin + '/p/' + this.model.get('id'),
+      url : this.url(),
       title : this.model.get('title'),
       screenshotUrl : this.model.get('screenshot_url')
     })
+  },
+
+  initialize : function(options) {
+    this.model = options.model
+    this.title = options.title
+  },
+
+  url : function() {
+    var root = window.location.origin
+      , path = this.model.url().replace("posts", "p")
+
+    return root + path
   },
 
   tweet : function(evt){
@@ -26,7 +38,7 @@ app.views.ShareView = app.views.Base.extend({
 
     return {
         permalink : encodeURIComponent(link.data('url')),
-        title : encodeURIComponent(link.data('title'))
+        title : encodeURIComponent(this.title || link.data('title'))
       }
   },
 
