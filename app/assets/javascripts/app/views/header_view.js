@@ -6,6 +6,7 @@ app.views.Header = app.views.Base.extend({
     "click #composer-button" : 'showModalFramer'
   },
 
+
   presenter : function(){
     return _.extend(this.defaultPresenter(), {
       notifications : this.notifications(),
@@ -19,7 +20,7 @@ app.views.Header = app.views.Base.extend({
 
   postRenderTemplate : function() {
     this.$('.dropdown-toggle').dropdown()
-    this.$('.bookmarklet').tooltip({placement: 'bottom'});
+    this.$('.bookmarklet, .nav-tab li').tooltip({placement: 'bottom', delay: { show: 500, hide: 100 }});
     if(app.currentUser.get("getting_started")) {
       this.showGettingStarted()
     }
