@@ -6,7 +6,6 @@ app.views.Header = app.views.Base.extend({
     "click #composer-button" : 'showModalFramer'
   },
 
-
   presenter : function(){
     return _.extend(this.defaultPresenter(), {
       notifications : this.notifications(),
@@ -21,9 +20,6 @@ app.views.Header = app.views.Base.extend({
   postRenderTemplate : function() {
     this.$('.dropdown-toggle').dropdown()
     this.$('.bookmarklet, .nav-tab li, .navbar-inner button').tooltip({placement: 'bottom', delay: { show: 500, hide: 100 }});
-    if(app.currentUser.get("getting_started")) {
-      this.showGettingStarted()
-    }
   },
 
   bookmarkletInstructionsPrompt : function(evt) {
@@ -47,12 +43,6 @@ app.views.Header = app.views.Base.extend({
 
   notifications : function() {
     return window.preloads && window.preloads.notifications
-  },
-
-  showGettingStarted : function() {
-    var gettingStartedView = new app.views.GettingStarted()
-    $("body").addClass('lock')
-      .prepend(gettingStartedView.render().el)
   },
 
   readNotificationAndNavigate : function(evt) {

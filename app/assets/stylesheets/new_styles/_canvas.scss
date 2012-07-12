@@ -52,8 +52,6 @@ a.logo{
   #logo-title {
     float:left;
   }
-
-
 }
 
 #canvas {
@@ -71,18 +69,12 @@ a.logo{
       }
     }
 
-    @include box-shadow(0,1px,1px,rgba(0, 0, 0, 0.1));
     cursor : pointer;
   }
 }
 
 .canvas-frame {
   position : relative;
-
-  &:not(.normalized) {
-    @include box-shadow(0,2px,5px,rgba(0,0,0,.5));
-  }
-
   background-color : #fff;
 
   /* larger declarations */

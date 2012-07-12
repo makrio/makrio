@@ -86,13 +86,12 @@
             <img src="{{imageUrl "makr_home_logo@2x.png"}}" height=26 width=118 />
         </a>
 
-
-            <ul class="nav nav-tab" style="z-index:100;">
-                <li {{#if onLatest}}class="active"{{/if}} data-title='All Posts on Makr.io'><a href="/stream"><i class="icon-time icon-white"></i> Latest</a></li>
-                <li {{#if onStaffPicks}}class="active"{{/if}} data-title="The Makr.io staff's favorite remixes"><a href="/staff_picks"><i class="icon-star icon-white"></i> Staff Picks</a></li>
-                {{#if loggedIn}}
-                    <li {{#if onLikes}}class="active"{{/if}} data-title='All Posts you have liked'><a href="/likes"><i class="icon-heart icon-white"></i> My Likes</a></li>
-                {{/if}}
-            </ul>
+        <ul class="nav nav-tab" style="z-index:100;">
+            <li {{#if onLatest}}class="active"{{/if}} data-title='All Posts on Makr.io'><a href="/stream"><i class="icon-time icon-white"></i> Public</a></li>
+            <li {{#if onStaffPicks}}class="active"{{/if}} data-title="The Makr.io staff's favorite remixes"><a href="/staff_picks"><i class="icon-star icon-white"></i> Staff Picks</a></li>
+            {{#if loggedIn}}
+                <li {{#if onLikes}}class="active"{{/if}} data-title='All Posts you have liked'><a href="/likes"><i class="icon-heart icon-white"></i> My Likes</a></li>
+            {{/if}}
+        </ul>
     </div>
 </div>
