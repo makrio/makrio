@@ -36,7 +36,7 @@ class PostPresenter
         :mentioned_people => [],#@post.mentioned_people.as_api_response(:backbone),
         :photos => @post.photos.map {|p| p.as_api_response(:backbone)},
         :frame_name => @post.frame_name || template_name,
-        :parent => (options.fetch(:include_root, true) ? parent(opts) : nil),
+        :parent => (options.fetch(:include_root, true) ? parent(options) : nil),
         :title => title,
         :next_post => next_post_path,
         :previous_post => previous_post_path,
