@@ -33,8 +33,10 @@
             <div class="span5">
 
         <div id="viewer-info">
-            <h2>{{title}} <small> <a href='/conversations/{{conversation_id}}' class= 'btn new-btn'>View the conversation</a></small></h2>
-            <h3>by <a href="/people/{{author.guid}}">{{author.name}}</a></h3>
+            <h2 id="post-title">{{title}}</h2>
+            <h4>by <a href="/people/{{author.guid}}">{{author.name}}</a></h4>
+            <br/>
+            <a href='/conversations/{{conversation_id}}' class= 'btn new-btn'>View the conversation</a>
             <hr/>
 
             <h3>Got a response?</h3>
