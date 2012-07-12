@@ -62,7 +62,6 @@ app.views.Base = Backbone.View.extend({
   },
 
   renderPluginWidgets : function() {
-    console.log(this.tooltipSelector)
     this.$(this.tooltipSelector).tooltip();
     this.$("time").timeago();
   },
