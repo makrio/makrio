@@ -310,3 +310,19 @@
     background-position : center;
   }
 }
+
+#conversations {
+  $height : 350px;
+
+  .frame {
+    max-height : $height;
+    max-width : $height;
+    display : inline-block;
+  }
+
+  .conversation-frame {
+    height : $height;
+    background-color : #fff;
+    margin-bottom : 30px;
+  }
+}

@@ -1,6 +1,7 @@
 app.views.Post.ConversationFrame = app.views.Base.extend({
 
-  className : 'mason',
+  className : "conversation-frame",
+  templateName : 'conversation-frame',
 
   subviews : {
     '.frame' : 'smallFrameView'
@@ -9,8 +10,6 @@ app.views.Post.ConversationFrame = app.views.Base.extend({
   events : {
     "click .frame" : "goToCollection"
   },
-
-  templateName : 'conversation-frame',
 
   initialize : function() {
     this.conversation = new app.models.Conversation(this.model.get("conversation"))
