@@ -36,7 +36,7 @@ class PostPresenter
         :mentioned_people => [],#@post.mentioned_people.as_api_response(:backbone),
         :photos => @post.photos.map {|p| p.as_api_response(:backbone)},
         :frame_name => @post.frame_name || template_name,
-        :parent => (options.fetch(:include_root, true) ? parent : nil),
+        :parent => (options.fetch(:include_root, true) ? parent(opts) : nil),
         :title => title,
         :next_post => next_post_path,
         :previous_post => previous_post_path,
@@ -71,8 +71,8 @@ class PostPresenter
     @template_name ||= TemplatePicker.new(@post).template_name
   end
 
-  def parent
-    PostPresenter.new(@post.parent, current_user).as_json(:include_root => false) if @post.respond_to?(:parent) && @post.parent.present?
+  def parent(opts={})
+    PostPresenter.new(@post.parent, current_user).as_json({:include_root => false}.merge(opts)) if @post.respond_to?(:parent) && @post.parent.present?
   end
 
   def show_screenshot?

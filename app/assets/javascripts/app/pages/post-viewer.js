@@ -4,14 +4,13 @@ app.pages.PostViewer = app.views.Base.extend({
   subviews : {
     "#featured_frame" : "postView",
     "#post-nav" : "navView",
-    "#post-interactions" : "interactionsView",
     "#share-actions" : "shareView",
-    'header' : 'headerView'
+    'header' : 'headerView',
+    "#viewer-feedback" : "feedbackView"
   },
 
   events : {
     "click *[data-remix-id]" : 'showModalFramer'
-
   },
 
   tooltipSelector : ".post-author",
@@ -19,15 +18,16 @@ app.pages.PostViewer = app.views.Base.extend({
   initialize : function(options) {
     this.model = new app.models.Post({ id : options.id });
     this.model.preloadOrFetch().done(_.bind(this.initViews, this));
-    this.model.interactions.fetch() //async, yo, might want to throttle this later.
+    this.model.interactions.fetch()
 
     this.bindEvents()
   },
 
   initViews : function() {
     /* init view */
-    this.interactionsView = new app.views.PostViewerInteractions({ model : this.model });
     this.navView = new app.views.PostViewerNav({ model : this.model });
+    this.feedbackView = new app.views.ViewerFeedbackActions({model : this.model})
+
     this.postView = new app.views.Post.SmallFrame({
        model : this.model,
        className : "canvas-frame x2"

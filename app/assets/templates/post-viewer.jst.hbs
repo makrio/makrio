@@ -1,62 +1,65 @@
-<header></header>
+<header/>
 <div id="post-content">
     <div id="info_row">
-        {{#if parent}}
-            {{#with parent}}
-                <div class="original-frame">
-                    {{#linkToPerson author}}
+        <div class="container">
+        <div class="row">
+
+
+        <div class="span6" style="text-align:center;">
+
+            {{#if parent}}
+                {{#with parent}}
+                    <div class="original-frame">
+                        {{#linkToPerson author}}
                         <div class="profile-image-container micro post-author" style="background-image : url('{{avatar.small}}');" title="{{name}}" data-placement="right"></div>
-                    {{/linkToPerson}}
-                    <a href="/p/{{id}}">
-                        <img src="{{screenshot_url}}" class="frame" />
-                    </a>
-                </div>
-            {{/with}}
-
-            <i class="icon-random icon-grey divider"></i>
-        {{/if}}
-
-        <div class="current-frame">
-            {{#linkToPerson author}}
-                <div class="profile-image-container small post-author" style="background-image : url('{{avatar.small}}');" title="{{name}}" data-placement="right"></div>
-            {{/linkToPerson}}
-
-            <div id="featured_frame" class="frame"> </div>
-            <div id="share-actions"></div>
-        </div>
-
-        {{#if interactions.remixes}}
-            <div class="remix-frame-section">
+                        {{/linkToPerson}}
+                        <a href="/p/{{id}}">
+                            <img src="{{screenshot_url}}" class="frame" />
+                        </a>
+                    </div>
+                {{/with}}
 
                 <i class="icon-random icon-grey divider"></i>
+            {{/if}}
 
-                {{#each interactions.remixes}}
-                    {{#if screenshot_url}}
-                        <div class="remix-frame">
-                            {{#linkToPerson author}}
-                                <div class="profile-image-container micro post-author" style="background-image : url('{{avatar.small}}');" title="{{name}}" data-placement="right"></div>
-                            {{/linkToPerson}}
-                            <a href='/p/{{id}}'>
-                                <img src='{{screenshot_url}}' class="frame" />
-                            </a>
-                        </div>
-                    {{/if}}
-                {{/each}}
+            <div class="current-frame">
+                {{#linkToPerson author}}
+                    <div class="profile-image-container small post-author" style="background-image : url('{{avatar.small}}');" title="{{name}}" data-placement="right"></div>
+                {{/linkToPerson}}
+
+                <div id="featured_frame" class="frame"> </div>
             </div>
-        {{/if}}
+        </div>
+            <div class="span6">
 
+        <div id="viewer-info">
+            <h2>{{title}}</h2>
+            <h3>by <a href="/people/{{author.guid}}">{{author.name}}</a></h3>
+            <hr/>
+
+            <h3>Got a response?</h3>
+            <h4>Try remixing or liking {{author.nickname}}'s post!</h4>
+
+            <div id="viewer-feedback"/>
+
+            <hr/>
+            <h4>Sharing is caring</h4>
+
+            <div id="share-actions"></div>
+    </div>
+            </div>
+        </div>
+
+        <div id="conversation"/>
+    </div>
     </div>
 </div>
-
-<div id="post-interactions"> </div>
 
 {{#unless current_user.guid}}
     <div id="sign_up_prompt">
         <div class="container">
-            <img src='{{imageUrl "logos/large@2x.png"}}' height='35px' class='banner-logo'/>
-
             <div class="tagline">
-                Remix is the highest form of flattery.
+                Makr.io is the place for remixing things around the web.
             </div>
 
             <a href ="/posts/{{id}}/remix" id="sign_up_button" class="new-btn" data-type="show_page">

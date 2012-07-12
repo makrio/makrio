@@ -5,23 +5,20 @@
   height: 100%;
   width: 100%;
 
-  overflow-x : hidden;
-
   top : 0;
   left : 0;
-  padding-top: 60px;
 
-  .logo {
-    position : absolute;
-    top : 10px;
-    left : 10px;
+  #featured_frame {
+    @include box-shadow(0,0,0,0);
   }
 
   #info_row {
-    display : table-cell;
-    vertical-align : middle;
+    position : absolute;
+    height : 100%;
+    width : 100%;
+
     text-align : center;
-    margin : 20px 0;
+    margin : 80px 0;
   }
 
   .remix-frame,
@@ -44,8 +41,16 @@
 
   .current-frame {
     @include wide();
+    width : 500px;
+    max-height : 600px !important;
+    max-width : 100%;
+
     vertical-align : middle;
     z-index: 0;
+
+    .stream-frame-feedback {
+      display : none;
+    }
 
     .content {
       width : 100%;
@@ -56,7 +61,6 @@
     margin : 0 20px;
   }
 
-  .remix-frame,
   .original-frame {
     @include transition(all);
     @include opacity(.5);
@@ -78,33 +82,47 @@
     }
   }
 
-  .remix-frame-section {
-    width : 700px;
-    margin-right : -710px;
-    display : inline-block;
-    white-space : nowrap;
-    vertical-align : middle;
-    text-align : left;
-  }
-
-  .remix-frame {
-    margin-right : 20px;
-
-    .author-name {
-      right : auto;
-      left : -7px;
-    }
-  }
-
   .original-frame {
     margin-left : -270px;
   }
 
-  .canvas-frame {
-    max-height : 100%;
+  #viewer-info {
+    text-align : left;
+  }
+}
 
-    .content {
-      pointer : default !important;
+#viewer-feedback {
+  margin : 20px 0;
+  a {
+    margin-right : 15px;
+  }
+
+  .reshare,
+  .like {
+    display : inline-block;
+    height : 84px;
+    width : 80px;
+
+    background : {
+      size : 80px;
+      repeat : no-repeat;
+      position : center;
+    }
+  }
+
+  .reshare {
+    background-image : image_url('icons/sp_re@2x.jpg');
+    &:hover {
+      background-image : image_url('icons/sp_re_hov@2x.jpg');
+    }
+  }
+
+  .like {
+    background-image : image_url('icons/sp_like@2x.jpg');
+
+    &.liked,
+    &:hover {
+      background-image : image_url('icons/sp_like_hov@2x.jpg');
     }
   }
 }

@@ -292,6 +292,7 @@ $bring-dark-accent-forward-color: #DDD;
   bottom : 0;
   left : 0;
   width : 100%;
+  height : 26px;
 
   background-color : rgb(246, 50, 53);
 
@@ -310,11 +311,6 @@ $bring-dark-accent-forward-color: #DDD;
     }
     color : #fff;
   }
-  .banner-logo {
-    position: relative;
-    top: -10px;
-    margin-right: -18px;
-  }
 
   .new-btn {
     padding : 8px 20px;
@@ -331,12 +327,12 @@ $bring-dark-accent-forward-color: #DDD;
 
   .tagline {
     position : relative;
-    top : -4px;
+    top : -3px;
     padding : 0 10px;
     padding-right : 17px;
-    font-family : Roboto-Bold;
-    color : rgba(0,0,0,0.6);
-    font-size : 14px;
+    font-family : Roboto;
+    color : #fff;
+    font-size : 20px;
   }
 }
 
