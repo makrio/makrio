@@ -17,10 +17,12 @@ app.views.Base = Backbone.View.extend({
 
   defaultPresenter : function(){
     var modelJson = this.model && this.model.attributes ? _.clone(this.model.attributes) : {}
+    var modelURL  = this.model && this.model.url()
 
     return _.extend(modelJson, {
       current_user : app.currentUser.attributes,
-      loggedIn : app.currentUser.authenticated()
+      loggedIn : app.currentUser.authenticated(),
+      url : modelURL
     });
   },
 
@@ -60,6 +62,7 @@ app.views.Base = Backbone.View.extend({
   },
 
   renderPluginWidgets : function() {
+    console.log(this.tooltipSelector)
     this.$(this.tooltipSelector).tooltip();
     this.$("time").timeago();
   },
