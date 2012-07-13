@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   has_many :invitations_to_me, :class_name => 'Invitation', :foreign_key => :recipient_id
   has_many :aspects, :order => 'order_id ASC'
 
-  belongs_to  :auto_follow_back_aspect, :class_name => 'Aspect'
+  belongs_to :auto_follow_back_aspect, :class_name => 'Aspect'
   belongs_to :invited_by, :class_name => 'User'
 
   has_many :aspect_memberships, :through => :aspects

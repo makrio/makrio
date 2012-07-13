@@ -467,3 +467,14 @@ $bring-dark-accent-forward-color: #DDD;
     margin-left: 40px;
   }
 }
+
+#peekaboo {
+  @include transition(bottom);
+  position : fixed;
+  bottom : -250px;
+  right : 50px;
+
+  &.peek {
+    @include animation(peekaboo, 3s)
+  }
+}

@@ -78,3 +78,10 @@
     75%    { top : -12px; }
 	100%   { top : -10px; }
 }
+
+@-webkit-keyframes peekaboo {
+	0%     { bottom : -250px; }
+	20%    { bottom : 0; }
+	80%    { bottom : 0; }
+	100%   { bottom : -250px; }
+}

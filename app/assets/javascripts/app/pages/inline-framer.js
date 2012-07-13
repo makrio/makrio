@@ -27,6 +27,11 @@ app.pages.InlineFramer = app.views.Base.extend({
   },
 
   teardown :function(){
+    // nick cage
+    $("#nick-cage")[0].play()
+    $("#peekaboo").addClass("peek")
+    setTimeout("$('#peekaboo').removeClass('peek')", 5000);
+
     $.facebox.close()
     var flash = new Diaspora.Widgets.FlashMessages;
     flash.render({

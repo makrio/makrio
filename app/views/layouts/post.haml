@@ -34,7 +34,6 @@
     - else
       = stylesheet_link_tag :default, 'roboto', 'new-templates', :media => 'all'
 
-
     - if rtl?
       = stylesheet_link_tag :rtl, :media => 'all'
 
@@ -67,6 +66,10 @@
     = include_gon(:camel_case => true, :namespace => :preloads)
 
   %body
+    -#nick cage
+    %audio{:id => "nick-cage", :src => "/audio/cage.mp3", :preload => "auto"}
+    = image_tag "cage.png", :id => "peekaboo"
+
     = flash_messages
     #container
     = yield
