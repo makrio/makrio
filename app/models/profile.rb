@@ -177,9 +177,6 @@ class Profile < ActiveRecord::Base
     self.save
   end
 
-  def nickname
-    self.person.name.split.first
-  end
 
   protected
   def strip_names

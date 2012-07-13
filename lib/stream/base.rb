@@ -36,9 +36,7 @@ class Stream::Base
 
   # @return [Array<Post>]
   def stream_posts
-    self.posts.for_a_stream(max_time, order, self.user).tap do |posts|
-      like_posts_for_stream!(posts) #some sql person could probably do this with joins.
-    end
+    self.posts.for_a_stream(max_time, order, self.user)
   end
 
   # @return [ActiveRecord::Association<Person>] AR association of people within stream's given aspects

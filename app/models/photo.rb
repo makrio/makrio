@@ -14,7 +14,7 @@ class Photo < ActiveRecord::Base
     t.add :id
     t.add :guid
     t.add :created_at
-    t.add :author
+    # t.add :author
     t.add lambda { |photo|
       { :small => photo.url(:thumb_small),
         :medium => photo.url(:thumb_medium),

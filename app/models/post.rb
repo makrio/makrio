@@ -45,7 +45,7 @@ class Post < ActiveRecord::Base
 
   mount_uploader :screenshot, ScreenshotUploader
   #scopes
-  scope :includes_for_a_stream, includes(:o_embed_cache, {:author => :profile}, :photos) #note should include root and photos, but i think those are both on status_message
+  scope :includes_for_a_stream, includes(:o_embed_cache, {:author => :profile}, :photos, :parent, :root) #note should include root and photos, but i think those are both on status_message
 
 
   scope :commented_by, lambda { |person|

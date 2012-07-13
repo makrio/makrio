@@ -38,6 +38,10 @@ class Person < ActiveRecord::Base
 
   before_validation :downcase_diaspora_handle
 
+  def nickname
+    name.split.first
+  end
+  
   def downcase_diaspora_handle
     diaspora_handle.downcase! unless diaspora_handle.blank?
   end
