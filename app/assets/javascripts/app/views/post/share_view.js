@@ -26,26 +26,31 @@ app.views.ShareView = app.views.Base.extend({
     return root + path
   },
 
-  tweet : function(evt){
-    var shareDetails = this.prepareShare(evt)
-    var url = 'https://twitter.com/intent/tweet?text=' + shareDetails.title + "&via=makrioapp" + "&url=" + shareDetails.permalink
-    this.launchWindow(url)
-  },
-
   prepareShare : function(evt){
     evt && evt.preventDefault()
     var link = $(evt.target).parent("a")
 
     return {
-        permalink : encodeURIComponent(link.data('url')),
-        title : encodeURIComponent(this.title || link.data('title'))
-      }
+      permalink : encodeURIComponent(link.data('url')),
+      title : encodeURIComponent(this.title || link.data('title'))
+    }
+  },
+
+  tweet : function(evt){
+    evt && evt.preventDefault()
+    app.instrument("track", "Share", {Service : "Twitter"})
+
+    var shareDetails = this.prepareShare(evt)
+      , url = 'https://twitter.com/intent/tweet?text=' + shareDetails.title + "&via=makrioapp" + "&url=" + shareDetails.permalink
+    this.launchWindow(url)
   },
 
   facebook : function(evt){
-    var shareDetails = this.prepareShare(evt)
+    evt && evt.preventDefault()
+    app.instrument("track", "Share", {Service : "Facebook"})
 
-    var url = "https://www.facebook.com/sharer/sharer.php?" +
+    var shareDetails = this.prepareShare(evt)
+      , url = "https://www.facebook.com/sharer/sharer.php?" +
       "app_id=" + '223055781146202' +
       "&link=" + shareDetails.permalink +
       "&u=" + shareDetails.permalink +
@@ -57,6 +62,7 @@ app.views.ShareView = app.views.Base.extend({
 
   tumblr : function(evt) {
     evt && evt.preventDefault()
+    app.instrument("track", "Share", {Service : "Tumblr"})
 
     var remixUrl = "https://makr.io/posts/" + this.model.id + "/remix"
       , caption = "made on <a href='https://www.makr.io'>makr.io</a> | <a href='" + remixUrl + "'>remix this</a>"
