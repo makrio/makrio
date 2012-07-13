@@ -43,6 +43,7 @@ class PostPresenter
         :screenshot_url => @post.screenshot_url,
         :show_screenshot => self.show_screenshot?,
         :conversation_id => @post.conversation_id,
+        :conversation_name => self.conversation_title,
         :interactions => options.fetch(:lite?, false) ? lite_interactions : heavy_interactions
     }
   end
@@ -65,6 +66,14 @@ class PostPresenter
 
   def title
     @post.text.present? ? truncate(@post.plain_text, :length => 118) : I18n.translate('posts.presenter.title', :name => @post.author.name)
+  end
+
+  def conversation_title
+    if @post.original?
+      title
+    else
+      PostPresenter.new(@post.parent, @current_user).title
+    end
   end
 
   def template_name #kill me, lol, I should be client side

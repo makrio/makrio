@@ -7,7 +7,7 @@ require Rails.root.join("app", "presenters", "post_presenter")
 class PostsController < ApplicationController
   include PostsHelper
   
-  before_filter :authenticate_user!, :except => [:show, :frame, :iframe, :screenshot, :oembed, :interactions]
+  before_filter :authenticate_user!, :except => [:show, :frame, :iframe, :screenshot, :oembed, :interactions, :next, :previous]
   before_filter :set_format_if_malformed_from_status_net, :only => :show
   before_filter :find_post, :only => [:show, :screenshot, :frame, :next, :previous, :interactions, :toggle_featured, :toggle_staff_picked]
 

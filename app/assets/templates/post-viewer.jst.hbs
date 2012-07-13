@@ -49,11 +49,15 @@
                 </div>
             </div>
 
+            <div class="clearfix"/>
 
+            <div class="row">
+                <div class="span12" style="margin-top: 100px; border-top:1px solid #ccc;">
+                    <h3 style="text-align: left; padding: 20px 0;">More remixes from conversation <a href="#">{{conversation_name}}</a></h3>
+                    <div id="canvas"/>
+                </div>
+            </div>
         </div>
-
-        <div class="clearfix"/>
-        <div id="canvas"/>
     </div>
 </div>
 
@@ -61,11 +65,11 @@
     <div id="sign_up_prompt">
         <div class="container">
             <div class="tagline">
-                Makr.io is the place for remixing things around the web.
+                {{author.nickname}} uses Makr.io to remix content around the web.
             </div>
 
             <a href ="/posts/{{id}}/remix" id="sign_up_button" class="new-btn" data-type="show_page">
-                Remix {{author.name}}'s post Now!
+                Remix {{author.nickname}}'s post Now!
             </a>
         </div>
     </div>
