@@ -21,8 +21,8 @@ class StreamsController < ApplicationController
 
   def conversations
     stream_responder do
-      stream = Stream::Conversations.new(current_user, :max_time => max_time)
-      @stream_json = PostConversationPresenter.collection_json(stream.stream_posts, current_user)
+      @stream = Stream::Conversations.new(current_user, :max_time => max_time)
+      @stream_json = PostConversationPresenter.collection_json(@stream.stream_posts, current_user)
     end
   end
 
@@ -54,8 +54,8 @@ class StreamsController < ApplicationController
   private
 
   def default_stream(stream_klass)
-    stream = stream_klass.new(current_user, :max_time => max_time)
-    @stream_json = PostPresenter.collection_json(stream.stream_posts, current_user)
+    @stream = stream_klass.new(current_user, :max_time => max_time)
+    @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user)
   end
 
   def stream_responder(&block)
