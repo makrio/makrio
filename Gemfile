@@ -19,7 +19,8 @@ gem 'rack-cors', '~> 0.2.4', :require => 'rack/cors'
 
 
 #search
-gem 'texticle', '~> 2.0', :require => 'texticle/rails'
+# gem 'texticle', '~> 2.0', :require => 'texticle/rails'
+gem 'pg_search'
 
 # authentication
 

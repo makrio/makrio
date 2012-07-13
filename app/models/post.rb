@@ -43,6 +43,9 @@ class Post < ActiveRecord::Base
     self.touch(:interacted_at)
   end
 
+  include PgSearch
+  pg_search_scope :search_by_text, :against => :text
+
   mount_uploader :screenshot, ScreenshotUploader
   #scopes
   scope :includes_for_a_stream, includes(:o_embed_cache, {:author => :profile}, :photos, :parent, :root) #note should include root and photos, but i think those are both on status_message
