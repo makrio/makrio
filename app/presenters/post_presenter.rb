@@ -72,7 +72,7 @@ class PostPresenter
     if @post.original?
       title
     else
-      PostPresenter.new(@post.parent, @current_user).title
+      PostPresenter.new(@post.root, @current_user).title
     end
   end
 
