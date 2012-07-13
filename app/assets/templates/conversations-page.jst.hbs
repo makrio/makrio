@@ -27,7 +27,9 @@
                     <h1>{{participants_count}} <small>Makrs</small></h1>
 
                     {{#each participants}}
-                        {{{personImage this "small"}}}
+                        {{#linkToPerson this}}
+                            {{{personImage this "small"}}}
+                        {{/linkToPerson}}
                     {{/each}}
                 </div>
 
@@ -35,7 +37,9 @@
                     <h1>{{likes_count}} <small>Likes</small></h1>
 
                     {{#each people_liked}}
-                        {{{personImage this "small"}}}
+                        {{#linkToPerson this}}
+                            {{{personImage this "small"}}}
+                        {{/linkToPerson}}
                     {{/each}}
                 </div>
             {{/with}}
