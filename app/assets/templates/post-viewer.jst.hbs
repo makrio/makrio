@@ -2,57 +2,58 @@
 <div id="post-content">
     <div id="info_row">
         <div class="container">
-        <div class="row">
+            <div class="row">
+                <div class="span5 offset1" style="text-align:center;">
 
+                    {{#if parent}}
+                        {{#with parent}}
+                            <div class="original-frame">
+                                {{#linkToPerson author}}
+                                <div class="profile-image-container micro post-author" style="background-image : url('{{avatar.small}}');" title="{{name}}" data-placement="right"></div>
+                                {{/linkToPerson}}
+                                <a href="/p/{{id}}">
+                                    <img src="{{screenshot_url}}" class="frame" />
+                                </a>
+                            </div>
+                        {{/with}}
 
-        <div class="span5 offset1" style="text-align:center;">
+                        <i class="icon-random icon-grey divider"></i>
+                    {{/if}}
 
-            {{#if parent}}
-                {{#with parent}}
-                    <div class="original-frame">
+                    <div class="current-frame">
                         {{#linkToPerson author}}
-                        <div class="profile-image-container micro post-author" style="background-image : url('{{avatar.small}}');" title="{{name}}" data-placement="right"></div>
+                            <div class="profile-image-container small post-author" style="background-image : url('{{avatar.small}}');" title="{{name}}" data-placement="right"></div>
                         {{/linkToPerson}}
-                        <a href="/p/{{id}}">
-                            <img src="{{screenshot_url}}" class="frame" />
-                        </a>
+
+                        <div id="featured_frame" class="frame"> </div>
                     </div>
-                {{/with}}
+                </div>
+                <div class="span5">
 
-                <i class="icon-random icon-grey divider"></i>
-            {{/if}}
+                <div id="viewer-info">
+                    <h2 id="post-title">{{title}}</h2>
+                    <h4>by <a href="/people/{{author.guid}}">{{author.name}}</a></h4>
+                    <br/>
+                    <a href='/conversations/{{conversation_id}}' class= 'btn new-btn'>View the conversation</a>
+                    <hr/>
 
-            <div class="current-frame">
-                {{#linkToPerson author}}
-                    <div class="profile-image-container small post-author" style="background-image : url('{{avatar.small}}');" title="{{name}}" data-placement="right"></div>
-                {{/linkToPerson}}
+                    <h3>Got a response?</h3>
+                    <h4>Try remixing or liking {{author.nickname}}'s post!</h4>
 
-                <div id="featured_frame" class="frame"> </div>
+                    <div id="viewer-feedback"/>
+
+                    <hr/>
+                    <h4>Sharing is caring</h4>
+                    <div id="share-actions"/>
+                </div>
+                </div>
             </div>
-        </div>
-            <div class="span5">
 
-        <div id="viewer-info">
-            <h2 id="post-title">{{title}}</h2>
-            <h4>by <a href="/people/{{author.guid}}">{{author.name}}</a></h4>
-            <br/>
-            <a href='/conversations/{{conversation_id}}' class= 'btn new-btn'>View the conversation</a>
-            <hr/>
 
-            <h3>Got a response?</h3>
-            <h4>Try remixing or liking {{author.nickname}}'s post!</h4>
-
-            <div id="viewer-feedback"/>
-
-            <hr/>
-            <h4>Sharing is caring</h4>
-            <div id="share-actions"/>
-    </div>
-            </div>
         </div>
 
-        <div id="conversation"/>
-    </div>
+        <div class="clearfix"/>
+        <div id="canvas"/>
     </div>
 </div>
 

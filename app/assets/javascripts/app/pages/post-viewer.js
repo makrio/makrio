@@ -6,7 +6,8 @@ app.pages.PostViewer = app.views.Base.extend({
     "#post-nav" : "navView",
     "#share-actions" : "shareView",
     'header' : 'headerView',
-    "#viewer-feedback" : "feedbackView"
+    "#viewer-feedback" : "feedbackView",
+    "#canvas" : "canvasView"
   },
 
   tooltipSelector : ".post-author",
@@ -29,6 +30,7 @@ app.pages.PostViewer = app.views.Base.extend({
        className : "canvas-frame"
     });
 
+    this.initializeStream()
     this.headerView = new app.views.Header({})
     this.render();
   },
@@ -82,6 +84,20 @@ app.pages.PostViewer = app.views.Base.extend({
 
   postRenderTemplate : function() {
     if(this.model.get("title")){ document.title = $.trim(this.model.get("title").replace(/<br>/g, ' ')); }
+  },
+
+  initializeStream : function(){
+    this.stream = new app.models.Stream([], { collectionOptions: {} })
+    var conversation_id = this.model.get('conversation_id')
+
+
+    this.stream.basePath = function(){ return "/conversations/" + conversation_id}
+    
+
+    this.stream.preloadOrFetch()
+
+    this.canvasView = new app.views.Canvas({model : this.stream})
+
   },
 
   closePane : function(evt) {
