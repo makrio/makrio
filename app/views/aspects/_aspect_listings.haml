@@ -17,6 +17,3 @@
               = link_to image_tag("icons/pencil.png", :title => t('.edit_aspect', :name => aspect.name)), edit_aspect_path(aspect), :rel => "facebox"
             %a.aspect_selector{:href => aspects_path("a_ids[]" => aspect.id), :class => "name", 'data-guid' => aspect.id}
               = aspect
-
-        %li
-          = link_to t('.add_an_aspect'), new_aspect_path, :class => "new_aspect", :rel => "facebox"

@@ -58,9 +58,6 @@ Diaspora::Application.routes.draw do
 
   resources :tags, :only => [:index]
   get 'tags/:name' => 'tags#show', :as => 'tag'
-  resources :aspects do
-    put :toggle_contact_visibility
-  end
 
   resources :photos, :except => [:index] do
     put :make_profile_photo
@@ -114,15 +111,6 @@ Diaspora::Application.routes.draw do
   post 'users/invitations' => 'invitations#create', :as => 'new_user_invitation'
   
   get 'login' => redirect('/users/sign_in')
-
-  scope 'admins', :controller => :admins do
-    match :user_search
-    get   :admin_inviter
-    get   :weekly_user_stats
-    get   :correlations
-    get   :stats, :as => 'pod_stats'
-    get   "add_invites/:invite_code_id" => 'admins#add_invites', :as => 'add_invites'
-  end
 
   resource :profile, :only => [:edit, :update]
   resources :profiles, :only => [:show]
