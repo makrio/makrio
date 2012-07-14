@@ -43,10 +43,12 @@ gem 'markerb', :git => 'git://github.com/plataformatec/markerb.git'
 gem 'airbrake'
 gem 'rails_admin'
 
+
+gem 'rack-rewrite', '~> 1.2.1', :require => false
+
 group :production do # we don't install these on travis to speed up test runs
   gem 'fastercsv', '1.5.5', :require => false
   gem 'rack-ssl', :require => 'rack/ssl'
-  gem 'rack-rewrite', '~> 1.2.1', :require => false
 
   # analytics
   gem 'rack-google-analytics', :require => 'rack/google-analytics'
