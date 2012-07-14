@@ -2,7 +2,7 @@
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
 
-['conversations', 'staff_picks', 'likes', 'popular', 'catagory'].each do |filename|
+%w{conversations staff_picks likes popular category}.each do |filename|
   require File.join(Rails.root, "lib", "stream", filename)
 end
 
