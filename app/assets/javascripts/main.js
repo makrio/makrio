@@ -37,3 +37,9 @@
 //= require bootstrap-popover
 //= require bootstrap-dropdown
 //= require bootstrap-scrollspy-custom
+
+
+//global shims
+if(typeof(window.location.origin) == "undefined"){
+  window.location.origin = window.location.protocol + '//' + window.location.host
+}
