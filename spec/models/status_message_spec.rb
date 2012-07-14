@@ -2,6 +2,11 @@
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
 
+def hashtag!(sm , tag)
+  sm.tag_list << tag
+  sm.save
+end
+
 require 'spec_helper'
 
 describe StatusMessage do
@@ -33,11 +38,13 @@ describe StatusMessage do
 
     context "tag_streams" do
       before do
-        @sm1 = Factory(:status_message, :text => "#hashtag" , :public => true)
-        @sm2 = Factory(:status_message, :text => "#hashtag" )
-        @sm3 = Factory(:status_message, :text => "hashtags are #awesome", :public => true )
-        @sm4 = Factory(:status_message, :text => "hashtags are #awesome" )
 
+        @sm1 = Factory(:status_message, :public => true)
+        @sm2 = Factory(:status_message)
+        @sm3 = Factory(:status_message, :public => true )
+        @sm4 = Factory(:status_message)
+        [@sm1, @sm2, @sm4].each{|x| hashtag!(x, 'hashtag')}
+        hashtag!(@sm3, 'awesome')
         @tag_id = ActsAsTaggableOn::Tag.where(:name => "hashtag").first.id
       end
 
@@ -72,14 +79,6 @@ describe StatusMessage do
       sm2 = Factory(:status_message, :author => bob.person)
       guids = StatusMessage.guids_for_author(alice.person)
       guids.should == [sm1.guid]
-    end
-  end
-
-  describe '.before_create' do
-    it 'calls build_tags' do
-      status = Factory.build(:status_message)
-      status.should_receive(:build_tags)
-      status.save
     end
   end
 
@@ -258,7 +257,6 @@ STR
     before do
       @object = Factory.build(:status_message)
     end
-    it_should_behave_like 'it is taggable'
 
     it 'associates different-case tags to the same tag entry' do
       assert_equal ActsAsTaggableOn.force_lowercase, true

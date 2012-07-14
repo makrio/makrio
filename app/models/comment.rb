@@ -9,12 +9,7 @@ class Comment < ActiveRecord::Base
   include Diaspora::Guid
   include Diaspora::Relayable
 
-  include Diaspora::Taggable
   include Diaspora::Likeable
-
-  acts_as_taggable_on :tags
-  extract_tags_from :text
-  before_create :build_tags
 
   xml_attr :text
   xml_attr :diaspora_handle

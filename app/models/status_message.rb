@@ -3,14 +3,13 @@
 #   the COPYRIGHT file.
 
 class StatusMessage < Post
-  include Diaspora::Taggable
 
   include PeopleHelper
 
-  acts_as_taggable_on :tags
-  extract_tags_from :raw_message
+  acts_as_taggable
 
   validates_length_of :text, :maximum => 65535, :message => I18n.t('status_messages.too_long', :count => 65535)
+  
   xml_name :status_message
   xml_attr :raw_message
 
