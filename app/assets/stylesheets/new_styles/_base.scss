@@ -49,6 +49,7 @@ a { color : $link-blue  }
 
 .canvas-frame {
   @include box-shadow(0,1px,1px,rgba(0, 0, 0, 0.1));
+  display : inline-block;
 }
 
 .mason {
@@ -480,8 +481,4 @@ $bring-dark-accent-forward-color: #DDD;
   &.peek {
     @include animation(peekaboo, 3s)
   }
-}
-
-#the-frame {
-  display : inline-block;
 }
