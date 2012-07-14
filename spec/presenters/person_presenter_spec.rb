@@ -19,11 +19,6 @@ describe PersonPresenter do
         presenter.as_json.should_not have_key(:location)
       end
 
-      it "has private information when the person is sharing with the current user" do
-        person.should_receive(:shares_with).with(current_user).and_return(true)
-        presenter.as_json.should have_key(:location)
-      end
-
       it "returns the user's private information if a user is logged in as herself" do
         PersonPresenter.new(current_user.person, current_user).as_json.should have_key(:location)
       end

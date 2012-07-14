@@ -6,7 +6,6 @@ app.Router = Backbone.Router.extend({
     "stream": "newStream",
     "stream?*params": "newStream",
 
-    ":name" : "newProfile",
     "people/:id": "newProfile",
     "u/:name": "newProfile",
 
@@ -33,7 +32,9 @@ app.Router = Backbone.Router.extend({
     "posts/:id/previous": "siblingPost",
 
     "conversations/:id" : "conversation",
-    "conversations": "conversations"
+    "conversations": "conversations",
+
+    ":name" : "newProfile"
   },
 
   redirectToFramer : function(){

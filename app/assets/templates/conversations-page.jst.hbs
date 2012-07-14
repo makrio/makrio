@@ -11,7 +11,7 @@
                     {{title}}
                 </h1>
                 <h4>
-                    Conversation started by <a href="/people/{{author.guid}}">{{author.name}}</a>
+                    Conversation started by {{#linkToPerson author}}{{name}}{{/linkToPerson}}
                 </h4>
             {{/with}}
             <hr />

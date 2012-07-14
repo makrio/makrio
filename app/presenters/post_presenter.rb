@@ -31,7 +31,7 @@ class PostPresenter
         :object_url => @post.object_url,
         :favorite => @post.favorite,
         :nsfw => @post.nsfw,
-        :author => @post.author.as_api_response(:backbone),
+        :author => PersonPresenter.new(@post.author, current_user),
         :o_embed_cache => @post.o_embed_cache.try(:as_api_response, :backbone),
         :mentioned_people => [],#@post.mentioned_people.as_api_response(:backbone),
         :photos => @post.photos.map {|p| p.as_api_response(:backbone)},

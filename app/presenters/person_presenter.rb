@@ -11,7 +11,7 @@ class PersonPresenter < BasePresenter
             :is_own_profile => is_own_profile
         })
 
-    if is_own_profile || person_is_following_current_user
+    if is_own_profile
       attrs.merge!({
                       :location => @person.profile.location,
                       :birthday => @person.profile.formatted_birthday,
@@ -28,11 +28,5 @@ class PersonPresenter < BasePresenter
 
   def username
     @person.diaspora_handle.split("@").first
-  end
-
-  protected
-
-  def person_is_following_current_user
-    @person.shares_with(@current_user)
   end
 end

@@ -7,7 +7,7 @@ Handlebars.registerHelper('imageUrl', function(path){
 })
 
 Handlebars.registerHelper('linkToPerson', function(context, block) {
-  var html = "<a href=\"/people/" + context.guid + "\" class=\"author-name\">";
+  var html = "<a href=\"/" + context.username + "\" class=\"author-name\">";
       html+= block.fn(context);
       html+= "</a>";
 

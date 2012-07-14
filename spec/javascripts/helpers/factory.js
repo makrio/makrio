@@ -14,7 +14,6 @@ factory = {
     var defaultAttrs = {
       "created_at" : "2012-01-04T00:55:30Z",
       "author" : this.author(),
-      "guid" : this.guid(),
       "id" : this.id.next()
     }
 
@@ -25,7 +24,6 @@ factory = {
     var defaultAttrs = {
       "created_at" : "2012-01-04T00:55:30Z",
       "author" : this.author(),
-      "guid" : this.guid(),
       "id" : this.id.next(),
       "text" : "This is a comment!"
     }

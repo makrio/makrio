@@ -140,6 +140,7 @@ Diaspora::Application.routes.draw do
       get :tag_index
     end
   end
+
   get '/u/:username' => 'people#show', :as => 'user_profile'
   get '/u/:username/profile_photo' => 'users#user_photo'
 
@@ -166,6 +167,9 @@ Diaspora::Application.routes.draw do
   if AppConfig[:mount_resque_web]
     mount Resque::Server.new, :at => '/resque-jobs', :as => "resque_web"
   end
+
+  # usernames as first-class citizens; placed at the bottom to keep our defined routes intact.
+  get ':username' => 'people#show', :constraints => { :username => /[^\/]+/ }
 
   match '', to: 'streams#catagory', constraints: lambda{ |r| r.subdomain.present? && ['nickcage'].include?(r.subdomain) }
   root :to => 'home#show'
