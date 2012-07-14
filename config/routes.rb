@@ -9,7 +9,7 @@ Diaspora::Application.routes.draw do
 
   get 'oembed' => 'posts#oembed', :as => 'oembed'
   # Posting and Reading
-  match "/fb_remix" => "reshares#fb_create"
+  match "/fb_remix" => "remixes#fb_create"
 
   resources :status_messages, :only => [:new, :create]
 

@@ -1,4 +1,4 @@
-class ResharesController < ApplicationController
+class RemixesController < ApplicationController
   before_filter :authenticate_user!, :except => :fb_create
   respond_to :json
 
