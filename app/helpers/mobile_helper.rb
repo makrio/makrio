@@ -4,19 +4,6 @@ module MobileHelper
     '<option value="" >All</option>\n'.html_safe + options_from_collection_for_select(aspects, "id", "name", selected_id)
   end
 
-  def mobile_reshare_icon(post)
-    if (post.public? || reshare?(post)) && (user_signed_in? && post.author != current_user.person)
-      parent = reshare?(post) ? post.parent : post
-
-      if parent.author != current_user.person.id
-        reshare = Reshare.where(:author_id => current_user.person.id,
-                                :parent_guid => parent.guid).first
-        klass = reshare.present? ? "active" : "inactive"
-        link_to '', reshares_path(:parent_guid => parent.guid), :title => t('reshares.reshare.reshare_confirmation', :author => parent.author.name), :class => "image_link reshare_action #{klass}"
-      end
-    end
-  end
-
   def mobile_like_icon(post)
     if current_user && current_user.liked?(post)
       link_to '', post_like_path(post.id, current_user.like_for(post).id), :class => "image_link like_action active"

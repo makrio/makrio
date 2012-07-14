@@ -18,17 +18,6 @@ module User::SocialActions
     like
   end
 
-  def reshare!(target, opts={})
-    find_or_create_participation!(target)
-    reshare = build_post(:reshare, :parent_guid => target.guid)
-    reshare.save!
-    Postzord::Dispatcher.defer_build_and_post(self, reshare)
-
-    open_graph_action('reshare', target)
-
-    reshare
-  end
-
   def build_comment(options={})
     target = options.delete(:post)
     Comment::Generator.new(self, target, options.delete(:text)).build(options)

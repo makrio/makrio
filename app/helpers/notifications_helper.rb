@@ -11,7 +11,7 @@ module NotificationsHelper
       else
         t(note.deleted_translation_key, :actors => actors, :count => actors_count).html_safe
       end
-    elsif [Notifications::Remixed, Notifications::CommentOnPost, Notifications::AlsoCommented, Notifications::Reshared, Notifications::Liked].any?{|t| note.instance_of?(t)}
+    elsif [Notifications::Remixed, Notifications::CommentOnPost, Notifications::AlsoCommented, Notifications::Liked].any?{|t| note.instance_of?(t)}
       if post = note.linked_object
         translation(target_type, :actors => actors, :count => actors_count, :post_author => h(post.author.name), :post_link => link_to(t('notifications.post'), post_path(post), 'data-ref' => post.id, :class => 'hard_object_link').html_safe)
       else

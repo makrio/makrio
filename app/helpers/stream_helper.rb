@@ -15,10 +15,6 @@ module StreamHelper
     end
   end
 
-  def reshare?(post)
-    post.instance_of?(Reshare)
-  end
-
   private
 
   def time_for_scroll(stream)

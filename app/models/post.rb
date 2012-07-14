@@ -21,9 +21,6 @@ class Post < ActiveRecord::Base
 
   has_many :mentions, :dependent => :destroy
 
-  has_many :reshares, :class_name => "Reshare", :foreign_key => :parent_guid, :primary_key => :guid
-  has_many :resharers, :class_name => 'Person', :through => :reshares, :source => :author
-
   has_many :remixes, :class_name => "Post", :foreign_key => :parent_guid, :primary_key => :guid
   has_many :remixers, :class_name => 'Person', :through => :reshares, :source => :author
 
@@ -116,7 +113,7 @@ class Post < ActiveRecord::Base
     return nil if parent_guid.blank?
 
     current = self
-    while(current.parent.present? || current.is_a?(Reshare))
+    while(current.parent.present?)
       current = current.parent
     end
 
@@ -189,11 +186,6 @@ class Post < ActiveRecord::Base
     scope = scope.excluding_hidden_content(user) if user.present?
 
     scope
-  end
-
-  def reshare_for(user)
-    return unless user
-    reshares.where(:author_id => user.person.id).first
   end
 
   def participation_for(user)
