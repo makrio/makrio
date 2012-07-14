@@ -418,16 +418,7 @@ class User < ActiveRecord::Base
   end
 
   def seed_aspects
-    self.aspects.create(:name => I18n.t('aspects.seed.family'))
-    self.aspects.create(:name => I18n.t('aspects.seed.friends'))
-    self.aspects.create(:name => I18n.t('aspects.seed.work'))
-    aq = self.aspects.create(:name => I18n.t('aspects.seed.acquaintances'))
-
-    unless AppConfig[:no_follow_diasporahq]
-      default_account = Webfinger.new('diasporahq@joindiaspora.com').fetch
-      self.share_with(default_account, aq) if default_account
-    end
-    aq
+    self.aspects.create(:name => "Following")
   end
 
   def encryption_key
