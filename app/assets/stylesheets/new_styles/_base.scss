@@ -481,3 +481,7 @@ $bring-dark-accent-forward-color: #DDD;
     @include animation(peekaboo, 3s)
   }
 }
+
+#the-frame {
+  display : inline-block;
+}
