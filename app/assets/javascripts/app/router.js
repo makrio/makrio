@@ -80,7 +80,11 @@ app.Router = Backbone.Router.extend({
 
   newStream : function() {
     app.instrument("track", "Stream loaded")
-    this.renderPage(function(){ return new app.pages.Stream()});
+
+    var wantsCanvas = window.location.search.search('canvas') != -1
+      , page = wantsCanvas ? new app.pages.GenericCanvas() : new app.pages.Stream()
+    
+    this.renderPage(function(){ return page});
   },
 
   remix : function(id){
