@@ -5,6 +5,8 @@ app.Router = Backbone.Router.extend({
     //new hotness
     "stream": "newStream",
     "stream?*params": "newStream",
+
+    ":name" : "newProfile",
     "people/:id": "newProfile",
     "u/:name": "newProfile",
 

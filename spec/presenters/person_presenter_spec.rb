@@ -29,4 +29,11 @@ describe PersonPresenter do
       end
     end
   end
+
+  describe "#username" do
+    it "returns a username" do
+      person.stub(:diaspora_handle).and_return("bob@makr.io")
+      PersonPresenter.new(person, nil).username.should == "bob"
+    end
+  end
 end

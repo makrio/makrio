@@ -23,15 +23,6 @@ class Like < Federated::Relayable
 
   xml_attr :positive
 
-  # NOTE API V1 to be extracted
-  acts_as_api
-  api_accessible :backbone do |t|
-    t.add :id
-    t.add :guid
-    t.add :author
-    t.add :created_at
-  end
-
   def notification_type(user, person)
     #TODO(dan) need to have a notification for likes on comments, until then, return nil
     return nil if self.target_type == "Comment"

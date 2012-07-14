@@ -6,19 +6,13 @@ class PostInteractionPresenter
 
   def as_json(options={})
     {
-        :likes => as_api(@post.likes),
+        :likes => LikePresenter.as_collection(@post.likes),
         :comments => CommentPresenter.as_collection(@post.comments.includes(:author => :profile).order("created_at ASC")),
         :remixes => RemixPresenter.as_collection(@post.remix_siblings.featured_and_by_author(@person).includes(:author => :profile).limit(3)),
         :comments_count => @post.comments_count,
         :likes_count => @post.likes_count,
         :remix_count => @post.remixes.count
     }
-  end
-
-  def as_api(collection)
-    collection.includes(:author => :profile).all.map do |element|
-      element.as_api_response(:backbone)
-    end
   end
 
   class Lite
@@ -29,15 +23,16 @@ class PostInteractionPresenter
 
     def as_json
       {
-          :likes => [user_like].compact,
-          :comments_count => @post.comments_count,
-          :likes_count => @post.likes_count,
-          :remix_count => @post.remixes.count
+          likes: [user_like].compact,
+          comments_count: @post.comments_count,
+          likes_count: @post.likes_count,
+          remix_count: @post.remixes.count
       }
     end
 
     def user_like
-      @post.like_for(@current_user).try(:as_api_response, :backbone)
+      like = @post.like_for(@current_user)
+      LikePresenter.new(like, @current_user) if like
     end
   end
 end

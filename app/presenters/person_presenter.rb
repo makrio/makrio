@@ -7,7 +7,7 @@ class PersonPresenter < BasePresenter
   def as_json(options={})
     attrs = @person.as_api_response(:backbone).merge(
         {
-            :wallpaper => @person.profile.wallpaper.url,
+            :username => self.username,
             :is_own_profile => is_own_profile
         })
 
@@ -24,6 +24,10 @@ class PersonPresenter < BasePresenter
 
   def is_own_profile
     @current_user.try(:person) == @person
+  end
+
+  def username
+    @person.diaspora_handle.split("@").first
   end
 
   protected
