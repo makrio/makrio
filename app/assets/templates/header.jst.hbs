@@ -45,7 +45,7 @@
                         <li class="divider"></li>
                         {{/each}}
 
-                        <li><a href="/notifications" class="see-all">See all notifications</a></li>
+                        <li><a href="{{rootLink "/notifications"}}" class="see-all">See all notifications</a></li>
                     </ul>
                 </li>
 
@@ -61,32 +61,32 @@
 
                     <ul class="dropdown-menu">
                         <li><a href="/people/{{current_user.guid}}">Profile</a></li>
-                        <li><a href="/user/edit">Settings</a></li>
+                        <li><a href="{{rootLink "/user/edit"}}">Settings</a></li>
                         <li class="divider"></li>
                         <li><a href="{{rootLink "/users/sign_out"}}">Log Out</a></li>
                     </ul>
                 </li>
             {{else}}
                 <li>
-                    <a href="/users/sign_in">Log In</a>
+                    <a href="{{rootLink "/users/sign_in"}}">Log In</a>
                 </li>
 
                 <li>
-                    <a href="/users/sign_up">Sign Up</a>
+                    <a href="{{rootLink "/users/sign_up"}}">Sign Up</a>
                 </li>
 
             {{/if}}
         </ul>
 
-        <a href='/' class='logo'>
+        <a href="{{rootLink "/"}}" class='logo'>
             <img src="{{imageUrl "makr_home_logo@2x.png"}}" height=26 width=118 />
         </a>
 
         <ul class="nav nav-tab" style="z-index:100;">
-            <li {{#if onLatest}}class="active"{{/if}} data-title='All Posts on Makr.io'><a href="/stream"><i class="icon-time icon-white"></i> Public</a></li>
-            <li {{#if onStaffPicks}}class="active"{{/if}} data-title="The Makr.io staff's favorite remixes"><a href="/staff_picks"><i class="icon-star icon-white"></i> Staff Picks</a></li>
+            <li {{#if onLatest}}class="active"{{/if}} data-title='All Posts on Makr.io'><a href="{{rootLink "/stream"}}"><i class="icon-time icon-white"></i> Public</a></li>
+            <li {{#if onStaffPicks}}class="active"{{/if}} data-title="The Makr.io staff's favorite remixes"><a href="{{rootLink "/staff_picks"}}"><i class="icon-star icon-white"></i> Staff Picks</a></li>
             {{#if loggedIn}}
-                <li {{#if onLikes}}class="active"{{/if}} data-title='All Posts you have liked'><a href="/likes"><i class="icon-heart icon-white"></i> My Likes</a></li>
+                <li {{#if onLikes}}class="active"{{/if}} data-title='All Posts you have liked'><a href="{{rootLink "/likes"}}"><i class="icon-heart icon-white"></i> My Likes</a></li>
             {{/if}}
         </ul>
     </div>
