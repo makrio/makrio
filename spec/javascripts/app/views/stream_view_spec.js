@@ -32,7 +32,7 @@ describe("app.views.Stream", function() {
 
     context("when rendering a status message", function() {
       it("shows the message in the content area", function() {
-        expect(this.statusElement.find(".post-content p").text()).toContain("LONG POST"); //markdown'ed
+        expect(this.statusElement.find(".post-content p").text()).toContain(this.stream.items.models[0].get("text"));
       });
     });
   });

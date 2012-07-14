@@ -37,9 +37,9 @@ describe("app.forms.Picture", function(){
     })
 
     it("adds a new model to the photos", function(){
-      expect(this.form.$(".photos .photo").length).toBe(0);
+      expect(this.form.photos.length).toBe(0);
       this.respond()
-      expect(this.form.$(".photos .photo").length).toBeGreaterThan(0);
+      expect(this.form.photos.length).toBe(1);
     })
   })
 

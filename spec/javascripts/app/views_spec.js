@@ -4,6 +4,8 @@ describe("app.views.Base", function(){
       var staticTemplateClass = app.views.Base.extend({ templateName : "static-text" })
 
       this.model = new Backbone.Model({text : "model attributes are in the default presenter"})
+      this.model.url = $.noop
+
       this.view = new staticTemplateClass({model: this.model})
       this.view.render()
     })

@@ -13,7 +13,6 @@ app.views.Post.StreamFrame = app.views.Base.extend({
     "click a.remove-post" : "destroyModel"
   },
 
-
   tooltipSelector : ".post-author",
 
   initialize : function(options) {
@@ -21,7 +20,6 @@ app.views.Post.StreamFrame = app.views.Base.extend({
     this.smallFrameView = new app.views.Post.SmallFrame({ model : this.model })
     this.feedbackView = new app.views.StreamFeedbackActions({ model: this.model })
   },
-
 
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
