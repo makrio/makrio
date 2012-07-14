@@ -33,3 +33,10 @@ Handlebars.registerHelper('personImage', function(person, size, imageClass) {
 
   return "<img src=\"" + person.avatar[size] +"\" class=\"avatar " + imageClass + "\" title=\"" + _.escape(person.name) +"\" />";
 })
+
+Handlebars.registerHelper('rootLink', function(path) {
+  var protocol = window.location.protocol
+    , splitUrl = window.location.host.split(/\./)
+    , splitLength = splitUrl.length
+  return protocol + "//" + splitUrl[splitLength - 2] + "." + splitUrl[splitLength - 1] + path
+})
