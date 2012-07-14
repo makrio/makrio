@@ -1,6 +1,7 @@
 describe("app.views.Post.CanvasFrame", function(){
   beforeEach(function(){
     this.model = factory.post({
+      frame_name : "Wallpaper",
       photos : [
         factory.photoAttrs({sizes : {
           large : "http://tieguy.org/me.jpg"
@@ -17,7 +18,8 @@ describe("app.views.Post.CanvasFrame", function(){
   })
 
   context("images", function() {
-    it("appends the correct dimensions to an image, given a model with an image", function(){
+    it("appends the correct dimensions to an image, given a model with an image, if wallpaper", function(){
+
       var firstPhoto = this.model.get("photos")[0]
 
       this.view.SINGLE_COLUMN_WIDTH = 100
