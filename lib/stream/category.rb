@@ -2,7 +2,7 @@
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
 
-class Stream::Catagory < Stream::Base
+class Stream::Category < Stream::Base
   attr_accessor :tag
   def initialize(user, tag, opts = {})
     self.user = user

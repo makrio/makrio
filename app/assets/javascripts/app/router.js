@@ -33,6 +33,7 @@ app.Router = Backbone.Router.extend({
 
     "conversations/:id" : "conversation",
     "conversations": "conversations",
+    'tagged/:name' : 'category',
 
     ":name" : "newProfile"
   },
@@ -148,8 +149,8 @@ app.Router = Backbone.Router.extend({
     window.location = location
   },
   
-  catagory : function(){
-    this.renderPage(function(){ return new app.pages.Catagory() })
+  category : function(){
+    this.renderPage(function(){ return new app.pages.Category() })
 
   }
 });

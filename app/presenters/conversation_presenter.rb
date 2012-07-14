@@ -1,5 +1,6 @@
 class ConversationPresenter < BasePresenter
   def initialize(post, current_user=nil)
+    # post passed in needs to be an original post
     @post = post
     @current_user = current_user
     @remix_siblings = @post.remix_siblings
@@ -12,6 +13,7 @@ class ConversationPresenter < BasePresenter
         :info => self.info_json,
         :original => self.original_json,
         :remix_siblings => self.remix_siblings_json,
+        :tag_list => @post.tag_list.join(", "),
         :most_liked => PostPresenter.new(self.most_liked, @current_user).as_json(lite?: true),
         :latest => PostPresenter.new(self.all_posts.last, @current_user).as_json(lite?: true)
     }

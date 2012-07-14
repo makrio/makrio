@@ -146,6 +146,7 @@ class Post < ActiveRecord::Base
   def mentioned_people; []; end
   def text(opts={}); raw_message; end
 
+
   def plain_text
     message = raw_message.gsub(/<br>/, ' ')
     sanitize(message, :tags=>[]).gsub(/&nbsp;/i, ' ').squish
@@ -198,6 +199,11 @@ class Post < ActiveRecord::Base
     likes.where(:author_id => user.person.id).first
   end
 
+
+  def update_tags!(tag_list)
+    self.tag_list = tag_list
+    save!
+  end
   #############
 
   def self.diaspora_initialize(params)

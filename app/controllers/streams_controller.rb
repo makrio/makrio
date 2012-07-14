@@ -24,11 +24,12 @@ class StreamsController < ApplicationController
     end
   end
 
-  def catagory
-    @catagory = Catagory.find_by_name!(request.subdomain)
+  def category
+    name  = request.subdomain.present? ? request.subdomain : params[:name]
+    @category = Category.find_by_name!(name)
 
     stream_responder do
-      @stream = Stream::Catagory.new(current_user, @catagory, :max_time => max_time)
+      @stream = Stream::Category.new(current_user, @category, :max_time => max_time)
       @stream_json = PostConversationPresenter.collection_json(@stream.stream_posts, current_user)
     end
   end

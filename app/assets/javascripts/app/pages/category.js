@@ -1,4 +1,4 @@
-app.pages.Catagory = app.views.Base.extend({
+app.pages.Category = app.views.Base.extend({
   templateName : "catagory-page",
 
   subviews : {

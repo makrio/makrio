@@ -14,6 +14,7 @@ Diaspora::Application.routes.draw do
   resources :status_messages, :only => [:new, :create]
 
   resources :conversations, :only => [:show]
+  post '/conversations/:conversation_id/tags' => 'tags#set'
 
   resources :posts do
     member do
@@ -171,6 +172,8 @@ Diaspora::Application.routes.draw do
   # usernames as first-class citizens; placed at the bottom to keep our defined routes intact.
   get ':username' => 'people#show', :constraints => { :username => /[^\/]+/ }
 
-  match '', to: 'streams#catagory', constraints: lambda{ |r| r.subdomain.present? && ['nickcage'].include?(r.subdomain) }
+  get '/tagged/:name' => 'streams#category'
+  match '', to: 'streams#category', constraints: lambda{ |r| r.subdomain.present?}
+
   root :to => 'home#show'
 end

@@ -32,7 +32,7 @@ var app = {
   },
 
   subdomainRoutes : {
-    '' : 'catagory'
+    '' : 'category'
   },
 
   initialize: function() {
