@@ -42,7 +42,6 @@ app.pages.Stream = app.views.Base.extend({
     this.off("refreshScrollSpy", this.refreshScrollSpy, this)
 
     $(window).unbind("scroll")
-//    $("body").data("scrollspy", undefined) //this is for the stream scroller when we navigate to not bind millions of times i love you when we don't page navigate :)
   },
 
   loadNewPosts : function(){
@@ -120,7 +119,7 @@ app.pages.Stream = app.views.Base.extend({
     this._resetPeriod = 2000
     this.refreshScrollSpy()
     this.doRefresh()
-  },
+  }
 },
 
 //static methods

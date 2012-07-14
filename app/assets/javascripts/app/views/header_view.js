@@ -57,6 +57,6 @@ app.views.Header = app.views.Base.extend({
       type : "PUT"
     })
 
-    window.location = href
+    app.setLocation(href)
   }
 });

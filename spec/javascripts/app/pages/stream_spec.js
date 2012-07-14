@@ -6,13 +6,6 @@ describe("app.Pages.Stream", function(){
     expect(this.post).toBeTruthy()
   });
 
-  describe('postRenderTemplate', function(){
-    it("sets the background-image of #header", function(){
-      this.page.render()
-      expect(this.page.$('#header').css('background-image')).toBeTruthy()
-    })
-  });
-
   describe("rendering", function(){
     beforeEach(function(){
       this.page.render()

@@ -7,7 +7,8 @@ app.models.StatusMessage = app.models.Post.extend({
     post_type : 'StatusMessage',
     text : "",
     photos : new Backbone.Collection(),
-    author : app.currentUser ? app.currentUser.attributes : {}
+    author : app.currentUser ? app.currentUser.attributes : {},
+    aspect_ids : ["public"]
   },
 
   prepareToRemix : function(parent){

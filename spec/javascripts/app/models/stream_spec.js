@@ -1,7 +1,7 @@
 describe("app.models.Stream", function() {
   beforeEach(function(){
-    this.stream = new app.models.Stream(),
-    this.expectedPath = document.location.pathname;
+    this.stream = new app.models.Stream()
+    this.expectedPath = "/stream"; //we default to staff picks on root urls
   })
 
   describe(".fetch", function() {
@@ -14,7 +14,7 @@ describe("app.models.Stream", function() {
       })
     })
 
-    it("it fetches posts from the window's url, and ads them to the collection", function() {
+    it("it fetches posts from the window's url, and adds them to the collection", function() {
       this.stream.fetch()
       expect(this.stream.items.fetch).toHaveBeenCalledWith({ add : true, url : this.expectedPath});
     });
