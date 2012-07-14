@@ -2,8 +2,8 @@
  *   licensed under the Affero General Public License version 3 or later.  See
  *   the COPYRIGHT file.
  */
-//= require domains
 //= require underscore
+//= require domains
 //= require backbone
 //= require rails.validations
 //= require jquery.hotkeys
