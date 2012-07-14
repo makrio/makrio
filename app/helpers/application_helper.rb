@@ -34,11 +34,7 @@ module ApplicationHelper
   end
 
   def contacts_link
-    if current_user.contacts.size > 0
-      contacts_path
-    else
-      community_spotlight_path
-    end
+    contacts_path
   end
 
   def all_services_connected?

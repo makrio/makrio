@@ -31,8 +31,12 @@ var app = {
     return this._baseImageUrl || "assets/"
   },
 
+  subdomainRoutes : {
+    '' : 'catagory'
+  },
+
   initialize: function() {
-    app.router = new app.Router();
+    app.router = window.location.subdomain() == '' ? new app.Router() : new app.Router({routes: this.subdomainRoutes});
 
     app.currentUser = app.user(window.current_user_attributes) || new app.models.User()
 

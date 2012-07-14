@@ -56,6 +56,8 @@ Diaspora::Application.routes.draw do
   get "staff_picks" => "streams#staff_picks", :as => "staff_picks_stream"
   get "conversations" => "streams#conversations", :as => "conversations_stream"
 
+  resources :tags, :only => [:index]
+  get 'tags/:name' => 'tags#show', :as => 'tag'
   resources :aspects do
     put :toggle_contact_visibility
   end
@@ -77,17 +79,6 @@ Diaspora::Application.routes.draw do
   get 'notifications/read_all' => 'notifications#read_all'
   resources :notifications, :only => [:index, :update] do
   end
-
-  resources :tags, :only => [:index]
-  scope "tags/:name" do
-    post   "tag_followings" => "tag_followings#create", :as => 'tag_tag_followings'
-    delete "tag_followings" => "tag_followings#destroy", :as => 'tag_tag_followings'
-  end
-
-  post   "multiple_tag_followings" => "tag_followings#create_multiple", :as => 'multiple_tag_followings'
-  resources "tag_followings", :only => [:create]
-
-  get 'tags/:name' => 'tags#show', :as => 'tag'
 
   # Users and people
 
@@ -136,10 +127,10 @@ Diaspora::Application.routes.draw do
   resource :profile, :only => [:edit, :update]
   resources :profiles, :only => [:show]
 
-
   resources :contacts,           :except => [:update, :create] do
     get :sharing, :on => :collection
   end
+
   resources :aspect_memberships, :only  => [:destroy, :create]
   resources :share_visibilities,  :only => [:update]
   resources :blocks, :only => [:create, :destroy]
@@ -182,10 +173,6 @@ Diaspora::Application.routes.draw do
   
   get "/done" => 'services#redirect_from_service'
 
-
-  get 'community_spotlight' => "contacts#spotlight", :as => 'community_spotlight'
-  # Mobile site
-
   get 'mobile/toggle', :to => 'home#toggle_mobile', :as => 'toggle_mobile'
 
   # Resque web
@@ -193,6 +180,6 @@ Diaspora::Application.routes.draw do
     mount Resque::Server.new, :at => '/resque-jobs', :as => "resque_web"
   end
 
-  # Startpage
+  match '', to: 'streams#catagory', constraints: lambda{ |r| r.subdomain.present? && ['nickcage'].include?(r.subdomain) }
   root :to => 'home#show'
 end

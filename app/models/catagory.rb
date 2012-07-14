@@ -1,0 +1,1 @@
+Catagory = ActsAsTaggableOn::Tag

@@ -143,6 +143,11 @@ app.Router = Backbone.Router.extend({
   setLocation : function(location){
     //I made this so we can stub it out nicely
     window.location = location
+  },
+  
+  catagory : function(){
+    this.renderPage(function(){ return new app.pages.Catagory() })
+
   }
 });
 

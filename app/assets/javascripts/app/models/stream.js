@@ -88,7 +88,7 @@ app.models.Stream = Backbone.Collection.extend({
   },
 
   basePath : function(){
-    if(document.location.pathname == "/") {
+    if(document.location.pathname == "/" && !window.location.subdomain()) {
       return (app.currentUser.authenticated() ? "/stream" : "/staff_picks")
     }
     return document.location.pathname;

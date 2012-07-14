@@ -2,6 +2,7 @@
  *   licensed under the Affero General Public License version 3 or later.  See
  *   the COPYRIGHT file.
  */
+//= require domains
 //= require underscore
 //= require backbone
 //= require rails.validations
@@ -39,7 +40,3 @@
 //= require bootstrap-scrollspy-custom
 
 
-//global shims
-if(typeof(window.location.origin) == "undefined"){
-  window.location.origin = window.location.protocol + '//' + window.location.host
-}

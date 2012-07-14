@@ -11,18 +11,10 @@ describe ApplicationHelper do
   end
 
   describe "#contacts_link" do
-    before do
+    it 'links to contacts#index' do
       def current_user
         @current_user
       end
-    end
-
-    it 'links to community spotlight' do
-      @current_user = Factory(:user)
-      contacts_link.should == community_spotlight_path
-    end
-
-    it 'links to contacts#index' do
       @current_user = alice
       contacts_link.should == contacts_path
     end
