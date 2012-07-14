@@ -13,7 +13,9 @@ app.pages.Stream = app.views.Base.extend({
   },
 
   initialize : function(){
-    this.stream = this.model = new app.models.Stream()
+    var page = window.location.pathname
+    var poll = page.search(/^\/stream/) != -1 && window.location.search.search('days_ago') == -1
+    this.stream = this.model = new app.models.Stream([], {poller: poll})
     this.stream.preloadOrFetch()
 
     this.initSubviews()

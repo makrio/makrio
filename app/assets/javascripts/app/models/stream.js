@@ -40,7 +40,7 @@ app.models.Stream = Backbone.Collection.extend({
   initialize : function(models, options){
     var collectionClass = options && options.collection || app.collections.Posts;
     var collectionOpts = options && options.collectionOptions || this.collectionOptions()
-
+    this.poll  = options && options.poller || false
     this.items = new collectionClass([], collectionOpts);
     this.on("loadNew", this.addPollerPosts, this)
   },
@@ -114,7 +114,7 @@ app.models.Stream = Backbone.Collection.extend({
   preloadOrFetch : function(){ //hai, plz test me THNX
     var deferred =  $.when(app.hasPreload("stream") ? this.preload() : this.fetch())
 
-    if(window.location.pathname.search(/^\/stream/) != -1) {
+    if(this.poll) {
       this.poller = new app.collections.PostPoller([], {stream : this})
       deferred.done(_.bind(this.poller.fetchMore, this.poller))
     }
