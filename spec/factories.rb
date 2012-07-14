@@ -123,11 +123,6 @@ FactoryGirl.define do
     unprocessed_image nil
   end
 
-  factory :reshare do
-    association(:parent, :public => true, :factory => :status_message)
-    association(:author, :factory => :person)
-  end
-
   factory :invitation do
     service "email"
     identifier "bob.smith@smith.com"

@@ -307,55 +307,10 @@ describe Post do
     end
   end
 
-  describe '#reshares_count' do
-    before :each do
-      @post = @user.post :status_message, :text => "hello", :to => @aspect.id, :public => true
-      @post.reshares.size.should == 0
-    end
-
-    describe 'when post has not been reshared' do
-      it 'returns zero' do
-        @post.reshares_count.should == 0
-      end
-    end
-
-    describe 'when post has been reshared exactly 1 time' do
-      before :each do
-        @post.reshares.size.should == 0
-        @reshare = Factory(:reshare, :parent => @post)
-        @post.reload
-        @post.reshares.size.should == 1
-      end
-
-      it 'returns 1' do
-        @post.reshares_count.should == 1
-      end
-    end
-
-    describe 'when post has been reshared more than once' do
-      before :each do
-        @post.reshares.size.should == 0
-        Factory(:reshare, :parent => @post)
-        Factory(:reshare, :parent => @post)
-        Factory(:reshare, :parent => @post)
-        @post.reload
-        @post.reshares.size.should == 3
-      end
-
-      it 'returns the number of reshares' do
-        @post.reshares_count.should == 3
-      end
-    end
-  end
-
   describe "#after_create" do
     it "sets #interacted_at" do
       post = Factory(:status_message)
       post.interacted_at.should_not be_blank
     end
-
-    it 'sets the root guid'
   end
-
-
 end

@@ -131,41 +131,10 @@ describe Notifier do
       @mail.body.encoded.should_not include(I18n.translate 'notifier.a_post_you_shared')
     end
 
-    it 'can handle a reshare' do
-      reshare = Factory(:reshare)
-      like = reshare.likes.create!(:author => bob.person)
-      mail = Notifier.liked(alice.id, like.author.id, like.id)
-    end
-
     it 'can handle a activity streams photo' do
       as_photo = Factory(:activity_streams_photo)
       like = as_photo.likes.create!(:author => bob.person)
       mail = Notifier.liked(alice.id, like.author.id, like.id)
-    end
-  end
-
-  describe ".reshared" do
-    before do
-      @sm = Factory(:status_message, :author => alice.person, :public => true)
-      @reshare = Factory(:reshare, :parent => @sm, :author => bob.person)
-
-      @mail = Notifier.reshared(alice.id, @reshare.author.id, @reshare.id)
-    end
-
-    it 'TO: goes to the right person' do
-      @mail.to.should == [alice.email]
-    end
-
-    it 'BODY: contains the truncated original post' do
-      @mail.body.encoded.should include(@sm.formatted_message)
-    end
-
-    it 'BODY: contains the name of person liking' do
-      @mail.body.encoded.should include(@reshare.author.name)
-    end
-
-    it 'should not include translation fallback' do
-      @mail.body.encoded.should_not include(I18n.translate 'notifier.a_post_you_shared')
     end
   end
 
@@ -202,7 +171,7 @@ describe Notifier do
         end
       end
 
-      [:reshare, :activity_streams_photo].each do |post_type|
+      [:activity_streams_photo].each do |post_type|
         context post_type.to_s do
           let(:commented_post) { Factory(post_type, :author => bob.person) }
           it 'succeeds' do
@@ -242,7 +211,7 @@ describe Notifier do
           comment_mail.body.encoded.should_not include(I18n.translate 'notifier.a_post_you_shared')
         end
       end
-      [:reshare, :activity_streams_photo].each do |post_type|
+      [ :activity_streams_photo].each do |post_type|
         context post_type.to_s do
           let(:commented_post) { Factory(post_type, :author => bob.person) }
           it 'succeeds' do

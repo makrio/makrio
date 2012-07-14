@@ -38,15 +38,5 @@ describe PostInteractionPresenter do
       end
     end
 
-    describe '#user_reshare' do
-      it 'includes the users reshare' do
-        bob.reshare!(@sm)
-        @presenter.user_reshare.should be_present
-      end
-
-      it 'is nil if the user is not authenticated' do
-        @unauthenticated_presenter.user_reshare.should be_nil
-      end
-    end
   end
 end

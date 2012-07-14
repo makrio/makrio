@@ -35,11 +35,6 @@ describe PostsController do
         response.should render_template('layouts/application')
       end
 
-      it 'succeeds on mobile with a reshare' do
-        get :show, "id" => Factory(:reshare, :author => alice.person).id, :format => :mobile
-        response.should be_success
-      end
-
       it 'marks a corresponding notification as read' do
         note = Notification.create(:recipient => alice, :target => @message, :unread => true)
 

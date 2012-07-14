@@ -23,7 +23,7 @@ describe PostPresenter do
   
   describe '#root' do
     it 'does not raise if the parent does not exists' do
-      reshare = Factory :reshare
+      reshare = Factory(:status_message)
       reshare.parent = nil
       expect {
         PostPresenter.new(reshare).parent

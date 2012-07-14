@@ -35,7 +35,7 @@ class AccountDeletion < ActiveRecord::Base
   end
 
   def subscribers(user)
-    person.owner.contact_people.remote.all | Person.who_have_reshared_a_users_posts(person.owner).remote.all
+    person.owner.contact_people.remote.all 
   end
 
   def dispatch

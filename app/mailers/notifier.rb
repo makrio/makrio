@@ -104,10 +104,6 @@ class Notifier < ActionMailer::Base
     send_notification(:liked, recipient_id, sender_id, like_id)
   end
 
-  def reshared(recipient_id, sender_id, reshare_id)
-    send_notification(:reshared, recipient_id, sender_id, reshare_id)
-  end
-
   def mentioned(recipient_id, sender_id, target_id)
     send_notification(:mentioned, recipient_id, sender_id, target_id)
   end

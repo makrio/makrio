@@ -46,13 +46,6 @@ describe User::Querying do
     end
 
 
-    it "respects the :type option" do
-      post = bob.post(:status_message, :text => "hey", :public => true, :to => @bobs_aspect.id, :pending => false)
-      reshare = bob.post(:reshare, :pending => false, :parent_guid => post.guid, :to => @bobs_aspect)
-      alice.visible_shareable_ids(Post, :type => "Reshare").should include(reshare.id)
-      alice.visible_shareable_ids(Post, :type => 'StatusMessage').should_not include(reshare.id)
-    end
-
     it "does not contain duplicate posts" do
       bobs_other_aspect = bob.aspects.create(:name => "cat people")
       bob.add_contact_to_aspect(bob.contact_for(alice.person), bobs_other_aspect)

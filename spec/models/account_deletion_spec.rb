@@ -59,14 +59,6 @@ describe AccountDeletion do
       @ad.subscribers(alice).should == [remote_raphael]
     end
 
-    it 'includes remote resharers' do
-      @ad = AccountDeletion.new(:person => alice.person)
-      sm = Factory( :status_message, :public => true, :author => alice.person)
-      r1 = Factory( :reshare, :author => remote_raphael, :parent => sm)
-      r2 = Factory( :reshare, :author => local_luke.person, :parent => sm)
-
-      @ad.subscribers(alice).should == [remote_raphael]
-    end
   end
 
   describe 'serialization' do

@@ -30,20 +30,14 @@ class PostInteractionPresenter
     def as_json
       {
           :likes => [user_like].compact,
-          :reshares => [user_reshare].compact,
           :comments_count => @post.comments_count,
           :likes_count => @post.likes_count,
-          :reshares_count => @post.reshares_count,
           :remix_count => @post.remixes.count
       }
     end
 
     def user_like
       @post.like_for(@current_user).try(:as_api_response, :backbone)
-    end
-
-    def user_reshare
-      @post.reshare_for(@current_user)
     end
   end
 end

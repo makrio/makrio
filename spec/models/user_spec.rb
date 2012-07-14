@@ -749,18 +749,6 @@ describe User do
 
         bob.retract(@post)
       end
-
-      it 'adds resharers of target post as additional subsctibers' do
-        person = Factory(:person)
-        reshare = Factory(:reshare, :parent => @post, :author => person)
-        @post.reshares << reshare
-
-        dispatcher = mock
-        Postzord::Dispatcher.should_receive(:build).with(bob, @retraction, {:additional_subscribers => [person]}).and_return(dispatcher)
-        dispatcher.should_receive(:post)
-
-        bob.retract(@post)
-      end
     end
   end
 

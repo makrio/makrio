@@ -270,11 +270,6 @@ describe PeopleController do
           @public_posts.first.save
         end
 
-        it "posts include reshares" do
-          reshare = @user.post(:reshare, :public => true, :parent_guid => Factory(:status_message, :public => true).guid, :to => alice.aspects)
-          get :show, :id => @user.person.to_param
-          assigns[:stream].posts.map { |x| x.id }.should include(reshare.id)
-        end
 
         it "assigns only public posts" do
           get :show, :id => @person.to_param
@@ -324,12 +319,6 @@ describe PeopleController do
         get :show, :id => @person.to_param
         assigns(:stream).posts.map(&:id).should =~ posts_user_can_see.map(&:id)
       end
-
-      it "posts include reshares" do
-        reshare = @user.post(:reshare, :public => true, :parent_guid => Factory(:status_message, :public => true).guid, :to => alice.aspects)
-        get :show, :id => @user.person.to_param
-        assigns[:stream].posts.map { |x| x.id }.should include(reshare.id)
-      end
     end
 
     context "when the person is not a contact of the current user" do
@@ -358,11 +347,6 @@ describe PeopleController do
         assigns[:stream].posts.map(&:id).should =~ [public_post].map(&:id)
       end
 
-      it "posts include reshares" do
-        reshare = @user.post(:reshare, :public => true, :parent_guid => Factory(:status_message, :public => true).guid, :to => alice.aspects)
-        get :show, :id => @user.person.to_param
-        assigns[:stream].posts.map { |x| x.id }.should include(reshare.id)
-      end
     end
   end
 

@@ -89,13 +89,6 @@ describe Person do
       end
     end
 
-    describe ".who_have_reshared a user's posts" do
-      it 'pulls back users who reshared the status message of a user' do
-        sm = Factory(:status_message, :author => alice.person, :public => true)
-        reshare = Factory(:reshare, :parent => sm)
-        Person.who_have_reshared_a_users_posts(alice).should == [reshare.author]
-      end
-    end
   end
 
   describe "delegating" do
