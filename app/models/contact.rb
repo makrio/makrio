@@ -8,7 +8,7 @@ class Contact < ActiveRecord::Base
   belongs_to :person
   validates :person, :presence => true
 
-  has_many :aspect_memberships
+  has_many :aspect_memberships, :dependent => :destroy
   has_many :aspects, :through => :aspect_memberships
 
   has_many :share_visibilities, :source => :shareable, :source_type => 'Post'

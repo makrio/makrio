@@ -20,28 +20,6 @@ describe PostPresenter do
       @unauthenticated_presenter.as_json.should be_a Hash
     end
   end
-
-  describe '#user_like' do
-    it 'includes the users like' do
-      bob.like!(@sm)
-      @presenter.user_like.should be_present
-    end
-
-    it 'is nil if the user is not authenticated' do
-      @unauthenticated_presenter.user_like.should be_nil
-    end
-  end
-
-  describe '#user_reshare' do
-    it 'includes the users reshare' do
-      bob.reshare!(@sm)
-      @presenter.user_reshare.should be_present
-    end
-
-    it 'is nil if the user is not authenticated' do
-      @unauthenticated_presenter.user_reshare.should be_nil
-    end
-  end
   
   describe '#root' do
     it 'does not raise if the parent does not exists' do

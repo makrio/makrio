@@ -16,8 +16,6 @@ describe AccountDeleter do
   end
 
   describe '#perform' do
-
-
     user_removal_methods = [:delete_standard_user_associations,
      :disassociate_invitations,
      :remove_share_visibilities_on_contacts_posts,
@@ -73,7 +71,7 @@ describe AccountDeleter do
     it 'removes all standard user associaltions' do
       @account_deletion.normal_ar_user_associates_to_delete.each do |asso|
         association_mock = mock
-        association_mock.should_receive(:delete)
+        association_mock.should_receive(:destroy)
         bob.should_receive(asso).and_return([association_mock])
       end
 

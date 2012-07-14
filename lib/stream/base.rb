@@ -92,21 +92,6 @@ class Stream::Base
   end
 
   protected
-  # @return [void]
-  def like_posts_for_stream!(posts)
-    return posts unless @user
-
-    likes = Like.where(:author_id => @user.person.id, :target_id => posts.map(&:id), :target_type => "Post")
-
-    like_hash = likes.inject({}) do |hash, like|
-      hash[like.target_id] = like
-      hash
-    end
-
-    posts.each do |post|
-      post.user_like = like_hash[post.id]
-    end
-  end
 
   # Memoizes all Contacts present in the Stream
   #

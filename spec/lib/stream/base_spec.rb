@@ -20,18 +20,6 @@ describe Stream::Base do
       posts.should_receive(:for_a_stream).with(anything, anything, alice).and_return(posts)
       @stream.stream_posts
     end
-
-    context "when alice has liked some posts" do
-      before do
-        bob.post(:status_message, :text => "sup", :to => bob.aspects.first.id)
-        @liked_status = bob.posts.last
-        @like = Factory(:like, :target => @liked_status, :author => alice.person)
-      end
-
-      it "marks the posts as liked" do
-        @stream.stream_posts.first.user_like.id.should == @like.id
-      end
-    end
   end
 
   describe '.can_comment?' do

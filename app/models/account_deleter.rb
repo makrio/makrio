@@ -54,7 +54,7 @@ class AccountDeleter
 
   def delete_standard_user_associations
     normal_ar_user_associates_to_delete.each do |asso|
-      self.user.send(asso).each{|model| model.delete}
+      self.user.send(asso).each{|model| model.destroy}
     end
   end
 

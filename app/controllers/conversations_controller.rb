@@ -3,7 +3,7 @@ class ConversationsController < ApplicationController
   def show
     @original_post = Post.find(params[:id])
 
-    respond_to do |format |
+    respond_to do |format|
       format.html do
         presenter = ConversationPresenter.new(@original_post, current_user)
         gon.conversation = presenter

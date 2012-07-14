@@ -83,7 +83,6 @@ describe 'deleteing your account' do
       @bob2.contacts.should be_empty
     end
 
-    
     it "clears the account fields" do 
       @bob2.send(:clearable_fields).each do |field|
         @bob2.reload[field].should be_blank
