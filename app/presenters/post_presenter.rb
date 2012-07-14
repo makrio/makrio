@@ -71,8 +71,11 @@ class PostPresenter
   def conversation_title
     if @post.original?
       title
+    elsif @post.root.present?
+      # raise @post.inspect unless @post.root
+     PostPresenter.new(@post.root, @current_user).title
     else
-      PostPresenter.new(@post.root, @current_user).title
+      "A cool story" #BAD
     end
   end
 

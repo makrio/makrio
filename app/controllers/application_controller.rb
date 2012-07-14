@@ -111,6 +111,9 @@ class ApplicationController < ActionController::Base
   end
 
   def max_time
+    if params[:days_ago].present?
+      params[:max_time] ||= params[:days_ago].to_i.days.ago.to_i
+    end
     params[:max_time] ? Time.at(params[:max_time].to_i) : Time.now + 1
   end
 

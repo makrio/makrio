@@ -131,7 +131,7 @@ class Post < ActiveRecord::Base
   end
 
   def conversation_id
-    self.original? ? self.id : root.id
+    self.original? ? self.id : root.try(:id)
   end
 
   def original?
