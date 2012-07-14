@@ -13,6 +13,12 @@
   }
 }
 
+#conversation-info,
+.conversation-original {
+  display : inline-block;
+  float : left;
+}
+
 #cnv_title {
   overflow: hidden;
   white-space: nowrap;

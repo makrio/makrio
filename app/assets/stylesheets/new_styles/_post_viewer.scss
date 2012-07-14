@@ -9,7 +9,7 @@
   left : 0;
 
   #featured_frame {
-    @include box-shadow(0,0,0,0);
+    @include box-shadow(0,1px,1px,rgba(0, 0, 0, 0.1));
   }
 
   #info_row {
@@ -26,10 +26,6 @@
   .current-frame {
     position : relative;
     display : inline-block;
-
-    .canvas-frame {
-      float : none;
-    }
 
     .author-name {
       position : absolute;
