@@ -51,7 +51,7 @@ module EvilQuery
     end
 
     def make_relation!
-      post_ids = aspects_post_ids! + ids!(followed_tags_posts!) + ids!(mentioned_posts)
+      post_ids = aspects_post_ids! + ids!(followed_tags_posts!)
       post_ids += ids!(community_spotlight_posts!) if @include_spotlight
       Post.where(:id => post_ids)
     end
@@ -62,10 +62,6 @@ module EvilQuery
 
     def followed_tags_posts!
       StatusMessage.public_tag_stream(@user.followed_tag_ids)
-    end
-
-    def mentioned_posts
-      StatusMessage.where_person_is_mentioned(@user.person)
     end
 
     def community_spotlight_posts!

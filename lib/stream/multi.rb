@@ -32,7 +32,7 @@ class Stream::Multi < Stream::Base
   # @return [Array<Symbol>]
   def streams_included
     @streams_included ||= lambda do
-      array = [:mentioned, :aspects, :followed_tags]
+      array = [ :aspects, :followed_tags]
       array << :community_spotlight if include_community_spotlight?
       array
     end.call

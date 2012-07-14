@@ -23,11 +23,6 @@ describe Postzord::Receiver::LocalBatch do
       receiver.receive!
     end
 
-    it 'notifies mentioned users' do
-      receiver.should_receive(:notify_mentioned_users)
-      receiver.receive!
-    end
-
     it 'notifies users' do
       receiver.should_receive(:notify_users)
       receiver.receive!
@@ -38,23 +33,6 @@ describe Postzord::Receiver::LocalBatch do
     it 'calls sharevisibility.batch_import with hashes' do
       ShareVisibility.should_receive(:batch_import).with(instance_of(Array), @object)
       receiver.create_share_visibilities
-    end
-  end
-
-  describe '#notify_mentioned_users' do
-    it 'calls notify person for a mentioned person' do
-      sm = Factory(:status_message,
-                   :author => alice.person,
-                   :text => "Hey @{Bob; #{bob.diaspora_handle}}")
-
-      receiver2 = Postzord::Receiver::LocalBatch.new(sm, @ids)
-      Notification.should_receive(:notify).with(bob, anything, alice.person)
-      receiver2.notify_mentioned_users
-    end
-
-    it 'does not call notify person for a non-mentioned person' do
-      Notification.should_not_receive(:notify)
-      receiver.notify_mentioned_users
     end
   end
 
@@ -85,10 +63,5 @@ describe Postzord::Receiver::LocalBatch do
       receiver.perform!
     end
 
-    it 'does not call create_visibilities and notify_mentioned_users' do
-      receiver.should_not_receive(:notify_mentioned_users)
-      receiver.should_not_receive(:create_share_visibilities)
-      receiver.perform!
-    end
   end
 end

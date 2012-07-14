@@ -279,19 +279,12 @@ describe Post do
     context "the user does not know about the post" do
       before do
         bob.stub(:find_visible_shareable_by_id).and_return(nil)
-        bob.stub(:notify_if_mentioned).and_return(true)
       end
 
       it "receives the post from the contact of the author" do
         @post.send(:receive_persisted, bob, eve.person, @known_post).should == true
       end
 
-      it 'notifies the user if they are mentioned' do
-        bob.stub(:contact_for).with(eve.person).and_return(stub(:receive_shareable => true))
-        bob.should_receive(:notify_if_mentioned).and_return(true)
-
-        @post.send(:receive_persisted, bob, eve.person, @known_post).should == true
-      end
     end
   end
 
@@ -300,18 +293,10 @@ describe Post do
       before do
         @post = Factory.build(:status_message, :author => bob.person)
         bob.stub(:find_visible_shareable_by_id).and_return(nil)
-        bob.stub(:notify_if_mentioned).and_return(true)
       end
 
       it "it receives the post from the contact of the author" do
         bob.should_receive(:contact_for).with(eve.person).and_return(stub(:receive_shareable => true))
-        @post.send(:receive_non_persisted, bob, eve.person).should == true
-      end
-
-      it 'notifies the user if they are mentioned' do
-        bob.stub(:contact_for).with(eve.person).and_return(stub(:receive_shareable => true))
-        bob.should_receive(:notify_if_mentioned).and_return(true)
-
         @post.send(:receive_non_persisted, bob, eve.person).should == true
       end
 

@@ -283,12 +283,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def notify_if_mentioned(post)
-    return unless self.contact_for(post.author) && post.respond_to?(:mentions?)
-
-    post.notify_person(self.person) if post.mentions? self.person
-  end
-
   def add_to_streams(post, aspects_to_insert)
     inserted_aspect_ids = aspects_to_insert.map{|x| x.id}
 

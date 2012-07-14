@@ -93,7 +93,6 @@ module Diaspora
             end
           else
             user.contact_for(person).receive_shareable(local_shareable)
-            user.notify_if_mentioned(local_shareable)
             Rails.logger.info("event=receive payload_type=#{self.class} update=true status=complete sender=#{self.diaspora_handle}") #existing_shareable=#{local_shareable.id}")
             true
           end
@@ -102,7 +101,6 @@ module Diaspora
         def receive_non_persisted(user, person)
           if self.save
             user.contact_for(person).receive_shareable(self)
-            user.notify_if_mentioned(self)
             Rails.logger.info("event=receive payload_type=#{self.class} update=false status=complete sender=#{self.diaspora_handle}")
             true
           else

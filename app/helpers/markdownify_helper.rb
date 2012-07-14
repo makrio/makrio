@@ -37,10 +37,6 @@ module MarkdownifyHelper
 
     message = markdown.render(message).html_safe
 
-    if target.respond_to?(:format_mentions)
-      message = target.format_mentions(message)
-    end
-
     message = Diaspora::Taggable.format_tags(message, :no_escape => true)
 
     return message.html_safe

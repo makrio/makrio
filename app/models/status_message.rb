@@ -20,13 +20,7 @@ class StatusMessage < Post
   attr_accessible :text, :provider_display_name, :frame_name
   attr_accessor :oembed_url
 
-  after_create :create_mentions
   after_create :queue_gather_oembed_data, :if => :contains_oembed_url_in_text?
-
-  #scopes
-  scope :where_person_is_mentioned, lambda { |person|
-    joins(:mentions).where(:mentions => {:person_id => person.id})
-  }
 
   def self.guids_for_author(person)
     Post.connection.select_values(Post.where(:author_id => person.id).select('posts.guid').to_sql)
@@ -62,59 +56,10 @@ class StatusMessage < Post
   def formatted_message(opts={})
     return self.raw_message unless self.raw_message
 
-    escaped_message = opts[:plain_text] ?  plain_text : ERB::Util.h(self.raw_message)
-    mentioned_message = self.format_mentions(escaped_message, opts)
-    Diaspora::Taggable.format_tags(mentioned_message, opts.merge(:no_escape => true))
-  end
-
-  def format_mentions(text, opts = {})
-    form_message = text.to_str.gsub(Mention::REGEX) do |matched_string|
-      people = self.mentioned_people
-      person = people.detect{ |p|
-        p.diaspora_handle == $~[2] unless p.nil?
-      }
-
-      if opts[:plain_text]
-        person ? ERB::Util.h(person.name) : ERB::Util.h($~[1])
-      else
-        person ? person_link(person, :class => 'mention hovercardable') : ERB::Util.h($~[1])
-      end
-    end
-    form_message
-  end
-
-  def mentioned_people
-    if self.persisted?
-      create_mentions if self.mentions.empty?
-      self.mentions.includes(:person => :profile).map{ |mention| mention.person }
-    else
-      mentioned_people_from_string
-    end
-  end
-
-  def mentioned_people_names
-    self.mentioned_people.map(&:name).join(', ')
-  end
-
-  def create_mentions
-    mentioned_people_from_string.each do |person|
-      self.mentions.find_or_create_by_person_id(person.id)
-    end
-  end
-
-  def mentions?(person)
-    mentioned_people.include? person
+    opts[:plain_text] ?  plain_text : ERB::Util.h(self.raw_message)
   end
 
   def notify_person(person)
-    self.mentions.where(:person_id => person.id).first.try(:notify_recipient)
-  end
-
-  def mentioned_people_from_string
-    identifiers = self.raw_message.scan(Mention::REGEX).map do |match|
-      match.last
-    end
-    identifiers.empty? ? [] : Person.where(:diaspora_handle => identifiers)
   end
 
   def after_dispatch(sender)

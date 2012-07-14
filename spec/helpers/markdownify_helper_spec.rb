@@ -60,23 +60,6 @@ describe MarkdownifyHelper do
         formatted.should =~ %r{Here is a <a href="/tags/multi_word_tag" class="tag">#multi_word_tag</a> yo}
       end
 
-      it "should leave mentions intact" do
-        message = Factory(:status_message,
-                                 :author => alice.person,
-                                 :text => "Hey @{Bob; #{bob.diaspora_handle}}!")
-        formatted = markdownify(message)
-        formatted.should =~ /hovercard/
-      end
-
-      it "should leave mentions intact for real diaspora handles" do
-        new_person = Factory(:person, :diaspora_handle => 'maxwell@joindiaspora.com')
-        message = Factory(:status_message,
-                                 :author => alice.person,
-                                 :text => "Hey @{maxwell@joindiaspora.com; #{new_person.diaspora_handle}}!")
-        formatted = markdownify(message)
-        formatted.should =~ /hovercard/
-      end
-
       it 'should process text with both a hashtag and a link' do
         message = Factory(:status_message,
                                  :author => alice.person,
