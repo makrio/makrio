@@ -28,14 +28,11 @@ app.pages.Stream = app.views.Base.extend({
 
     Mousetrap.bind('j', function() { 
       var frame = $('.selected-frame').parent().next()
-      console.log(frame)
-     $window.scrollTop(frame.offset().top - 60)
+      $window.scrollTop(frame.offset().top - 60)
     });
 
     Mousetrap.bind('k', function(){
-      var frame =$('.selected-frame').parent().prev() 
-
-      console.log(frame)
+      var frame = $('.selected-frame').parent().prev() 
       $window.scrollTop(frame.offset().top - 60)
     })
 
