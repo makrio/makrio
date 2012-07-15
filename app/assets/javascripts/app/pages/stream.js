@@ -27,22 +27,37 @@ app.pages.Stream = app.views.Base.extend({
     var $window = $(window)
 
     Mousetrap.bind('j', function() { 
+      $window.scroll()
       var frame = $('.selected-frame').parent().next()
       $window.scrollTop(frame.offset().top - 60)
     });
 
+    Mousetrap.bind('n', function(){
+      $('button#notifications-button').click()
+    })
+
     Mousetrap.bind('k', function(){
+      $window.scroll()
       var frame = $('.selected-frame').parent().prev() 
       $window.scrollTop(frame.offset().top - 60)
     })
 
     Mousetrap.bind('l', function(){
+      $window.scroll()
        $('.selected-frame').find('.like').click()
     })
 
     Mousetrap.bind('r', function(){
-       $('.selected-frame').find('.remix').click()
+      $window.scroll()
+      $('.selected-frame').find('.remix').click()
     }) 
+
+    Mousetrap.bind('c', function(e){
+      $window.scroll()
+      e.preventDefault()
+      $(this).blur()
+      $('textarea#new-comment-text').focus()
+    })
 
 
   },
