@@ -5,8 +5,7 @@ end
 
 When /^I try to sign in$/ do
   @me ||= Factory(:user_with_aspect, :getting_started => false)
-  page.driver.visit(new_integration_sessions_path(:user_id => @me.id))
-  click_button "Login"
+  step 'I try to sign in manually'
   # To save time as compared to:
   #step %(I go to the new user session page)
   #step %(I fill in "Username" with "#{@me.username}")

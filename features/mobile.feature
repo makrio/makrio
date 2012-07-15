@@ -6,6 +6,6 @@ Feature: Navigate mobile site
   I want to show mobile site of Diaspora*
 
   Scenario: Show mobile site
-    And I visit the mobile aspects page 
+    And I visit the mobile stream page 
     Then I should see "Log in"
 

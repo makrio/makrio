@@ -6,7 +6,7 @@ function getSubdomain(){
   var urlParts = window.location.host.split(/\./)
     , subdomain = ''
 
-  if(urlParts.length > 2) {
+  if(urlParts.length > 2 && urlParts.length < 4) {
     subdomain = urlParts.shift()
   }
   return subdomain

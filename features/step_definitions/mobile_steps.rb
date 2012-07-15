@@ -1,3 +1,3 @@
-When /^I visit the mobile aspects page$/ do
-  visit('/aspects.mobile')
+When /^I visit the mobile stream page$/ do
+  visit('/stream.mobile')
 end

@@ -79,21 +79,6 @@ Given /^there is a user "([^\"]*)" who's tagged "([^\"]*)"$/ do |full_name, tag|
   user.profile.save!
 end
 
-Given /^many posts from alice for bob$/ do
-  alice = Factory(:user_with_aspect, :username => 'alice', :email => 'alice@alice.alice', :password => 'password', :getting_started => false)
-  bob = Factory(:user_with_aspect, :username => 'bob', :email => 'bob@bob.bob', :password => 'password', :getting_started => false)
-  connect_users_with_aspects(alice, bob)
-  time_fulcrum = Time.now - 40000
-  time_interval = 1000
-  (1..30).each do |n|
-    post = alice.post :status_message, :text => "#{alice.username} - #{n} - #seeded", :to => alice.aspects.where(:name => "generic").first.id
-    post.created_at = time_fulcrum - time_interval
-    post.updated_at = time_fulcrum + time_interval
-    post.save
-    time_interval += 1000
-  end
-end
-
 Then /^I should have (\d) contacts? in "([^"]*)"$/ do |n_contacts, aspect_name|
   @me.aspects.where(:name => aspect_name).first.contacts.count.should == n_contacts.to_i
 end
