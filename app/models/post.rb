@@ -204,6 +204,16 @@ class Post < ActiveRecord::Base
     self.tag_list = tag_list
     save!
   end
+
+  def attach_child_conversation!(conversation_id_or_url)
+    c_id = conversation_id_or_url.split('/')[-1]
+    new_sibling = Post.find(c_id)
+    new_sibling.remix_siblings.each{|x| x.root = self; x.save}
+
+    new_sibling.root = self
+    new_sibling.parent = self
+    new_sibling.save!
+  end
   #############
 
   def self.diaspora_initialize(params)

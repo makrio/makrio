@@ -51,8 +51,14 @@
                 <hr />
                 <h6>Tags</h6>
                 <form name="tagForm" class='form-inline' action="/conversations/{{id}}/tags" method="post" data-remote="true">
-                    <input type="text" name="tag_list" value='{{tag_list}}'/>
-                    <input type="submit" class="btn new-btn"/>
+                    <input type="text" name="tag_list" value='{{tag_list}}' placeholder='add comma seperated tags'/>
+                    <input type="submit" value='Set Tags' class="btn new-btn"/>
+                </form>
+
+                <h6>Collapse Conversation</h6>
+                <form name="tagForm" class='form-inline' data-confirm='Are you sure you want to fold this conversation? YOU CAN NOT UNDO' action="/conversations/{{id}}/join" method="post" data-remote="true">
+                    <input type="text" name="new_sibling" placeholder='add posts from other conversation'/>
+                    <input type="submit" value='Collapse' class="btn new-btn"/>
                 </form>
             {{/if}}
         </div>

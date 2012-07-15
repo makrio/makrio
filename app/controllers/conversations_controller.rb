@@ -1,7 +1,13 @@
 class ConversationsController < ApplicationController
-
+  before_filter :redirect_unless_admin, :only => [:join]
+  
   def show
     @original_post = Post.find(params[:id])
+
+    unless @original_post.original?
+      redirect_to conversation_path(@original_post.root), :status => 301
+      return
+    end
 
     respond_to do |format|
       format.html do
@@ -15,5 +21,17 @@ class ConversationsController < ApplicationController
        render :json => PostPresenter.collection_json(stream, current_user, :lite? => true)
      end
     end
+  end
+
+  def join
+    @root_post = Post.find(params[:conversation_id])
+
+    unless @root_post.original?
+      redirect_to conversation_path(@root_post), :status => 301
+      return
+    end
+
+    @root_post.attach_child_conversation!(params[:new_sibling])
+    redirect_to :back
   end
 end

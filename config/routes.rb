@@ -15,6 +15,7 @@ Diaspora::Application.routes.draw do
 
   resources :conversations, :only => [:show]
   post '/conversations/:conversation_id/tags' => 'tags#set'
+  post '/conversations/:conversation_id/join' => 'conversations#join'
 
   resources :posts do
     member do
