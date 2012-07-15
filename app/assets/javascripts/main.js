@@ -3,6 +3,7 @@
  *   the COPYRIGHT file.
  */
 //= require underscore
+//= require mousetrap.min 
 //= require domains
 //= require backbone
 //= require rails.validations

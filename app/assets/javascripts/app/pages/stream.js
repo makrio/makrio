@@ -23,6 +23,33 @@ app.pages.Stream = app.views.Base.extend({
     this._pageTitle = document.title
   },
 
+  setUpMousetrap : function(){
+    var $window = $(window)
+
+    Mousetrap.bind('j', function() { 
+      var frame = $('.selected-frame').parent().next()
+      console.log(frame)
+     $window.scrollTop(frame.offset().top - 60)
+    });
+
+    Mousetrap.bind('k', function(){
+      var frame =$('.selected-frame').parent().prev() 
+
+      console.log(frame)
+      $window.scrollTop(frame.offset().top - 60)
+    })
+
+    Mousetrap.bind('l', function(){
+       $('.selected-frame').find('.like').click()
+    })
+
+    Mousetrap.bind('r', function(){
+       $('.selected-frame').find('.remix').click()
+    }) 
+
+
+  },
+
   initSubviews : function(){
     this.headerView = new app.views.Header({model : this.stream})
     this.streamView = new app.pages.Stream.InfiniteScrollView({ model : this.stream })
@@ -34,6 +61,7 @@ app.pages.Stream = app.views.Base.extend({
     this.stream.on("fetched", this.resetScrollSpy, this)
     this.stream.on("frame:interacted", this.selectFrame, this)
     this.on("refreshScrollSpy", this.refreshScrollSpy, this)
+    this.setUpMousetrap()
   },
 
   unbind : function(){
