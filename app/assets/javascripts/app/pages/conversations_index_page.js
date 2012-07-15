@@ -1,5 +1,5 @@
 app.pages.ConversationsIndex = app.views.Base.extend({
-  templateName : "generic-canvas-page",
+  templateName : "conversations-index-page",
   id : "cnv_index",
 
   subviews : {
@@ -7,9 +7,12 @@ app.pages.ConversationsIndex = app.views.Base.extend({
     "header" : "headerView"
   },
 
-  initialize : function(){
+  initialize : function(options){
     this.stream = new app.models.Stream([], { collectionOptions: {} })
     this.stream.preloadOrFetch()
+
+    this.title = options && options.title
+
     this.initSubviews()
   },
 
@@ -18,5 +21,17 @@ app.pages.ConversationsIndex = app.views.Base.extend({
     this.headerView = new app.views.Header({model : this.stream})
 
     this.canvasView.postClass = app.views.Post.ConversationFrame
+    this.canvasView.scrollOffset = 2000
+  },
+
+  presenter : function() {
+    return _.extend(this.defaultPresenter(), {
+      title : this.titleize(this.title)
+    })
+  },
+
+  titleize : function(string) {
+    if(!string) { return }
+    return string.charAt(0).toUpperCase() + string.substring(1).toLowerCase()
   }
 });

@@ -9,6 +9,7 @@ body {
 body {
   background-image : image_url("texture/light-bg.png");
   padding : none;
+  padding-top: 75px;
 
   height:100%;
   &.lock {

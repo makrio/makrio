@@ -153,9 +153,8 @@ app.Router = Backbone.Router.extend({
     window.location = location
   },
   
-  category : function(){
-    this.renderPage(function(){ return new app.pages.Category() })
-
+  category : function(name){
+    this.renderPage(function(){ return new app.pages.ConversationsIndex({title : name}) })
   }
 });
 

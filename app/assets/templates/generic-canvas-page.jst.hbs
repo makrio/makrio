@@ -1,8 +1,8 @@
 <header/>
 
 <!--to remove-->
-<div class="container" style="margin-top:35px;">
-    {{#unless loggedIn}}
+{{#unless loggedIn}}
+    <div class="container" style="margin-top:35px;">
         <div id="welcome" class="hero-unit">
             <img id='logo-title' src='{{imageUrl "landing_title@2x.jpg"}}' width="55%" />
             <div class="sign-up-btns">
@@ -14,9 +14,8 @@
             </div>
             <p>Makr.io is the place for remixing things around the web</p>
         </div>
-    {{/unless}}  
-</div>
-{{#unless loggedIn}}
+    </div>
+
     <div class='steps'>
         <div class="container image-wrap">
             <img class='steps' src='{{imageUrl "landing_steps@2x_mini.jpg"}}' />
