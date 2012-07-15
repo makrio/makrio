@@ -18,6 +18,12 @@ class ScreenshotUploader < CarrierWave::Uploader::Base
   def store_dir
     "#{mounted_as}s"
   end
+  
+  process :get_version_dimensions 
+
+  def get_version_dimensions
+    model.screenshot_width, model.screenshot_height = `identify -format "%wx%h " #{file.path}`.split(/x/)
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
