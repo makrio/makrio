@@ -19,8 +19,83 @@
   float : left;
 }
 
+.cnv-title,
 #cnv_title {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+/* index page */
+$cnv-row-height : 300px;
+
+#cnv_index {
+  .frame {
+    position : relative;
+    display : inline-block;
+    min-width : 100%; //350px;
+    min-height : $cnv-row-height;
+
+    background : {
+      color : #ccc;
+      position : center;
+      size : cover;
+    }
+
+    &:hover {
+      .boxed-frame {
+        @include opacity(1);
+      }
+    }
+
+    .boxed-frame {
+      @include opacity(0);
+      @include transition(all);
+
+      position : absolute;
+      display : table-cell;
+      vertical-align : middle;
+      text-align : center;
+
+      height : 100%;
+      width : 100%;
+      top : 0;
+      left : 0;
+
+      background-color : #111;
+
+      .screenshot {
+        max-height : 100%;
+        max-width : 100%;
+      }
+    }
+  }
+}
+
+.cnv-row {
+  @include box-shadow(0,1px,1px,rgba(0, 0, 0, 0.1));
+
+  background-color : #fff;
+
+  margin-bottom : 50px;
+  height : $cnv-row-height;
+  max-height : $cnv-row-height;
+  overflow : hidden;
+}
+
+.cnv-remixes {
+  height : 100px;
+  max-height : 100px;
+  white-space : nowrap;
+  margin-top : 40px;
+
+  img.remix {
+    display : inline-block;
+    height : 100%;
+    width : auto;
+  }
+}
+
+.cnv-side-info {
+  margin-top : 20px;
 }

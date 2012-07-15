@@ -1,5 +1,6 @@
 app.pages.ConversationsIndex = app.views.Base.extend({
   templateName : "generic-canvas-page",
+  id : "cnv_index",
 
   subviews : {
     "#canvas" : "canvasView",

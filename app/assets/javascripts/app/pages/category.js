@@ -1,5 +1,5 @@
 app.pages.Category = app.views.Base.extend({
-  templateName : "catagory-page",
+  templateName : "category-page",
 
   subviews : {
     "#canvas" : "canvasView",
