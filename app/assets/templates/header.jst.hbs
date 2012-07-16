@@ -8,11 +8,11 @@
                         <i class='icon-bookmark icon-white'></i>Remix</a>
                 </li>
                 <li>
-                    <button href="/framer" data-remix-id='new' data-title="Make a new Remix" id="composer-button" class="btn btn-primary" style="box-shadow: 0 -1px 2px #000, 0 1px 2px #444;"><i class="icon-plus icon-white"></i> Remix</button>
+                    <button href="/framer" data-remix-id='new' data-title="Make a new Remix" id="composer-button" class="btn btn-primary"><i class="icon-plus icon-white"></i> Remix</button>
                 </li>
 
                 <li class="dropdown">
-                    <button id="notifications-button" data-toggle="dropdown" class="btn dropdown-toggle {{#if current_user.notifications_count}}btn-danger{{else}}btn-inverse{{/if}}" style="box-shadow: 0 -1px 2px #000, 0 1px 2px #444;" title="Notifications">
+                    <button id="notifications-button" data-toggle="dropdown" class="btn dropdown-toggle {{#if current_user.notifications_count}}btn-danger{{else}}btn-inverse{{/if}}" title="Notifications">
                         {{current_user.notifications_count}}
                     </button>
 
@@ -83,10 +83,18 @@
         </a>
 
         <ul class="nav nav-tab" style="z-index:100;">
-            <li {{#if onLatest}}class="active"{{/if}} data-title='All Posts on Makr.io'><a href="{{rootLink "/stream"}}"><i class="icon-time icon-white"></i> Public</a></li>
-            <li {{#if onStaffPicks}}class="active"{{/if}} data-title="The Makr.io staff's favorite remixes"><a href="{{rootLink "/staff_picks"}}"><i class="icon-star icon-white"></i> Staff Picks</a></li>
+            <li {{#if onLatest}}class="active"{{/if}} data-title='All Posts on Makr.io'>
+                <a href="{{rootLink "/stream"}}"><i class="icon-time {{#if onLatest}}icon-white{{else}}icon-grey{{/if}}"></i> Public</a>
+            </li>
+
+            <li {{#if onStaffPicks}}class="active"{{/if}} data-title="The Makr.io staff's favorite remixes">
+                <a href="{{rootLink "/staff_picks"}}"><i class="icon-star {{#if onStaffPicks}}icon-white{{else}}icon-grey{{/if}}"></i> Staff Picks</a>
+            </li>
+
             {{#if loggedIn}}
-                <li {{#if onLikes}}class="active"{{/if}} data-title='All Posts you have liked'><a href="{{rootLink "/likes"}}"><i class="icon-heart icon-white"></i> My Likes</a></li>
+                <li {{#if onLikes}}class="active"{{/if}} data-title='All Posts you have liked'>
+                    <a href="{{rootLink "/likes"}}"><i class="icon-heart {{#if onLikes}}icon-white{{else}}icon-grey{{/if}}"></i> My Likes</a>
+                </li>
             {{/if}}
         </ul>
     </div>
