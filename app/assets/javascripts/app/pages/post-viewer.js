@@ -27,7 +27,8 @@ app.pages.PostViewer = app.views.Base.extend({
 
     this.postView = new app.views.Post.SmallFrame({
        model : this.model,
-       className : "canvas-frame"
+       className : "canvas-frame",
+       composing : true
     });
 
     this.initializeStream()
