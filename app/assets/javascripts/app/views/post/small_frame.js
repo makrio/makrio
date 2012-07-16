@@ -10,16 +10,30 @@ app.views.Post.SmallFrame = app.views.Post.extend({
     ".stream-frame-feedback" : "feedbackView"
   },
 
+  events : {
+    'click .video-overlay' : 'reRenderWithoutScreenshot' //this should be gif overlay
+  },
+
   initialize : function(options) {
     this.stream = options.stream;
     this.composing = options.composing || false;
 
-    if(this.model.get("show_screenshot") && !this.composing) {
+    //show screenshot should now be has_screenshot
+    if(this.model.get("show_screenshot") && !this.composing) { 
       this.templateName = "small-frame/screenshot"
       this.$el.addClass('frame-screenshot')
     } else {
       this.addStylingClasses()
     }
+  },
+
+  reRenderWithoutScreenshot : function(){
+    this.$el.height(this.$el.height())
+    this.templateName = "small-frame/default"
+    this.composing = true
+    this.addStylingClasses()
+    this.$el.removeClass('frame-screenshot')
+    this.render()
   },
 
   isNormalizedCollection : function() {

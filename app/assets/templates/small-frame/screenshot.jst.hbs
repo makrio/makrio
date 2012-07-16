@@ -1,7 +1,10 @@
 <div class='stream-frame-feedback' />
 
 <div class="content">
-    <img src="{{screenshot_url}}" {{#if adjustedImageHeight}}style="height:{{adjustedImageHeight}}px;"{{/if}} class="frame-screenshot" />
+    <img src="{{screenshot_url}}" {{#if adjustedImageHeight}}style="height:{{adjustedImageHeight}}px;"{{/if}} class="{{has_gif}} frame-screenshot" />
+    {{#if has_gif}}
+      <div class='video-overlay'/>
+    {{/if}}
 </div>
 
 <div class="p-info"/>

@@ -42,6 +42,7 @@ class PostPresenter
         :previous_post => previous_post_path,
         :screenshot_url => @post.screenshot_url,
         :show_screenshot => self.show_screenshot?,
+        :has_gif => self.has_gif?,
         :conversation_id => @post.conversation_id,
         :conversation_name => self.conversation_title,
         :interactions => options.fetch(:lite?, false) ? lite_interactions : heavy_interactions
@@ -88,7 +89,12 @@ class PostPresenter
   end
 
   def show_screenshot?
-    @post.screenshot_url.present? && !has_gif?
+    @post.screenshot_url.present? 
+  end
+
+  def has_gif?
+    return false unless @post.photos.present?
+    return 'gif' if @post.photos.detect{ |p| p.url && p.url.match(".gif") }.present?
   end
 
   protected
@@ -101,8 +107,4 @@ class PostPresenter
     @current_user.present?
   end
 
-  def has_gif?
-    return false unless @post.photos.present?
-    @post.photos.detect{ |p| p.url && p.url.match(".gif") }.present?
-  end
 end
