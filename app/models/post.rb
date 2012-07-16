@@ -245,8 +245,12 @@ class Post < ActiveRecord::Base
   def screenshot!
     return false if !self.persisted? || Rails.env.test?
     puts "screenshoting"
-    self.screenshot.store!(raw_screenshot)
-    self.save!
+    if r = raw_screenshot
+      self.screenshot.store!(r)
+      self.save!
+    else
+      false
+    end
   end
 
   def raw_screenshot
