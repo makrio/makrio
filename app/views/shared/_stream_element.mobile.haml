@@ -26,7 +26,7 @@
         .post_stats
           - if post.public?
             %span.comment_count
-              = post.reshares.size
+              = post.remix_siblings.size
 
           %span.comment_count
             = post.comments.size
