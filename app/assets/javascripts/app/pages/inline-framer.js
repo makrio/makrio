@@ -4,7 +4,7 @@ app.pages.FramerWithLightBoxNavigate = app.pages.Framer.extend({
   }
 })
 
-app.pages.InlineFramer = app.views.Base.extend({
+app.views.InlineFramer = app.views.Base.extend({
   initialize :function(){
     this.framer = new app.pages.FramerWithLightBoxNavigate({ model : this.model})
     this.bindEvents()
@@ -40,4 +40,27 @@ app.pages.InlineFramer = app.views.Base.extend({
     });
     this.unbindEvents()
   }
-})
+});
+
+app.views.InlineComments = app.views.Base.extend({
+    templateName : "inline-comments",
+
+    subviews : {
+      '.comments' : 'comments',
+      '.new-comment' : 'newCommentView'
+    },
+
+    initialize :function(){
+      this.comments = new app.views.PostViewerComments({ model: this.model.interactions })
+      this.newCommentView = new app.views.PostViewerNewComment({ model : this.model })
+    },
+
+    show : function(){
+    $.facebox.settings.closeImage = '/assets/facebox/closelabel.png';
+    $.facebox.settings.loadingImage = '/assets/facebox/loading.gif';
+    $.facebox.settings.opacity = 0.5;
+      this.render()
+      $.facebox(this.el)
+    }
+});
+

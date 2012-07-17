@@ -110,8 +110,13 @@ app.views.Base = Backbone.View.extend({
     var post_id = $(evt.target).data('remix-id')
       , post = (post_id =='new') ? undefined : (this.stream && this.stream.items.get(post_id).buildRemix()) || this.model.buildRemix()
 
-    this.framer = new app.pages.InlineFramer({model : post})
+    this.framer = new app.views.InlineFramer({model : post})
     this.framer.show()
+  },
+
+  showModalComments : function(){
+    this.modalComments = new app.views.InlineComments({model : this.model})
+    this.modalComments.show();
   },
 
  requireAuth : function(evt) {

@@ -8,6 +8,7 @@ app.views.Feedback = app.views.Base.extend({
     "click .like" : "toggleLike",
     "click .reshare" : "showModalFramer",
     "click .remix" : "showModalFramer",
+    "click .modal-comment" : "showModalComments",
     "click .comment" : "comment",
     "click .staff-pick" : "toggleStaffPicked"
   },

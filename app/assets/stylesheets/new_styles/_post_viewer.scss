@@ -97,6 +97,7 @@
     margin-right : 15px;
   }
 
+  .modal-comment,
   .reshare,
   .like {
     display : inline-block;
@@ -110,6 +111,12 @@
     }
   }
 
+  .modal-comment {
+    background-image : image_url('icons/conv_com@2x.jpg');
+    &:hover {
+      background-image : image_url('icons/conv_com_hov@2x.jpg');
+    }
+  }
   .reshare {
     background-image : image_url('icons/sp_re@2x.jpg');
     &:hover {
