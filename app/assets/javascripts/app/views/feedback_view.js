@@ -28,8 +28,13 @@ app.views.Feedback = app.views.Base.extend({
       likesCount : interactions.likesCount(),
       remixCount : interactions.remixCount(),
       userLike : interactions.userLike(),
-      canRemove : this.model.canRemove()
+      canRemove : this.model.canRemove(),
+      hideComment : this.hideComment()
     })
+  },
+
+  hideComment : function(){
+    return document.location.pathname.search("stream") !== -1
   },
 
   toggleLike: function(evt) {
