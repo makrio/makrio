@@ -109,15 +109,15 @@
   }
 
   .modal-comment {
-    background-image : image_url('icons/comm@2x.png');
+    background-image : image_url('icons/post_comm@2x.png');
     &:hover {
-      background-image : image_url('icons/comm_hov@2x.png');
+      background-image : image_url('icons/post_comm_hov@2x.png');
     }
   }
   .reshare {
-    background-image : image_url('icons/re@2x.png');
+    background-image : image_url('icons/remix@2x.png');
     &:hover {
-      background-image : image_url('icons/re_hov@2x.png');
+      background-image : image_url('icons/remix_hov@2x.png');
     }
   }
 

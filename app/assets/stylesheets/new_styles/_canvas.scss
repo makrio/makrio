@@ -468,6 +468,14 @@ a.logo{
         }
       }
 
+      .modal-comment {
+        background-image : image_url('icons/comm@2x.png');
+
+        &:hover{
+          background-image : image_url('icons/comm_hov@2x.png');
+        }
+      }
+
       .like {
         background-image : image_url('icons/post_love@2x.png');
 
