@@ -43,7 +43,7 @@ class StatusMessagesController < ApplicationController
       receiving_services = Service.titles(services)
 
       current_user.dispatch_post(@status_message, :url => short_post_url(@status_message.guid), :service_types => receiving_services)
-      current_user.participate!(@status_message)
+      # current_user.participate!(@status_message)
       @status_message.notify_source!
 
 
