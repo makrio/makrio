@@ -17,7 +17,8 @@ app.pages.TimeWarp = app.views.Base.extend({
 
   presenter : function(){
     return {
-      'daysAgo' : this.daysAgo && this.daysAgo.replace('days_ago=', '')
+      'daysAgo' : this.daysAgo && this.daysAgo.replace('days_ago=', ''),
+      'bookmarkletJS': this.bookmarkletJS()
     }
   },
 
