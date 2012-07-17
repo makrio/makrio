@@ -19,6 +19,7 @@ app.Router = Backbone.Router.extend({
 
     'timewarp' : 'timewarp',
     'timewarp/:days_ago' : 'timewarp',
+    'timewarp?:days_ago' : 'timewarp',
 
     "framer": "framer",
     "framer?bookmarklet=true&*params": "bookmarklet", 
@@ -46,7 +47,7 @@ app.Router = Backbone.Router.extend({
   },
 
   timewarp : function(daysAgo){
-    this.renderPage(function(){ return new app.pages.TimeWarp()});
+    this.renderPage(function(){ return new app.pages.TimeWarp({daysAgo : daysAgo})});
   },
 
   styleGuide : function(id){

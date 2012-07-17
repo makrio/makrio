@@ -110,6 +110,25 @@ a.logo{
   }
 }
 
+#timewarp {
+  #time-controls {
+    float:right;
+  }
+  #links {
+    float: left;
+    padding-right: 10px;
+    a {
+     font-size: 18px;
+     line-height: 26px;
+    }
+  }
+
+  form  {
+    float: left;
+    padding-right: 30px;
+  }
+}
+
 .canvas-frame {
   .content {
     /* default height to be overridden */
