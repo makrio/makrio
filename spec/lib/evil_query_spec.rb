@@ -32,7 +32,7 @@ describe EvilQuery::Participation do
     before do
       @status_messageA = Factory(:status_message, :author => bob.person)
       @status_messageB = Factory(:status_message, :author => bob.person)
-      @photoC = Factory(:activity_streams_photo, :author => bob.person)
+      @photoC = Factory(:status_message, :author => bob.person)
       @status_messageD = Factory(:status_message, :author => bob.person)
       @status_messageE = Factory(:status_message, :author => bob.person)
 

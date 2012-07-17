@@ -131,11 +131,6 @@ describe Notifier do
       @mail.body.encoded.should_not include(I18n.translate 'notifier.a_post_you_shared')
     end
 
-    it 'can handle a activity streams photo' do
-      as_photo = Factory(:activity_streams_photo)
-      like = as_photo.likes.create!(:author => bob.person)
-      mail = Notifier.liked(alice.id, like.author.id, like.id)
-    end
   end
 
   context "comments" do
@@ -170,17 +165,6 @@ describe Notifier do
           comment_mail.body.encoded.should_not include(I18n.translate 'notifier.a_post_you_shared')
         end
       end
-
-      [:activity_streams_photo].each do |post_type|
-        context post_type.to_s do
-          let(:commented_post) { Factory(post_type, :author => bob.person) }
-          it 'succeeds' do
-            proc {
-              comment_mail
-            }.should_not raise_error
-          end
-        end
-      end
     end
 
     describe ".also_commented" do
@@ -209,16 +193,6 @@ describe Notifier do
 
         it 'should not include translation fallback' do
           comment_mail.body.encoded.should_not include(I18n.translate 'notifier.a_post_you_shared')
-        end
-      end
-      [ :activity_streams_photo].each do |post_type|
-        context post_type.to_s do
-          let(:commented_post) { Factory(post_type, :author => bob.person) }
-          it 'succeeds' do
-            proc {
-              comment_mail
-            }.should_not raise_error
-          end
         end
       end
     end

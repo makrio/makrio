@@ -1,5 +1,5 @@
 class Stream::Base
-  TYPES_OF_POST_IN_STREAM = ['StatusMessage', 'ActivityStreams::Photo']
+  TYPES_OF_POST_IN_STREAM = ['StatusMessage']
 
   attr_accessor :max_time, :order, :user
 

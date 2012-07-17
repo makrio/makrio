@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120715223810) do
+ActiveRecord::Schema.define(:version => 20120717045904) do
 
   create_table "account_deletions", :force => true do |t|
     t.string  "diaspora_handle"
@@ -236,9 +236,6 @@ ActiveRecord::Schema.define(:version => 20120715223810) do
     t.boolean  "pending",                             :default => false, :null => false
     t.string   "type",                  :limit => 40,                    :null => false
     t.text     "text"
-    t.text     "remote_photo_path"
-    t.string   "remote_photo_name"
-    t.string   "random_string"
     t.string   "processed_image"
     t.datetime "created_at",                                             :null => false
     t.datetime "updated_at",                                             :null => false
@@ -247,15 +244,10 @@ ActiveRecord::Schema.define(:version => 20120715223810) do
     t.string   "image_url"
     t.integer  "screenshot_height"
     t.integer  "screenshot_width"
-    t.string   "provider_display_name"
-    t.string   "actor_url"
-    t.string   "objectId"
     t.string   "parent_guid",           :limit => 30
-    t.string   "status_message_guid"
     t.integer  "likes_count",                         :default => 0
     t.integer  "comments_count",                      :default => 0
     t.integer  "o_embed_cache_id"
-    t.integer  "reshares_count",                      :default => 0
     t.datetime "interacted_at"
     t.string   "frame_name"
     t.boolean  "favorite",                            :default => false
@@ -263,6 +255,7 @@ ActiveRecord::Schema.define(:version => 20120715223810) do
     t.string   "screenshot"
     t.string   "root_guid"
     t.datetime "staff_picked_at"
+    t.string   "provider_display_name"
   end
 
   add_index "posts", ["author_id"], :name => "index_posts_on_person_id"
@@ -270,8 +263,6 @@ ActiveRecord::Schema.define(:version => 20120715223810) do
   add_index "posts", ["id", "type", "created_at"], :name => "index_posts_on_id_and_type_and_created_at"
   add_index "posts", ["parent_guid"], :name => "index_posts_on_parent_guid"
   add_index "posts", ["root_guid"], :name => "index_posts_on_root_guid"
-  add_index "posts", ["status_message_guid", "pending"], :name => "index_posts_on_status_message_guid_and_pending"
-  add_index "posts", ["status_message_guid"], :name => "index_posts_on_status_message_guid"
   add_index "posts", ["type", "pending", "id"], :name => "index_posts_on_type_and_pending_and_id"
 
   create_table "profiles", :force => true do |t|

@@ -44,12 +44,6 @@ describe PostsController do
         }.should change(note, :unread).from(true).to(false)
       end
 
-      it 'succeeds with a AS/photo' do
-        photo = Factory(:activity_streams_photo, :author => bob.person)
-        get :show, :id => photo.id
-        response.should be_success
-      end
-
       it '404 if the post is missing' do
         expect { get :show, :id => 1234567 }.to raise_error(ActiveRecord::RecordNotFound)
       end

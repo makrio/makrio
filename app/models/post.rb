@@ -230,10 +230,6 @@ class Post < ActiveRecord::Base
     false
   end
 
-  def activity_streams?
-    false
-  end
-
   def notify_source!
     Notifications::Remixed.create_from_post(self) if self.parent.present?
   end

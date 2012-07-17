@@ -69,11 +69,6 @@ Diaspora::Application.routes.draw do
 
   post "upload_wallpaper" => 'profiles#upload_wallpaper_image'
 
-  # ActivityStreams routes
-  scope "/activity_streams", :module => "activity_streams", :as => "activity_streams" do
-    resources :photos, :controller => "photos", :only => [:create]
-  end
-
   get 'notifications/read_all' => 'notifications#read_all'
   resources :notifications, :only => [:index, :update] do
   end

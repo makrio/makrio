@@ -64,15 +64,8 @@ describe PostPresenter do
       @sm.stub(:screenshot_url => 'something')
     end
 
-    it 'returns true if there is an image present with a .gif extension' do
-      @sm.photos = [Factory(:photo_gif)]
-      @sm.save
-      @presenter.show_screenshot?.should be_false
-    end
-
-    it 'returns false if there is an non gif present' do
-      @sm.photos = [Factory(:photo)]
-      @sm.save
+    it 'returns true if the screenshot_url is present' do
+      @sm.stub(:screenshot_url => 'something')
       @presenter.show_screenshot?.should be_true
     end
 
@@ -81,4 +74,19 @@ describe PostPresenter do
       @presenter.show_screenshot?.should be_false
     end
   end
+
+  describe '#has_gif' do
+    it 'returns true if there is an image present with a .gif extension' do
+      @sm.photos = [Factory(:photo_gif)]
+      @sm.save
+      @presenter.has_gif?.should be_true
+    end
+
+    it 'returns false if there is an non gif present' do
+      @sm.photos = [Factory(:photo)]
+      @sm.save
+      @presenter.has_gif?.should be_false
+    end 
+  end
+  
 end

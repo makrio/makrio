@@ -1,6 +1,6 @@
 class Stream::Activity < Stream::Base
   def link(opts={})
-    Rails.application.routes.url_helpers.activity_streams_path(opts)
+    Rails.application.routes.url_helpers.posts_path(opts)
   end
 
   def order

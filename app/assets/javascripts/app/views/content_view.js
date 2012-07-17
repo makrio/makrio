@@ -66,10 +66,6 @@ app.views.StatusMessage = app.views.Content.extend({
   templateName : "status-message"
 });
 
-app.views.ActivityStreams__Photo = app.views.Content.extend({
-  templateName : "activity-streams-photo"
-});
-
 app.views.OEmbed = app.views.Base.extend({
   templateName : "oembed",
   events : {
