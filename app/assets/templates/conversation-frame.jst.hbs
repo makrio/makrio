@@ -1,38 +1,74 @@
-<div class="span5" style="margin-left:0;">
-    <a href="/conversations/{{conversation_id}}">
-        <div class="frame" style="background-image:url({{screenshot_url}})">
+<div class='cnv-row'>
+    <div class="span5" style="margin-left:0;">
+        <a href="/conversations/{{conversation_id}}">
+            <div class="frame" style="background-image:url({{screenshot_url}})">
 
-            <div class="boxed-frame">
-                <img src="{{screenshot_url}}" class="screenshot" />
+                <div class="boxed-frame">
+                    <img src="{{screenshot_url}}" class="screenshot" />
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="span7 cnv-side-info">
+        <div class='row'>
+            <div class='span4'>
+                <h2 class="cnv-title">
+                    {{title}}
+                </h2>
+                <h3>
+                    by <a href="/{{author.username}}">{{author.name}}</a>
+                </h3>
+
+                <h3>
+                    <small>Created: <time class="timeago" datetime="{{created_at}}"/></small>
+                </h3>
+
+                <div class="remix-count">
+                    <h4>
+                        <i class='icon-random'></i> {{interactions.remix_count}}
+                        <i class='icon-heart'></i> {{interactions.likes_count}}
+                    </h4>
+
+                </div>
+            </div>
+
+            <div class='span3'>
+                <div class='conversation-feedback' style='float:right'/>
             </div>
         </div>
-    </a>
-</div>
+        
+        <div class="cnv-remixes">
+            {{#if showOriginal}}
+                <a href='/p/{{original.id}}' style='padding-right:10px'>
+                    <h6> Original</h6>
+                    <img src='{{original.screenshot_url}}' class='remix original'/>
+                </a>
+            {{/if}}
 
-<div class="span7 cnv-side-info">
-    <h2 class="cnv-title">
-        {{title}}
-    </h2>
-    <h3>
-        by <a href="/{{author.username}}">{{author.name}}</a>
-    </h3>
-
-    <div class="remix-count">
-        <h3>{{conversation.info.post_count}} <small>Remixes</small></h3>
+            {{#each conversation.remix_siblings}}
+                <a href="/p/{{id}}">
+                    <img src="{{screenshot_url}}" class="remix" />
+                </a>
+            {{/each}}
+        </div>
     </div>
+</div>    
 
-    <div class="likes-count">
-        <h3>
-            {{conversation.info.likes_count}} <small>Likes</small>
-            {{conversation.info.participants_count}} <small>Makrs</small>
-        </h3>
-    </div>
-
-    <div class="cnv-remixes">
-        {{#each conversation.remix_siblings}}
-            <a href="/p/{{id}}">
-                <img src="{{screenshot_url}}" class="remix" />
-            </a>
-        {{/each}}
+<div class='span10 offset1'>
+    <div class='conversation-info'>
+        {{#with original}}
+            <i class='icon-comment'></i>
+            <a href='/conversations/{{conversation_id}}'>"{{title}}"</a>
+                started by <a href='/{{author.username}}'>{{this.author.name}}</a>
+            <time class="timeago" datetime="{{created_at}}"/>
+        {{/with}}
+        <span style="float:right">
+            <h4>
+                <i class='icon-random'></i> {{conversation.info.post_count}}
+                <i class='icon-heart'></i>{{conversation.info.likes_count}}
+                <i class='icon-user'></i>{{conversation.info.participants_count}}
+            </h4>
+        </span>
     </div>
 </div>

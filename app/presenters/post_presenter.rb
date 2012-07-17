@@ -45,7 +45,8 @@ class PostPresenter
         :has_gif => self.has_gif?,
         :conversation_id => @post.conversation_id,
         :conversation_name => self.conversation_title,
-        :interactions => options.fetch(:lite?, false) ? lite_interactions : heavy_interactions
+        :interactions => options.fetch(:lite?, false) ? lite_interactions : heavy_interactions,
+        :original => @post.original?
     }
   end
 
