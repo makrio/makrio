@@ -56,11 +56,14 @@ app.views.InlineComments = app.views.Base.extend({
     },
 
     show : function(){
-    $.facebox.settings.closeImage = '/assets/facebox/closelabel.png';
-    $.facebox.settings.loadingImage = '/assets/facebox/loading.gif';
-    $.facebox.settings.opacity = 0.5;
-      this.render()
-      $.facebox(this.el)
+      var self = this
+      self.model.interactions.fetch().done(function(){
+        $.facebox.settings.closeImage = '/assets/facebox/closelabel.png';
+        $.facebox.settings.loadingImage = '/assets/facebox/loading.gif';
+        $.facebox.settings.opacity = 0.5;
+        self.render()
+        $.facebox(self.el)
+      })
     }
 });
 

@@ -114,7 +114,8 @@ app.views.Base = Backbone.View.extend({
     this.framer.show()
   },
 
-  showModalComments : function(){
+  showModalComments : function(evt){
+    evt && evt.preventDefault();
     this.modalComments = new app.views.InlineComments({model : this.model})
     this.modalComments.show();
   },

@@ -55,7 +55,7 @@ app.views.PostViewerComments = app.views.Base.extend({
     var parent = this.model.get("post_type") ? this.model.toJSON : this.model.post.toJSON()
 
     comment.set({parent : parent})
-    console.log(this.$("#post-comments"))
+    
     this.$("#post-comments").append(new app.views.Comment({
       model: comment,
       className : "post-comment media",

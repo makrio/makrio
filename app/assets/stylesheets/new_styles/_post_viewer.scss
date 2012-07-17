@@ -93,9 +93,6 @@
 
 .conversation-feedback, #viewer-feedback {
   margin : 20px 0;
-  a {
-    margin-right : 15px;
-  }
 
   .modal-comment,
   .reshare,
@@ -112,24 +109,24 @@
   }
 
   .modal-comment {
-    background-image : image_url('icons/conv_com@2x.jpg');
+    background-image : image_url('icons/comm@2x.png');
     &:hover {
-      background-image : image_url('icons/conv_com_hov@2x.jpg');
+      background-image : image_url('icons/comm_hov@2x.png');
     }
   }
   .reshare {
-    background-image : image_url('icons/sp_re@2x.jpg');
+    background-image : image_url('icons/re@2x.png');
     &:hover {
-      background-image : image_url('icons/sp_re_hov@2x.jpg');
+      background-image : image_url('icons/re_hov@2x.png');
     }
   }
 
   .like {
-    background-image : image_url('icons/sp_like@2x.jpg');
+    background-image : image_url('icons/like@2x.png');
 
     &.liked,
     &:hover {
-      background-image : image_url('icons/sp_like_hov@2x.jpg');
+      background-image : image_url('icons/like_hov@2x.png');
     }
   }
 }

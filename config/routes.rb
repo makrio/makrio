@@ -52,6 +52,9 @@ Diaspora::Application.routes.draw do
     get :updated
   end
 
+
+  get "timewarp/:days_ago" => 'streams#show'
+  get "timewarp" => 'streams#show'
   get "popular" => "streams#popular", :as => "popular"
   get "likes" => "streams#likes", :as => "likes_stream"
   get "staff_picks" => "streams#staff_picks", :as => "staff_picks_stream"

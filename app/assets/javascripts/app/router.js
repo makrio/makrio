@@ -17,6 +17,9 @@ app.Router = Backbone.Router.extend({
     "posts/:id/remix" : 'remix',
     "posts/new" : "redirectToFramer",
 
+    'timewarp' : 'timewarp',
+    'timewarp/:days_ago' : 'timewarp',
+
     "framer": "framer",
     "framer?bookmarklet=true&*params": "bookmarklet", 
     "framer/done/:id" : "doneFraming",
@@ -40,6 +43,10 @@ app.Router = Backbone.Router.extend({
 
   redirectToFramer : function(){
     app.router.navigate("/framer", true)
+  },
+
+  timewarp : function(daysAgo){
+    this.renderPage(function(){ return new app.pages.TimeWarp()});
   },
 
   styleGuide : function(id){
