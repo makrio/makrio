@@ -84,11 +84,15 @@
 
         <ul class="nav nav-tab" style="z-index:100;">
             <li {{#if onLatest}}class="active"{{/if}} data-title='All Posts on Makr.io'>
-                <a href="{{rootLink "/stream"}}"><i class="icon-time {{#if onLatest}}icon-white{{else}}icon-grey{{/if}}"></i> Public</a>
+                <a href="{{rootLink "/stream"}}"><i class="icon-globe {{#if onLatest}}icon-white{{else}}icon-grey{{/if}}"></i> Public</a>
             </li>
 
             <li {{#if onStaffPicks}}class="active"{{/if}} data-title="The Makr.io staff's favorite remixes">
                 <a href="{{rootLink "/staff_picks"}}"><i class="icon-star {{#if onStaffPicks}}icon-white{{else}}icon-grey{{/if}}"></i> Staff Picks</a>
+            </li>
+
+            <li {{#if onTimeWarp}}class="active"{{/if}} data-title="New Feature! Go back in time and find cool old Makr posts">
+                <a href="{{rootLink "/timewarp"}}"><i class="icon-time {{#if onTimeWarp}}icon-white{{else}}icon-grey{{/if}}"></i> Time Warp <span class="badge badge-success">New!</span></a>
             </li>
 
             {{#if loggedIn}}

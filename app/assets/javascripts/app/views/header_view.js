@@ -13,7 +13,8 @@ app.views.Header = app.views.Base.extend({
       onLatest : function() { return document.location.pathname.search("stream") !== -1},
       onPopular : function() { return document.location.pathname.search("popular") !== -1 },
       onLikes : function() { return document.location.pathname.search("likes") !== -1 },
-      onStaffPicks: function() { return document.location.pathname.search("staff") !== -1 }
+      onStaffPicks: function() { return document.location.pathname.search("staff") !== -1 },
+      onTimeWarp: function() { return document.location.pathname.search("timewarp") !== -1 }
     })
   },
 
