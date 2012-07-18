@@ -12,6 +12,6 @@
     </div>
 
     <i class="icon-heart icon-grey"></i> {{interactions.likes_count}}
-    <i class="icon-random icon-grey"></i> {{interactions.remix_count}}
+    <a href='/conversations/{{conversation_id}}' class='conversation_link'><i class="icon-random icon-grey"></i> {{interactions.remix_count}}</a>
     <i class="icon-comment icon-grey"></i> {{interactions.comments_count}}
 </div>

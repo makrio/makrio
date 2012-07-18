@@ -19,6 +19,14 @@ a.logo{
   }
 }
 
+a.conversation_link{
+  color: #999;
+  &:hover {
+    color: #999;
+    text-decoration: none;
+  };
+}
+
 .steps {
   background-color: #666 ;
   width: 100%;
