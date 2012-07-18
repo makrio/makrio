@@ -80,12 +80,13 @@ app.views.ShareView = app.views.Base.extend({
 
   pinterest : function(evt){
     evt && evt.preventDefault()
+    app.instrument("track", "Share", {Service : "Pinterest"})
 
     var url = "https://makr.io/posts/" + this.model.id
-    ,   remixUrl = url + '/remix'
-    ,   media = this.model.get("screenshot_url")
-    ,   description = "made on makr.io https://www.makr.io | remix this " +  remixUrl 
-    ,    url = "http://pinterest.com/pin/create/button/?" +
+      , remixUrl = url + '/remix'
+      , media = this.model.get("screenshot_url")
+      , description = "made on makr.io https://www.makr.io | remix this " +  remixUrl
+      , url = "http://pinterest.com/pin/create/button/?" +
                 "url=" + encodeURIComponent(url) + 
                 "&media=" + encodeURIComponent(media) +
                 "&description" + encodeURIComponent(description)
