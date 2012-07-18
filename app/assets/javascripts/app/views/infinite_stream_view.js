@@ -11,7 +11,7 @@ app.views.InfScroll = app.views.Base.extend({
 
   setupInfiniteScroll : function() {
     this.postViews = this.postViews || []
-
+    this.resetViewBuffer()
     this.bind("loadMore", this.fetchAndshowLoader, this)
     this.stream.bind("fetched", this.hideLoader, this)
     this.stream.bind("fetched", this.addPosts, this)
@@ -34,9 +34,16 @@ app.views.InfScroll = app.views.Base.extend({
   },
 
   addPostView : function(post) {
+    //if this is prepend, do it eagarly, if not, use the buffer :(
+    var placeInStream = (this.collection.at(0).id == post.id) ? "prepend" : "append";
     var postView = this.createPostView(post)
     postView.render()
-    this.addToViewBuffer(postView.el)
+    var el = postView.el
+    if(placeInStream == 'prepend'){
+      this.$el[placeInStream](this.createPostView(post).render().el);
+    } else{
+      this.addToViewBuffer(postView.el)
+    }
   },
 
   addPosts : function(){
