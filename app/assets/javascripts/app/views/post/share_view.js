@@ -87,8 +87,8 @@ app.views.ShareView = app.views.Base.extend({
     ,   description = "made on <a href='https://www.makr.io'>makr.io</a> | <a href='" + remixUrl + "'>remix this</a>"
     ,    url = "http://pinterest.com/pin/create/button/?" +
                 "url=" + encodeURIComponent(url) + 
-                "&meda" + encodeURIComponent(media) +
-                "&description" + encodeURIComponent(description)
+                "&media=" + encodeURIComponent(media) +
+                "&description=" + encodeURIComponent(description)
     this.launchWindow(url)
   },
 
