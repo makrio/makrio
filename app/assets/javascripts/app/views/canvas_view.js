@@ -11,6 +11,7 @@ app.views.Canvas = app.views.InfScroll.extend({
     this.stream.bind("fetched", this.triggerRelayoutAfterImagesLoaded, this)
   },
 
+
   renderTemplate : function() {
     this.stream.deferred.done(_.bind(function(){
       if(this.stream.items.isEmpty()){
@@ -33,8 +34,10 @@ app.views.Canvas = app.views.InfScroll.extend({
     }, this))
   },
 
-  addPostView : function(post) {
-    _.defer(_.bind(function(){ this.$el.isotope("insert", this.createPostView(post).render().$el) }, this))
+  addPosts : function() {
+    var htmlString = _.map(this.flushViewBuffer(), function(e){ return $(e).wrap('<div>').parent().html(); }).join(' ')
+    var $fragment = $(htmlString)
+    this.$el.isotope("insert", $fragment)
   },
 
   mason : function() {
