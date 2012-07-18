@@ -3,7 +3,8 @@ app.views.ShareView = app.views.Base.extend({
   events : {
     'click .tweet-button' : 'tweet',
     'click .facebook-button' : 'facebook',
-    'click .tumblr-button' : 'tumblr'
+    'click .tumblr-button' : 'tumblr',
+    'click .pinterest-button' : 'pinterest'
   },
 
   presenter : function() {
@@ -76,7 +77,22 @@ app.views.ShareView = app.views.Base.extend({
     this.launchWindow(url)
   },
 
+
+  pinterest : function(evt){
+    evt && evt.preventDefault()
+
+    var url = "https://makr.io/posts/" + this.model.id
+    ,   remixUrl = url + '/remix'
+    ,   media = this.model.get("screenshot_url")
+    ,   description = "made on <a href='https://www.makr.io'>makr.io</a> | <a href='" + remixUrl + "'>remix this</a>"
+    ,    url = "http://pinterest.com/pin/create/button/?" +
+                "url=" + encodeURIComponent(url) + 
+                "&meda" + encodeURIComponent(media) +
+                "&description" + encodeURIComponent(description)
+    this.launchWindow(url)
+  },
+
   launchWindow : function(url){
-    window.open(url, 'shareWindow', 'height=255, width=550, top='+($(window).height()/2 - 225) +', left='+$(window).width()/2 +', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+    window.open(url, 'shareWindow', 'height=255, width=600, top='+($(window).height()/2 - 225) +', left='+$(window).width()/2 +', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
   }
 });
