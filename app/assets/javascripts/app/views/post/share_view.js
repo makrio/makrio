@@ -84,11 +84,11 @@ app.views.ShareView = app.views.Base.extend({
     var url = "https://makr.io/posts/" + this.model.id
     ,   remixUrl = url + '/remix'
     ,   media = this.model.get("screenshot_url")
-    ,   description = "made on <a href='https://www.makr.io'>makr.io</a> | <a href='" + remixUrl + "'>remix this</a>"
+    ,   description = "made on makr.io https://www.makr.io | remix this " +  remixUrl 
     ,    url = "http://pinterest.com/pin/create/button/?" +
                 "url=" + encodeURIComponent(url) + 
                 "&media=" + encodeURIComponent(media) +
-                "&description=" + encodeURIComponent(description)
+                "&description" + encodeURIComponent(description)
     this.launchWindow(url)
   },
 
