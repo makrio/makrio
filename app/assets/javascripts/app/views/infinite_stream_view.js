@@ -14,6 +14,7 @@ app.views.InfScroll = app.views.Base.extend({
 
     this.bind("loadMore", this.fetchAndshowLoader, this)
     this.stream.bind("fetched", this.hideLoader, this)
+    this.stream.bind("fetched", this.addPosts, this)
     this.stream.bind("allItemsLoaded", this.unbindInfScroll, this)
 
     this.collection.bind("add", this.addPostView, this);
@@ -33,9 +34,30 @@ app.views.InfScroll = app.views.Base.extend({
   },
 
   addPostView : function(post) {
-    var placeInStream = (this.collection.at(0).id == post.id) ? "prepend" : "append";
-    this.$el[placeInStream](this.createPostView(post).render().el);
+    var postView = this.createPostView(post)
+    postView.render()
+    this.addToViewBuffer(postView.el)
   },
+
+  addPosts : function(){
+    this.$el.append(this.flushViewBuffer())
+  },
+
+  flushViewBuffer : function(){
+    var posts = this._viewBuffer
+    this.resetViewBuffer()
+
+    return posts
+  },
+
+  resetViewBuffer : function(){
+    this._viewBuffer = []
+  },
+
+  addToViewBuffer : function(item){
+    this._viewBuffer.push(item)
+  },
+
 
   unbindInfScroll : function() {
     $(window).unbind("scroll");
@@ -54,6 +76,7 @@ app.views.InfScroll = app.views.Base.extend({
 
   fetchAndshowLoader : function(){
     if(this.stream.isFetching()) { return false }
+    this.resetViewBuffer()
     this.stream.fetch()
     this.showLoader()
   },
