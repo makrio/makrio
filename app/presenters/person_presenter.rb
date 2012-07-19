@@ -1,5 +1,5 @@
 class PersonPresenter < BasePresenter
-  def initialize(person, current_user = nil, opts = nil)
+  def initialize(person, current_user = nil, opts = {})
     @person = person
     @current_user = current_user
     @opts = opts
