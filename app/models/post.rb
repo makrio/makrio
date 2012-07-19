@@ -16,6 +16,7 @@ class Post < ActiveRecord::Base
   has_many :participations, :dependent => :delete_all, :as => :target
 
   attr_accessor :user_like
+  attr_accessible :tag_list
 
   xml_attr :provider_display_name
 

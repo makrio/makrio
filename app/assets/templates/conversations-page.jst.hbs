@@ -50,7 +50,7 @@
             {{#if current_user.admin}}
                 <hr />
                 <h6>Tags</h6>
-                <form name="tagForm" class='form-inline' action="/conversations/{{id}}/tags" method="post" data-remote="true">
+                <form name="tagForm" class='form-inline' action="/posts/{{original.id}}/tags" method="post" data-remote="true">
                     <input type="text" name="tag_list" value='{{tag_list}}' placeholder='add comma seperated tags'/>
                     <input type="submit" value='Set Tags' class="btn new-btn"/>
                 </form>

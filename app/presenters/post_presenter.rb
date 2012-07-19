@@ -26,6 +26,7 @@ class PostPresenter
         :staff_picked_at => @post.staff_picked_at,
         :interacted_at => @post.interacted_at,
         :provider_display_name => @post.provider_display_name,
+        :tag_list => @post.tag_list,
         :post_type => @post.post_type,
         :image_url => @post.image_url,
         :object_url => @post.object_url,

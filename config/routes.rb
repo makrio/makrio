@@ -14,7 +14,7 @@ Diaspora::Application.routes.draw do
   resources :status_messages, :only => [:new, :create]
 
   resources :conversations, :only => [:show]
-  post '/conversations/:conversation_id/tags' => 'tags#set'
+  post '/posts/:post_id/tags' => 'tags#set'
   post '/conversations/:conversation_id/join' => 'conversations#join'
 
   resources :posts do
@@ -30,6 +30,8 @@ Diaspora::Application.routes.draw do
       put :toggle_staff_picked
     end
 
+    
+    post '/posts/:post_id/tags' => 'tags#set'
     resources :likes, :only => [:create, :destroy, :index ]
     resources :participations, :only => [:create, :destroy, :index]
     resources :comments, :only => [:new, :create, :destroy, :index]
