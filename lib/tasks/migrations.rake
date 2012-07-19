@@ -75,6 +75,19 @@ namespace :migrations do
 
   end
 
+  task :tag_children => :environment do
+    Post.all_original.find_each do |post|
+      post.remix_siblings.each do |sib|
+        begin
+          sib.tag_list = post.tag_list
+          sib.save
+        rescue
+          puts "problem saving tag for #{sib.inspect}"
+        end
+      end
+    end
+  end
+
   # removes hashtags with uppercase letters and re-attaches
   # the posts to the lowercase version
   task :rewire_uppercase_hashtags => :environment do
