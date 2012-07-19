@@ -1,0 +1,84 @@
+<!-- <header/> -->
+
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+  <title>The Sunnyvale News</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto|Vollkorn|UnifrakturMaguntia">
+  <style>
+        html { background:url(http://subtlepatterns.com/patterns/extra_clean_paper.png) repeat; }
+    body { font-family:normal 13px 'Vollkorn',serif; width:987px; margin:0 auto; }
+
+    header { font:normal 13px 'Roboto',sans-serif; }
+        header div { border-bottom:2px solid black; padding:.5em; }
+            header img { vertical-align:text-bottom; width:16px; height:16px; }
+            #weather { float:right; }
+        #midheader { text-align:center; padding:1em; }
+        h1 { font:normal 89px 'UnifrakturMaguntia'; margin:0; }
+            #midheader span {  }
+        #bottomheader { font-style:italic; }
+            #bottomheader span { margin-right:.9em; }
+            #news { text-transform:uppercase; font-style:normal; font-weight:bold; }
+
+        #story { position:relative; height:400px; padding:1em .5em; margin-bottom:2em; }
+        #startstory { position:absolute; width:730px; height:400px; border-right:1px dotted gray; margin-right:.5em; }
+            h2 { margin:.1em 0 0; font-size:2em; }
+            #startstory img { width:460px; height:400px; float:left; margin-right:.5em; }
+            #startstorytext { width:250px; float:left; }
+            #startstorytext span { font-style:italic; }
+        #topstories { float:right; width:220px; }
+            h3 { text-transform:uppercase; margin:.85em 0 .2em; }
+            #topstories img { width:220px; height:160px; margin-bottom:1em; }
+            #topstories ul { list-style:none; padding:0; margin:0; }
+            #topstories ul li span { font-style:italic; }
+        
+        #remixes { position:relative; height:100px; }
+  </style>
+
+<body>
+    <header>
+        <div id="topheader">
+            <span id="date">Wednesday 17 July 2012</span>
+            <span id="weather">Weather <img src="sun.svg"/> 95°&nbsp; H:98&nbsp; L:75</span>
+        </div>
+        <div id="midheader">
+          <h1>The Sunnyvale News</h1>
+            <span>Brought to you by the citizens of Makr.io &nbsp;|&nbsp; Community-run since June 4, 2012</span>
+        </div>
+      <div id="bottomheader">
+            <span id="news">Breaking news</span>
+            <span><img src="fire.svg"/> <strong>Mayor cantelope</strong> gives everyone in the city a puppy</span>
+            <span><img src="heart.svg" style="height:13px; width:13px"/> <strong>23 people agree</strong>: I love this town</span>
+            <span><img src="user.svg"/> <strong>10 new editors</strong> join TSNews</span>
+            <span><img src="remix.svg"/> <strong>+67</strong> other stories</span>
+        </div>
+    </header>
+
+    <section id="story">
+        <div id="startstory">
+            <img src="https://d2v75xn1eqsd0m.cloudfront.net/screenshots/6521becbae71d655.jpg"/>
+            <div id="startstorytext">
+                <h2>Original Burbs</h2>
+                <span>by Dennis Collinson, Chief Editor</span>
+                <p>On a rainy day in June, expecting the "sun" of their new town’s namesake to show itself, a group of five young entrepreneurs moved to Sunnyvale, California to pursue the Silicon Valley dream.
+                They were city folk, this Makr.io team, and the sprawling streets and shopping centers of this golden-lit suburb were an adjustment to say the least.
+                There hasn’t been a cloud in the sky since that rainy June day, and the Makr.io team has found creative ways to make the most of their new home.
+                This is the document of their adventures, misfortunes, and discoveries – join them in writing the story.
+            </div>
+        </div>
+        <div id="topstories">
+            <h3>Top Story</h3>
+            <img src="https://d2v75xn1eqsd0m.cloudfront.net/uploads/images/scaled_full_834c6039be99298afc28.jpg"/><br/>
+            <strong>More Top Stories</strong>
+            <ul>
+                <li>Sunnyvale Saturday night <span>pg. 12</span>
+                <li>Working in the Garage <span>pg. 1</span>
+                <li>Now in IMAX <span>pg. 3</span>
+                <li>New Sitcom Airs This Week <span>pg. 8 </span>
+                <li>Daily: Tell Someone Hello <span>pg. 8</span>
+                <li>Battle of the Cities <span>pg. 3</span>
+            </ul>
+        </div>
+    </section>
+
+
+<div id='canvas' />
