@@ -13,7 +13,8 @@ class StreamsController < ApplicationController
 
   def show
     stream_responder do
-      default_stream(Stream::Public)
+      lite = request.path =~ /timewarp/ ? {:lite =>true} : {}
+      default_stream(Stream::Public, lite)
     end
   end
 
