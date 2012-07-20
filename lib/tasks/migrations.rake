@@ -47,6 +47,14 @@ namespace :migrations do
     end
   end
 
+  task :save_image_dimensions do
+    Post.where('screenshot IS NOT NULL').find_each do |x|
+      url = 'https://d2v75xn1eqsd0m.cloudfront.net' + x.screenshot_url
+      x.screenshot_width, x.screenshot_height = `identify -format "%wx%h " #{url}`.split(/x/)
+      x.save
+    end
+  end
+
   task :upload_photos_to_s3 do
     require File.join(File.dirname(__FILE__), '..', '..', 'config', 'environment')
     puts AppConfig[:s3_key]

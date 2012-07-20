@@ -43,6 +43,8 @@ class PostPresenter
         :next_post => next_post_path,
         :previous_post => previous_post_path,
         :screenshot_url => @post.screenshot_url,
+        :screenshot_width => @post.screenshot_width,
+        :screenshot_height => @post.screenshot_height,
         :show_screenshot => self.show_screenshot?,
         :has_gif => self.has_gif?,
         :conversation_id => @post.conversation_id,

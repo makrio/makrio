@@ -1,11 +1,11 @@
 <div class='stream-frame-feedback' />
 
-<div class="content">
-    <div class="image-container">
+<div class="content" height="{{adjustedImageHeight}}px"   width="{{adjustedImageWidth}}px" >
+    <div class="image-container"  >
         {{#if photos}}
             {{#each photos}}
                 <div class="image-wrapper">
-                    <img src="{{sizes.large}}" {{#if ../../adjustedImageHeight}}style="height:{{../../adjustedImageHeight}}px;"{{/if}} />
+                    <img src="{{sizes.large}}" />
                     <i class="icon-remove icon-white remove-image" data-image-id="{{id}}"></i>
                 </div>
             {{/each}}

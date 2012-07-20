@@ -58,8 +58,14 @@ app.views.Post.SmallFrame = app.views.Post.extend({
       {
         text : this.model && app.helpers.textFormatter(this.model.get("text"), this.model),
         likesCount : this.model.interactions.likesCount(),
-        commentsCount : this.model.interactions.commentsCount()
+        commentsCount : this.model.interactions.commentsCount(),
+        adjustedImageHeight : this.model.adjustedImageHeight(500),
+        adjustedImageWidth: 500
       })
+  },
+
+  presenter : function(){
+    return this.smallFramePresenter()
   },
 
   postRenderTemplate : function() {

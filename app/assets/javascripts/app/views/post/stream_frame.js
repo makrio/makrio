@@ -25,7 +25,7 @@ app.views.Post.StreamFrame = app.views.Base.extend({
 
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
-      canRemove : this.canRemove()
+      canRemove : this.canRemove(),
     })
   },
 

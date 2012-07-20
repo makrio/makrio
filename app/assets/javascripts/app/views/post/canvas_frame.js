@@ -24,7 +24,7 @@ app.views.Post.FirstCanvasFrame = app.views.Base.extend({
 });
 
 app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
-  SINGLE_COLUMN_WIDTH : 265,
+  SINGLE_COLUMN_WIDTH : 275,
   DOUBLE_COLUMN_WIDTH : 560,
 
   className : "mason canvas-frame",
@@ -71,24 +71,19 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
     return pathName.search("/likes") != -1 || pathName.search("/people/") != -1 || pathName.search("/u/")
   },
 
-  adjustedImageHeight : function() {
-    if(!(this.model.get("photos") || [])[0]) { return }
-    if(this.model.get('frame_name') != 'Wallpaper'){return}
-
+  width : function(){
     var modifiers = [this.dimensionsClass(), this.textClasses(), this.$el.attr('class')].join(' ')
-      , firstPhoto = this.model.get("photos")[0]
-      , width = (modifiers.search("x2") != -1 ? this.DOUBLE_COLUMN_WIDTH : this.SINGLE_COLUMN_WIDTH)
-      , ratio = width / firstPhoto.dimensions.width
-      , returnValue = ratio * firstPhoto.dimensions.height;
+    return (modifiers.search("x2") != -1 ? this.DOUBLE_COLUMN_WIDTH : this.SINGLE_COLUMN_WIDTH) 
+  },
 
-    returnValue = this.model.get("show_screenshot") ? returnValue + 10 : returnValue;
-
-    return(returnValue)
+  adjustedImageHeight : function() {
+    return(this.model.adjustedImageHeight(this.width()))
   },
 
   presenter : function(){
     return _.extend(this.smallFramePresenter(), {
       adjustedImageHeight : this.adjustedImageHeight(),
+      adjustedImageWidth : this.width(),
     })
   },
 

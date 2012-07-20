@@ -86,7 +86,16 @@ app.models.Post = Backbone.Model.extend(_.extend({}, app.models.formatDateMixin,
 
   canRemove : function() {
     return this.get("author").guid == app.currentUser.get("guid")
+  },
+
+  adjustedImageHeight : function(knownWidth){
+    if(!this.has('screenshot_width')){return false }
+
+
+    ratio = knownWidth / this.get('screenshot_width')
+    return Math.round(this.get('screenshot_height') * ratio)
   }
+
 
 }), {
   headlineLimit : 118,
