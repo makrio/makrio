@@ -65,6 +65,8 @@ Diaspora::Application.routes.draw do
   resources :tags, :only => [:index]
   get 'tags/:name' => 'tags#show', :as => 'tag'
 
+
+  get 'search/:query' => 'searchs#show'
   resources :photos, :except => [:index] do
     put :make_profile_photo
     collection do

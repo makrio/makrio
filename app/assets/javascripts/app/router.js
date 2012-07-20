@@ -6,6 +6,10 @@ app.Router = Backbone.Router.extend({
     "stream": "newStream",
     "stream?*params": "newStream",
 
+
+    "search/:query": "search",
+    "search/:query?*params": "search",
+
     "people/:id": "newProfile",
     "u/:name": "newProfile",
 
@@ -93,6 +97,10 @@ app.Router = Backbone.Router.extend({
       , page = wantsCanvas ? new app.pages.GenericCanvas() : new app.pages.Stream()
     
     this.renderPage(function(){ return page});
+  },
+
+  search : function(){
+    this.renderPage(function(){ return new app.pages.Search()});
   },
 
   remix : function(id){
