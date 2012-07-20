@@ -23,3 +23,56 @@ $nav-background : #000;
     background-color : $nav-background !important;
   }
 }
+
+
+/* new declarations */
+#header {
+  box-sizing: border-box;
+  position: fixed;
+
+  top: 0;
+  width: 100%;
+
+  #header_nav {
+    float:left;
+    padding: 5px;
+
+    #logo {
+      vertical-align:text-bottom;
+      float:left;
+    }
+
+    ul {
+      position: relative;
+      top: 5px;
+      display: inline;
+      list-style: none;
+      margin: 0;
+
+      > li {
+        @include transition(all);
+        @include opacity(0);
+        display: inline;
+
+        &.active {
+          @include opacity(1);
+          float:left;
+          margin-top: 5px;
+        }
+      }
+    }
+
+    &:hover {
+      ul > li {
+        @include opacity(1);
+      }
+    }
+  }
+
+  #header_profile {
+    float:right;
+  }
+}
+
+
+

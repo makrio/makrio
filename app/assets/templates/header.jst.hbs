@@ -1,105 +1,137 @@
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <ul class="nav pull-right" style='z-index: 20;'>
-            {{#if loggedIn}}
-                <li>
-                    <a class='bookmarklet' data-title="<div style='text-align:left;padding:6px'>Drag the 'Remix' button to your bookmarks bar to easily remix any photo while you browse the web!</div>"
-                       href='{{bookmarkletJS}}' >
-                        <i class='icon-bookmark icon-white'></i>Remix</a>
-                </li>
-                <li>
-                    <button href="/framer" data-remix-id='new' data-title="Make a new Remix" id="composer-button" class="btn btn-primary"><i class="icon-plus icon-white"></i> Remix</button>
-                </li>
+<div id="header">
+    <div id="header_nav">
+        <img id="logo" src="{{imageUrl "logos/home_logo_black@2x.png"}}" height=26 width=118 />
 
-                <li class="dropdown">
-                    <button id="notifications-button" data-toggle="dropdown" class="btn dropdown-toggle {{#if current_user.notifications_count}}btn-danger{{else}}btn-inverse{{/if}}" title="Notifications">
-                        {{current_user.notifications_count}}
-                    </button>
-
-                    <ul id="notifications-dropdown" class="dropdown-menu">
-                        {{#each notifications}}
-                        <li><a href="/p/{{post.id}}" class="notification" data-notification-id={{id}} >
-                            <div class="media attribution">
-                                    <span class="img">
-                                        <div class="notification-img-wrapper" style="background-image:url('{{post.screenshot_url}}');">
-                                        </div>
-                                    </span>
-
-                                <div class="bd">
-                                    {{#each people}}
-                                            <span class="object">
-                                                {{name}}
-                                            </span>
-                                    {{/each}}
-                                    {{action}}
-                                        <span class="object">
-                                            {{post.title}}
-                                        </span>
-                                    <br/>
-
-                                    <i class="icon-{{icon_prefix}}"></i>
-                                    <time class="timeago" datetime="{{time}}"/>
-                                </div>
-                            </div>
-                        </a></li>
-                        <li class="divider"></li>
-                        {{/each}}
-
-                        <li><a href="{{rootLink "/notifications"}}" class="see-all">See all notifications</a></li>
-                    </ul>
-                </li>
-
-
-                <li class="divider-vertical"></li>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-user icon-white"></i>
-                        {{current_user.nickname}}
-                        <b class="caret"></b>
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        <li><a href="/{{current_user.username}}">Profile</a></li>
-                        <li><a href="{{rootLink "/user/edit"}}">Settings</a></li>
-                        <li class="divider"></li>
-                        <li><a href="{{rootLink "/users/sign_out"}}">Log Out</a></li>
-                    </ul>
-                </li>
-            {{else}}
-                <li>
-                    <a href="{{rootLink "/users/sign_in"}}">Log In</a>
-                </li>
-
-                <li>
-                    <a href="{{rootLink "/users/sign_up"}}">Sign Up</a>
-                </li>
-
-            {{/if}}
-        </ul>
-
-        <a href="{{rootLink "/"}}" class='logo'>
-            <img src="{{imageUrl "makr_home_logo@2x.png"}}" height=26 width=118 />
-        </a>
-
-        <ul class="nav nav-tab" style="z-index:100;">
+        <ul>
             <li {{#if onLatest}}class="active"{{/if}} data-title='All Posts on Makr.io'>
-                <a href="{{rootLink "/stream"}}"><i class="icon-globe {{#if onLatest}}icon-white{{else}}icon-grey{{/if}}"></i> Public</a>
+                <a href="{{rootLink "/stream"}}"><i class="icon-globe {{#unless onLatest}}icon-grey{{/unless}}"></i> Public</a>
             </li>
 
             <li {{#if onStaffPicks}}class="active"{{/if}} data-title="The Makr.io staff's favorite remixes">
-                <a href="{{rootLink "/staff_picks"}}"><i class="icon-star {{#if onStaffPicks}}icon-white{{else}}icon-grey{{/if}}"></i> Staff Picks</a>
+            <a href="{{rootLink "/staff_picks"}}"><i class="icon-star {{#unless onStaffPicks}}icon-grey{{/unless}}"></i> Staff Picks</a>
             </li>
 
             <li {{#if onTimeWarp}}class="active"{{/if}} data-title="New Feature! Go back in time and find cool old Makr posts">
-                <a href="{{rootLink "/timewarp"}}"><i class="icon-time {{#if onTimeWarp}}icon-white{{else}}icon-grey{{/if}}"></i> Time Warp <span class="badge badge-success">New!</span></a>
+                <a href="{{rootLink "/timewarp"}}"><i class="icon-time {{#unless onTimeWarp}}icon-grey{{/unless}}"></i> Time Warp <span class="badge badge-success">New!</span></a>
             </li>
 
             {{#if loggedIn}}
                 <li {{#if onLikes}}class="active"{{/if}} data-title='All Posts you have liked'>
-                    <a href="{{rootLink "/likes"}}"><i class="icon-heart {{#if onLikes}}icon-white{{else}}icon-grey{{/if}}"></i> My Likes</a>
+                    <a href="{{rootLink "/likes"}}"><i class="icon-heart {{#unless onLikes}}icon-grey{{/unless}}"></i> My Likes</a>
                 </li>
             {{/if}}
         </ul>
     </div>
+
+    <div id="header_profile">
+        {{#if loggedIn}}
+            {{{personImage current_user}}}
+        {{/if}}
+    </div>
 </div>
+
+<!--<div class="navbar navbar-fixed-top">-->
+    <!--<div class="navbar-inner">-->
+        <!--<ul class="nav pull-right" style='z-index: 20;'>-->
+            <!--{{#if loggedIn}}-->
+                <!--<li>-->
+                    <!--<a class='bookmarklet' data-title="<div style='text-align:left;padding:6px'>Drag the 'Remix' button to your bookmarks bar to easily remix any photo while you browse the web!</div>"-->
+                       <!--href='{{bookmarkletJS}}' >-->
+                        <!--<i class='icon-bookmark icon-white'></i>Remix</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<button href="/framer" data-remix-id='new' data-title="Make a new Remix" id="composer-button" class="btn btn-primary"><i class="icon-plus icon-white"></i> Remix</button>-->
+                <!--</li>-->
+
+                <!--<li class="dropdown">-->
+                    <!--<button id="notifications-button" data-toggle="dropdown" class="btn dropdown-toggle {{#if current_user.notifications_count}}btn-danger{{else}}btn-inverse{{/if}}" title="Notifications">-->
+                        <!--{{current_user.notifications_count}}-->
+                    <!--</button>-->
+
+                    <!--<ul id="notifications-dropdown" class="dropdown-menu">-->
+                        <!--{{#each notifications}}-->
+                        <!--<li><a href="/p/{{post.id}}" class="notification" data-notification-id={{id}} >-->
+                            <!--<div class="media attribution">-->
+                                    <!--<span class="img">-->
+                                        <!--<div class="notification-img-wrapper" style="background-image:url('{{post.screenshot_url}}');">-->
+                                        <!--</div>-->
+                                    <!--</span>-->
+
+                                <!--<div class="bd">-->
+                                    <!--{{#each people}}-->
+                                            <!--<span class="object">-->
+                                                <!--{{name}}-->
+                                            <!--</span>-->
+                                    <!--{{/each}}-->
+                                    <!--{{action}}-->
+                                        <!--<span class="object">-->
+                                            <!--{{post.title}}-->
+                                        <!--</span>-->
+                                    <!--<br/>-->
+
+                                    <!--<i class="icon-{{icon_prefix}}"></i>-->
+                                    <!--<time class="timeago" datetime="{{time}}"/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--{{/each}}-->
+
+                        <!--<li><a href="{{rootLink "/notifications"}}" class="see-all">See all notifications</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+
+
+                <!--<li class="divider-vertical"></li>-->
+
+                <!--<li class="dropdown">-->
+                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+                        <!--<i class="icon-user icon-white"></i>-->
+                        <!--{{current_user.nickname}}-->
+                        <!--<b class="caret"></b>-->
+                    <!--</a>-->
+
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="/{{current_user.username}}">Profile</a></li>-->
+                        <!--<li><a href="{{rootLink "/user/edit"}}">Settings</a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="{{rootLink "/users/sign_out"}}">Log Out</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+            <!--{{else}}-->
+                <!--<li>-->
+                    <!--<a href="{{rootLink "/users/sign_in"}}">Log In</a>-->
+                <!--</li>-->
+
+                <!--<li>-->
+                    <!--<a href="{{rootLink "/users/sign_up"}}">Sign Up</a>-->
+                <!--</li>-->
+
+            <!--{{/if}}-->
+        <!--</ul>-->
+
+        <!--<a href="{{rootLink "/"}}" class='logo'>-->
+            <!--<img src="{{imageUrl "makr_home_logo@2x.png"}}" height=26 width=118 />-->
+        <!--</a>-->
+
+        <!--<ul class="nav nav-tab" style="z-index:100;">-->
+            <!--<li {{#if onLatest}}class="active"{{/if}} data-title='All Posts on Makr.io'>-->
+                <!--<a href="{{rootLink "/stream"}}"><i class="icon-globe {{#if onLatest}}icon-white{{else}}icon-grey{{/if}}"></i> Public</a>-->
+            <!--</li>-->
+
+            <!--<li {{#if onStaffPicks}}class="active"{{/if}} data-title="The Makr.io staff's favorite remixes">-->
+                <!--<a href="{{rootLink "/staff_picks"}}"><i class="icon-star {{#if onStaffPicks}}icon-white{{else}}icon-grey{{/if}}"></i> Staff Picks</a>-->
+            <!--</li>-->
+
+            <!--<li {{#if onTimeWarp}}class="active"{{/if}} data-title="New Feature! Go back in time and find cool old Makr posts">-->
+                <!--<a href="{{rootLink "/timewarp"}}"><i class="icon-time {{#if onTimeWarp}}icon-white{{else}}icon-grey{{/if}}"></i> Time Warp <span class="badge badge-success">New!</span></a>-->
+            <!--</li>-->
+
+            <!--{{#if loggedIn}}-->
+                <!--<li {{#if onLikes}}class="active"{{/if}} data-title='All Posts you have liked'>-->
+                    <!--<a href="{{rootLink "/likes"}}"><i class="icon-heart {{#if onLikes}}icon-white{{else}}icon-grey{{/if}}"></i> My Likes</a>-->
+                <!--</li>-->
+            <!--{{/if}}-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</div>-->
