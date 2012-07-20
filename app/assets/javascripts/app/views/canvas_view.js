@@ -34,10 +34,7 @@ app.views.Canvas = app.views.InfScroll.extend({
   },
 
   addPosts : function() {
-    var htmlString = _.map(this.flushViewBuffer(), function(element){
-      return $(element).wrap('<div>').parent().html()
-    }).join(' ')
-    this.$el.isotope("insert", $(htmlString))
+    this.$el.isotope("insert", $(this.flushViewBuffer()))
   },
 
   mason : function() {
