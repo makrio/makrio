@@ -1,0 +1,17 @@
+<h1><%="#{@tags.count} tags"%></h1>
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Tag Name</th>
+      <th>Number of posts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @tags.each do |tag| %>
+      <tr>
+        <td><%=link_to tag.name, "/tagged/#{tag.name}"%> </td>
+        <td><%= tag.taggings.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

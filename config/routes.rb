@@ -174,6 +174,7 @@ Diaspora::Application.routes.draw do
   get ':username' => 'people#show', :constraints => { :username => /[^\/]+/ }
 
   get '/tagged/:name' => 'streams#category'
+  get '/tags' => 'tags#index'
   match '', to: 'streams#category', constraints: lambda{ |r| r.subdomain.present?}
 
   root :to => 'home#show'
