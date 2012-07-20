@@ -40,7 +40,7 @@ app.views.InfScroll = app.views.Base.extend({
     postView.render()
 
     if(placeInStream == 'prepend'){
-      this.$el[placeInStream](this.createPostView(post).render().el);
+      this.$el[placeInStream](postView.el);
     } else{
       this.addToViewBuffer(postView.el)
     }
