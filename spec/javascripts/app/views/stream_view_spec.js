@@ -18,9 +18,9 @@ describe("app.views.Stream", function() {
 
   describe("initialize", function() {
     it("binds an infinite scroll listener", function() {
-      spyOn($.fn, "scroll");
+      spyOn($.fn, "on");
       new app.views.Stream({model : this.stream});
-      expect($.fn.scroll).toHaveBeenCalled();
+      expect($.fn.on).toHaveBeenCalledWith("scroll", jasmine.any(Function));
     });
   });
 

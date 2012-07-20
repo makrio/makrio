@@ -20,7 +20,7 @@ app.views.InfScroll = app.views.Base.extend({
     this.collection.bind("add", this.addPostView, this);
 
     var throttledScroll = _.throttle(_.bind(this.infScroll, this), 200);
-    $(window).scroll(throttledScroll);
+    $(window).on('scroll', throttledScroll)
   },
 
   postRenderTemplate : function() {
@@ -35,10 +35,10 @@ app.views.InfScroll = app.views.Base.extend({
 
   addPostView : function(post) {
     //if this is prepend, do it eagarly, if not, use the buffer :(
-    var placeInStream = (this.collection.at(0).id == post.id) ? "prepend" : "append";
-    var postView = this.createPostView(post)
+    var placeInStream = (this.collection.at(0).id == post.id) ? "prepend" : "append"
+      , postView = this.createPostView(post)
     postView.render()
-    var el = postView.el
+
     if(placeInStream == 'prepend'){
       this.$el[placeInStream](this.createPostView(post).render().el);
     } else{
@@ -64,7 +64,6 @@ app.views.InfScroll = app.views.Base.extend({
   addToViewBuffer : function(item){
     this._viewBuffer.push(item)
   },
-
 
   unbindInfScroll : function() {
     $(window).unbind("scroll");

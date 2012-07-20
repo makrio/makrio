@@ -1,5 +1,5 @@
 app.views.Canvas = app.views.InfScroll.extend({
-  scrollOffset : 500,
+  scrollOffset : 1000,
 
   initialize: function(){
     this.stream = this.model
@@ -10,7 +10,6 @@ app.views.Canvas = app.views.InfScroll.extend({
     this.stream.bind("reLayout", this.reLayout, this)
     this.stream.bind("fetched", this.triggerRelayoutAfterImagesLoaded, this)
   },
-
 
   renderTemplate : function() {
     this.stream.deferred.done(_.bind(function(){
@@ -35,19 +34,18 @@ app.views.Canvas = app.views.InfScroll.extend({
   },
 
   addPosts : function() {
-    var htmlString = _.map(this.flushViewBuffer(), function(e){ return $(e).wrap('<div>').parent().html(); }).join(' ')
-    var $fragment = $(htmlString)
-    this.$el.isotope("insert", $fragment)
+    var htmlString = _.map(this.flushViewBuffer(), function(element){
+      return $(element).wrap('<div>').parent().html()
+    }).join(' ')
+    this.$el.isotope("insert", $(htmlString))
   },
 
   mason : function() {
-    var el = this.$el;
-
     /* make two calls to isotope
        1) on dom ready
        2) on images ready
      */
-    triggerIsotope(el) && el.imagesLoaded(_.bind(function(){
+    triggerIsotope(this.$el) && this.$el.imagesLoaded(_.bind(function(){
       this.reLayout()
     },this))
 
