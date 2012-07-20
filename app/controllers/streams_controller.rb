@@ -30,7 +30,7 @@ class StreamsController < ApplicationController
 
     stream_responder do
       @stream = Stream::Category.new(current_user, @category, :max_time => max_time)
-      @stream_json = PostConversationPresenter.collection_json(@stream.stream_posts, current_user)
+      @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user, :lite? =>true)
     end
   end
 
