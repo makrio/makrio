@@ -162,13 +162,15 @@ app.Router = Backbone.Router.extend({
   },
   
   category : function(name){
-    var page;
-    if(window.location.subdomain() == 'sunnyvale'){
-      page = new app.pages.Sunnyvale()
-    } else{
-      page = new app.pages.ConversationsIndex({title : name})
-    }
-    this.renderPage(function(){ return page })
+    
+    this.renderPage(function(){ return new app.pages.GenericCanvas()});
+    // var page;
+    // if(window.location.subdomain() == 'sunnyvale'){
+    //   page = new app.pages.Sunnyvale()
+    // } else{
+    //   page = new app.pages.ConversationsIndex({title : name})
+    // }
+    // this.renderPage(function(){ return page })
   }
 });
 
