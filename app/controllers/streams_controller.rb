@@ -42,13 +42,13 @@ class StreamsController < ApplicationController
 
   def likes
     stream_responder do
-      default_stream(Stream::Likes)
+      default_stream(Stream::Likes, :lite? => true )
     end
   end
 
   def staff_picks
     stream_responder do
-      default_stream(Stream::StaffPicks)
+      default_stream(Stream::StaffPicks, :lite? => true)
     end
   end
   
@@ -61,9 +61,9 @@ class StreamsController < ApplicationController
 
   private
 
-  def default_stream(stream_klass)
+  def default_stream(stream_klass, opts={})
     @stream = stream_klass.new(current_user, :max_time => max_time)
-    @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user)
+    @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user, opts)
   end
 
   def stream_responder(&block)
