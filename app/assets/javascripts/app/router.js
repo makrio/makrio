@@ -41,7 +41,7 @@ app.Router = Backbone.Router.extend({
 
     "conversations/:id" : "conversation",
     "conversations": "conversations",
-    'tagged/:name' : 'category',
+    'tagged/:name' : 'tagShow',
 
     ":name" : "newProfile"
   },
@@ -167,6 +167,10 @@ app.Router = Backbone.Router.extend({
   setLocation : function(location){
     //I made this so we can stub it out nicely
     window.location = location
+  },
+
+  tagShow : function(name){
+    this.renderPage(function(){ return new app.pages.TagsShow({name : name})});
   },
   
   category : function(name){

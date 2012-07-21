@@ -1,0 +1,23 @@
+#tag-info {
+  height: 200px;
+
+  h1 {
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  #tag-participants {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 10px;
+    width: 100%;
+    img {
+      vertical-align: text-bottom;
+    }
+  }
+
+  .tag-row {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}

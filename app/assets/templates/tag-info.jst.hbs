@@ -1,0 +1,27 @@
+<h1 class='tag-header'>{{name}}</h1>
+
+
+<div id='tag-participants'>
+  
+  <div id='tag-makrs' class='tag-row'>
+    <i class='icon-user'></i> {{makr_count}} Makrs
+    {{#each makrs}}
+      <img src='{{avatar.small}}' class='avatar micro'/>
+    {{/each}}
+  </div>
+
+  <div id='tag-likes' class='tag-row'>
+    <i class='icon-heart'></i> {{likes_count}} Likes
+    {{#each likers}}
+      <img src='{{avatar.small}}' class='avatar micro'/>
+    {{/each}}
+  </div>
+
+  <div id='tag-remixes' class='tag-row'>
+    <i class='icon-random'></i> {{remix_count}} Remixes
+  </div>
+
+  <div id='tag-comments' class='tag-row'>
+    <i class='icon-comment'></i> {{comment_count}} Comments
+  </div>
+</div>
