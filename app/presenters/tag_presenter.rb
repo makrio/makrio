@@ -46,8 +46,8 @@ class TagPresenter < BasePresenter
 
 
   def makrs
-    author_ids = base_scope.uniq.limit(10).pluck(:author_id)
-    authors = Person.where(:id => author_ids)
+    author_ids = base_scope.uniq.limit(20).pluck(:author_id)
+    authors = Person.where(:id => author_ids).includes(:profile)
     PersonPresenter.as_collection(authors)
   end
 

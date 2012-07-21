@@ -1,20 +1,28 @@
 <h1 class='tag-header'>{{name}}</h1>
 <div id='tag-leaders'>
   <div id='tag-hot'>
-    <div class="profile-image-container" style="background-image : url('{{on_fire.avatar.large}}')"></div>
-    <h3>{{on_fire.name}}</h3>
+    <a href='/{{on_fire.username}}'>
+      <div class="profile-image-container" style="background-image : url('{{on_fire.avatar.large}}')"></div>
+      <h3>{{on_fire.name}}</h3>
+    </a>
     <span><i class='icon-fire'></i> on fire</span>
   </div>
 
   <div id='tag-most-posts'>
-    <div class="profile-image-container" style="background-image : url('{{most_posts.avatar.large}}')"></div>
-    <h3>{{most_posts.name}}</h3>
+    <a href='/{{most_posts.username}}'>
+
+      <div class="profile-image-container" style="background-image : url('{{most_posts.avatar.large}}')"></div>
+      <h3>{{most_posts.name}}</h3>
+    </a>
     <span>most original posts</span>
   </div>
 
   <div id='tag-most-remixes'>
-    <div class="profile-image-container" style="background-image : url('{{most_remixes.avatar.large}}')"></div>
-    <h3>{{most_remixes.name}}</h3>
+
+    <a href='/{{most_remixes.username}}'>
+      <div class="profile-image-container" style="background-image : url('{{most_remixes.avatar.large}}')"></div>
+      <h3>{{most_remixes.name}}</h3>
+    </a>
     <span>most remixes</span>
   </div>
 
@@ -25,14 +33,18 @@
   <div id='tag-makrs' class='tag-row'>
     <i class='icon-user'></i> {{makr_count}} Makrs
     {{#each makrs}}
-      <img src='{{avatar.small}}' class='avatar micro'/>
+      <a href='/{{username}}' title='{{name}}'>
+        <img src='{{avatar.small}}' class='avatar micro'/>
+      </a>
     {{/each}}
   </div>
 
   <div id='tag-likes' class='tag-row'>
     <i class='icon-heart'></i> {{likes_count}} Likes
     {{#each likers}}
-      <img src='{{avatar.small}}' class='avatar micro'/>
+      <a href='/{{username}}' title='{{name}}'>
+        <img src='{{avatar.small}}' class='avatar micro'/>
+      </a>
     {{/each}}
   </div>
 
