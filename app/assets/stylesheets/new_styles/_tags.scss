@@ -1,16 +1,30 @@
 #tag-info {
-  height: 200px;
 
   h1 {
     text-align: center;
     text-transform: uppercase;
   }
 
+  #tag-leaders{
+    text-align: center;
+    margin: 2em 0;
+    span {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    div {
+      display: inline-block;
+      margin: 0 1em;
+    }
+  }
+
   #tag-participants {
+    margin: 10px 0;
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
     padding: 10px;
     width: 100%;
+    text-align: center;
     img {
       vertical-align: text-bottom;
     }

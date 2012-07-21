@@ -22,15 +22,15 @@ class TagPresenter < BasePresenter
   end
 
   def on_fire
-    PersonPresenter.new(Person.first, @current_user)
+    PersonPresenter.new(Person.offset(1).first, @current_user)
   end
 
   def most_posts
-    PersonPresenter.new(Person.first, @current_user)
+    PersonPresenter.new(Person.offset(4).first, @current_user)
   end
 
   def most_remixes
-    PersonPresenter.new(Person.first, @current_user)
+    PersonPresenter.new(Person.offset(11).first, @current_user)
   end
 
   def likers

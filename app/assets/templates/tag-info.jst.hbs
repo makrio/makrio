@@ -1,8 +1,27 @@
 <h1 class='tag-header'>{{name}}</h1>
+<div id='tag-leaders'>
+  <div id='tag-hot'>
+    <div class="profile-image-container" style="background-image : url('{{on_fire.avatar.large}}')"></div>
+    <h3>{{on_fire.name}}</h3>
+    <span><i class='icon-fire'></i> on fire</span>
+  </div>
 
+  <div id='tag-most-posts'>
+    <div class="profile-image-container" style="background-image : url('{{most_posts.avatar.large}}')"></div>
+    <h3>{{most_posts.name}}</h3>
+    <span>most original posts</span>
+  </div>
+
+  <div id='tag-most-remixes'>
+    <div class="profile-image-container" style="background-image : url('{{most_remixes.avatar.large}}')"></div>
+    <h3>{{most_remixes.name}}</h3>
+    <span>most remixes</span>
+  </div>
+
+
+</div>
 
 <div id='tag-participants'>
-  
   <div id='tag-makrs' class='tag-row'>
     <i class='icon-user'></i> {{makr_count}} Makrs
     {{#each makrs}}
