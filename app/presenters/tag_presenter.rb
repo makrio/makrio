@@ -15,49 +15,77 @@ class TagPresenter < BasePresenter
       likers: likers,
       makrs: makrs,
       remix_count: remix_count,
-      likes_count: likers_count,
+      likes_count: likes_count,
       makr_count: makr_count,
       comment_count: comment_count,
     }
   end
 
   def on_fire
-    PersonPresenter.new(Person.offset(1).first, @current_user)
+    on_fire = base_scope.order('likes_count desc').first.author
+    PersonPresenter.new(on_fire, @current_user)
+  end
+
+  #totally faking this list
+  def likers
+    likers = base_scope.includes(:likes => {:author =>:profile}).order('created_at desc').limit(10).map do |post|
+      post.likes.map(&:author)
+    end.flatten.uniq
+     PersonPresenter.as_collection(likers)
   end
 
   def most_posts
-    PersonPresenter.new(Person.offset(4).first, @current_user)
+    person = Person.find(top_original_poster_id)
+    PersonPresenter.new(person, @current_user)
   end
 
   def most_remixes
-    PersonPresenter.new(Person.offset(11).first, @current_user)
+    person = Person.find(top_remixer_id)
+    PersonPresenter.new(person, @current_user)
   end
 
-  def likers
-     PersonPresenter.as_collection(Person.limit(5))
-  end
 
   def makrs
-     PersonPresenter.as_collection(Person.limit(5))
-  end
-
-  def remixers
-   PersonPresenter.as_collection(Person.limit(5).offset(5))
+    author_ids = base_scope.uniq.limit(10).pluck(:author_id)
+    authors = Person.where(:id => author_ids)
+    PersonPresenter.as_collection(authors)
   end
 
   def makr_count
-    10
+    base_scope.count(:author_id, :distinct => true)
   end
 
-  def likers_count
-    11
+  def likes_count
+    base_scope.sum(:likes_count)
   end
 
   def remix_count
-    12
+    base_scope.count
   end
 
   def comment_count
-    54
+    base_scope.sum(:comments_count)
+  end
+
+  private
+
+  def base_scope
+    StatusMessage.tagged_with(@tag.name)
+  end
+
+  def remix_author_ids
+    base_scope.where('posts.parent_guid IS NOT NULL AND posts.root_guid IS NOT NULL').pluck(:author_id)
+  end
+
+  def original_author_ids
+    base_scope.all_original.pluck(:author_id)
+  end
+
+  def top_remixer_id
+    remix_author_ids.mode.first
+  end
+
+  def top_original_poster_id
+    original_author_ids.mode.first
   end
 end

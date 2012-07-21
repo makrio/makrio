@@ -3,7 +3,6 @@ class PersonPresenter < BasePresenter
     @person = person
     @current_user = current_user
     @opts = opts
-    puts opts.inspect
   end
 
   def as_json(options={})
