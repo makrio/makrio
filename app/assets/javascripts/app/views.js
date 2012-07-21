@@ -92,7 +92,7 @@ app.views.Base = Backbone.View.extend({
 
       function rawText(element) {
         var text = element.html()
-        return text.replace(/\n/g, '<br>').replace(/<div>/g, '\n').replace(/<\/div>/g, "")
+        return text.replace(/\n/g, '').replace(/<div><br><\/div>/g, '<br>').replace(/<div>/, '<br>').replace(/<\/div>/g, "")
       }
     }
   },
