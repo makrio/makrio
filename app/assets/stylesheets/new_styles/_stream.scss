@@ -39,6 +39,9 @@
         right : -7px;
         left : auto;
       }
+      img {
+        max-height: 400px
+      }
 
       &:hover {
         @include opacity(1);
