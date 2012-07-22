@@ -11,7 +11,8 @@ class PostInteractionPresenter
         :remixes => RemixPresenter.as_collection(@post.remix_siblings.featured_and_by_author(@person).includes(:author => :profile).limit(3)),
         :comments_count => @post.comments_count,
         :likes_count => @post.likes_count,
-        :remix_count => @post.remixes.count
+        :remix_count => @post.remixes.count,
+        :tag_list => @post.tag_list
     }
   end
 
