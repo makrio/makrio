@@ -7,8 +7,8 @@ class TagsController < ApplicationController
   end
 
   def index
-     @page = :experimental  #gross hax to get bootstrap
-    @tags = ActsAsTaggableOn::Tag.all
+    @page = :experimental  #gross hax to get bootstrap
+    @tags = ActsAsTaggableOn::Tag.all.sort{|x, y| x.taggings.count <=> y.taggings.count}.reverse
   end
 
   def show
