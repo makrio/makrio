@@ -35,7 +35,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :o_embed_cache
 
-  before_create :set_root_guid
+  before_create :set_root_guid_and_tags
 
   after_create do
     self.touch(:interacted_at)
@@ -121,7 +121,7 @@ class Post < ActiveRecord::Base
     current
   end
 
-  def set_root_guid
+  def set_root_guid_and_tags
     return true if original?
 
     if self.parent.original?
@@ -129,6 +129,7 @@ class Post < ActiveRecord::Base
     else
       self.root_guid = self.parent.root_guid
     end
+    self.tag_list = self.parent.tag_list
   end
 
   def conversation_id
