@@ -10,7 +10,7 @@
     <%- @tags.each do |tag| %>
       <tr>
         <td><%=link_to tag.name, "/tagged/#{tag.name}"%> </td>
-        <td><%= tag.taggings.count %></td>
+        <td><%= tag.count %></td>
       </tr>
     <% end %>
   </tbody>

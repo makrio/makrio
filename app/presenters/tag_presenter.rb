@@ -6,19 +6,32 @@ class TagPresenter < BasePresenter
   end
 
   def as_json(opts={})
-    {
+    base = {
       id: @tag.id,
       name: @tag.name,
-      on_fire: on_fire,
-      most_posts: most_posts,
-      most_remixes: most_remixes,
-      likers: likers,
-      makrs: makrs,
+
       remix_count: remix_count,
       likes_count: likes_count,
       makr_count: makr_count,
       comment_count: comment_count,
+      last_three: last_three
     }
+
+    if opts.fetch(:with_people, true)
+      base.merge!({
+        on_fire: on_fire,
+        most_posts: most_posts,
+        most_remixes: most_remixes,
+        likers: likers,
+        makrs: makrs,
+      })
+    end
+    base
+  end
+
+  def last_three
+    posts = base_scope.order('created_at desc').limit(3)
+    PostPresenter.collection_json(posts, @current_user, lite?: true)
   end
 
   def on_fire

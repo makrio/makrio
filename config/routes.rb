@@ -64,6 +64,7 @@ Diaspora::Application.routes.draw do
 
   resources :tags, :only => [:index]
   get 'tags/:name' => 'tags#show', :as => 'tag'
+  get 'top_tags/' => 'tags#top'
 
 
   get 'search/:query' => 'searchs#show'

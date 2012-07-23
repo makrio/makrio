@@ -36,6 +36,10 @@ class StatusMessage < Post
       tag_stream(tag_ids)
   end
 
+  def self.most_popular_tags(limit = 10)
+    StatusMessage.tag_counts_on(:tags).order('count desc').limit(limit)
+  end
+
   def text(opts = {})
     self.formatted_message(opts)
   end
