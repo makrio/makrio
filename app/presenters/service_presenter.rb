@@ -1,5 +1,5 @@
 class ServicePresenter < BasePresenter
-  def initialize(service)
+  def initialize(service, current_user = nil)
     @service = service
   end
 

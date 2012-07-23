@@ -1,5 +1,6 @@
 class NotificationsPresenter < BasePresenter
-  def initialize(notification)
+  def initialize(notification, current_user)
+    @current_user = current_user
     @notification = notification
   end
 
@@ -9,7 +10,7 @@ class NotificationsPresenter < BasePresenter
 
     {
         :id => @notification.id,
-        :people => PersonPresenter.as_collection(@notification.actors),
+        :people => PersonPresenter.as_collection(@notification.actors, @current_user),
         :post => PostPresenter.new(@notification.target),
         :action => action,
         :icon_prefix => icon_prefix,

@@ -1,6 +1,7 @@
 class UserPresenter
-  def initialize(user)
+  def initialize(user, current_user=nil)
     @user = user
+    @current_user = current_user
   end
 
   def as_json(opts={})
@@ -16,7 +17,7 @@ class UserPresenter
   end
 
   def services
-    @services ||= ServicePresenter.as_collection(@user.services)
+    @services ||= ServicePresenter.as_collection(@user.services, @current_user)
   end
 
   def configured_services

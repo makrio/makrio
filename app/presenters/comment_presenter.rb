@@ -1,5 +1,5 @@
 class CommentPresenter < BasePresenter
-  def initialize(comment)
+  def initialize(comment, current_user = nil)
     @comment = comment
   end
 

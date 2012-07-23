@@ -123,7 +123,7 @@ class ApplicationController < ActionController::Base
 
   def set_notifications
     if user_signed_in? && request.format.html?
-      gon.notifications = NotificationsPresenter.as_collection(current_user.recent_notifications.where(:unread => true).limit(5))
+      gon.notifications = NotificationsPresenter.as_collection(current_user.recent_notifications.where(:unread => true).limit(5), current_user)
     end
   end
 end
