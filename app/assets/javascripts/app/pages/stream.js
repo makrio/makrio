@@ -7,7 +7,7 @@ app.pages.Stream = app.views.Base.extend({
   },
 
   subviews : {
-    "#stream-header" : "headerView",
+    "header" : "headerView",
     "#stream-content" : "streamView",
     "#stream-interactions" : "interactionsView",
   },

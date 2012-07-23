@@ -7,10 +7,10 @@ body {
 }
 
 body {
+  background-color: rgb(237,237,237);
   background-image : image_url("texture/light-bg.png");
   padding : none;
   padding-top: 30px;
-  padding-left: 100px;
 
   height:100%;
   &.lock {
@@ -127,29 +127,6 @@ a { color : $link-blue  }
 }
 
 $bring-dark-accent-forward-color: #DDD;
-
-#top_right_nav {
-  float : right;
-}
-
-#top-right-nav {
-  z-index: 10;
-  position : absolute;
-  right : 10px;
-  top : 10px;
-
-  & > a {
-    @include transition(opacity);
-    @include opacity(0.4);
-
-    margin-left : 5px;
-
-    &:hover {
-      @include opacity(0.75);
-      text-decoration : none;
-    }
-  }
-}
 
 .navbar {
   .logo {
