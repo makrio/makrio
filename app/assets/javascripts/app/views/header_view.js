@@ -8,8 +8,6 @@ app.views.Header = app.views.Base.extend({
     "click #composer-button" : 'showModalFramer'
   },
 
-  tooltipSelector : ".main-nav li",
-
   presenter : function(){
     return _.extend(this.defaultPresenter(), {
       notifications : this.notifications(),

@@ -25,17 +25,23 @@ $nav-background : #000;
 }
 
 /* new styles */
-#header {
+$background-image: image_url("texture/light-bg.png");
+@mixin nav-shadow {
   @include box-shadow(1px, 0, 3px, rgba(0,0,0,0.1));
+}
+
+#header {
+  @include nav-shadow();
 
   position:fixed;
   left:0;
   top:0;
   height:100%;
-  z-index:100;
+  z-index:15;
   width:50px;
 
-  background-image : image_url("texture/light-bg.png");
+  background-color: rgb(237,237,237);
+  background-image: $background-image;
 
   .logo {
     @include opacity(0.1);
@@ -54,6 +60,7 @@ $nav-background : #000;
         @include opacity(1);
       }
 
+      &,
       img {
         height:50px;
         width:50px;
@@ -63,6 +70,10 @@ $nav-background : #000;
         @include opacity(1);
         background-color:$light-blue;
         position:relative;
+
+        &:hover {
+          background-color:$light-blue;
+        }
 
         &:after {
           content: image-url('/tick.png');
@@ -74,8 +85,57 @@ $nav-background : #000;
     }
   }
 
-  .author-name {
-    position:absolute;
-    bottom:0;
+  ul.nav-main {
+    margin-top:50px;
+  }
+
+  ul.nav-popout {
+    position:fixed;
+
+    li {
+      float:left;
+    }
+
+    li.popout-root {
+      @include opacity(1);
+      position:fixed;
+      z-index:2;
+    }
+
+    ul.sub {
+      @include transition(all, .2s);
+      @include opacity(0);
+      @include nav-shadow();
+
+      float:left;
+      background-image: $background-image;
+      margin-left:-100px;
+    }
+
+    &:hover {
+      ul.sub {
+        @include opacity(1);
+        margin-left:50px;
+      }
+    }
+  }
+
+  .notification-count {
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+    overflow:none;
+    background-color:#FF4444;
+    color:#fff;
+    font-size:2em;
+    font-family:Roboto-Bold;
+
+    a {
+      display:block;
+      color:inherit;
+      &:hover {
+        text-decoration:none;
+      }
+    }
   }
 }

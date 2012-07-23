@@ -5,6 +5,7 @@ app.pages.Profile = app.views.Base.extend({
   id : "profile",
 
   subviews : {
+    "header" : "headerView",
     "#profile-info" : "profileInfo",
     "#canvas" : "canvasView"
   },
@@ -26,6 +27,7 @@ app.pages.Profile = app.views.Base.extend({
   initViews : function(){
     this.canvasView = new app.views.Canvas({ model : this.stream })
     this.profileInfo = new app.views.ProfileInfo({ model : this.model })
+    this.headerView = new app.views.Header();
   },
 
   render :function () {
