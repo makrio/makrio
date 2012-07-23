@@ -1,10 +1,14 @@
 app.views.Header = app.views.Base.extend({
   templateName : "header",
+  id: "header",
+
   events : {
     "click .bookmarklet-button" : "bookmarkletInstructionsPrompt",
     "click a.notification" : "readNotificationAndNavigate",
     "click #composer-button" : 'showModalFramer'
   },
+
+  tooltipSelector : ".main-nav li",
 
   presenter : function(){
     return _.extend(this.defaultPresenter(), {
@@ -27,8 +31,6 @@ app.views.Header = app.views.Base.extend({
     evt.preventDefault()
     alert("Drag me to the bookmarks bar to post to makr.io from anywhere on the web")
   },
-
-
 
   notifications : function() {
     return window.preloads && window.preloads.notifications

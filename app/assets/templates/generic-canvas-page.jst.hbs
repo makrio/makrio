@@ -2,7 +2,7 @@
 
 <!--to remove-->
 {{#unless loggedIn}}
-    <div class="container" style="margin-top:35px;">
+    <div class="container">
         <div id="welcome" class="hero-unit">
             <img id='logo-title' src='{{imageUrl "landing_title@2x.jpg"}}' width="55%" />
             <div class="sign-up-btns">
@@ -24,10 +24,12 @@
 {{/unless}}
 <!--to remove-->
 
-<div class="container"> 
-    {{#unless loggedIn}} 
-       <h2 class='featured-title'>Featured Remixes <small><a href='/stream' >See what people are remixing right now!</a></small></h2>
-    {{/unless}} 
-    <section id="canvas"/>
-   <div id="paginate"><span class="loader hidden"/></div> 
-</div> 
+{{#unless loggedIn}}
+   <h2 class='featured-title'>Featured Remixes <small><a href='/stream' >See what people are remixing right now!</a></small></h2>
+{{/unless}}
+
+{{#if pageTitle}}
+    <h1 id="page_title">{{pageTitle}}</h1>
+{{/if}}
+<section id="canvas"/>
+<div id="paginate"><span class="loader hidden"/></div>

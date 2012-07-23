@@ -23,3 +23,59 @@ $nav-background : #000;
     background-color : $nav-background !important;
   }
 }
+
+/* new styles */
+#header {
+  @include box-shadow(1px, 0, 3px, rgba(0,0,0,0.1));
+
+  position:fixed;
+  left:0;
+  top:0;
+  height:100%;
+  z-index:100;
+  width:50px;
+
+  background-image : image_url("texture/light-bg.png");
+
+  .logo {
+    @include opacity(0.1);
+  }
+
+  ul {
+    list-style:none;
+    padding:0;
+    margin:0;
+
+    > li {
+      @include transition(all);
+      @include opacity(.7);
+
+      &:hover {
+        @include opacity(1);
+      }
+
+      img {
+        height:50px;
+        width:50px;
+      }
+
+      &.active {
+        @include opacity(1);
+        background-color:$light-blue;
+        position:relative;
+
+        &:after {
+          content: image-url('/tick.png');
+          position:absolute;
+          top:18px;
+          right:-5px;
+        }
+      }
+    }
+  }
+
+  .author-name {
+    position:absolute;
+    bottom:0;
+  }
+}
