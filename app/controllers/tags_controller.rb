@@ -17,7 +17,6 @@ class TagsController < ApplicationController
 
   def show
     @tag = ActsAsTaggableOn::Tag.find_by_name!(params[:name])
-    raise 
     render json: TagPresenter.new(@tag, current_user)
   end
 
