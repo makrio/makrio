@@ -44,7 +44,7 @@ class TagPresenter < BasePresenter
     likers = base_scope.includes(:likes => {:author =>:profile}).order('created_at desc').limit(10).map do |post|
       post.likes.map(&:author)
     end.flatten.uniq
-     PersonPresenter.as_collection(likers)
+     PersonPresenter.as_collection(likers, @current_user)
   end
 
   def most_posts
@@ -61,7 +61,7 @@ class TagPresenter < BasePresenter
   def makrs
     author_ids = base_scope.uniq.limit(20).pluck(:author_id)
     authors = Person.where(:id => author_ids).includes(:profile)
-    PersonPresenter.as_collection(authors)
+    PersonPresenter.as_collection(authors, @current_user)
   end
 
   def makr_count

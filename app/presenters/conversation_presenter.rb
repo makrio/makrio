@@ -49,7 +49,7 @@ class ConversationPresenter < BasePresenter
   end
 
   def people_liked_json
-    PersonPresenter.as_collection(self.people_liked)
+    PersonPresenter.as_collection(self.people_liked, @current_user)
   end
 
   def participants
@@ -57,7 +57,7 @@ class ConversationPresenter < BasePresenter
   end
 
   def participants_json
-    PersonPresenter.as_collection(self.participants).as_json
+    PersonPresenter.as_collection(self.participants, @current_user).as_json
   end
 
   def info_json
