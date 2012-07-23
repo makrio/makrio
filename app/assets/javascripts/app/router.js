@@ -76,12 +76,16 @@ app.Router = Backbone.Router.extend({
 
   likes : function() {
     app.instrument("track", "Likes loaded")
+
+    app.pageTitle = "My Likes"
     this.renderPage(function(){ return new app.pages.GenericCanvas()});
   },
 
   staffPicks : function() {
     app.onStaffPicks = true;
     app.instrument("track", "Staff Picks loaded")
+
+    app.pageTitle = "Staff Picks"
     this.renderPage(function(){ return new app.pages.GenericCanvas()});
   },
 
@@ -174,15 +178,7 @@ app.Router = Backbone.Router.extend({
   },
   
   category : function(name){
-    
     this.renderPage(function(){ return new app.pages.GenericCanvas()});
-    // var page;
-    // if(window.location.subdomain() == 'sunnyvale'){
-    //   page = new app.pages.Sunnyvale()
-    // } else{
-    //   page = new app.pages.ConversationsIndex({title : name})
-    // }
-    // this.renderPage(function(){ return page })
   }
 });
 

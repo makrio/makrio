@@ -9,7 +9,8 @@ body {
 body {
   background-image : image_url("texture/light-bg.png");
   padding : none;
-  padding-top: 75px;
+  padding-top: 30px;
+  padding-left: 100px;
 
   height:100%;
   &.lock {
@@ -19,6 +20,13 @@ body {
 
 #container {
   height: 100%;
+}
+
+#page_title {
+  font-family:Roboto-Light;
+  font-size:4em;
+  line-height:1em;
+  margin-bottom:30px;
 }
 
 /* new link color */
