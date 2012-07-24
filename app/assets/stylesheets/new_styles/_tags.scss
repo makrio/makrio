@@ -13,6 +13,7 @@
 
       background : {
         position : center;
+        size: cover;
         image : image-url('user/default.png');
       }
 
@@ -62,5 +63,88 @@
   .tag-row {
     display: inline-block;
     margin-right: 10px;
+  }
+}
+
+/* topics index */
+
+.topics {
+  margin-left:-50px;
+}
+
+.topic {
+  position:relative;
+  display: inline-block;
+
+  height:180px;
+  width:150px;
+
+  margin-bottom:50px;
+  margin-left:50px;
+
+  a {
+    position:absolute;
+    height:100%;
+    width:100%;
+    color:inherit;
+
+    &:hover {
+      .topic-title {
+        text-decoration:underline;
+      }
+    }
+  }
+
+  .topic-info {
+    position:absolute;
+    top:160px;
+    width:100%;
+    text-align:center;
+    text-transform:capitalize;
+
+    .topic-title {
+      font-family:Roboto-Bold;
+    }
+
+    .topic-vitals {
+      color:#999;
+    }
+  }
+
+  .topic-image {
+    position:absolute;
+
+    @include box-shadow(0,1px,3px,rgba(0,0,0,.5));
+
+    height:150px;
+    width:150px;
+
+    background : {
+      position:center;
+      size:cover;
+    }
+
+    & {
+      z-index:1;
+      margin-left:-10px;
+      margin-top:-5px;
+      -webkit-transform:rotate(-5deg);
+      -moz-transform:rotate(-5deg);
+    }
+
+    &:first-child {
+      z-index:3;
+      margin:0;
+      -webkit-transform:rotate(0deg);
+      -moz-transform:rotate(0deg);
+    }
+
+    &:nth-child(2) {
+      z-index:0;
+      margin-left:10px;
+      margin-top:-5px;
+      -webkit-transform:rotate(5deg);
+      -moz-transform:rotate(5deg);
+    }
   }
 }

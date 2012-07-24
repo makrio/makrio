@@ -1,13 +1,24 @@
 <header/>
-<div class='container'> 
-  {{#each tags}}
-    <br/>
-      {{name}}
-      {{#each last_three}}
-        <img src='{{screenshot_url}}' height=200/>
-      {{/each}}
-    <br/>
-    <br/>
-    <br/>
-  {{/each}}
+<div class='container'>
+    <h1 id="page_title">Topics</h1>
+
+    <div class="topics">
+        {{#each tags}}
+            <div class="topic">
+                <a href="/tagged/{{name}}">
+                    {{#each last_three}}
+                        <div class="topic-image" style="background-image:url('{{screenshot_url}}')"></div>
+                    {{/each}}
+                    <div class="topic-info">
+                        <span class="topic-title">{{name}}</span>
+                        <div class="topic-vitals">
+                            <i class="icon-user icon-grey"></i> {{makr_count}}
+                            -
+                            <i class="icon-random icon-grey"></i> {{remix_count}}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {{/each}}
+    </div>
 </div>
