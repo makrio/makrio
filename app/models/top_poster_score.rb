@@ -6,7 +6,7 @@ class TopPosterScore
 
 
   def value 
-    likes_count / post_count + 1
+    likes_count /(post_count + 1)
   end
 
   # def value

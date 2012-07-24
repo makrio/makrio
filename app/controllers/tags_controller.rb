@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-  before_filter :redirect_unless_admin
+  before_filter :redirect_unless_admin, :except => [:show]
   
   rescue_from ActiveRecord::RecordNotFound do
     render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404

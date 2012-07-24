@@ -60,7 +60,7 @@ class TagPresenter < BasePresenter
 
   def makrs
     author_ids = base_scope.pluck(:author_id)
-    authors = Person.where(:id => author_ids).includes(:profile).sort{|x| TopPosterScore.new(x)}.value}
+    authors = Person.where(:id => author_ids).includes(:profile)#.sort{|x| TopPosterScore.new(x, base_scope) .value}
     PersonPresenter.as_collection(authors, @current_user)
   end
 
