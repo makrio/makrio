@@ -31,6 +31,9 @@ app.views.InlineFramer = app.views.Base.extend({
     $("#nick-cage")[0].play()
     $("#peekaboo").addClass("peek")
     setTimeout("$('#peekaboo').removeClass('peek')", 5000);
+    // $("#nick-cage")[0].play()
+    // $("#peekaboo").addClass("peek")
+    // setTimeout("$('#peekaboo').removeClass('peek')", 5000);
 
     $.facebox.close()
     var flash = new Diaspora.Widgets.FlashMessages;

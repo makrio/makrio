@@ -10,12 +10,15 @@ app.pages.Framer = app.views.Base.extend({
     ".flow-controls .controls" : "framerControls"
   },
 
-  initialize : function(){
+  initialize : function(opts){
+    var options = opts || {}
     this.model = this.model || new app.models.StatusMessage
     this.model.photos = this.model.photos || new Backbone.Collection()
 
     if(!this.model.get("frame_name")) { this.model.setFrameName() }
 
+    this.model.set({'tag_list': options.tag})
+  
     this.model.authorIsCurrentUser = function(){ return true }
     this.model.bind("sync", this.navigateNext, this)
 

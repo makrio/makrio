@@ -121,10 +121,16 @@ app.views.Base = Backbone.View.extend({
 
   showModalFramer : function(evt){
     evt && evt.preventDefault();
-    var post_id = $(evt.target).data('remix-id')
-      , post = (post_id =='new') ? undefined : (this.stream && this.stream.items.get(post_id).buildRemix()) || this.model.buildRemix()
+    var target = $(evt.target)
 
-    this.framer = new app.views.InlineFramer({model : post})
+    var post_id = target.data('remix-id')
+      , post = (post_id =='new') ? undefined : (this.stream && this.stream.items.get(post_id).buildRemix()) || this.model.buildRemix()
+      , tag = target.data('tag')
+
+      console.log(tag)
+
+
+    this.framer = new app.views.InlineFramer({model : post, tag: tag})
     this.framer.show()
   },
 

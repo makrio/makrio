@@ -19,6 +19,9 @@ app.pages.TagsShow = app.pages.GenericCanvas.extend({
 
 app.views.TagInfo = app.views.Base.extend({
   templateName : 'tag-info',
+  events : {
+    "click #collection-composer-button" : 'showModalFramer'
+  },
 
   initialize : function(options){
     this.tagName = options.name
