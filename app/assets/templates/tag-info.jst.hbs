@@ -1,58 +1,26 @@
-<h1 class='tag-header'>{{name}}</h1>
+<h1 id='page_title'>
+    {{name}}
+    <small>
+        {{makr_count}} <em>Makrs</em>
+        {{likes_count}} <em>Likes</em>
+        {{remix_count}} <em>Remixes</em>
+    </small>
+</h1>
+
 <div id='tag-leaders'>
-  <div id='tag-hot'>
-    <a href='/{{on_fire.username}}'>
-      <div class="profile-image-container" style="background-image : url('{{on_fire.avatar.large}}')"></div>
-      <h3>{{on_fire.name}}</h3>
-    </a>
-    <span><i class='icon-fire'></i> on fire</span>
-  </div>
+    <h6>
+        Contributors
+    </h6>
+    <!--<div id='tag-hot' class="leader" style="background-image:url('{{on_fire.avatar.large}}');">-->
+        <!--<a href='/{{on_fire.username}}'>-->
+            <!--<span><i class='icon-fire icon-white'></i> on fire</span>-->
+        <!--</a>-->
+    <!--</div>-->
 
-  <div id='tag-most-posts'>
-    <a href='/{{most_posts.username}}'>
-
-      <div class="profile-image-container" style="background-image : url('{{most_posts.avatar.large}}')"></div>
-      <h3>{{most_posts.name}}</h3>
-    </a>
-    <span>most original posts</span>
-  </div>
-
-  <div id='tag-most-remixes'>
-
-    <a href='/{{most_remixes.username}}'>
-      <div class="profile-image-container" style="background-image : url('{{most_remixes.avatar.large}}')"></div>
-      <h3>{{most_remixes.name}}</h3>
-    </a>
-    <span>most remixes</span>
-  </div>
-
-
-</div>
-
-<div id='tag-participants'>
-  <div id='tag-makrs' class='tag-row'>
-    <i class='icon-user'></i> {{makr_count}} Makrs
     {{#each makrs}}
-      <a href='/{{username}}' title='{{name}}'>
-        <img src='{{avatar.small}}' class='avatar micro'/>
-      </a>
+        <div class="leader" style="background-image:url('{{avatar.large}}');">
+            <a href='/{{username}}' title='{{name}}'>
+            </a>
+        </div>
     {{/each}}
-  </div>
-
-  <div id='tag-likes' class='tag-row'>
-    <i class='icon-heart'></i> {{likes_count}} Likes
-    {{#each likers}}
-      <a href='/{{username}}' title='{{name}}'>
-        <img src='{{avatar.small}}' class='avatar micro'/>
-      </a>
-    {{/each}}
-  </div>
-
-  <div id='tag-remixes' class='tag-row'>
-    <i class='icon-random'></i> {{remix_count}} Remixes
-  </div>
-
-  <div id='tag-comments' class='tag-row'>
-    <i class='icon-comment'></i> {{comment_count}} Comments
-  </div>
 </div>
