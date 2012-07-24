@@ -2,11 +2,12 @@ class TopPosterScore
   def initialize(author, query)
     @author = author
     @query = query
+    @author_id = @author.id
   end
 
 
   def value 
-    likes_count /(post_count + 1)
+    likes_count
   end
 
   # def value

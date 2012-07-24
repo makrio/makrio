@@ -60,8 +60,9 @@ class TagPresenter < BasePresenter
 
   def makrs
     author_ids = base_scope.pluck(:author_id)
-    authors = Person.where(:id => author_ids).includes(:profile)#.sort{|x| TopPosterScore.new(x, base_scope) .value}
-    PersonPresenter.as_collection(authors, @current_user)
+    authors = Person.where(:id => author_ids).includes(:profile)
+    sorted_authors =  authors.map{|x| [x, TopPosterScore.new(x, base_scope).value]}.sort{|x, y| y[1] <=> x[1]}.map{|x| x[0]}
+    PersonPresenter.as_collection(sorted_authors, @current_user)
   end
 
   def makr_count
