@@ -23,7 +23,8 @@ app.views.Header = app.views.Base.extend({
 
   postRenderTemplate : function() {
     this.$('.dropdown-toggle').dropdown()
-    this.$('.bookmarklet, .nav-tab li, .navbar-inner button').tooltip({placement: 'bottom', delay: { show: 500, hide: 100 }});
+    this.$('.nav-main li').tooltip({placement: 'right', delay: { show: 500, hide: 100 }});
+    this.$('.sub li').tooltip({placement: 'bottom', delay: { show: 500, hide: 100 }});
   },
 
   bookmarkletInstructionsPrompt : function(evt) {
