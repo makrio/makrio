@@ -73,19 +73,21 @@ $nav-background-image: rgba(250,250,250,0.8);
         &:hover {
           background-color:$light-blue;
         }
-
-        &:after {
-          content: image-url('/tick.png');
-          position:absolute;
-          top:18px;
-          right:-5px;
-        }
       }
     }
   }
 
   ul.nav-main {
     margin-top:50px;
+
+    > li.active {
+      &:after {
+        content: image-url('/tick.png');
+        position:absolute;
+        top:18px;
+        right:-5px;
+      }
+    }
   }
 
   ul.nav-popout {

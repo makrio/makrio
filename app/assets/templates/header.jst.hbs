@@ -7,6 +7,12 @@
         </li>
 
         <ul class="sub">
+            <li {{#if onLikes}}class="active"{{/if}} title='My Likes'>
+                <a href="/likes">
+                    <img src="{{imageUrl "nav/likes.png"}}" />
+                </a>
+            </li>
+
             <li title="Settings">
                 <a href="/users/edit">
                     <img src="{{imageUrl "nav/settings.png"}}" />
@@ -55,11 +61,6 @@
     </li>
 
     {{#if loggedIn}}
-        <li {{#if onLikes}}class="active"{{/if}} title='My Likes'>
-            <a href="/likes">
-                <img src="{{imageUrl "nav/likes.png"}}" />
-            </a>
-        </li>
         <li title='New Remix'>
             <a href="/framer">
                 <img src="{{imageUrl "nav/new.png"}}" id="composer-button" data-remix-id="new" />
