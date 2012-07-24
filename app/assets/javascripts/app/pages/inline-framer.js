@@ -5,8 +5,8 @@ app.pages.FramerWithLightBoxNavigate = app.pages.Framer.extend({
 })
 
 app.views.InlineFramer = app.views.Base.extend({
-  initialize :function(){
-    this.framer = new app.pages.FramerWithLightBoxNavigate({ model : this.model})
+  initialize :function(options){
+    this.framer = new app.pages.FramerWithLightBoxNavigate({ model : this.model, tag: options.tag})
     this.bindEvents()
   },
 
@@ -28,9 +28,6 @@ app.views.InlineFramer = app.views.Base.extend({
 
   teardown :function(){
     // nick cage
-    $("#nick-cage")[0].play()
-    $("#peekaboo").addClass("peek")
-    setTimeout("$('#peekaboo').removeClass('peek')", 5000);
     // $("#nick-cage")[0].play()
     // $("#peekaboo").addClass("peek")
     // setTimeout("$('#peekaboo').removeClass('peek')", 5000);
