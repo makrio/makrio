@@ -80,7 +80,7 @@
   }
 
   #stream-content {
-    margin-left : -108px;
+    margin-left : -100px;
   }
 }
 
@@ -193,6 +193,7 @@
 
       .detail {
         float : right;
+        margin-right: 30px;
 
         -moz-user-select: none;
         -khtml-user-select: none;
@@ -248,18 +249,18 @@
   @include transition(all);
 
   position: fixed;
-  top: 0;
+  top: -5px;
   left: 318px;
   z-index: 15;
 
-  background-color: #BD362F;
+  background-color: #FF4444;
   cursor: pointer;
 
   color: white;
   font-family: Roboto-Bold;
 
   padding : {
-    top : 43px;
+    top : 10px;
     left : 40px;
     right : 40px;
     bottom : 5px;

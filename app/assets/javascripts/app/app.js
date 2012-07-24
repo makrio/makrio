@@ -46,7 +46,7 @@ var app = {
     this.instrumentIncomingSignUpLinks()
 
     // there's probably a better way to do this...
-    $("a[rel=backbone]").live("click", function(evt){
+    $("a[rel=backbone]").on("click", function(evt){
       evt.preventDefault();
       var link = $(this);
 

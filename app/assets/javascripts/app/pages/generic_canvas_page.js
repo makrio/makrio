@@ -10,6 +10,12 @@ app.pages.GenericCanvas = app.views.Base.extend({
     this.setUpInfiniteScroll() 
   },
 
+  presenter : function() {
+    return(_.extend(this.defaultPresenter(), {
+      pageTitle : app.pageTitle
+    }))
+  },
+
   setUpInfiniteScroll : function(){
     this.stream = new app.models.Stream([], { collectionOptions: {} })
     this.stream.preloadOrFetch()

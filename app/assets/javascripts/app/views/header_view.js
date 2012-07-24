@@ -1,5 +1,7 @@
 app.views.Header = app.views.Base.extend({
   templateName : "header",
+  id: "header",
+
   events : {
     "click .bookmarklet-button" : "bookmarkletInstructionsPrompt",
     "click a.notification" : "readNotificationAndNavigate",
@@ -27,8 +29,6 @@ app.views.Header = app.views.Base.extend({
     evt.preventDefault()
     alert("Drag me to the bookmarks bar to post to makr.io from anywhere on the web")
   },
-
-
 
   notifications : function() {
     return window.preloads && window.preloads.notifications
