@@ -57,6 +57,10 @@ class Post < ActiveRecord::Base
     joins(:likes).where(:likes => {:author_id => person.id})
   }
 
+  def self.with_screenshot
+    where("screenshot IS NOT NULL")
+  end
+
   def self.staff_picked
     where("staff_picked_at IS NOT NULL")
   end

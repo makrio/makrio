@@ -1,0 +1,13 @@
+<header/>
+<div class='container'> 
+  {{#each tags}}
+    <br/>
+      {{name}}
+      {{#each last_three}}
+        <img src='{{screenshot_url}}' height=200/>
+      {{/each}}
+    <br/>
+    <br/>
+    <br/>
+  {{/each}}
+</div>

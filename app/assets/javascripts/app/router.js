@@ -42,6 +42,7 @@ app.Router = Backbone.Router.extend({
     "conversations/:id" : "conversation",
     "conversations": "conversations",
     'tagged/:name' : 'tagShow',
+    'top_tags' : 'topTags',
 
     ":name" : "newProfile"
   },
@@ -52,6 +53,10 @@ app.Router = Backbone.Router.extend({
 
   timewarp : function(daysAgo){
     this.renderPage(function(){ return new app.pages.TimeWarp({daysAgo : daysAgo})});
+  },
+
+  topTags : function(){
+    this.renderPage(function(){ return new app.pages.TopTags()});
   },
 
   styleGuide : function(id){

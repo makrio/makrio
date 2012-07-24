@@ -30,7 +30,7 @@ class TagPresenter < BasePresenter
   end
 
   def last_three
-    posts = base_scope.order('created_at desc').limit(3)
+    posts = base_scope.with_screenshot.order('created_at desc').limit(3)
     PostPresenter.collection_json(posts, @current_user, lite?: true)
   end
 
