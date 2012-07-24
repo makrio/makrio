@@ -83,7 +83,7 @@ class TagPresenter < BasePresenter
   private
 
   def base_scope
-    StatusMessage.tagged_with(@tag.name)
+    StatusMessage.tagged_with(@tag.name).featured_and_by_author(@current_user.try(:person))
   end
 
   def remix_author_ids
