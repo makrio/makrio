@@ -92,6 +92,7 @@
   overflow-y : auto;
   z-index : $stream-interactions-content-index;
   padding-top : 35px;
+  overflow-x: hidden;
 
   .span5 {
     margin : 0;
