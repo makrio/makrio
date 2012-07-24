@@ -7,7 +7,7 @@ app.pages.GenericCanvas = app.views.Base.extend({
   },
 
   initialize : function(){
-    this.setUpInfiniteScroll() 
+    this.setUpInfiniteScroll()
   },
 
   presenter : function() {

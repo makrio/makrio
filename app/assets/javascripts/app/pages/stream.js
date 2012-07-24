@@ -2,14 +2,12 @@ app.pages.Stream = app.views.Base.extend({
   templateName : "stream",
 
   events : {
-    "click .post-notifier" : "loadNewPosts",
-    "activate .stream-frame-wrapper" : 'triggerInteractionLoad',
+    "click .post-notifier" : "loadNewPosts"
   },
 
   subviews : {
     "header" : "headerView",
     "#stream-content" : "streamView",
-    "#stream-interactions" : "interactionsView",
   },
 
   initialize : function(){
@@ -31,10 +29,6 @@ app.pages.Stream = app.views.Base.extend({
       var frame = $('.selected-frame').parent().next()
       $window.scrollTop(frame.offset().top - 60)
     });
-
-    Mousetrap.bind('n', function(){
-      $('button#notifications-button').click()
-    })
 
     Mousetrap.bind('k', function(){
       $window.scroll()
@@ -58,32 +52,22 @@ app.pages.Stream = app.views.Base.extend({
       $(this).blur()
       $('textarea#new-comment-text').focus()
     })
-
-
   },
 
   initSubviews : function(){
     this.headerView = new app.views.Header({model : this.stream})
     this.streamView = new app.pages.Stream.InfiniteScrollView({ model : this.stream })
-    this.interactionsView = new app.views.StreamInteractions()
   },
 
   bindEvents : function(){
     this.stream.on("hasMoar", this.notifyUserOfMorePosts, this)
-    this.stream.on("fetched", this.resetScrollSpy, this)
-    this.stream.on("frame:interacted", this.selectFrame, this)
-    this.on("refreshScrollSpy", this.refreshScrollSpy, this)
     this.setUpMousetrap()
   },
 
   unbind : function(){
     this.stream.unbind()
     this.stream.off("hasMoar", this.notifyUserNewPosts, this)
-    this.stream.off("fetched", this.resetScrollSpy, this)
-    this.stream.off("frame:interacted", this.selectFrame, this)
-    this.off("refreshScrollSpy", this.refreshScrollSpy, this)
-
-    $(window).unbind("scroll")
+    $(window).off("scroll")
   },
 
   loadNewPosts : function(){
@@ -93,7 +77,6 @@ app.pages.Stream = app.views.Base.extend({
 
     document.title = this._pageTitle;
 
-    this.resetScrollSpy()
     $(window).trigger("scroll").scrollTop(0)
   },
 
@@ -110,57 +93,6 @@ app.pages.Stream = app.views.Base.extend({
       this.$("#stream-content").prepend(div)
       return div
     }
-  },
-
-  postRenderTemplate : function() {
-    //after all of the child divs have been added, initialize the scroll spy
-    _.defer(_.bind(function(){
-      $('body').scrollspy({target : '.stream-frame-wrapper', offset : 150, streamElement : this.$("#stream")})
-      this._resetPeriod = 500;
-      this.refreshScrollSpy()
-
-      //select frame needs a div to be in, so make sure this happens in a defer
-      this.stream.deferred.done(_.bind(function(){
-        var post = this.stream.items.models[0]
-        this.selectFrame(post)
-      }, this))
-    }, this))
-  },
-
-  selectFrame : function(post){
-    if(this.selectedPost == post) { return }
-    this.selectedPost = post
-
-    this.$(".stream-frame-wrapper").removeClass("selected-frame")
-    this.$(".stream-frame-wrapper[data-id=" + this.selectedPost.id +"]").addClass("selected-frame")
-    this.throttledInteractions(this.selectedPost)
-  },
-
-  throttledInteractions : _.throttle(function(post){
-    this.interactionsView.setInteractions(post)
-  }, 500), //so fast scrolling doesn't crash things
-
-  triggerInteractionLoad : function(evt){
-      this.selectFrame(this.stream.items.get($(evt.target).data("id")))
-  },
-
-  refreshScrollSpy : function(){
-    this._resetPeriod = this._resetPeriod || 2000
-    _.delay(_.bind(this.doRefresh, this), this._resetPeriod)
-  },
-
-  doRefresh : function(){
-    if(this._resetPeriod <= 10000) {
-      $('body').scrollspy('refresh')
-      this._resetPeriod = this._resetPeriod * 2
-      this.trigger("refreshScrollSpy")
-    }
-  },
-
-  resetScrollSpy : function(){
-    this._resetPeriod = 2000
-    this.refreshScrollSpy()
-    this.doRefresh()
   }
 },
 
