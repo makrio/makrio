@@ -6,6 +6,10 @@ app.views.Header = app.views.Base.extend({
     "click #composer-button" : 'showModalFramer'
   },
 
+  postRenderTemplate : function() {
+      this.$('.nav-main li').tooltip({placement: 'right', delay: { show: 300, hide: 100 }});
+    },
+
   presenter : function(){
     return _.extend(this.defaultPresenter(), {
       onLatest : function() { return document.location.pathname.search("stream") !== -1},
