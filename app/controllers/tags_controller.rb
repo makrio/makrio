@@ -1,9 +1,10 @@
 class TagsController < ApplicationController
-  before_filter :redirect_unless_admin, :except => [:show]
+  before_filter :redirect_unless_admin, :only => [:set]
   
   rescue_from ActiveRecord::RecordNotFound do
     render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404
   end
+
   def set
     post = Post.find(params[:post_id])
     post.update_tags!(params['tag_list'])
@@ -21,12 +22,11 @@ class TagsController < ApplicationController
   end
 
   def top
-    @tags = StatusMessage.most_popular_tags(24)
+    @tags = StatusMessage.most_popular_tags(12)
 
     respond_to do |format|
       format.js{render :json => TagPresenter.as_collection(@tags, current_user, :with_people => false)}
       format.html{ render :text => '', :layout => 'post'}
     end
-
   end
 end
