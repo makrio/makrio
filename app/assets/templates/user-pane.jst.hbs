@@ -7,13 +7,12 @@
     </div>
 {{else}}
     <ul>
-        {{#if current_user.notifications_count}}
-        <li class="notification-count" title='Notifications'>
+        <li class="notification-count {{#if current_user.notifications_count}}red{{/if}}"   title='Notifications'>
             <a href="/notifications" target="_blank">
                 {{current_user.notifications_count}}
             </a>
         </li>
-        {{/if}}
+        
 
     </ul>
 
