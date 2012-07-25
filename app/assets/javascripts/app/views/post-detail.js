@@ -11,7 +11,6 @@ app.views.PostDetail = app.views.Base.extend({
 
   initialize : function(options) {
     this.model = options.model
-    console.log(this.model)
     this.model.interactions.fetch()
     this.initViews()
   },

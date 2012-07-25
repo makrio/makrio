@@ -127,17 +127,37 @@ app.views.Base = Backbone.View.extend({
       , post = (post_id =='new') ? undefined : (this.stream && this.stream.items.get(post_id).buildRemix()) || this.model.buildRemix()
       , tag = target.data('tag')
 
-      console.log(tag)
-
-
     this.framer = new app.views.InlineFramer({model : post, tag: tag})
     this.framer.show()
   },
 
   showModalComments : function(evt){
     evt && evt.preventDefault();
-    this.modalComments = new app.views.InlineComments({model : this.model})
-    this.modalComments.show();
+    var commentsView = new app.views.InlineComments({model : this.model})
+    this.showModal(commentsView)
+  },
+
+  showModal : function(view) {
+      if(view.model.interactions) {
+        view.model.interactions.fetch().done(_.bind(setFacebox, view))
+      } else {
+        _.bind(setFacebox, view).call()
+      }
+
+      /* context for this function is a view object */
+      function setFacebox(){
+        $.facebox.settings.closeImage = '/assets/facebox/closelabel.png'
+        $.facebox.settings.loadingImage = '/assets/facebox/loading.gif'
+        $.facebox.settings.opacity = 0.5
+        $.facebox.settings.faceboxHtml =   '<div id="facebox" style="display:none;"> \
+      <div class="popup"> \
+        <div class="content" style="overflow:hidden;"> \
+        </div> \
+        <a href="#" class="close"></a> \
+      </div> \
+    </div>' 
+        $.facebox(this.render().el)
+      }
   },
 
  requireAuth : function(evt) {

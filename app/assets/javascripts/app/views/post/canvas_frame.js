@@ -13,7 +13,15 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
 
   events : {
     "click .content" : "goToOrFavoritePost",
-    "click .delete" : "killPost"
+    "click .delete" : "killPost",
+    "click .vitals": "showModalPostDetail"
+  },
+
+  showModalPostDetail : function(evt){
+    evt && evt.preventDefault()
+    var postDetail = new app.views.InlinePostDetail({model : this.model})
+    this.showModal(postDetail)
+
   },
 
   // copy pasta :(

@@ -27,11 +27,6 @@ app.views.InlineFramer = app.views.Base.extend({
   },
 
   teardown :function(){
-    // nick cage
-    // $("#nick-cage")[0].play()
-    // $("#peekaboo").addClass("peek")
-    // setTimeout("$('#peekaboo').removeClass('peek')", 5000);
-
     $.facebox.close()
     var flash = new Diaspora.Widgets.FlashMessages;
     flash.render({
@@ -54,16 +49,18 @@ app.views.InlineComments = app.views.Base.extend({
       this.comments = new app.views.PostViewerComments({ model: this.model.interactions })
       this.newCommentView = new app.views.PostViewerNewComment({ model : this.model })
     },
-
-    show : function(){
-      var self = this
-      self.model.interactions.fetch().done(function(){
-        $.facebox.settings.closeImage = '/assets/facebox/closelabel.png';
-        $.facebox.settings.loadingImage = '/assets/facebox/loading.gif';
-        $.facebox.settings.opacity = 0.5;
-        self.render()
-        $.facebox(self.el)
-      })
-    }
 });
+
+app.views.InlinePostDetail = app.views.Base.extend({
+  templateName : 'inline-post-detail',
+
+  subviews : {
+    "#post_detail" : 'postDetailView'
+  },
+
+  initialize : function(){
+    this.postDetailView = new app.views.PostDetail({model: this.model})
+  },
+})
+
 
