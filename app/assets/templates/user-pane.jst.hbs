@@ -7,17 +7,16 @@
         <a href="/users/sign_up" class="btn new-btn">Sign up</a>
     </div>
 {{else}}
+
+{{#if current_user.notifications_count}}
     <ul>
-        {{#if current_user.notifications_count}}
         <li class="notification-count" title='Notifications'>
             <a href="/notifications" target="_blank">
                 {{current_user.notifications_count}}
             </a>
         </li>
-        {{/if}}
-
     </ul>
-
+{{/if}}
     <ul class="nav-popout bottom">
         {{#if loggedIn}}
         <li class="popout-root">
