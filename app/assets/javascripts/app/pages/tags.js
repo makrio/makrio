@@ -3,6 +3,7 @@ app.pages.TagsShow = app.pages.GenericCanvas.extend({
   subviews : {
     "#canvas" : "canvasView",
     "header" : "headerView",
+    "#user_pane" : "userPaneView",
     '#tag-info' : 'tagInfo'
   },
 

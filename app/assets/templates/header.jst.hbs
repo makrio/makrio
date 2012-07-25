@@ -1,54 +1,10 @@
-<ul class="nav-popout">
-    {{#if loggedIn}}
-        <li class="popout-root">
-            {{#linkToPerson current_user}}
-                {{{personImage this "small" "medium"}}}
-            {{/linkToPerson}}
-        </li>
-
-        <ul class="sub">
-            <li {{#if onLikes}}class="active"{{/if}} title='My Likes'>
-                <a href="/likes">
-                    <img src="{{imageUrl "nav/likes.png"}}" />
-                </a>
-            </li>
-
-            <li title="Settings">
-                <a href="/users/edit">
-                    <img src="{{imageUrl "nav/settings.png"}}" />
-                </a>
-            </li>
-            <li title="Log Out">
-                <a href="/users/sign_out">
-                    <img src="{{imageUrl "nav/logout.png"}}" />
-                </a>
-            </li>
-        </ul>
-    {{else}}
-        <li class="logo">
-            <a href="/">
-                <img src="{{imageUrl "nav/makr.png"}}" />
-            </a>
-        </li>
-    {{/if}}
-</ul>
-
 <ul class="nav-main">
-    {{#if loggedIn}}
-        {{#if current_user.notifications_count}}
-            <li class="notification-count" title='Notifications'>
-                <a href="/notifications" target="_blank">
-                    {{current_user.notifications_count}}
-                </a>
-            </li>
-        {{/if}}
-    {{/if}}
-
-    <li {{#if onLatest}}class="active"{{/if}} title='Latest Posts'>
+    <li class="logo {{#if onLatest}}active{{/if}}">
         <a href="/stream">
-            <img src="{{imageUrl "nav/public.png"}}" />
+            <img src="{{imageUrl "nav/makr.png"}}" />
         </a>
     </li>
+
     <li {{#if onTopics}}class="active"{{/if}} title="Topics">
         <a href="/top_tags">
             <img src="{{imageUrl "nav/topics.png"}}" />
@@ -73,3 +29,4 @@
         </li>
     {{/if}}
 </ul>
+

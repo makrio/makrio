@@ -3,7 +3,8 @@ app.pages.GenericCanvas = app.views.Base.extend({
 
   subviews : {
     "#canvas" : "canvasView",
-    "header" : "headerView"
+    "header" : "headerView",
+    "#user_pane" : "userPaneView"
   },
 
   initialize : function(){
@@ -25,6 +26,7 @@ app.pages.GenericCanvas = app.views.Base.extend({
   initSubviews : function(){
     this.canvasView = new app.views.Canvas({model : this.stream})
     this.headerView = new app.views.Header({model : this.stream})
+    this.userPaneView = new app.views.UserPaneView()
   }
 });
 

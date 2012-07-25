@@ -25,26 +25,19 @@ $nav-background : #000;
 }
 
 /* new styles */
-$nav-background-image: rgba(250,250,250,0.8);
+$nav-background-color: rgba(250,250,250,0.8);
 @mixin nav-shadow {
   @include box-shadow(1px, 0, 3px, rgba(0,0,0,0.1));
 }
 
-#header {
+#header,
+#user_pane {
   @include nav-shadow();
 
   position:fixed;
-  left:0;
-  top:0;
-  height:100%;
+
   z-index:15;
-  width:50px;
-
-  background-color: $nav-background-image;
-
-  .logo {
-    @include opacity(0.1);
-  }
+  background-color: $nav-background-color;
 
   ul {
     list-style:none;
@@ -78,8 +71,6 @@ $nav-background-image: rgba(250,250,250,0.8);
   }
 
   ul.nav-main {
-    margin-top:50px;
-
     > li.active {
       &:after {
         content: image-url('/tick.png');
@@ -90,7 +81,7 @@ $nav-background-image: rgba(250,250,250,0.8);
     }
   }
 
-  ul.nav-popout {
+  ul.nav-popout.right {
     position:fixed;
 
     li {
@@ -109,7 +100,7 @@ $nav-background-image: rgba(250,250,250,0.8);
       @include nav-shadow();
 
       float:left;
-      background-color: $nav-background-image;
+      background-color: $nav-background-color;
       margin-left:-100px;
     }
 
@@ -120,6 +111,55 @@ $nav-background-image: rgba(250,250,250,0.8);
       }
     }
   }
+
+  ul.nav-popout.bottom {
+    position:fixed;
+
+    /* temp hack for our single use-case */
+    right:10px;
+
+    li {
+      float:left;
+    }
+
+    li.popout-root {
+      @include opacity(1);
+      position:fixed;
+      z-index:2;
+    }
+
+    ul.sub {
+      @include transition(all, .15s);
+      @include opacity(0);
+      @include nav-shadow();
+
+      float:left;
+      width:50px;
+      background-color: $nav-background-color;
+      margin-top:-100px;
+    }
+
+    &:hover {
+      ul.sub {
+        @include opacity(1);
+        margin-top:50px;
+      }
+    }
+  }
+}
+
+#header {
+  left:0;
+  top:0;
+  width:50px;
+  height:100%;
+}
+
+#user_pane {
+  top:10px;
+  right:10px;
+  min-width:100px;
+  height:50px;
 
   .notification-count {
     display:table-cell;
@@ -132,11 +172,17 @@ $nav-background-image: rgba(250,250,250,0.8);
     font-family:Roboto-Bold;
 
     a {
+      margin-top: 16px;
       display:block;
       color:inherit;
       &:hover {
         text-decoration:none;
       }
     }
+  }
+
+  ul,
+  ul > li {
+    float:left;
   }
 }

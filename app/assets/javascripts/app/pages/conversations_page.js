@@ -6,6 +6,7 @@ app.pages.Conversations = app.pages.GenericCanvas.extend({
   subviews : {
     "#canvas" : "canvasView",
     "header" : "headerView",
+    "#user_pane" : "userPaneView",
     '#root-frame' : 'rootFrame',
     "#share-actions" : "shareView"
   },

@@ -6,6 +6,7 @@ app.pages.PostViewer = app.views.Base.extend({
     "#post-nav" : "navView",
     "#share-actions" : "shareView",
     'header' : 'headerView',
+    "#user_pane" : "userPaneView",
     "#viewer-feedback" : "feedbackView",
     "#canvas" : "canvasView"
   },
@@ -32,7 +33,8 @@ app.pages.PostViewer = app.views.Base.extend({
     });
 
     this.initializeStream()
-    this.headerView = new app.views.Header({})
+    this.headerView = new app.views.Header()
+    this.userPaneView = new app.views.UserPaneView()
     this.render();
   },
 
