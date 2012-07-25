@@ -9,7 +9,8 @@ class UserPreference < ActiveRecord::Base
    "private_message",
    "started_sharing",
    "also_commented",
-   "liked"]
+   "liked",
+    "remixed"]
 
 
   def must_be_valid_email_type

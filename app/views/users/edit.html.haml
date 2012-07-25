@@ -88,8 +88,8 @@
 
         %br
         %p.checkbox_select
-          = type.label :reshared, t('.reshared')
-          = type.check_box :reshared, {:checked =>  @email_prefs['reshared']}, false, true
+          = type.label :remixed, t('.remixed')
+          = type.check_box :remixed, {:checked =>  @email_prefs['remixed']}, false, true
     %br
     = f.submit t('.change'), :class => "button"
 
