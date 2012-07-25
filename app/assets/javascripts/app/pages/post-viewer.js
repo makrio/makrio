@@ -2,13 +2,11 @@ app.pages.PostViewer = app.views.Base.extend({
   templateName: "post-viewer",
 
   subviews : {
-    "#featured_frame" : "postView",
     "#post-nav" : "navView",
-    "#share-actions" : "shareView",
     'header' : 'headerView',
     "#user_pane" : "userPaneView",
-    "#viewer-feedback" : "feedbackView",
-    "#canvas" : "canvasView"
+    "#canvas" : "canvasView",
+    '#post-detail' : 'postDetailView'
   },
 
   tooltipSelector : ".post-author",
@@ -16,7 +14,6 @@ app.pages.PostViewer = app.views.Base.extend({
   initialize : function(options) {
     this.model = new app.models.Post({ id : options.id });
     this.model.preloadOrFetch().done(_.bind(this.initViews, this));
-    this.model.interactions.fetch()
 
     this.bindEvents()
   },
@@ -24,13 +21,8 @@ app.pages.PostViewer = app.views.Base.extend({
   initViews : function() {
     /* init view */
     this.navView = new app.views.PostViewerNav({ model : this.model });
-    this.feedbackView = new app.views.ViewerFeedbackActions({model : this.model})
+    this.postDetailView = new app.views.PostDetail({model : this.model})
 
-    this.postView = new app.views.Post.SmallFrame({
-       model : this.model,
-       className : "canvas-frame",
-       composing : true
-    });
 
     this.initializeStream()
     this.headerView = new app.views.Header()
@@ -38,22 +30,18 @@ app.pages.PostViewer = app.views.Base.extend({
     this.render();
   },
 
-  shareView : function() {
-    return new app.views.ShareView({model : this.model})
-  },
+
 
   bindEvents : function(){
     this.prepIdleHooks();
     this.bindNavHooks();
-
-    $(document).bind("keyup", _.bind(this.closePane, this))
   },
 
   unbind : function(){
-    $(document).unbind("idle.idleTimer")
-    $(document).unbind("active.idleTimer")
-    $(document).unbind('keydown')
-    $(document).unbind('keyup')
+    $(document).off("idle.idleTimer")
+    $(document).off("active.idleTimer")
+    $(document).off('keydown')
+    $(document).off('keyup')
   },
 
   prepIdleHooks : function () {
@@ -102,9 +90,4 @@ app.pages.PostViewer = app.views.Base.extend({
     this.canvasView = new app.views.Canvas({model : this.stream})
 
   },
-
-  closePane : function(evt) {
-    if(evt.keyCode != 27) { return }
-    this.interactionsView.hidePane();
-  }
 });
