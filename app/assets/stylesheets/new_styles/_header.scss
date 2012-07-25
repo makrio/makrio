@@ -73,7 +73,7 @@ $nav-background-color: rgba(250,250,250,0.8);
   ul.nav-main {
     > li.active {
       &:after {
-        content: image-url('/tick.png');
+        content: image-url('tick.png');
         position:absolute;
         top:18px;
         right:-5px;
