@@ -113,10 +113,10 @@ $nav-background-color: rgba(250,250,250,0.8);
   }
 
   ul.nav-popout.bottom {
-    position:fixed;
+    position:absolute;
 
     /* temp hack for our single use-case */
-    right:10px;
+    right:0;
 
     li {
       float:left;
@@ -124,7 +124,7 @@ $nav-background-color: rgba(250,250,250,0.8);
 
     li.popout-root {
       @include opacity(1);
-      position:fixed;
+      position:absolute;
       z-index:2;
     }
 
@@ -156,6 +156,8 @@ $nav-background-color: rgba(250,250,250,0.8);
 }
 
 #user_pane {
+  position:absolute;
+
   top:10px;
   right:10px;
   min-width:100px;
