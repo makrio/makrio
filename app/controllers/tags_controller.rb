@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   before_filter :redirect_unless_admin, :only => [:set]
+  before_filter :authenticate_user!, :only => [:auth_show]
   
   rescue_from ActiveRecord::RecordNotFound do
     render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404
@@ -19,6 +20,11 @@ class TagsController < ApplicationController
   def show
     @tag = ActsAsTaggableOn::Tag.find_by_name!(params[:name])
     render json: TagPresenter.new(@tag, current_user)
+  end
+
+  def auth_show
+    @tag = ActsAsTaggableOn::Tag.find_by_name!(params[:name])
+    redirect_to "/tagged/#{@tag.name}"
   end
 
   def top
