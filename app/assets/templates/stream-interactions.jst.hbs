@@ -6,11 +6,15 @@
     </div>
     <div class='bd'>
       <h2>{{author.nickname}}'s Remix 
-        <a class='btn new-btn' href="/conversations/{{conversation_id}}" class="permalink" title="Permalink"> View Conversation</a>
+        <a class='btn new-btn' href="/conversations/{{conversation_id}}" class="permalink" title="Permalink"> View Remixes</a>
       </h2>
     </div>
   </div>
 
+  As seen in: {{#each tags}}
+                <a href='/tagged/{{this}}'>{{this}}</a>
+              {{/each}}
+  <br/>
   <br/>
 
   <div class="feedback"/>
@@ -27,6 +31,4 @@
           <input type="submit" value='Set Tags' class="btn new-btn"/>
       </form>
     {{/if}}
-
-
 </div>

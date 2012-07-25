@@ -31,6 +31,14 @@ app.views.StreamInteractions = app.views.Base.extend({
     )
   },
 
+  presenter : function(){
+    var tags = this.model &&  this.model.get("tag_list")
+
+    return _.extend(this.defaultPresenter(), {
+      tags : tags
+    })
+  },
+
   cleanupOldviews : function(){
     this.comments && this.comments.unbind()
   }
