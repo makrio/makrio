@@ -34,7 +34,7 @@ app.views.TagInfo = app.views.Base.extend({
     this.tagName = options.name
 
     this.model = new app.models.Tag({name : this.tagName})
-    this.shareView = new app.views.ShareView({model: this.model, hidePinterest: true, hideTumblr: true, hideUrl:true})
+    this.shareView = new app.views.ShareView({model: this.model, hidePinterest: true, hideTumblr: true, hideUrl:true, url: 'https://makr.io/tagged/' + this.tagName})
 
     var self = this
     this.model.fetch().done(function(){
