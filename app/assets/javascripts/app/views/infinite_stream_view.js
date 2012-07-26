@@ -75,6 +75,12 @@ app.views.InfScroll = app.views.Base.extend({
 
   renderInitialPosts : function(){
     this.$el.empty()
+
+    var firstFrame = new app.views.Post.FirstCanvasFrame()
+    if(firstFrame.onTagPage() != -1){
+      this.$el.append(firstFrame.render().el)
+    }
+
     this.stream.items.each(_.bind(function(post){
       this.$el.append(this.createPostView(post).render().el);
     }, this))

@@ -148,6 +148,22 @@ a.conversation_link{
     min-height : $column-width + px;
   }
 
+  .content.add_button{
+    min-height: 0;
+    a {
+      font-family: Roboto-Light;
+      font-size: 3em;
+      line-height: 1.5em;
+      width: 253px;
+      height: 55px;
+      padding:10px;
+      background:$light-blue;
+      color: white;
+      text-shadow: none;
+      cursor: pointer;
+    }
+  }
+
   &.has-media .content {
     min-height : 0;
   }

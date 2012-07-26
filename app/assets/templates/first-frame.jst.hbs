@@ -1,0 +1,7 @@
+<div class='content add_button'>
+    {{#if loggedIn}}
+        <a href='#' rel='auth-required' data-remix-id='new' data-tag='{{name}}' class='btn new-btn collection-composer-button blue'>+ Add Post</a>
+    {{else}}
+        <a class='btn new-btn blue' href='/tagged/{{name}}/auth_required'> + Add Post</a>
+    {{/if}}
+</div>

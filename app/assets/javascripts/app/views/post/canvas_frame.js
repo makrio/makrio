@@ -1,5 +1,28 @@
 //= require ./small_frame
 
+app.views.Post.FirstCanvasFrame = app.views.Base.extend({
+  templateName : 'first-frame',
+  className : "mason canvas-frame",
+  events : {
+    'click .collection-composer-button' : 'showModalFramer'
+  },
+
+  presenter : function(){
+    return {
+      name : this.currentTag(),
+      loggedIn : app.currentUser.authenticated()
+    }
+  },
+
+  currentTag : function(){
+    return window.location.pathname.split('/').pop()
+  },
+
+  onTagPage : function(){
+    return window.location.pathname.search('tagged')
+  }
+});
+
 app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
   SINGLE_COLUMN_WIDTH : 265,
   DOUBLE_COLUMN_WIDTH : 560,

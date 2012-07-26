@@ -5,13 +5,6 @@
         {{likes_count}} <em>Likes</em>
         {{remix_count}} <em>Remixes</em>
     </small>
-    <span>
-        {{#if loggedIn}}
-            <a href='#' id='collection-composer-button' rel='auth-required'     data-remix-id='new' data-tag='{{name}}' class='btn new-btn'> Add to Post to {{name}}</a>
-        {{else}}
-            <a class='btn new-btn' href='/tagged/{{name}}/auth_required'> Add to Post to {{name}}</a>
-        {{/if}}
-    </span>
 </h1>
 
 
