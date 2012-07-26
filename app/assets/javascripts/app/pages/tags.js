@@ -24,6 +24,8 @@ app.views.TagInfo = app.views.Base.extend({
     "click #collection-composer-button" : 'showModalFramer'
   },
 
+  tooltipSelector : ".leader a",
+
   initialize : function(options){
     this.tagName = options.name
 
