@@ -28,7 +28,7 @@ class TagsController < ApplicationController
   end
 
   def top
-    @tags = StatusMessage.most_popular_tags(12)
+    @tags = StatusMessage.most_popular_tags(15)
 
     respond_to do |format|
       format.js{render :json => TagPresenter.as_collection(@tags, current_user, :with_people => false)}

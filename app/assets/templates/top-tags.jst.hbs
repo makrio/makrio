@@ -3,8 +3,8 @@
 
 <div class='container'>
     <h1 id="page_title">Topics<small>See what Makrs are talking about. Join in!</small></h1>
-
-    <div class="topics">
+    <div class='clearfix'/>
+    <div class="topics" style='min-height:700px'>
         {{#each tags}}
             <div class="topic">
                 <a href="/tagged/{{name}}">
@@ -23,5 +23,5 @@
             </div>
         {{/each}}
     </div>
-    <h3>Want to start a topic you don't see here? Start by making stuff about your topic and  <a href='mailto:feedback@makr.io?subject=I%20want%20a%20new%20topic!' target='_blank'>send us an e-mail</a>. </h3>
+    <h3>Want to start a topic you don't see here? Start by making stuff about your topic and send us an email at <a href='mailto:feedback@makr.io?subject=I%20want%20a%20new%20topic!' target='_blank'>feedback@makr.io</a>. </h3>
 </div>
