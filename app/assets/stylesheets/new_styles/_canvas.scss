@@ -450,12 +450,12 @@ a.conversation_link{
 
   .stream-frame-feedback {
     @include transition(opacity);
-    @include opacity(0);
+    @include opacity(1);
 
     z-index : 10;
 
     position : absolute;
-    top : 10px;
+    bottom : 10px;
     right : 10px;
 
     cursor : pointer;
@@ -465,7 +465,7 @@ a.conversation_link{
 
       display : table;
 
-      background-color : rgba(0,0,0,.7);
+      background-color : white;
       width : 200px;
       height: 100px;
 
@@ -535,22 +535,29 @@ a.conversation_link{
 #canvas,
 .conversation-original {
   .canvas-frame {
-    overflow : hidden;
+    /*overflow : hidden;*/
   }
 
   .canvas-frame:hover {
+    overflow:visible;
+    z-index:1001;
     .stream-frame-feedback {
-      @include animation(bump-down);
-      top : -10px;
+      /*@include animation(bump-down);*/
+
+      @include opacity(1);
+      bottom : -55px;
+      z-index:500;
     }
   }
 
   .stream-frame-feedback {
-    @include transition(top);
-    @include opacity(1);
+    @include transition(bottom);
+    @include opacity(0);
+
     @include acceleration();
 
-    top : -62px;
+    bottom : -40px;
+    border-bottom: 1px solid black;
 
     left : 0;
     width : 100%;
