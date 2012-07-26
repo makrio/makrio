@@ -16,6 +16,9 @@ CarrierWave.configure do |config|
     }
     config.fog_directory = AppConfig[:s3_bucket]
     config.fog_host = ENV["ASSET_HOST"] if ENV["ASSET_HOST"]
+
+    # cache all uploaded files to S3
+    config.fog_attributes = {'Cache-Control' => 'public, max-age=31557600'}
   else
     config.storage = :file
   end
