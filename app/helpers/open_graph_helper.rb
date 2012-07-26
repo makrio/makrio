@@ -48,10 +48,11 @@ module OpenGraphHelper
   end
 
   def og_tag_tags(tag)
+    image_url = tag.most_popular_post.try(:screenshot_url)
     tags = []
     tags << meta_tag_with_property("og:type", "article")
     tags << meta_tag_with_property("og:url", "https://makr.io/tagged/#{tag.name}")
-    tags << meta_tag_with_property("og:image",tag.most_popular_post.screenshot_url) 
+    tags << meta_tag_with_property("og:image", image_url) if image_url.present?
     tags << meta_tag_with_property("og:title", tag.name + ' on Makr.io')
     tags << meta_tag_with_property("og:description", "An amazing collaborative collection of #{tag.name}")
     tags.join(' ').html_safe

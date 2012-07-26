@@ -16,10 +16,10 @@ app.views.Canvas = app.views.InfScroll.extend({
       if(this.stream.items.isEmpty()){
         var message
           , person = app.page.model
-        if(person.get("is_own_profile")){
+        if(person && person.get("is_own_profile")){
           message = "Make something to start the magic."
         } else {
-          var name = person.get("name") || ""
+          var name = person ? person.get("name") : ""
           message = name + " hasn't posted anything yet."
         }
 
