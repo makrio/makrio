@@ -19,11 +19,7 @@ class TagPresenter < BasePresenter
 
     if opts.fetch(:with_people, true)
       base.merge!({
-        on_fire: on_fire,
-        most_posts: most_posts,
-        most_remixes: most_remixes,
-        likers: likers,
-        makrs: makrs,
+        makrs: makrs
       })
     end
     base
@@ -34,33 +30,9 @@ class TagPresenter < BasePresenter
     PostPresenter.collection_json(posts, @current_user, lite?: true)
   end
 
-  def on_fire
-    on_fire = base_scope.order('likes_count desc').first.author
-    PersonPresenter.new(on_fire, @current_user)
-  end
-
-  #totally faking this list
-  def likers
-    likers = base_scope.includes(:likes => {:author =>:profile}).order('created_at desc').limit(10).map do |post|
-      post.likes.map(&:author)
-    end.flatten.uniq
-     PersonPresenter.as_collection(likers, @current_user)
-  end
-
-  def most_posts
-    person = Person.find(top_original_poster_id)
-    PersonPresenter.new(person, @current_user)
-  end
-
-  def most_remixes
-    person = Person.find(top_remixer_id)
-    PersonPresenter.new(person, @current_user)
-  end
-
-
   def makrs
     author_ids = base_scope.pluck(:author_id)
-    authors = Person.where(:id => author_ids).includes(:profile)
+    authors = Person.where(:id => author_ids).includes(:profile).limit(8)
     sorted_authors =  authors.map{|x| [x, TopPosterScore.new(x, base_scope).value]}.sort{|x, y| y[1] <=> x[1]}.map{|x| x[0]}
     PersonPresenter.as_collection(sorted_authors, @current_user)
   end

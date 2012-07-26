@@ -1,8 +1,8 @@
 #tag-info {
   #tag-leaders{
-    margin-bottom:50px;
-    white-space: nowrap;
     overflow:hidden;
+    max-height: 155px;
+    margin-bottom:50px;
 
     .leader {
       position:relative;
