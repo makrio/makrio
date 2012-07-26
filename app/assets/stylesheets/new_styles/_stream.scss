@@ -93,7 +93,50 @@
   z-index : $stream-interactions-content-index;
   padding-top : 35px;
   overflow-x: hidden;
+}
 
+/* overrides */
+#post-content #selected_reactions {
+  .remix-wrapper {
+    display:inline-block;
+    white-space:nowrap;
+    overflow:hidden;
+
+    .remix-screenshot {
+      height:100px;
+    }
+  }
+
+  .well {
+    margin-bottom: 0;
+  }
+
+  > div > div {
+    margin-top:20px;
+  }
+}
+
+#post-content {
+  a.modal-comment {
+    display:none;
+  }
+
+  .avatar {
+    @include border-radius(3px);
+  }
+
+  #selected_frame {
+    margin-top:20px;
+  }
+
+  .new-comment-form.media {
+    margin-left : 0;
+  }
+}
+/* end overrides */
+
+#post-content #selected_reactions,
+#stream-interactions {
   .span5 {
     margin : 0;
   }

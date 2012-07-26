@@ -1,5 +1,6 @@
 app.views.StreamInteractions = app.views.Base.extend({
   id : "post-info",
+  className: "span5",
 
   subviews:{
     ".comments" : "comments",

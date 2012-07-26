@@ -50,17 +50,3 @@ app.views.InlineComments = app.views.Base.extend({
       this.newCommentView = new app.views.PostViewerNewComment({ model : this.model })
     },
 });
-
-app.views.InlinePostDetail = app.views.Base.extend({
-  templateName : 'inline-post-detail',
-
-  subviews : {
-    "#post_detail" : 'postDetailView'
-  },
-
-  initialize : function(){
-    this.postDetailView = new app.views.PostDetail({model: this.model})
-  },
-})
-
-

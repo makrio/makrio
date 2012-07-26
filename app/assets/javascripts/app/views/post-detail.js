@@ -5,7 +5,6 @@ app.views.PostDetail = app.views.Base.extend({
     "#featured_frame" : "postView",
     "#share-actions" : "shareView",
     "#viewer-feedback" : "feedbackView",
-
   },
 
 
