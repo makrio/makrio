@@ -5,27 +5,9 @@ class TopPosterScore
     @author_id = @author.id
   end
 
-
   def value 
     likes_count
   end
-
-  # def value
-  #   post_sum + likes_score
-  # end
-
-
-  # def original_score
-  #   @original_score ||= @query.all_original.where(:author_id => @author.id).count
-  # end
-
-  # def remixed_score
-  #   @remixed_score ||= @query.joins(:parent).where(:parent => {:}.count
-  # end
-
-  # def post_sum
-  #   original_score + remixed_score
-  # end
 
   def post_count
     @query.where(:author_id => @author_id).count
