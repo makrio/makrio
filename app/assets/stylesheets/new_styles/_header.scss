@@ -38,7 +38,10 @@ $nav-background-color: rgba(250,250,250,0.8);
 
   z-index:15;
   background-color: $nav-background-color;
-
+  .blue {
+    background:$light-blue;
+    color: white;
+  }
   ul {
     list-style:none;
     padding:0;
