@@ -9,6 +9,7 @@ class TagPresenter < BasePresenter
     base = {
       id: @tag.id,
       name: @tag.name,
+      display_name: @tag.name.split('-', ' ')
       title: "Come play with me and #{@tag.name} on Makr.io!",
 
       remix_count: remix_count,
