@@ -22,7 +22,7 @@ class NotificationsController < ApplicationController
   end
 
   def index
-    @notifications = current_user.recent_notifications.all
+    @notifications = current_user.recent_notifications.limit(30).all
 
     @notifications.each do |n|
       n.note_html = render_to_string( :partial => 'notify_popup_item', :locals => { :n => n } )
