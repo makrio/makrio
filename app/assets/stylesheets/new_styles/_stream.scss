@@ -155,9 +155,16 @@
 #stream-content {
   .stream-frame .selected-frame {
     .stream-frame-feedback {
+      @include opacity(0.4);
+    }
+  }
+
+  .stream-frame .canvas-frame:hover {
+    .stream-frame-feedback {
       @include opacity(1);
     }
   }
+
   .stream-frame {
     margin-bottom : 50px;
 
