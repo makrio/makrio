@@ -98,7 +98,7 @@ class PeopleController < ApplicationController
         render :nothing => true, :layout => 'post'
       end
 
-      format.json { render :json => @stream.stream_posts.map { |p| LastThreeCommentsDecorator.new(PostPresenter.new(p, current_user)) }}
+      format.json { render :json => @stream.stream_posts.map { |p| LastThreeCommentsDecorator.new(PostPresenter.new(p, current_user), current_user) }}
 
       format.mobile do
         @profile = @person.profile
