@@ -22,6 +22,15 @@ body {
   height: 100%;
 }
 
+.container {
+  margin-left:70px;
+
+  &.unshifted {
+    margin: 0;
+  }
+}
+
+
 #page_title {
   font-family:Roboto-Light;
   font-size:4em;
