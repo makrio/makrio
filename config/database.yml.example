@@ -1,13 +1,3 @@
-mysql: &mysql
-  adapter: mysql2
-  host: "localhost"
-  port: 3306
-  username: "root"
-  password: ""
-#  socket: /tmp/mysql.sock
-  charset: utf8
-  collation: utf8_bin
-
 postgres: &postgres
   adapter: postgresql
   host: localhost
@@ -21,27 +11,23 @@ postgres_travis: &postgres_travis
   adapter: postgresql
   username: postgres
 
-# Comment the the mysql line and uncomment the postgres line
-# if you want to use postgres
 common: &common
   # Choose one of the following
-  <<: *mysql
-  #<<: *postgres
-
+  <<: *postgres
 
 # Normally you don't need to touch anything here
 development:
   <<: *common
-  database: diaspora_development
+  database: makrio_development
 production:
   <<: *common
-  database: diaspora_production
+  database: makrio_production
 test:
   <<: *common
-  database: "diaspora_test<%= ENV['TEST_ENV_NUMBER'] %>"
+  database: "makrio_test<%= ENV['TEST_ENV_NUMBER'] %>"
 integration1:
   <<: *common
-  database: diaspora_integration1
+  database: makrio_integration1
 integration2:
   <<: *common
-  database: diaspora_integration2
+  database: makrio_integration2

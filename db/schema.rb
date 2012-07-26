@@ -244,6 +244,7 @@ ActiveRecord::Schema.define(:version => 20120717045904) do
     t.string   "image_url"
     t.integer  "screenshot_height"
     t.integer  "screenshot_width"
+    t.string   "provider_display_name"
     t.string   "parent_guid",           :limit => 30
     t.integer  "likes_count",                         :default => 0
     t.integer  "comments_count",                      :default => 0
@@ -255,7 +256,6 @@ ActiveRecord::Schema.define(:version => 20120717045904) do
     t.string   "screenshot"
     t.string   "root_guid"
     t.datetime "staff_picked_at"
-    t.string   "provider_display_name"
   end
 
   add_index "posts", ["author_id"], :name => "index_posts_on_person_id"
@@ -294,7 +294,7 @@ ActiveRecord::Schema.define(:version => 20120717045904) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month"
+    t.integer  "month",      :limit => 2
     t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -383,10 +383,10 @@ ActiveRecord::Schema.define(:version => 20120717045904) do
     t.boolean  "disable_mail",                                      :default => false, :null => false
     t.string   "language"
     t.string   "email",                                             :default => "",    :null => false
-    t.string   "encrypted_password",                 :limit => 128, :default => "",    :null => false
+    t.string   "encrypted_password",                                :default => "",    :null => false
+    t.string   "reset_password_token"
     t.string   "invitation_token",                   :limit => 60
     t.datetime "invitation_sent_at"
-    t.string   "reset_password_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                                     :default => 0
     t.datetime "current_sign_in_at"
@@ -416,5 +416,27 @@ ActiveRecord::Schema.define(:version => 20120717045904) do
   add_index "users", ["invitation_service", "invitation_identifier"], :name => "index_users_on_invitation_service_and_invitation_identifier", :unique => true
   add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  add_foreign_key "aspect_memberships", "aspects", :name => "aspect_memberships_aspect_id_fk", :dependent => :delete
+  add_foreign_key "aspect_memberships", "contacts", :name => "aspect_memberships_contact_id_fk", :dependent => :delete
+
+  add_foreign_key "aspect_visibilities", "aspects", :name => "aspect_visibilities_aspect_id_fk", :dependent => :delete
+
+  add_foreign_key "comments", "people", :name => "comments_author_id_fk", :column => "author_id", :dependent => :delete
+
+  add_foreign_key "contacts", "people", :name => "contacts_person_id_fk", :dependent => :delete
+
+  add_foreign_key "invitations", "users", :name => "invitations_recipient_id_fk", :column => "recipient_id", :dependent => :delete
+  add_foreign_key "invitations", "users", :name => "invitations_sender_id_fk", :column => "sender_id", :dependent => :delete
+
+  add_foreign_key "likes", "people", :name => "likes_author_id_fk", :column => "author_id", :dependent => :delete
+
+  add_foreign_key "notification_actors", "notifications", :name => "notification_actors_notification_id_fk", :dependent => :delete
+
+  add_foreign_key "posts", "people", :name => "posts_author_id_fk", :column => "author_id", :dependent => :delete
+
+  add_foreign_key "profiles", "people", :name => "profiles_person_id_fk", :dependent => :delete
+
+  add_foreign_key "share_visibilities", "contacts", :name => "post_visibilities_contact_id_fk", :dependent => :delete
 
 end

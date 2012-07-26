@@ -274,7 +274,6 @@ GEM
       subexec (~> 0.2.1)
     multi_json (1.3.6)
     multipart-post (1.1.5)
-    mysql2 (0.3.11)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -520,7 +519,6 @@ DEPENDENCIES
   markerb!
   mini_magick (= 3.4)
   mobile-fu!
-  mysql2 (= 0.3.11)
   newrelic-middleware
   newrelic_rpm
   nokogiri (= 1.5.2)
