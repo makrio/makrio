@@ -200,6 +200,16 @@ input[type="image"] {
   }
 }
 
+#bookmarklet_well {
+    text-align:center;    
+    b {
+      font-weight:bold;
+    }
+    a:hover {
+      cursor:move;
+    }
+  }
+  
 .flow-controls {
   text-align : center;
 }
@@ -225,4 +235,5 @@ input[type="image"] {
     cursor : pointer;
     margin-left: -30px;
   }
+
 }

@@ -30,6 +30,12 @@ app.pages.Framer = app.views.Base.extend({
     this.framerControls = new app.views.framerControls({model : this.model})
   },
 
+
+  presenter : function(){
+    return _.extend(this.defaultPresenter(), {
+      bookmarklet : this.bookmarkletJS()
+    })  },
+
   unbind : function(){
     this.model.off()
   },
