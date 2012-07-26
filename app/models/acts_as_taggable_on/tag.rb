@@ -1,4 +1,7 @@
 class ActsAsTaggableOn::Tag
+  def most_popular_post
+    StatusMessage.with_screenshot.tagged_with(self.name).order('likes_count desc').first
+  end
 
   def followed_count
    @followed_count ||= TagFollowing.where(:tag_id => self.id).count

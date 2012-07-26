@@ -36,6 +36,13 @@ body {
   line-height:1em;
   margin-bottom:30px;
   text-transform:capitalize;
+  float: left;
+  max-width: 50%;
+}
+#tag-info-share {
+  float: right;
+  text-align: right;
+  margin-right: 42px;
 }
 
 /* new link color */

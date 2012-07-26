@@ -20,6 +20,10 @@ app.pages.TagsShow = app.pages.GenericCanvas.extend({
 
 app.views.TagInfo = app.views.Base.extend({
   templateName : 'tag-info',
+
+  subviews : {
+    '#share_actions' : 'shareView'
+  },
   events : {
     "click #collection-composer-button" : 'showModalFramer'
   },
@@ -30,9 +34,11 @@ app.views.TagInfo = app.views.Base.extend({
     this.tagName = options.name
 
     this.model = new app.models.Tag({name : this.tagName})
+    this.shareView = new app.views.ShareView({model: this.model, hidePinterest: true, hideTumblr: true, hideUrl:true})
 
     var self = this
     this.model.fetch().done(function(){
+
       self.render()
     })
   }

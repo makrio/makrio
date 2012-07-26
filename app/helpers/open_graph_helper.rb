@@ -37,11 +37,24 @@ module OpenGraphHelper
   end
 
   def og_page_specific_tags(object)
+
     if object.is_a?(Post)
       og_post_tags(object)
     elsif object.is_a?(Person)
       og_profile_tags(object)
+    elsif object.is_a?(ActsAsTaggableOn::Tag)
+      og_tag_tags(object)
     end
+  end
+
+  def og_tag_tags(tag)
+    tags = []
+    tags << meta_tag_with_property("og:type", "article")
+    tags << meta_tag_with_property("og:url", "https://makr.io/tagged/#{tag.name}")
+    tags << meta_tag_with_property("og:image",tag.most_popular_post.screenshot_url) 
+    tags << meta_tag_with_property("og:title", tag.name + ' on Makr.io')
+    tags << meta_tag_with_property("og:description", "An amazing collaborative collection of #{tag.name}")
+    tags.join(' ').html_safe
   end
 
   def og_profile_tags(person)

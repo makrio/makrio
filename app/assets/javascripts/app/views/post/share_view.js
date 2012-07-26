@@ -11,13 +11,18 @@ app.views.ShareView = app.views.Base.extend({
     return _.extend(this.defaultPresenter(),{
       url : this.url(),
       title : this.model.get('title'),
-      screenshotUrl : this.model.get('screenshot_url')
+      screenshotUrl : this.model.get('screenshot_url'),
+      hideTumblr : this.options.hideTumblr,
+      hidePinterest : this.options.hidePinterest,
+      hideUrl: this.options.hideUrl,
     })
   },
 
   initialize : function(options) {
     this.model = options.model
     this.title = options.title
+    this.options = options
+
   },
 
   url : function() {

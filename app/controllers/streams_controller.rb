@@ -29,6 +29,8 @@ class StreamsController < ApplicationController
     name  = request.subdomain.present? ? request.subdomain : params[:name]
     @category = Category.find_by_name!(name)
 
+    #gross hax for open graph tags
+    @post = @category
     stream_responder do
       @stream = Stream::Category.new(current_user, @category, :max_time => max_time)
       @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user, :lite? =>true)
