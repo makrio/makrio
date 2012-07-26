@@ -19,6 +19,10 @@ app.views.Post.SmallFrame = app.views.Post.extend({
     this.composing = options.composing || false;
 
     //show screenshot should now be has_screenshot
+    this.setScreenshotOrRender()
+  },
+
+  setScreenshotOrRender : function() {
     if(this.model.get("show_screenshot") && !this.composing) { 
       this.templateName = "small-frame/screenshot"
       this.$el.addClass('frame-screenshot')

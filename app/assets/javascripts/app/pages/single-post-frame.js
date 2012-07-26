@@ -12,5 +12,4 @@ app.pages.SinglePostFrame = app.views.Base.extend({
       composing : true
     })
   }
-
-})
+});

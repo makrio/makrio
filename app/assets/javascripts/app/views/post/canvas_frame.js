@@ -35,7 +35,7 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
   },
 
   events : {
-    "click .content" : "goToOrFavoritePost",
+    "click .content" : "goToPost",
     "click .delete" : "killPost",
     "click .vitals": "showModalPostDetail"
   },
@@ -44,24 +44,17 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
     evt && evt.preventDefault()
     var postDetail = new app.views.InlinePostDetail({model : this.model})
     this.showModal(postDetail)
-
   },
 
   // copy pasta :(
   initialize : function(options) {
     this.stream = options.stream;
+    this.setScreenshotOrRender()
 
+    // the part that's different than smallFrame
     if(app.onStaffPicks && this.stream && this.stream.items.first() == this.model) {
       this.$el.addClass("x2")
     }
-
-    if(this.model.get("show_screenshot")) {
-      this.templateName = "small-frame/screenshot"
-      this.$el.addClass('frame-screenshot')
-    } else {
-      this.addStylingClasses()
-    }
-
     return this
   },
 
@@ -100,16 +93,11 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
     })
   },
 
-  goToOrFavoritePost : function() {
-    this.isNormalizedCollection() ? this.goToPost() : this.favoritePost()
-  },
-
   favoritePost : function(evt) {
     if(evt) {
       /* follow links instead of faving the targeted post */
       if($(evt.target).is('a')) { return }
-
-      evt.stopImmediatePropagation(); evt.preventDefault();
+      evt.stopImmediatePropagation() && evt.preventDefault();
     }
 
     var prevDimension = this.dimensionsClass();
@@ -120,8 +108,6 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
     this.render()
 
     app.page.stream.trigger("reLayout")
-    //trigger moar relayouts in the case of images WHOA GROSS HAX
-    _.delay(function(){app.page.stream.trigger("reLayout")}, 200)
 
     // track the action
     app.instrument("track", "Resize Frame")
@@ -129,6 +115,6 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
 
   killPost : function(){
     this.destroyModel()
-    _.delay(function(){app.page.stream.trigger("reLayout")}, 0)
+    _.defer(function(){app.page.stream.trigger("reLayout")})
   }
 });
