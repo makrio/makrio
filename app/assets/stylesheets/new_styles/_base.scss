@@ -11,6 +11,7 @@ body {
   background-image : image_url("texture/light-bg.png");
   padding : none;
   padding-top: 30px;
+  padding-left:70px;
 
   height:100%;
   &.lock {
@@ -23,8 +24,6 @@ body {
 }
 
 .container {
-  margin-left:70px;
-
   &.unshifted {
     margin: 0;
   }
