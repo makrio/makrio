@@ -1,12 +1,21 @@
 <div id='post-content' style="position:static">
-	<div>
-		<h2>
-			{{{personImage author}}}
-			{{author.name}}'s Post
-		</h2>
+	 <div class='media interaction-title'> 
+	  <div class='img'> 
+		  <a href='/{{author.username}}'> {{{personImage author "small"}}}</a>
+	  </div>
+	  <div class='bd'>
+	    <h2>{{author.nickname}}'s Remix 
+	      <a class='btn new-btn' href="/conversations/{{conversation_id}}" class="permalink" title="Permalink"> View Remixes</a>
+	    </h2>
+	  </div>
 	</div>
 
 	<div id="selected_frame" />
+	</br/>
+	As seen in:
+	{{#each tags}}
+	  <a href='/tagged/{{this}}'>  {{this}}</a>
+	{{/each}}
 
 	<div id="selected_reactions" />
 	<div id="selected_new_comment" />
@@ -15,4 +24,13 @@
 		<h6>Share</h6>
 		<div id="share-actions" />
 	</div>
+	{{#if current_user.admin}}
+	  <hr />
+	  <h6>Tags</h6>
+	  <form name="tagForm" class='form-inline' action="/posts/{{id}}/tags" method="post" data-remote="true">
+	      <input type="text" name="tag_list" value='{{tag_list}}' placeholder='add comma seperated tags'/>
+	      <input type="submit" value='Set Tags' class="btn new-btn"/>
+	  </form>
+  {{/if}}
+
 </div>
