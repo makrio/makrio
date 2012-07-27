@@ -35,9 +35,8 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
   },
 
   events : {
-    "click .content" : "goToPost",
     "click .delete" : "killPost",
-    "click .vitals": "showModalPostDetail"
+    "click .content": "showModalPostDetail"
   },
 
   showModalPostDetail : function(evt){
