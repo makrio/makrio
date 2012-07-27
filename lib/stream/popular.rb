@@ -12,9 +12,6 @@ class Stream::Popular < Stream::Base
     ""
   end
 
-
-
-
   # @return [ActiveRecord::Association<Post>] AR association of posts
   def posts
     # we also need to factor in remixes here in the future
