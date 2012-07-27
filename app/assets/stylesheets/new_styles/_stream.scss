@@ -1,3 +1,8 @@
+a.topic-link {
+  &:hover {
+    text-decoration: none;
+  }
+}
 #stream {
   .stream-row {
     display : table-cell;

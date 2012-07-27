@@ -9,10 +9,10 @@
   </div>
 </div>
 
-As seen in:
-{{#each tags}}
-  <a href='/tagged/{{this}}'>{{this}}</a>
-{{/each}}
+  <h6>Topics</h6>
+  {{#each tags}}
+    <a class='topic-link' href='/tagged/{{this}}'>  <span class="label">{{this}}</span></a>
+  {{/each}}
 <br/>
 <br/>
 
