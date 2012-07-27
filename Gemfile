@@ -6,7 +6,7 @@ ruby '1.9.3' if ENV['HEROKU']
 gem "newrelic_rpm"
 gem 'newrelic-middleware'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.7'
 
 gem 'foreman', '0.46'
 
