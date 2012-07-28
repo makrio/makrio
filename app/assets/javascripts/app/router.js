@@ -45,6 +45,7 @@ app.Router = Backbone.Router.extend({
     'top_tags' : 'topTags',
 
     'about' : 'about',
+    'pro_tips' : 'proTips',
     ":name" : "newProfile"
   },
 
@@ -55,6 +56,11 @@ app.Router = Backbone.Router.extend({
   about : function(){
     this.renderPage(function(){ return new app.pages.About()});
   },
+
+  proTips : function(){
+    this.renderPage(function(){ return new app.pages.ProTips()});
+  },
+
 
   timewarp : function(daysAgo){
     this.renderPage(function(){ return new app.pages.TimeWarp({daysAgo : daysAgo})});

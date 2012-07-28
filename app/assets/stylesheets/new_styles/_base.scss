@@ -348,12 +348,17 @@ $bring-dark-accent-forward-color: #DDD;
   }
 }
 
-.about {
+.pro-tips, .about {
   p, h1 {
     margin-bottom:15px;
   }
   p {
     font-size: 18px;
     color: #666;
+  }
+
+  .well{
+    background-color: $light-blue;
+    color: white;
   }
 }
