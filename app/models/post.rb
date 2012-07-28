@@ -57,6 +57,15 @@ class Post < ActiveRecord::Base
     joins(:likes).where(:likes => {:author_id => person.id})
   }
 
+  def add_gif_tag
+    return false unless photos.present?
+
+    if !tag_list.include?('gif') && photos.detect{ |p| p.url && p.url.match(".gif") }.present?
+      tag_list << 'gif'
+      save!
+    end
+  end 
+
   def self.with_screenshot
     where("screenshot IS NOT NULL")
   end
