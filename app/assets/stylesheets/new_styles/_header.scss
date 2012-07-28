@@ -7,13 +7,13 @@ $nav-background-color: rgba(250,250,250,0.8);
   @include box-shadow(1px, 0, 3px, rgba(0,0,0,0.1));
 }
 
+
 #header,
 #user_pane {
   @include nav-shadow();
 
   position:fixed;
 
-  z-index:15;
   background-color: $nav-background-color;
   .blue {
     background:$light-blue;
@@ -133,9 +133,11 @@ $nav-background-color: rgba(250,250,250,0.8);
   top:0;
   width:50px;
   height:100%;
+  z-index:997;
 }
 
 #user_pane {
+  z-index:999;
   position:fixed;
 
   top:10px;
