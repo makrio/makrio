@@ -1,6 +1,6 @@
 app.views.InlinePostDetail = app.views.Base.extend({
   templateName : 'inline-post-detail',
-
+  className : 'inline-post-detail',
   subviews : {
   	"#selected_frame" : 'smallFrameView',
   	"#selected_reactions" : 'reactionsView',

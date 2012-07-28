@@ -121,11 +121,15 @@ a.topic-link {
   }
 }
 
-#post-content {
-/*  a.modal-comment {
-    display:none;
-  }*/
+.inline-post-detail {
+  #post-content {
+    a.modal-comment {
+      display:none;
+    }
+  }
+}
 
+#post-content {
   .avatar {
     @include border-radius(3px);
   }
