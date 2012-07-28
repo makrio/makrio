@@ -64,6 +64,7 @@ a.conversation_link{
 
 #canvas {
   $frame-margin:5px;
+  margin-bottom:50px;
 
   /*compensate for margin on canvas-frame objects */
   margin-left: -$frame-margin;
