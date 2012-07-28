@@ -1,47 +1,47 @@
 {{#unless loggedIn}}
-    <div style="margin-top:10px;margin-left:10px;margin-right:10px;">
-        <a href="/users/sign_in" class="btn new-btn">
+    <div class='banner'>
+        <a href="/users/sign_in" class="btn new-btn" style="top:0;">
             Log in
         </a>
         <a href="/users/sign_up" class="btn new-btn blue">Sign up</a>
     </div>
 {{else}}
-    <ul>
-        <li class="notification-count {{#if current_user.notifications_count}}red{{/if}}"   title='Notifications'>
-            <a href="/notifications" target="_blank">
-                {{current_user.notifications_count}}
-            </a>
-        </li>
-        
-
-    </ul>
-
-    <ul class="nav-popout bottom">
-        {{#if loggedIn}}
-        <li class="popout-root">
-            {{#linkToPerson current_user}}
-                {{{personImage this "small" "medium"}}}
-            {{/linkToPerson}}
-        </li>
-
-        <ul class="sub">
-            <li title='My Likes'>
-                <a href="/likes">
-                    <img src="{{imageUrl "nav/likes.png"}}" />
-                </a>
-            </li>
-
-            <li title="Settings">
-                <a href="/users/edit">
-                    <img src="{{imageUrl "nav/settings.png"}}" />
-                </a>
-            </li>
-            <li title="Log Out">
-                <a href="/users/sign_out">
-                    <img src="{{imageUrl "nav/logout.png"}}" />
+    <div id='user_pane_shadow'>
+        <ul>
+            <li class="notification-count {{#if current_user.notifications_count}}red{{/if}}"   title='Notifications'>
+                <a href="/notifications" target="_blank">
+                    {{current_user.notifications_count}}
                 </a>
             </li>
         </ul>
-        {{/if}}
-    </ul>
+
+        <ul class="nav-popout bottom">
+            {{#if loggedIn}}
+            <li class="popout-root">
+                {{#linkToPerson current_user}}
+                    {{{personImage this "small" "medium"}}}
+                {{/linkToPerson}}
+            </li>
+
+            <ul class="sub">
+                <li title='My Likes'>
+                    <a href="/likes">
+                        <img src="{{imageUrl "nav/likes.png"}}" />
+                    </a>
+                </li>
+
+                <li title="Settings">
+                    <a href="/users/edit">
+                        <img src="{{imageUrl "nav/settings.png"}}" />
+                    </a>
+                </li>
+                <li title="Log Out">
+                    <a href="/users/sign_out">
+                        <img src="{{imageUrl "nav/logout.png"}}" />
+                    </a>
+                </li>
+            </ul>
+            {{/if}}
+        </ul>
+    </div>
 {{/unless}}
