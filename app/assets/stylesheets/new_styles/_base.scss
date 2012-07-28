@@ -347,3 +347,13 @@ $bring-dark-accent-forward-color: #DDD;
     @include animation(peekaboo, 3s)
   }
 }
+
+.about {
+  p, h1 {
+    margin-bottom:15px;
+  }
+  p {
+    font-size: 18px;
+    color: #666;
+  }
+}

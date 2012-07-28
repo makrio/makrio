@@ -44,11 +44,16 @@ app.Router = Backbone.Router.extend({
     'tagged/:name' : 'tagShow',
     'top_tags' : 'topTags',
 
+    'about' : 'about',
     ":name" : "newProfile"
   },
 
   redirectToFramer : function(){
     app.router.navigate("/framer", true)
+  },
+
+  about : function(){
+    this.renderPage(function(){ return new app.pages.About()});
   },
 
   timewarp : function(daysAgo){

@@ -173,6 +173,7 @@ Diaspora::Application.routes.draw do
     mount Resque::Server.new, :at => '/resque-jobs', :as => "resque_web"
   end
 
+  get '/about' => 'infos#about' 
   # usernames as first-class citizens; placed at the bottom to keep our defined routes intact.
   get ':username' => 'people#show', :constraints => { :username => /[^\/]+/ }
 
