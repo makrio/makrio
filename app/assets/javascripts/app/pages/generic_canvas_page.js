@@ -1,4 +1,4 @@
-app.pages.GenericCanvas = app.views.Base.extend({
+app.pages.GenericCanvas = app.pages.Base.extend({
   templateName : "generic-canvas-page",
 
   subviews : {

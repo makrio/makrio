@@ -1,4 +1,4 @@
-app.pages.PostViewer = app.views.Base.extend({
+app.pages.PostViewer = app.pages.Base.extend({
   templateName: "post-viewer",
 
   subviews : {
@@ -29,7 +29,6 @@ app.pages.PostViewer = app.views.Base.extend({
     this.userPaneView = new app.views.UserPaneView()
     this.render();
   },
-
 
 
   bindEvents : function(){

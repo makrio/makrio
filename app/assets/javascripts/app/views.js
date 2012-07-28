@@ -32,6 +32,7 @@ app.views.Base = Backbone.View.extend({
     this.renderPluginWidgets()
     this.removeTooltips()
 
+    this.loginBanner && this.loginBanner()
     return this
   },
 
@@ -170,3 +171,22 @@ app.views.Base = Backbone.View.extend({
 
 });
 
+
+
+app.pages.Base = app.views.Base.extend({
+
+  renderLoginBanner : function(){
+    this.$el.append(this.loginBannerView().render().el)
+  },
+
+  loginBanner : function() {
+    if(!app.currentUser.authenticated()){
+      this.renderLoginBanner()
+    }
+  },
+
+  loginBannerView : function(){
+    return new app.views.LoginBanner()
+  }
+
+});

@@ -1,4 +1,4 @@
-app.pages.TimeWarp = app.views.Base.extend({
+app.pages.TimeWarp = app.pages.Base.extend({
   templateName : "time-warp-page",
   id : 'timewarp',
   

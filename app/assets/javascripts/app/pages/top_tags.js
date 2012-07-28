@@ -1,4 +1,4 @@
-app.pages.TopTags = app.views.Base.extend({
+app.pages.TopTags = app.pages.Base.extend({
   templateName : 'top-tags',
   subviews :{
     'header' : 'headerView',

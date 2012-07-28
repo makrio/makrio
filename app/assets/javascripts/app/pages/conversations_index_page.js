@@ -1,4 +1,4 @@
-app.pages.ConversationsIndex = app.views.Base.extend({
+app.pages.ConversationsIndex = app.pages.Base.extend({
   templateName : "conversations-index-page",
   id : "cnv_index",
 

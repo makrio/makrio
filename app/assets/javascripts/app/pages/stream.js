@@ -1,4 +1,4 @@
-app.pages.Stream = app.views.Base.extend({
+app.pages.Stream = app.pages.Base.extend({
   templateName : "stream",
 
   events : {

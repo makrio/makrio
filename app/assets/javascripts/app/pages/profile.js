@@ -1,6 +1,6 @@
 //= require ../views/profile_info_view
 
-app.pages.Profile = app.views.Base.extend({
+app.pages.Profile = app.pages.Base.extend({
   templateName : "profile",
   id : "profile",
 

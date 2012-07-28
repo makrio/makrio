@@ -17,17 +17,3 @@
         </div>
     </div>
 </div>
-
-{{#unless current_user.guid}}
-    <div id="sign_up_prompt">
-        <div class="container">
-            <div class="tagline">
-                {{author.nickname}} uses Makr.io to remix content around the web.
-            </div>
-
-            <a href ="/posts/{{id}}/remix" id="sign_up_button" class="new-btn" data-type="show_page">
-                Remix {{author.nickname}}'s post Now!
-            </a>
-        </div>
-    </div>
-{{/unless}}
