@@ -96,7 +96,7 @@ app.Router = Backbone.Router.extend({
 
   popular : function() {
     app.instrument("track", "Popular loaded")
-    this.renderPage(function(){ return new app.pages.Stream()});
+    this.renderPage(function(){ return new app.pages.GenericCanvas()});
   },
 
   newStream : function() {
