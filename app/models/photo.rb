@@ -106,7 +106,7 @@ class Photo < ActiveRecord::Base
   end
 
   #this is a gross h@x to fix out stupid profile images
-  def self.from_filename(filename)
+  def self.find_from_filename(filename)
     Photo.find_by_random_string(filename.split('/').last.split('.').first)
   end
   
