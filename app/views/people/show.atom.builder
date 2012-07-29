@@ -6,6 +6,12 @@ atom_feed do |feed|
     feed.entry(article, published: article.created_at, url:post_url(article)) do |entry|
       entry.title article.plain_text
       entry.content article.plain_text
+      entry.media(:description) do
+        entry << image_tag(article.screenshot_url.to_s) 
+      end
+
+      entry.media(:content, :url => article.screenshot_url)
+
 
       entry.author do |author|
         author.name @person.name
