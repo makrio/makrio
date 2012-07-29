@@ -15,7 +15,7 @@ xml.rss version: "2.0" do
 
         xml.media(:description) do
           xml << image_tag(article.screenshot_url.to_s) 
-          xml << "<br/><br/><a href='https://makr.io/p/#{article.id}/remix'>Remix This</a>"
+          xml << "<br/><br/><a href='https://makr.io/posts/#{article.id}/remix'>Remix This</a>"
         end
 
         xml.media(:content, :url => article.screenshot_url)
