@@ -11,7 +11,7 @@ class PeopleController < ApplicationController
   respond_to :html, :except => [:tag_index]
   respond_to :json, :only => [:index, :show]
   respond_to :js, :only => [:tag_index]
-  respond_to :atom, :only => [:show]
+  respond_to :rss, :only => [:show]
 
   rescue_from ActiveRecord::RecordNotFound do
     render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404
@@ -100,7 +100,7 @@ class PeopleController < ApplicationController
       end
 
       format.json { render :json => @stream.stream_posts.map { |p| LastThreeCommentsDecorator.new(PostPresenter.new(p, current_user), current_user) }}
-      format.atom {@articles = @stream.stream_posts}
+      format.rss {@articles = @stream.stream_posts}
       format.mobile do
         @profile = @person.profile
 
