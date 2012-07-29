@@ -175,13 +175,13 @@ Diaspora::Application.routes.draw do
 
   get 'about' => 'infos#about' 
   get 'pro_tips' => 'infos#pro_tips' 
-  # usernames as first-class citizens; placed at the bottom to keep our defined routes intact.
-  get ':username' => 'people#show', :constraints => { :username => /[^\/]+/ }
 
   get '/tagged/:name/auth_required' => 'tags#auth_show'
   get '/tagged/:name' => 'streams#category'
   get '/tags' => 'tags#index'
   match '', to: 'streams#category', constraints: lambda{ |r| r.subdomain.present?}
 
+  # usernames as first-class citizens; placed at the bottom to keep our defined routes intact.
+  get ':username' => 'people#show'#, :constraints => { :username => /[^\/]+/ }
   root :to => 'home#show'
 end
