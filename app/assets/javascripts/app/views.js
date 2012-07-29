@@ -158,6 +158,13 @@ app.views.Base = Backbone.View.extend({
         <a href="#" class="close"></a> \
       </div> \
     </div>' 
+    
+        $(document).on('afterClose.facebox', function(){
+          $('body').removeClass('lock')
+          $(document).off('afterClose.facebox')
+        })
+
+        $('body').addClass('lock')
         $.facebox(this.render().el)
       }
   },
