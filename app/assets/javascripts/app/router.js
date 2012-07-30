@@ -1,7 +1,7 @@
 app.Router = Backbone.Router.extend({
   routes: {
-    "" : "staffPicks",
-    "?*params" : "staffPicks",
+    "" : "rootPage",
+    "?*params" : "rootPage",
 
     //new hotness
     "latest": "newStream",
@@ -98,10 +98,19 @@ app.Router = Backbone.Router.extend({
     this.renderPage(function(){ return new app.pages.GenericCanvas()});
   },
 
+  rootPage : function(params) {
+    var campaign = (params && params.split('campaign=')[1])
+    if(campaign) {
+      app.instrument("track", "Campaign", {
+        Name : campaign
+      })
+    }
+
+    this.staffPicks()
+  },
+
   staffPicks : function() {
     app.onStaffPicks = true;
-    app.instrument("track", "Staff Picks loaded")
-
     app.pageTitle = "Staff Picks"
     this.renderPage(function(){ return new app.pages.GenericCanvas()});
   },
@@ -199,4 +208,3 @@ app.Router = Backbone.Router.extend({
     this.renderPage(function(){ return new app.pages.GenericCanvas()});
   }
 });
-
