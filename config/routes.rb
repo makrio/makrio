@@ -50,10 +50,8 @@ Diaspora::Application.routes.draw do
   end
 
   # Streams
-  resource :stream, :only => [:show] do
-    get :updated
-  end
-
+  get "latest" => "streams#show"
+  get "latest/updated" => "streams#updated"
 
   get "timewarp/:days_ago" => 'streams#show'
   get "timewarp" => 'streams#show'

@@ -1,7 +1,13 @@
 <ul class="nav-main">
-    <li class="logo {{#if onLatest}}active{{/if}}" title='Latest Posts'>
-        <a href="/stream">
+    <li class="logo {{#if onFrontPage}}active{{/if}}" title='Front Page'>
+        <a href="/front_page">
             <img src="{{imageUrl "nav/makr.png"}}" />
+        </a>
+    </li>
+
+    <li class="logo {{#if onLatest}}active{{/if}}" title='Latest Posts'>
+        <a href="/latest">
+            <img src="{{imageUrl "nav/public.png"}}" />
         </a>
     </li>
 
@@ -20,12 +26,6 @@
             <img src="{{imageUrl "nav/time.png"}}" />
         </a>
     </li>
-<!--     <li {{#if onFrontpage}}class="active"{{/if}} title="Time Warp">
-        <a href="/front_page">
-            <img src="{{imageUrl "nav/time.png"}}" />
-        </a>
-    </li> -->
-
     {{#if loggedIn}}
         <li title='New Remix'>
             <a href="/framer">

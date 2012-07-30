@@ -3,8 +3,8 @@ app.Router = Backbone.Router.extend({
     "" : "staffPicks",
 
     //new hotness
-    "stream": "newStream",
-    "stream?*params": "newStream",
+    "latest": "newStream",
+    "latest?*params": "newStream",
 
 
     "search/:query": "search",

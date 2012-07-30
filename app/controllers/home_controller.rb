@@ -5,7 +5,7 @@
 class HomeController < ApplicationController
   def show
     if current_user
-      redirect_to stream_path
+      redirect_to front_page_path
     else
       render :nothing => true, :layout => 'post'
     end

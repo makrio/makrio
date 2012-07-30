@@ -3,7 +3,7 @@
 
 app.collections.PostPoller = app.collections.Posts.extend({
   url:function () {
-    return "/stream/updated?last_post_id=" + this.stream.items.first().id
+    return "/latest/updated?last_post_id=" + this.stream.items.first().id
   },
 
   initialize:function (models, options) {
