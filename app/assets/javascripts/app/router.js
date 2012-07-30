@@ -13,7 +13,7 @@ app.Router = Backbone.Router.extend({
     "people/:id": "newProfile",
     "u/:name": "newProfile",
 
-    "popular": "popular",
+    "front_page": "frontPage",
     "likes": "likes",
     "staff_picks": "staffPicks",
 
@@ -105,8 +105,8 @@ app.Router = Backbone.Router.extend({
     this.renderPage(function(){ return new app.pages.GenericCanvas()});
   },
 
-  popular : function() {
-    app.instrument("track", "Popular loaded")
+  frontPage : function() {
+    app.instrument("track", "Front Page loaded")
     this.renderPage(function(){ return new app.pages.GenericCanvas()});
   },
 

@@ -57,7 +57,7 @@ Diaspora::Application.routes.draw do
 
   get "timewarp/:days_ago" => 'streams#show'
   get "timewarp" => 'streams#show'
-  get "popular" => "streams#popular", :as => "popular"
+  get "front_page" => "streams#front_page", :as => "front_page"
   get "likes" => "streams#likes", :as => "likes_stream"
   get "staff_picks" => "streams#staff_picks", :as => "staff_picks_stream"
   get "conversations" => "streams#conversations", :as => "conversations_stream"

@@ -5,6 +5,7 @@
 class Stream::FrontPage < Stream::Base
   def link(opts={})
     return nil
+    Rails.application.routes.url_helpers.like_stream_path(opts)
   end
 
   def title
