@@ -5,6 +5,8 @@ app.views.PostDetail = app.views.Base.extend({
     "#featured_frame" : "postView",
     "#share-actions" : "shareView",
     "#viewer-feedback" : "feedbackView",
+    "#viewer_reactions" : 'reactionsView',
+    "#viewer_new_comment" : 'newCommentView',
   },
 
 
@@ -22,6 +24,8 @@ app.views.PostDetail = app.views.Base.extend({
        className : "canvas-frame",
        composing : true
     });
+    this.reactionsView = new app.views.PostViewerReactions({ model: this.model.interactions })
+    this.newCommentView = new app.views.PostViewerNewComment({ model : this.model })
   },
 
   shareView : function() {
