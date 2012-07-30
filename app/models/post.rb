@@ -95,6 +95,10 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def self.created_since(time)
+    where('posts.created_at > ?', time)
+  end
+
   def toggle_featured!
     self.featured = !featured
     save!
