@@ -107,6 +107,7 @@ app.Router = Backbone.Router.extend({
 
   frontPage : function() {
     app.instrument("track", "Front Page loaded")
+    app.pageTitle = "Front Page"
     this.renderPage(function(){ return new app.pages.GenericCanvas()});
   },
 
