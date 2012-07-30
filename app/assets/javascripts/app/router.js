@@ -1,6 +1,7 @@
 app.Router = Backbone.Router.extend({
   routes: {
     "" : "staffPicks",
+    "?*params" : "staffPicks",
 
     //new hotness
     "latest": "newStream",
