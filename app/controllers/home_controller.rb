@@ -5,8 +5,16 @@
 class HomeController < ApplicationController
   def show
     if current_user
+      if is_mobile_device?
+        redirect_to latest_path
+        return
+      end
       redirect_to front_page_path
     else
+      if is_mobile_device?
+        redirect_to '/users/sign_in'
+        return
+      end
       render :nothing => true, :layout => 'post'
     end
   end

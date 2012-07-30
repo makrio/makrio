@@ -53,7 +53,7 @@ app.pages.Framer = app.views.Base.extend({
   },
 
   defaultNavigation : function() {
-   app.router.setLocation('/stream')
+   app.router.setLocation('/latest')
   }
 });
 
