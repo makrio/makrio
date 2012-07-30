@@ -62,12 +62,12 @@ app.Router = Backbone.Router.extend({
     this.renderPage(function(){ return new app.pages.ProTips()});
   },
 
-
   timewarp : function(daysAgo){
     this.renderPage(function(){ return new app.pages.TimeWarp({daysAgo : daysAgo})});
   },
 
   topTags : function(){
+    app.instrument("track", "Top Tags Loaded")
     this.renderPage(function(){ return new app.pages.TopTags()});
   },
 
@@ -201,6 +201,7 @@ app.Router = Backbone.Router.extend({
   },
 
   tagShow : function(name){
+    app.instrument("track", "Topic Loaded")
     this.renderPage(function(){ return new app.pages.TagsShow({name : name})});
   },
   
