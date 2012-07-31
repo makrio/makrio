@@ -126,4 +126,9 @@ class ApplicationController < ActionController::Base
       gon.notifications = NotificationsPresenter.as_collection(current_user.recent_notifications.where(:unread => true).limit(5), current_user)
     end
   end
+
+  def set_current_path
+    return unless user_signed_in?
+    session[:saved_path] = request.path
+  end
 end

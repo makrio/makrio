@@ -9,7 +9,7 @@ class HomeController < ApplicationController
         redirect_to latest_path
         return
       end
-      redirect_to front_page_path
+      redirect_to saved_path
     else
       if is_mobile_device?
         redirect_to '/users/sign_in'
@@ -22,5 +22,9 @@ class HomeController < ApplicationController
   def toggle_mobile
    session[:mobile_view] = !session[:mobile_view]
     redirect_to :back
+  end
+
+  def saved_path
+    session[:saved_path] || front_page_path
   end
 end

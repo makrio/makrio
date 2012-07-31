@@ -1,6 +1,8 @@
 class TagsController < ApplicationController
   before_filter :redirect_unless_admin, :only => [:set]
   before_filter :authenticate_user!, :only => [:auth_show]
+
+  before_filter :set_current_path, :only => :top
   
   rescue_from ActiveRecord::RecordNotFound do
     render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404

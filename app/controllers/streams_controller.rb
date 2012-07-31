@@ -11,6 +11,8 @@ class StreamsController < ApplicationController
              :mobile,
              :json
 
+  before_filter :set_current_path, :only => [:staff_picks, :show, :front_page]
+
   def show
     stream_responder do
       lite = request.path =~ /timewarp/ ? {:lite =>true} : {}
