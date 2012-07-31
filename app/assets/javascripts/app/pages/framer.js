@@ -17,7 +17,7 @@ app.pages.Framer = app.views.Base.extend({
 
     if(!this.model.get("frame_name")) { this.model.setFrameName() }
 
-    this.model.set({'tag_list': options.tag})
+    this.model.set({'tag_list': this.model.get("tag_list") || options.tag})
   
     this.model.authorIsCurrentUser = function(){ return true }
     this.model.bind("sync", this.navigateNext, this)
@@ -70,7 +70,8 @@ app.views.framerContent = app.views.Base.extend({
   },
 
   formAttrs : {
-    "input.mood:checked" : "frame_name"
+    "input.mood:checked" : "frame_name",
+    "input.tag_list" : "tag_list"
   },
 
   initialize : function(){
@@ -112,9 +113,9 @@ app.views.framerContent = app.views.Base.extend({
       templates : _.map(templates, function(template) {
         return {
           name : template,
-          checked : selectedFrame === template
+          checked : selectedFrame === template,
         }
-      })
+      }),
     })
   }
 });
@@ -159,10 +160,6 @@ app.views.Post.EditableSmallFrame = app.views.Post.SmallFrame.extend({
     var editable = this.$(".text-content p")
     editable.attr("contentEditable", true)
     if(!editable.text()){editable.html("&nbsp")} //needed so hover state so blue shows up, and for cukes
-
-    // if(this.model.get("frame_name") == "Fridge") {
-    //   this.$("img").vintage();
-    // }
   }
 });
 
