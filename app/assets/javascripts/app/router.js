@@ -106,7 +106,7 @@ app.Router = Backbone.Router.extend({
       })
     }
 
-    this.staffPicks()
+    this.frontPage()
   },
 
   staffPicks : function() {

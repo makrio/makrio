@@ -89,7 +89,7 @@ app.models.Stream = Backbone.Collection.extend({
 
   basePath : function(){
     if(document.location.pathname == "/" && !window.location.subdomain()) {
-      return (app.currentUser.authenticated() ? "/latest" : "/staff_picks")
+      return '/front_page'
     }
     return document.location.pathname;
   },

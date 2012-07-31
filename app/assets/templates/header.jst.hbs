@@ -17,13 +17,11 @@
         </a>
     </li>
 
-    {{#if loggedIn}}
-        <li {{#if onStaffPicks}}class="active"{{/if}} title="Staff Picks">
-            <a href="/staff_picks">
-                <img src="{{imageUrl "nav/staff_picks.png"}}" />
-            </a>
-        </li>
-    {{/if}}
+    <li {{#if onStaffPicks}}class="active"{{/if}} title="Staff Picks">
+        <a href="/staff_picks">
+            <img src="{{imageUrl "nav/staff_picks.png"}}" />
+        </a>
+    </li>
 
     <li {{#if onTimeWarp}}class="active"{{/if}} title="Time Warp">
         <a href="/timewarp">

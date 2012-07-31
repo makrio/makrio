@@ -19,7 +19,7 @@
 
 <div class="container">
     {{#unless loggedIn}}
-       <h2 class='featured-title'>Featured Remixes <small><a href='/stream' >See what people are remixing right now!</a></small></h2>
+       <h2 class='featured-title'>{{pageTitle}} <small><a href='/latest' >See what people are remixing right now!</a></small></h2>
     {{else}}
         {{#if pageTitle}}
             <h1 id="page_title">{{pageTitle}}</h1>
