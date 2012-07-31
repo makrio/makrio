@@ -1,3 +1,5 @@
+
+
 class TagPresenter < BasePresenter
   def initialize(tag, current_user, opts={})
     @tag = tag
@@ -29,7 +31,7 @@ class TagPresenter < BasePresenter
 
   def last_three
     posts = base_scope.with_screenshot.order('created_at desc').limit(3)
-    PostPresenter.collection_json(posts, @current_user, lite?: true)
+    posts.map{|post| {:screenshot_url => post.screenshot_url} }
   end
 
   def makrs
@@ -58,7 +60,7 @@ class TagPresenter < BasePresenter
   private
 
   def base_scope
-    StatusMessage.tagged_with(@tag.name).featured_and_by_author(@current_user.try(:person))
+    @base_scope ||= StatusMessage.tagged_with(@tag.name).featured_and_by_author(@current_user.try(:person))
   end
 
   def remix_author_ids
