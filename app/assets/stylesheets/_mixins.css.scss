@@ -101,10 +101,7 @@ $default-border-radius: 3px;
 
 @mixin video-overlay(){
   .video-overlay {
-    @include opacity(0.8);
     &:hover {
-      @include opacity(1);
-
     }
 
     background : {
