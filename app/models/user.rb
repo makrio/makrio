@@ -90,8 +90,8 @@ class User < ActiveRecord::Base
   end
 
   def posts_from_topics_liked(time = 1.week.ago)
-    tags = topics_liked(time).map(&:name)
-    StatusMessage.tagged_with(tags, :any => true)
+    tags = topics_liked(time).map(&:id)
+    StatusMessage.joins(:tags).where(:tags => {:id => tags})
   end
 
   def self.all_sharing_with_person(person)
