@@ -12,7 +12,7 @@ class Stream::Interests < Stream::Base
 
   # @return [ActiveRecord::Association<Post>] AR association of posts
   def posts
-    @posts ||= @user.posts_from_topics_liked
+    @posts ||= @user.posts_from_topics_liked.ranked
   end
 
   def contacts_title
