@@ -85,8 +85,10 @@ class User < ActiveRecord::Base
     end
   end
 
+
+
   def topics_liked(time = 1.week.ago)
-    StatusMessage.created_since(time).liked_by(person).tag_counts
+    StatusMessage.recently_liked_by(person, time).tag_counts     #.find_all{|x| x.count >1}.map(&:name).sort
   end
 
   def posts_from_topics_liked(time = 1.week.ago)

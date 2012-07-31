@@ -57,6 +57,11 @@ class Post < ActiveRecord::Base
     joins(:likes).where(:likes => {:author_id => person.id})
   }
 
+  scope :recently_liked_by, lambda { |person, time = 1.week.ago|
+    self.liked_by(person).where('likes.created_at > ?', time)
+  }
+
+
   def add_gif_tag
     return false unless photos.present?
 
@@ -69,7 +74,7 @@ class Post < ActiveRecord::Base
   def self.ranked
     order("(ln( 1 + posts.likes_count) +  (EXTRACT(EPOCH FROM created_at) - 1327654606)/9000) desc")
   end
-  
+
   def self.with_screenshot
     where("screenshot IS NOT NULL")
   end
