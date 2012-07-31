@@ -201,7 +201,9 @@ app.Router = Backbone.Router.extend({
   },
 
   tagShow : function(name){
-    app.instrument("track", "Topic Loaded")
+    app.instrument("track", "Topic Loaded", {
+      Name : name
+    })
     this.renderPage(function(){ return new app.pages.TagsShow({name : name})});
   },
   
