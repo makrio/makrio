@@ -66,6 +66,10 @@ class Post < ActiveRecord::Base
     end
   end 
 
+  def self.ranked
+    order("(ln( 1 + posts.likes_count) +  (EXTRACT(EPOCH FROM created_at) - 1327654606)/9000) desc")
+  end
+  
   def self.with_screenshot
     where("screenshot IS NOT NULL")
   end
