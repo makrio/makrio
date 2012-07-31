@@ -33,35 +33,26 @@ app.views.Canvas = app.views.InfScroll.extend({
       }
 
       //needs to be deferred so it happens after html rendering finishes
-      _.defer(_.bind(this.mason, this))
+      _.delay(_.bind(this.mason, this), 2000)
     }, this))
   },
 
   addPosts : function() {
-    this.$el.isotope("insert", $(this.flushViewBuffer()))
+    if (this.$el.masonry){
+      var $items = this.flushViewBuffer()
+      this.$el.append($items)
+      this.$el.masonry("layout", $items)
+    }
   },
 
   mason : function() {
-    /* make two calls to isotope
-       1) on dom ready
-       2) on images ready
-     */
-    triggerIsotope(this.$el) && this.$el.imagesLoaded(_.bind(function(){
-      this.reLayout()
-    },this))
+     this.$el.imagesLoaded(_.bind(function(){
+      console.log('firing', this.$el)
+      this.$el.masonry({
+        itemSelector : ".mason",
+      });
+    },this));
 
-    function triggerIsotope(element) {
-      return element.isotope({
-        itemSelector : '.mason',
-        transformsEnabled : false,
-        visibleStyle : {scale : 1},
-        hiddenStyle : {scale : 0.001},
-        containerStyle : {position : "relative"},
-        masonry : {
-          columnWidth : 1
-        }
-      })
-    }
   },
 
   triggerRelayoutAfterImagesLoaded : function(){
@@ -70,6 +61,6 @@ app.views.Canvas = app.views.InfScroll.extend({
   },
 
   reLayout : function(){
-    this.$el.isotope("reLayout")
+   this.$el.masonry("reload")
   }
 });
