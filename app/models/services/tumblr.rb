@@ -37,7 +37,7 @@ class Services::Tumblr < Service
       'click-through-url' => post_url,
       'caption' => "made on <a href='https://www.makr.io'>makr.io</a> | <a href='#{post_url}/remix'>remix this</a>",
       :source => post.screenshot_url,
-      :tags => ["makr.io"] | post.tag_list
+      :tags => (["makr.io"] | post.tag_list).join(', ')
     }
   end
 end
