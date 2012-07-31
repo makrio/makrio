@@ -62,20 +62,4 @@ class TagPresenter < BasePresenter
   def base_scope
     @base_scope ||= StatusMessage.tagged_with(@tag.name).featured_and_by_author(@current_user.try(:person))
   end
-
-  def remix_author_ids
-    base_scope.where('posts.parent_guid IS NOT NULL AND posts.root_guid IS NOT NULL').pluck(:author_id)
-  end
-
-  def original_author_ids
-    base_scope.all_original.pluck(:author_id)
-  end
-
-  def top_remixer_id
-    remix_author_ids.mode.first
-  end
-
-  def top_original_poster_id
-    original_author_ids.mode.first
-  end
 end
