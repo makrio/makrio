@@ -60,6 +60,7 @@ Diaspora::Application.routes.draw do
   get "likes" => "streams#likes", :as => "likes_stream"
   get "staff_picks" => "streams#staff_picks", :as => "staff_picks_stream"
   get "conversations" => "streams#conversations", :as => "conversations_stream"
+  get "interests" => "streams#interests"
 
   resources :tags, :only => [:index]
   get 'tags/:name' => 'tags#show', :as => 'tag'

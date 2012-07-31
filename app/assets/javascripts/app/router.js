@@ -15,6 +15,7 @@ app.Router = Backbone.Router.extend({
     "u/:name": "newProfile",
 
     "front_page": "frontPage",
+    "interests": "genericCanvas",
     "likes": "likes",
     "staff_picks": "staffPicks",
 
@@ -109,16 +110,22 @@ app.Router = Backbone.Router.extend({
     this.frontPage()
   },
 
+
+  genericCanvas : function(){
+    this.renderPage(function(){ return new app.pages.GenericCanvas()});
+
+  },
+
   staffPicks : function() {
     app.onStaffPicks = true;
     app.pageTitle = "Staff Picks"
-    this.renderPage(function(){ return new app.pages.GenericCanvas()});
+    this.genericCanvas();
   },
 
   frontPage : function() {
     app.instrument("track", "Front Page loaded")
     app.pageTitle = "Front Page"
-    this.renderPage(function(){ return new app.pages.GenericCanvas()});
+    this.genericCanvas();
   },
 
   newStream : function() {
@@ -208,6 +215,6 @@ app.Router = Backbone.Router.extend({
   },
   
   category : function(name){
-    this.renderPage(function(){ return new app.pages.GenericCanvas()});
+    this.genericCanvas();
   }
 });

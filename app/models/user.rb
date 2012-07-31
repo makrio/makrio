@@ -85,8 +85,6 @@ class User < ActiveRecord::Base
     end
   end
 
-
-
   def topics_liked(time = 1.week.ago)
     StatusMessage.recently_liked_by(person, time).tag_counts     #.find_all{|x| x.count >1}.map(&:name).sort
   end

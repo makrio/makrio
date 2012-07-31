@@ -2,7 +2,7 @@
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
 
-%w{conversations staff_picks likes front_page category}.each do |filename|
+%w{conversations staff_picks likes front_page category interests}.each do |filename|
   require File.join(Rails.root, "lib", "stream", filename)
 end
 
@@ -42,6 +42,12 @@ class StreamsController < ApplicationController
   def front_page
     stream_responder do
       default_stream(Stream::FrontPage, :lite? => true )
+    end
+  end
+
+  def interests
+    stream_responder do
+      default_stream(Stream::Interests, :lite? => true )
     end
   end
 
