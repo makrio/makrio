@@ -120,15 +120,7 @@ a.topic-link {
     margin-top:20px;
   }
 }
-
-.inline-post-detail {
-  #post-content {
-    a.modal-comment {
-      display:none;
-    }
-  }
-}
-
+t 
 #post-content {
   .avatar {
     @include border-radius(3px);
