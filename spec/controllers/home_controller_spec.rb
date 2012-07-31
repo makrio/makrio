@@ -15,7 +15,7 @@ describe HomeController do
     it 'redirects to the stream if logged in' do
       sign_in alice
       get :show, :home => true
-      response.should redirect_to(stream_path)
+      response.should redirect_to(latest_path)
     end
   end
 end

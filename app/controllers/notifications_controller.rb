@@ -42,8 +42,8 @@ class NotificationsController < ApplicationController
   def read_all
     current_user.notifications.mark_all_as_read!
     respond_to do |format|
-      format.html { redirect_to stream_path }
-      format.mobile{ redirect_to stream_path}
+      format.html { redirect_to latest_path }
+      format.mobile{ redirect_to latest_path}
       format.xml { render :xml => {}.to_xml }
       format.json { render :json => {}.to_json }
     end

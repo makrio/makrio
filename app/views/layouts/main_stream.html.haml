@@ -25,7 +25,7 @@
 
     %ul.left_nav
       %li
-        = link_to t("streams.multi.title"), stream_path, :class => 'home_selector', :rel => 'backbone'
+        = link_to t("streams.multi.title"), latest_path, :class => 'home_selector', :rel => 'backbone'
 
     = render 'aspects/aspect_listings', :stream => @stream
 

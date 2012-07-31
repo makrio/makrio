@@ -2,7 +2,7 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
       when /^the home(?: )?page$/
-        stream_path
+       latest_path 
       when /^the tag page for "([^\"]*)"$/
         tag_path($1)
       when /^its ([\w ]+) page$/
@@ -24,7 +24,7 @@ module NavigationHelpers
       when /^my new profile page$/
         person_path(@me.person,  :ex => true)
       when /^the new stream$/
-        stream_path(:ex => true)
+        latest_path(:ex => true)
       when /^"(\/.*)"/
         $1
       else

@@ -50,7 +50,7 @@ Diaspora::Application.routes.draw do
   end
 
   # Streams
-  get "latest" => "streams#show"
+  get "latest" => "streams#show", :as => 'latest'
   get "latest/updated" => "streams#updated"
 
   get "timewarp/:days_ago" => 'streams#show'

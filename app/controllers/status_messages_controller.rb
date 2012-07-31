@@ -48,12 +48,12 @@ class StatusMessagesController < ApplicationController
 
 
       respond_to do |format|
-        format.mobile { redirect_to stream_path }
+        format.mobile { redirect_to latest_path }
         format.json { render :json => PostPresenter.new(@status_message, current_user), :status => 201 }
       end
     else
       respond_to do |format|
-        format.mobile { redirect_to stream_path }
+        format.mobile { redirect_to latest_path }
         format.json { render :nothing => true , :status => 403 }
       end
     end

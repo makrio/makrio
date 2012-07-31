@@ -47,12 +47,12 @@ describe NotificationsController do
     it "should redirect to the stream in the html version" do
       Factory(:notification, :recipient => alice)
       get :read_all, :format => :html
-      response.should redirect_to(stream_path)
+      response.should redirect_to(latest_path)
     end
     it "should redirect to the stream in the mobile version" do
       Factory(:notification, :recipient => alice)
       get :read_all, :format => :mobile
-      response.should redirect_to(stream_path)
+      response.should redirect_to(latest_path)
     end
     it "should return a dummy value in the json version" do
       Factory(:notification, :recipient => alice)

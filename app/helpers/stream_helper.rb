@@ -9,7 +9,7 @@ module StreamHelper
     elsif controller.instance_of?(PostsController)
       public_stream_path(:max_time => time_for_scroll(@stream))
     elsif controller.instance_of?(StreamsController)
-      stream_path(:max_time => time_for_scroll(@stream))
+      latest_path(:max_time => time_for_scroll(@stream))
     else
       raise 'in order to use pagination for this new controller, update next_page_path in stream helper'
     end
