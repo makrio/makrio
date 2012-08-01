@@ -121,6 +121,7 @@ app.views.Post.BasicScreenshot = app.views.Post.CanvasFrame.extend({
     /* we don't want to carry over any events to this view object */
     events : {},
 
+    /* this logic should be moved into CanvasFrame */
     infoView : function() {
       return new app.views.Info({
         model : this.model,
@@ -128,4 +129,3 @@ app.views.Post.BasicScreenshot = app.views.Post.CanvasFrame.extend({
       })
     }
 });
-

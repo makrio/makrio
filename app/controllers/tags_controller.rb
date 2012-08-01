@@ -3,7 +3,8 @@ class TagsController < ApplicationController
   before_filter :authenticate_user!, :only => [:auth_show]
 
   before_filter :set_current_path, :only => :top
-  
+  before_filter :set_getting_started!, :only => [:top_tags]
+
   rescue_from ActiveRecord::RecordNotFound do
     render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404
   end

@@ -1,8 +1,8 @@
 app.views.GettingStarted = app.views.Base.extend({
+  id:'getting_started',
   templateName : 'getting-started',
-
   events : {
-    "close.facebox" : "preventFaceboxFromClosing"
+    'click #done' : 'navigateToNext'
   },
 
   initialize : function(){
@@ -21,7 +21,13 @@ app.views.GettingStarted = app.views.Base.extend({
     })
   },
 
-  preventFaceboxFromClosing : function() {
-    return false;
+  navigateToNext : function(evt){
+    evt && evt.preventDefault()
+
+    var likes = $('.liked').length
+
+    console.log(likes, 'foo')
+    var url = likes > 0 ? '/interests' : '/top_tags'
+    window.location = url
   }
 });

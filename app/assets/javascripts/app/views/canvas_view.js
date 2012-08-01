@@ -16,11 +16,15 @@ app.views.Canvas = app.views.InfScroll.extend({
       if(this.stream.items.isEmpty()){
         var message
           , person = app.page.model
-        if(person && person.get("is_own_profile")){
+
+        if(app.onInterests){
+          message = "Start liking things, and this will be populated"
+
+        } else if(person && person.get("is_own_profile")){
           message = "Make something to start the magic."
         } else {
           var name = person ? person.get("name") : ""
-          message = name + " hasn't posted anything yet."
+          message = "There isn't anything here yet."
         }
 
         this.$el.html("<p class='no-post-message'>" + message + "</p>")

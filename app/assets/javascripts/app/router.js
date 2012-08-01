@@ -65,6 +65,8 @@ app.Router = Backbone.Router.extend({
   
   interests : function(){
     app.instrument("track", "Track Interests")
+
+    app.onInterests = true
     this.genericCanvas({title:'My Stream', description: "personalized just for you"})
   },
 

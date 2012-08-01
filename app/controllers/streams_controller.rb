@@ -98,8 +98,4 @@ class StreamsController < ApplicationController
     posts = Post.where(:id => [3080, 8883, 7572, 1587])
     gon.getting_started = PostPresenter.collection_json(posts, current_user, lite?: true)
   end
-
-  def set_getting_started!
-    current_user.update_attribute(:getting_started, false) if current_user && current_user.getting_started
-  end
 end

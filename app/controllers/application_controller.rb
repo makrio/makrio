@@ -132,4 +132,8 @@ class ApplicationController < ActionController::Base
     return unless user_signed_in?
     session[:saved_path] = request.path
   end
+  
+  def set_getting_started!
+    current_user.update_attribute(:getting_started, false) if current_user && current_user.getting_started
+  end
 end

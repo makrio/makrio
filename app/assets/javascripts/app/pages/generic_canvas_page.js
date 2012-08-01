@@ -21,7 +21,7 @@ app.pages.GenericCanvas = app.pages.Base.extend({
   },
 
   postRenderTemplate : function(){
-    if(!app.currentUser.getting_started){
+    if(app.currentUser.authenticated() && app.currentUser.get("getting_started")){
       this.showGettingStarted()
     }
   },
