@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_git_header if (AppConfig[:git_update] && AppConfig[:git_revision])
   before_filter :set_grammatical_gender
   before_filter :tablet_device_fallback
-  before_filter :set_notifications
+  # before_filter :set_notifications
 
   inflection_method :grammatical_gender => :gender
 
