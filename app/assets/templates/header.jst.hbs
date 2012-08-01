@@ -11,6 +11,14 @@
         </a>
     </li>
 
+    {{#if loggedIn}}
+        <li {{#if onInterests}}class="active"{{/if}} title="Interests">
+            <a href="/interests">
+                <img src="{{imageUrl "nav/interests.png"}}" />
+            </a>
+        </li>
+    {{/if}}
+
     <li {{#if onTopics}}class="active"{{/if}} title="Topics">
         <a href="/top_tags">
             <img src="{{imageUrl "nav/topics.png"}}" />

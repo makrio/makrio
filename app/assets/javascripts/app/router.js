@@ -15,7 +15,7 @@ app.Router = Backbone.Router.extend({
     "u/:name": "newProfile",
 
     "front_page": "frontPage",
-    "interests": "genericCanvas",
+    "interests": "interests",
     "likes": "likes",
     "staff_picks": "staffPicks",
 
@@ -61,6 +61,11 @@ app.Router = Backbone.Router.extend({
 
   proTips : function(){
     this.renderPage(function(){ return new app.pages.ProTips()});
+  },
+  
+  interests : function(){
+    app.instrument("track", "Track Interests")
+    this.genericCanvas({title:'My Stream', description: "personalized just for you"})
   },
 
   timewarp : function(daysAgo){
