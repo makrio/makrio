@@ -1,16 +1,4 @@
 //= require ./small_frame
-app.views.Post.BasicScreenshot = app.views.Base.extend({
-  templateName: 'simple-screenshot',
-  className : 'canvas-frame',
-  subviews : {
-    '.stream-frame-feedback' : 'feedbackView'
-  },
-
-  feedbackView : function(){
-    return new app.views.StreamFeedbackActions({model: this.model})
-  }
-
-});
 app.views.Post.FirstCanvasFrame = app.views.Base.extend({
   templateName : 'first-frame',
   className : "mason canvas-frame",
@@ -59,6 +47,8 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
   // copy pasta :(
   initialize : function(options) {
     this.stream = options.stream;
+    this.composing = options.composing || false;
+
     this.normalizedCollection = options.normalizedCollection
     this.setScreenshotOrRender()
 
@@ -124,3 +114,18 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
     _.defer(function(){app.page.stream.trigger("reLayout")})
   }
 });
+
+app.views.Post.BasicScreenshot = app.views.Post.CanvasFrame.extend({
+  className : 'canvas-frame gs-frame',
+
+    /* we don't want to carry over any events to this view object */
+    events : {},
+
+    infoView : function() {
+      return new app.views.Info({
+        model : this.model,
+        hideAuthor : true
+      })
+    }
+});
+

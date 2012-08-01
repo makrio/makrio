@@ -5,9 +5,13 @@ app.views.Info = app.views.Base.extend({
     'click .icon-comment' : 'showModalComments'
   },
 
+  initialize : function(options) {
+    this.hideAuthor = options && options.hideAuthor
+  },
+
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
-      onProfilePage : app.onProfilePage
+      onProfilePage : app.onProfilePage || this.hideAuthor
     })
   },
 

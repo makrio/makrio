@@ -8,7 +8,6 @@ app.pages.GenericCanvas = app.pages.Base.extend({
   },
 
   initialize : function(options){
-    console.log(options)
     this.pageTitle = options && options.title
     this.pageDescription = options && options.description
     this.setUpInfiniteScroll() 

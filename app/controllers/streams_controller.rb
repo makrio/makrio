@@ -95,7 +95,7 @@ class StreamsController < ApplicationController
 
 
   def preload_getting_started
-    posts = Post.where(:id => [3080, 9158, 883, 7572])
+    posts = Post.where(:id => [3080, 8883, 7572, 1587])
     gon.getting_started = PostPresenter.collection_json(posts, current_user, lite?: true)
   end
 

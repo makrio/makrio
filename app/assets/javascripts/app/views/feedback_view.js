@@ -1,5 +1,5 @@
 app.views.Feedback = app.views.Base.extend({
-  templateName: "stream-feedback-actions",
+  templateName: "feedback/stream-feedback-actions",
 
   className : "info",
 

@@ -1,13 +1,13 @@
 //=require "./feedback_view"
 app.views.FeedbackActions = app.views.Feedback.extend({
   id : "user-controls",
-  templateName : "feedback-actions"
+  templateName : "feedback/feedback-actions"
 });
 
 app.views.StreamFeedbackActions = app.views.Feedback.extend({
-  templateName : "stream-feedback-actions"
+  templateName : "feedback/stream-feedback-actions"
 });
 
 app.views.ViewerFeedbackActions = app.views.Feedback.extend({
-  templateName : "viewer-feedback-actions"
+  templateName : "feedback/viewer-feedback-actions"
 });

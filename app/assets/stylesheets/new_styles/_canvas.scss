@@ -149,11 +149,6 @@ a.conversation_link{
 }
 
 .canvas-frame {
-  .content {
-    /* default height to be overridden */
-    min-height : $column-width + px;
-  }
-
   .content.add_button{
     min-height: 0;
     a {
@@ -451,6 +446,16 @@ a.conversation_link{
   &:hover {
     .stream-frame-feedback {
       @include opacity(1);
+    }
+  }
+
+  &.gs-frame {
+    vertical-align:top;
+    
+    .stream-frame-feedback {
+      .remix {
+        display:none;
+      }
     }
   }
 
