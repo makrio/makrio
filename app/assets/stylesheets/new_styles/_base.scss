@@ -29,16 +29,15 @@ body {
   }
 }
 
-
 #page_title {
   font-family:Roboto-Light;
   font-size:4em;
   line-height:1em;
   margin-bottom:30px;
   text-transform:capitalize;
-  float: left;
   max-width: 80%;
 }
+
 #tag-info-share {
   float: right;
   text-align: right;
@@ -349,16 +348,29 @@ $bring-dark-accent-forward-color: #DDD;
 }
 
 .pro-tips, .about {
-  p, h1 {
-    margin-bottom:15px;
-  }
-  p {
-    font-size: 18px;
-    color: #666;
-  }
-
   .well{
     background-color: $light-blue;
     color: white;
+  }
+}
+
+#about_container {
+  @include box-shadow(0,1px,1px,rgba(0, 0, 0, 0.1));
+  padding:50px;
+  background-color:#fff;
+  margin-bottom:40px;
+}
+
+.follow-buttons {
+  a {
+    margin-right:5px;
+    &:hover{
+      text-decoration:none;
+    }
+
+    img {
+      height:35px;
+      width:35px;
+    }
   }
 }
