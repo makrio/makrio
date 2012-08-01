@@ -170,17 +170,14 @@ $bring-dark-accent-forward-color: #DDD;
     margin-top:-18px;
     margin-left: -2px;
   }
-  text-align : center;
 
   padding : 15px 10px 0;
 
-
   .tagline {
-    position : relative;
-    padding : 0 10px;
-    padding-right : 17px;
-    font-family : Roboto;
-    color : #fff;
+    position : absolute;
+    left: 235px;
+    bottom:7px;
+    color : #F69E9F;
     font-size : 20px;
   }
 }
