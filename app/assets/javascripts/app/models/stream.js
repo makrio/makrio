@@ -95,7 +95,7 @@ app.models.Stream = Backbone.Collection.extend({
   },
 
   timeFilteredPath : function(){
-   return this.basePath() + "?max_time=" + this.maxTime();
+   return this.basePath() + "?max_time=" + this.maxTime() + "&offset=" + this.items.length
   },
 
   maxTime: function(){

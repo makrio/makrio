@@ -8,10 +8,6 @@ app.pages.Search = app.views.Base.extend({
 
   initialize : function(){
     this.stream = new app.models.Stream([], { collectionOptions: {} })
-    this.stream.timeFilteredPath = function(){
-
-      return this.basePath() + "?offset=" + this.items.length
-    }
     this.stream.preloadOrFetch()
     this.initSubviews()
   },

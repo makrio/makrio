@@ -72,7 +72,15 @@ class Post < ActiveRecord::Base
   end 
 
   def self.ranked
-    order("(ln( 1 + posts.likes_count) +  (EXTRACT(EPOCH FROM posts.created_at) - 1327654606)/9000) desc")
+    order("#{self.ranking_string} desc")
+  end
+
+  def self.distinct_ranked
+     select("DISTINCT posts.*, #{StatusMessage.ranking_string} AS ranking").order("ranking desc")
+  end
+
+  def self.ranking_string
+    "(ln( 1 + posts.likes_count) +  (EXTRACT(EPOCH FROM posts.created_at) - 1327654606)/9000)"
   end
 
   def self.with_screenshot

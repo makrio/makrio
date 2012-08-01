@@ -91,7 +91,7 @@ class User < ActiveRecord::Base
 
   def posts_from_topics_liked(time = 1.week.ago)
     tags = topics_liked(time).map(&:id)
-    StatusMessage.joins(:tags).where(:tags => {:id => tags})
+    StatusMessage.distinct_ranked.joins(:tags).where(:tags => {:id => tags})
   end
 
   def self.all_sharing_with_person(person)

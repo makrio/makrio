@@ -47,7 +47,8 @@ class StreamsController < ApplicationController
 
   def interests
     stream_responder do
-      default_stream(Stream::Interests, :lite? => true )
+      @stream = Stream::Interests.new(current_user, params[:offset])
+      @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user, lite?: true) 
     end
   end
 
