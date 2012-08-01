@@ -41,7 +41,8 @@ class StreamsController < ApplicationController
 
   def front_page
     stream_responder do
-      default_stream(Stream::FrontPage, :lite? => true )
+      @stream = Stream::FrontPage.new(current_user, params[:offset])
+      @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user, lite?: true) 
     end
   end
 

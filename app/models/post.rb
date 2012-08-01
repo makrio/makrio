@@ -76,7 +76,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.distinct_ranked
-     select("DISTINCT posts.*, #{StatusMessage.ranking_string} AS ranking").order("ranking desc")
+    select("DISTINCT posts.*, #{StatusMessage.ranking_string} AS ranking").order("ranking desc")
   end
 
   def self.ranking_string
