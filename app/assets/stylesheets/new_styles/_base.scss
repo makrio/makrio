@@ -149,63 +149,87 @@ $bring-dark-accent-forward-color: #DDD;
     margin : 0 .6em;
   }
 }
+
 .with-banner {
-  padding-top:70px;
+  padding-top:130px;
 }
 
-#sign_up_prompt {
-  @include box-shadow(0, -1px, 10px, rgba(0,0,0,0.3));
+#login_banner {
   z-index : 998;
   position : fixed;
   top : 0;
   left : 0;
   width : 100%;
-  height : 35px;
 
-  background-color : rgb(246, 50, 53);
+  .red-stripe {
+    @include box-shadow(0, -1px, 10px, rgba(0,0,0,0.3));
+    height : 35px;
+    background-color : rgb(246, 50, 53);
+    z-index:5;
 
-  .banner-logo{
-    position: absolute;
-    left: 10px;
-    margin-top:-18px;
-    margin-left: -2px;
-    width:220px;
-  }
-
-  padding : 15px 10px 0;
-
-  .tagline {
-    position : absolute;
-    left: 235px;
-    bottom:7px;
-    color : #F69E9F;
-    font-size : 20px;
-  }
-
-  .prompt-left {
-    float: right;
-    margin-right: 20px;
-    z-index:100;
-    font-size: larger;
-    position: relative;
-    top:-1px;
-
-    a {
-      color: white; 
+    .banner-logo{
+      left: 10px;
+      margin-top:-18px;
+      margin-left: -2px;
+      width:220px;
     }
 
-    .follow-buttons {
-      top: -3px;
-      right:5px;
-      position: relative;
+    padding : 15px 10px 0;
 
-      img {
-        height:25px;
-        width:25px;
+    .tagline {
+      position : absolute;
+      left: 235px;
+      bottom:7px;
+      color : #F69E9F;
+      font-size : 20px;
+    }
+
+    .prompt-left {
+      float: right;
+      margin-right: 20px;
+      z-index:100;
+      font-size: larger;
+      position: relative;
+      top:-1px;
+
+      a {
+        color: white; 
+      }
+
+      .follow-buttons {
+        top: -3px;
+        right:5px;
+        position: relative;
+
+        img {
+          height:25px;
+          width:25px;
+        }
       }
     }
   }
 }
+
+.signup-wrapper {
+  position:fixed;
+  top:50px;
+  z-index:99;
+}
+
+#signup_banner {
+  @include box-shadow(0,1px,1px,rgba(0, 0, 0, 0.1));
+
+  background-color:#fff;
+  text-align:left;
+  box-sizing:border-box;
+  padding:20px;
+
+  .lighter {
+    display:inline-block;
+    color:#888;
+  }
+}
+
 
 .bookmarklet-button {
   cursor : move;
@@ -329,28 +353,6 @@ $bring-dark-accent-forward-color: #DDD;
 
   a {
     margin-right: 5px
-  }
-}
-
-#welcome {
-  @include border-radius(0);
-  position : relative;
-
-  background : none;
-  padding : {
-    left : 5px;
-    right : 5px;
-  }
-
-  margin-top : -60px;
-  margin-bottom : 0;
-  padding-bottom : 30px;
-
-  .sign-up-btns {
-    position:relative;
-    float: left;
-    line-height: 60px;
-    margin-left: 40px;
   }
 }
 

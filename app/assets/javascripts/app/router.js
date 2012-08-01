@@ -113,6 +113,7 @@ app.Router = Backbone.Router.extend({
       })
     }
 
+    app.onRoot = true
     this.frontPage()
   },
 
