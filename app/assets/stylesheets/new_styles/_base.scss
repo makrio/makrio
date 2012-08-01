@@ -212,8 +212,11 @@ $bring-dark-accent-forward-color: #DDD;
 
 .signup-wrapper {
   position:fixed;
-  top:50px;
   z-index:99;
+
+  top:50px;
+  left:0;
+  width:100%;
 }
 
 #signup_banner {
