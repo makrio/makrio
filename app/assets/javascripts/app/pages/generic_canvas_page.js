@@ -21,6 +21,17 @@ app.pages.GenericCanvas = app.pages.Base.extend({
     }))
   },
 
+  postRenderTemplate : function(){
+    if(!app.currentUser.getting_started){
+      this.showGettingStarted()
+    }
+  },
+
+  showGettingStarted : function(){
+    var gettingStartedView = new app.views.GettingStarted({})
+    this.showModal(gettingStartedView)
+  },
+
   setUpInfiniteScroll : function(){
     this.stream = new app.models.Stream([], { collectionOptions: {} })
     this.stream.preloadOrFetch()

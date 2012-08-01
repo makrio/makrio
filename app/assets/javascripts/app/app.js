@@ -39,7 +39,7 @@ var app = {
     app.router = (window.location.subdomain() == '') ? new app.Router() : new app.Router({routes: this.subdomainRoutes});
 
     app.currentUser = app.user(window.current_user_attributes) || new app.models.User()
-
+    
     Backbone.history.start({pushState: true});
 
     // track sign-ups

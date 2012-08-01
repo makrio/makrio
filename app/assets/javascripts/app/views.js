@@ -140,7 +140,7 @@ app.views.Base = Backbone.View.extend({
   },
 
   showModal : function(view) {
-      if(view.model.interactions) {
+      if(view.model && view.model.interactions) {
         view.model.interactions.fetch().done(_.bind(setFacebox, view))
       } else {
         _.bind(setFacebox, view).call()

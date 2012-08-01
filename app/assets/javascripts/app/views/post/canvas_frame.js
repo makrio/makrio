@@ -1,5 +1,16 @@
 //= require ./small_frame
+app.views.Post.BasicScreenshot = app.views.Base.extend({
+  templateName: 'simple-screenshot',
+  className : 'canvas-frame',
+  subviews : {
+    '.stream-frame-feedback' : 'feedbackView'
+  },
 
+  feedbackView : function(){
+    return new app.views.StreamFeedbackActions({model: this.model})
+  }
+
+});
 app.views.Post.FirstCanvasFrame = app.views.Base.extend({
   templateName : 'first-frame',
   className : "mason canvas-frame",
@@ -48,6 +59,7 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
   // copy pasta :(
   initialize : function(options) {
     this.stream = options.stream;
+    this.normalizedCollection = options.normalizedCollection
     this.setScreenshotOrRender()
 
     // the part that's different than smallFrame
@@ -68,7 +80,7 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
 
   isNormalizedCollection : function() {
     var pathName = document.location.pathname;
-    return pathName.search("/likes") != -1 || pathName.search("/people/") != -1 || pathName.search("/u/")
+    return this.normalizedCollection || pathName.search("/likes") != -1 || pathName.search("/people/") != -1 || pathName.search("/u/") 
   },
 
   width : function(){

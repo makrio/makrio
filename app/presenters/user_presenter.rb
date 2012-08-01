@@ -11,7 +11,8 @@ class UserPresenter
         services: self.services,
         username: @user.username,
         configured_services: self.configured_services,
-        notifications_count: self.notifications_count
+        notifications_count: self.notifications_count,
+        getting_started: @user.getting_started
       }
     )
   end

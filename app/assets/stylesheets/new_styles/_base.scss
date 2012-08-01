@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+
 body {
   background-color: rgb(237,237,237);
   background-image : image_url("texture/light-bg.png");
@@ -34,7 +35,6 @@ body {
   font-size:4em;
   line-height:1em;
   margin-bottom:30px;
-  text-transform:capitalize;
   max-width: 80%;
 }
 
