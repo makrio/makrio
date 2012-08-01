@@ -1,5 +1,4 @@
-app.pages.About = app.pages.Base.extend({
-  templateName : 'about',
+app.pages.Info = app.pages.Base.extend({
   subviews : {
     'header' : 'headerView',
     "#user_pane" : "userPaneView"
@@ -11,7 +10,10 @@ app.pages.About = app.pages.Base.extend({
   }
 });
 
-app.pages.ProTips = app.pages.About.extend({
-  templateName : 'pro-tips'
+app.pages.About = app.pages.Info.extend({
+  templateName : 'about',
+})
 
+app.pages.ProTips = app.pages.Info.extend({
+  templateName : 'pro-tips'
 });

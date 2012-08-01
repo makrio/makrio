@@ -169,6 +169,7 @@ $bring-dark-accent-forward-color: #DDD;
     left: 10px;
     margin-top:-18px;
     margin-left: -2px;
+    width:220px;
   }
 
   padding : 15px 10px 0;
@@ -179,6 +180,30 @@ $bring-dark-accent-forward-color: #DDD;
     bottom:7px;
     color : #F69E9F;
     font-size : 20px;
+  }
+
+  .prompt-left {
+    float: right;
+    margin-right: 20px;
+    z-index:100;
+    font-size: larger;
+    position: relative;
+    top:-1px;
+
+    a {
+      color: white; 
+    }
+
+    .follow-buttons {
+      top: -3px;
+      right:5px;
+      position: relative;
+
+      img {
+        height:25px;
+        width:25px;
+      }
+    }
   }
 }
 
@@ -204,7 +229,6 @@ $bring-dark-accent-forward-color: #DDD;
 
   background-color : rgba(0,0,0,0.8);
 
-
   .gs-container {
     display : table-cell;
     position : relative;
@@ -215,7 +239,6 @@ $bring-dark-accent-forward-color: #DDD;
     text-align : center;
 
     vertical-align: middle;
-    vertical-position: middle;
 
     .img-wrapper {
       display : inline-block;
@@ -273,8 +296,6 @@ $bring-dark-accent-forward-color: #DDD;
   .tweet-button {
     margin-left: 14px;
   }
-
-
 }
 
 #share-actions {
@@ -333,17 +354,6 @@ $bring-dark-accent-forward-color: #DDD;
   }
 }
 
-#peekaboo {
-  @include transition(bottom);
-  position : fixed;
-  bottom : -250px;
-  right : 50px;
-
-  &.peek {
-    @include animation(peekaboo, 3s)
-  }
-}
-
 .pro-tips, .about {
   .well{
     background-color: $light-blue;
@@ -369,5 +379,20 @@ $bring-dark-accent-forward-color: #DDD;
       height:35px;
       width:35px;
     }
+  }
+}
+
+#landing_banner {
+  padding: 20px 0;
+  padding-bottom: 40px;
+
+  font-family:Roboto-Light;
+
+  h1, h2 {
+    font-family:inherit;
+  }
+
+  h2 {
+    color:#888;
   }
 }

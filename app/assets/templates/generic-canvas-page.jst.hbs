@@ -4,15 +4,23 @@
 <!--to remove-->
 {{#unless loggedIn}}
     <div class="container">
-        <img id='logo-title' src='{{imageUrl "landing_title@2x3.jpg"}}' width="870px" height="71px"/>   
-        <br/>
-        <br/>
-        <br/>
+        <div id="landing_banner">
+            <a href="/users/sign_up" class="btn new-btn huge-btn blue" style="float:right; margin-right:30px;">
+                Sign up now
+            </a>
+
+            <h1>
+                Makr.io is a collaborative web-remixing community.
+            </h1>
+            <h2>
+                Creatively explore the topics you love with others.
+            </h2>
+        </div>
     </div>
 
     <div class='steps'>
         <div class="container image-wrap">
-            <img class='steps' src='{{imageUrl "landing_steps@2x_mini1.jpg"}}' />
+            <img class='steps' src='{{imageUrl "landing_steps@2x.jpg"}}' />
         </div>
     </div>
 {{/unless}}
@@ -20,7 +28,7 @@
 
 <div class="container">
     {{#unless loggedIn}}
-       <h2 class='featured-title'>{{pageTitle}} <small><a href='/latest' >See what people are remixing right now!</a></small></h2>
+       <h2 class='featured-title'>{{title}} <small><a href='/latest' >See what people are remixing right now!</a></small></h2>
     {{else}}
         {{#if title}}
             <h1 id="page_title">

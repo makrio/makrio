@@ -1,9 +1,4 @@
-{{#unless loggedIn}}
-    <div class='banner'>
-        <a href="/users/sign_up" class="btn new-btn blue">Sign up</a>
-        <a href="/users/sign_in" class="btn new-btn" style="top:0;">Log in</a>
-    </div>
-{{else}}
+{{#if loggedIn}}
     <div id='user_pane_shadow'>
         <ul>
             <li class="notification-count {{#if current_user.notifications_count}}red{{/if}}"   title='Notifications'>
@@ -42,4 +37,4 @@
             {{/if}}
         </ul>
     </div>
-{{/unless}}
+{{/if}}

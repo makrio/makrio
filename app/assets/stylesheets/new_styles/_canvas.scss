@@ -31,8 +31,13 @@ a.conversation_link{
   background-color: #666 ;
   width: 100%;
   padding-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+
+  /* compensate for padding on body */
+  margin-left: -70px;
+  padding-left: 70px;
 }
+
 .featured-title {
   padding-left: 4px;
 }
