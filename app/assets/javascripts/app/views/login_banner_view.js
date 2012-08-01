@@ -3,6 +3,7 @@ app.views.LoginBanner =  app.views.Base.extend({
 
 	postRenderTemplate : function(){
     	$('body').addClass('with-banner')
+      _.defer(function(){$('#stream-interactions').addClass('with-banner')})
 	},
 
 	presenter : function(){
