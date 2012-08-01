@@ -21,8 +21,15 @@
     {{#unless loggedIn}}
        <h2 class='featured-title'>{{pageTitle}} <small><a href='/latest' >See what people are remixing right now!</a></small></h2>
     {{else}}
-        {{#if pageTitle}}
-            <h1 id="page_title">{{pageTitle}}</h1>
+        {{#if title}}
+            <h1 id="page_title">
+                {{title}}
+                {{#if description}}
+                    <small>
+                        {{description}}
+                    </small>
+                {{/if}}
+            </h1>
         {{/if}}
     {{/unless}}
     <div class='clearfix'/>

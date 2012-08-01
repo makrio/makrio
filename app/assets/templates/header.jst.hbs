@@ -38,11 +38,13 @@
 </ul>
 
 <ul class="nav-about">
-    <li title="Pro-Tips">
-        <a href="/pro_tips">
-            <img src="{{imageUrl "nav/tips@2x.png"}}" />
-        </a>
-    </li>
+    {{#if loggedIn}}
+        <li title="Pro-Tips">
+            <a href="/pro_tips">
+                <img src="{{imageUrl "nav/tips@2x.png"}}" />
+            </a>
+        </li>
+    {{/if}}
     <li title="About">
         <a href="/about">
             <img src="{{imageUrl "nav/about@2x.png"}}" />

@@ -95,8 +95,9 @@ app.Router = Backbone.Router.extend({
   likes : function() {
     app.instrument("track", "Likes loaded")
 
-    app.pageTitle = "My Likes"
-    this.renderPage(function(){ return new app.pages.GenericCanvas()});
+    this.genericCanvas({
+      title : "My Likes"
+    })
   },
 
   rootPage : function(params) {
@@ -110,22 +111,25 @@ app.Router = Backbone.Router.extend({
     this.frontPage()
   },
 
-
-  genericCanvas : function(){
-    this.renderPage(function(){ return new app.pages.GenericCanvas()});
-
+  genericCanvas : function(options){
+    this.renderPage(function(){
+      return new app.pages.GenericCanvas(options)
+    })
   },
 
   staffPicks : function() {
     app.onStaffPicks = true;
-    app.pageTitle = "Staff Picks"
-    this.genericCanvas();
+    this.genericCanvas({
+      title : "Staff Picks"
+    })
   },
 
   frontPage : function() {
     app.instrument("track", "Front Page loaded")
-    app.pageTitle = "Front Page"
-    this.genericCanvas();
+    this.genericCanvas({
+      title : "Front Page",
+      description : "Recently popular posts"
+    })
   },
 
   newStream : function() {
