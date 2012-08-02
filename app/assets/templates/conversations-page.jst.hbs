@@ -17,6 +17,12 @@
                 </h4>
             {{/with}}
             <hr />
+              <h6>Topics</h6>
+              {{#each tags}}
+                <a class='topic-link' href='/tagged/{{this}}'>  <span class="label">{{this}}</span></a>
+              {{/each}}
+            <br/>
+            <br/>
 
             <div class="info-row">
                 <h1>{{info.post_count}} <small>Remixes</small></h1>

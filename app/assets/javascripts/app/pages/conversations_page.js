@@ -18,6 +18,12 @@ app.pages.Conversations = app.pages.GenericCanvas.extend({
     this.initSubviews()
   },
 
+  presenter : function(){
+    return _.extend(this.defaultPresenter(), {
+      tags : this.model.get('tag_list').split(',')
+    })
+  },
+
   rootFrame : function(){
     return new app.views.Post.CanvasFrame({
       model : this.model.original,
