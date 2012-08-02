@@ -2,7 +2,7 @@ class ActsAsTaggableOn::Tag
 
 
 
-  def combine_tags(tag_to_delete, opts)
+  def self.combine_tags(tag_to_delete, opts)
     new_home = opts[:into]
     dying_tag = ActsAsTaggableOn::Tag.find_by_name(tag_to_delete)
     new_tag = ActsAsTaggableOn::Tag.find_by_name(new_home)
