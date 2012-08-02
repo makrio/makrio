@@ -1,29 +1,49 @@
 @import url(//fonts.googleapis.com/css?family=Shadows+Into+Light);
 
-/* Roboto */
 @font-face {
-  font-family : Roboto;
-  src : image-url('fonts/Roboto-Regular.ttf');
-  weight : normal;
+    font-family: 'Roboto';
+    src: image-url('fonts/Roboto-Regular-webfont.eot');
+    src: image-url('fonts/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         image-url('fonts/Roboto-Regular-webfont.woff') format('woff'),
+         image-url('fonts/Roboto-Regular-webfont.ttf') format('truetype'),
+         image-url('fonts/Roboto-Regular-webfont.svg#RobotoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
 @font-face {
-  font-family : Roboto-Bold;
-  src : image-url('fonts/Roboto-Bold.ttf');
-  weight : normal;
+    font-family: 'Roboto-Light';
+    src: image-url('fonts/Roboto-Light-webfont.eot');
+    src: image-url('fonts/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         image-url('fonts/Roboto-Light-webfont.woff') format('woff'),
+         image-url('fonts/Roboto-Light-webfont.ttf') format('truetype'),
+         image-url('fonts/Roboto-Light-webfont.svg#RobotoLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
 @font-face {
-  font-family : Roboto-Light;
-  src : image-url('fonts/Roboto-Light.ttf');
-  weight : normal;
+    font-family: 'Roboto-Bold';
+    src: image-url('fonts/Roboto-Bold-webfont.eot');
+    src: image-url('fonts/Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         image-url('fonts/Roboto-Bold-webfont.woff') format('woff'),
+         image-url('fonts/Roboto-Bold-webfont.ttf') format('truetype'),
+         image-url('fonts/Roboto-Bold-webfont.svg#RobotoBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
+
+
 
 body, p, h1, h2, h3, h4, h5, h6, textarea, input, * {
-  font-family : Roboto, Helvetica, Arial, sans-serif;
+  font-family : Roboto;
   font-weight : normal;
+  font-style : normal;
 }
 
 a {
-  font-family : inherit;
+  font-family : Roboto;
 }
