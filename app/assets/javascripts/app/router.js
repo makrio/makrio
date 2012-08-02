@@ -43,8 +43,12 @@ app.Router = Backbone.Router.extend({
 
     "conversations/:id" : "conversation",
     "conversations": "conversations",
+    
     'tagged/:name' : 'tagShow',
+    'topic/:name' : 'tagShow',
+
     'top_tags' : 'topTags',
+    'topics' : 'topTags',
 
     'about' : 'about',
     'pro_tips' : 'proTips',

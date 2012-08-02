@@ -65,7 +65,7 @@ Diaspora::Application.routes.draw do
   resources :tags, :only => [:index]
   get 'tags/:name' => 'tags#show', :as => 'tag'
   get 'top_tags/' => 'tags#top'
-
+  get 'topics/' => 'tags#top'
 
   get 'search/:query' => 'searchs#show'
   resources :photos, :except => [:index] do
@@ -178,6 +178,10 @@ Diaspora::Application.routes.draw do
 
   get '/tagged/:name/auth_required' => 'tags#auth_show'
   get '/tagged/:name' => 'streams#category'
+  get '/topic/:name/auth_required' => 'tags#auth_show'
+  get '/topic/:name' => 'streams#category'
+
+
   get '/tags' => 'tags#index'
   match '', to: 'streams#category', constraints: lambda{ |r| r.subdomain.present?}
 
