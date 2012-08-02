@@ -24,7 +24,8 @@ module AnalyticsHelper
           mixpanel.identify("#{current_user.id}");
           mixpanel.people.set({
             "$created": "#{current_user.created_at}",
-            "$username": "#{current_user.username}"
+            "$username": "#{current_user.username}",
+            "$last_login": new Date()
           })
         JS
       end
