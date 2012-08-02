@@ -1,4 +1,16 @@
 class ActsAsTaggableOn::Tag
+
+
+
+  def combine_tags(tag_to_delete, opts)
+    new_home = opts[:into]
+    dying_tag = ActsAsTaggableOn::Tag.find_by_name(tag_to_delete)
+    new_tag = ActsAsTaggableOn::Tag.find_by_name(new_home)
+    dying_tag.taggings.each do |tagging|
+      tagging.update_attribute(:tag_id, new_tag.id)
+    end
+  end
+
   def most_popular_post
     StatusMessage.with_screenshot.tagged_with(self.name).order('likes_count desc').first
   end
