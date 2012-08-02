@@ -74,8 +74,9 @@
   height:180px;
   width:150px;
 
+  margin-right: 50px;
+  margin-left: 20px;
   margin-bottom:50px;
-  margin-left:50px;
 
   a {
     position:absolute;
@@ -84,6 +85,7 @@
     color:inherit;
 
     &:hover {
+      text-decoration:none;
       .topic-title {
         text-decoration:underline;
       }
@@ -91,8 +93,6 @@
   }
 
   .topic-info {
-    position:absolute;
-    top:160px;
     width:100%;
     text-align:center;
     text-transform:capitalize;
@@ -106,40 +106,27 @@
     }
   }
 
-  .topic-image {
-    position:absolute;
+  .stack {
+    height:185px;
+    width:185px;
+    background-image:image-url("stack.png");
+    background-size:100%;
+    margin-left:-20px;
+  }
 
+  .topic-image {
     @include box-shadow(0,1px,3px,rgba(0,0,0,.5));
 
     height:150px;
     width:150px;
+    position:relative;
+    top:20px;
+    left:20px;
 
     background : {
       position:center;
       size:cover;
-    }
-
-    & {
-      z-index:1;
-      margin-left:-10px;
-      margin-top:-5px;
-      -webkit-transform:rotate(-5deg);
-      -moz-transform:rotate(-5deg);
-    }
-
-    &:first-child {
-      z-index:3;
-      margin:0;
-      -webkit-transform:rotate(0deg);
-      -moz-transform:rotate(0deg);
-    }
-
-    &:nth-child(2) {
-      z-index:0;
-      margin-left:10px;
-      margin-top:-5px;
-      -webkit-transform:rotate(5deg);
-      -moz-transform:rotate(5deg);
+      color:#ddd;
     }
   }
 }

@@ -11,9 +11,9 @@
         {{#each tags}}
             <div class="topic">
                 <a href="/topic/{{name}}">
-                    {{#each last_three}}
-                        <div class="topic-image" style="background-image:url('{{screenshot_url}}')"></div>
-                    {{/each}}
+                    <div class="stack">
+                        <div class="topic-image" style="background-image:url('{{latest_post_screenshot}}')"></div>
+                    </div>
                     <div class="topic-info">
                         <span class="topic-title">{{name}}</span>
                         <div class="topic-vitals">

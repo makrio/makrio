@@ -1,5 +1,3 @@
-
-
 class TagPresenter < BasePresenter
   def initialize(tag, current_user, opts={})
     @tag = tag
@@ -18,7 +16,7 @@ class TagPresenter < BasePresenter
       likes_count: likes_count,
       makr_count: makr_count,
       comment_count: comment_count,
-      last_three: last_three
+      latest_post_screenshot: latest_post_screenshot
     }
 
     if opts.fetch(:with_people, true)
@@ -29,9 +27,9 @@ class TagPresenter < BasePresenter
     base
   end
 
-  def last_three
-    posts = base_scope.with_screenshot.order('created_at desc').limit(3)
-    posts.map{|post| {:screenshot_url => post.screenshot_url} }
+  def latest_post_screenshot
+    post = base_scope.with_screenshot.order('created_at desc').first
+    post.screenshot_url
   end
 
   def makrs
