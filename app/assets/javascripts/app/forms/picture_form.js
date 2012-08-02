@@ -13,6 +13,7 @@ app.forms.PictureBase = app.views.Base.extend({
   },
 
   submitUpload : function (){
+    this.requireAuth(); //the file picker thing doesnt allow for normal binding of this.
     this.$("form").submit();
     this.onSubmit();
   },
