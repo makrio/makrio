@@ -57,7 +57,7 @@ a.conversation_link{
     color: #666;
     font : {
       size: 1.6em;
-      family: Roboto-Light;
+      family: RobotoLight;
       
     };
   }
@@ -123,7 +123,7 @@ a.conversation_link{
       float : left;
 
       .author-name {
-        font-family : Roboto-Bold;
+        font-family : RobotoBold;
       }
     }
   }
@@ -152,7 +152,7 @@ a.conversation_link{
   .content.add_button{
     min-height: 0;
     a {
-      font-family: Roboto-Light;
+      font-family: RobotoLight;
       font-size: 3em;
       line-height: 1.5em;
       width: 253px;
@@ -416,7 +416,7 @@ a.conversation_link{
       text-shadow : none;
       font : {
         weight : normal;
-        family : Roboto-Light, Helvetica, Arial, sans-serif;
+        family : RobotoLight, Helvetica, Arial, sans-serif;
       }
     }
   }

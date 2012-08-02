@@ -313,7 +313,7 @@ t
   cursor: pointer;
 
   color: white;
-  font-family: Roboto-Bold;
+  font-family: RobotoBold;
 
   padding : {
     top : 10px;
@@ -336,14 +336,14 @@ t
     &.see-all {
       min-height : 0;
       text-align : center;
-      font-family : Roboto-Bold;
+      font-family : RobotoBold;
       padding-top : 7px;
       padding-bottom : 5px;
     }
   }
 
   .object {
-    font-family : Roboto-Bold;
+    font-family : RobotoBold;
   }
 
   .media {

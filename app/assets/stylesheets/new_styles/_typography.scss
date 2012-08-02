@@ -1,7 +1,7 @@
 @import url(//fonts.googleapis.com/css?family=Shadows+Into+Light);
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: Roboto;
     src: image-url('fonts/Roboto-Regular-webfont.eot');
     src: image-url('fonts/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
          image-url('fonts/Roboto-Regular-webfont.woff') format('woff'),
@@ -13,9 +13,10 @@
 }
 
 @font-face {
-    font-family: 'Roboto-Light';
+    font-family: RobotoLight;
     src: image-url('fonts/Roboto-Light-webfont.eot');
-    src: image-url('fonts/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+    src: local('☺'),
+         image-url('fonts/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
          image-url('fonts/Roboto-Light-webfont.woff') format('woff'),
          image-url('fonts/Roboto-Light-webfont.ttf') format('truetype'),
          image-url('fonts/Roboto-Light-webfont.svg#RobotoLight') format('svg');
@@ -25,7 +26,7 @@
 }
 
 @font-face {
-    font-family: 'Roboto-Bold';
+    font-family: RobotoBold;
     src: image-url('fonts/Roboto-Bold-webfont.eot');
     src: image-url('fonts/Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
          image-url('fonts/Roboto-Bold-webfont.woff') format('woff'),
