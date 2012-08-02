@@ -23,7 +23,8 @@ module AnalyticsHelper
           mixpanel.name_tag("#{current_user.username}");
           mixpanel.identify("#{current_user.id}");
           mixpanel.people.set({
-            "$created": "#{current_user.created_at}"
+            "$created": "#{current_user.created_at}",
+            "$username": "#{current_user.username}"
           })
         JS
       end
