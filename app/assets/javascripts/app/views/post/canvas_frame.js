@@ -3,10 +3,12 @@ app.views.Post.FirstCanvasFrame = app.views.Base.extend({
   templateName : 'first-frame',
   className : "mason canvas-frame",
   events : {
-    'click .collection-composer-button' : 'showModalFramer'
+    'click .collection-composer-button' : 'showModalFramer',
+    'click a[rel=auth-required]' : 'requireAuth'
   },
 
   presenter : function(){
+    console.log(app.currentUser.authenticated())
     return {
       name : this.currentTag(),
       loggedIn : app.currentUser.authenticated()
@@ -14,12 +16,11 @@ app.views.Post.FirstCanvasFrame = app.views.Base.extend({
   },
 
   currentTag : function(){
-    return window.location.pathname.split('/').pop()
+    var path = window.location.pathname
+    if(path.search("tagged") == 1 || path.search("topic") == 1) {
+      return window.location.pathname.split('/').pop()
+    }
   },
-
-  onTagPage : function(){
-    return window.location.pathname.search('tagged') != -1 || window.location.pathname.search('topic') != -1
-  }
 });
 
 app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
