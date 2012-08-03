@@ -12,6 +12,15 @@ var View = {
     /* facebox */
     $('a[rel*=facebox]').facebox();
 
+    //I am a jerk; ms
+    $("form[name='tagForm']").live("ajax:success",function(evt,xhr,settings){
+       var flash = new Diaspora.Widgets.FlashMessages;
+       flash.render({
+        success: true,
+        notice: "Tags Updated"
+      });
+    })
+
   },
 
   avatars: {
