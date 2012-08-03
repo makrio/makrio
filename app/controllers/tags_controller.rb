@@ -1,6 +1,5 @@
 class TagsController < ApplicationController
-  before_filter :redirect_unless_admin, :only => [:set]
-  before_filter :authenticate_user!, :only => [:auth_show]
+  before_filter :authenticate_user!, :only => [:auth_show, :set]
 
   before_filter :set_current_path, :only => :top
   before_filter :set_getting_started!, :only => :top

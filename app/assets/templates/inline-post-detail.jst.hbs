@@ -24,13 +24,11 @@
 		<h6>Share</h6>
 		<div id="share-actions" />
 	</div>
-	{{#if current_user.admin}}
 	  <hr />
-	  <h6>Tags</h6>
-	  <form name="tagForm" class='form-inline' action="/posts/{{id}}/tags" method="post" data-remote="true">
-	      <input type="text" name="tag_list" value='{{tag_list}}' placeholder='add comma seperated tags'/>
-	      <input type="submit" value='Set Tags' class="btn new-btn"/>
-	  </form>
-  {{/if}}
+  <h6>Tags</h6>
+  <form name="tagForm" class='form-inline' action="/posts/{{id}}/tags" method="post" data-remote="true">
+      <input type="text" name="tag_list" value='{{tag_list}}' placeholder='add comma seperated tags'/>
+      <input type="submit" value='Set Tags' class="btn new-btn"/>
+  </form>
 </div>
 <div style="height: 0px; margin-top: 80px; ">&nbsp;</div>
