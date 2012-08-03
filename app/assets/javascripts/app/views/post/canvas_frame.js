@@ -8,7 +8,6 @@ app.views.Post.FirstCanvasFrame = app.views.Base.extend({
   },
 
   presenter : function(){
-    console.log(app.currentUser.authenticated())
     return {
       name : this.currentTag(),
       loggedIn : app.currentUser.authenticated()

@@ -26,7 +26,6 @@ app.views.GettingStarted = app.views.Base.extend({
 
     var likes = $('.liked').length
 
-    console.log(likes, 'foo')
     var url = likes > 0 ? '/interests' : '/top_tags'
     window.location = url
   }
