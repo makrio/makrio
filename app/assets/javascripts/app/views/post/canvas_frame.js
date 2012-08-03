@@ -18,7 +18,7 @@ app.views.Post.FirstCanvasFrame = app.views.Base.extend({
   },
 
   onTagPage : function(){
-    return window.location.pathname.search('tagged')
+    return window.location.pathname.search('tagged') || window.location.pathname.search('topics')
   }
 });
 
