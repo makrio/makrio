@@ -85,9 +85,7 @@ var app = {
 
   instrumentIncomingSignUpLinks : function() {
     if(!window.mixpanel) { return }
-    window.mixpanel["track_links"]("a#sign_up_button", "Click Sign Up", function(element){
-      return {'referrer' : $(element).data('type')}
-    });
+    window.mixpanel["track_links"]("a#sign_up_button", "Click Sign Up");
   }
 };
 
