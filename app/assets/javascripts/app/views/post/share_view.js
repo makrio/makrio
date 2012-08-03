@@ -4,7 +4,8 @@ app.views.ShareView = app.views.Base.extend({
     'click .tweet-button' : 'tweet',
     'click .facebook-button' : 'facebook',
     'click .tumblr-button' : 'tumblr',
-    'click .pinterest-button' : 'pinterest'
+    'click .pinterest-button' : 'pinterest',
+    'click .imgfave-button' : 'imgfave'
   },
 
   presenter : function() {
@@ -15,6 +16,7 @@ app.views.ShareView = app.views.Base.extend({
       hideTumblr : this.options.hideTumblr,
       hidePinterest : this.options.hidePinterest,
       hideUrl: this.options.hideUrl,
+      imgfave: app.currentUser.get('admin')
     })
   },
 
@@ -98,7 +100,23 @@ app.views.ShareView = app.views.Base.extend({
     this.launchWindow(url)
   },
 
-  launchWindow : function(url){
-    window.open(url, 'shareWindow', 'height=255, width=600, top='+($(window).height()/2 - 225) +', left='+$(window).width()/2 +', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+  imgfave : function(evt){
+    evt && evt.preventDefault()
+    app.instrument("track", "Share", {Service : "imgfave"})
+    var options = {
+      source_image : this.model.get('screenshot_url'),
+      source_title : this.model.get('title'),
+      tags : this.model.get('tag_list'),
+      source_url : 'https://makr.io/conversations/' + this.model.get('conversation_id')
+    }
+    var url = 'http://imgfave.com/post?' + $.param(options)
+    this.launchWindow(url, 1000, 900)
+
+  },
+
+  launchWindow : function(url, width, height){
+    height = height || 255
+    width = width || 600
+    window.open(url, 'shareWindow', 'height=' +height + ', width=' + width + ',top='+($(window).height()/2 - 225) +', left='+$(window).width()/2 +', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
   }
 });

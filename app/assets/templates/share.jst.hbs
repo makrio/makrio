@@ -8,6 +8,11 @@
   <a href="{{url}}" data-url="{{url}}" title="Pin on Pinterest" class="pinterest-button" data-title="{{title}}" target="_blank"><img src="{{imageUrl "buttons/share_pin.jpg"}}" height=20 width=58 /></a>
 {{/unless}}
 
+{{#if imgfave}}
+  <a href='#' title='Post on imgfave', class='imgfave-button'> Post To imgfave</a>
+{{/if}}
+
 {{#unless hideUrl}}
   <span style="margin-left:4px;"><input type="text"class='form-inline' name=url value="{{url}}" readonly></span>
 {{/unless}}
+

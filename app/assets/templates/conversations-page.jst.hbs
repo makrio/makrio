@@ -1,5 +1,6 @@
 <header/>
 <div id="user_pane"/>
+<div id='brand-banner'/>
 
 <div class="container">
     <div class="conversation-original" style="margin-left:5px;">
@@ -17,17 +18,22 @@
                 </h4>
             {{/with}}
             <hr />
-              <h6>Topics</h6>
-              {{#each tags}}
-                <a class='topic-link' href='/tagged/{{this}}'>  <span class="label">{{this}}</span></a>
-              {{/each}}
+
+            <a href="/posts/{{original.id}}/remix" id="cnv_rmx_btn" data-remix-id="{{original.id}}" class="btn new-btn btn-large">New Remix</a>
+            
+            <br/>
+            <br/>
+          <h6>Topics</h6>
+          {{#each tags}}
+            <a class='topic-link' href='/tagged/{{this}}'>  <span class="label">{{this}}</span></a>
+          {{/each}}
+
             <br/>
             <br/>
 
             <div class="info-row">
                 <h1>{{info.post_count}} <small>Remixes</small></h1>
 
-                <a href="/posts/{{original.id}}/remix" id="cnv_rmx_btn" data-remix-id="{{original.id}}" class="btn new-btn btn-large">New Remix</a>
             </div>
 
             {{#with info}}

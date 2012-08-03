@@ -1,4 +1,7 @@
 //=require ./generic_canvas_page
+app.views.BrandView = app.views.Base.extend({
+  templateName : 'brand-view'
+});
 
 app.pages.Conversations = app.pages.GenericCanvas.extend({
   templateName : "conversations-page",
@@ -8,7 +11,8 @@ app.pages.Conversations = app.pages.GenericCanvas.extend({
     "header" : "headerView",
     "#user_pane" : "userPaneView",
     '#root-frame' : 'rootFrame',
-    "#share-actions" : "shareView"
+    "#share-actions" : "shareView",
+    '#brand-banner' : 'brandView'
   },
 
   initialize : function(){
@@ -20,8 +24,19 @@ app.pages.Conversations = app.pages.GenericCanvas.extend({
 
   presenter : function(){
     return _.extend(this.defaultPresenter(), {
-      tags : this.model.get('tag_list').split(',')
+      tags : this.model.get('tag_list').split(','),
+      isBrand : this.isBrand()
     })
+  },
+
+  isBrand: function(){
+    return this.model.get('original').author.name == 'imgfave'
+  },
+
+  brandView : function(){
+    if(this.isBrand()){
+      return new app.views.BrandView({model : this.model})
+    }
   },
 
   rootFrame : function(){
