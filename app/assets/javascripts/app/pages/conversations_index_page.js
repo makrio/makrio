@@ -4,7 +4,6 @@ app.pages.ConversationsIndex = app.pages.Base.extend({
 
   subviews : {
     "#canvas" : "canvasView",
-    "header" : "headerView"
   },
 
   initialize : function(options){
@@ -18,7 +17,6 @@ app.pages.ConversationsIndex = app.pages.Base.extend({
 
   initSubviews : function(){
     this.canvasView = new app.views.Canvas({model : this.stream})
-    this.headerView = new app.views.Header({model : this.stream})
 
     this.canvasView.postClass = app.views.Post.ConversationFrame
     this.canvasView.scrollOffset = 2000

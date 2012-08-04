@@ -7,8 +7,6 @@ app.pages.Stream = app.pages.Base.extend({
   },
 
   subviews : {
-    "header" : "headerView",
-    "#user_pane" : "userPane",
     "#stream-content" : "streamView",
     "#stream-interactions" : "interactionsView",
   },
@@ -62,9 +60,6 @@ app.pages.Stream = app.pages.Base.extend({
   },
 
   initSubviews : function(){
-    this.headerView = new app.views.Header()
-    this.userPane = new app.views.UserPaneView()
-
     this.streamView = new app.pages.Stream.InfiniteScrollView({ model : this.stream })
     this.interactionsView = new app.views.StreamInteractions()
   },

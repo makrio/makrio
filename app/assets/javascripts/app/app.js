@@ -5,6 +5,7 @@
 //= require ./models
 
 //= require ./views
+//= require ./pages
 //= require ./views/infinite_stream_view
 
 //= require_tree ./models

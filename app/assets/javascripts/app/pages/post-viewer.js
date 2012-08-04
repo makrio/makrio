@@ -3,8 +3,6 @@ app.pages.PostViewer = app.pages.Base.extend({
 
   subviews : {
     "#post-nav" : "navView",
-    'header' : 'headerView',
-    "#user_pane" : "userPaneView",
     "#canvas" : "canvasView",
     '#post-detail' : 'postDetailView'
   },
@@ -25,8 +23,6 @@ app.pages.PostViewer = app.pages.Base.extend({
 
 
     this.initializeStream()
-    this.headerView = new app.views.Header()
-    this.userPaneView = new app.views.UserPaneView()
     this.render();
   },
 

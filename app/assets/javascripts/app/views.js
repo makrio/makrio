@@ -1,5 +1,5 @@
-app.views.Base = Backbone.View.extend({
 
+app.views.Base = Backbone.View.extend({
   initialize : function(options) {
     this.setupRenderEvents();
   },
@@ -32,7 +32,7 @@ app.views.Base = Backbone.View.extend({
     this.renderPluginWidgets()
     this.removeTooltips()
 
-    this.loginBanner && this.loginBanner()
+    this.renderBaseViews && this.renderBaseViews()
     return this
   },
 
@@ -51,9 +51,10 @@ app.views.Base = Backbone.View.extend({
 
   postRenderTemplate : $.noop, //hella callbax yo
 
-  renderSubviews : function(){
+  renderSubviews : function(viewsObject){
     var self = this;
-    _.each(this.subviews, function(property, selector){
+
+    _.each(viewsObject || this.subviews, function(property, selector){
       var view = _.isFunction(self[property]) ? self[property]() : self[property]
       if(view) {
         self.$(selector).html(view.render().el)
@@ -181,25 +182,4 @@ app.views.Base = Backbone.View.extend({
     evt && evt.preventDefault()
     this.showModal(new app.views.InlineLogin({}))
   }
-
-});
-
-
-
-app.pages.Base = app.views.Base.extend({
-
-  renderLoginBanner : function(){
-    this.$el.append(this.loginBannerView().render().el)
-  },
-
-  loginBanner : function() {
-    if(!app.currentUser.authenticated()){
-      this.renderLoginBanner()
-    }
-  },
-
-  loginBannerView : function(){
-    return new app.views.LoginBanner()
-  }
-
 });

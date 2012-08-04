@@ -3,7 +3,6 @@ app.pages.Sunnyvale = app.views.Base.extend({
 
   subviews : {
     "#canvas" : "canvasView",
-    // "header" : "headerView"
   },
 
   initialize : function(options){
@@ -17,8 +16,6 @@ app.pages.Sunnyvale = app.views.Base.extend({
 
   initSubviews : function(){
     this.canvasView = new app.views.Canvas({model : this.stream})
-    // this.headerView = new app.views.Header({model : this.stream})
-
   },
 
   presenter : function() {

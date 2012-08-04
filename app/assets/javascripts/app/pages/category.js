@@ -1,10 +1,5 @@
-app.pages.Category = app.views.Base.extend({
+app.pages.Category = app.pages.Base.extend({
   templateName : "category-page",
-
-  subviews : {
-    "#canvas" : "canvasView",
-    "header" : "headerView"
-  },
 
   initialize : function(){
     this.stream = new app.models.Stream([], { collectionOptions: {} })
@@ -16,10 +11,5 @@ app.pages.Category = app.views.Base.extend({
     return _.extend(this.defaultPresenter(), {
       subdomain : window.location.subdomain()
     })
-  },
-
-  initSubviews : function(){
-    this.canvasView = new app.views.Canvas({model : this.stream})
-    this.headerView = new app.views.Header({model : this.stream})
   }
 });

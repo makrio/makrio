@@ -1,14 +1,4 @@
 app.pages.Info = app.pages.Base.extend({
-  subviews : {
-    'header' : 'headerView',
-    "#user_pane" : "userPaneView"
-  },
-
-  initialize : function(){
-    this.headerView = new app.views.Header({})
-    this.userPaneView = new app.views.UserPaneView()
-  },
-
   presenter : function(){
     return {
       bookmarklet : this.bookmarkletJS()

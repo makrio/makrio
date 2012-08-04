@@ -1,14 +1,7 @@
 app.pages.TopTags = app.pages.Base.extend({
   templateName : 'top-tags',
-  subviews :{
-    'header' : 'headerView',
-    '#user_pane' : 'userPaneView'
-  },
 
   initialize : function(){
-    this.headerView = new app.views.Header()
-    this.userPaneView = new app.views.UserPaneView()
-
     this.model = new app.collections.Tags([], {})
 
     var self = this

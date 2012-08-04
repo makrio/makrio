@@ -1,5 +1,5 @@
 //=require ./generic_canvas_page
-app.views.BrandView = app.views.Base.extend({
+app.views.BrandView = app.pages.Base.extend({
   templateName : 'brand-view'
 });
 
@@ -8,8 +8,6 @@ app.pages.Conversations = app.pages.GenericCanvas.extend({
 
   subviews : {
     "#canvas" : "canvasView",
-    "header" : "headerView",
-    "#user_pane" : "userPaneView",
     '#root-frame' : 'rootFrame',
     "#share-actions" : "shareView",
     '#brand-banner' : 'brandView'

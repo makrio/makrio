@@ -4,8 +4,6 @@ app.pages.TimeWarp = app.pages.Base.extend({
   
   subviews : {
     "#canvas" : "canvasView",
-    "header" : "headerView",
-    "#user_pane" : "userPaneView"
   },
 
   initialize : function(options){
@@ -27,7 +25,5 @@ app.pages.TimeWarp = app.pages.Base.extend({
 
   initSubviews : function(){
     this.canvasView = new app.views.Canvas({model : this.stream})
-    this.headerView = new app.views.Header()
-    this.userPaneView = new app.views.UserPaneView()
   }
 });
