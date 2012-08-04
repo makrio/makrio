@@ -167,7 +167,6 @@ app.views.framerControls = app.views.Base.extend({
   templateName : 'framer-controls',
 
   events : {
-    "click *[rel='auth-required']" : "requireAuth",
     "click input.done" : "saveFrame",
     "change input" : "setFormAttrs"
   },
@@ -184,7 +183,9 @@ app.views.framerControls = app.views.Base.extend({
     this.servicesSelector = new app.views.ServicesSelector({model:this.model});
   },
 
-  saveFrame : function(){
+  saveFrame : function(evt){
+    if(!this.requireAuth(evt)){return false}
+
     this.setFormAttrs()
     this.model.set({"aspect_ids": ["public"]})
     if(this.inValidFrame()) {

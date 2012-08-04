@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="span4">
+    <h4 class="sign-up-text">
+      Sign In
+    </h4>
+    <form accept-charset="UTF-8" action="/users/sign_in" class="form-horizontal block-form" data-validate="true" id="new_user" method="post" novalidate="novalidate"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓">
+
+      <input name="authenticity_token" type="hidden" value="foobar"></div>                
+    <fieldset>
+          <div class="control-group">
+            <label class="control-label" for="user_username">
+              USERNAME
+            </label>
+
+            <div class="controls">
+              <input data-validate="true" id="user_username" name="user[username]" pattern="[A-Za-z0-9_]+" placeholder="jedi_guy" required="required" size="30" title="Pick a username (only letters, numbers, and underscores)" type="text">
+            </div>
+          </div>
+            <div class="control-group">
+              <label class="control-label" for="user_password">
+               PASSWORD
+              </label>
+
+              <div class="controls">
+                <input data-validate="true" id="user_password" name="user[password]" pattern="......+" placeholder="••••••••" required="required" size="30" title="Enter a password (six character minimum)" type="password">
+              </div>
+            </div>
+
+        </fieldset>
+
+        <input class="new-btn" name="commit" type="submit" value="Sign in">
+
+        <div id="login-helper-links">
+          <br>
+          <a href="/users/password/new" id="forgot_password_link">Forgot your password?</a>
+
+          <a href="/users/sign_up">Sign up</a>
+        </div>
+
+        <br>
+        <hr>
+        <br>
+        <a href="/users/auth/facebook" class="btn-large new-btn fb-btn" style="padding-right:145px;"><img alt="Fb_f" class="fb-f" src="/assets/logos/fb_f.png">Login with Facebook</a>
+
+      </form>
+    </div>
+  </div>

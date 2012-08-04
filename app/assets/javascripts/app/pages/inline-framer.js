@@ -50,3 +50,10 @@ app.views.InlineComments = app.views.Base.extend({
       this.newCommentView = new app.views.PostViewerNewComment({ model : this.model })
     },
 });
+
+app.views.InlineLogin = app.views.Base.extend({
+    templateName : 'sign-in',
+    postRenderTemplate : function(){
+      this.$("input[name=authenticity_token]").val($("meta[name=csrf-token]").attr("content"))
+    },
+})

@@ -170,10 +170,16 @@ app.views.Base = Backbone.View.extend({
   },
 
  requireAuth : function(evt) {
-    if( app.currentUser.authenticated() ) { return true }
+    if( app.currentUser.authenticated () ) { return true }
+    evt && evt.preventDefault() && evt.stopImmediatePropagation()
+    this.showModalLogin(evt)
+    return false 
+    // app.router.setLocation('/users/sign_up')
+  },
+
+  showModalLogin : function(evt){
     evt && evt.preventDefault()
-    app.router.setLocation('/users/sign_up')
-    return false;
+    this.showModal(new app.views.InlineLogin({}))
   }
 
 });

@@ -107,7 +107,8 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    stored_location_for(:user) || root_path
+    referrer = request.referrer.include?('users/sign') ? root_url : request.referrer
+    stored_location_for(:user) || request.env['omniauth.origin'] || referrer ||root_url
   end
 
   def max_time
