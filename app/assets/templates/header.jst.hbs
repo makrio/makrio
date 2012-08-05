@@ -1,62 +1,125 @@
-<ul class="nav-main">
-    <li class="logo {{#if onFrontPage}}active{{/if}}" title='Front Page'>
-        <a href="/front_page">
-            <img src="{{imageUrl "nav/makr.png"}}" />
-        </a>
-    </li>
-
-    <li class="logo {{#if onLatest}}active{{/if}}" title='Latest Posts'>
-        <a href="/latest">
-            <img src="{{imageUrl "nav/public.png"}}" />
-        </a>
-    </li>
-
-    {{#if loggedIn}}
-        <li {{#if onInterests}}class="active"{{/if}} title="My Stream">
-            <a href="/interests">
-                <img src="{{imageUrl "nav/interests.png"}}" />
+<div class="root">
+    <ul class="nav-main">
+        <li class="logo">
+            <a href="/front_page" class='icon'>
+                <img src="{{imageUrl "nav/makr.png"}}" />
             </a>
         </li>
-    {{/if}}
+    </ul>
 
-    <li {{#if onTopics}}class="active"{{/if}} title="Topics">
-        <a href="/topics">
-            <img src="{{imageUrl "nav/topics.png"}}" />
-        </a>
-    </li>
-
-    <li {{#if onStaffPicks}}class="active"{{/if}} title="Staff Picks">
-        <a href="/staff_picks">
-            <img src="{{imageUrl "nav/staff_picks.png"}}" />
-        </a>
-    </li>
-
-    <li {{#if onTimeWarp}}class="active"{{/if}} title="Time Warp">
-        <a href="/timewarp">
-            <img src="{{imageUrl "nav/time.png"}}" />
-        </a>
-    </li>
-    {{#if loggedIn}}
-        <li title='New Remix'>
-            <a href="/framer" class="composer-button" data-remix-id="new">
-                <img src="{{imageUrl "nav/new.png"}}" class="composer-button" data-remix-id="new" />
+    <ul class="nav-center">
+        <li {{#if onExplore}}class="active"{{/if}}>
+            <a href="/front_page">
+                Explore
+                {{#unless loggedIn}} 
+                    Makr.io
+                {{/unless}}
             </a>
         </li>
-    {{/if}}
-</ul>
 
-<ul class="nav-about">
+        {{#if loggedIn}}
+            <li {{#if onYou}}class="active"{{/if}}>
+                <a href="/interests">
+                    You
+                </a>
+            </li>
+        {{/if}}
+    </ul>
+
     {{#if loggedIn}}
-        <li title="Pro-Tips">
-            <a href="/pro_tips">
-                <img src="{{imageUrl "nav/tips@2x.png"}}" />
-            </a>
-        </li>
-    {{/if}}
-    <li title="About">
-        <a href="/about">
-            <img src="{{imageUrl "nav/about@2x.png"}}" />
-        </a>
-    </li>
-</ul>
+        <div id='user_pane'>
+            <ul>
+                <li title='New Remix'>
+                    <a href="/framer" class="composer-button icon" data-remix-id="new">
+                        <img src="{{imageUrl "nav/new.png"}}" class="composer-button" data-remix-id="new" />
+                    </a>
+                </li>
+                <li class="notification-count {{#if current_user.notifications_count}}red{{/if}}"   title='Notifications'>
+                    <a href="/notifications" target="_blank">
+                        {{current_user.notifications_count}}
+                    </a>
+                </li>
+            </ul>
 
+            <ul class="nav-popout bottom">
+                <li class="popout-root">
+                    {{#linkToPerson current_user}}
+                        {{{personImage this "small" "medium"}}}
+                    {{/linkToPerson}}
+                </li>
+
+                <ul class="sub">
+                    <li title="Settings">
+                        <a href="/users/edit" class='icon'>
+                            <img src="{{imageUrl "nav/settings.png"}}" />
+                        </a>
+                    </li>
+                    <li title="Log Out">
+                        <a href="/users/sign_out" class='icon'>
+                            <img src="{{imageUrl "nav/logout.png"}}" />
+                        </a>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+    {{else}}
+        <ul class="login">
+            <li>
+                <a href="/users/sign_in" class="login-link">
+                    Log In
+                </a>
+            </li>
+        </ul>
+    {{/if}}
+</div>
+
+{{#if showSubNav}}
+    <div class="sub">
+        <ul class="nav-center">
+            {{#if onExplore}}
+                <li {{#if onFrontPage}}class="active"{{/if}}>
+                    <a href="/front_page">
+                        Popular
+                    </a>
+                </li>
+
+                <li {{#if onLatest}}class="active"{{/if}}>
+                    <a href="/latest">
+                        Latest
+                    </a>
+                </li>
+
+                <li {{#if onTopics}}class="active"{{/if}}>
+                    <a href="/topics">
+                        Topics
+                    </a>
+                </li>
+
+                <li {{#if onStaffPicks}}class="active"{{/if}}>
+                    <a href="/staff_picks">
+                        Staff Picks
+                    </a>
+                </li>
+            {{/if}}
+            {{#if onYou}}
+                <li {{#if onInterests}}class="active"{{/if}}>
+                    <a href="/interests">
+                        Interests
+                    </a>
+                </li>
+
+                <li {{#if onLikes}}class="active"{{/if}}>
+                    <a href="/likes">
+                        Likes
+                    </a>
+                </li>
+
+                <li {{#if onTopics}}class="active"{{/if}}>
+                    <a href="/{{current_user.username}}">
+                        Posts
+                    </a>
+                </li>
+            {{/if}}
+        </ul>
+    </div>
+{{/if}}

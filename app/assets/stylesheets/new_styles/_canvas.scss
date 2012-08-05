@@ -27,17 +27,6 @@ a.conversation_link{
   };
 }
 
-.steps {
-  background-color: #666 ;
-  width: 100%;
-  padding-top: 10px;
-  margin-bottom: 30px;
-
-  /* compensate for padding on body */
-  margin-left: -70px;
-  padding-left: 70px;
-}
-
 .featured-title {
   padding-left: 4px;
 }
@@ -72,7 +61,7 @@ a.conversation_link{
   margin-bottom:50px;
 
   /*compensate for margin on canvas-frame objects */
-  margin-left: -$frame-margin;
+  margin-left: 10px;
 
   .canvas-frame {
     margin : $frame-margin;
@@ -463,7 +452,7 @@ a.conversation_link{
     @include transition(opacity);
     @include opacity(0);
 
-    z-index : 10;
+    z-index : 80;
 
     position : absolute;
     top : 10px;

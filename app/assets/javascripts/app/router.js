@@ -3,10 +3,25 @@ app.Router = Backbone.Router.extend({
     "" : "rootPage",
     "?*params" : "rootPage",
 
-    //new hotness
+    //explore sub-sections
     "latest": "newStream",
     "latest?*params": "newStream",
 
+    "front_page": "frontPage",
+    "interests": "interests",
+
+    "staff_picks": "staffPicks",
+
+    "top_tags" : 'topTags',
+    "topics" : 'topTags',
+
+    'tagged/:name' : 'tagShow',
+    'topic/:name' : 'tagShow',
+    //end explore sub-sections
+
+    'timewarp' : 'timewarp',
+    'timewarp/:days_ago' : 'timewarp',
+    'timewarp?:days_ago' : 'timewarp',
 
     "search/:query": "search",
     "search/:query?*params": "search",
@@ -14,18 +29,11 @@ app.Router = Backbone.Router.extend({
     "people/:id": "newProfile",
     "u/:name": "newProfile",
 
-    "front_page": "frontPage",
-    "interests": "interests",
     "likes": "likes",
-    "staff_picks": "staffPicks",
 
     "posts/:id/remix?*params" : 'remix', // facebook action links supply signed_request params
     "posts/:id/remix" : 'remix',
     "posts/new" : "redirectToFramer",
-
-    'timewarp' : 'timewarp',
-    'timewarp/:days_ago' : 'timewarp',
-    'timewarp?:days_ago' : 'timewarp',
 
     "framer": "framer",
     "framer?bookmarklet=true&*params": "bookmarklet", 
@@ -44,12 +52,6 @@ app.Router = Backbone.Router.extend({
     "conversations/:id" : "conversation",
     "conversations": "conversations",
     
-    'tagged/:name' : 'tagShow',
-    'topic/:name' : 'tagShow',
-
-    'top_tags' : 'topTags',
-    'topics' : 'topTags',
-
     'about' : 'about',
     'pro_tips' : 'proTips',
     ":name" : "newProfile"
@@ -68,6 +70,8 @@ app.Router = Backbone.Router.extend({
   },
   
   interests : function(){
+    app.onYou = true;
+
     app.instrument("track", "Track Interests")
 
     app.onInterests = true
@@ -79,6 +83,8 @@ app.Router = Backbone.Router.extend({
   },
 
   topTags : function(){
+    app.onExplore = true;
+
     app.instrument("track", "Top Tags Loaded")
     this.renderPage(function(){ return new app.pages.TopTags()});
   },
@@ -104,6 +110,8 @@ app.Router = Backbone.Router.extend({
   },
 
   likes : function() {
+    app.onYou = true;
+
     app.instrument("track", "Likes loaded")
 
     this.genericCanvas({
@@ -130,6 +138,8 @@ app.Router = Backbone.Router.extend({
   },
 
   staffPicks : function() {
+    app.onExplore = true;
+
     app.onStaffPicks = true;
     this.genericCanvas({
       title : "Staff Picks"
@@ -137,6 +147,8 @@ app.Router = Backbone.Router.extend({
   },
 
   frontPage : function() {
+    app.onExplore = true;
+
     app.instrument("track", "Front Page loaded")
     this.genericCanvas({
       title : "Front Page",
@@ -145,6 +157,8 @@ app.Router = Backbone.Router.extend({
   },
 
   newStream : function() {
+    app.onExplore = true;
+
     app.instrument("track", "Stream loaded")
 
     var wantsCanvas = window.location.search.search('canvas') != -1
@@ -224,6 +238,8 @@ app.Router = Backbone.Router.extend({
   },
 
   tagShow : function(name){
+    app.onExplore = true;
+
     app.instrument("track", "Topic Loaded", {
       Name : name
     })

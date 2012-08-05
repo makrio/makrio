@@ -1,35 +1,53 @@
 $light-blue : #33B5E5;
-$nav-background : #000;
+$header-height:40px;
+$sub-header-height:30px;
 
 /* new styles */
 $nav-background-color: rgba(250,250,250,0.8);
 @mixin nav-shadow {
-  @include box-shadow(1px, 0, 3px, rgba(0,0,0,0.1));
+  @include box-shadow(0, 0, 3px, rgba(0,0,0,0.1));
 }
 
-#header{
+#header {
   @include nav-shadow();
   background-color: $nav-background-color;
-}
-.blue {
-  background:$light-blue;
-  color: white;
-  text-shadow:none;
-  font-family:RobotoBold;
-}
-#header,
-#user_pane {
 
   position:fixed;
+
+  left:0;
+  top:0;
+  width:100%;
+  z-index:997;
+
+  text-align:center;
 
   ul {
     list-style:none;
     padding:0;
     margin:0;
+    height:$header-height;
+    display:inline-block;
 
-    &.nav-about {
-      > li {
-        @include opacity(.4);
+    a {
+      font-family:inherit;
+    }
+
+    a:not(.icon):not(.author-name) {
+      display:block;
+      height:100%;
+      vertical-align:middle;
+      text-align:center;
+      font-size:1.5em;
+
+      padding-top:.47em;
+
+      color:inherit;
+
+      padding-left:10px;
+      padding-right:10px;
+
+      &:hover {
+        text-decoration:none;
       }
     }
 
@@ -37,14 +55,20 @@ $nav-background-color: rgba(250,250,250,0.8);
       @include transition(all);
       @include opacity(.7);
 
+      display:inline-block;
+      vertical-align:middle;
+
+      vertical-align:top;
+      height:100%;
+      min-width:$header-height;
+
       &:hover {
         @include opacity(1);
       }
 
-      &,
       img {
-        height:50px;
-        width:50px;
+        height:$header-height;
+        width:$header-height;
       }
 
       &.active {
@@ -52,61 +76,21 @@ $nav-background-color: rgba(250,250,250,0.8);
         background-color:$light-blue;
         position:relative;
 
-        &:hover {
-          background-color:$light-blue;
-        }
+        color:#fff;
       }
     }
   }
 
   ul.nav-main {
-    > li.active {
-      &:after {
-        content: image-url('tick.png');
-        position:absolute;
-        top:18px;
-        right:-5px;
-      }
-    }
+    position:absolute;
+    left:0;
   }
 
-  ul.nav-popout.right {
-    position:fixed;
-
-    li {
-      float:left;
-    }
-
-    li.popout-root {
-      @include opacity(1);
-      position:fixed;
-      z-index:2;
-    }
-
-    ul.sub {
-      @include transition(all, .2s);
-      @include opacity(0);
-      @include nav-shadow();
-
-      float:left;
-      background-color: $nav-background-color;
-      margin-left:-100px;
-    }
-
-    &:hover {
-      ul.sub {
-        @include opacity(1);
-        margin-left:50px;
-      }
-    }
+  ul.nav-center {
+    margin:0 auto;
   }
 
   ul.nav-popout.bottom {
-    position:absolute;
-
-    /* temp hack for our single use-case */
-    right:0;
-
     li {
       float:left;
     }
@@ -123,62 +107,39 @@ $nav-background-color: rgba(250,250,250,0.8);
       @include nav-shadow();
 
       float:left;
-      width:50px;
+      width:$header-height;
+      height:80px;
       background-color: $nav-background-color;
       margin-top:-100px;
+
+      >li {
+        height:$header-height;
+      }
     }
 
     &:hover {
       ul.sub {
         @include opacity(1);
-        margin-top:50px;
+        margin-top:$header-height;
       }
     }
   }
-}
-
-#header {
-  left:0;
-  top:0;
-  width:50px;
-  height:100%;
-  z-index:997;
 }
 
 #user_pane {
-  z-index:99;
-  position:fixed;
+  position:absolute;
+  right:0;
+  top:0;
 
-  top:10px;
-  right:10px;
-  min-width:100px;
-  height:50px;
-  
-  #user_pane_shadow {
-    @include nav-shadow();
-    background-color: $nav-background-color;
-  }
+  min-width:80px;
 
   .notification-count {
-    display:table-cell;
-    text-align:center;
-    vertical-align:middle;
     overflow:none;
     color:#fff;
     background-color: #ccc;
-    font-size:2em;
-    font-family:RobotoBold;
 
     &.red {
       background-color:#FF4444;
-    }
-    a {
-      margin-top: 16px;
-      display:block;
-      color:inherit;
-      &:hover {
-        text-decoration:none;
-      }
     }
   }
 
@@ -188,7 +149,52 @@ $nav-background-color: rgba(250,250,250,0.8);
   }
 }
 
-.nav-about {
+ul.login {
   position:absolute;
-  bottom:0;
+  right:0;
+  top:0;
+}
+
+#header div.root {
+  @include nav-shadow();
+  background-color:rgba(250,250,250,0.9);
+  height:$header-height;
+
+  ul > li.active {
+    background-color:transparent;
+    a {
+      color:$light-blue;
+    }
+  }
+
+  ul.nav-center {
+    li:not(.active) {
+      @include opacity(.5);
+      font-family:RobotoLight;
+    }
+    li:hover {
+      @include opacity(1);
+    }
+  }
+}
+
+#header div.sub {
+  font-size:0.7em;
+  height:$sub-header-height;
+
+  ul.nav-center {
+    li:not(.active) {
+      @include opacity(.5);
+    }
+    li:hover {
+      @include opacity(1);
+    }
+    li.active {
+      @include nav-shadow();
+    }
+  }
+
+  ul {
+    height:$sub-header-height;
+  }
 }

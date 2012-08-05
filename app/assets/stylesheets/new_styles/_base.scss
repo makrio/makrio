@@ -11,8 +11,7 @@ body {
   background-color: rgb(237,237,237);
   background-image : image_url("texture/light-bg.png");
   padding : none;
-  padding-top: 30px;
-  padding-left:70px;
+  padding-top: 100px;
 
   height:100%;
   &.lock {
@@ -35,7 +34,6 @@ body {
   font-size:4em;
   line-height:1em;
   margin-bottom:30px;
-  max-width: 80%;
 }
 
 #tag-info-share {
@@ -366,5 +364,27 @@ $bring-dark-accent-forward-color: #DDD;
     font-family:RobotoLight;
     color:#888;
     margin-bottom:30px;
+  }
+}
+
+.btn-group {
+  a {
+    padding: 4px 10px;
+    display:block;
+
+    color:inherit;
+    &:hover {
+      text-decoration:none;
+    }
+  }
+
+  button {
+    padding:0;
+
+    &.active {
+      a {
+        color:black;
+      }
+    }
   }
 }
