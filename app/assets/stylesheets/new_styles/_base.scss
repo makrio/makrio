@@ -368,3 +368,25 @@ $bring-dark-accent-forward-color: #DDD;
     margin-bottom:30px;
   }
 }
+
+.btn-group {
+  a {
+    padding: 4px 10px;
+    display:block;
+
+    color:inherit;
+    &:hover {
+      text-decoration:none;
+    }
+  }
+
+  button {
+    padding:0;
+
+    &.active {
+      a {
+        color:black;
+      }
+    }
+  }
+}

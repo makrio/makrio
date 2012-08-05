@@ -14,7 +14,14 @@ app.pages.GenericCanvas = app.pages.Base.extend({
   presenter : function() {
     return(_.extend(this.defaultPresenter(), {
       title : this.pageTitle,
-      description : this.pageDescription
+      description : this.pageDescription,
+
+      // extraction zone(TM)
+      onStaffPicks: function() { return document.location.pathname.search("staff") !== -1 },
+      onPopular: function() { return document.location.pathname.search("front_page") !== -1},
+      onTopics : function() { return document.location.pathname.search("topics") !== -1 },
+      onStaffPicks: function() { return document.location.pathname.search("staff") !== -1 },
+      onStaffPicks: function() { return document.location.pathname.search("staff") !== -1 }
     }))
   },
 

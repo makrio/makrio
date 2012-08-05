@@ -5,38 +5,13 @@
         </a>
     </li>
 
-    <li class="logo {{#if onLatest}}active{{/if}}" title='Latest Posts'>
-        <a href="/latest">
-            <img src="{{imageUrl "nav/public.png"}}" />
-        </a>
-    </li>
-
     {{#if loggedIn}}
         <li {{#if onInterests}}class="active"{{/if}} title="My Stream">
             <a href="/interests">
                 <img src="{{imageUrl "nav/interests.png"}}" />
             </a>
         </li>
-    {{/if}}
 
-    <li {{#if onTopics}}class="active"{{/if}} title="Topics">
-        <a href="/topics">
-            <img src="{{imageUrl "nav/topics.png"}}" />
-        </a>
-    </li>
-
-    <li {{#if onStaffPicks}}class="active"{{/if}} title="Staff Picks">
-        <a href="/staff_picks">
-            <img src="{{imageUrl "nav/staff_picks.png"}}" />
-        </a>
-    </li>
-
-    <li {{#if onTimeWarp}}class="active"{{/if}} title="Time Warp">
-        <a href="/timewarp">
-            <img src="{{imageUrl "nav/time.png"}}" />
-        </a>
-    </li>
-    {{#if loggedIn}}
         <li title='New Remix'>
             <a href="/framer" class="composer-button" data-remix-id="new">
                 <img src="{{imageUrl "nav/new.png"}}" class="composer-button" data-remix-id="new" />
@@ -59,4 +34,3 @@
         </a>
     </li>
 </ul>
-

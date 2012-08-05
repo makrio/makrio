@@ -2,10 +2,26 @@
 <div id="user_pane"/>
 
 <div class='container'>
-    <h1 id="page_title">
-        Topics
-        <small>See what Makrs are talking about. Join in!</small>
-    </h1>
+
+    <div>
+        <h1 id="page_title" style="display:inline-block">
+            Explore
+        </h1>
+        <div class="btn-group" style="display:inline-block; margin-left:15px;">
+            <button class="btn new-btn {{#if onPopular}}active{{/if}}">
+                <a href="/front_page">Popular</a>
+            </button>
+            <button class="btn new-btn {{#if onLatest}}active{{/if}}">
+                <a href="/latest">Latest</a>
+            </button>
+            <button class="btn new-btn {{#if onTopics}}active{{/if}}">
+                <a href="/topics">Topics</a>
+            </button>
+            <button class="btn new-btn {{#if onStaffPicks}}active{{/if}}">
+                <a href="/staff_picks">Staff Picks</a>
+            </button>
+        </div>
+    </div>
     
     <div class="topics" style='min-height:700px'>
         {{#each tags}}
