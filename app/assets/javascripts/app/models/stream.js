@@ -40,7 +40,7 @@ app.models.Stream = Backbone.Collection.extend({
   initialize : function(models, options){
     var collectionClass = options && options.collection || app.collections.Posts;
     var collectionOpts = options && options.collectionOptions || this.collectionOptions()
-    this.poll  = options && options.poller || true
+    this.poll  = options && options.poller || false
     this.items = new collectionClass([], collectionOpts);
     this.on("loadNew", this.addPollerPosts, this)
   },
