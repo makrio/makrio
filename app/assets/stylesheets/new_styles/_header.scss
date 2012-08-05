@@ -84,16 +84,6 @@ $nav-background-color: rgba(250,250,250,0.8);
   ul.nav-main {
     position:absolute;
     left:0;
-
-    > li.active {
-      &:after {
-        // will have to change this to point down
-        // content: image-url('tick.png');
-        // position:absolute;
-        // top:18px;
-        // right:-5px;
-      }
-    }
   }
 
   ul.nav-center {
@@ -118,9 +108,13 @@ $nav-background-color: rgba(250,250,250,0.8);
 
       float:left;
       width:$header-height;
-      height:120px;
+      height:80px;
       background-color: $nav-background-color;
       margin-top:-100px;
+
+      >li {
+        height:$header-height;
+      }
     }
 
     &:hover {

@@ -128,10 +128,20 @@ input:-moz-placeholder { color:#aaa; }
   cursor: pointer;
 }
 
-.new-btn.blue {
-  background: $light-blue;
-  color: white;
-  text-shadow: none;
+.new-btn {
+  &.blue,
+  &.red {
+    color: white;
+    text-shadow: none;
+  }
+
+  &.blue {
+    background: $light-blue;
+  }
+
+  &.red {
+    background: #FF4444;
+  }
 }
 
 .fb-btn {

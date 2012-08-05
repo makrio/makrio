@@ -2,7 +2,7 @@
 {{#unless loggedIn}}
     <div class="container">
         <div id="landing_banner">
-            <a href="/users/sign_up" class="login btn new-btn huge-btn blue" style="float:right; margin-right:30px;">
+            <a href="/users/sign_up" class="login btn new-btn huge-btn red" style="float:right; margin-right:30px;">
                 Sign up now
             </a>
 
@@ -14,21 +14,10 @@
             </h2>
         </div>
     </div>
-
-    <div class='steps'>
-        <div class="container image-wrap">
-            <img class='steps' src='{{imageUrl "landing_steps@2x.jpg"}}' />
-        </div>
-    </div>
 {{/unless}}
 <!--to remove-->
 
 <div class="container">
-    {{#unless loggedIn}}
-       <h2 class='featured-title'>{{title}} <small><a href='/latest' >See what people are remixing right now!</a></small></h2>
-    {{/unless}}
-    <div class='clearfix'/>
-
     <section id="canvas"/>
     <div id="paginate"><span class="loader hidden"/></div>
 </div>
