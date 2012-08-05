@@ -15,6 +15,12 @@ class HomeController < ApplicationController
         redirect_to '/users/sign_in'
         return
       end
+
+      # from StreamsController
+      @stream = Stream::FrontPage.new(current_user, params[:offset])
+      @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user, lite?: true) 
+      gon.stream = @stream_json
+
       render :nothing => true, :layout => 'post'
     end
   end
