@@ -63,17 +63,6 @@ a.conversation_link{
   }
 }
 
-div[data-template='generic-canvas-page'] {
-  #page_title {
-    text-align:center;
-    margin-bottom:20px;
-    small {
-      display:block;
-      margin-top:-10px;
-    }
-  }
-}
-
 #canvas {
   $frame-margin:5px;
   margin-bottom:50px;
@@ -470,7 +459,7 @@ div[data-template='generic-canvas-page'] {
     @include transition(opacity);
     @include opacity(0);
 
-    z-index : 10;
+    z-index : 80;
 
     position : absolute;
     top : 10px;

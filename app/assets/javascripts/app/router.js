@@ -70,6 +70,8 @@ app.Router = Backbone.Router.extend({
   },
   
   interests : function(){
+    app.onYou = true;
+
     app.instrument("track", "Track Interests")
 
     app.onInterests = true
@@ -81,6 +83,8 @@ app.Router = Backbone.Router.extend({
   },
 
   topTags : function(){
+    app.onExplore = true;
+
     app.instrument("track", "Top Tags Loaded")
     this.renderPage(function(){ return new app.pages.TopTags()});
   },
@@ -106,6 +110,8 @@ app.Router = Backbone.Router.extend({
   },
 
   likes : function() {
+    app.onYou = true;
+
     app.instrument("track", "Likes loaded")
 
     this.genericCanvas({
@@ -132,6 +138,8 @@ app.Router = Backbone.Router.extend({
   },
 
   staffPicks : function() {
+    app.onExplore = true;
+
     app.onStaffPicks = true;
     this.genericCanvas({
       title : "Staff Picks"
@@ -139,6 +147,8 @@ app.Router = Backbone.Router.extend({
   },
 
   frontPage : function() {
+    app.onExplore = true;
+
     app.instrument("track", "Front Page loaded")
     this.genericCanvas({
       title : "Front Page",
@@ -147,6 +157,8 @@ app.Router = Backbone.Router.extend({
   },
 
   newStream : function() {
+    app.onExplore = true;
+
     app.instrument("track", "Stream loaded")
 
     var wantsCanvas = window.location.search.search('canvas') != -1
@@ -226,6 +238,8 @@ app.Router = Backbone.Router.extend({
   },
 
   tagShow : function(name){
+    app.onExplore = true;
+
     app.instrument("track", "Topic Loaded", {
       Name : name
     })

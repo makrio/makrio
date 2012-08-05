@@ -11,7 +11,7 @@ body {
   background-color: rgb(237,237,237);
   background-image : image_url("texture/light-bg.png");
   padding : none;
-  padding-top: 70px;
+  padding-top: 100px;
 
   height:100%;
   &.lock {
@@ -34,7 +34,6 @@ body {
   font-size:4em;
   line-height:1em;
   margin-bottom:30px;
-  min-height:94px;
 }
 
 #tag-info-share {

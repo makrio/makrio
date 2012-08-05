@@ -1,10 +1,11 @@
 $light-blue : #33B5E5;
 $header-height:40px;
+$sub-header-height:30px;
 
 /* new styles */
 $nav-background-color: rgba(250,250,250,0.8);
 @mixin nav-shadow {
-  @include box-shadow(1px, 0, 3px, rgba(0,0,0,0.1));
+  @include box-shadow(0, 0, 3px, rgba(0,0,0,0.1));
 }
 
 #header {
@@ -19,7 +20,6 @@ $nav-background-color: rgba(250,250,250,0.8);
   z-index:997;
 
   text-align:center;
-  height:$header-height;
 
   ul {
     list-style:none;
@@ -28,13 +28,19 @@ $nav-background-color: rgba(250,250,250,0.8);
     height:$header-height;
     display:inline-block;
 
+    a {
+      font-family:inherit;
+    }
+
     a:not(.icon):not(.author-name) {
       display:block;
       height:100%;
       vertical-align:middle;
       text-align:center;
       font-size:1.5em;
-      padding-top: 10px;
+
+      padding-top:.47em;
+
       color:inherit;
 
       padding-left:10px;
@@ -49,11 +55,11 @@ $nav-background-color: rgba(250,250,250,0.8);
       @include transition(all);
       @include opacity(.7);
 
-      display:table-cell;
+      display:inline-block;
       vertical-align:middle;
 
       vertical-align:top;
-      height:$header-height;
+      height:100%;
       min-width:$header-height;
 
       &:hover {
@@ -146,5 +152,55 @@ $nav-background-color: rgba(250,250,250,0.8);
   ul,
   ul > li {
     float:left;
+  }
+}
+
+ul.login {
+  position:absolute;
+  right:0;
+  top:0;
+}
+
+#header div.root {
+  @include nav-shadow();
+  background-color:rgba(250,250,250,0.9);
+  height:$header-height;
+
+  ul > li.active {
+    background-color:transparent;
+    a {
+      color:$light-blue;
+    }
+  }
+
+  ul.nav-center {
+    li:not(.active) {
+      @include opacity(.5);
+      font-family:RobotoLight;
+    }
+    li:hover {
+      @include opacity(1);
+    }
+  }
+}
+
+#header div.sub {
+  font-size:0.7em;
+  height:$sub-header-height;
+
+  ul.nav-center {
+    li:not(.active) {
+      @include opacity(.5);
+    }
+    li:hover {
+      @include opacity(1);
+    }
+    li.active {
+      @include nav-shadow();
+    }
+  }
+
+  ul {
+    height:$sub-header-height;
   }
 }
