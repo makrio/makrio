@@ -41,6 +41,12 @@ app.views.Canvas = app.views.InfScroll.extend({
     this.$el.isotope("insert", $(this.flushViewBuffer()))
   },
 
+  //overridden from stream base class
+  prependToStream : function(el){
+    this.$el.prepend(el);
+    this.$el.isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
+  },
+
   mason : function() {
     /* make two calls to isotope
        1) on dom ready
