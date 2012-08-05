@@ -1,7 +1,6 @@
 app.pages.Base = app.views.Base.extend({
   baseSubviews : {
     "header" : "headerView",
-    "#user_pane" : "userPaneView"
   },
 
   renderBaseViews : function() {
@@ -19,6 +18,5 @@ app.pages.Base = app.views.Base.extend({
   initBaseViews : function() {
     this.loginBannerView = new app.views.LoginBanner()
     this.headerView = new app.views.Header({model : this.stream})
-    this.userPaneView = new app.views.UserPaneView()
   }
 });

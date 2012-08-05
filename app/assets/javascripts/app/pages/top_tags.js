@@ -13,8 +13,7 @@ app.pages.TopTags = app.pages.Base.extend({
   presenter : function(){
     modelsJson = _.map(this.model.models, function(model){ return model.attributes})
     return {
-      tags: modelsJson,
-      onTopics : true
+      tags: modelsJson
     }
   }
 

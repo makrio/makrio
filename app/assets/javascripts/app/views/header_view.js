@@ -7,7 +7,7 @@ app.views.Header = app.views.Base.extend({
   },
 
   postRenderTemplate : function() {
-    this.$('.nav-main li, .nav-about li').tooltip({placement: 'right', delay: { show: 300, hide: 100 }});
+    this.$('.nav-main li, .nav-about li').tooltip({placement: 'bottom', delay: { show: 300, hide: 100 }});
   },
 
   presenter : function(){
