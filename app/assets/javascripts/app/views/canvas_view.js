@@ -43,7 +43,7 @@ app.views.Canvas = app.views.InfScroll.extend({
 
   //overridden from stream base class
   prependToStream : function(el){
-    this.$el.prepend(el);
+    $('.first-frame').after(el)
     this.$el.isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
   },
 

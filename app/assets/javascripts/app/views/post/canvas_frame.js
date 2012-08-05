@@ -1,7 +1,7 @@
 //= require ./small_frame
 app.views.Post.FirstCanvasFrame = app.views.Base.extend({
   templateName : 'first-frame',
-  className : "mason canvas-frame",
+  className : "mason canvas-frame first-frame",
   events : {
     'click .collection-composer-button' : 'showModalFramer',
     'click a[rel=auth-required]' : 'requireAuth'
