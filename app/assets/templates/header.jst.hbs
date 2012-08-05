@@ -1,32 +1,34 @@
 <ul class="nav-main">
     <li class="logo {{#if onFrontPage}}active{{/if}}" title='Front Page'>
-        <a href="/front_page">
+        <a href="/front_page" class='icon'>
             <img src="{{imageUrl "nav/makr.png"}}" />
         </a>
     </li>
 
     <li class="{{#if onLatest}}active{{/if}}" title='Latest Posts'>
-        <a href="/latest">
+        <a href="/latest" class='icon'>
             <img src="{{imageUrl "nav/public.png"}}" />
         </a>
     </li>
 
     <li {{#if onTopics}}class="active"{{/if}} title="Topics">
-        <a href="/topics">
+        <a href="/topics" class='icon'>
             <img src="{{imageUrl "nav/topics.png"}}" />
         </a>
     </li>
+</ul>
 
-    <li {{#if onStaffPicks}}class="active"{{/if}} title="Staff Picks">
+<ul class="nav-center">
+    <li {{#if onStaffPicks}}class="active"{{/if}}>
         <a href="/staff_picks">
-            <img src="{{imageUrl "nav/staff_picks.png"}}" />
+            Explore 
         </a>
     </li>
 
     {{#if loggedIn}}
-        <li {{#if onInterests}}class="active"{{/if}} title="My Stream">
+        <li {{#if onInterests}}class="active"{{/if}}>
             <a href="/interests">
-                <img src="{{imageUrl "nav/interests.png"}}" />
+                You
             </a>
         </li>
     {{/if}}
@@ -36,7 +38,7 @@
     <div id='user_pane'>
         <ul>
             <li title='New Remix'>
-                <a href="/framer" class="composer-button" data-remix-id="new">
+                <a href="/framer" class="composer-button icon" data-remix-id="new">
                     <img src="{{imageUrl "nav/new.png"}}" class="composer-button" data-remix-id="new" />
                 </a>
             </li>
@@ -56,18 +58,18 @@
 
             <ul class="sub">
                 <li title='My Likes'>
-                    <a href="/likes">
+                    <a href="/likes" class='icon'>
                         <img src="{{imageUrl "nav/likes.png"}}" />
                     </a>
                 </li>
 
                 <li title="Settings">
-                    <a href="/users/edit">
+                    <a href="/users/edit" class='icon'>
                         <img src="{{imageUrl "nav/settings.png"}}" />
                     </a>
                 </li>
                 <li title="Log Out">
-                    <a href="/users/sign_out">
+                    <a href="/users/sign_out" class='icon'>
                         <img src="{{imageUrl "nav/logout.png"}}" />
                     </a>
                 </li>

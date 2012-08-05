@@ -25,23 +25,21 @@
 {{/unless}}
 <!--to remove-->
 
-<div class="container">
-    {{#unless loggedIn}}
-       <h2 class='featured-title'>{{title}} <small><a href='/latest' >See what people are remixing right now!</a></small></h2>
-    {{else}}
-        {{#if title}}
-           <h1 id="page_title">
-                {{title}}
-                {{#if description}}
-                    <small>
-                        {{description}}
-                    </small>
-                {{/if}}
-            </h1>
-        {{/if}}
-    {{/unless}}
-    <div class='clearfix'/>
+{{#unless loggedIn}}
+   <h2 class='featured-title'>{{title}} <small><a href='/latest' >See what people are remixing right now!</a></small></h2>
+{{else}}
+    {{#if title}}
+       <h1 id="page_title">
+            {{title}}
+            {{#if description}}
+                <small>
+                    {{description}}
+                </small>
+            {{/if}}
+        </h1>
+    {{/if}}
+{{/unless}}
+<div class='clearfix'/>
 
-    <section id="canvas"/>
-    <div id="paginate"><span class="loader hidden"/></div>
-</div>
+<section id="canvas"/>
+<div id="paginate"><span class="loader hidden"/></div>

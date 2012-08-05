@@ -63,12 +63,23 @@ a.conversation_link{
   }
 }
 
+div[data-template='generic-canvas-page'] {
+  #page_title {
+    text-align:center;
+    margin-bottom:20px;
+    small {
+      display:block;
+      margin-top:-10px;
+    }
+  }
+}
+
 #canvas {
   $frame-margin:5px;
   margin-bottom:50px;
 
   /*compensate for margin on canvas-frame objects */
-  margin-left: -$frame-margin;
+  margin-left: 10px;
 
   .canvas-frame {
     margin : $frame-margin;

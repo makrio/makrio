@@ -1,11 +1,8 @@
 app.pages.Base = app.views.Base.extend({
-  baseSubviews : {
-    "header" : "headerView",
-  },
-
   renderBaseViews : function() {
     this.initBaseViews()
     this.renderLoginBanner()
+    this.renderHeader()
 
     this.renderSubviews(this.baseSubviews)
   },
@@ -13,6 +10,10 @@ app.pages.Base = app.views.Base.extend({
   renderLoginBanner : function(){
     if(app.currentUser.authenticated()){ return }
     this.$el.append(this.loginBannerView.render().el)
+  },
+
+  renderHeader : function() {
+    $("body").prepend(this.headerView.render().el)
   },
 
   initBaseViews : function() {
