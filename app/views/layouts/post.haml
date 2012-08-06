@@ -4,7 +4,7 @@
     %meta{:charset => 'utf-8'}
     %meta{'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1'}
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}
-
+    %meta{"http-equiv"=>"Content-Language", :content=>"notranslate"}
     %meta{:name => "description", :content => "#{AppConfig[:pod_name]}"}
     %meta{:name => "author", :content => "Diaspora, Inc."}
 
@@ -60,7 +60,7 @@
 
     = include_gon(:camel_case => true, :namespace => :preloads)
 
-  %body
+  %body{:class => 'notranslate'}
     = flash_messages
     #container
     = yield
