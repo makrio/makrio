@@ -14,7 +14,7 @@ app.Router = Backbone.Router.extend({
     "topics" : 'topTags',
 
     'tagged/:name' : 'tagShow',
-    'topic/:name' : 'tagShow',
+    'topics/:name' : 'tagShow',
     //end explore sub-sections
 
     'timewarp' : 'timewarp',

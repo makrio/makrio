@@ -180,9 +180,9 @@ Diaspora::Application.routes.draw do
 
   get '/tagged/:name/auth_required' => 'tags#auth_show'
   get '/tagged/:name' => 'streams#category'
-  get '/topic/:name/auth_required' => 'tags#auth_show'
-  get '/topic/:name' => 'streams#category'
-  get '/topic/:name/updated' => 'streams#category'
+  get '/topics/:name/auth_required' => 'tags#auth_show'
+  get '/topics/:name' => 'streams#category'
+  get '/topics/:name/updated' => 'streams#category'
 
 
   get '/tags' => 'tags#index'

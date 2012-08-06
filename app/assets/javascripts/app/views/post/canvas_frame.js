@@ -16,7 +16,7 @@ app.views.Post.FirstCanvasFrame = app.views.Base.extend({
 
   currentTag : function(){
     var path = window.location.pathname
-    if(path.search("tagged") == 1 || path.search("topic") == 1) {
+    if(path.search("tagged") == 1 || path.search("topics") == 1) {
       return window.location.pathname.split('/').pop()
     }
   },
