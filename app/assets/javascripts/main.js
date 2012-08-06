@@ -6,6 +6,8 @@
 //= require mousetrap.min 
 //= require domains
 //= require backbone
+//= require backbone.queryparams.js
+
 //= require rails.validations
 //= require jquery.hotkeys
 //= require jquery.remotipart

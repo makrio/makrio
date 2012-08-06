@@ -1,11 +1,9 @@
 app.Router = Backbone.Router.extend({
   routes: {
     "" : "rootPage",
-    "?*params" : "rootPage",
 
     //explore sub-sections
     "latest": "newStream",
-    "latest?*params": "newStream",
 
     "front_page": "frontPage",
     "interests": "interests",
@@ -24,26 +22,21 @@ app.Router = Backbone.Router.extend({
     'timewarp?:days_ago' : 'timewarp',
 
     "search/:query": "search",
-    "search/:query?*params": "search",
 
     "people/:id": "newProfile",
     "u/:name": "newProfile",
 
     "likes": "likes",
 
-    "posts/:id/remix?*params" : 'remix', // facebook action links supply signed_request params
     "posts/:id/remix" : 'remix',
     "posts/new" : "redirectToFramer",
 
     "framer": "framer",
-    "framer?bookmarklet=true&*params": "bookmarklet", 
     "framer/done/:id" : "doneFraming",
 
-    "posts/:id?:params": "singlePost",
     "posts/:id": "singlePost",
     "posts/:id/frame": "singlePostFrame",
     "posts/:id/styleguide": "styleGuide",
-    "p/:id?:params": "singlePost",
     "p/:id": "singlePost",
 
     "posts/:id/next": "siblingPost",
@@ -119,14 +112,7 @@ app.Router = Backbone.Router.extend({
     })
   },
 
-  rootPage : function(params) {
-    var campaign = (params && params.split('campaign=')[1])
-    if(campaign) {
-      app.instrument("track", "Campaign", {
-        Name : campaign
-      })
-    }
-
+  rootPage : function() {
     app.onRoot = true
     this.frontPage()
   },
@@ -185,18 +171,18 @@ app.Router = Backbone.Router.extend({
     this.renderPage(function(){ return new app.pages.Profile({ personId : personId })});
   },
 
-  bookmarklet : function(params) {
-    var url = params.split('&')[0].replace('remoteurl=', '')
-    app.remotePhotoUrl  = decodeURIComponent(url)
-    this.framer()
-  },
-
   doneFraming : function(id){
     this.renderPage(function(){ return new app.pages.DoneFraming({ model_id : id})});
   },
 
-  framer : function(){
+  framer : function(params){
     app.instrument("track", "Compose")
+
+    // bookmarklet
+    if(params && params.bookmarklet && params.remoteurl) {
+      app.remotePhotoUrl = decodeURIComponent(params.remoteurl)
+    }
+
     this.renderPage(function(){ return new app.pages.Framer()});
   },
 
@@ -237,9 +223,10 @@ app.Router = Backbone.Router.extend({
     window.location = location
   },
 
-  tagShow : function(name){
+  tagShow : function(name, params){
     app.onExplore = true;
 
+    this.trackCampaign(params)
     app.instrument("track", "Topic Loaded", {
       Name : name
     })
@@ -248,5 +235,14 @@ app.Router = Backbone.Router.extend({
   
   category : function(name){
     this.genericCanvas();
+  },
+
+  trackCampaign : function(params) {
+    var campaign = (params && params.campaign)
+    if(campaign) {
+      app.instrument("track", "Campaign", {
+        Name : campaign
+      })
+    }
   }
 });
