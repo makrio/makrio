@@ -29,8 +29,8 @@ class TagsController < ApplicationController
     redirect_to "/tagged/#{@tag.name}"
   end
 
-  def top
-    @tags = StatusMessage.most_popular_tags(25)
+  def recently_popular
+    @tags = StatusMessage.recently_popular_tags(25)
 
     respond_to do |format|
       format.js{render :json => TagPresenter.as_collection(@tags, current_user, :with_people => false)}

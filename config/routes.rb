@@ -66,8 +66,8 @@ Diaspora::Application.routes.draw do
   get 'tags/:name' => 'tags#show', :as => 'tag'
 
   get 'tags/:name' => 'tags#show', :as => 'tag'
-  get 'top_tags/' => 'tags#top'
-  get 'topics/' => 'tags#top'
+  get 'top_tags/' => 'tags#recently_popular'
+  get 'topics/' => 'tags#recently_popular'
 
   get 'search/:query' => 'searchs#show'
   resources :photos, :except => [:index] do
