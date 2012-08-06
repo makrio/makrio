@@ -18,7 +18,12 @@ app.views.Canvas = app.views.InfScroll.extend({
           , person = app.page.model
 
         if(app.onInterests){
-          message = "Start liking things, and this will be populated"
+          message = "<h2>Makr.io is smart about showing you content you love.</h2> \
+                    <h3>This stream is based on content you've liked and content you've created.</h3> \
+                    <br> \
+                    You can choose what you see here by <strong>liking</strong> or <strong>creating</strong> content that reflects your interests. \
+                    <br> \
+                    Click <a href='/front_page'>Explore</a> to discover great new content."
 
         } else if(person && person.get("is_own_profile")){
           message = "Make something to start the magic."
