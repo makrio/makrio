@@ -4,6 +4,7 @@
     <tr>
       <th>Tag Name</th>
       <th>Number of posts</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
@@ -11,6 +12,12 @@
       <tr>
         <td><%=link_to tag.name, "/tagged/#{tag.name}"%> </td>
         <td><%= tag.count %></td>
+        <td>
+          <%= form_for tag, :class => 'form-inline', :remote => true do |t| %>
+            <%= t.text_area :description, :rows => 3%>
+            <%= t.submit :class => 'btn' %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

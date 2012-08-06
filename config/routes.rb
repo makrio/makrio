@@ -63,7 +63,6 @@ Diaspora::Application.routes.draw do
   get "interests" => "streams#interests"
 
   resources :tags, :only => [:index]
-  get 'tags/:name' => 'tags#show', :as => 'tag'
 
   get 'tags/:name' => 'tags#show', :as => 'tag'
   get 'top_tags/' => 'tags#recently_popular'
@@ -186,6 +185,7 @@ Diaspora::Application.routes.draw do
 
 
   get '/tags' => 'tags#index'
+  put '/tags/:id' => 'tags#update', :as => 'acts_as_taggable_on_tag'
   match '', to: 'streams#category', constraints: lambda{ |r| r.subdomain.present?}
 
   # usernames as first-class citizens; placed at the bottom to keep our defined routes intact.

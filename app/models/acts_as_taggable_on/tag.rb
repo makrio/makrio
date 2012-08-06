@@ -1,4 +1,5 @@
 class ActsAsTaggableOn::Tag
+  attr_accessible :description
 
 
 

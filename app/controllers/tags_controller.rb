@@ -8,6 +8,8 @@ class TagsController < ApplicationController
     render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404
   end
 
+  respond_to :html, :js
+  
   def set
     post = Post.find(params[:post_id])
     post.update_tags!(params['tag_list'])
@@ -27,6 +29,13 @@ class TagsController < ApplicationController
   def auth_show
     @tag = ActsAsTaggableOn::Tag.find_by_name!(params[:name])
     redirect_to "/tagged/#{@tag.name}"
+  end
+
+
+  def update
+    @tag = ActsAsTaggableOn::Tag.find(params[:id])
+    @tag.update_attributes(params[:acts_as_taggable_on_tag])
+    render :nothing => true, :layout => false, :status => 201
   end
 
   def recently_popular
