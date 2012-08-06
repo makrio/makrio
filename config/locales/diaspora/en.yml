@@ -765,7 +765,7 @@ en:
       password: "PASSWORD"
       continue: "Continue"
     create:
-      success: "You've joined Diaspora!"
+      success: "You've joined Makr.io!"
     edit:
       edit: "Edit %{name}"
       leave_blank: "(leave blank if you don't want to change it)"
