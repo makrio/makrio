@@ -9,7 +9,7 @@ class TagPresenter < BasePresenter
     base = {
       id: @tag.id,
       name: @tag.name,
-      display_name: @tag.name,
+      display_name: @tag.name.titleize.gsub("-", " "),
       title: "Come play with me and #{@tag.name} on Makr.io!",
 
       remix_count: remix_count,
@@ -29,7 +29,7 @@ class TagPresenter < BasePresenter
 
   def latest_post_screenshot
     post = base_scope.with_screenshot.order('created_at desc').first
-    post.screenshot_url
+    post ? post.screenshot_url : nil
   end
 
   def makrs
