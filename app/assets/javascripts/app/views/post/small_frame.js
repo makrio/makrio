@@ -97,7 +97,7 @@ app.views.Post.SmallFrame = app.views.Post.extend({
 
   dimensionsClass : function() {
     if(app.onStaffPicks) return;
-    return (!this.normalizedCollection && this.model.interactions.get("likes_count") > 5) ? "x2" : ""
+    return (!this.normalizedCollection && this.model.interactions.get("likes_count") > 6) ? "x2" : ""
   },
 
   goToPost : function(evt) {
