@@ -1,4 +1,4 @@
-app.pages.Search = app.pages.Base.extend({
+app.pages.Search = app.pages.GenericCanvas.extend({
   templateName : "generic-canvas-page",
 
   initialize : function(){
