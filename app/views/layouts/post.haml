@@ -2,20 +2,41 @@
 %html{:lang => "en", :dir => "ltr"}
   %head
     %meta{:charset => 'utf-8'}
+
+    / chrome frame
     %meta{'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1'}
+
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}
+
+    / translation
     %meta{"http-equiv"=>"Content-Language", :content => "en"}
     %meta{"name" => "google", :value => "notranslate"}
 
+    / site author and description
     %meta{:name => "author", :content => "Diaspora, Inc."}
     %meta{:name => "description", :content => "Makr.io is a collaborative web-remixing community that lets you creatively explore the topics you love with others."}
 
+    / search
+    %meta{:name => "keywords", :content => "makrio, makr"}
+
+    / mobile optimizations
     %meta{:name => "HandheldFriendly", :content => "True"}
     %meta{:name => "MobileOptimized", :content => "320"}
     %meta{:name => "viewport", :content => "initial-scale=1, maximum-scale=1"}
 
+    / apple icons
     %link{:rel => 'shortcut icon', :href => "#{image_path('favicon.png')}" }
     %link{:rel => 'apple-touch-icon-precomposed', :href => image_path('apple-touch-icon-precomposed.png')}
+
+    / dns prefetch block
+    %link{:rel => "dns-prefetch", :href => "//themes.googleusercontent.com"}
+    %link{:rel => "dns-prefetch", :href => "//d2v75xn1eqsd0m.cloudfront.net"}
+    - if Rails.env.production?
+      %link{:rel => "dns-prefetch", :href => "//api.mixpanel.com"}
+      %link{:rel => "dns-prefetch", :href => "//ssl.google-analytics.com"}
+      %link{:rel => "dns-prefetch", :href => "//beacon-1.newrelic.com"}
+      %link{:rel => "dns-prefetch", :href => "//ping.chartbeat.net"}
+      %link{:rel => "dns-prefetch", :href => "//static.olark.com"}
 
     = og_site_name
 
