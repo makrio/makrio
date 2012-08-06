@@ -30,8 +30,10 @@ app.pages.GenericCanvas = app.pages.Base.extend({
     this.showModal(gettingStartedView)
   },
 
-  setUpInfiniteScroll : function(){
-    this.stream = new app.models.Stream([], { collectionOptions: {} })
+  setUpInfiniteScroll : function(options){
+    //really gross. the old default here was to zero out sort order. pass in empty hash for the normal stream default behavior
+    options = options || { collectionOptions: {} }
+    this.stream = new app.models.Stream([], options)
     this.stream.preloadOrFetch()
     this.initSubviews()
   },

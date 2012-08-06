@@ -9,7 +9,7 @@ app.pages.TagsShow = app.pages.GenericCanvas.extend({
 
   initialize : function(options){
     this.tagName = options.name
-    this.setUpInfiniteScroll()
+    this.setUpInfiniteScroll({poller: true})
     this.tagInfo = new app.views.TagInfo({name : this.tagName})
   },
 
