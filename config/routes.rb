@@ -64,6 +64,8 @@ Diaspora::Application.routes.draw do
 
   resources :tags, :only => [:index]
   get 'tags/:name' => 'tags#show', :as => 'tag'
+
+  get 'tags/:name' => 'tags#show', :as => 'tag'
   get 'top_tags/' => 'tags#top'
   get 'topics/' => 'tags#top'
 
@@ -180,6 +182,7 @@ Diaspora::Application.routes.draw do
   get '/tagged/:name' => 'streams#category'
   get '/topic/:name/auth_required' => 'tags#auth_show'
   get '/topic/:name' => 'streams#category'
+  get '/topic/:name/updated' => 'streams#category'
 
 
   get '/tags' => 'tags#index'

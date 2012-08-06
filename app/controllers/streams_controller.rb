@@ -37,13 +37,16 @@ class StreamsController < ApplicationController
     @post = @category
     stream_responder do
       @stream = Stream::Category.new(current_user, @category, :max_time => max_time)
-      @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user, :lite? =>true)
+      scope = @stream.stream_posts
+      scope = scope.where('posts.id > ?', params[:last_post_id]) if params[:last_post_id].present?
+      @stream_json = PostPresenter.collection_json(scope, current_user, :lite? =>true)
     end
   end
 
   def front_page
     stream_responder do
       @stream = Stream::FrontPage.new(current_user, params[:offset])
+
       @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user, lite?: true) 
     end
   end
