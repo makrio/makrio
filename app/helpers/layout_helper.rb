@@ -89,6 +89,7 @@ module LayoutHelper
 
   def flash_messages
     flash.map do |name, msg|
+      next unless [:error, :notice].include?(name)
       content_tag(:div, :id => "flash_#{name}") do
         content_tag(:div, msg, :class => 'message')
       end
