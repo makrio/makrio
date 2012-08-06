@@ -1,14 +1,82 @@
+app.views.NewPostNotifier = app.views.Base.extend({
+  templateName : 'post-notifier',
+  className :'post-notifier',
+
+  events : {
+    "click" : "loadNewPosts",
+  },
+
+  //a stream MUST be the model
+  initialize : function(options){
+    this.stream = this.model
+    this.page = options.page
+    this._pageTitle = document.title
+
+    this.bindEvents()
+  },
+
+  postRenderTemplate : function(){
+    // this.$el.hide()
+  },
+
+  presenter : function(){
+    return {
+      count : this.count(),
+      noun : this.noun()
+    }
+  },
+
+  count : function(){
+    return this.stream.poller.models.length
+  },
+
+  noun : function(){
+    return this.count() == 1 ? "Post" : "Posts";
+  },
+
+  bindEvents : function(){
+    this.stream.on("hasMoar", this.notifyUserOfMorePosts, this)
+  },
+
+  unbindEvents : function(){
+    this.stream.off("hasMoar", this.notifyUserNewPosts, this)
+  },
+
+  loadNewPosts : function(){
+    console.log('loading new post')
+    this.stream.trigger("loadNew")
+
+    this.$el.hide()
+    document.title = this._pageTitle;
+
+    // this.resetScrollSpy()
+    $(window).trigger("scroll").scrollTop(0)
+  },
+
+  updatePageTitle : function(){
+    document.title = "(" + this.count() + ") " + this._pageTitle
+  },
+
+  notifyUserOfMorePosts : function(){
+    this.updatePageTitle()
+    this.$el.show()
+    this.render()
+  }
+
+});
+
+
 app.pages.Stream = app.pages.Base.extend({
   templateName : "stream",
 
   events : {
-    "click .post-notifier" : "loadNewPosts",
     "activate .stream-frame-wrapper" : 'triggerInteractionLoad',
   },
 
   subviews : {
     "#stream-content" : "streamView",
     "#stream-interactions" : "interactionsView",
+    '#new_posts_zone' : 'newPostsView'
   },
 
   initialize : function(){
@@ -16,10 +84,10 @@ app.pages.Stream = app.pages.Base.extend({
     var poll = page.search(/^\/latest/) != -1 && window.location.search.search('days_ago') == -1
     this.stream = this.model = new app.models.Stream([], {poller: poll})
     this.stream.preloadOrFetch()
+    this.newPostsView = new app.views.NewPostNotifier({model : this.model, page: this})
 
     this.initSubviews()
     this.bindEvents()
-    this._pageTitle = document.title
   },
 
   setUpMousetrap : function(){
@@ -65,8 +133,10 @@ app.pages.Stream = app.pages.Base.extend({
   },
 
   bindEvents : function(){
-    this.stream.on("hasMoar", this.notifyUserOfMorePosts, this)
+
+    
     this.stream.on("fetched", this.resetScrollSpy, this)
+
     this.stream.on("frame:interacted", this.selectFrame, this)
     this.on("refreshScrollSpy", this.refreshScrollSpy, this)
     this.setUpMousetrap()
@@ -74,7 +144,8 @@ app.pages.Stream = app.pages.Base.extend({
 
   unbind : function(){
     this.stream.unbind()
-    this.stream.off("hasMoar", this.notifyUserNewPosts, this)
+    this.newPostsView.unbind()
+
     this.stream.off("fetched", this.resetScrollSpy, this)
     this.stream.off("frame:interacted", this.selectFrame, this)
     this.off("refreshScrollSpy", this.refreshScrollSpy, this)
@@ -82,31 +153,8 @@ app.pages.Stream = app.pages.Base.extend({
     $(window).unbind("scroll")
   },
 
-  loadNewPosts : function(){
-    this.stream.trigger("loadNew")
-    this.notificationDiv.remove()
-    delete this.notificationDiv
 
-    document.title = this._pageTitle;
 
-    this.resetScrollSpy()
-    $(window).trigger("scroll").scrollTop(0)
-  },
-
-  notifyUserOfMorePosts : function(){
-    this.notificationDiv = this.notificationDiv || createDiv()
-    var count = this.stream.poller.models.length
-      , noun = count == 1 ? "Post" : "Posts";
-
-    this.notificationDiv.text(count + " New " + noun)
-    document.title = "(" + count + ") " + this._pageTitle
-
-    function createDiv(){
-      var div = $("<div/>", {class : "post-notifier" })
-      this.$("#stream-content").prepend(div)
-      return div
-    }
-  },
 
   postRenderTemplate : function() {
     //after all of the child divs have been added, initialize the scroll spy

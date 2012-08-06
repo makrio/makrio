@@ -303,11 +303,12 @@ t
   @include border-radius(3px);
   @include box-shadow(0, 2px, 3px, rgba(0, 0, 0, .7));
   @include transition(all);
+  display:none;
 
   position: fixed;
   top: -5px;
   left: 318px;
-  z-index: 15;
+  z-index: 1000;
 
   background-color: #FF4444;
   cursor: pointer;
