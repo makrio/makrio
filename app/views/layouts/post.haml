@@ -1,12 +1,14 @@
 !!!
-%html{:lang => I18n.locale.to_s, :dir => (rtl?) ? 'rtl' : 'ltr'}
+%html{:lang => "en", :dir => "ltr"}
   %head
     %meta{:charset => 'utf-8'}
     %meta{'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1'}
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}
-    %meta{"http-equiv"=>"Content-Language", :content=>"notranslate"}
-    %meta{:name => "description", :content => "#{AppConfig[:pod_name]}"}
+    %meta{"http-equiv"=>"Content-Language", :content => "en"}
+    %meta{"name" => "google", :value => "notranslate"}
+
     %meta{:name => "author", :content => "Diaspora, Inc."}
+    %meta{:name => "description", :content => "Makr.io is a collaborative web-remixing community that lets you creatively explore the topics you love with others."}
 
     %meta{:name => "HandheldFriendly", :content => "True"}
     %meta{:name => "MobileOptimized", :content => "320"}
