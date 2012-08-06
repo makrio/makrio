@@ -41,7 +41,9 @@ app.pages.GenericCanvas = app.pages.Base.extend({
   initSubviews : function(){
     this.canvasView = new app.views.Canvas({model : this.stream})
 
-    this.newPostsView = new app.views.NewPostNotifier({model : this.stream, page: this})
+    if(this.stream.poller){
+      this.newPostsView = new app.views.NewPostNotifier({model : this.stream, page: this})
+    }
   }
 });
 
