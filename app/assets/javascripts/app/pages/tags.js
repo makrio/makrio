@@ -2,7 +2,9 @@ app.pages.TagsShow = app.pages.GenericCanvas.extend({
   templateName : 'tags-show',
   subviews : {
     "#canvas" : "canvasView",
-    '#tag-info' : 'tagInfo'
+    '#tag-info' : 'tagInfo',
+    '#new_posts_notifier' : 'newPostsView'
+
   },
 
   initialize : function(options){

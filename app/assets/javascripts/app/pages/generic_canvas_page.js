@@ -3,6 +3,7 @@ app.pages.GenericCanvas = app.pages.Base.extend({
 
   subviews : {
     "#canvas" : "canvasView",
+    '#new_posts_notifier' : 'newPostsView'
   },
 
   initialize : function(options){
@@ -37,6 +38,8 @@ app.pages.GenericCanvas = app.pages.Base.extend({
 
   initSubviews : function(){
     this.canvasView = new app.views.Canvas({model : this.stream})
+
+    this.newPostsView = new app.views.NewPostNotifier({model : this.stream, page: this})
   }
 });
 
