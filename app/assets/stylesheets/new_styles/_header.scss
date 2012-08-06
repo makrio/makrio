@@ -160,6 +160,10 @@ ul.login {
   background-color:rgba(250,250,250,0.9);
   height:$header-height;
 
+  a:not(.icon):not(.author-name) {
+    padding-top:.5em;
+  }
+
   ul > li.active {
     background-color:transparent;
     a {

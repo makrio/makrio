@@ -12,16 +12,18 @@ app.views.Header = app.views.Base.extend({
   },
 
   presenter : function(){
+    var path = document.location.pathname
+
     return _.extend(this.defaultPresenter(), {
-      onLatest : function() { return document.location.pathname.search("latest") !== -1},
-      onFrontPage : function() { return document.location.pathname.search("front_page") !== -1},
-      onPopular : function() { return document.location.pathname.search("popular") !== -1 },
-      onStaffPicks: function() { return document.location.pathname.search("staff") !== -1 },
-      onTimeWarp: function() { return document.location.pathname.search("timewarp") !== -1 },
-      onTopics: function() { return document.location.pathname.search(/top_tags|topics/) !== -1 },
-      onInterests: function() { return document.location.pathname.search("interests") !== -1 },
-      onLikes: function() { return document.location.pathname.search("likes") !== -1 },
-      onPosts: function() { return document.location.pathname.search(currentUser.get("username")) !== -1 },
+      onLatest : function() { return path.search("latest") !== -1},
+      onFrontPage : function() { return path.search("front_page") !== -1 || path == "/"},
+      onPopular : function() { return path.search("popular") !== -1 },
+      onStaffPicks: function() { return path.search("staff") !== -1 },
+      onTimeWarp: function() { return path.search("timewarp") !== -1 },
+      onTopics: function() { return path.search(/top_tags|topics/) !== -1 },
+      onInterests: function() { return path.search("interests") !== -1 },
+      onLikes: function() { return path.search("likes") !== -1 },
+      onPosts: function() { return path.search(currentUser.get("username")) !== -1 },
 
       // temp router hack
       onExplore: app.onExplore,

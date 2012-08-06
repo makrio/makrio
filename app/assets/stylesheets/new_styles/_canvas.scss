@@ -147,10 +147,12 @@ a.conversation_link{
       width: 253px;
       height: 55px;
       padding:10px;
-      background:$light-blue;
-      color: white;
-      text-shadow: none;
       cursor: pointer;
+
+      &:not(.blue) {
+        color:#bbb;
+        border:1px solid #ccc;
+      }
     }
   }
 
