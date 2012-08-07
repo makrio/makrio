@@ -20,7 +20,7 @@ app.views.Header = app.views.Base.extend({
       onPopular : function() { return path.search("popular") !== -1 },
       onStaffPicks: function() { return path.search("staff") !== -1 },
       onTimeWarp: function() { return path.search("timewarp") !== -1 },
-      onTopics: function() { return path.search(/top_tags|topics/) !== -1 },
+      onTopics: function() { return path.search(/top_tags|topics$/) !== -1 },
       onInterests: function() { return path.search("interests") !== -1 },
       onLikes: function() { return path.search("likes") !== -1 },
       onPosts: function() { return path.search(currentUser.get("username")) !== -1 },
