@@ -96,7 +96,7 @@ app.views.InfScroll = app.views.Base.extend({
 
     function showAddButton() {
       var path = window.location.pathname
-      return (path.search("staff_picks") == -1 && path.search("latest") == -1 && path.search("likes") == -1) && !app.onProfilePage
+      return (path.search("staff_picks") == -1 && path.search("latest") == -1 && path.search("likes") == -1 && path.search('conversations') ==-1) && !app.onProfilePage 
     }
   },
 
