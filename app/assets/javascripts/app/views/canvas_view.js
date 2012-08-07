@@ -51,7 +51,7 @@ app.views.Canvas = app.views.InfScroll.extend({
   //overridden from stream base class
   prependToStream : function(el){
     $('.first-frame').after(el)
-    this.relayout()
+    this.reLayout()
   },
 
   mason : function() {
