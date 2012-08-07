@@ -25,10 +25,7 @@
     line-height: 1.5em;
   }
 
-  .sign-up-text {
-    font-family : RobotoBold, Helvetica, Arial, sans-serif;
-    margin-bottom : 0.5em;
-  }
+
 
   #collage {
     width : 344px;
@@ -37,9 +34,16 @@
     max-width : 95%;
   }
 
-  #login-helper-links {
-    width:100%;
-    text-align: center;
-    display: inline-block;
+}
+.sign-up-text {
+  font-family : RobotoBold, Helvetica, Arial, sans-serif;
+  margin-bottom : 0.5em;
+}
+#login-helper-links {
+  width:100%;
+  text-align: center;
+  display: inline-block;
+  a {
+    margin-right: 10px;
   }
 }
