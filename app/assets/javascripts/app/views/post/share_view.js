@@ -103,6 +103,13 @@ app.views.ShareView = app.views.Base.extend({
   imgfave : function(evt){
     evt && evt.preventDefault()
     app.instrument("track", "Share", {Service : "imgfave"})
+
+    //temp hax for now
+    if(this.model.get('original')){
+      this.model = new app.models.Post(this.model.get('original'))
+    }
+
+
     var options = {
       source_image : this.model.get('screenshot_url'),
       source_title : this.model.get('title'),
