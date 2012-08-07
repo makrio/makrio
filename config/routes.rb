@@ -182,6 +182,7 @@ Diaspora::Application.routes.draw do
   get '/topics/:name/auth_required' => 'tags#auth_show'
   get '/topics/:name' => 'streams#category'
   get '/topics/:name/updated' => 'streams#category'
+  get '/tagged/:name/updated' => 'streams#category'
 
 
   get '/tags' => 'tags#index'
