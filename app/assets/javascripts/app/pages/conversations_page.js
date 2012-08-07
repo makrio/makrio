@@ -13,6 +13,10 @@ app.pages.Conversations = app.pages.GenericCanvas.extend({
     '#brand-banner' : 'brandView'
   },
 
+  events : {
+    'click #cnv_rmx_btn' : 'showModalFramer'
+  },
+
   initialize : function(){
     this.model = new app.models.Conversation(app.parsePreload("conversation"))
     this.stream = new app.models.Stream([], { collectionOptions: {} })

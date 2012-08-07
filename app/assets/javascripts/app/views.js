@@ -127,7 +127,7 @@ app.views.Base = Backbone.View.extend({
     var target = $(evt.target)
 
     var post_id = target.data('remix-id')
-      , post = (post_id =='new') ? undefined : (this.stream && this.stream.items.get(post_id).buildRemix()) || this.model.buildRemix()
+      , post = (post_id =='new') ? undefined : (this.stream && this.stream.items.get(post_id) && this.stream.items.get(post_id).buildRemix()) || this.model.buildRemix()
       , tag = target.data('tag')
 
     this.framer = new app.views.InlineFramer({model : post, tag: tag})
