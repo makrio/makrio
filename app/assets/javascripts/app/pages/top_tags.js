@@ -1,6 +1,10 @@
 app.pages.TopTags = app.pages.Base.extend({
   templateName : 'top-tags',
 
+  events : {
+    "submit .find-topic" : "goToTopicPage"
+  },
+
   initialize : function(){
     this.model = new app.collections.Tags([], {})
 
@@ -15,6 +19,16 @@ app.pages.TopTags = app.pages.Base.extend({
     return {
       tags: modelsJson
     }
+  },
+
+  goToTopicPage : function(evt) {
+    evt && evt.preventDefault()
+
+    var originalQuery = $(evt.target).find("input[type=search]").val()
+      , normalizedQuery = $.trim(originalQuery).replace(/\s+/g, ' ').replace(/\s/g, '-')
+
+    window.location = "/topics/" + normalizedQuery
+
   }
 
 })
