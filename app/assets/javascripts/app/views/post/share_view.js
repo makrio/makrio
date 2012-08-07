@@ -16,7 +16,7 @@ app.views.ShareView = app.views.Base.extend({
       hideTumblr : this.options.hideTumblr,
       hidePinterest : this.options.hidePinterest,
       hideUrl: this.options.hideUrl,
-      imgfave: app.currentUser.get('admin')
+      imgfave: true
     })
   },
 
