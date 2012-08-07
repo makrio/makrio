@@ -13,6 +13,9 @@ class ConversationsController < ApplicationController
       format.html do
         presenter = ConversationPresenter.new(@original_post, current_user)
         gon.conversation = presenter
+        
+        stream = @original_post.remix_siblings.for_a_stream(max_time, 'created_at', current_user)
+        gon.stream =  PostPresenter.collection_json(stream, current_user, :lite? => true)
         render :nothing => true, :layout => "post"
       end 
 
