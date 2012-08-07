@@ -27,15 +27,11 @@
 @import 'new_styles/profile';
 @import 'new_styles/stream';
 
-/* isotope */
-@import 'new_styles/isotope_transitions';
-
 /* login */
 @import 'new_styles/login';
 @import 'new_styles/registration';
 @import 'new_styles/landing';
 
 @import 'new_styles/forms';
-
 
 @include video-overlay();

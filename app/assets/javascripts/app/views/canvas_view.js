@@ -43,34 +43,30 @@ app.views.Canvas = app.views.InfScroll.extend({
   },
 
   addPosts : function() {
-    this.$el.isotope("insert", $(this.flushViewBuffer()))
+    var newElements = $(this.flushViewBuffer()) 
+    this.$el.append(newElements)
+    this.$el.masonry("appended", newElements)
   },
 
   //overridden from stream base class
   prependToStream : function(el){
     $('.first-frame').after(el)
-    this.$el.isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
+    this.relayout()
   },
 
   mason : function() {
-    /* make two calls to isotope
+    /* make two calls to masonry
        1) on dom ready
        2) on images ready
      */
-    triggerIsotope(this.$el) && this.$el.imagesLoaded(_.bind(function(){
+    triggerMasonry(this.$el) && this.$el.imagesLoaded(_.bind(function(){
       this.reLayout()
     },this))
 
-    function triggerIsotope(element) {
-      return element.isotope({
+    function triggerMasonry(element) {
+      return element.masonry({
         itemSelector : '.mason',
-        transformsEnabled : false,
-        visibleStyle : {scale : 1},
-        hiddenStyle : {scale : 0.001},
-        containerStyle : {position : "relative"},
-        masonry : {
-          columnWidth : 1
-        }
+        columnWidth : 1
       })
     }
   },
@@ -81,6 +77,6 @@ app.views.Canvas = app.views.InfScroll.extend({
   },
 
   reLayout : function(){
-    this.$el.isotope("reLayout")
+    this.$el.masonry("reload")
   }
 });
