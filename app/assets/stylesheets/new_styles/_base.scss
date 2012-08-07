@@ -276,6 +276,8 @@ $bring-dark-accent-forward-color: #DDD;
   .tweet-button {
     margin-left: 14px;
   }
+
+
 }
 
 #share-actions {
@@ -289,7 +291,8 @@ $bring-dark-accent-forward-color: #DDD;
       width:12em;
 
     }
-  }
+
+
 }
 
 #framer-complete {
@@ -309,6 +312,20 @@ $bring-dark-accent-forward-color: #DDD;
 
   a {
     margin-right: 5px
+  }
+
+  }
+}
+
+
+a.imgfave-button{
+  font: Verdana, sans;
+  size: 12px;
+  color: black;
+  text-transform: none;
+
+  &:hover{
+    text-decoration: none;
   }
 }
 
