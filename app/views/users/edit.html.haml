@@ -3,7 +3,7 @@
 
 = render 'shared/settings_nav'
 :javascript
-  $(function(){View.initialize()})
+  $('a[rel*=facebox]').facebox() 
 
 .span-12.prepend-5.last
   .span-5.append-1
@@ -120,7 +120,7 @@
         %p
           = t('.close_account.make_diaspora_better')
         .span-10
-          = image_tag 'https://d2v75xn1eqsd0m.cloudfront.net/screenshots/4ca76f4bcb3526b6.jpg'
+          = image_tag 'https://d2v75xn1eqsd0m.cloudfront.net/screenshots/4ca76f4bcb3526b6.jpg', :width => 375
           %br
           %small
             %b
