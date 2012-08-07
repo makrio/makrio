@@ -1,12 +1,6 @@
 #post-content {
-  display : table;
-  position : absolute;
-
   height: 100%;
   width: 100%;
-
-  top : 0;
-  left : 0;
 
   #featured_frame {
     @include box-shadow(0,1px,1px,rgba(0, 0, 0, 0.1));
@@ -17,12 +11,10 @@
   }
 
   #info_row {
-    position : absolute;
     height : 100%;
     width : 100%;
 
     text-align : center;
-    margin : 80px 0;
   }
 
   .remix-frame,
