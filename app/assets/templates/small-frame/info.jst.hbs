@@ -1,17 +1,27 @@
 <div class="vitals">
-    <div class="post-author">
-        {{#if staff_picked_at}}
-            <i class="icon-star icon-grey"></i>
-        {{/if}}
+    <div>
+        <div class="post-author">
+            {{#if staff_picked_at}}
+                <i class="icon-star icon-grey"></i>
+            {{/if}}
 
-        {{#unless onProfilePage}}
-            {{#linkToPerson author}}
-                {{name}}
-            {{/linkToPerson}}
-        {{/unless}}
+            {{#unless onProfilePage}}
+                {{#linkToPerson author}}
+                    {{name}}
+                {{/linkToPerson}}
+            {{/unless}}
+        </div>
+
+        <i class="icon-heart icon-grey"></i> {{interactions.likes_count}}
+        <a href='/conversations/{{conversation_id}}' class='conversation_link'><i class="icon-random icon-grey"></i> {{interactions.remix_count}}</a>
+        <i class="icon-comment icon-grey"></i> {{interactions.comments_count}}
     </div>
 
-    <i class="icon-heart icon-grey"></i> {{interactions.likes_count}}
-    <a href='/conversations/{{conversation_id}}' class='conversation_link'><i class="icon-random icon-grey"></i> {{interactions.remix_count}}</a>
-    <i class="icon-comment icon-grey"></i> {{interactions.comments_count}}
+    {{#if tags}}
+        <div class="topics" style="max-width:100%; white-space:nowrap; text-overflow:ellipsis; margin-top:5px;">
+            {{#each tags}}
+                <a href="/topics/{{this}}" class="label">{{this}}</a>
+            {{/each}}
+        </div>
+    {{/if}}
 </div>

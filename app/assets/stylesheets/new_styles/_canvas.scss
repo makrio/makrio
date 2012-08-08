@@ -67,8 +67,6 @@ a.conversation_link{
     margin : $frame-margin;
     margin-bottom : 6px;
 
-    max-width : 100%;
-
     &:not(.x2) .content{
       p {
         line-height: 1em;
@@ -81,11 +79,19 @@ a.conversation_link{
 }
 
 .canvas-frame {
+  width : 275px;
+  &.x2 {
+    width:560px;
+  }
+}
+
+.canvas-frame {
   position : relative;
   background-color : #fff;
 
   /* larger declarations */
   &.x2 {
+
     .content {
       @include wide();
 
@@ -113,6 +119,21 @@ a.conversation_link{
 
       .author-name {
         font-family : RobotoBold;
+      }
+    }
+
+    .topics {
+      white-space: nowrap;
+      margin-top: 5px; 
+
+      .label {
+        @include transition(background-color);
+        text-shadow:none;
+        background-color:#ccc;
+
+        &:hover {
+          background-color:#999;
+        }
       }
     }
   }
