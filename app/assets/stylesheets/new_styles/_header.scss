@@ -81,9 +81,22 @@ $nav-background-color: rgba(250,250,250,0.8);
     }
   }
 
-  ul.nav-main {
+  .nav-main {
     position:absolute;
-    left:0;
+    left:10px;
+    top:5px;
+    opacity: 0.4;
+
+    a {
+      padding:0;
+      vertical-align:top;
+    }
+
+    &:hover {
+      opacity: 1;
+
+    }
+
   }
 
   ul.nav-center {
