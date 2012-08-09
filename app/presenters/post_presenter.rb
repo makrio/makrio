@@ -11,7 +11,7 @@ class PostPresenter
   end
 
   def self.collection_json(collection, current_user, opts={})
-    collection.includes(:author => :profile).map {|post| self.new(post, current_user).as_json(opts)}
+    collection.includes(:tags, :author => :profile).map {|post| self.new(post, current_user).as_json(opts)}
   end
 
   def as_json(options={})
