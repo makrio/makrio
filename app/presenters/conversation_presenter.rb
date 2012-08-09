@@ -13,8 +13,8 @@ class ConversationPresenter < BasePresenter
         :info => self.info_json,
         :original => self.original_json,
         :remix_siblings => self.remix_siblings_json,
-        :tag_list => @post.tag_list.join(", "),
-        :tags => @post.tags.as_json(),
+        :tags => @post.tags.as_json,
+        :tag_list => @post.tags.map(&:name).join(", "),
         :most_liked => PostPresenter.new(self.most_liked, @current_user).as_json(lite?: true, include_root: false),
         :latest => PostPresenter.new(self.all_posts.last, @current_user).as_json(lite?: true, include_root: false)
     }
