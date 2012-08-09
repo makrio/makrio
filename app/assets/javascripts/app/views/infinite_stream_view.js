@@ -46,6 +46,7 @@ app.views.InfScroll = app.views.Base.extend({
     }
   },
 
+
   prependToStream : function(el){
     this.$el.prepend(el);
   },
@@ -61,12 +62,6 @@ app.views.InfScroll = app.views.Base.extend({
   flushViewBuffer : function(){
     var posts = this._viewBuffer
     this.resetViewBuffer()
-
-    // lazyload images
-    $(posts).find("img.lazy").lazyload({
-      effect : "fadeIn",
-      threshold : 500
-    })
 
     return posts
   },

@@ -41,6 +41,5 @@
 //= require bootstrap-popover
 //= require bootstrap-dropdown
 //= require bootstrap-scrollspy-custom
-//= require jquery.lazyload
 
 
