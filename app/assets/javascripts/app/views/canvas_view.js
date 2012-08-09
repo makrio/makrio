@@ -8,7 +8,7 @@ app.views.Canvas = app.views.InfScroll.extend({
     this.postViews = []
     this.setupInfiniteScroll()
     this.stream.bind("reLayout", this.reLayout, this)
-    this.stream.bind("fetched", this.triggerRelayoutAfterImagesLoaded, this)
+    this.stream.bind("fetched", this.addPosts, this)
   },
 
   renderTemplate : function() {
@@ -65,8 +65,7 @@ app.views.Canvas = app.views.InfScroll.extend({
 
     function triggerMasonry(element) {
       return element.masonry({
-        itemSelector : '.mason',
-        columnWidth : 1
+        itemSelector : '.mason'
       })
     }
   },
