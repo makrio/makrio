@@ -67,7 +67,11 @@ app.views.Canvas = app.views.InfScroll.extend({
       return element.masonry({
         itemSelector : '.mason',
         columnWidth: 275,
-        gutterWidth: 10
+        gutterWidth: 10,
+        isFitWidth: true,
+        containerStyle : {
+          margin: "0 auto"
+        }
       })
     }
   },
