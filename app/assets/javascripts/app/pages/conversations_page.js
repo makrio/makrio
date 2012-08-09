@@ -26,7 +26,6 @@ app.pages.Conversations = app.pages.GenericCanvas.extend({
 
   presenter : function(){
     return _.extend(this.defaultPresenter(), {
-      tags : this.model.get('tag_list').split(','),
       isBrand : this.isBrand()
     })
   },

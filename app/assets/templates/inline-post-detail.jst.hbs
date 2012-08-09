@@ -14,7 +14,7 @@
 	</br/>
 	<h6> Topics </h6>
 	{{#each tags}}
-    <a class='topic-link' href='/tagged/{{this}}'> <span class="label">{{this}}</span></a>
+    <a class='topic-link' href='/tagged/{{this.name}}'> <span class="label">{{this.display_name}}</span></a>
 	{{/each}}
 
 	<div id="selected_reactions" />
