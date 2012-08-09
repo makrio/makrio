@@ -39,34 +39,33 @@ class StreamsController < ApplicationController
       @stream = Stream::Category.new(current_user, @category, :max_time => max_time)
       scope = @stream.stream_posts
       scope = scope.where('posts.id > ?', params[:last_post_id]) if params[:last_post_id].present?
-      @stream_json = PostPresenter.collection_json(scope, current_user, :lite? =>true)
+      @stream_json = PostPresenter.collection_json(scope, current_user, lite?: true, include_root: false)
     end
   end
 
   def front_page
     stream_responder do
       @stream = Stream::FrontPage.new(current_user, params[:offset])
-
-      @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user, lite?: true) 
+      @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user, lite?: true, include_root: false)
     end
   end
 
   def interests
     stream_responder do
       @stream = Stream::Interests.new(current_user, params[:offset])
-      @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user, lite?: true) 
+      @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user, lite?: true, include_root: false)
     end
   end
 
   def likes
     stream_responder do
-      default_stream(Stream::Likes, :lite? => true )
+      default_stream(Stream::Likes, lite?: true, include_root: false)
     end
   end
 
   def staff_picks
     stream_responder do
-      default_stream(Stream::StaffPicks, :lite? => true)
+      default_stream(Stream::StaffPicks, lite?: true, include_root: false)
     end
   end
   
@@ -96,9 +95,10 @@ class StreamsController < ApplicationController
     end
   end
 
-
   def preload_getting_started
+    return unless current_user.getting_started?
+    
     posts = Post.where(:id => [3080, 8883, 7572, 1587])
-    gon.getting_started = PostPresenter.collection_json(posts, current_user, lite?: true)
+    gon.getting_started = PostPresenter.collection_json(posts, current_user, lite?: true, include_root: false)
   end
 end

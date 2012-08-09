@@ -25,7 +25,6 @@ class PostPresenter
         :created_at => @post.created_at,
         :staff_picked_at => @post.staff_picked_at,
         :interacted_at => @post.interacted_at,
-        :provider_display_name => @post.provider_display_name,
         :tags => @post.tags.as_json,
         :tag_list => @post.tags.map(&:name).join(", "),
         :post_type => @post.post_type,
@@ -35,7 +34,7 @@ class PostPresenter
         :nsfw => @post.nsfw,
         :author => PersonPresenter.new(@post.author, current_user),
         :o_embed_cache => @post.o_embed_cache.try(:as_api_response, :backbone),
-        :mentioned_people => [],#@post.mentioned_people.as_api_response(:backbone),
+        :mentioned_people => [],
         :photos => @post.photos.map {|p| p.as_api_response(:backbone)},
         :frame_name => @post.frame_name || template_name,
         :parent => (options.fetch(:include_root, true) ? parent(options) : nil),
@@ -48,7 +47,6 @@ class PostPresenter
         :show_screenshot => self.show_screenshot?,
         :has_gif => self.has_gif?,
         :conversation_id => @post.conversation_id,
-        :conversation_name => self.conversation_title,
         :interactions => options.fetch(:lite?, false) ? lite_interactions : heavy_interactions,
         :original => @post.original?
     }
@@ -72,17 +70,6 @@ class PostPresenter
 
   def title
     @post.text.present? ? truncate(@post.plain_text, :length => 118) : I18n.translate('posts.presenter.title', :name => @post.author.name)
-  end
-
-  def conversation_title
-    if @post.original?
-      title
-    elsif @post.root.present?
-      # raise @post.inspect unless @post.root
-     PostPresenter.new(@post.root, @current_user).title
-    else
-      "A cool story" #BAD
-    end
   end
 
   def template_name #kill me, lol, I should be client side

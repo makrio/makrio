@@ -6,7 +6,7 @@ class PostInteractionPresenter
 
   def as_json(options={})
     {
-        :likes => LikePresenter.as_collection(@post.likes, @current_user),
+        :likes => LikePresenter.as_collection(@post.likes.includes(:author => :profile), @current_user),
         :comments => CommentPresenter.as_collection(@post.comments.includes(:author => :profile).order("created_at ASC"), @current_user),
         :remixes => RemixPresenter.as_collection(@post.remix_siblings.featured_and_by_author(@person).includes(:author => :profile).limit(3), @current_user),
         :comments_count => @post.comments_count,

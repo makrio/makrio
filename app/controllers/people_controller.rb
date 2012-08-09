@@ -95,11 +95,11 @@ class PeopleController < ApplicationController
       format.html do
         @page = :experimental
         gon.person = PersonPresenter.new(@person, current_user)
-        gon.stream = PostPresenter.collection_json(@stream.stream_posts, current_user)
+        gon.stream = PostPresenter.collection_json(@stream.stream_posts, current_user, lite?: true, include_root: false)
         render :nothing => true, :layout => 'post'
       end
 
-      format.json { render :json => @stream.stream_posts.map { |p| LastThreeCommentsDecorator.new(PostPresenter.new(p, current_user), current_user) }}
+      format.json { render :json => PostPresenter.collection_json(@stream.stream_posts, current_user, lite?: true, include_root: false) }
       format.rss {@articles = @stream.stream_posts}
       format.mobile do
         @profile = @person.profile
