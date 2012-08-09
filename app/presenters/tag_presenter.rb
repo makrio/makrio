@@ -9,7 +9,7 @@ class TagPresenter < BasePresenter
     base = {
       id: @tag.id,
       name: @tag.name,
-      display_name: @tag.name.titleize.gsub("-", " "),
+      display_name: @tag.display_name,
       description: @tag.description,
       title: "Come play with me and #{@tag.name} on Makr.io!",
 

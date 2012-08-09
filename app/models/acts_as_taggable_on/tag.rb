@@ -2,6 +2,33 @@ class ActsAsTaggableOn::Tag
   attr_accessible :description
 
 
+  def self.possible_duplicates
+    self.all.map do |x|
+      next if x.name == x.name.parameterize
+      if(ActsAsTaggableOn::Tag.where(:name => x.name.parameterize).count > 0)
+        x.name
+      end
+    end.compact
+  end
+
+  def self.delete_empty_tags
+    self.all.map do |x|
+      if x.taggings.count == 0
+        x.destroy
+      end
+    end
+  end
+
+  def as_json(opts={})
+    {
+      :name => name,
+      :display_name => display_name
+    }
+  end
+
+  def display_name
+    name.titleize
+  end
 
   def self.combine_tags(tag_to_delete, opts)
     new_home = opts[:into]

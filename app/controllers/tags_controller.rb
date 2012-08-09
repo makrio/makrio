@@ -18,7 +18,7 @@ class TagsController < ApplicationController
 
   def index
     @page = :experimental  #gross hax to get bootstrap
-    @tags = StatusMessage.most_popular_tags(100) 
+    @tags = StatusMessage.most_popular_tags(1000) 
   end
 
   def show

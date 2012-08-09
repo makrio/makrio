@@ -27,7 +27,7 @@ class PostPresenter
         :interacted_at => @post.interacted_at,
         :provider_display_name => @post.provider_display_name,
         :tag_list => @post.tag_list.join(", "),
-        :tags => @post.tags.map(&:name),
+        :tags => @post.tags.as_json,
         :post_type => @post.post_type,
         :image_url => @post.image_url,
         :object_url => @post.object_url,
