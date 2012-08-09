@@ -233,6 +233,7 @@ $bring-dark-accent-forward-color: #DDD;
 
 .bookmarklet-button {
   cursor : move;
+
 }
 
 #composer-button.label.label-inverse {
@@ -337,25 +338,84 @@ a.imgfave-button{
 }
 
 #about_container {
-  @include box-shadow(0,1px,1px,rgba(0, 0, 0, 0.1));
+  /*@include box-shadow(0,1px,1px,rgba(0, 0, 0, 0.1));*/
+  width: 620px;
   padding:50px;
-  background-color:#fff;
   margin-bottom:40px;
-}
+  font-size: 16px;
+  line-height:24px;
+  color:#333;
 
-.follow-buttons {
-  a {
-    margin-right:5px;
+  h2{
+  font-family:Roboto;
+  }
+
+  p{
+  font-family:RobotoLight;
+   img {
+    border: 1px solid #999;
+   }
+  }
+
+  span{
+  font-family:Roboto;
+  }
+
+  li{
+  font-family:Roboto;
+  font-size: 14px;
+  line-height: 18px;
+  padding-top: 10px;
+  color:#333;
+  }
+
+  a{
+  color: #333;
+  font-family: Roboto;
     &:hover{
-      text-decoration:none;
-    }
-
-    img {
-      height:35px;
-      width:35px;
+      text-decoration: underline;
+      color : $link-blue;
     }
   }
+
+  img.floatLeft { 
+    float: left; 
+    margin-right: 25px;
+    margin-left: -3px; 
+  }
+
+  code{
+    /*background-color: #F7F7F9;*/
+    background-color: #fff;
+    border: 2px solid #33b5e5;
+    /*color: #33b5e5;*/
+    color: #0099cc;
+    font-family: RobotoBold;
+    font-size: 16px;
+    padding: 0px 4px;
+  }
+
+  .follow-buttons {
+    a {
+      margin-right: 5px;
+      &:hover{
+          text-decoration: none;
+      }
+      img {
+        opacity: .6;
+        height: 60px;
+        width: 60px;
+        &:hover{
+          text-decoration: none;
+          opacity: 1;
+          }
+      }
+    }
+  }
+
 }
+
+
 
 #landing_banner {
   padding: 20px 0;
