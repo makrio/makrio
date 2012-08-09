@@ -96,7 +96,14 @@ app.views.InfScroll = app.views.Base.extend({
     }
 
     this.stream.items.each(_.bind(function(post){
-      this.$el.append(this.createPostView(post).render().el);
+      var view = this.createPostView(post).render()
+         , img = view.$("img.lazy")
+
+      $.each(img, function(idx, el) {
+        $(el).attr("src", $(el).data("original"))
+      })
+
+      this.$el.append(view.el);
     }, this))
 
     function showAddButton() {

@@ -46,8 +46,6 @@ var app = {
     // track sign-ups
     this.instrumentIncomingSignUpLinks()
 
-    this.lazyLoad()
-
     // there's probably a better way to do this...
     $("a[rel=backbone]").on("click", function(evt){
       evt.preventDefault();
