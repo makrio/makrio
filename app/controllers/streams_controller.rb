@@ -96,7 +96,7 @@ class StreamsController < ApplicationController
   end
 
   def preload_getting_started
-    return unless current_user.getting_started?
+    return unless user_signed_in? && current_user.getting_started?
     
     posts = Post.where(:id => [3080, 8883, 7572, 1587])
     gon.getting_started = PostPresenter.collection_json(posts, current_user, lite?: true, include_root: false)
