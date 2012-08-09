@@ -10,7 +10,6 @@
 
 //= require rails.validations
 //= require jquery.hotkeys
-//= require jquery.remotipart
 //= require jquery.autoresize
 //= require jquery.placeholder
 //= require timeago

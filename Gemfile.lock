@@ -539,7 +539,6 @@ DEPENDENCIES
   rails_admin
   rails_autolink
   redcarpet (= 2.1.1)
-  remotipart (~> 1.0)
   resque (= 1.20.0)
   resque-heroku
   resque-timeout (= 1.0.0)

@@ -1,12 +1,9 @@
 app.forms.PictureBase = app.views.Base.extend({
   events : {
-    'ajax:complete .new_photo' : "photoUploaded",
     "change input[name='photo[user_file]']" : "submitUpload",
     "click .img-url" : "submitURL"
   },
 
-  onSubmit : $.noop,
-  uploadSuccess : $.noop,
 
   postRenderTemplate : function(){
     this.$("input[name=authenticity_token]").val($("meta[name=csrf-token]").attr("content"))
@@ -22,33 +19,23 @@ app.forms.PictureBase = app.views.Base.extend({
     }
 
     filepicker.setKey('7nluBwH4SbyxSKdCamQD');
+    this.onSubmit();
 
-    that.onSubmit();
     filepicker.uploadFile(evt.target, function(data){
-      $(fileinput).val('')
+      $(fileinput).val('')// need to clear out the field so we do not double submit
       var filename = data.url + '+' + data.data.filename
-      $("form input[name='photo[image_url]']").val(filename)
-      that.$("form").submit();
-      });
-
+      that.addPhoto(filename)
+    });
   },
 
   submitURL : function(evt){
     evt && evt.preventDefault()
-    if(this.$("form input[name='photo[image_url]']").val()){
-      this.submitUpload();
+    var filename = this.$("form input[name='photo[image_url]']").val()
+    if(filename){
+      this.onSubmit();
+      this.addPhoto(filename)
     } 
   },
-
-  photoUploaded : function(evt, xhr) {
-    resp = JSON.parse(xhr.responseText)
-    if(resp.success) {
-      this.uploadSuccess(resp)
-    } else {
-      alert("Upload failed!  Check your URL. Error:" + resp.error);
-      this.render()
-    }
-  }
 });
 
 /* multi photo uploader */
@@ -72,9 +59,12 @@ app.forms.Picture = app.forms.PictureBase.extend({
     this.$(".new_photo").append($('<span class="loader" style="margin-left: 5px;"></span>'))
   },
 
-  uploadSuccess : function(resp) {
-    this.photos.add(new Backbone.Model(resp.data))
+  addPhoto : function(url){
+    var newPhoto = new app.models.Photo()
+    newPhoto.prepareForFramer(url)
+    this.photos.add(newPhoto)
     this.trigger("uploaded")
+    newPhoto.save()
   }
 });
 

@@ -14,11 +14,12 @@ class PhotosController < ApplicationController
         respond_to do |format|
           format.any{ render :json =>{'success'=> false} }
         end
+        return
       end
       @photo = current_user.build_post(:photo, params[:photo])
       if @photo.save
         respond_to do |format|
-          format.any{ render :json => {"success" => true, "data" => @photo.as_api_response(:backbone)} }
+          format.any{ render :json => @photo.as_api_response(:backbone)}
         end
       else
         render :json => {'error' => @photo.errors.full_messages}, :status => 422

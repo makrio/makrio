@@ -26,7 +26,6 @@ gem 'pg_search'
 
 gem 'devise', '~> 2.1.0'
 
-gem 'remotipart', '~> 1.0'
 
 gem 'screencap', :git => 'git://github.com/maxwell/screencap.git'
 
