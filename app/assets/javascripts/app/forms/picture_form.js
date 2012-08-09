@@ -12,10 +12,25 @@ app.forms.PictureBase = app.views.Base.extend({
     this.$("input[name=authenticity_token]").val($("meta[name=csrf-token]").attr("content"))
   },
 
-  submitUpload : function (){
+  submitUpload : function (evt){
     this.requireAuth(); //the file picker thing doesnt allow for normal binding of this.
-    this.$("form").submit();
-    this.onSubmit();
+    var that = this
+    var fileinput = evt.target
+
+    if(!(fileinput.files[0].type.indexOf("image/") === 0)){
+      return false
+    }
+
+    filepicker.setKey('7nluBwH4SbyxSKdCamQD');
+
+    that.onSubmit();
+    filepicker.uploadFile(evt.target, function(data){
+      $(fileinput).val('')
+      var filename = data.url + '+' + data.data.filename
+      $("form input[name='photo[image_url]']").val(filename)
+      that.$("form").submit();
+      });
+
   },
 
   submitURL : function(evt){
