@@ -46,6 +46,8 @@ var app = {
     // track sign-ups
     this.instrumentIncomingSignUpLinks()
 
+    this.lazyLoad()
+
     // there's probably a better way to do this...
     $("a[rel=backbone]").on("click", function(evt){
       evt.preventDefault();
@@ -54,6 +56,14 @@ var app = {
       $(".stream_title").text(link.text())
       app.router.navigate(link.attr("href").substring(1) ,true)
     })
+  },
+
+  lazyLoad : function(opts) {
+    // lazyload images
+    $("img.lazy").lazyload(_.extend(opts || {}, {
+      effect : "fadeIn",
+      threshold : 500
+    }))
   },
 
   hasPreload : function(prop) {

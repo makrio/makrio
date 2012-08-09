@@ -1,7 +1,7 @@
 <div class='stream-frame-feedback' />
 
 <div class="content">
-    <img src="{{screenshot_url}}" height="{{adjustedImageHeight}}px"   width="{{adjustedImageWidth}}px" class="{{has_gif}} frame-screenshot" />
+    <img src="{{imageUrl "empty.gif"}}" data-original="{{screenshot_url}}" height="{{adjustedImageHeight}}px" width="{{adjustedImageWidth}}px" class="{{has_gif}} lazy frame-screenshot" />
     {{#if has_gif}}
       <div class='video-overlay'/>
     {{/if}}

@@ -559,11 +559,16 @@ a.conversation_link{
 .conversation-original {
   .canvas-frame {
     overflow : hidden;
+
+    .stream-frame-feedback {
+      display:none;
+    }
   }
 
   .canvas-frame:hover {
     .stream-frame-feedback {
       @include animation(bump-down);
+      display:block;
       top : -10px;
     }
   }
