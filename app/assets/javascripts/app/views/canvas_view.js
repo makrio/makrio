@@ -65,7 +65,9 @@ app.views.Canvas = app.views.InfScroll.extend({
 
     function triggerMasonry(element) {
       return element.masonry({
-        itemSelector : '.mason'
+        itemSelector : '.mason',
+        columnWidth: 275,
+        gutterWidth: 10
       })
     }
   },
