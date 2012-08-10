@@ -10,6 +10,7 @@ app.pages.TimeWarp = app.pages.Base.extend({
     this.stream = new app.models.Stream([], { collectionOptions: {} })
     this.stream.preloadOrFetch()
     this.initSubviews()
+    app.onExplore = true
     this._daysAgo = options.daysAgo
   },
 
