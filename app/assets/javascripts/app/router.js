@@ -72,7 +72,7 @@ app.Router = Backbone.Router.extend({
   },
 
   timewarp : function(daysAgo){
-    var params = params || {}
+    var daysAgo = daysAgo || {}
     var days = typeof(daysAgo) =='String' ? daysAgo : daysAgo.days_ago
     this.renderPage(function(){ return new app.pages.TimeWarp({daysAgo : days})});
   },
