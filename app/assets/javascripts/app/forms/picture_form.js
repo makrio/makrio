@@ -62,9 +62,11 @@ app.forms.Picture = app.forms.PictureBase.extend({
   addPhoto : function(url){
     var newPhoto = new app.models.Photo()
     newPhoto.prepareForFramer(url)
-    this.photos.add(newPhoto)
-    this.trigger("uploaded")
-    newPhoto.save()
+
+    newPhoto.save().done(_.bind(function(){
+      this.photos.add(newPhoto)
+      this.trigger("uploaded")
+    }, this))
   }
 });
 
