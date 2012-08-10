@@ -12,12 +12,12 @@ describe User::SocialActions do
     end
 
     it "creates a partcipation" do
-      lambda{ alice.comment!(@status, "bro") }.should change(Participation, :count).by(1)
+      lambda{ alice.comment!(@status, "bro") }.to change(Participation, :count).by(1)
       alice.participations.last.target.should == @status
     end
 
     it "creates the like" do
-      lambda{ alice.comment!(@status, "bro") }.should change(Comment, :count).by(1)
+      lambda{ alice.comment!(@status, "bro") }.to change(Comment, :count).by(1)
     end
 
     it "federates" do
@@ -34,7 +34,7 @@ describe User::SocialActions do
     end
 
     it "creates the like" do
-      lambda{ alice.like!(@status) }.should change(Like, :count).by(1)
+      lambda{ alice.like!(@status) }.to change(Like, :count).by(1)
     end
 
     it "federates" do
@@ -52,11 +52,11 @@ describe User::SocialActions do
     end
 
     it "creates a partcipation" do
-      lambda{ alice.like!(@status) }.should change(Participation, :count).by(1)
+      lambda{ alice.like!(@status) }.to change(Participation, :count).by(1)
     end
 
     it "creates the like" do
-      lambda{ alice.like!(@status) }.should change(Like, :count).by(1)
+      lambda{ alice.like!(@status) }.to change(Like, :count).by(1)
     end
 
     it "federates" do

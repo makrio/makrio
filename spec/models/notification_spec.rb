@@ -21,7 +21,7 @@ describe Notification do
 
   it 'destoys the associated notification_actor' do
     @note.save
-    lambda{@note.destroy}.should change(NotificationActor, :count).by(-1)
+    lambda{@note.destroy}.to change(NotificationActor, :count).by(-1)
   end
 
   describe '.for' do

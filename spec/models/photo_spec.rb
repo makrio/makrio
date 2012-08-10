@@ -192,7 +192,7 @@ describe Photo do
     it 'is not deleted with parent status message' do
       expect {
         @status_message.destroy
-      }.should change(Photo, :count).by(0)
+      }.to change(Photo, :count).by(0)
     end
   end
 end

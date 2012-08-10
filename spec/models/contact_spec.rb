@@ -9,7 +9,7 @@ describe Contact do
     it 'deletes dependent aspect memberships' do
       lambda{
         alice.contact_for(bob.person).destroy
-      }.should change(AspectMembership, :count).by(-1)
+      }.to change(AspectMembership, :count).by(-1)
     end
   end
 
@@ -61,7 +61,7 @@ describe Contact do
         lambda {
           alice.contacts.create!(:sharing => true, :person => Factory(:person))
           alice.contacts.create!(:sharing => false, :person => Factory(:person))
-        }.should change{
+        }.to change{
           Contact.sharing.count
         }.by(1)
       end
@@ -72,7 +72,7 @@ describe Contact do
         lambda {
           alice.contacts.create!(:receiving => true, :person => Factory(:person))
           alice.contacts.create!(:receiving => false, :person => Factory(:person))
-        }.should change{
+        }.to change{
           Contact.receiving.count
         }.by(1)
       end
@@ -85,7 +85,7 @@ describe Contact do
           alice.contacts.create!(:receiving => false, :sharing => true, :person => Factory(:person))
           alice.contacts.create!(:receiving => false, :sharing => true, :person => Factory(:person))
           alice.contacts.create!(:receiving => true, :sharing => false, :person => Factory(:person))
-        }.should change{
+        }.to change{
           Contact.receiving.count
         }.by(2)
       end

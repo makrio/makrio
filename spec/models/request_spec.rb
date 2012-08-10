@@ -70,7 +70,7 @@ describe Request do
       request = Request.diaspora_initialize(:from => alice.person, :to => eve.person, :into => @aspect)
       lambda{
         request.receive(eve, alice.person)
-      }.should change{
+      }.to change{
         eve.contacts(true).size
       }.by(1)
     end
@@ -81,7 +81,7 @@ describe Request do
       lambda {
         Request.diaspora_initialize(:from => eve.person, :to => alice.person,
                                     :into => eve.aspects.first).receive(alice, eve.person)
-      }.should change {
+      }.to change {
         alice.contacts.find_by_person_id(eve.person.id).mutual?
       }.from(false).to(true)
 

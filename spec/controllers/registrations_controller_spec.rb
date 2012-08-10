@@ -68,7 +68,7 @@ describe RegistrationsController do
       it "creates a user" do
         lambda {
           get :create, @valid_params
-        }.should change(User, :count).by(1)
+        }.to change(User, :count).by(1)
       end
 
       it "assigns @user" do

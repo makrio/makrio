@@ -41,7 +41,7 @@ describe PostsController do
         lambda{
           get :show, :id => @message.id
           note.reload
-        }.should change(note, :unread).from(true).to(false)
+        }.to change(note, :unread).from(true).to(false)
       end
 
       it '404 if the post is missing' do

@@ -28,7 +28,7 @@ describe PhotosController do
     it 'accepts a photo from a regular form submission' do
       lambda {
         post :create, @params
-      }.should change(Photo, :count).by(1)
+      }.to change(Photo, :count).by(1)
     end
 
     it 'returns application/json when possible' do
@@ -51,7 +51,7 @@ describe PhotosController do
     it "creates a photo" do
       lambda {
         post :create, @params
-      }.should change(Photo, :count).by(1)
+      }.to change(Photo, :count).by(1)
     end
 
     context 'legacy' do

@@ -20,7 +20,7 @@ describe ShareVisibility do
     it 'creates a visibility for each user' do
       lambda {
         ShareVisibility.batch_import([@contact.id], @post)
-      }.should change {
+      }.to change {
         ShareVisibility.exists?(:contact_id => @contact.id, :shareable_id => @post.id, :shareable_type => 'Post')
       }.from(false).to(true)
     end

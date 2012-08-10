@@ -6,7 +6,7 @@ ruby '1.9.3' if ENV['HEROKU']
 gem "newrelic_rpm"
 gem 'newrelic-middleware'
 
-gem 'rails', '3.2.7'
+gem 'rails', '3.2.8'
 
 gem 'foreman', '0.46'
 
@@ -170,7 +170,7 @@ end
 
 group :test, :development do
   gem 'debugger', :platforms => :mri_19
-  gem "rspec-rails", "~> 2.10" 
+  gem "rspec-rails", "~> 2.11" 
   gem 'ruby-debug', :platforms => :mri_18
 end
 

@@ -22,7 +22,7 @@ describe User::Connecting do
         alice.share_with(eve.person, alice.aspects.first)
         lambda {
           alice.remove_contact alice.contact_for(eve.person)
-        }.should change {
+        }.to change {
           alice.contacts(true).count
         }.by(-1)
       end
@@ -71,7 +71,7 @@ describe User::Connecting do
 
         lambda {
           alice.disconnect(contact)
-        }.should change(contact.aspects(true), :count).from(2).to(0)
+        }.to change(contact.aspects(true), :count).from(2).to(0)
       end
     end
   end
@@ -90,7 +90,7 @@ describe User::Connecting do
     it 'finds or creates a contact' do
       lambda {
         alice.share_with(eve.person, alice.aspects.first)
-      }.should change(alice.contacts, :count).by(1)
+      }.to change(alice.contacts, :count).by(1)
     end
 
     it 'does not set mutual on intial share request' do
@@ -111,7 +111,7 @@ describe User::Connecting do
 
       lambda {
         alice.share_with(eve.person, alice.aspects.first)
-      }.should change(contact.aspects, :count).by(1)
+      }.to change(contact.aspects, :count).by(1)
     end
 
     it 'calls #register_share_visibilities with a contact' do

@@ -90,7 +90,7 @@ describe Diaspora::Taggable do
         @object.tag_list.should == ['what']
         lambda {
           @object.save
-        }.should change{@object.tags.count}.by(1)
+        }.to change{@object.tags.count}.by(1)
       end
     end
 

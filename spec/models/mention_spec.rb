@@ -22,7 +22,7 @@ describe Mention do
 
       lambda{
         @m.destroy
-      }.should change(Notification, :count).by(-1)
+      }.to change(Notification, :count).by(-1)
     end
   end
 end

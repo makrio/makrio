@@ -36,7 +36,7 @@ describe ServicesController do
     it 'destroys a service selected by id' do
       lambda{
         delete :destroy, :id => @service1.id
-      }.should change(@user.services, :count).by(-1)
+      }.to change(@user.services, :count).by(-1)
     end
   end
 end

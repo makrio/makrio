@@ -52,7 +52,7 @@ describe Comment do
     it 'does not multi-post a comment' do
       lambda {
         alice.comment!(@status, 'hello')
-      }.should change { Comment.count }.by(1)
+      }.to change { Comment.count }.by(1)
     end
   end
 
@@ -60,7 +60,7 @@ describe Comment do
     it 'increments the counter cache on its post' do
       lambda {
         alice.comment!(@status, "oh yeah")
-      }.should change{
+      }.to change{
         @status.reload.comments_count
       }.by(1)
     end

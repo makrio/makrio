@@ -18,7 +18,7 @@ describe User do
 
       expect{
         user.reload.encryption_key
-      }.should_not raise_error
+      }.to_not raise_error
     end
   end
 
@@ -499,21 +499,21 @@ describe User do
         Factory(:invitation, :sender => alice)
         lambda {
           alice.destroy
-        }.should change {alice.invitations_from_me(true).count }.by(-1)
+        }.to change {alice.invitations_from_me(true).count }.by(-1)
       end
 
       it 'removes invitations to the user' do
         Invitation.new(:sender => eve, :recipient => alice, :identifier => alice.email, :aspect => eve.aspects.first).save(:validate => false)
         lambda {
           alice.destroy
-        }.should change {alice.invitations_to_me(true).count }.by(-1)
+        }.to change {alice.invitations_to_me(true).count }.by(-1)
       end
 
       it 'removes all service connections' do
         Services::Facebook.create(:access_token => 'what', :user_id => alice.id)
         lambda {
           alice.destroy
-        }.should change {
+        }.to change {
           alice.services.count
         }.by(-1)
       end
@@ -555,7 +555,7 @@ describe User do
       it 'adds the contact to the aspect' do
         lambda {
           alice.add_contact_to_aspect(@contact, @new_aspect)
-        }.should change(@new_aspect.contacts, :count).by(1)
+        }.to change(@new_aspect.contacts, :count).by(1)
       end
 
       it 'returns true if they are already in the aspect' do
