@@ -19,7 +19,7 @@ app.Router = Backbone.Router.extend({
 
     'timewarp' : 'timewarp',
     'timewarp/:days_ago' : 'timewarp',
-    'timewarp?:days_ago' : 'timewarp',
+    'timewarp' : 'timewarp',
 
     "search/:query": "search",
 
@@ -72,7 +72,9 @@ app.Router = Backbone.Router.extend({
   },
 
   timewarp : function(daysAgo){
-    this.renderPage(function(){ return new app.pages.TimeWarp({daysAgo : daysAgo})});
+    var params = params || {}
+    var days = typeof(daysAgo) =='String' ? daysAgo : daysAgo.days_ago
+    this.renderPage(function(){ return new app.pages.TimeWarp({daysAgo : days})});
   },
 
   topTags : function(){
@@ -137,6 +139,7 @@ app.Router = Backbone.Router.extend({
 
     app.instrument("track", "Front Page loaded")
     this.genericCanvas({
+
       title : "Front Page",
       description : "Recently popular posts"
     })
