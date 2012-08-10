@@ -24,10 +24,6 @@ describe Diaspora::Taggable do
         @object.save!
       end
 
-      it "supports non-ascii characters" do
-        @object.tags(true).map(&:name).should include('vöglein')
-      end
-
       it 'links each tag' do
         formatted_string = Diaspora::Taggable.format_tags(@str)
         formatted_string.should include(tag_link('what'))

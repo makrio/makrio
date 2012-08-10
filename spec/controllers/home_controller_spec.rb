@@ -12,10 +12,10 @@ describe HomeController do
       response.should_not be_redirect
     end
 
-    it 'redirects to the stream if logged in' do
+    it 'redirects to the front_page if logged in' do
       sign_in alice
       get :show, :home => true
-      response.should redirect_to(latest_path)
+      response.should redirect_to(front_page_path)
     end
   end
 end

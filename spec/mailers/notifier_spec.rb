@@ -1,4 +1,4 @@
-require 'spec_helper'
+  require 'spec_helper'
 
 describe Notifier do
   include ActionView::Helpers::TextHelper
@@ -199,7 +199,8 @@ describe Notifier do
 
     describe ".confirm_email" do
       before do
-        bob.update_attribute(:unconfirmed_email, "my@newemail.com")
+        bob.unconfirmed_email = "my@newemail.com"
+        bob.save
         @confirm_email = Notifier.confirm_email(bob.id)
       end
 

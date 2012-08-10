@@ -101,13 +101,6 @@
   %br
 
 
-  #account_data.span-5.append-2
-    %h3 
-      = t('.export_data')
-    = link_to t('.download_xml'), export_user_path, :class => "button"
-    %br
-    = link_to t('.download_photos'), "#", :class => "button", :id => "photo-export-button", :title => t('.photo_export_unavailable')
-
   .span-5.last
     %h3
       = t('.close_account_text')

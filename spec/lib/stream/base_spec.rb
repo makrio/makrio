@@ -15,9 +15,9 @@ describe Stream::Base do
     it "should returns the posts.for_a_stream" do
       posts = mock
       @stream.stub(:posts).and_return(posts)
-      @stream.stub(:like_posts_for_stream!)
 
       posts.should_receive(:for_a_stream).with(anything, anything, alice).and_return(posts)
+      posts.should_receive(:includes).with(:tags).and_return(posts)
       @stream.stream_posts
     end
   end

@@ -3,7 +3,6 @@
 #   the COPYRIGHT file.
 
 class UsersController < ApplicationController
-  require File.join(Rails.root, 'lib/diaspora/exporter')
   require File.join(Rails.root, 'lib/collect_user_photos')
 
   before_filter :authenticate_user!, :except => [:new, :create, :public, :user_photo]
@@ -110,11 +109,6 @@ class UsersController < ApplicationController
   def getting_started_completed
     current_user.update_attributes(:getting_started => false)
     render :json => {:success => true}, :format => :json
-  end
-
-  def export
-    exporter = Diaspora::Exporter.new(Diaspora::Exporters::XML)
-    send_data exporter.execute(current_user), :filename => "#{current_user.username}_diaspora_data.xml", :type => :xml
   end
 
   def export_photos

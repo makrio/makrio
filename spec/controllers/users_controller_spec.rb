@@ -13,13 +13,6 @@ describe UsersController do
     @controller.stub(:current_user).and_return(@user)
   end
 
-  describe '#export' do
-    it 'returns an xml file'  do
-      get :export
-      response.header["Content-Type"].should include "application/xml"
-    end
-  end
-
   describe '#export_photos' do
     it 'returns a tar file'  do
       get :export_photos
@@ -202,7 +195,8 @@ describe UsersController do
 
   describe '#confirm_email' do
     before do
-      @user.update_attribute(:unconfirmed_email, 'my@newemail.com')
+      @user.unconfirmed_email =  'my@newemail.com'
+      @user.save
     end
 
     it 'redirects to to the user edit page' do

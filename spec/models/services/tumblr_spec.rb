@@ -16,7 +16,7 @@ describe Services::Tumblr do
     end
 
     it "sends user-generated tags" do
-      @service.build_tumblr_post(@post, "http://url.com").should include(:tags => ["makr.io", "sup"])
+      @service.build_tumblr_post(@post, "http://url.com").should include(:tags => "makr.io, sup")
     end
 
     it 'swallows exception raised by tumblr not being webscale' do
