@@ -47,6 +47,7 @@ app.Router = Backbone.Router.extend({
     
     'about' : 'about',
     'pro_tips' : 'proTips',
+    'getting_started' : 'gettingStarted',
     ":name" : "newProfile"
   },
 
@@ -60,6 +61,10 @@ app.Router = Backbone.Router.extend({
 
   proTips : function(){
     this.renderPage(function(){ return new app.pages.ProTips()});
+  },
+
+  gettingStarted : function(){
+    this.renderPage(function(){ return new app.pages.GettingStarted()});
   },
   
   interests : function(){

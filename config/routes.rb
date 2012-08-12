@@ -175,6 +175,7 @@ Diaspora::Application.routes.draw do
 
   get 'about' => 'infos#about' 
   get 'pro_tips' => 'infos#pro_tips' 
+  get 'getting_started' => 'infos#getting_started' 
 
   get '/tagged/:name/auth_required' => 'tags#auth_show'
   get '/tagged/:name' => 'streams#category'

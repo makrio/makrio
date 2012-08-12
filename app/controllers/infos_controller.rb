@@ -7,4 +7,8 @@ class InfosController < ApplicationController
     about
   end
 
+  def getting_started
+    about
+  end
+
 end

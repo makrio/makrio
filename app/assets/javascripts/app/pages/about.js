@@ -13,3 +13,7 @@ app.pages.About = app.pages.Info.extend({
 app.pages.ProTips = app.pages.Info.extend({
   templateName : 'pro-tips'
 });
+
+app.pages.GettingStarted = app.pages.Info.extend({
+  templateName : 'getting-started-page'
+});
