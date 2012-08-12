@@ -135,6 +135,9 @@ class ApplicationController < ActionController::Base
   end
   
   def set_getting_started!
-    current_user.update_attribute(:getting_started, false) if current_user && current_user.getting_started
+    if current_user && current_user.getting_started
+      current_user.getting_started = false
+      current_user.save
+    end
   end
 end
