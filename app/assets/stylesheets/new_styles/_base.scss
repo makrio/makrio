@@ -339,8 +339,8 @@ a.imgfave-button{
 
 #about_container {
   /*@include box-shadow(0,1px,1px,rgba(0, 0, 0, 0.1));*/
-  width: 620px;
-  padding:50px;
+  width: 650px;
+  padding: 0px 0px 50px 50px;
   margin-bottom:40px;
   font-size: 16px;
   line-height:24px;
@@ -415,13 +415,45 @@ a.imgfave-button{
 
 }
 
+#about_left {
+  position: fixed;
+  top: 98px;
+  left: 45%;
+  width: 200px;
+  margin-left: -460px;
+  overflow: hidden;
+
+  li{
+  font-family:Roboto;
+  font-size: 20px;
+  padding-bottom: 10px;
+  color:#333;
+  list-style: none;
+  text-align: right;
+  }
+
+  a{
+  color: #333;
+  font-family: RobotoLight;
+    &:hover{
+      text-decoration: none;
+      color : $link-blue;
+    }
+  }
+
+  a:active{
+  font-family: RobotoBold;
+  }
+
+
+}
 
 
 #landing_banner {
   padding: 20px 0;
   padding-bottom: 40px;
-
   font-family:RobotoLight;
+  background-color: #fff6df;
 
   h1, h2 {
     font-family:inherit;
