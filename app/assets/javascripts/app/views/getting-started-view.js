@@ -2,7 +2,8 @@ app.views.GettingStarted = app.views.Base.extend({
   id:'getting_started',
   templateName : 'getting-started',
   events : {
-    'click #done' : 'navigateToNext'
+    'click #next_step_link' : 'navigateToNext',
+    'click #done' : 'finished'
   },
 
   initialize : function(){
@@ -21,12 +22,14 @@ app.views.GettingStarted = app.views.Base.extend({
     })
   },
 
-  navigateToNext : function(evt){
+  navigateToNext : function(evt) {
     evt && evt.preventDefault()
+    this.$("#gs_1").hide()
+    this.$("#gs_2").show()
+  },
 
-    var likes = $('.liked').length
-
-    var url = likes > 0 ? '/interests' : '/top_tags'
-    window.location = url
+  finished : function(evt){
+    evt && evt.preventDefault()
+    window.location = $('.liked').length > 0 ? '/interests' : '/top_tags'
   }
 });
