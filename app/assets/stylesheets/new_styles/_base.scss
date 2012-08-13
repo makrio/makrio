@@ -30,7 +30,7 @@ body {
 
 #page_title {
   font-family:RobotoLight;
-  font-size:4em;
+  font-size:2.5em;
   line-height:1em;
   margin-bottom:30px;
 }
@@ -336,7 +336,11 @@ a.imgfave-button{
   }
 }
 
-#about_container {
+/*#about_container{
+
+}*/
+
+#about_container{
   /*@include box-shadow(0,1px,1px,rgba(0, 0, 0, 0.1));*/
   width: 650px;
   padding: 0px 0px 50px 50px;
@@ -440,10 +444,24 @@ a.imgfave-button{
   }
 
   a:active{
-  font-family: RobotoBold;
+  font-family: RobotoLight;
+  }
+
+
+}
+
+
+#commandments {
+  li{
+  font-family:RobotoLight;
+  font-size: 16px;
+  line-height: 24px;
+  padding-top: 10px;
+  color:#333;
   }
 
 }
+
 
 
 #landing_banner {
