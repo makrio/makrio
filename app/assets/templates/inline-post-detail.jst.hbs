@@ -1,36 +1,34 @@
-
-
-
-
+<div id='post-content' style="position:static">
+   <div class='media interaction-title'> 
+    <div class='img'> 
       <a href='/{{author.username}}'> {{{personImage author "small"}}}</a>
-    <div id="share-actions" />
-    <h6>Share</h6>
-        <a class='btn new-btn' href="/conversations/{{conversation_id}}" class="permalink" title="Permalink"> View Remixes</a>
-      </h2>
-      <h2>{{author.nickname}}'s Remix 
-    </div>
     </div>
     <div class='bd'>
-    <div class='img'> 
-    <hr />
-   <div class='media interaction-title'> 
-  </br/>
+      <h2>{{author.nickname}}'s Remix 
+        <a class='btn new-btn' href="/conversations/{{conversation_id}}" class="permalink" title="Permalink"> View Remixes</a>
+      </h2>
+    </div>
   </div>
-  </div>
+
   <div id="selected_frame" />
-  <div id="selected_new_comment" />
-  <div id="selected_reactions" />
-  <div style="margin-top:20px;">
+  </br/>
   <h6> Topics </h6>
   {{#each tags}}
-  {{/each}}
-      <input type="submit" value='Set Tags' class="btn new-btn"/>
-      <input type="text" name="tag_list" value='{{tag_list}}' placeholder='add comma seperated tags'/>
     <a class='topic-link' href='/tagged/{{this.name}}'> <span class="label">{{this.display_name}}</span></a>
-  </form>
-  <form name="tagForm" class='form-inline' action="/posts/{{id}}/tags" method="post" data-remote="true">
+  {{/each}}
+
+  <div id="selected_reactions" />
+  <div id="selected_new_comment" />
+
+  <div style="margin-top:20px;">
+    <h6>Share</h6>
+    <div id="share-actions" />
+  </div>
+    <hr />
   <h6>Tags</h6>
+  <form name="tagForm" class='form-inline' action="/posts/{{id}}/tags" method="post" data-remote="true">
+      <input type="text" name="tag_list" value='{{tag_list}}' placeholder='add comma seperated tags'/>
+      <input type="submit" value='Set Tags' class="btn new-btn"/>
+  </form>
 </div>
-<div id='post-content' style="position:static">
 <div style="height: 0px; margin-top: 80px; ">&nbsp;</div>
-                                                                                                                                                                                                                                                                                    
