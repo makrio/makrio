@@ -111,9 +111,11 @@
     .stream-size {
       width: 500px;
       .content {
+        min-height:100px;
         width:500px;
       }
     }
+
     display : inline-block;
     vertical-align : top;
 

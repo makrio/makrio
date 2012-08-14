@@ -102,8 +102,6 @@ app.models.Post = Backbone.Model.extend(_.extend({}, app.models.formatDateMixin,
 
   frameMoods : [
     "Wallpaper",
-    "Vanilla",
-    "Typist",
     "Fridge"
   ]
 });

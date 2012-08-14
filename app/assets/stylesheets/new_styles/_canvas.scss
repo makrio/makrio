@@ -304,10 +304,6 @@ a.conversation_link{
     width : $two-column-width - 40 + px;
   }
 
-  &.sticky-note.x2.height  .content {
-    min-height : $two-row-height + px;
-  }
-
   &.wallpaper:not(.frame-screenshot) {
     .image-container {
       background-color: #000;
