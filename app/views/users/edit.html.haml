@@ -104,7 +104,7 @@
   .span-5.last
     %h3
       = t('.close_account_text')
-    =link_to t('.close_account_text'), '#close_account_pane', :rel => 'facebox', :class => "button"
+    =link_to t('.close_account_text'), '#close_account_pane',  :class => "button", :onclick => "jQuery.facebox({ div: '#close_account_pane' });"
 
     .hidden#close_account_pane{:rel => 'facebox'}
       #inner_account_delete
