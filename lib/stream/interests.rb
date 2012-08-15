@@ -9,7 +9,7 @@ class Stream::Interests
   end
 
   def posts
-    @posts ||= @current_user.posts_from_topics_liked
+    @posts ||= @current_user.posts_from_topics_liked.distinct_ranked
   end
 
   def stream_posts
