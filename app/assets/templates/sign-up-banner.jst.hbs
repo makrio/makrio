@@ -1,14 +1,19 @@
 <div class="container">
     <div id="landing_banner">
-        <a href="/users/sign_up" class="login btn new-btn huge-btn red" style="float:right; margin-right:30px;">
-            Sign up now
-        </a>
+        <div id='landing_header'>
+            <a id='sign_up'href="/users/sign_up" class="login btn new-btn huge-btn red">
+                Sign up now
+            </a>
+            <h1>
+                Makr.io is a new kind of meme generator.
+            </h1>
+            <h2>
+                Celebrate things as they happen. <a href='/about'>Learn More </a>
+            </h2>
 
-        <h1>
-            Makr.io is a new kind of meme generator.
-        </h1>
-        <h2>
-            Celebrate things as they happen. <a href='/about'>Learn More </a>
-        </h2>
+        </div>
+        {{#if onFrontPage}}
+            <img width=819 src="/assets/branding/landing.jpg">
+        {{/if}}
     </div>
 </div>

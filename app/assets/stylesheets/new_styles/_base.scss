@@ -465,17 +465,30 @@ a.imgfave-button{
 
 
 #landing_banner {
-  padding: 20px 0;
   padding-bottom: 40px;
-  font-family:RobotoLight;
+  width:100%;
+  
+  #landing_header {
+    margin: 0 auto;
 
-  h1, h2 {
-    font-family:inherit;
+    width: 775px;
+    font-family:RobotoLight;
+
+    h1, h2 {
+      font-family:inherit;
+    }
+
+    h2 {
+      color:#888;
+    }
+
+    #sign_up{
+      float:right;
+      margin-right:30px;
+      margin-top:13px;
+    }
   }
 
-  h2 {
-    color:#888;
-  }
 }
 
 #getting_started {

@@ -1,5 +1,11 @@
 app.views.SignUpBannerView = app.views.Base.extend({
-  templateName : 'sign-up-banner'
+  templateName : 'sign-up-banner',
+
+  presenter : function(){
+    return {
+      onFrontPage : window.location.pathname == '/'
+    }
+  }
 });
 
 
