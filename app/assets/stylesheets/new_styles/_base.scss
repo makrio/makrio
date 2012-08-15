@@ -471,7 +471,7 @@ a.imgfave-button{
   #landing_header {
     margin: 0 auto;
 
-    width: 775px;
+    width: 840px;
     font-family:RobotoLight;
 
     h1, h2 {
@@ -486,6 +486,18 @@ a.imgfave-button{
       float:right;
       margin-right:30px;
       margin-top:13px;
+    }
+
+    #typist-container {
+      width: 105px;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+      height: 35px;
+      text-align: center;
+      margin:0 5px;
+    }
+    #typist {
+      font-weight: normal;
     }
   }
 
