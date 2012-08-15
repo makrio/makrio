@@ -84,6 +84,7 @@
     = include_gon(:camel_case => true, :namespace => :preloads)
 
   %body{:class => 'notranslate'}
+    = image_tag "cage.png", :id => "peekaboo"
     = flash_messages
     #container
     = yield

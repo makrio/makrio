@@ -85,3 +85,15 @@
 	80%    { bottom : 0; }
 	100%   { bottom : -250px; }
 }
+@-moz-keyframes peekaboo {
+	0%     { bottom : -250px; }
+	20%    { bottom : 0; }
+	80%    { bottom : 0; }
+	100%   { bottom : -250px; }
+}
+@-ms-keyframes peekaboo {
+	0%     { bottom : -250px; }
+	20%    { bottom : 0; }
+	80%    { bottom : 0; }
+	100%   { bottom : -250px; }
+}

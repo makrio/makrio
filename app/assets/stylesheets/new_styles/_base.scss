@@ -528,3 +528,14 @@ p.branding-description {
   color: #666;
   margin-bottom: 20px;
 }
+
+#peekaboo {
+  @include transition(bottom);
+  position : fixed;
+  bottom : -250px;
+  right : 50px;
+
+  &.peek {
+    @include animation(peekaboo, 3s)
+  }
+}

@@ -27,12 +27,10 @@ app.views.InlineFramer = app.views.Base.extend({
   },
 
   teardown :function(){
+    $("#peekaboo").addClass("peek");
+    setTimeout("$('#peekaboo').removeClass('peek')", 5000);
+
     $.facebox.close()
-    var flash = new Diaspora.Widgets.FlashMessages;
-    flash.render({
-      success: true,
-      notice: "Remix Posted!"
-    });
     this.unbindEvents()
   }
 });
