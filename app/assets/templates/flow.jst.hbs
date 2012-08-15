@@ -1,12 +1,22 @@
 <div id="framer-wrapper">
-    <h2 style="margin:20px 0;">
-        {{#if sourcePost}}
-            Remixing {{author.name}}'s <a href="/p/{{sourcePost.id}}" target="_blank">Post</a>
-        {{else}}
-           Add Photos & Text
-        {{/if}}
-        
-    </h2>
+    <div style="margin:20px 0;">
+        <h2>
+            {{#if sourcePost}}
+                Remixing {{author.name}}'s <a href="/p/{{sourcePost.id}}" target="_blank">Post</a>. <small> Change the text or photo!</small>
+            {{else}}
+               Make a new post. <small>Add a photo, then add text by clicking on the photo</small>
+            {{/if}}
+        </h2>
+    
+        <em>
+            <span class="label label-success">PRO-TIP</span> Need to find cool photos? Search 
+            <a href='http://tumblr.com/tagged/gif' target ='_blank'>Tumblr</a>, 
+            <a href='https://www.google.com/imghp' target='_blank'>Google</a>,
+            or 
+            <a href='http://imgfave.com/' target='_blank'>Imgfave</a>
+            for starters.
+        </em>
+    </div>
 
     <div class="flow-content"/>
 
