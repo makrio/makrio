@@ -564,6 +564,7 @@ p.branding-description {
   position : fixed;
   bottom : -250px;
   right : 50px;
+  z-index:500;
 
   &.peek {
     @include animation(peekaboo, 3s)
