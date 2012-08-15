@@ -16,7 +16,7 @@ app.views.Header = app.views.Base.extend({
 
     return _.extend(this.defaultPresenter(), {
       onLatest : function() { return path.search("latest") !== -1},
-      onFrontPage : function() { return path.search("front_page") !== -1 || path == "/"},
+      onFrontPage : function() { return path.search("front_page") !== -1 },
       onPopular : function() { return path.search("popular") !== -1 },
       onStaffPicks: function() { return path.search("staff") !== -1 },
       onTimeWarp: function() { return path.search("timewarp") !== -1 },
