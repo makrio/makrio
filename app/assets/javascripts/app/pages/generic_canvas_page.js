@@ -6,12 +6,12 @@ app.pages.GenericCanvas = app.pages.Base.extend({
     '#new_posts_notifier' : 'newPostsView'
   },
 
-  initialize : function(options){
-    if(options)
-      _.extend({
-        pageTitle: options.title,
-        pageDescription: options.description
-      }, this);
+  initialize : function(opts){
+    if(opts)
+      _.extend(this, {
+        pageTitle: opts.title,
+        pageDescription: opts.description
+      });
 
     this.setUpInfiniteScroll() 
   },
