@@ -44,21 +44,6 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
     this.showModal(postDetail)
   },
 
-  // copy pasta :(
-  initialize : function(options) {
-    this.stream = options.stream;
-    this.composing = options.composing || false;
-
-    this.normalizedCollection = options.normalizedCollection
-    this.setScreenshotOrRender()
-
-    // the part that's different than smallFrame
-    if(app.onStaffPicks && this.stream && this.stream.items.first() == this.model) {
-      this.$el.addClass("x2")
-    }
-    return this
-  },
-
   infoView : function() {
     if(!this.isNormalizedCollection()) { return }
     return new app.views.Info({model : this.model})

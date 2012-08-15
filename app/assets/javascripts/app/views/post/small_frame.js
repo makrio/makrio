@@ -17,6 +17,7 @@ app.views.Post.SmallFrame = app.views.Post.extend({
   initialize : function(options) {
     this.stream = options.stream;
     this.composing = options.composing || false;
+    this.normalizedCollection = options.normalizedCollection
 
     //show screenshot should now be has_screenshot
     this.setScreenshotOrRender()

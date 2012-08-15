@@ -131,8 +131,6 @@ app.Router = Backbone.Router.extend({
   },
 
   staffPicks : function() {
-    app.onExplore = true;
-
     app.onStaffPicks = true;
     this.genericCanvas({
       title : "Staff Picks"

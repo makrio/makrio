@@ -11,7 +11,7 @@ class StreamsController < ApplicationController
              :mobile,
              :json
 
-  before_filter :set_current_path, :only => [:staff_picks, :show, :front_page, :interests]
+  before_filter :set_current_path, :only => [:show, :front_page, :interests]
   before_filter :set_getting_started!, :only => [:interests]
   before_filter :preload_getting_started
 

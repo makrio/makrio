@@ -7,8 +7,12 @@ app.pages.GenericCanvas = app.pages.Base.extend({
   },
 
   initialize : function(options){
-    this.pageTitle = options && options.title
-    this.pageDescription = options && options.description
+    if(options)
+      _.extend({
+        pageTitle: options.title,
+        pageDescription: options.description
+      }, this);
+
     this.setUpInfiniteScroll() 
   },
 
@@ -20,9 +24,7 @@ app.pages.GenericCanvas = app.pages.Base.extend({
   },
 
   postRenderTemplate : function(){
-    if(app.currentUser.authenticated() && app.currentUser.get("getting_started")){
-      this.showGettingStarted()
-    }
+    app.currentUser.minted() && this.showGettingStarted()
   },
 
   showGettingStarted : function(){

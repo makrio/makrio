@@ -15,5 +15,9 @@ app.models.User = Backbone.Model.extend({
 
   isServiceConfigured : function(providerName) {
     return _.include(this.get("configured_services"), providerName)
+  },
+
+  minted : function() {
+    return this.authenticated() && this.get("getting_started") 
   }
 });
