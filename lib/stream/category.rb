@@ -11,6 +11,12 @@ class Stream::Category < Stream::Base
   end
 
   def posts
-    @post ||= StatusMessage.featured_and_by_author(self.user.try(:person)).tagged_with(@tag.name)
+    @post ||= begin
+      if(self.tag.name =='testimonials')
+        StatusMessage.tagged_with(@tag.name)
+      else
+        StatusMessage.featured_and_by_author(self.user.try(:person)).tagged_with(@tag.name)
+      end
+    end
   end
 end

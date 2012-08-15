@@ -17,8 +17,16 @@ class HomeController < ApplicationController
       end
 
       # from StreamsController
-      @stream = Stream::FrontPage.new(current_user, params[:offset])
-      @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user, lite?: true) 
+      if user_signed_in?
+        @stream = Stream::FrontPage.new(current_user, params[:offset])
+        @stream_json = PostPresenter.collection_json(@stream.stream_posts, current_user, lite?: true) 
+      else
+        @category = Category.find_or_create_by_name!('testimonials')
+        @stream = Stream::Category.new(current_user, @category, :max_time => max_time)
+        scope = @stream.stream_posts
+        scope = scope.where('posts.id > ?', params[:last_post_id]) if params[:last_post_id].present?
+        @stream_json = PostPresenter.collection_json(scope, current_user, lite?: true, include_root: false)
+      end
       gon.stream = @stream_json
 
       render :nothing => true, :layout => 'post'
