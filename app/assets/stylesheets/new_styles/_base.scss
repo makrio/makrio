@@ -502,7 +502,7 @@ a.imgfave-button{
       margin:0 5px;
     }
     #typist {
-      font-weight: normal;
+      -webkit-font-smoothing:antialiased;
     }
   }
 
