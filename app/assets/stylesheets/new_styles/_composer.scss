@@ -116,6 +116,17 @@
       }
     }
 
+    .wallpaper:not(.has-media) {
+      .content {
+        height:300px;
+        background-image: image-url('add_photo_prompt.png');
+        
+        .text-content {
+          display:none;
+        }
+      }
+    }
+
     display : inline-block;
     vertical-align : top;
 
