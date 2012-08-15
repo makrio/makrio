@@ -1,6 +1,8 @@
 app.pages.FramerWithLightBoxNavigate = app.pages.Framer.extend({
   navigateNext : function(){
     this.trigger('complete')
+    var done = new app.pages.DoneFraming({model : this.model})
+    this.showModal(done)
   }
 })
 
@@ -11,11 +13,11 @@ app.views.InlineFramer = app.views.Base.extend({
   },
 
   bindEvents : function(){
-    this.framer.on('complete', this.teardown, this)
+    $(document).on('afterClose.facebox', _.bind(this.teardown, this))
   },
 
   unbindEvents : function(){
-    this.framer.off('complete')
+    $(document).off('afterClose.facebox')
   },
 
   show : function(){

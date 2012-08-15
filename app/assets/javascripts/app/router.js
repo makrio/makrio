@@ -178,7 +178,12 @@ app.Router = Backbone.Router.extend({
   },
 
   doneFraming : function(id){
-    this.renderPage(function(){ return new app.pages.DoneFraming({ model_id : id})});
+    var model = new app.models.Post({ id : id })
+      , self = this;
+
+    model.preloadOrFetch().done(function(resp){
+      self.renderPage(function(){ return new app.pages.DoneFraming({ model: resp})});
+    })
   },
 
   framer : function(params){

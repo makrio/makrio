@@ -3,12 +3,18 @@ app.pages.DoneFraming = app.views.Base.extend({
   templateName : 'done-framing',
   
   subviews : {
-    '#share-actions' : 'shareView'
+    '#share-actions' : 'shareView',
+    "#featured_frame": 'smallFrameView'
   },
 
   initialize : function(options){
-    this.model = new app.models.Post({id : options.model_id })
     this.shareView = new app.views.ShareView({model : this.model})
+
+    this.smallFrameView = new app.views.Post.SmallFrame({
+       model : this.model,
+       className : "canvas-frame",
+       composing : true
+    });
   },
 
   postRenderTemplate : function(){

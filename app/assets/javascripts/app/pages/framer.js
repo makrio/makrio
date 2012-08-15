@@ -42,6 +42,8 @@ app.pages.Framer = app.views.Base.extend({
 
   navigateNext : function(){
     if(opener) {
+      window.preloads = {}
+      window.preloads.post = this.model.attributes
       app.router.navigate('/framer/done/' + this.model.get('id'), {trigger: true})
     } else {
       this.defaultNavigation()
@@ -53,7 +55,9 @@ app.pages.Framer = app.views.Base.extend({
   },
 
   defaultNavigation : function() {
-   app.router.setLocation('/latest')
+   this.trigger('complete')
+    var done = new app.pages.DoneFraming({model : this.model})
+    this.showModal(done)
   }
 });
 

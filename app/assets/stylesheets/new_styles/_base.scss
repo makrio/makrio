@@ -277,6 +277,7 @@ $bring-dark-accent-forward-color: #DDD;
 
 .share-button-container {
   margin: auto;
+  clear: both;
 
   .tweet-button {
     margin-left: 14px;
@@ -300,10 +301,6 @@ $bring-dark-accent-forward-color: #DDD;
 
 }
 
-#framer-complete {
-  text-align: center;
-  margin-top:20%;
-}
 
 #share-actions {
   text-align : left;
@@ -320,6 +317,12 @@ $bring-dark-accent-forward-color: #DDD;
   }
 
   }
+}
+
+
+#framer-complete {
+  width:600px;
+
 }
 
 
