@@ -1,5 +1,17 @@
 <div id='sign_up_strip'/>
 
+{{#if mintedAndOnStaffPicks}}
+	<div id="welcome_message" style="text-align:center;">
+		<h1 id="page_title">
+			Welcome, {{current_user.name}}!
+
+			<small>
+				Let's get you started by remixing one of these hand-picked memes below.
+			</small>
+		</h1>
+	</div>
+{{/if}}
+
 <div id='new_post_notifier'/>
 <section id="canvas"/>
 <div id="paginate"><span class="loader hidden"/></div>

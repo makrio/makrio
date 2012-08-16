@@ -8,8 +8,11 @@ class HomeController < ApplicationController
       if is_mobile_device?
         redirect_to latest_path
         return
+      elsif current_user.getting_started?
+        redirect_to staff_picks_stream_path
+      else
+        redirect_to saved_path
       end
-      redirect_to saved_path
     else
       if is_mobile_device?
         redirect_to '/users/sign_in'

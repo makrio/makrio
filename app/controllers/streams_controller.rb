@@ -12,8 +12,7 @@ class StreamsController < ApplicationController
              :json
 
   before_filter :set_current_path, :only => [:show, :front_page, :interests]
-  before_filter :set_getting_started!, :only => [:interests]
-  before_filter :preload_getting_started
+  before_filter :set_getting_started!, :only => [:staff_picks]
 
   def show
     stream_responder do
@@ -93,12 +92,5 @@ class StreamsController < ApplicationController
       format.mobile {authenticate_user!; render 'layouts/main_stream' }
       format.json {render :json => @stream_json }
     end
-  end
-
-  def preload_getting_started
-    return unless user_signed_in? && current_user.getting_started?
-    
-    posts = Post.where(:id => [3080, 8883, 7572, 1587])
-    gon.getting_started = PostPresenter.collection_json(posts, current_user, lite?: true, include_root: false)
   end
 end

@@ -32,7 +32,12 @@ body {
   font-family:RobotoLight;
   font-size:2.5em;
   line-height:1em;
-  margin-bottom:30px;
+  margin-bottom:50px;
+
+  small {
+    font-family:inherit;
+    display:block;
+  }
 }
 
 #tag-info-share {
@@ -506,18 +511,6 @@ a.imgfave-button{
     }
   }
 
-}
-
-#getting_started {
-  h1 {
-    margin-bottom:0;
-  }
-
-  h2 {
-    font-family:RobotoLight;
-    color:#888;
-    margin-bottom:30px;
-  }
 }
 
 .btn-group {

@@ -30,7 +30,6 @@ Diaspora::Application.routes.draw do
       put :toggle_staff_picked
     end
 
-    
     post '/posts/:post_id/tags' => 'tags#set'
     resources :likes, :only => [:create, :destroy, :index ]
     resources :participations, :only => [:create, :destroy, :index]

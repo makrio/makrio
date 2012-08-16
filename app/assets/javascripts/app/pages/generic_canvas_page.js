@@ -18,18 +18,10 @@ app.pages.GenericCanvas = app.pages.Base.extend({
 
   presenter : function() {
     return(_.extend(this.defaultPresenter(), {
-      title : this.pageTitle,
-      description : this.pageDescription
+      title: this.pageTitle,
+      description: this.pageDescription,
+      mintedAndOnStaffPicks: app.onStaffPicks && app.currentUser.minted()
     }))
-  },
-
-  postRenderTemplate : function(){
-    app.currentUser.minted() && this.showGettingStarted()
-  },
-
-  showGettingStarted : function(){
-    var gettingStartedView = new app.views.GettingStarted({})
-    this.showModal(gettingStartedView)
   },
 
   setUpInfiniteScroll : function(options){
