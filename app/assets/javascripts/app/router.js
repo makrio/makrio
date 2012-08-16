@@ -173,8 +173,7 @@ app.Router = Backbone.Router.extend({
   },
 
   newProfile : function(username) {
-    app.onProfilePage = true;
-    this.renderPage(function(){ return new app.pages.Profile({ username: username})});
+    this.renderPage(function(){ return new app.pages.Profile({username: username})});
   },
 
   doneFraming : function(id){
