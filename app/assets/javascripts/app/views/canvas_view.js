@@ -1,5 +1,5 @@
 app.views.Canvas = app.views.InfScroll.extend({
-  scrollOffset : 1500,
+  scrollOffset : 1000,
 
   initialize: function(options){
     this.stream = this.model
