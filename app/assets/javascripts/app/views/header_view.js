@@ -51,7 +51,6 @@ app.views.Header = app.views.Base.extend({
   },
 
   postRenderTemplate : function() {
-    console.log(this)
     this.$('.sub li').tooltip({placement: 'left', delay: { show: 300, hide: 100 }});
 
     // hiding and showing subnav
@@ -63,7 +62,7 @@ app.views.Header = app.views.Base.extend({
   },
 
   showSubNav : function() {
-    return app.onExplore || app.onYou
+    return app.onExplore || app.onYou || window.location.pathname == "/" + app.currentUser.get("username")
   }
 });
 
@@ -84,7 +83,7 @@ app.views.RootHeader = app.views.Base.extend({
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
       onExplore: app.onExplore,
-      onYou: app.onYou,
+      onYou: app.onYou || window.location.pathname == "/" + app.currentUser.get("username"),
     })
   },
 
@@ -115,7 +114,7 @@ app.views.SubHeader = app.views.Base.extend({
       onPosts: function() { return path.search(app.currentUser.get("username")) !== -1 },
 
       onExplore: app.onExplore,
-      onYou: app.onYou
+      onYou: app.onYou || window.location.pathname == "/" + app.currentUser.get("username")
     })
   },
 
