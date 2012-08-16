@@ -11,7 +11,7 @@ class ProfilesController < ApplicationController
   # this is terrible because we're actually serving up the associated person here;
   # however, this is the effect that we want for now
   def show
-    @person = User.find_by_username!(params[:id]).person
+    @person = Person.find_by_guid!(params[:id])
 
     respond_to do |format|
       format.json { render :json => PersonPresenter.new(@person, current_user) }

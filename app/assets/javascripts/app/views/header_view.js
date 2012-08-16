@@ -1,44 +1,33 @@
-/* base */
 app.views.Header = app.views.Base.extend({
-  templateName : "header/base",
+  templateName : "header",
   id: "header",
 
   events : {
     'click .composer-button' : 'showModalFramer',
-    'click .login-link' : 'showModalLogin'
+    'click .login-link' : 'showModalLogin',
+    'click .root-nav a' : 'navigateSub'
   },
 
   subviews : {
-    "#root_nav" : 'rootHeaderView',
-    "#sub_header" : 'subHeaderView',
-    "#sign_up_banner" : 'signUpBannerView'
+    "#sub_header" : 'subHeaderView'
   },
 
   initialize : function() {
-    this.initViews()
+    this.subHeaderView = new app.views.SubHeader();
     this.bindEvents()
   },
 
-  initViews : function() {
-    this.rootHeaderView = new app.views.RootHeader();
-    this.subHeaderView = new app.views.SubHeader();
-    this.signUpBannerView = new app.views.SignUpBanner();
-  },
-
   bindEvents : function() {
-    app.router.on("all", this.rootHeaderView.render, this)
-    app.router.on("all", this.subHeaderView.render, this)
+    app.router.on("all", this.render, this)
     app.router.on("all", this.unsetRootNav, this)
   },
 
   unbind : function() {
-    app.router.off("all", this.rootHeaderView.render, this)
-    app.router.off("all", this.subHeaderView.render, this)
+    app.router.off("all", this.render, this)
     app.router.off("all", this.unsetRootNav, this)
   },
 
   unsetRootNav : function() {
-    // hack for global state -- to be fixed
     _.each(['onExplore', 'onYou'], function(key) {
       app[key] = undefined
     })
@@ -46,12 +35,12 @@ app.views.Header = app.views.Base.extend({
 
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
-      onFrontPage: function() { return window.location.pathname == '/' }
+      onExplore: app.onExplore,
+      onYou: app.onYou
     })
   },
 
   postRenderTemplate : function() {
-    console.log(this)
     this.$('.sub li').tooltip({placement: 'left', delay: { show: 300, hide: 100 }});
 
     // hiding and showing subnav
@@ -64,28 +53,6 @@ app.views.Header = app.views.Base.extend({
 
   showSubNav : function() {
     return app.onExplore || app.onYou
-  }
-});
-
-/* top-level nav */
-app.views.RootHeader = app.views.Base.extend({
-  templateName: "header/root",
-  tagName: 'ul',
-  className: 'nav-center root-nav',
-
-  events : {
-    'click .root-nav a' : 'navigateSub'
-  },
-
-  initialize : function(options) {
-    this.base = options && options.base
-  },
-
-  presenter : function() {
-    return _.extend(this.defaultPresenter(), {
-      onExplore: app.onExplore,
-      onYou: app.onYou,
-    })
   },
 
   navigateSub : function(evt) {
@@ -94,9 +61,8 @@ app.views.RootHeader = app.views.Base.extend({
   }
 });
 
-/* sub-nav */
 app.views.SubHeader = app.views.Base.extend({
-  templateName: 'header/sub',
+  templateName: 'sub-header',
 
   events : {
     'click .sub-nav a' : 'navigateSub'

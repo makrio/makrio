@@ -14,7 +14,9 @@ app.pages.Profile = app.pages.Base.extend({
   username : null,
 
   initialize : function(options) {
-    this.model = this.model || app.models.Profile.preloadOrFetch(options.username)
+    this.personGUID = options.username
+
+    this.model = this.model || app.models.Profile.preloadOrFetch(this.username)
     this.stream = options && options.stream || new app.models.Stream()
     this.stream.preloadOrFetch()
 
@@ -22,10 +24,7 @@ app.pages.Profile = app.pages.Base.extend({
   },
 
   initViews : function(){
-    this.canvasView = new app.views.Canvas({
-      model: this.stream,
-      onProfilePage: true
-    })
+    this.canvasView = new app.views.Canvas({ model : this.stream })
     this.profileInfo = new app.views.ProfileInfo({ model : this.model })
   },
 

@@ -1,5 +1,5 @@
 app.models.Profile = Backbone.Model.extend({
-  urlRoot : "/profiles",
+  urlRoot : "/"
 }, {
 
   preloadOrFetch : function(username){
@@ -13,7 +13,7 @@ app.models.Profile = Backbone.Model.extend({
   },
 
   findByUsername : function(username){
-    var person =  new app.models.Profile({id : username})
+    var person =  new app.models.Profile({ id : username})
     person.deferred = person.fetch()
     return person
   }
