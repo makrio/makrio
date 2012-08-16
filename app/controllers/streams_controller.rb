@@ -12,7 +12,7 @@ class StreamsController < ApplicationController
              :json
 
   before_filter :set_current_path, :only => [:show, :front_page, :interests]
-  before_filter :set_getting_started!, :only => [:staff_picks]
+  before_filter :set_getting_started!, :except => [:staff_picks]
 
   def show
     stream_responder do
