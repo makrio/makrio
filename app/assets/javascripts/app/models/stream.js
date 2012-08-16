@@ -3,7 +3,8 @@
 
 app.collections.PostPoller = app.collections.Posts.extend({
   url:function () {
-    return window.location.pathname + "/updated?last_post_id=" + this.stream.items.first().id
+    var id = (this.stream.items.length == 0 ? 999999999 : this.stream.items.first().id)
+    return window.location.pathname + "/updated?last_post_id=" + id
   },
 
   initialize:function (models, options) {
@@ -120,9 +121,9 @@ app.models.Stream = Backbone.Collection.extend({
 
     if(this.poll) {
       deferred.done(_.bind(function() {
-        if(this.items.length != 0) {
-          this.poller = this.poller || new app.collections.PostPoller([], {stream : this})
-          this.poller && this.poller.fetchMore()
+        if(!this.poller) {
+          this.poller = new app.collections.PostPoller([], {stream : this})
+          this.poller.fetchMore()
         }
       }, this))
     }
