@@ -55,9 +55,10 @@ app.pages.Framer = app.views.Base.extend({
   },
 
   defaultNavigation : function() {
-   this.trigger('complete')
-    var done = new app.pages.DoneFraming({model : this.model})
-    this.showModal(done)
+      this.trigger('complete')
+      var done = new app.pages.DoneFraming({model : this.model})
+      this.showModal(done)
+    
   }
 });
 

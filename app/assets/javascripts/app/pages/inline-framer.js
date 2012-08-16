@@ -1,8 +1,12 @@
 app.pages.FramerWithLightBoxNavigate = app.pages.Framer.extend({
   navigateNext : function(){
+    if(app.currentUser.minted()){
+      app.router.setLocation('/latest')
+    } else{
     this.trigger('complete')
     var done = new app.pages.DoneFraming({model : this.model})
     this.showModal(done)
+  }
   }
 })
 
