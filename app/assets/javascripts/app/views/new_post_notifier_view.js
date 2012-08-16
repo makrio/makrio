@@ -23,7 +23,7 @@ app.views.NewPostNotifier = app.views.Base.extend({
   },
 
   count : function(){
-    return this.stream.poller && this.stream.poller.models.length
+    return this.stream.poller.models.length
   },
 
   noun : function(){

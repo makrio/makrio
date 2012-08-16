@@ -172,9 +172,9 @@ app.Router = Backbone.Router.extend({
     }, this)).fail(function(){alert('There was an error loading the Remix. Please Try Refreshing.')});
   },
 
-  newProfile : function(username) {
+  newProfile : function(personId) {
     app.onProfilePage = true;
-    this.renderPage(function(){ return new app.pages.Profile({ username: username})});
+    this.renderPage(function(){ return new app.pages.Profile({ personId : personId })});
   },
 
   doneFraming : function(id){
