@@ -29,12 +29,12 @@
 //= require parse_url
 //= require clear-form
 //= require validation
+//= require view
 //= require app/app
 //= require diaspora
 //= require_tree ./helpers
 //= require_tree ./pages
 //= require_tree ./widgets
-//= require view
 //= require mentions
 //= require bootstrap-tooltip
 //= require bootstrap-popover
