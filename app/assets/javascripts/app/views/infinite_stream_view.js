@@ -16,7 +16,6 @@ app.views.InfScroll = app.views.Base.extend({
     this.stream.bind("fetched", this.hideLoader, this)
     this.stream.bind("fetched", this.addPosts, this)
     this.stream.bind("allItemsLoaded", this.unbindInfScroll, this)
-
     this.collection.bind("add", this.addPostView, this);
 
     var throttledScroll = _.throttle(_.bind(this.infScroll, this), 200);
@@ -45,7 +44,6 @@ app.views.InfScroll = app.views.Base.extend({
       this.appendToStream(postView.el)
     }
   },
-
 
   prependToStream : function(el){
     this.$el.prepend(el);
@@ -85,7 +83,7 @@ app.views.InfScroll = app.views.Base.extend({
   renderInitialPosts : function(){
     this.$el.empty()
 
-    if(showAddButton()) {
+    if(showAddButton.call(this)) {
       var firstFrame = new app.views.Post.FirstCanvasFrame()
       this.$el.append(firstFrame.render().el)
     }
@@ -95,8 +93,8 @@ app.views.InfScroll = app.views.Base.extend({
     }, this))
 
     function showAddButton() {
-      var path = window.location.pathname
-      return (path.search("staff_picks") == -1 && path.search("latest") == -1 && path.search("likes") == -1 && path.search('conversations') ==-1) && !app.onProfilePage 
+      var paths = ['staff_picks','latest','likes','conversations']
+      return (_.reject(paths, function(path){return window.location.pathname.search(path) == -1}).length == 0) && !this.onProfilePage 
     }
   },
 

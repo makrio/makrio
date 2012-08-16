@@ -1,11 +1,12 @@
 app.views.Canvas = app.views.InfScroll.extend({
   scrollOffset : 1000,
 
-  initialize: function(){
+  initialize: function(options){
     this.stream = this.model
     this.collection = this.stream.items
     this.postClass = app.views.Post.CanvasFrame
     this.postViews = []
+    this.onProfilePage = options.onProfilePage
     this.setupInfiniteScroll()
     this.stream.bind("reLayout", this.reLayout, this)
     this.stream.bind("fetched", this.addPosts, this)

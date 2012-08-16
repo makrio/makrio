@@ -1,0 +1,16 @@
+<li {{#if onExplore}}class="active"{{/if}}>
+    <a href="/front_page" data-subNav="onExplore">
+        Explore
+        {{#unless loggedIn}} 
+            Makr.io
+        {{/unless}}
+    </a>
+</li>
+
+{{#if loggedIn}}
+    <li {{#if onYou}}class="active"{{/if}}>
+        <a href="/interests" data-subNav="onYou">
+            You
+        </a>
+    </li>
+{{/if}}
