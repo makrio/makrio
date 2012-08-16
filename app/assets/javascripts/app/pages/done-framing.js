@@ -18,6 +18,8 @@ app.pages.DoneFraming = app.views.Base.extend({
   },
 
   postRenderTemplate : function(){
-    setTimeout(window.close, 10000)
+    if(opener) {
+      setTimeout(window.close, 10000)
+    }
   }
 })
