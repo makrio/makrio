@@ -11,12 +11,12 @@ app.pages.Profile = app.pages.Base.extend({
 
   tooltipSelector : "*[rel=tooltip]",
 
-  personGUID : null,
+  username : null,
 
   initialize : function(options) {
-    this.personGUID = options.personId
+    this.personGUID = options.username
 
-    this.model = this.model || app.models.Profile.preloadOrFetch(this.personGUID)
+    this.model = this.model || app.models.Profile.preloadOrFetch(this.username)
     this.stream = options && options.stream || new app.models.Stream()
     this.stream.preloadOrFetch()
 
@@ -38,15 +38,7 @@ app.pages.Profile = app.pages.Base.extend({
 
     return self
   },
-
-  presenter : function(){
-    var bio =  this.model.get("bio") || ''
-
-    return _.extend(this.defaultPresenter(), {
-      text : this.model && app.helpers.textFormatter(bio, this.model)
-    })
-  },
-
+  
   setPageTitle : function() {
     if(this.model.get("name")) {
       document.title = this.model.get("name")

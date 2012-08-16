@@ -14,6 +14,7 @@ app.pages.Stream = app.pages.Base.extend({
   initialize : function(){
     var page = window.location.pathname
     var poll = page.search(/^\/latest/) != -1 && window.location.search.search('days_ago') == -1
+
     this.stream = this.model = new app.models.Stream([], {poller: poll})
     this.stream.preloadOrFetch()
     this.newPostsView = new app.views.NewPostNotifier({model : this.model, page: this})
@@ -65,10 +66,8 @@ app.pages.Stream = app.pages.Base.extend({
   },
 
   bindEvents : function(){
-
-    
+    this.stream.on("foo", this.initPoller, this)
     this.stream.on("fetched", this.resetScrollSpy, this)
-
     this.stream.on("frame:interacted", this.selectFrame, this)
     this.on("refreshScrollSpy", this.refreshScrollSpy, this)
     this.setUpMousetrap()
@@ -82,11 +81,12 @@ app.pages.Stream = app.pages.Base.extend({
     this.stream.off("frame:interacted", this.selectFrame, this)
     this.off("refreshScrollSpy", this.refreshScrollSpy, this)
 
-    $(window).unbind("scroll")
+    $(window).off("scroll")
   },
 
-
-
+  initPoller : function() {
+    console.log("init poller")
+  },
 
   postRenderTemplate : function() {
     //after all of the child divs have been added, initialize the scroll spy

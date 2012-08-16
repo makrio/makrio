@@ -119,8 +119,12 @@ app.models.Stream = Backbone.Collection.extend({
     var deferred =  $.when(app.hasPreload("stream") ? this.preload() : this.fetch())
 
     if(this.poll) {
-      this.poller = new app.collections.PostPoller([], {stream : this})
-      deferred.done(_.bind(this.poller.fetchMore, this.poller))
+      deferred.done(_.bind(function() {
+        if(this.items.length != 0) {
+          this.poller = this.poller || new app.collections.PostPoller([], {stream : this})
+          this.poller && this.poller.fetchMore()
+        }
+      }, this))
     }
 
     return deferred

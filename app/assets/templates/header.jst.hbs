@@ -5,9 +5,9 @@
         </a>
     </div>
 
-    <ul class="nav-center">
+    <ul class="nav-center root-nav">
         <li {{#if onExplore}}class="active"{{/if}}>
-            <a href="/front_page">
+            <a href="/front_page" data-subNav="onExplore">
                 Explore
                 {{#unless loggedIn}} 
                     Makr.io
@@ -17,7 +17,7 @@
 
         {{#if loggedIn}}
             <li {{#if onYou}}class="active"{{/if}}>
-                <a href="/interests">
+                <a href="/interests" data-subNav="onYou">
                     You
                 </a>
             </li>
@@ -53,7 +53,7 @@
                         </a>
                     </li>
                     <li title="About">
-                        <a href="/about" class='icon'>
+                        <a href="/about" class='icon' rel="backbone">
                             <img src="{{imageUrl "nav/about3@2x.png"}}" />
                         </a>
                     </li>
@@ -68,7 +68,7 @@
     {{else}}
         <ul class="login">
             <li>
-                <a href="/about" >
+                <a href="/about" rel='backbone'>
                     About
                 </a>
             </li>
@@ -81,54 +81,4 @@
     {{/if}}
 </div>
 
-{{#if showSubNav}}
-    <div class="sub">
-        <ul class="nav-center">
-            {{#if onExplore}}
-                <li {{#if onFrontPage}}class="active"{{/if}}>
-                    <a href="/front_page">
-                        Popular
-                    </a>
-                </li>
-
-                <li {{#if onLatest}}class="active"{{/if}}>
-                    <a href="/latest">
-                        Latest
-                    </a>
-                </li>
-
-                <li {{#if onTopics}}class="active"{{/if}}>
-                    <a href="/topics">
-                        Topics
-                    </a>
-                </li>
-
-                <li {{#if onTimeWarp}}class="active"{{/if}}>
-                    <a href="/timewarp">
-                        Time Warp
-                    </a>
-                </li>
-            {{/if}}
-            
-            {{#if onYou}}
-                <li {{#if onInterests}}class="active"{{/if}}>
-                    <a href="/interests">
-                        Interests
-                    </a>
-                </li>
-
-                <li {{#if onLikes}}class="active"{{/if}}>
-                    <a href="/likes">
-                        Likes
-                    </a>
-                </li>
-
-                <li {{#if onTopics}}class="active"{{/if}}>
-                    <a href="/{{current_user.username}}">
-                        Posts
-                    </a>
-                </li>
-            {{/if}}
-        </ul>
-    </div>
-{{/if}}
+<div id="sub_header"/>
