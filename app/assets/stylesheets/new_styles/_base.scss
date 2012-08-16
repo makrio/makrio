@@ -478,9 +478,10 @@ a.imgfave-button{
   
   #landing_header {
     margin: 0 auto;
-
     width: 840px;
     font-family:RobotoLight;
+    border-bottom: 1px solid #CCC;
+    padding: 0px 40px 30px 50px;
 
     h1, h2 {
       font-family:inherit;
