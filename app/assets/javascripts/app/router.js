@@ -68,25 +68,32 @@ app.Router = Backbone.Router.extend({
   },
   
   interests : function(){
-    app.onYou = true;
-
     app.instrument("track", "Track Interests")
 
-    app.onInterests = true
-    this.genericCanvas({title:'My Stream', description: "personalized just for you"})
+    this.genericCanvas({
+      title:'Interests',
+      description: "personalized just for you",
+      you: true
+    })
   },
 
   timewarp : function(daysAgo){
     var daysAgo = daysAgo || {}
     var days = typeof(daysAgo) =='String' ? daysAgo : daysAgo.days_ago
-    this.renderPage(function(){ return new app.pages.TimeWarp({daysAgo : days})});
+    this.renderPage(function(){
+      return new app.pages.TimeWarp({
+        daysAgo: days,
+        explore: true
+      })});
   },
 
   topTags : function(){
-    app.onExplore = true;
-
     app.instrument("track", "Top Tags Loaded")
-    this.renderPage(function(){ return new app.pages.TopTags()});
+    this.renderPage(function(){
+      return new app.pages.TopTags({
+        explore: true
+      })
+    });
   },
 
   styleGuide : function(id){
@@ -110,17 +117,15 @@ app.Router = Backbone.Router.extend({
   },
 
   likes : function() {
-    app.onYou = true;
-
     app.instrument("track", "Likes loaded")
 
     this.genericCanvas({
-      title : "My Likes"
+      title : "My Likes",
+      you: true
     })
   },
 
   rootPage : function() {
-    app.onRoot = true
     this.frontPage()
   },
 
@@ -131,30 +136,26 @@ app.Router = Backbone.Router.extend({
   },
 
   staffPicks : function() {
-    app.onStaffPicks = true;
     this.genericCanvas({
       title : "Staff Picks"
     })
   },
 
   frontPage : function() {
-    app.onExplore = true;
-
     app.instrument("track", "Front Page loaded")
     this.genericCanvas({
-
-      title : "Front Page",
-      description : "Recently popular posts"
+      title: "Popular",
+      description: "Recently popular posts",
+      explore: true
     })
   },
 
   newStream : function() {
-    app.onExplore = true;
-
     app.instrument("track", "Stream loaded")
+    var opts = {explore:true}
 
     var wantsCanvas = window.location.search.search('canvas') != -1
-      , page = wantsCanvas ? new app.pages.GenericCanvas() : new app.pages.Stream()
+      , page = wantsCanvas ? new app.pages.GenericCanvas(opts) : new app.pages.Stream(opts)
     
     this.renderPage(function(){ return page});
   },
@@ -174,7 +175,7 @@ app.Router = Backbone.Router.extend({
 
   newProfile : function(personId) {
     app.onProfilePage = true;
-    this.renderPage(function(){ return new app.pages.Profile({ personId : personId })});
+    this.renderPage(function(){ return new app.pages.Profile({personId : personId})});
   },
 
   doneFraming : function(id){
@@ -235,13 +236,16 @@ app.Router = Backbone.Router.extend({
   },
 
   tagShow : function(name, params){
-    app.onExplore = true;
-
     this.trackCampaign(params)
     app.instrument("track", "Topic Loaded", {
       Name : name
     })
-    this.renderPage(function(){ return new app.pages.TagsShow({name : name})});
+    this.renderPage(function(){
+      return new app.pages.TagsShow({
+        name : name,
+        explore: true
+      })
+    });
   },
   
   category : function(name){

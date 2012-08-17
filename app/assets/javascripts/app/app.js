@@ -38,7 +38,6 @@ var app = {
 
   initialize: function() {
     app.router = (window.location.subdomain() == '') ? new app.Router() : new app.Router({routes: this.subdomainRoutes});
-
     app.currentUser = app.user(window.current_user_attributes) || new app.models.User()
     
     Backbone.history.start({pushState: true});
@@ -54,6 +53,11 @@ var app = {
       $(".stream_title").text(link.text())
       app.router.navigate(link.attr("href").substring(1) ,true)
     })
+  },
+
+  // small hack
+  onStaffPicks : function() {
+    return window.location.pathname.search("/staff_picks") != -1
   },
 
   hasPreload : function(prop) {

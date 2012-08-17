@@ -1,7 +1,7 @@
 app.views.Canvas = app.views.InfScroll.extend({
   scrollOffset : 1000,
 
-  initialize: function(){
+  initialize: function(opts){
     this.stream = this.model
     this.collection = this.stream.items
     this.postClass = app.views.Post.CanvasFrame
@@ -17,7 +17,7 @@ app.views.Canvas = app.views.InfScroll.extend({
         var message
           , person = app.page.model
 
-        if(app.onInterests){
+        if(window.location.pathname.search('/interests') != -1){
           message = "<h2>Makr.io is smart about showing you content you love.</h2> \
                     <h3>This stream is based on content you've liked and content you've created.</h3> \
                     <br> \

@@ -1,6 +1,5 @@
-
 app.views.Base = Backbone.View.extend({
-  initialize : function(options) {
+  initialize : function() {
     this.setupRenderEvents();
   },
 

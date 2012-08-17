@@ -20,7 +20,7 @@ app.pages.GenericCanvas = app.pages.Base.extend({
     return(_.extend(this.defaultPresenter(), {
       title: this.pageTitle,
       description: this.pageDescription,
-      mintedAndOnStaffPicks: app.onStaffPicks && app.currentUser.minted()
+      mintedAndOnStaffPicks: app.onStaffPicks() && app.currentUser.minted()
     }))
   },
 
