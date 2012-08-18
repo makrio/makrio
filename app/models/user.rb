@@ -62,6 +62,10 @@ class User < ActiveRecord::Base
 
   before_save :guard_unconfirmed_email,
               :save_person!
+              
+  after_create do
+    self.person.profile.generate_gravatar_url!
+  end
 
   attr_accessible :getting_started,
                   :password,

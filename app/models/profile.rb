@@ -2,6 +2,9 @@
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
 
+
+require 'digest/md5'
+require 'uri'
 class Profile < ActiveRecord::Base
   self.include_root_in_json = false
 
@@ -77,7 +80,7 @@ class Profile < ActiveRecord::Base
              else
                self[:image_url]
              end
-    result || '/assets/user/default.png'
+    result || self.gravatar_url || '/assets/user/default.png'
   end
 
   def from_omniauth_hash(omniauth_user_hash)
@@ -99,7 +102,7 @@ class Profile < ActiveRecord::Base
   end
 
   def update_photo
-    return nil if image_url == '/assets/user/default.png'
+    return nil if image_url.include?('/assets/user/default.png'.to_query)
     return nil if image_url != image_url_medium
     if photo = Photo.find_from_filename(image_url)
       update_profile_image_from_photo(photo)
@@ -107,7 +110,21 @@ class Profile < ActiveRecord::Base
     end
   end
 
-  def image_url= url
+  def gravatar_url
+    options = {
+      d: AppConfig[:pod_url] + 'assets/user/default.png'
+    }
+   "https://secure.gravatar.com/avatar/#{gravatar_hash}?#{options.to_query}" if gravatar_hash
+  end
+
+  def generate_gravatar_url!
+    if email_address = self.person.owner.email
+      self.gravatar_hash = Digest::MD5.hexdigest(email_address)
+      self.save
+    end
+  end
+
+  def image_url=(url)
     return image_url if url == ''
     if url.nil? || url.match(/^https?:\/\//)
       super(url)
@@ -116,7 +133,7 @@ class Profile < ActiveRecord::Base
     end
   end
 
-  def image_url_small= url
+  def image_url_small=(url)
     return image_url if url == ''
     if url.nil? || url.match(/^https?:\/\//)
       super(url)
@@ -125,7 +142,7 @@ class Profile < ActiveRecord::Base
     end
   end
 
-  def image_url_medium= url
+  def image_url_medium=(url)
     return image_url if url == ''
     if url.nil? || url.match(/^https?:\/\//)
       super(url)
@@ -134,7 +151,7 @@ class Profile < ActiveRecord::Base
     end
   end
 
-  def date= params
+  def date=(params)
     if ['month', 'day'].all? { |key| params[key].present?  }
       params['year'] = '1000' if params['year'].blank?
       if Date.valid_civil?(params['year'].to_i, params['month'].to_i, params['day'].to_i)
