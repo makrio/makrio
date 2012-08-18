@@ -155,7 +155,7 @@ app.Router = Backbone.Router.extend({
     var opts = {explore:true}
 
     var wantsCanvas = window.location.search.search('canvas') != -1
-      , page = wantsCanvas ? new app.pages.GenericCanvas(opts) : new app.pages.Stream(opts)
+      , page = wantsCanvas ? new app.pages.GenericCanvas(opts) : new app.pages.Stream(_.extend(opts, {onStream:true}))
     
     this.renderPage(function(){ return page});
   },
