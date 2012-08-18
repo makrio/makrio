@@ -39,6 +39,9 @@ var app = {
   initialize: function() {
     app.router = (window.location.subdomain() == '') ? new app.Router() : new app.Router({routes: this.subdomainRoutes});
     app.currentUser = app.user(window.current_user_attributes) || new app.models.User()
+
+    // init header -- should be initializing a layout view here...
+    this.initHeader()
     
     Backbone.history.start({pushState: true});
 
@@ -53,6 +56,11 @@ var app = {
       $(".stream_title").text(link.text())
       app.router.navigate(link.attr("href").substring(1) ,true)
     })
+  },
+
+  initHeader : function() {
+    app.header = new app.views.Header({page:this})
+    $("body").prepend(app.header.render().el)
   },
 
   // small hack

@@ -1,0 +1,53 @@
+<div class="sub">
+    {{#if onExplore}}
+        <ul class="nav-center">
+            <ul class="sub-nav">
+                <li {{#if onFrontPage}}class="active"{{/if}}>
+                    <a href="/front_page">
+                        Popular
+                    </a>
+                </li>
+
+                <li {{#if onLatest}}class="active"{{/if}}>
+                    <a href="/latest">
+                        Latest
+                    </a>
+                </li>
+
+                <li {{#if onTopics}}class="active"{{/if}}>
+                    <a href="/topics">
+                        Topics
+                    </a>
+                </li>
+
+                <li {{#if onTimeWarp}}class="active"{{/if}}>
+                    <a href="/timewarp">
+                        Time Warp
+                    </a>
+                </li>
+            </ul>
+        </ul>
+    {{/if}}
+        
+    {{#if onYou}}
+        <ul class="sub-nav">
+            <li {{#if onInterests}}class="active"{{/if}}>
+                <a href="/interests" rel="backbone">
+                    Interests
+                </a>
+            </li>
+
+            <li {{#if onLikes}}class="active"{{/if}}>
+                <a href="/likes" rel="backbone">
+                    Likes
+                </a>
+            </li>
+
+            <li {{#if onPosts}}class="active"{{/if}}>
+                <a href="/{{current_user.username}}">
+                    Posts
+                </a>
+            </li>
+        </ul>
+    {{/if}}
+</div>
