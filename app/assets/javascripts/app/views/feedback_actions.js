@@ -11,3 +11,7 @@ app.views.StreamFeedbackActions = app.views.Feedback.extend({
 app.views.ViewerFeedbackActions = app.views.Feedback.extend({
   templateName : "feedback/viewer-feedback-actions"
 });
+
+app.views.LatestFeedbackActions = app.views.Feedback.extend({
+  templateName : "feedback/latest-feedback-actions"
+});

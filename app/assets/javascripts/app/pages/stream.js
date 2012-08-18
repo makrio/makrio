@@ -65,11 +65,9 @@ app.pages.Stream = app.pages.Base.extend({
   },
 
   bindEvents : function(){
-
-    
     this.stream.on("fetched", this.resetScrollSpy, this)
-
     this.stream.on("frame:interacted", this.selectFrame, this)
+
     this.on("refreshScrollSpy", this.refreshScrollSpy, this)
     this.setUpMousetrap()
   },
@@ -84,9 +82,6 @@ app.pages.Stream = app.pages.Base.extend({
 
     $(window).unbind("scroll")
   },
-
-
-
 
   postRenderTemplate : function() {
     //after all of the child divs have been added, initialize the scroll spy
