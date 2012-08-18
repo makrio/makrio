@@ -13,12 +13,14 @@
 <div id='share-actions'/>
 <br/>
 
-<h6>Topics</h6>
-  {{#each tags}}
-    <a class='topic-link' href='/tagged/{{this.name}}'>  <span class="label">{{this.display_name}}</span></a>
-  {{/each}}
-<br/>
-<br/>
+{{#if tags}}
+  <h6>Topics</h6>
+    {{#each tags}}
+      <a class='topic-link' href='/tagged/{{this.name}}'>  <span class="label">{{this.display_name}}</span></a>
+    {{/each}}
+  <br/>
+  <br/>
+{{/if}}
 
 <div class="feedback"/>
 <div class="comments"/>

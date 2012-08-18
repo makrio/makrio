@@ -12,8 +12,8 @@
 
   <div id="selected_frame" />
   </br/>
-  {{#if topics}}
-    <h6> Topics </h6>
+  {{#if tags}}
+    <h6>Topics</h6>
     {{#each tags}}
       <a class='topic-link' href='/tagged/{{this.name}}'> <span class="label">{{this.display_name}}</span></a>
     {{/each}}
