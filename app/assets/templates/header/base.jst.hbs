@@ -68,6 +68,8 @@
     <div id="sub_header"/>
 </div>
 
-{{#unless onStream}}
-    <div id="sign_up_banner"/>
+{{#unless loggedIn}}
+    {{#unless onStream}}
+        <div id="sign_up_banner"/>
+    {{/unless}}
 {{/unless}}
