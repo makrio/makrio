@@ -1,14 +1,25 @@
 app.views.Canvas = app.views.InfScroll.extend({
-  scrollOffset : 1000,
+  scrollOffset : 1500,
 
   initialize: function(opts){
     this.stream = this.model
     this.collection = this.stream.items
     this.postClass = app.views.Post.CanvasFrame
     this.postViews = []
+    this.onProfilePage = opts.onProfilePage
+
     this.setupInfiniteScroll()
-    this.stream.bind("reLayout", this.reLayout, this)
-    this.stream.bind("fetched", this.addPosts, this)
+    this.bindEvents()
+  },
+
+  bindEvents : function() {
+    this.stream.on("reLayout", this.reLayout, this)
+    this.stream.on("fetched", this.addPosts, this)
+  },
+
+  unbind : function() {
+    this.stream.off("reLayout", this.reLayout)
+    this.stream.off("fetched", this.addPosts)
   },
 
   renderTemplate : function() {
@@ -74,11 +85,6 @@ app.views.Canvas = app.views.InfScroll.extend({
         }
       })
     }
-  },
-
-  triggerRelayoutAfterImagesLoaded : function(){
-    //event apparently only fires once
-    this.$el.imagesLoaded(_.bind(this.reLayout, this))
   },
 
   reLayout : function(){

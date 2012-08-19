@@ -14,5 +14,8 @@ app.views.SignUpBanner = app.views.Base.extend({
 });
 
 app.pages.Base = app.views.Base.extend({
-  options: {}
+  // default options object to be overridden
+  // this ensures presence of the object.
+  options: {},
+  unbind: $.noop
 });

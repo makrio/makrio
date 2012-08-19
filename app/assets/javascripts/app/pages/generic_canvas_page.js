@@ -14,6 +14,12 @@ app.pages.GenericCanvas = app.pages.Base.extend({
       });
 
     this.setUpInfiniteScroll() 
+    this.initSubviews()
+  },
+
+  unbind : function() {
+    this.canvasView.unbind()
+    this.newPostsView && this.newPostsView.unbind()
   },
 
   presenter : function() {
@@ -29,7 +35,6 @@ app.pages.GenericCanvas = app.pages.Base.extend({
     options = options || { collectionOptions: {} }
     this.stream = new app.models.Stream([], options)
     this.stream.preloadOrFetch()
-    this.initSubviews()
   },
 
   initSubviews : function(){

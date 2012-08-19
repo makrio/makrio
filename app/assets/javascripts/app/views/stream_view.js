@@ -1,4 +1,6 @@
 app.views.Stream = app.views.InfScroll.extend({
+  postClass : app.views.StreamPost,
+
   initialize: function(options) {
     this.stream = this.model
     this.collection = this.stream.items
@@ -9,8 +11,9 @@ app.views.Stream = app.views.InfScroll.extend({
     this.setupInfiniteScroll()
   },
 
-  postClass : app.views.StreamPost,
-
+  unbind : function() {
+    this.unbindInfScroll()
+  },
 
   setupNSFW : function(){
     app.currentUser.bind("nsfwChanged", reRenderPostViews, this)

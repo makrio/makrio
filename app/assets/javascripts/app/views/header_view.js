@@ -39,7 +39,8 @@ app.views.Header = app.views.Base.extend({
 
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
-      onFrontPage: function() { return window.location.pathname == '/' }
+      onFrontPage: function() { return window.location.pathname == '/' },
+      onStream : app.page && app.page.onStream
     })
   },
 
@@ -72,7 +73,7 @@ app.views.RootHeader = app.views.Base.extend({
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
       onExplore: app.page && app.page.options.explore,
-      onYou: app.page && app.page.options && app.page.options.you || window.location.pathname == "/" + app.currentUser.get("username"),
+      onYou: app.page && app.page.options.you || window.location.pathname == "/" + app.currentUser.get("username"),
     })
   },
 

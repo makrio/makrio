@@ -11,12 +11,10 @@ app.pages.Profile = app.pages.Base.extend({
 
   tooltipSelector : "*[rel=tooltip]",
 
-  personGUID : null,
+  username : null,
 
   initialize : function(options) {
-    this.personGUID = options.personId
-
-    this.model = this.model || app.models.Profile.preloadOrFetch(this.personGUID)
+    this.model = this.model || app.models.Profile.preloadOrFetch(options.username)
     this.stream = options && options.stream || new app.models.Stream()
     this.stream.preloadOrFetch()
 
@@ -24,7 +22,10 @@ app.pages.Profile = app.pages.Base.extend({
   },
 
   initViews : function(){
-    this.canvasView = new app.views.Canvas({ model : this.stream })
+    this.canvasView = new app.views.Canvas({
+      model: this.stream,
+      onProfilePage: true
+    })
     this.profileInfo = new app.views.ProfileInfo({ model : this.model })
   },
 
@@ -38,15 +39,7 @@ app.pages.Profile = app.pages.Base.extend({
 
     return self
   },
-
-  presenter : function(){
-    var bio =  this.model.get("bio") || ''
-
-    return _.extend(this.defaultPresenter(), {
-      text : this.model && app.helpers.textFormatter(bio, this.model)
-    })
-  },
-
+  
   setPageTitle : function() {
     if(this.model.get("name")) {
       document.title = this.model.get("name")

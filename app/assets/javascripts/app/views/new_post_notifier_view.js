@@ -34,7 +34,7 @@ app.views.NewPostNotifier = app.views.Base.extend({
     this.stream.on("hasMoar", this.notifyUserOfMorePosts, this)
   },
 
-  unbindEvents : function(){
+  unbind : function(){
     this.stream.off("hasMoar", this.notifyUserNewPosts, this)
   },
 
