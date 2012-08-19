@@ -20,6 +20,7 @@ app.views.Canvas = app.views.InfScroll.extend({
   unbind : function() {
     this.stream.off("reLayout", this.reLayout)
     this.stream.off("fetched", this.addPosts)
+    this.unbindInfScroll()
   },
 
   renderTemplate : function() {

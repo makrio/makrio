@@ -26,5 +26,9 @@ app.pages.TimeWarp = app.pages.Base.extend({
 
   initSubviews : function(){
     this.canvasView = new app.views.Canvas({model : this.stream})
+  },
+
+  unbind : function() {
+    this.canvasView.unbind()
   }
 });
