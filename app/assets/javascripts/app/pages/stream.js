@@ -82,6 +82,8 @@ app.pages.Stream = app.pages.Base.extend({
     this.streamView.unbind()
     this.interactionsView.unbind()
     this.newPostsView.unbind()
+
+    $("body").removeData("scrollspy")
   },
 
   postRenderTemplate : function() {
