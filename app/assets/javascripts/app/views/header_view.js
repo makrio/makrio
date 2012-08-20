@@ -79,7 +79,7 @@ app.views.RootHeader = app.views.Base.extend({
 
   navigateSub : function(evt) {
     evt && evt.preventDefault()
-    app.router.navigate($(evt.target).attr("href").substring(1) ,true)
+    app.router.setLocation($(evt.target).attr("href").substring(1))
   }
 });
 
@@ -110,6 +110,6 @@ app.views.SubHeader = app.views.Base.extend({
 
   navigateSub : function(evt) {
     evt && evt.preventDefault()
-    app.router.navigate($(evt.target).attr("href").substring(1) ,true)
+    app.router.setLocation($(evt.target).attr("href").substring(1))
   }
 });
