@@ -100,6 +100,10 @@ class Notifier < ActionMailer::Base
     send_notification(:remixed, recipient_id, sender_id, remixed_post_id)
   end
 
+  def followed(recipient_id, sender_id)
+    send_notification(:followed, recipient_id, sender_id)
+  end
+
   def liked(recipient_id, sender_id, like_id)
     send_notification(:liked, recipient_id, sender_id, like_id)
   end

@@ -1,0 +1,7 @@
+Huzzah.
+
+<%= "#{@notification.sender.name} started following you!" %>
+
+[<%= "Follow back?" %>][1]
+
+[1]: <%= person_url(@notification.sender) %>

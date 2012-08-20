@@ -5,7 +5,12 @@ module NotificationsHelper
     target_type = note.popup_translation_key
     actors_count = note.actors.count
 
-    if note.instance_of?(Notifications::Mentioned)
+    if note.instance_of?(Notifications::Followed)
+      person = note.actors.first
+      str = link_to person.name, "/#{person.owner.username}"
+      str += " started following you!"
+
+    elsif note.instance_of?(Notifications::Mentioned)
       if post = note.linked_object
         translation(target_type, :actors => actors, :count => actors_count, :post_link => link_to(t('notifications.post'), post_path(post)).html_safe)
       else

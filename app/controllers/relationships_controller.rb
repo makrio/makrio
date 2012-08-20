@@ -4,7 +4,9 @@ class RelationshipsController < ApplicationController
 	respond_to :json
 
 	def create
-		respond_with current_user.person.follow!(params[:followed_id])
+		follow = current_user.person.follow!(params[:followed_id])
+		Notifications::Followed.notify(current_user.person, params[:followed_id])
+		respond_with follow 
 	end
 
 	def destroy
