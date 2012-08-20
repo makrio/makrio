@@ -51,6 +51,8 @@ Diaspora::Application.routes.draw do
   get "latest" => "streams#show", :as => 'latest'
   get "latest/updated" => "streams#updated"
 
+  get 'feed' => 'streams#feed', :as => 'feed'
+
   match "stream" => redirect("/latest")
   get "timewarp/:days_ago" => 'streams#show'
   get "timewarp" => 'streams#show'

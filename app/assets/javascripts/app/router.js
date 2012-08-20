@@ -4,6 +4,7 @@ app.Router = Backbone.Router.extend({
 
     //explore sub-sections
     "latest": "newStream",
+    "feed": "feed",
 
     "front_page": "frontPage",
     "interests": "interests",
@@ -148,6 +149,16 @@ app.Router = Backbone.Router.extend({
       description: "Recently popular posts",
       explore: true
     })
+  },
+
+  feed : function() {
+    app.instrument("track", "Feed loaded")
+    var opts = {you:true}
+
+    var wantsCanvas = window.location.search.search('canvas') != -1
+      , page = wantsCanvas ? new app.pages.GenericCanvas(opts) : new app.pages.Stream(_.extend(opts, {onStream:true}))
+    
+    this.renderPage(function(){ return page});
   },
 
   newStream : function() {

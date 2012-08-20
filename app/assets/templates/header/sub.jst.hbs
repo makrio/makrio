@@ -31,6 +31,12 @@
         
     {{#if onYou}}
         <ul class="sub-nav">
+            <li {{#if onFeed}}class="active"{{/if}}>
+                <a href="/feed" rel="backbone">
+                    Feed
+                </a>
+            </li>
+
             <li {{#if onInterests}}class="active"{{/if}}>
                 <a href="/interests" rel="backbone">
                     Interests

@@ -2,7 +2,7 @@
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
 
-%w{conversations staff_picks likes front_page category interests}.each do |filename|
+%w{conversations staff_picks likes front_page category interests feed}.each do |filename|
   require File.join(Rails.root, "lib", "stream", filename)
 end
 
@@ -13,6 +13,7 @@ class StreamsController < ApplicationController
 
   before_filter :set_current_path, :only => [:show, :front_page, :interests]
   before_filter :set_getting_started!, :except => [:staff_picks]
+  before_filter :authenticate_user!, :only => [:feed]
 
   def show
     stream_responder do
@@ -39,6 +40,13 @@ class StreamsController < ApplicationController
       scope = @stream.stream_posts
       scope = scope.where('posts.id > ?', params[:last_post_id]) if params[:last_post_id].present?
       @stream_json = PostPresenter.collection_json(scope, current_user, lite?: true, include_root: false)
+    end
+  end
+
+
+  def feed    
+    stream_responder do
+      default_stream(Stream::Feed)
     end
   end
 

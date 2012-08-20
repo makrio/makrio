@@ -95,6 +95,7 @@ app.views.SubHeader = app.views.Base.extend({
     var path = document.location.pathname
     return _.extend(this.defaultPresenter(), {
       onLatest : function() { return path.search("latest") !== -1},
+      onFeed : function() { return path.search("feed") !== -1},
       onFrontPage : function() { return path.search("front_page") !== -1 },
       onPopular : function() { return path.search("popular") !== -1 },
       onTimeWarp: function() { return path.search("timewarp") !== -1 },

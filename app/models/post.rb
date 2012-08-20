@@ -62,6 +62,13 @@ class Post < ActiveRecord::Base
   }
 
 
+  def self.from_users_followed_by(person)
+      followed_person_ids = "SELECT followed_id FROM relationships
+                          WHERE follower_id = :person_id"
+      where("author_id IN (#{followed_person_ids}) OR author_id = :person_id", 
+            person_id: person.id)
+  end
+
   def add_gif_tag
     return false unless photos.present?
 
