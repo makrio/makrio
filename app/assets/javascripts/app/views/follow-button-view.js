@@ -1,5 +1,6 @@
 app.views.FollowButton = app.views.Base.extend({
   templateName : "follow-button",
+  tagName: "span",
 
   events : {
   	"click .follow-btn" : "follow"
@@ -8,6 +9,11 @@ app.views.FollowButton = app.views.Base.extend({
   initialize : function() {
   	this.relationship = this.model.relationship
   	this.bindEvents()
+  },
+
+  postRenderTemplate : function() {
+    if(app.currentUser.id == this.model.id)
+      this.$el.css("display", "none");
   },
 
   presenter : function() {
