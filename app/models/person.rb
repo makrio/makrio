@@ -61,6 +61,10 @@ class Person < ActiveRecord::Base
 
   has_many :mentions, :dependent => :destroy
 
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_people, through: :relationships, source: :followed
+
+
   before_validation :clean_url
 
   validates :url, :presence => true
