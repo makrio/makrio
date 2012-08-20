@@ -9,28 +9,25 @@ class PersonPresenter < BasePresenter
     attrs = @person.as_api_response(:backbone).merge(
         {
             :username => self.username,
-            :is_own_profile => is_own_profile
+            :is_own_profile => is_own_profile,
+            :relationship => self.relationship
         })
 
     if is_own_profile
-      attrs.merge!({
-                      :location => @person.profile.location,
-                      :birthday => @person.profile.formatted_birthday,
-                      :bio => @person.profile.bio
-                  })
-    end
-
-    if @opts[:post_counts]
-      attrs.merge!({
-                      :post_count => post_count
-                  })
+      attrs.merge!(
+        {
+            :location => @person.profile.location,
+            :birthday => @person.profile.formatted_birthday,
+            :bio => @person.profile.bio
+        })
     end
 
     attrs
   end
 
-  def post_count
-    @opts[:post_counts].find{|x| x[0] == @person.id}[1]
+  def relationship
+    return nil if @current_user.blank? || self.is_own_profile
+    @current_user.person.relationship(@person)
   end
 
   def is_own_profile

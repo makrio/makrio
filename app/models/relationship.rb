@@ -6,4 +6,12 @@ class Relationship < ActiveRecord::Base
 
   validates :follower_id, presence: true
   validates :followed_id, presence: true
+
+  def as_json(opts={})
+  	{
+  		id: self.id,
+  		followed_id: self.followed_id,
+  		follower_id: self.follower_id
+  	}
+  end
 end

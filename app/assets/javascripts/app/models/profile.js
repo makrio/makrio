@@ -1,5 +1,10 @@
 app.models.Profile = Backbone.Model.extend({
-  urlRoot : "/profiles"
+  urlRoot : "/profiles",
+
+  initialize : function(){
+    var relationship = this.get('relationship') || {followed_id : this.id}
+    this.relationship = new app.models.Relationship(relationship)
+  }
 }, {
 
   preloadOrFetch : function(username){

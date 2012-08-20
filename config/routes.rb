@@ -13,9 +13,8 @@ Diaspora::Application.routes.draw do
 
   resources :status_messages, :only => [:new, :create]
 
-  resources :conversations, :only => [:show]
   post '/posts/:post_id/tags' => 'tags#set'
-  post '/conversations/:conversation_id/join' => 'conversations#join'
+  resources :relationships, :only => [:create, :destroy]
 
   resources :posts do
     member do
