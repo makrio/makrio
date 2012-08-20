@@ -6,6 +6,13 @@ class Relationship < ActiveRecord::Base
 
   validates :follower_id, presence: true
   validates :followed_id, presence: true
+  validate :follower_is_is_not_followed_id
+
+  def follower_is_is_not_followed_id
+    if followed_id == follower_id
+      errors[:base] << 'Can not follow yourself'
+    end
+  end
 
   def as_json(opts={})
   	{
