@@ -70,6 +70,8 @@
 
 {{#unless loggedIn}}
     {{#unless onStream}}
-        <div id="sign_up_banner"/>
+        {{#unless onLogin}}
+            <div id="sign_up_banner"/>
+        {{/unless}}
     {{/unless}}
 {{/unless}}

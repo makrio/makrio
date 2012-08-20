@@ -38,9 +38,12 @@ app.views.Header = app.views.Base.extend({
   },
 
   presenter : function() {
+    var path = window.location.pathname
+    
     return _.extend(this.defaultPresenter(), {
-      onFrontPage: function() { return window.location.pathname == '/' },
-      onStream : app.page && app.page.onStream
+      onFrontPage: function() { return path == '/' },
+      onStream : app.page && app.page.onStream,
+      onLogin : function() { return path.search("users") !== -1},
     })
   },
 
