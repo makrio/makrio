@@ -92,6 +92,11 @@
         %p.checkbox_select
           = type.label :remixed, t('.remixed')
           = type.check_box :remixed, {:checked =>  @email_prefs['remixed']}, false, true
+
+        %br
+        %p.checkbox_select
+          = type.label :followed, t('.followed')
+          = type.check_box :follwed, {:checked =>  @email_prefs['followed']}, false, true
     %br
     = f.submit t('.change'), :class => "button"
 

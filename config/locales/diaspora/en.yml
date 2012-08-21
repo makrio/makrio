@@ -1059,6 +1059,7 @@ en:
       edit_account: "Edit account"
       receive_email_notifications: "Receive email notifications when..."
       also_commented: "...someone also comments on your contact's post?"
+      followed: "...someone follows you?"
       comment_on_post: "...someone comments on your post?"
       mentioned: "...you are mentioned in a post?"
       started_sharing: "...someone starts sharing with you?"
