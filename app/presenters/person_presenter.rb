@@ -11,8 +11,8 @@ class PersonPresenter < BasePresenter
             :username => self.username,
             :is_own_profile => is_own_profile,
             :relationship => self.relationship,
-            :followers => @person.followers_count,
-            :following => @person.followed_count
+            :followers => @person.followed_count,
+            :following =>@person.followers_count 
         })
 
     if is_own_profile
