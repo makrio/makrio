@@ -69,30 +69,17 @@ app.views.RootHeader = app.views.Base.extend({
   tagName: 'ul',
   className: 'nav-center root-nav',
 
-  events : {
-    'click .root-nav a' : 'navigateSub'
-  },
-
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
       onExplore: app.page && app.page.options.explore,
       onYou: app.page && app.page.options.you || window.location.pathname == "/" + app.currentUser.get("username"),
     })
-  },
-
-  navigateSub : function(evt) {
-    evt && evt.preventDefault()
-    app.router.setLocation($(evt.target).attr("href").substring(1))
   }
 });
 
 /* sub-nav */
 app.views.SubHeader = app.views.Base.extend({
   templateName: 'header/sub',
-
-  events : {
-    'click .sub-nav a' : 'navigateSub'
-  },
 
   presenter : function() {
     var path = document.location.pathname
@@ -110,10 +97,5 @@ app.views.SubHeader = app.views.Base.extend({
       onExplore: app.page && app.page.options.explore,
       onYou: app.page && app.page.options.you || window.location.pathname == "/" + app.currentUser.get("username")
     })
-  },
-
-  navigateSub : function(evt) {
-    evt && evt.preventDefault()
-    app.router.setLocation($(evt.target).attr("href").substring(1))
   }
 });
