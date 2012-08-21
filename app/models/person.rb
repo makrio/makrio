@@ -54,8 +54,11 @@ class Person < ActiveRecord::Base
   has_many :mentions, :dependent => :destroy
 
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
-  has_many :followed_people, through: :relationships, source: :followed
+  has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name: "Relationship"
 
+  has_many :followed_people, through: :relationships, source: :followed
+  has_many :followers, through: :reverse_relationships
 
   before_validation :clean_url
 
@@ -107,7 +110,6 @@ class Person < ActiveRecord::Base
   def downcase_diaspora_handle
     diaspora_handle.downcase! unless diaspora_handle.blank?
   end
-
 
   def self.community_spotlight
     Person.joins(:roles).where(:roles => {:name => 'spotlight'})
