@@ -2,6 +2,7 @@
  *   licensed under the Affero General Public License version 3 or later.  See
  *   the COPYRIGHT file.
  */
+//= require underscore
 
 //= require rails.validations
 //= require jquery.hotkeys
@@ -25,12 +26,11 @@
 //= require validation
 //= require view
 //= require diaspora
+//= require_tree ./helpers
 //= require_tree ./pages
 //= require_tree ./widgets
 //= require mentions
 //= require bootstrap-tooltip
 //= require bootstrap-popover
 //= require bootstrap-dropdown
-//= require bootstrap-scrollspy-custom
-
-
+//= require handlebars-1.0.0.beta.6
