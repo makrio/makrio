@@ -32,5 +32,15 @@ app.views.FollowButton = app.views.Base.extend({
 
   follow : function() {
   	this.relationship.toggleFollow()
+
+    /* update the collection */
+    if(this.collection) this.updateCollection();
+  },
+
+  updateCollection : function() {
+    _.each(this.collection.models, _.bind(function(model){
+      if(model.get("author").id == this.model.id)
+        model.get("author").relationship = this.relationship
+    }, this))
   }
 });

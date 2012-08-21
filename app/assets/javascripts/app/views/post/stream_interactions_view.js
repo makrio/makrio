@@ -13,7 +13,10 @@ app.views.StreamInteractions = app.views.Base.extend({
 
   initViews : function() {
     var author = new app.models.Profile(this.model.get("author"))
-    this.followButtonView = new app.views.FollowButton({model : author})
+    this.followButtonView = new app.views.FollowButton({
+      model : author,
+      collection: app.page.stream.items
+    })
   },
 
   setInteractions : function (model) {
