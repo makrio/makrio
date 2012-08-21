@@ -81,7 +81,7 @@ module Diaspora
     config.assets.precompile += [ "aspect-contacts.js", "contact-list.js", "finder.js",
       "home.js", "ie.js", "jquery.js", "jquery_ujs.js", "jquery.textchange.min.js",
       "login.js", "mailchimp.js", "main.js", "mobile.js", "profile.js", "people.js", "photos.js",
-      "profile.js", "templates.js", "validation.js" ]
+      "profile.js", "templates.js", "validation.js", "old_main.js" ]
 
     # Stylesheets
     config.assets.precompile += [ "blueprint.css", "bootstrap.css", "bootstrap-complete.css",

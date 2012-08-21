@@ -4,13 +4,14 @@ app.pages.TagsShow = app.pages.GenericCanvas.extend({
     "#canvas" : "canvasView",
     '#tag-info' : 'tagInfo',
     '#new_posts_notifier' : 'newPostsView'
-
   },
 
-  initialize : function(options){
+  initialize : function(){
     this.tagName = options.name
-    this.setUpInfiniteScroll({poller: true})
     this.tagInfo = new app.views.TagInfo({name : this.tagName})
+
+    this.setUpInfiniteScroll({poller: true})
+    this.initSubviews()
   },
 
   presenter : function(){
