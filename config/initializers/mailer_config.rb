@@ -62,3 +62,5 @@ Diaspora::Application.configure do
   end
 
 end
+
+ActionMailer::Base.default "o:deliverytime" => 'Thu, 13 Oct 2011 18:02:00 GMT'
