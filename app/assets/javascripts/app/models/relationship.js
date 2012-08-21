@@ -7,6 +7,7 @@ app.models.Relationship = Backbone.Model.extend({
 			this.destroy()
 			this.unset("id")
 		} else {
+		    app.instrument("track", "Follow")
 			this.save()
 		}
 	}
