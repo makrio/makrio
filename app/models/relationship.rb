@@ -1,8 +1,8 @@
 class Relationship < ActiveRecord::Base
   attr_accessible :followed_id
 
-  belongs_to :follower, class_name: "Person", counter_cache: :followers_count
-  belongs_to :followed, class_name: "Person", counter_cache: :followed_count
+  belongs_to :follower, class_name: "Person", counter_cache: :followed_count  #followed person count
+  belongs_to :followed, class_name: "Person", counter_cache: :followers_count #followers count
 
   validates :follower_id, presence: true
   validates :followed_id, presence: true
