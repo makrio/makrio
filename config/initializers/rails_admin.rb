@@ -43,7 +43,7 @@ RailsAdmin.config do |config|
   # config.excluded_models = [ActivityStreams::Photo, AspectMembership, AspectVisibility, ShareVisibility,  NotificationActor, Notifications::AlsoCommented, Notifications::CommentOnPost, Notifications::Liked, Notifications::Mentioned, Notifications::RequestAccepted, Notifications::Reshared, Notifications::StartedSharing, Reshare, Services::Facebook, Services::Tumblr, Services::Twitter,  UserPreference]
 
   # Add models here if you want to go 'whitelist mode':
-  config.included_models = [Person, User, Post, Photo, Profile, Like]
+  config.included_models = [Person, User, Post, Photo, Profile, Like, Relationship]
 
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
