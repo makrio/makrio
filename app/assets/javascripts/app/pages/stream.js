@@ -67,7 +67,7 @@ app.pages.Stream = app.pages.Base.extend({
   },
 
   bindEvents : function(){
-    this.stream.on("fetched", this.refreshScrollSpy, this)
+    this.stream.on("fetched", this.resetScrollSpy, this)
     this.on("refreshScrollSpy", this.refreshScrollSpy, this)
     this.setUpMousetrap()
   },
@@ -76,7 +76,7 @@ app.pages.Stream = app.pages.Base.extend({
     this.stream.unbind()
     this.newPostsView.unbind()
 
-    this.stream.off("fetched", this.refreshScrollSpy, this)
+    this.stream.off("fetched", this.resetScrollSpy, this)
     this.off("refreshScrollSpy", this.refreshScrollSpy, this)
 
     this.streamView.unbind()
@@ -102,7 +102,7 @@ app.pages.Stream = app.pages.Base.extend({
   },
 
   prependedPosts : function(){
-    this.refreshScrollSpy()
+    this.resetScrollSpy()
   },
 
   selectFrame : function(post){
@@ -123,7 +123,22 @@ app.pages.Stream = app.pages.Base.extend({
   },
 
   refreshScrollSpy : function(){
-    $('body').scrollspy('refresh')
+    this._resetPeriod = this._resetPeriod || 2000
+    _.delay(_.bind(this.doRefresh, this), this._resetPeriod)
+  },
+
+  doRefresh : function(){
+    if(this._resetPeriod <= 10000) {
+      $('body').scrollspy('refresh')
+      this._resetPeriod = this._resetPeriod * 2
+      this.trigger("refreshScrollSpy")
+    }
+  },
+
+  resetScrollSpy : function(){
+    this._resetPeriod = 2000
+    this.refreshScrollSpy()
+    this.doRefresh()
   }
 },
 
