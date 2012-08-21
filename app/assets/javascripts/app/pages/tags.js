@@ -6,7 +6,7 @@ app.pages.TagsShow = app.pages.GenericCanvas.extend({
     '#new_posts_notifier' : 'newPostsView'
   },
 
-  initialize : function(){
+  initialize : function(options){
     this.tagName = options.name
     this.tagInfo = new app.views.TagInfo({name : this.tagName})
 
