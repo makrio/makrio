@@ -6,7 +6,6 @@ class Service < ActiveRecord::Base
   include ActionView::Helpers::TextHelper
 
   belongs_to :user
-  validates :user, :presence => true
   validates_uniqueness_of :uid, :scope => :type
 
   def self.titles(service_strings)
