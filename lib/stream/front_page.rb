@@ -5,7 +5,7 @@ class Stream::FrontPage
   end
 
   def posts
-    @posts ||= Post.featured_and_by_author(@current_user.try(:person)).ranked
+    @posts ||= Post.where('posts.likes_count > ?', 3).featured_and_by_author(@current_user.try(:person)).ranked
   end
 
   def stream_posts
