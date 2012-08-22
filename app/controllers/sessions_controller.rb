@@ -14,7 +14,7 @@ class SessionsController < Devise::SessionsController
   def create
     fb_data = session["devise.facebook_data"]
     if fb_data
-      service = Services::Facebook.find_by_uid_and_access_secret!(fb_data.uid, fb_data.credentials.secret)
+      service = Services::Facebook.find_by_uid_and_access_secret!(fb_data['uid'], fb_data['credentials']['secret'])
     end
 
     super
