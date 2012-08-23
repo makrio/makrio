@@ -16,19 +16,26 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     @user = User.build(params[:user])
-    @user.process_invite_acceptence(invite) if invite.try(:present?)
 
     # set image url if this is from a FB login
     if session["devise.facebook_data"]
-      @user.save! # we need to save the user here before adjusting the user's profile
+      if @user.save # we need to save the user here before adjusting the user's profile
 
-      # find and save service from uid
-      service = Services::Facebook.find_by_uid_and_access_secret(session["devise.facebook_data"][:uid], session["devise.facebook_data"][:credentials][:secret])
-      service.user = @user
-      service.save
+        # find and save service from uid
+        service = Services::Facebook.find_by_uid_and_access_secret(session["devise.facebook_data"][:uid], session["devise.facebook_data"][:credentials][:secret])
+        service.user = @user
+        service.save
 
-      @user.reload.person.profile.image_url = session["devise.facebook_data"][:image]
-      @user.person.profile.save
+        @user.reload.person.profile.image_url = session["devise.facebook_data"][:image]
+        @user.person.profile.save
+      else
+
+        #this is when the username might be invalid
+        @user.errors.delete(:person)
+        flash[:error] = @user.errors.full_messages.join(";")
+        redirect_to new_user_registration_path, :error => flash[:error]
+        return
+      end
     end
 
     if @user.save

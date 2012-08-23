@@ -142,12 +142,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def process_invite_acceptence(invite)
-    self.invited_by = invite.user
-    invite.use!
-  end
-
-
   def invitation_code
     InvitationCode.find_or_create_by_user_id(self.id)
   end
