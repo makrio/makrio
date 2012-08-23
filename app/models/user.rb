@@ -59,8 +59,6 @@ class User < ActiveRecord::Base
 
   has_many :notifications, :foreign_key => :recipient_id
   
-
-
   before_save :guard_unconfirmed_email,
               :save_person!
               
@@ -88,6 +86,10 @@ class User < ActiveRecord::Base
         user.email = data[:email]
       end
     end
+  end
+
+  def facebook
+    services.find{|x| x.name =='facebook'}
   end
 
   def topics_liked(time = 1.week.ago)
