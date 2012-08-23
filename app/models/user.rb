@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
   end
 
   def facebook
-    services.find{|x| x.name =='facebook'}
+    services.find{|x| x.provider =='facebook'}
   end
 
   def topics_liked(time = 1.week.ago)
