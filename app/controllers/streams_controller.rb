@@ -50,6 +50,13 @@ class StreamsController < ApplicationController
     end
   end
 
+  def feed_updated
+    stream_responder do
+      @stream = Stream::Feed.new(current_user, :max_time => max_time)
+      @stream_json =  PostPresenter.collection_json(@stream.stream_posts.where("id > ?", params[:last_post_id]), current_user)
+    end
+  end
+
   def front_page
     stream_responder do
       @stream = Stream::FrontPage.new(current_user, params[:offset])

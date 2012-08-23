@@ -13,7 +13,7 @@ app.pages.Stream = app.pages.Base.extend({
 
   initialize : function(options){
     var page = window.location.pathname
-      , poll = page.search(/^\/latest/) != -1 && window.location.search.search('days_ago') == -1
+      , poll = (page.search(/^\/latest/) != -1 || page.search(/^\/feed/) != -1 ) && window.location.search.search('days_ago') == -1
 
     this.stream = this.model = new app.models.Stream([], {poller: poll})
     this.stream.preloadOrFetch()
