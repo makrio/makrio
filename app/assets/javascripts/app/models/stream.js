@@ -35,7 +35,7 @@ app.collections.PostPoller = app.collections.Posts.extend({
       }, 20000)
     })
   }
-})
+});
 
 app.models.Stream = Backbone.Collection.extend({
   initialize : function(models, options){

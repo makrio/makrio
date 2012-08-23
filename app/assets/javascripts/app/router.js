@@ -49,7 +49,28 @@ app.Router = Backbone.Router.extend({
     'about' : 'about',
     'pro_tips' : 'proTips',
     'getting_started' : 'gettingStarted',
+
+    ':name/following' : 'following',
+    ':name/followers' : 'followers',
     ":name" : "newProfile"
+  },
+
+  following : function(username){
+    this.renderPage(function(){
+      return new app.pages.Following({
+        title:"Following",
+        username:username
+      })
+    });
+  },
+
+  followers : function(username){
+    this.renderPage(function(){
+      return new app.pages.Following({
+        title: "Followers",
+        username:username
+      })
+    });
   },
 
   redirectToFramer : function(){

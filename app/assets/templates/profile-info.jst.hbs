@@ -1,7 +1,12 @@
 <div id="profile-header">
-    <div class="profile-image-container" style="background-image : url('{{avatar.large}}')"></div>
+    <a href="/{{username}}">
+        <div class="profile-image-container" style="background-image : url('{{avatar.large}}')"></div>
+    </a>
+
     <h3>
-        {{name}}
+        <a href="/{{username}}" style="color:inherit;">
+            {{name}}
+        </a>
     </h3>
 
     <div id="profile-stats">
@@ -28,8 +33,13 @@
         {{/if}}
     </div>
 
-    following: {{following}} |
-    followers: {{followers}}
+    <a href="/{{username}}/following">
+        following: {{following}}
+    </a>
+    |
+    <a href="/{{username}}/followers">
+        followers: {{followers}}
+    </a>
 
     {{#unless is_own_profile}}
         <div id="follow-btn-container"/>

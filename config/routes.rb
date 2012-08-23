@@ -13,14 +13,15 @@ Diaspora::Application.routes.draw do
 
   resources :status_messages, :only => [:new, :create]
 
-
-
   resources :conversations, :only => [:show]
   post '/conversations/:conversation_id/join' => 'conversations#join'
 
   post '/posts/:post_id/tags' => 'tags#set'
   resources :relationships, :only => [:create, :destroy]
 
+  get '/:username/following' => 'relationships#following'
+  get '/:username/followers' => 'relationships#followers'
+  
   resources :posts do
     member do
       get :next

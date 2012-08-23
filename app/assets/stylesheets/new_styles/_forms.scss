@@ -83,7 +83,6 @@ form.block-form {
   }
 }
 
-
 input::-webkit-input-placeholder  { color: #aaa; }
 input:-moz-placeholder { color:#aaa; }
 /* buttons to be extracted? */
@@ -100,7 +99,6 @@ input:-moz-placeholder { color:#aaa; }
     font-decoration : none;
   }
 
-  //font-family : RobotoBold, Helvetica, Arial, sans-serif;
   font-size : 14px;
 }
 
@@ -146,6 +144,10 @@ input:-moz-placeholder { color:#aaa; }
   &.red {
     background: #FF4444;
   }
+}
+
+.follow-btn {
+  width:82px;
 }
 
 .fb-btn {
