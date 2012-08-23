@@ -469,6 +469,14 @@ en:
       few: "%{actors} commented on your %{post_link}."
       many: "%{actors} commented on your %{post_link}."
       other: "%{actors} commented on your %{post_link}."
+
+    also_remixed:
+      zero: "%{actors} also remixed a %{post_link} you have played with."
+      one: "%{actors} also remixed a %{post_link} you have played with."
+      two: "%{actors} also remixed a %{post_link} you have played with."
+      few: "%{actors} also remixed a %{post_link} you have played with."
+      many: "%{actors} also remixed a %{post_link} you have played with."
+      other: "%{actors} also remixed a %{post_link} you have played with."
     also_commented:
       zero: "%{actors} also commented on %{post_author}'s %{post_link}."
       one: "%{actors} also commented on %{post_author}'s %{post_link}."
@@ -583,6 +591,10 @@ en:
         view_post: "View post >"
     remixed:
         remixed: "%{name} remixed your post!"
+        view_post: "Check it out >"
+
+    also_remixed:
+        remixed: "%{name} remixed a post in a conversation you are a part of!"
         view_post: "Check it out >"
     confirm_email:
         subject: "Please activate your new email address %{unconfirmed_email}"

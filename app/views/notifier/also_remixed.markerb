@@ -1,0 +1,7 @@
+Keeping the remixes going is like telling a never ending story.
+
+<%= "#{t('.remixed', :name => "#{@notification.sender.name}")}:" %>
+
+[<%= t('.view_post') %>][1]
+
+[1]: <%= post_url(@notification.remix) %>
