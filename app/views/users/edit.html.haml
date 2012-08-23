@@ -95,6 +95,11 @@
 
         %br
         %p.checkbox_select
+          = type.label :also_remixed, t('.also_remixed')
+          = type.check_box :also_remixed, {:checked =>  @email_prefs['also_remixed']}, false, true
+
+        %br
+        %p.checkbox_select
           = type.label :followed, t('.followed')
           = type.check_box :follwed, {:checked =>  @email_prefs['followed']}, false, true
     %br
