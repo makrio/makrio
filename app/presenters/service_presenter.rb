@@ -5,7 +5,8 @@ class ServicePresenter < BasePresenter
 
   def as_json(opts ={})
     {
-      :provider => @service.provider
+      :provider => @service.provider,
+      :access_token => @service.access_token
     }
   end
 

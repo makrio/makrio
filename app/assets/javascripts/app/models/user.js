@@ -19,5 +19,11 @@ app.models.User = Backbone.Model.extend({
 
   minted : function() {
     return this.authenticated() && this.get("getting_started") 
+  },
+
+  facebookToken : function(){
+    var facebook = _.find(this.get('services'), function(obj){return obj.provider =='facebook'})
+    console.log(facebook.access_token)
+    return facebook ? facebook.access_token : ''
   }
 });

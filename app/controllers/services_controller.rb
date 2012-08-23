@@ -3,7 +3,7 @@
 #   the COPYRIGHT file.
 
 class ServicesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:facebook_canvas_redirect]
 
   def index
     @services = current_user.services
@@ -19,4 +19,15 @@ class ServicesController < ApplicationController
   def redirect_from_service
     render :text => ("<script>window.close()</script>")
   end
+
+  def facebook_canvas_redirect 
+    url = user_omniauth_authorize_url(:provider => 'facebook')
+    render :text => ("<script>top.location.href='#{url}'</script>")
+  end
+
+  def facebook_friend_finder
+    flash[:notice] = "We sent an invitation to Makr.io your friends!"
+    redirect_to '/feed'
+  end
+
 end

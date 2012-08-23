@@ -2,7 +2,8 @@ app.pages.Following = app.pages.Base.extend({
   templateName : 'relationships',
 
   subviews : {
-    "#profile_info" : "profileInfoView"
+    "#profile_info" : "profileInfoView",
+    '#friends' :'facebookFriendFinderView'
   },
 
   initialize : function(opts) {
@@ -18,6 +19,8 @@ app.pages.Following = app.pages.Base.extend({
       model : this.model
     })
 
+    this.facebookFriendFinderView = new app.views.FacebookFriendFinder()
+
   },
 
   postRenderTemplate : function() {
@@ -26,7 +29,7 @@ app.pages.Following = app.pages.Base.extend({
 
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
-      title:this.title
+      title:this.title,
     })
   },
 
