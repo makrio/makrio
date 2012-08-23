@@ -48,7 +48,7 @@ class Services::Facebook < Service
   private
 
   def friends_who_use_makr!
-    Person.joins(:owner => :services).where(:services =>{:uid => friends_who_installed}).pluck(:id)
+    Person.joins(:owner => :services).where(:services =>{:uid => friends_who_installed}).pluck('people.id')
   end
 
   def og_action(action)
