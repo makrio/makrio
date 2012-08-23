@@ -1,13 +1,13 @@
 //= require ../views/post/small_frame
 
 app.pages.Framer = app.views.Base.extend({
-  templateName : "flow",
+  templateName : "framer/base",
 
   id : "framer",
 
   subviews : {
     ".flow-content" : "framerContent",
-    ".flow-controls .controls" : "framerControls"
+    ".flow-controls" : "framerControls"
   },
 
   initialize : function(opts){
@@ -29,12 +29,6 @@ app.pages.Framer = app.views.Base.extend({
     this.framerContent = new app.views.framerContent({model : this.model})
     this.framerControls = new app.views.framerControls({model : this.model})
   },
-
-
-  presenter : function(){
-    return _.extend(this.defaultPresenter(), {
-      bookmarklet : this.bookmarkletJS()
-    })  },
 
   unbind : function(){
     this.model.off()
@@ -63,7 +57,7 @@ app.pages.Framer = app.views.Base.extend({
 });
 
 app.views.framerContent = app.views.Base.extend({
-  templateName : "framer-content",
+  templateName : "framer/content",
 
   events : {
     "change input" : "setFormAttrs"
@@ -84,7 +78,7 @@ app.views.framerContent = app.views.Base.extend({
     this.photoForm = new app.forms.Picture({
       model : this.model
     })
-    this.photoForm.templateName = 'framer-photo-uploader'
+    this.photoForm.templateName = 'framer/photo-uploader'
 
     this.model.bind("change:frame_name", this.render, this)
     this.model.bind("change:photos", this.resetFrame, this)
@@ -169,7 +163,7 @@ app.views.Post.EditableSmallFrame = app.views.Post.SmallFrame.extend({
 });
 
 app.views.framerControls = app.views.Base.extend({
-  templateName : 'framer-controls',
+  templateName : 'framer/controls',
 
   events : {
     "click input.done" : "saveFrame",
