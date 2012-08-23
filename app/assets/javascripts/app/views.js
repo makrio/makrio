@@ -112,7 +112,6 @@ app.views.Base = Backbone.View.extend({
     head.appendChild(script);}());";
   },
 
-
   destroyModel: function(evt) {
     evt && evt.preventDefault();
     if (confirm(Diaspora.I18n.t("confirm_dialog"))) {
@@ -148,23 +147,6 @@ app.views.Base = Backbone.View.extend({
 
       /* context for this function is a view object */
       function setFacebox(){
-        $.facebox.settings.closeImage = '/assets/facebox/closelabel.png'
-        $.facebox.settings.loadingImage = '/assets/facebox/loading.gif'
-        $.facebox.settings.opacity = 0.5
-        $.facebox.settings.faceboxHtml =   '<div id="facebox" style="display:none;"> \
-      <div class="popup"> \
-        <div class="content" style="overflow:hidden;"> \
-        </div> \
-        <a href="#" class="close"></a> \
-      </div> \
-    </div>' 
-    
-        $(document).on('afterClose.facebox', function(){
-          $('body').removeClass('lock')
-          $(document).off('afterClose.facebox')
-        })
-
-        $('body').addClass('lock')
         $.facebox(this.render().el)
       }
   },

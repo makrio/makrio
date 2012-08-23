@@ -42,6 +42,8 @@ var app = {
 
     // init header -- should be initializing a layout view here...
     this.initHeader()
+
+    this.setupFacebox()
     
     Backbone.history.start({pushState: true});
 
@@ -61,6 +63,12 @@ var app = {
   initHeader : function() {
     app.header = new app.views.Header({page:this})
     $("body").prepend(app.header.render().el)
+  },
+
+  setupFacebox : function() {
+    $.facebox.settings.closeImage = '/assets/facebox/closelabel.png'
+    $.facebox.settings.loadingImage = '/assets/facebox/loading.gif'
+    $.facebox.settings.opacity = 0.8
   },
 
   // small hack

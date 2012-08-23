@@ -25,11 +25,7 @@ app.views.InlineFramer = app.views.Base.extend({
   },
 
   show : function(){
-    $.facebox.settings.closeImage = '/assets/facebox/closelabel.png';
-    $.facebox.settings.loadingImage = '/assets/facebox/loading.gif';
-    $.facebox.settings.opacity = 0.9;
-    this.framer.render()
-    $.facebox(this.framer.el)
+    $.facebox(this.framer.render().el)
   },
 
   teardown :function(){
