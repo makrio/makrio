@@ -33,7 +33,23 @@ class Services::Facebook < Service
     Resque.enqueue(Jobs::PublishOpenGraph, self.id, post.id, action, opts)
   end
 
+  def follow_friends!(notify = true)
+    follower = self.user.person
+    friends_who_use_makr!.each do |person_id|
+      relationship = follower.follow(person_id)
+
+      if relationship.new_record?
+        Notifications::Followed.notify(follower, person_id) if notify
+        relationship.save
+      end
+    end
+  end
+
   private
+
+  def friends_who_use_makr!
+    Person.joins(:owner => :services).where(:services =>{:uid => friends_who_installed}).pluck(:id)
+  end
 
   def og_action(action)
     # use fb built-in like og action
@@ -42,6 +58,11 @@ class Services::Facebook < Service
     else
       "https://graph.facebook.com/me/#{AppConfig[:open_graph_namespace]}:#{action}"
     end
+  end
+
+  def friends_who_installed
+    json = JSON.parse(Faraday.get('https://graph.facebook.com/me/friends?fields=installed&access_token=' + access_token).body)
+    json['data'].find_all{|x| x['installed']}.map{|x| x['id']}.compact
   end
 
   def post_to_facebook(url, body)

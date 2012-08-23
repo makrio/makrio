@@ -95,8 +95,8 @@ class Person < ActiveRecord::Base
     self.relationships.find_by_followed_id(person.id)
   end
 
-  def follow!(followed_id)
-    self.relationships.create(:followed_id => followed_id)
+  def follow(followed_id)
+    self.relationships.find_or_initialize_by_followed_id(followed_id)
   end
 
   def unfollow!(followed_id)
