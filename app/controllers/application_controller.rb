@@ -138,6 +138,13 @@ class ApplicationController < ActionController::Base
     if current_user && current_user.getting_started
       current_user.getting_started = false
       current_user.save
+      queue_auto_follow_facebook_friends!
+    end
+  end
+
+  def queue_auto_follow_facebook_friends!
+    if fb = current_user.facebook
+      Resque.enqueue(Jobs::BatchFollowFromService, fb.id)
     end
   end
 end
