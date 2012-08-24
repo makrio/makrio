@@ -47,5 +47,24 @@
             <input type="text" name="tag_list" value='{{tag_list}}' placeholder='add comma seperated tags'/>
             <input type="submit" value='Set Tags' class="btn new-btn"/>
         </form>
+        
+        {{#if current_user.admin}}
+            <a href="#" class="toggle-featured">
+                {{#featured}}
+                unfeature
+                {{else}}
+                feature
+                {{/featured}}
+            </a>
+            |
+            <a href="#" class="toggle-staff-picked">
+                {{#staff_picked_at}}
+                    remove from staff picks
+                {{else}}
+                    add to staff pick
+                {{/staff_picked_at}}
+            </a>
+        {{/if}}
+        
     </div>
 </div>

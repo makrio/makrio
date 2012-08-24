@@ -9,6 +9,10 @@ app.views.PostDetail = app.views.Base.extend({
     "#viewer_new_comment" : 'newCommentView',
   },
 
+  events : {
+    "click .toggle-featured" : "toggleFeatured",
+    "click .toggle-staff-picked" : "toggleStaffPicked",
+  },
 
   initialize : function(options) {
     this.model = options.model
@@ -31,4 +35,19 @@ app.views.PostDetail = app.views.Base.extend({
   shareView : function() {
     return new app.views.ShareView({model : this.model})
   },
+
+  toggleStaffPicked : function(evt){
+    evt && evt.preventDefault()
+    this.feedbackView.toggleStaffPicked()
+  },
+  
+  toggleFeatured : function(evt){
+    evt && evt.preventDefault()
+    if(confirm("u shore bro?")){
+      this.model.toggleFeatured()
+    }
+  }
+
+
+
 });
