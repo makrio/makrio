@@ -4,7 +4,8 @@
 
 class ServicesController < ApplicationController
   before_filter :authenticate_user!, :except => [:facebook_canvas_redirect]
-
+  protect_from_forgery :except => [:facebook_canvas_redirect]
+  
   def index
     @services = current_user.services
   end
