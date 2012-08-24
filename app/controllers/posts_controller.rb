@@ -12,6 +12,10 @@ class PostsController < ApplicationController
   before_filter :find_post, :only => [:show, :screenshot, :frame, :next, :previous, :interactions, :toggle_featured, :toggle_staff_picked]
 
   layout 'post'
+  
+  rescue_from ActiveRecord::RecordNotFound do
+    render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404
+  end
 
   respond_to :html,
              :mobile,
