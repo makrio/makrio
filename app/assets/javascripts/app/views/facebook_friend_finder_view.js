@@ -2,12 +2,12 @@ app.views.FacebookFriendFinder = app.views.Base.extend({
   templateName : "facebook-friend-finder",
 
   presenter : function(){
-    return {
+    return _.extend(this.defaultPresenter(), {
       facebookToken : app.currentUser.facebookToken(),
       message : encodeURIComponent("Make memes with me on Makr.io!"),
       appId : this.appId(),
       redirectURI: this.redirectURI()
-    }
+    })
   },
 
   redirectURI : function(){

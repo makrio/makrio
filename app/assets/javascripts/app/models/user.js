@@ -23,7 +23,6 @@ app.models.User = Backbone.Model.extend({
 
   facebookToken : function(){
     var facebook = _.find(this.get('services'), function(obj){return obj.provider =='facebook'})
-    console.log(facebook.access_token)
     return facebook ? facebook.access_token : ''
   }
 });
