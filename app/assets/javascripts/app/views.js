@@ -162,5 +162,10 @@ app.views.Base = Backbone.View.extend({
   showModalLogin : function(evt){
     evt && evt.preventDefault()
     this.showModal(new app.views.InlineLogin({}))
-  }
+  },
+
+  showModalFacebookFriendFinder : function(evt) {
+    evt && evt.preventDefault()
+    window.open(this.facebookFriendFinderView.facebookPopupUrl(), '', 'height=539,width=600,menubar=no,toolbar=no,resizable=no')
+  },
 });

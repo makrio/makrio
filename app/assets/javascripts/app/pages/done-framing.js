@@ -7,14 +7,23 @@ app.pages.DoneFraming = app.views.Base.extend({
     "#featured_frame": 'smallFrameView'
   },
 
-  initialize : function(options){
-    this.shareView = new app.views.ShareView({model : this.model})
+  events : {
+    'click .find-friends' : 'showModalFacebookFriendFinder'
+  },
 
+  initialize : function(options){
+    this.initSubViews()
+  },
+
+  initSubViews : function(){
+    this.facebookFriendFinderView = new app.views.FacebookFriendFinder()
+    this.shareView = new app.views.ShareView({model : this.model})
     this.smallFrameView = new app.views.Post.SmallFrame({
        model : this.model,
        className : "canvas-frame",
        composing : true
     });
+
   },
 
   postRenderTemplate : function(){

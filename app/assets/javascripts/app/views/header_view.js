@@ -61,11 +61,6 @@ app.views.Header = app.views.Base.extend({
     }
   },
 
-  showModalFacebookFriendFinder : function(evt) {
-    evt && evt.preventDefault()
-    window.open(this.facebookFriendFinderView.facebookPopupUrl(), '', 'height=539,width=600,menubar=no,toolbar=no,resizable=no')
-  },
-
   showSubNav : function() {
     return app.page && app.page.options.explore || app.page && app.page.options.you || window.location.pathname == "/" + app.currentUser.get("username")
   }
