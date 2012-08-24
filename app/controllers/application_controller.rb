@@ -107,7 +107,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    referrer = request.referrer.include?('users') ? root_url : request.referrer
+    referrer = request.referrer.to_s.include?('users') ? root_url : request.referrer
     stored_location_for(:user) || request.env['omniauth.origin'] || referrer ||root_url
   end
 
