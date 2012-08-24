@@ -5,7 +5,8 @@ app.views.Header = app.views.Base.extend({
 
   events : {
     'click .composer-button' : 'showModalFramer',
-    'click .login-link' : 'showModalLogin'
+    'click .login-link' : 'showModalLogin',
+    'click .find-friends' : 'showModalFacebookFriendFinder'
   },
 
   subviews : {
@@ -25,6 +26,8 @@ app.views.Header = app.views.Base.extend({
     this.rootHeaderView = new app.views.RootHeader()
     this.subHeaderView = new app.views.SubHeader()
     this.signUpBannerView = new app.views.SignUpBanner();
+
+    this.facebookFriendFinderView = new app.views.FacebookFriendFinder()
   },
 
   bindEvents : function() {
@@ -56,6 +59,11 @@ app.views.Header = app.views.Base.extend({
     } else {
       this.subHeaderView.$el.css({"display":"none"})
     }
+  },
+
+  showModalFacebookFriendFinder : function(evt) {
+    evt && evt.preventDefault()
+    window.open(this.facebookFriendFinderView.facebookPopupUrl(), '', 'height=539,width=600,menubar=no,toolbar=no,resizable=no')
   },
 
   showSubNav : function() {

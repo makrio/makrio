@@ -1,6 +1,8 @@
-{{#if current_user.admin}}
-  {{#if facebookToken}}
-    <iframe src='https://www.facebook.com/dialog/apprequests?access_token={{facebookToken}}&display=iframe&app_id={{appId}}&message={{message}}&redirect_uri={{redirectURI}}' frameborder="0" style="border:none;  
-    overflow:hidden;" allowTransparency="true" width=600 height=400</iframe>
-  {{/if}}
+{{#if facebookToken}}
+<!--   <iframe src='https://www.facebook.com/dialog/apprequests?access_token={{facebookToken}}&display=popup&app_id={{appId}}&message={{message}}&redirect_uri={{redirectURI}}' frameborder="0" style="border:none;  
+  overflow:hidden;" allowTransparency="true" width=600 height=400</iframe> -->
+
+  <a href='https://www.facebook.com/dialog/apprequests?access_token={{facebookToken}}&display=page&app_id={{appId}}&message={{message}}&redirect_uri={{redirectURI}}'> Boner?</a>
+{{else}}
+  <a href='/users/auth/facebook'> Connect to Facebook To Find Friends! </a>
 {{/if}}

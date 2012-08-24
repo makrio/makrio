@@ -23,14 +23,6 @@ class ServicesController < ApplicationController
 
   def facebook_canvas_redirect 
     url = user_omniauth_authorize_url(:provider => 'facebook', :state => 'redirect')
-
     render :text => ("<script>top.location='#{url}'</script>")
-
   end
-
-  def facebook_friend_finder
-    flash[:notice] = "We sent an invitation to Makr.io your friends!"
-    redirect_to '/feed'
-  end
-
 end
