@@ -22,8 +22,10 @@ class ServicesController < ApplicationController
   end
 
   def facebook_canvas_redirect 
-    url = user_omniauth_authorize_url(:provider => 'facebook')
-    render :text => ("<script>top.location.href='#{url}'</script>")
+    url = user_omniauth_authorize_url(:provider => 'facebook', :state => 'redirect')
+
+    render :text => ("<script>top.location='#{url}'</script>")
+
   end
 
   def facebook_friend_finder

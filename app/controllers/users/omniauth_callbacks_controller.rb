@@ -55,7 +55,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     flash[:notice] = I18n.t 'services.create.success'
-    render :text => ("<script>window.close()</script>")
+
+    if params[:state]== 'redirect'
+      redirect_to feed_url
+    else
+      render :text => ("<script>window.close()</script>")
+    end
   end
 
   def validate_service_user_is_current_user
