@@ -118,6 +118,7 @@ Diaspora::Application.routes.draw do
 
   #facebook invites
   match 'facebook' => 'services#facebook_canvas_redirect'
+  get 'follow_fb_friends' => 'relationships#follow_fb_friends'
 
   #legacy routes to support old invite routes
   get 'users/invitation/accept' => 'invitations#edit'

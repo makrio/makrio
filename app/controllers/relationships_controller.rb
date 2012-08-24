@@ -35,8 +35,8 @@ class RelationshipsController < ApplicationController
 	end
 
 	def follow_fb_friends
-		service = current_user.services.find{|x| x.name =='facebook'}
-		Resque.enqueue(Jobs::BatchFollowFromService, service.id)
-		redirect_to :back
+		service = current_user.services.find{|x| x.provider =='facebook'}
+		Resque.enqueue(Jobs::BatchFollowFromService, service.id) if service.present?
+		redirect_to :back, :notice => 'You will be following your Facebook friends shortly!'
 	end
 end

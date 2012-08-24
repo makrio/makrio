@@ -26,8 +26,15 @@ app.pages.Following = app.pages.Base.extend({
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
       title:this.title,
+      ownProfile: this.onOwnProfile(),
+      connectedFacebook : app.currentUser.facebookToken()
     })
   },
+
+  onOwnProfile : function(){
+    return app.currentUser.authenticated() && app.isOn(app.currentUser.get('username'))
+  },
+
 
   addViews : function() {
     var sortedPeople = _.sortBy(this.people, function(person) { return person.name })

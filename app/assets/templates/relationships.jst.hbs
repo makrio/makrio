@@ -5,4 +5,13 @@
   <h1 id="page_title" style="text-align:center;">
     {{title}}
   </h1>
+
+  {{#if ownProfile}}
+    {{#if connectedFacebook}}
+      <div style='text-align:center'>
+        <a href='/follow_fb_friends'> Follow all friends on Facebook on Makr.io</a>
+        <br/>
+      </div>
+    {{/if}}
+  {{/if}}
 </div>
