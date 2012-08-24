@@ -73,7 +73,7 @@ var app = {
 
   // small hack
   onStaffPicks : function() {
-    return window.location.pathname.search("/staff_picks") != -1
+    return app.isOn("/staff_picks")
   },
 
   hasPreload : function(prop) {
@@ -92,6 +92,10 @@ var app = {
       delete window.preloads[prop] //prevent dirty state across navigates
 
       return(preload)
+  },
+
+  isOn : function(urlFragment){
+    return document.location.pathname.search(urlFragment) !== -1
   },
 
   /* mixpanel wrapper function */

@@ -46,7 +46,7 @@ app.views.Header = app.views.Base.extend({
     return _.extend(this.defaultPresenter(), {
       onFrontPage: function() { return path == '/' },
       onStream : app.page && app.page.onStream,
-      onLogin : function() { return path.search("users") !== -1},
+      onLogin : function() { return app.isOn("users")},
     })
   },
 
@@ -75,7 +75,7 @@ app.views.RootHeader = app.views.Base.extend({
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
       onExplore: app.page && app.page.options.explore,
-      onYou: app.page && app.page.options.you || window.location.pathname == "/" + app.currentUser.get("username"),
+      onYou: app.page && app.page.options.you || app.isOn("/" + app.currentUser.get("username")),
     })
   }
 });
@@ -85,20 +85,19 @@ app.views.SubHeader = app.views.Base.extend({
   templateName: 'header/sub',
 
   presenter : function() {
-    var path = document.location.pathname
     return _.extend(this.defaultPresenter(), {
-      onLatest : function() { return path.search("latest") !== -1},
-      onFeed : function() { return path.search("feed") !== -1},
-      onFrontPage : function() { return path.search("front_page") !== -1 },
-      onPopular : function() { return path.search("popular") !== -1 },
-      onTimeWarp: function() { return path.search("timewarp") !== -1 },
-      onTopics: function() { return path.search(/top_tags|topics$/) !== -1 },
-      onInterests: function() { return path.search("interests") !== -1 },
-      onLikes: function() { return path.search("likes") !== -1 },
-      onPosts: function() { return path.search(app.currentUser.get("username")) !== -1 },
+      onLatest : function() { return app.isOn("latest")},
+      onFeed : function() { return app.isOn("feed")},
+      onFrontPage : function() { return app.isOn("front_page")},
+      onPopular : function() { return app.isOn("popular")},
+      onTimeWarp: function() { return app.isOn("timewarp") },
+      onTopics: function() { return app.isOn(/top_tags|topics$/)},
+      onInterests: function() { return app.isOn("interests")},
+      onLikes: function() { return app.isOn("likes")},
+      onPosts: function() { return app.isOn(app.currentUser.get("username")) },
 
       onExplore: app.page && app.page.options.explore,
-      onYou: app.page && app.page.options.you || window.location.pathname == "/" + app.currentUser.get("username")
+      onYou: app.page && app.page.options.you || app.isOn("/" + app.currentUser.get("username"))
     })
   }
 });

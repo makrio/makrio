@@ -16,7 +16,7 @@ app.views.Post.FirstCanvasFrame = app.views.Base.extend({
 
   currentTag : function(){
     var path = window.location.pathname
-    if(path.search("tagged") == 1 || path.search("topics") == 1) {
+    if(app.isOn(/tagged|topics/)) {
       return window.location.pathname.split('/').pop()
     }
   },
@@ -54,8 +54,7 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
   },
 
   isNormalizedCollection : function() {
-    var pathName = document.location.pathname;
-    return this.normalizedCollection || pathName.search("/likes") != -1 || pathName.search("/people/") != -1 || pathName.search("/u/") 
+    return this.normalizedCollection || app.isOn("/likes") || app.isOn("/people/") || app.isOn("/u/") 
   },
 
   width : function(){

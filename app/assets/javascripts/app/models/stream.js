@@ -109,7 +109,7 @@ app.models.Stream = Backbone.Collection.extend({
   },
 
   sortOrder : function() {
-    return (window.location.pathname.search(/^\/staff_picks/) != -1 ? "staffPickedAt" : "createdAt")
+    return (app.isOn('staff_picks') ? "staffPickedAt" : "createdAt")
   },
 
   add : function(models){

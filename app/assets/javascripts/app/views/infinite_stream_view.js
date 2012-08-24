@@ -101,7 +101,7 @@ app.views.InfScroll = app.views.Base.extend({
 
     function showAddButton() {
       var rejectedPaths = ['front_page','staff_picks','latest','likes','conversations','feed'] 
-      return (_.reject(rejectedPaths, function(path){return window.location.pathname.search(path) == -1}).length == 0) && !this.onProfilePage 
+      return (_.reject(rejectedPaths, function(path){return !app.isOn(path)}).length == 0) && !this.onProfilePage 
     }
   },
 

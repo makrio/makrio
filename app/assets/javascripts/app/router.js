@@ -176,7 +176,7 @@ app.Router = Backbone.Router.extend({
     app.instrument("track", "Feed loaded")
     var opts = {you:true}
 
-    var wantsCanvas = window.location.search.search('canvas') != -1
+    var wantsCanvas = app.isOn('canvas')
       , page = wantsCanvas ? new app.pages.GenericCanvas(opts) : new app.pages.Stream(_.extend(opts, {onStream:true}))
     
     this.renderPage(function(){ return page});
@@ -186,7 +186,7 @@ app.Router = Backbone.Router.extend({
     app.instrument("track", "Stream loaded")
     var opts = {explore:true}
 
-    var wantsCanvas = window.location.search.search('canvas') != -1
+    var wantsCanvas = app.isOn('canvas')
       , page = wantsCanvas ? new app.pages.GenericCanvas(opts) : new app.pages.Stream(_.extend(opts, {onStream:true}))
     
     this.renderPage(function(){ return page});

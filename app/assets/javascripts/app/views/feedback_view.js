@@ -34,7 +34,7 @@ app.views.Feedback = app.views.Base.extend({
   },
 
   hideComment : function(){
-    return document.location.pathname.search("stream") !== -1
+    return app.isOn("stream")
   },
 
   toggleLike: function(evt) {

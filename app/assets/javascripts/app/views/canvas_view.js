@@ -29,7 +29,7 @@ app.views.Canvas = app.views.InfScroll.extend({
         var message
           , person = app.page.model
 
-        if(window.location.pathname.search('/interests') != -1){
+        if(app.isOn('interests')){
           message = "<h2>Makr.io is smart about showing you content you love.</h2> \
                     <h3>This stream is based on content you've liked and content you've created.</h3> \
                     <br> \
