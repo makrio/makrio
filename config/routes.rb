@@ -22,7 +22,7 @@ Diaspora::Application.routes.draw do
   get '/:username/following' => 'relationships#following'
   get '/:username/followers' => 'relationships#followers'
   
-  resources :posts do
+  resources :posts, :except => [:index] do
     member do
       get :next
       get :previous
