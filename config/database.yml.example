@@ -2,7 +2,7 @@ postgres: &postgres
   adapter: postgresql
   host: localhost
   port: 5432
-  username: postgres
+  username: postgres # OS X Note: Postgres.app defaults username to your OS username
   password:
   encoding: unicode
 
@@ -19,15 +19,11 @@ common: &common
 development:
   <<: *common
   database: makrio_development
+
 production:
   <<: *common
   database: makrio_production
+
 test:
   <<: *common
   database: "makrio_test<%= ENV['TEST_ENV_NUMBER'] %>"
-integration1:
-  <<: *common
-  database: makrio_integration1
-integration2:
-  <<: *common
-  database: makrio_integration2
