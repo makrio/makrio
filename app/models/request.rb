@@ -53,14 +53,6 @@ class Request
     self.recipient = Person.where(:diaspora_handle => recipient_handle).first
   end
 
-  # Defines the abstract interface used in sending a corresponding [Notification] given the [Request]
-  # @param user [User]
-  # @param person [Person]
-  # @return [Notifications::StartedSharing]
-  def notification_type(user, person)
-    Notifications::StartedSharing
-  end
-
   # Defines the abstract interface used in sending the [Request]
   # @param user [User]
   # @return [Array<Person>] The recipient of the request

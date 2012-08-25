@@ -25,7 +25,7 @@ describe 'deleteing your account' do
 
       #user associated objects
       @prefs = []
-      %w{mentioned liked}.each do |pref|
+      %w{followed liked}.each do |pref|
         @prefs << @bob2.user_preferences.create!(:email_type => pref)
       end
 

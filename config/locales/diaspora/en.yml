@@ -448,20 +448,6 @@ en:
         other: "%{count} dislikes"
 
   notifications:
-    started_sharing:
-      zero: "%{actors} started sharing with you."
-      one: "%{actors} started sharing with you."
-      two: "%{actors} started sharing with you."
-      few: "%{actors} started sharing with you."
-      many: "%{actors} started sharing with you."
-      other: "%{actors} started sharing with you."
-    private_message:
-      zero: "%{actors} sent you a message."
-      one: "%{actors} sent you a message."
-      two: "%{actors} sent you a message."
-      few: "%{actors} sent you a message."
-      many: "%{actors} sent you a message."
-      other: "%{actors} sent you a message."
     comment_on_post:
       zero: "%{actors} commented on your %{post_link}."
       one: "%{actors} commented on your %{post_link}."
@@ -469,7 +455,6 @@ en:
       few: "%{actors} commented on your %{post_link}."
       many: "%{actors} commented on your %{post_link}."
       other: "%{actors} commented on your %{post_link}."
-
     also_remixed:
       zero: "%{actors} also remixed a %{post_link} you have played with."
       one: "%{actors} also remixed a %{post_link} you have played with."
@@ -484,13 +469,6 @@ en:
       few: "%{actors} also commented on %{post_author}'s %{post_link}."
       many: "%{actors} also commented on %{post_author}'s %{post_link}."
       other: "%{actors} also commented on %{post_author}'s %{post_link}."
-    mentioned:
-      zero: "%{actors} have mentioned you in a %{post_link}."
-      one: "%{actors} has mentioned you in a %{post_link}."
-      two: "%{actors} have mentioned you in a %{post_link}."
-      few: "%{actors} have mentioned you in a %{post_link}."
-      many: "%{actors} have mentioned you in a %{post_link}."
-      other: "%{actors} have mentioned you in a %{post_link}."
     liked:
       zero: "%{actors} have liked your %{post_link}."
       one: "%{actors} has liked your %{post_link}."
@@ -498,13 +476,6 @@ en:
       few: "%{actors} have liked your %{post_link}."
       many: "%{actors} have liked your %{post_link}."
       other: "%{actors} have liked your %{post_link}."
-    reshared:
-      zero: "%{actors} have reshared your %{post_link}."
-      one: "%{actors} has reshared your %{post_link}."
-      two: "%{actors} have reshared your %{post_link}."
-      few: "%{actors} have reshared your %{post_link}."
-      many: "%{actors} have reshared your %{post_link}."
-      other: "%{actors} have reshared your %{post_link}."
     remixed:
       zero: "%{actors} have remixed your %{post_link}."
       one: "%{actors} has remixed %{post_link}."
@@ -1074,8 +1045,6 @@ en:
       followed: "...someone follows you?"
       comment_on_post: "...someone comments on your post?"
       mentioned: "...you are mentioned in a post?"
-      started_sharing: "...someone starts sharing with you?"
-      private_message: "...you receive a private message?"
       liked: "...someone likes your post?"
       remixed: "...someone remixes your post?"
       also_remixed: "...someone remixes a post you remixed?"

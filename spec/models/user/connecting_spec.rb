@@ -39,13 +39,6 @@ describe User::Connecting do
         bob.should_receive(:remove_contact).with(bob.contact_for(alice.person))
         bob.disconnected_by(alice.person)
       end
-
-      it 'removes notitications' do
-        alice.share_with(eve.person, alice.aspects.first)
-        Notifications::StartedSharing.where(:recipient_id => eve.id).first.should_not be_nil
-        eve.disconnected_by(alice.person)
-        Notifications::StartedSharing.where(:recipient_id => eve.id).first.should be_nil
-      end
     end
 
     describe '#disconnect' do

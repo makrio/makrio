@@ -145,15 +145,15 @@ describe UsersController do
 
     describe 'email settings' do
       it 'lets the user turn off mail' do
-        par = {:id => @user.id, :user => {:email_preferences => {'mentioned' => 'true'}}}
+        par = {:id => @user.id, :user => {:email_preferences => {'followed' => 'true'}}}
         proc{
           put :update, par
         }.should change(@user.user_preferences, :count).by(1)
       end
 
       it 'lets the user get mail again' do
-        @user.user_preferences.create(:email_type => 'mentioned')
-        par = {:id => @user.id, :user => {:email_preferences => {'mentioned' => 'false'}}}
+        @user.user_preferences.create(:email_type => 'followed')
+        par = {:id => @user.id, :user => {:email_preferences => {'followed' => 'false'}}}
         proc{
           put :update, par
         }.should change(@user.user_preferences, :count).by(-1)
@@ -168,9 +168,9 @@ describe UsersController do
     end
 
     it 'set @email_pref to false when there is a user pref' do
-      @user.user_preferences.create(:email_type => 'mentioned')
+      @user.user_preferences.create(:email_type => 'followed')
       get 'edit', :id => @user.id
-      assigns[:email_prefs]['mentioned'].should be_false
+      assigns[:email_prefs]['followed'].should be_false
     end
 
   end

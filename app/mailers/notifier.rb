@@ -92,10 +92,6 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  def started_sharing(recipient_id, sender_id)
-    send_notification(:started_sharing, recipient_id, sender_id)
-  end
-
   def remixed(recipient_id, sender_id, remixed_post_id)
     send_notification(:remixed, recipient_id, sender_id, remixed_post_id)
   end
@@ -112,9 +108,6 @@ class Notifier < ActionMailer::Base
     send_notification(:liked, recipient_id, sender_id, like_id)
   end
 
-  def mentioned(recipient_id, sender_id, target_id)
-    send_notification(:mentioned, recipient_id, sender_id, target_id)
-  end
 
   def comment_on_post(recipient_id, sender_id, comment_id)
     send_notification(:comment_on_post, recipient_id, sender_id, comment_id)
@@ -122,10 +115,6 @@ class Notifier < ActionMailer::Base
 
   def also_commented(recipient_id, sender_id, comment_id)
     send_notification(:also_commented, recipient_id, sender_id, comment_id)
-  end
-
-  def private_message(recipient_id, sender_id, message_id)
-    send_notification(:private_message, recipient_id, sender_id, message_id)
   end
 
   def confirm_email(recipient_id)

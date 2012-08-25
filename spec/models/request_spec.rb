@@ -47,17 +47,6 @@ describe Request do
     end
   end
 
-  describe '#notification_type' do
-    it 'returns request_accepted' do
-      person = Factory :person
-
-      request = Request.diaspora_initialize(:from => alice.person, :to => eve.person, :into => @aspect)
-      alice.contacts.create(:person_id => person.id)
-
-      request.notification_type(alice, person).should == Notifications::StartedSharing
-    end
-  end
-
   describe '#subscribers' do
     it 'returns an array with to field on a request' do
       request = Request.diaspora_initialize(:from => alice.person, :to => eve.person, :into => @aspect)
