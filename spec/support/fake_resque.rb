@@ -1,4 +1,4 @@
-module Sidekiq::Client
+class Sidekiq::Client
   def enqueue(klass, *args)
     if $process_queue
       klass.send(:perform, *args)

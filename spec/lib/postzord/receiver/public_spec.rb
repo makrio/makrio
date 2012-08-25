@@ -66,7 +66,7 @@ describe Postzord::Receiver::Public do
       end
 
       it 'intergrates' do
-        fantasy_Sidekiq::Client do
+        fantasy_resque do
           @receiver.perform!
         end
       end
