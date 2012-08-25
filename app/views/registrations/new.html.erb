@@ -59,7 +59,7 @@
                   <%= invite_hidden_tag(invite) %>
                 </fieldset>
 
-                <%= f.submit "Create Account", :class => "new-btn", :disable_with => "Creating your account..." %>
+                <%= f.submit "Create Account", :class => "new-btn", 'data-disable-with' => "Creating your account..." %>
                 <br/>
                 <%= link_to "Already have an account? Sign In", new_user_session_url, :id => 'login-helper-links' %>
                 <% if @fb_signup %>

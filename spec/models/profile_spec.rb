@@ -336,7 +336,8 @@ describe Profile do
       "nsfw",
       "location",
       "full_name",
-      "wallpaper"].sort
+      "wallpaper",
+      'gravatar_hash'].sort
     end
   end
 end

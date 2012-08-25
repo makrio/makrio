@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   layout 'post'
   
   rescue_from ActiveRecord::RecordNotFound do
-    render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404
+    render :file => "#{Rails.root}/public/404", :formats => [:html], :layout => false, :status => 404
   end
 
   respond_to :html,

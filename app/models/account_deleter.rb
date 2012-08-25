@@ -98,10 +98,10 @@ class AccountDeleter
   end
   
   def normal_ar_person_associates_to_delete
-    [:posts, :photos, :mentions, :participations, :roles]
+    [:posts, :photos, :mentions, :participations, :roles, :relationships, :reverse_relationships]
   end
 
   def ignored_or_special_ar_person_associations
-    [:comments, :contacts, :notification_actors, :notifications, :owner, :profile ]
+    [:comments, :contacts, :notification_actors, :notifications, :owner, :profile, :followed_people, :followers]
   end
 end

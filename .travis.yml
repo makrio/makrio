@@ -8,7 +8,7 @@ rvm:
 
 env:
   - DB=postgres BUILD_TYPE=other
-  - DB=postgres BUILD_TYPE=cucumber
+  # - DB=postgres BUILD_TYPE=cucumber
 
 before_install: 
   - "./script/ci/before_install.sh"

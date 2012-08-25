@@ -9,19 +9,6 @@ describe ProfilesController do
     sign_in :user, eve
   end
 
-  describe '#show' do
-    let(:mock_person) {mock_model(User)}
-    let(:mock_presenter) { mock(:as_json => {:rock_star => "Jamie Cai"})}
-
-    it "returns a post Presenter" do
-      Person.should_receive(:find_by_guid!).with("12345").and_return(mock_person)
-      PersonPresenter.should_receive(:new).with(mock_person, eve).and_return(mock_presenter)
-
-      get :show, :id => 12345, :format => :json
-      response.body.should == {:rock_star => "Jamie Cai"}.to_json
-    end
-  end
-
   describe '#edit' do 
     it 'succeeds' do
       get :edit

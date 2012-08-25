@@ -45,7 +45,8 @@ describe PostsController do
       end
 
       it '404 if the post is missing' do
-        expect { get :show, :id => 1234567 }.to raise_error(ActiveRecord::RecordNotFound)
+         get :show, :id => 1234567 
+         response.status.should == 404
       end
     end
 
@@ -74,7 +75,8 @@ describe PostsController do
 
       it 'does not show a private post' do
         status = alice.post(:status_message, :text => "hello", :public => false, :to => 'all')
-        expect { get :show, :id => status.id }.to raise_error(ActiveRecord::RecordNotFound)
+        get :show, :id => status.id
+        response.status.should == 404
       end
 
       # We want to be using guids from now on for this post route, but do not want to break
@@ -115,7 +117,8 @@ describe PostsController do
     end
 
     it 'returns a 404 response when the post is not found' do
-      expect { get :oembed, :url => "/posts/#{@message.id}" }.to raise_error(ActiveRecord::RecordNotFound)
+      get :oembed, :url => "/posts/#{@message.id}" 
+      response.status.should == 404
     end
   end
 
@@ -141,13 +144,17 @@ describe PostsController do
 
     it 'will not let you destroy posts visible to you' do
       message = bob.post(:status_message, :text => "hey", :to => bob.aspects.first.id)
-      expect { delete :destroy, :format => :js, :id => message.id }.to raise_error(ActiveRecord::RecordNotFound)
+      delete :destroy, :format => :js, :id => message.id
+      response.status.should == 404
+ 
       StatusMessage.exists?(message.id).should be_true
     end
 
     it 'will not let you destory posts you do not own' do
       message = eve.post(:status_message, :text => "hey", :to => eve.aspects.first.id)
-      expect { delete :destroy, :format => :js, :id => message.id }.to raise_error(ActiveRecord::RecordNotFound)
+      delete :destroy, :format => :js, :id => message.id
+      response.status.should == 404
+
       StatusMessage.exists?(message.id).should be_true
     end
   end

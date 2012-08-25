@@ -381,15 +381,6 @@ describe User do
   end
 
 
-  describe '#process_invite_acceptence' do
-    it 'sets the inviter on user' do
-      inv = InvitationCode.create(:user => bob)
-      user = Factory(:user)
-      user.process_invite_acceptence(inv)
-      user.invited_by_id.should == bob.id
-    end
-  end
-
   describe 'update_user_preferences' do
     before do
       @pref_count = UserPreference::VALID_EMAIL_TYPES.count
