@@ -229,3 +229,88 @@ ul.login {
     height:$sub-header-height;
   }
 }
+
+
+/* landing (sign up) banner */
+#landing_banner {
+  -webkit-font-smoothing: antialiased;
+
+  padding-bottom: 40px;
+  width:100%;
+  text-align:center;
+  
+  #landing_header {
+    margin: 0 auto;
+    width: 840px;
+    font-family:RobotoLight;
+    border-bottom: 1px solid #CCC;
+    padding: 0px 40px 30px 50px;
+
+    h1, h2 {
+      font-family:inherit;
+    }
+
+    h1 {
+      font-size:3em;
+    }
+
+    h2 {
+      font-size:2em;
+      color:#888;
+      margin-bottom:1.1em;
+    }
+
+    #email-link{
+      line-height: 35px;
+      color:#888;
+      font-family:RobotoBold;
+    }
+
+    .fb-facepile {
+      margin-top:5px;
+    }
+
+    .fb-btn {
+      font-size:1.5em;
+      margin-bottom:20px;
+      .fb-f {
+        margin-right: 10px;
+      }
+    }
+
+    .learn-more-wrapper {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      left: 0;
+
+      a {
+        position: relative;
+        top: 16px;
+      }
+    }
+
+    #sign_up{
+      margin-top:20px;
+      margin-top:13px;
+    }
+
+    #typist-container {
+      width: 105px;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+      height: 35px;
+      text-align: center;
+      margin:0 5px;
+    }
+    #typist {
+      -webkit-font-smoothing:antialiased;
+    }
+  }
+
+  .more-info {
+    text-align:center;
+    margin-top:30px;
+    display:none;
+  }
+}

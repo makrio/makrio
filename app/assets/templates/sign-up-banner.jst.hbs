@@ -1,28 +1,35 @@
 
 <div class="container">
     <div id="landing_banner">
-        <div id='landing_header'>
-            <div id='sign_up'>
-                <a href="/users/auth/facebook" class="login btn-large new-btn fb-btn" ><img alt="Fb_f" class="fb-f" src="/assets/logos/fb_f.png">Login with Facebook</a>
-                <br/>
-                <a id='email-link' href="/users/sign_up">
-                    Sign up the email way
-                </a>
-            </div>
-   
+        <div id='landing_header'>   
             <h1>
                 Makr.io is a new kind of meme generator.
             </h1>
             <h2>
                  A simple way to create <span id='typist-container'><span id='typist'>memes</span> </span>with friends.
             </h2>
-        </div>
-        {{#if onFrontPage}}
-            <div style="text-align:center;padding-top:20px;">
-                <img width=819 src='{{imageUrl "branding/landing2.jpg"}}'>
+
+            <div id='sign_up'>
+                <a href="/users/auth/facebook" class="login btn-large new-btn fb-btn" ><img alt="Fb_f" class="fb-f" src="/assets/logos/fb_f.png">Login with Facebook</a>
+                <div style="margin-top:10px;">
+                    <a id='email-link' href="/users/sign_up">
+                        Sign up the email way
+                    </a>
+                </div>
             </div>
 
-            <h2 style='text-align:center;font-family:RobotoLight;color:#999; padding-top: 15px;'>↓ See what people are saying about Makr.io! </h2>
+            <iframe src="http://www.facebook.com/plugins/facepile.php?app_id=223055781146202" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:60px; width:450px;" allowTransparency="true"></iframe>
+
+            <div class="learn-more-wrapper">
+                <a href="#" class="btn new-btn learn-more-btn">Learn More</a>
+            </div>
+        </div>
+        <div class="more-info">
+            <img width=819 src='{{imageUrl "branding/landing2.jpg"}}'>
+        </div>
+
+        {{#if onFrontPage}}
+            <h2 style='text-align:center;font-family:RobotoLight;color:#999;margin-top:15px;'>↓ See what people are saying about Makr.io ↓</h2>
         {{/if}}
     </div>
 </div>

@@ -470,53 +470,6 @@ a.imgfave-button{
 
 }
 
-
-
-#landing_banner {
-  padding-bottom: 40px;
-  width:100%;
-  
-  #landing_header {
-    margin: 0 auto;
-    width: 840px;
-    font-family:RobotoLight;
-    border-bottom: 1px solid #CCC;
-    padding: 0px 40px 30px 50px;
-
-    h1, h2 {
-      font-family:inherit;
-    }
-
-    h2 {
-      color:#888;
-    }
-
-    #email-link{
-      padding-left: 30px;
-      line-height: 35px;
-    }
-
-    #sign_up{
-      float:right;
-      margin-right:30px;
-      margin-top:13px;
-    }
-
-    #typist-container {
-      width: 105px;
-      display: inline-block;
-      border-bottom: 1px dotted black;
-      height: 35px;
-      text-align: center;
-      margin:0 5px;
-    }
-    #typist {
-      -webkit-font-smoothing:antialiased;
-    }
-  }
-
-}
-
 .btn-group {
   a {
     padding: 4px 10px;
