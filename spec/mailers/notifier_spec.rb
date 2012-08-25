@@ -66,48 +66,6 @@ describe Notifier do
     end
   end
 
-  describe ".started_sharing" do
-    let!(:request_mail) { Notifier.started_sharing(bob.id, person.id) }
-
-    it 'goes to the right person' do
-      request_mail.to.should == [bob.email]
-    end
-
-    it 'has the name of person sending the request' do
-      request_mail.body.encoded.include?(person.name).should be true
-    end
-
-    it 'has the css' do
-      request_mail.body.encoded.include?("<style type='text/css'>")
-    end
-  end
-
-  describe ".mentioned" do
-    before do
-      @user = alice
-      @sm = Factory(:status_message)
-      @m = Mention.create(:person => @user.person, :post=> @sm)
-
-      @mail = Notifier.mentioned(@user.id, @sm.author.id, @m.id)
-    end
-
-    it 'TO: goes to the right person' do
-      @mail.to.should == [@user.email]
-    end
-
-    it 'SUBJECT: has the name of person mentioning in the subject' do
-      @mail.subject.should include(@sm.author.name)
-    end
-
-    it 'has the post text in the body' do
-      @mail.body.encoded.should include(@sm.text)
-    end
-
-    it 'should not include translation fallback' do
-      @mail.body.encoded.should_not include(I18n.translate 'notifier.a_post_you_shared')
-    end
-  end
-
   describe ".liked" do
     before do
       @sm = Factory(:status_message, :author => alice.person)
