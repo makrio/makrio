@@ -18,7 +18,7 @@ class Webfinger
   end
 
   def self.in_background(account, opts={})
-    Resque.enqueue(Jobs::FetchWebfinger, account)
+    Sidekiq::Client.enqueue(Jobs::FetchWebfinger, account)
   end
 
   #everything below should be private I guess

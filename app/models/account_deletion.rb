@@ -26,7 +26,7 @@ class AccountDeletion < ActiveRecord::Base
   end
 
   def queue_delete_account
-    Resque.enqueue(Jobs::DeleteAccount, self.id)
+    Sidekiq::Client.enqueue(Jobs::DeleteAccount, self.id)
   end
 
   def perform!

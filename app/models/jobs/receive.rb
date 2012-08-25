@@ -7,7 +7,7 @@ module Jobs
   class Receive < Base
 
     @queue = :receive
-    def self.perform(user_id, xml, salmon_author_id)
+    def perform(user_id, xml, salmon_author_id)
       user = User.find(user_id)
       salmon_author = Person.find(salmon_author_id)
       zord = Postzord::Receiver::Private.new(user, :person => salmon_author)

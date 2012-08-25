@@ -8,7 +8,7 @@ module Jobs
 
     require File.join(Rails.root, 'app/models/notification')
 
-    def self.perform(user_ids, object_klass, object_id, person_id)
+    def perform(user_ids, object_klass, object_id, person_id)
 
       object = object_klass.constantize.find_by_id(object_id)
 

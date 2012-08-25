@@ -6,7 +6,7 @@
 module Jobs
   class DeleteAccount < Base
     @queue = :delete_account
-    def self.perform(account_deletion_id)
+    def perform(account_deletion_id)
       account_deletion = AccountDeletion.find(account_deletion_id)
       account_deletion.perform!
     end

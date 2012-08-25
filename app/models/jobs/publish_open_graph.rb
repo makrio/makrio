@@ -6,7 +6,7 @@ module Jobs
   class PublishOpenGraph < Base
     @queue = :http_service
 
-    def self.perform(service_id, post_id, action, opts={})
+    def perform(service_id, post_id, action, opts={})
       service = Service.find_by_id(service_id)
       post = Post.find_by_id(post_id)
       service.open_graph_post(action, post, opts)

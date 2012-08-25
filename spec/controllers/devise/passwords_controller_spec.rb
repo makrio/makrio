@@ -18,7 +18,7 @@ describe Devise::PasswordsController do
         response.should be_success
       end
       it "doesn't send email" do
-        Resque.should_not_receive(:enqueue)
+        Sidekiq::Client.should_not_receive(:enqueue)
         post :create, "user" => {"email" => "foo@example.com"}
       end
     end
@@ -27,8 +27,8 @@ describe Devise::PasswordsController do
         post :create, "user" => {"email" => alice.email}
         response.should redirect_to(new_user_session_path)
       end
-      it "sends email (enqueued to Resque)" do
-        Resque.should_receive(:enqueue).with(Jobs::ResetPassword, alice.id)
+      it "sends email (enqueued to Sidekiq::Client)" do
+        Sidekiq::Client.should_receive(:enqueue).with(Jobs::ResetPassword, alice.id)
         post :create, "user" => {"email" => alice.email}
       end
     end

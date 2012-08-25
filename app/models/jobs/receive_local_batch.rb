@@ -10,7 +10,7 @@ module Jobs
 
     @queue = :receive
 
-    def self.perform(object_class_string, object_id, recipient_user_ids)
+    def perform(object_class_string, object_id, recipient_user_ids)
       object = object_class_string.constantize.find(object_id)
       receiver = Postzord::Receiver::LocalBatch.new(object, recipient_user_ids)
       receiver.perform!

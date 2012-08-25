@@ -8,7 +8,7 @@ module Jobs
 
     require File.join(Rails.root, 'app/models/notification')
 
-    def self.perform(note_id)
+    def perform(note_id)
       note = Notifications::Remixed.find(note_id)
       note.notifiy_remixers
     end

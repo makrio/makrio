@@ -4,15 +4,16 @@
 
 module Jobs
   class Base
+    include Sidekiq::Worker
+
     Dir["#{Rails.root}/app/models/jobs/mail/*.rb"].each {|file| require file }
-    extend Resque::Heroku 
     
     #TODO these should be subclassed real exceptions
     DUMB_ERROR_MESSAGES = [
       "Contact required unless request",
       "Relayable object, but no parent object found" ]
 
-    def self.suppress_annoying_errors(&block)
+    def suppress_annoying_errors(&block)
       begin
         yield
       rescue => e

@@ -12,7 +12,7 @@ module Jobs
 
     MAX_RETRIES = 3
 
-    def self.perform(user_id, encoded_object_xml, person_ids, dispatcher_class_as_string, retry_count=0)
+    def perform(user_id, encoded_object_xml, person_ids, dispatcher_class_as_string, retry_count=0)
       user = User.find(user_id)
       people = Person.where(:id => person_ids)
 
@@ -24,7 +24,7 @@ module Jobs
 
       unless hydra.failed_people.empty?
         if retry_count < MAX_RETRIES
-          Resque.enqueue(Jobs::HttpMulti, user_id, encoded_object_xml, hydra.failed_people, dispatcher_class_as_string, retry_count + 1 )
+          Sidekiq::Client.enqueue(Jobs::HttpMulti, user_id, encoded_object_xml, hydra.failed_people, dispatcher_class_as_string, retry_count + 1 )
         else
           Rails.logger.info("event=http_multi_abandon sender_id=#{user_id} failed_recipient_ids='[#{person_ids.join(', ')}] '")
         end

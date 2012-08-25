@@ -6,7 +6,7 @@
 module Jobs
   class FetchProfilePhoto < Base
     @queue = :photos
-    def self.perform(user_id, service_id, fallback_image_url = nil)
+    def perform(user_id, service_id, fallback_image_url = nil)
       service = Service.find(service_id)
 
       image_url = service.profile_photo_url

@@ -18,7 +18,7 @@ class Notifications::Remixed < Notification
   end
 
   def notify_other_remixers!
-    Resque.enqueue(Jobs::NotifyRemixers, self.id)
+    Sidekiq::Client.enqueue(Jobs::NotifyRemixers, self.id)
   end
 
   def notifiy_remixers

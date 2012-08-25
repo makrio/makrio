@@ -6,7 +6,7 @@
 module Jobs
   class ProcessPhoto < Base
     @queue = :photos
-    def self.perform(id)
+    def perform(id)
       photo = Photo.find(id)
 
       # old way to process photos ie. via a normal file upload form

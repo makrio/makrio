@@ -180,18 +180,18 @@ describe Postzord::Dispatcher do
       it 'queues a batch receive' do
         local_people = []
         local_people << alice.person
-        Resque.should_receive(:enqueue).with(Jobs::ReceiveLocalBatch, @sm.class.to_s, @sm.id, [alice.id]).once
+        Sidekiq::Client.should_receive(:enqueue).with(Jobs::ReceiveLocalBatch, @sm.class.to_s, @sm.id, [alice.id]).once
         @mailman.send(:deliver_to_local, local_people)
       end
 
       it 'returns if people are empty' do
-        Resque.should_not_receive(:enqueue)
+        Sidekiq::Client.should_not_receive(:enqueue)
         @mailman.send(:deliver_to_local, [])
       end
 
       it 'returns if the object is a profile' do
         @mailman.instance_variable_set(:@object, Profile.new)
-        Resque.should_not_receive(:enqueue)
+        Sidekiq::Client.should_not_receive(:enqueue)
         @mailman.send(:deliver_to_local, [1])
       end
     end
@@ -247,15 +247,15 @@ describe Postzord::Dispatcher do
        alice.services << @s2
        mailman = Postzord::Dispatcher.build(alice, Factory(:status_message), :url => "http://joindiaspora.com/p/123", :services => [@s1])
 
-       Resque.stub!(:enqueue).with(Jobs::HttpMulti, anything, anything, anything)
-       Resque.should_receive(:enqueue).with(Jobs::PostToService, @s1.id, anything, anything)
+       Sidekiq::Client.stub!(:enqueue).with(Jobs::HttpMulti, anything, anything, anything)
+       Sidekiq::Client.should_receive(:enqueue).with(Jobs::PostToService, @s1.id, anything, anything)
        mailman.post
       end
 
       it 'does not push to services if none are specified' do
        mailman = Postzord::Dispatcher.build(alice, Factory(:status_message), :url => "http://joindiaspora.com/p/123")
 
-       Resque.should_not_receive(:enqueue).with(Jobs::PostToService, anything, anything, anything)
+       Sidekiq::Client.should_not_receive(:enqueue).with(Jobs::PostToService, anything, anything, anything)
        mailman.post
       end
     end
@@ -269,7 +269,7 @@ describe Postzord::Dispatcher do
 
     describe '#notify_users' do
       it 'enqueues a NotifyLocalUsers job' do
-        Resque.should_receive(:enqueue).with(Jobs::NotifyLocalUsers, [bob.id], @zord.object.class.to_s, @zord.object.id, @zord.object.author.id)
+        Sidekiq::Client.should_receive(:enqueue).with(Jobs::NotifyLocalUsers, [bob.id], @zord.object.class.to_s, @zord.object.id, @zord.object.author.id)
         @zord.send(:notify_users, [bob])
       end
     end

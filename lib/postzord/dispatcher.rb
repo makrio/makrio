@@ -42,7 +42,7 @@ class Postzord::Dispatcher
       opts[:additional_subscribers] = [*opts[:additional_subscribers]].map(&:id)
     end
 
-    Resque.enqueue(Jobs::FinalizePost, user.id, object.class.to_s, object.id, opts)
+    Sidekiq::Client.enqueue(Jobs::FinalizePost, user.id, object.class.to_s, object.id, opts)
   end
 
   # @param object [Object]
@@ -104,7 +104,7 @@ class Postzord::Dispatcher
     else
       people.each do |person|
         Rails.logger.info("event=push route=local sender=#{@sender.person.diaspora_handle} recipient=#{person.diaspora_handle} payload_type=#{@object.class}")
-        Resque.enqueue(Jobs::Receive, person.owner_id, @xml, @sender.person.id)
+        Sidekiq::Client.enqueue(Jobs::Receive, person.owner_id, @xml, @sender.person.id)
       end
     end
   end
@@ -112,7 +112,7 @@ class Postzord::Dispatcher
   # @param people [Array<Person>] Recipients of the post
   def batch_deliver_to_local(people)
     ids = people.map{ |p| p.owner_id }
-    Resque.enqueue(Jobs::ReceiveLocalBatch, @object.class.to_s, @object.id, ids)
+    Sidekiq::Client.enqueue(Jobs::ReceiveLocalBatch, @object.class.to_s, @object.id, ids)
     Rails.logger.info("event=push route=local sender=#{@sender.person.diaspora_handle} recipients=#{ids.join(',')} payload_type=#{@object.class}")
   end
 
@@ -122,7 +122,7 @@ class Postzord::Dispatcher
   def deliver_to_services(url, services)
     if @object.instance_of?(StatusMessage)
       services.each do |service|
-        Resque.enqueue(Jobs::PostToService, service.id, @object.id, url)
+        Sidekiq::Client.enqueue(Jobs::PostToService, service.id, @object.id, url)
       end
     end
   end
@@ -139,7 +139,7 @@ class Postzord::Dispatcher
 
     #temp hax
     unless object_is_related_to_diaspora_hq?
-      Resque.enqueue(Jobs::NotifyLocalUsers, users.map{|u| u.id}, @object.class.to_s, @object.id, @object.author.id)
+      Sidekiq::Client.enqueue(Jobs::NotifyLocalUsers, users.map{|u| u.id}, @object.class.to_s, @object.id, @object.author.id)
     end
   end
 

@@ -32,7 +32,7 @@ describe Webfinger do
 
   describe '.in_background' do
     it 'enqueues a Jobs::FetchWebfinger job' do
-      Resque.should_receive(:enqueue).with(Jobs::FetchWebfinger, account)
+      Sidekiq::Client.should_receive(:enqueue).with(Jobs::FetchWebfinger, account)
       Webfinger.in_background(account)
     end
   end

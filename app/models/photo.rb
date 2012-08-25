@@ -119,7 +119,7 @@ class Photo < ActiveRecord::Base
   end
 
   def queue_processing_job
-    Resque.enqueue(Jobs::ProcessPhoto, self.id)
+    Sidekiq::Client.enqueue(Jobs::ProcessPhoto, self.id)
   end
 
   def mutable?

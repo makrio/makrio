@@ -36,7 +36,7 @@ class RelationshipsController < ApplicationController
 
 	def follow_fb_friends
 		service = current_user.services.find{|x| x.provider =='facebook'}
-		Resque.enqueue(Jobs::BatchFollowFromService, service.id) if service.present?
+		Sidekiq::Client.enqueue(Jobs::BatchFollowFromService, service.id) if service.present?
 		redirect_to :back, :notice => 'You will be following your Facebook friends shortly!'
 	end
 end

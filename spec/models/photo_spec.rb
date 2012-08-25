@@ -175,8 +175,8 @@ describe Photo do
   end
 
   describe '#queue_processing_job' do
-    it 'should queue a resque job to process the images' do
-      Resque.should_receive(:enqueue).with(Jobs::ProcessPhoto, @photo.id)
+    it 'should queue a Sidekiq::Client job to process the images' do
+      Sidekiq::Client.should_receive(:enqueue).with(Jobs::ProcessPhoto, @photo.id)
       @photo.queue_processing_job
     end
   end

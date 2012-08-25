@@ -5,14 +5,14 @@
 module Jobs
   class FinalizePost < Base
     @queue = :screenshot
-    def self.perform(user_id, object_class, object_id, opts)
+    def perform(user_id, object_class, object_id, opts)
       # screenshot first to ensure it's there before posting to services
       unless AppConfig.single_process_mode?
         Post.find(object_id).screenshot! if((object_class == "StatusMessage") || (object_class == "Post"))
       end
 
       # post to services & notify participants of the thread
-      Resque.enqueue(Jobs::DeferredDispatch, user_id, object_class, object_id, opts)
+      Sidekiq::Client.enqueue(Jobs::DeferredDispatch, user_id, object_class, object_id, opts)
     end
   end
 end

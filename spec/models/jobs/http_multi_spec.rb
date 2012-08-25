@@ -39,7 +39,7 @@ describe Jobs::HttpMulti do
 
     Typhoeus::Hydra.stub!(:new).and_return(@hydra)
 
-    Resque.should_receive(:enqueue).with(Jobs::HttpMulti, bob.id, @post_xml, [person.id], anything, 1).once
+    Sidekiq::Client.should_receive(:enqueue).with(Jobs::HttpMulti, bob.id, @post_xml, [person.id], anything, 1).once
     Jobs::HttpMulti.perform(bob.id, @post_xml, [person.id], "Postzord::Dispatcher::Private")
   end
 
@@ -50,7 +50,7 @@ describe Jobs::HttpMulti do
 
     Typhoeus::Hydra.stub!(:new).and_return(@hydra)
 
-    Resque.should_not_receive(:enqueue)
+    Sidekiq::Client.should_not_receive(:enqueue)
     Jobs::HttpMulti.perform(bob.id, @post_xml, [person.id], "Postzord::Dispatcher::Private", 3)
   end
 

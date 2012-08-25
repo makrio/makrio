@@ -6,7 +6,7 @@ module Jobs
   class FetchWebfinger < Base
     @queue = :socket_webfinger
 
-    def self.perform(account)
+    def perform(account)
       Webfinger.new(account).fetch
     end
   end

@@ -144,7 +144,7 @@ class ApplicationController < ActionController::Base
 
   def queue_auto_follow_facebook_friends!
     if fb = current_user.facebook
-      Resque.enqueue(Jobs::BatchFollowFromService, fb.id)
+      Sidekiq::Client.enqueue(Jobs::BatchFollowFromService, fb.id)
     end
   end
 end

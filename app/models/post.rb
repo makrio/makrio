@@ -312,7 +312,7 @@ class Post < ActiveRecord::Base
   end
 
   def re_screenshot_async
-    Resque.enqueue(Jobs::Screenshot, id)
+    Sidekiq::Client.enqueue(Jobs::Screenshot, id)
   end
 
   def nsfw

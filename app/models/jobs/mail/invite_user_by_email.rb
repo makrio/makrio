@@ -7,7 +7,7 @@ module Jobs
   module Mail
     class InviteUserByEmail < Base
       @queue = :mail
-      def self.perform(invite_id)
+      def perform(invite_id)
         invite = Invitation.find(invite_id)
         I18n.with_locale(invite.language) do
           invite.send!

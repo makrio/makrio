@@ -200,7 +200,7 @@ describe StatusMessage do
 
     it 'should queue a GatherOembedData if it includes a link' do
       sm = Factory.build(:status_message, :text => @message_text)
-      Resque.should_receive(:enqueue).with(Jobs::GatherOEmbedData, instance_of(Fixnum), instance_of(String))
+      Sidekiq::Client.should_receive(:enqueue).with(Jobs::GatherOEmbedData, instance_of(Fixnum), instance_of(String))
       sm.save
     end
 

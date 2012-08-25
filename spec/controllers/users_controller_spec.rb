@@ -110,7 +110,7 @@ describe UsersController do
 
     describe 'email' do
       before do
-        Resque.stub!(:enqueue)
+        Sidekiq::Client.stub!(:enqueue)
       end
 
       it 'allow the user to change his (unconfirmed) email' do
@@ -138,7 +138,7 @@ describe UsersController do
       end
 
       it 'sends out activation email on success' do
-        Resque.should_receive(:enqueue).with(Jobs::Mail::ConfirmEmail, @user.id).once
+        Sidekiq::Client.should_receive(:enqueue).with(Jobs::Mail::ConfirmEmail, @user.id).once
         put(:update, :id => @user.id, :user => { :email => "my@newemail.com"})
       end
     end
@@ -177,7 +177,7 @@ describe UsersController do
 
   describe '#destroy' do
     it 'does nothing if the password does not match' do
-      Resque.should_not_receive(:enqueue)
+      Sidekiq::Client.should_not_receive(:enqueue)
       delete :destroy, :user => { :current_password => "stuff" }
     end
 
@@ -187,7 +187,7 @@ describe UsersController do
     end
 
     it 'enqueues a delete job' do
-      Resque.should_receive(:enqueue).with(Jobs::DeleteAccount, anything)
+      Sidekiq::Client.should_receive(:enqueue).with(Jobs::DeleteAccount, anything)
       delete :destroy, :user => { :current_password => "bluepin7" }
     end
 

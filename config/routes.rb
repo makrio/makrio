@@ -182,7 +182,11 @@ Diaspora::Application.routes.draw do
 
   # Resque web
   if AppConfig[:mount_resque_web]
-    mount Resque::Server.new, :at => '/resque-jobs', :as => "resque_web"
+    require 'sidekiq/web'
+    constraint = lambda { |request| request.env["warden"].authenticate? and request.env['warden'].user.admin? }
+    constraints constraint do
+      mount Sidekiq::Web => '/sidekiq'
+    end
   end
 
   get 'about' => 'infos#about' 

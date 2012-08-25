@@ -7,7 +7,7 @@ module Jobs
   class GatherOEmbedData < Base
     @queue = :http_service
 
-    def self.perform(post_id, url)
+    def perform(post_id, url)
       post = Post.find(post_id)
       post.o_embed_cache = OEmbedCache.find_or_create_by_url(url)
       post.save

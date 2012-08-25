@@ -7,7 +7,7 @@ module Jobs
   module Mail
     class Mentioned < Base
       @queue = :mail
-      def self.perform(recipient_id, actor_id, target_id)
+      def perform(recipient_id, actor_id, target_id)
         Notifier.mentioned( recipient_id, actor_id, target_id).deliver
       end
     end

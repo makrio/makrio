@@ -30,7 +30,7 @@ class Services::Facebook < Service
   end
 
   def queue_open_graph(action, post, opts={})
-    Resque.enqueue(Jobs::PublishOpenGraph, self.id, post.id, action, opts)
+    Sidekiq::Client.enqueue(Jobs::PublishOpenGraph, self.id, post.id, action, opts)
   end
 
   def follow_friends!(notify = true)

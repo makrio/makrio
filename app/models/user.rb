@@ -207,7 +207,7 @@ class User < ActiveRecord::Base
 
   def send_reset_password_instructions
     generate_reset_password_token! if should_generate_reset_token?
-    Resque.enqueue(Jobs::ResetPassword, self.id)
+    Sidekiq::Client.enqueue(Jobs::ResetPassword, self.id)
   end
 
   def update_user_preferences(pref_hash)
@@ -341,13 +341,13 @@ class User < ActiveRecord::Base
   def mail(job, *args)
     pref = job.to_s.gsub('Jobs::Mail::', '').underscore
     if(self.disable_mail == false && !self.user_preferences.exists?(:email_type => pref))
-      Resque.enqueue(job, *args)
+      Sidekiq::Client.enqueue(job, *args)
     end
   end
 
   def mail_confirm_email
     return false if unconfirmed_email.blank?
-    Resque.enqueue(Jobs::Mail::ConfirmEmail, id)
+    Sidekiq::Client.enqueue(Jobs::Mail::ConfirmEmail, id)
     true
   end
 

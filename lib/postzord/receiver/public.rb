@@ -29,7 +29,7 @@ class Postzord::Receiver::Public < Postzord::Receiver
     elsif @object.is_a?(AccountDeletion)
       #nothing
     else
-      Resque.enqueue(Jobs::ReceiveLocalBatch, @object.class.to_s, @object.id, self.recipient_user_ids)
+      Sidekiq::Client.enqueue(Jobs::ReceiveLocalBatch, @object.class.to_s, @object.id, self.recipient_user_ids)
       true
     end
   end

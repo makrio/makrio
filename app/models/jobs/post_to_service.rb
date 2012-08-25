@@ -6,7 +6,7 @@ module Jobs
   class PostToService < Base
     @queue = :http_service
 
-    def self.perform(service_id, post_id, url)
+    def perform(service_id, post_id, url)
       service = Service.find_by_id(service_id)
       post = Post.find_by_id(post_id)
       service.post(post, url)

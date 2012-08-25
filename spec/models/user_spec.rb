@@ -525,13 +525,13 @@ describe User do
       alice.disable_mail = false
       alice.save
 
-      Resque.should_receive(:enqueue).with(Jobs::Mail::StartedSharing, alice.id, 'contactrequestid').once
+      Sidekiq::Client.should_receive(:enqueue).with(Jobs::Mail::StartedSharing, alice.id, 'contactrequestid').once
       alice.mail(Jobs::Mail::StartedSharing, alice.id, 'contactrequestid')
     end
 
     it 'does not enqueue a mail job if the correct corresponding job has a prefrence entry' do
       alice.user_preferences.create(:email_type => 'started_sharing')
-      Resque.should_not_receive(:enqueue)
+      Sidekiq::Client.should_not_receive(:enqueue)
       alice.mail(Jobs::Mail::StartedSharing, alice.id, 'contactrequestid')
     end
 
@@ -539,7 +539,7 @@ describe User do
        alice.disable_mail = true
        alice.save
        alice.reload
-       Resque.should_not_receive(:enqueue)
+       Sidekiq::Client.should_not_receive(:enqueue)
       alice.mail(Jobs::Mail::StartedSharing, alice.id, 'contactrequestid')
     end
   end
@@ -659,12 +659,12 @@ describe User do
     describe '#mail_confirm_email' do
       it 'enqueues a mail job on user with unconfirmed email' do
         user.update_attribute(:unconfirmed_email, "alice@newmail.com")
-        Resque.should_receive(:enqueue).with(Jobs::Mail::ConfirmEmail, alice.id).once
+        Sidekiq::Client.should_receive(:enqueue).with(Jobs::Mail::ConfirmEmail, alice.id).once
         alice.mail_confirm_email.should eql(true)
       end
 
       it 'enqueues NO mail job on user without unconfirmed email' do
-        Resque.should_not_receive(:enqueue).with(Jobs::Mail::ConfirmEmail, alice.id)
+        Sidekiq::Client.should_not_receive(:enqueue).with(Jobs::Mail::ConfirmEmail, alice.id)
         alice.mail_confirm_email.should eql(false)
       end
     end
@@ -770,7 +770,7 @@ describe User do
 
     it "queues up a job to send the reset password instructions" do
       user = Factory :user
-      Resque.should_receive(:enqueue).with(Jobs::ResetPassword, user.id)
+      Sidekiq::Client.should_receive(:enqueue).with(Jobs::ResetPassword, user.id)
       user.send_reset_password_instructions
     end
   end

@@ -6,7 +6,7 @@
 module Jobs
   class BatchFollowFromService < Base
     @queue = :social
-    def self.perform(service_id, notify = true)
+    def perform(service_id, notify = true)
       service = Service.find(service_id)
       service.follow_friends!(notify)
     end

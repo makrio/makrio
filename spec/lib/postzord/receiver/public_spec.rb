@@ -61,12 +61,12 @@ describe Postzord::Receiver::Public do
       end
 
       it 'enqueues a Jobs::ReceiveLocalBatch' do 
-        Resque.should_receive(:enqueue).with(Jobs::ReceiveLocalBatch, anything, anything, anything)
+        Sidekiq::Client.should_receive(:enqueue).with(Jobs::ReceiveLocalBatch, anything, anything, anything)
         @receiver.perform!
       end
 
       it 'intergrates' do
-        fantasy_resque do
+        fantasy_Sidekiq::Client do
           @receiver.perform!
         end
       end

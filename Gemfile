@@ -92,11 +92,10 @@ gem 'ruby-oembed', '~> 0.8.7'
 
 # queue
 
-gem 'resque', '1.20.0'
-gem 'resque-heroku'
-gem 'resque-timeout', '1.0.0'
-gem 'SystemTimer', '1.2.3', :platforms => :ruby_18
-
+gem 'slim'
+# if you require 'sinatra' you get the DSL extended to Object
+gem 'sinatra', :require => nil
+gem 'sidekiq'
 # tags
 
 gem 'acts-as-taggable-on', :git => "git://github.com/mbleigh/acts-as-taggable-on.git"
