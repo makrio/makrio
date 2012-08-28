@@ -17,5 +17,5 @@ Kayla Holderbein
 kayla@makr.io
 (925) 785-8917
 
-[1]: <%='https://www.facebook.com/makrapp' %>
+[1]: <%='https://www.facebook.com/makrioapp' %>
 [2]: <%= new_user_session_url %>
