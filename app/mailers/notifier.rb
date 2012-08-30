@@ -28,7 +28,7 @@ class Notifier < ActionMailer::Base
   def new_inactive_user_prod(user, opts={})
     @receiver = user
     default_opts = {:to => @receiver.email,
-     :from => 'kayla@makr.io',
+     :from => 'rosanna@makr.io',
        :subject => "Thanks for joining Makr.io!",  :host => AppConfig[:pod_uri].host}
        
       default_opts.merge!(opts)
@@ -42,7 +42,7 @@ class Notifier < ActionMailer::Base
   def new_user_feedback(user, opts={})
     @receiver = user
     default_opts = {:to => @receiver.email,
-     :from => 'kayla@makr.io',
+     :from => 'rosanna@makr.io',
        :subject => "How are you liking Makr.io?",  :host => AppConfig[:pod_uri].host
      }
        
