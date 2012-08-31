@@ -5,7 +5,8 @@ app.views.ShareView = app.views.Base.extend({
     'click .facebook-button' : 'facebook',
     'click .tumblr-button' : 'tumblr',
     'click .pinterest-button' : 'pinterest',
-    'click .imgfave-button' : 'imgfave'
+    'click .imgfave-button' : 'imgfave',
+    'click .share-link' :'toggleSharingButtons'
   },
 
   presenter : function() {
@@ -42,6 +43,11 @@ app.views.ShareView = app.views.Base.extend({
       permalink : encodeURIComponent(link.data('url')),
       title : encodeURIComponent(this.title || link.data('title'))
     }
+  },
+
+  toggleSharingButtons : function(evt){
+    evt && evt.preventDefault() 
+    this.$('.sharing-buttons').toggleClass('hidden')
   },
 
   tweet : function(evt){
