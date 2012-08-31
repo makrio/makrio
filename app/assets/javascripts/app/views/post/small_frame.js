@@ -7,7 +7,6 @@ app.views.Post.SmallFrame = app.views.Post.extend({
 
   subviews : {
     '.embed-frame' : "oEmbedView",
-    ".stream-frame-feedback" : "feedbackView"
   },
 
   events : {

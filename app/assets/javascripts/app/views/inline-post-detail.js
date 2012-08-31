@@ -6,7 +6,8 @@ app.views.InlinePostDetail = app.views.Base.extend({
   	"#selected_reactions" : 'reactionsView',
   	"#selected_new_comment" : 'newCommentView',
   	"#share-actions" : 'shareView',
-    "#follow-btn-container": "followButtonView"
+    "#follow-btn-container": "followButtonView",
+    '#feedback' : 'feedbackView'
   },
 
   initialize : function(){
@@ -27,5 +28,7 @@ app.views.InlinePostDetail = app.views.Base.extend({
     	composing : true,
     	className : 'canvas-frame x2'
     })
+    this.feedbackView = new app.views.LatestFeedbackActions({ model : this.model })
+
   }
 });

@@ -1,7 +1,9 @@
 {{#unless userLike}}
-	<button class="btn new-btn like" style="width:49%; float:left;"><i class="icon-heart icon-grey"/> I love this</button>
+	<button class="btn new-btn like frame-action" style="width:33%"><i class="icon-heart icon-grey"/> I love this</button>
 {{else}}
-	<button class="btn new-btn like disabled" style="width:49%; float:left;"><i class="icon-heart icon-red"/> Loved</button>
+	<button class="btn new-btn like disabled frame-action" style="width:33%"><i class="icon-heart icon-red"/> Loved</button>
 {{/unless}}
 
-<button class="btn new-btn remix" style="width:49%; float:right;"><i class="icon-random icon-blue"/> Remix this</button>
+<button class="btn new-btn remix frame-action" style="width:33%"><i class="icon-random icon-blue"/> Remix this</button>
+
+<a class='btn new-btn frame-action' href="/conversations/{{conversation_id}}" title="Permalink" style="padding-left:0;padding-right:0;">View Remixes</a>

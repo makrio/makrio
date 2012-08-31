@@ -520,3 +520,10 @@ p.branding-description {
     @include animation(peekaboo, 3s)
   }
 }
+.frame-action {
+  width:31%;
+  float:left;
+  &:not(:first-child) {
+    margin-left:5px;
+  }; 
+}
