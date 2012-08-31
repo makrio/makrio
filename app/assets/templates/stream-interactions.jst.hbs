@@ -1,11 +1,16 @@
  <div class='media interaction-title'> 
   <div class='img'> 
-    {{{personImage author "small"}}}
+    <a href='/{{author.usename}}'>
+      {{{personImage author "small"}}}
+    </a>
   </div>
   <div class='bd'>
-    <h2>{{author.nickname}}
-      <span id="follow-btn-container"/>
-      <a class='btn new-btn' href="/conversations/{{conversation_id}}" class="permalink" title="Permalink" style="float:right;">View Remixes</a>
+      <h2>
+        <a class='author-name' href='/{{author.usename}}'>
+          {{author.nickname}}
+        </a>
+        <span id="follow-btn-container"/>
+        <a class='btn new-btn' href="/conversations/{{conversation_id}}" class="permalink" title="Permalink" style="float:right;">View Remixes</a>
     </h2>
   </div>
 </div>
