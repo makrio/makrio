@@ -1,8 +1,11 @@
-/* getting started pulse animation */
-#composer-button.pulse {
-  -webkit-animation: opacity-pulse 1s infinite;
-  -moz-animation:    opacity-pulse 1s infinite;
-  -ms-animation:     opacity-pulse 1s infinite;
+.composer-button{
+  padding-top: 0px;
+  padding-bottom: 0px;
+  line-height: 30px;
+  height: 28px;
+  margin-top: 5px;
+  margin-right: 5px;
+  font-size: 16px;
 }
 
 #profile-header {
