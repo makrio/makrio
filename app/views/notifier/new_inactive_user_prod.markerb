@@ -8,7 +8,7 @@ Make your own post or remix someone else's, then watch your posts get remixed. G
 
 <3 Makr.io
 
-Have a question? Chat with us on https://makr.io or send an email to feedback@makr.io!
+Have a question? Chat with us on https://makr.io or send an email to hello@makr.io!
 
 
 [1]: <%= new_user_session_url %>
