@@ -45,7 +45,6 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
   },
 
   infoView : function() {
-    if(!this.isNormalizedCollection()) { return }
     return new app.views.Info({model : this.model})
   },
 
@@ -54,7 +53,7 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
   },
 
   isNormalizedCollection : function() {
-    return this.normalizedCollection || app.isOn("/likes") || app.isOn("/people/") || app.isOn("/u/") 
+    return this.normalizedCollection || app.isOn("/likes") || app.isOn("/people/") || app.isOn(app.currentUser.get('username'))
   },
 
   width : function(){

@@ -11,7 +11,7 @@ app.views.Info = app.views.Base.extend({
 
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
-      onProfilePage : app.onProfilePage || this.hideAuthor
+      onProfilePage : app.isOn(app.currentUser.get('username')) || this.hideAuthor
     })
   },
 
