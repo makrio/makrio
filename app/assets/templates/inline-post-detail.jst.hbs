@@ -17,20 +17,21 @@
 
   <br/>
   
-  {{#if tags}}
-    <h6>Topics</h6>
-    {{#each tags}}
-      <a class='topic-link' href='/tagged/{{this.name}}'> <span class="label">{{this.display_name}}</span></a>
-    {{/each}}
-  {{/if}}
-
-
   <div id="selected_reactions" />
   <div id="selected_new_comment" />
   
   <br/>
 
   <h6>Tags</h6>
+    {{#if tags}}
+    {{#each tags}}
+      <a class='topic-link' href='/tagged/{{this.name}}'> <span class="label">{{this.display_name}}</span></a>
+    {{/each}}
+    <br/>
+    <br/>
+  {{/if}}
+
+
   <form name="tagForm" class='form-inline' action="/posts/{{id}}/tags" method="post" data-remote="true">
       <input type="text" name="tag_list" value='{{tag_list}}' placeholder='add comma seperated tags'/>
       <input type="submit" value='Set Tags' class="btn new-btn"/>
