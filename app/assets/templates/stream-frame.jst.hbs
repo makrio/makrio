@@ -15,11 +15,22 @@
         {{/if}}
 
         <div class="frame-link">
-            {{#linkToPerson author}}
-                <div class="img">
-                    <div class="profile-image-container small post-author" style="background-image : url('{{avatar.small}}')" title="{{name}}" data-placement="left"></div>
-                </div>
-            {{/linkToPerson}}
+             <div class='media'> 
+              <div class='img'> 
+                <a href='/{{author.username}}'>
+                  {{{personImage author "small"}}}
+                </a>
+              </div>
+              <div class='bd'>
+                <h3>
+                    <a href='/{{author.username}}'>
+                      {{author.nickname}}
+                    </a>
+                    <span id="follow-btn-container"/>
+                </h3>
+              </div>
+              {{interactions.aggregate_count}}
+            </div>
 
             <div class="small-frame"></div>
 

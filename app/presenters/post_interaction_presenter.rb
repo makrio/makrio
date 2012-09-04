@@ -12,6 +12,7 @@ class PostInteractionPresenter
         :comments_count => @post.comments_count,
         :likes_count => @post.likes_count,
         :remix_count => @post.remixes.count,
+        :aggregate_count => @post.comments_count + @post.likes_count + @post.remixes.count,
         :tag_list => @post.tag_list
     }
   end
@@ -27,7 +28,8 @@ class PostInteractionPresenter
           likes: [user_like].compact,
           comments_count: @post.comments_count,
           likes_count: @post.likes_count,
-          remix_count: @post.remixes.count
+          remix_count: @post.remixes.count,
+          :aggregate_count => @post.comments_count + @post.likes_count + @post.remixes.count,
       }
     end
 
