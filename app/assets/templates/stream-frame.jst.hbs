@@ -43,11 +43,18 @@
             {{/if}}
 
             <div class="latest-feedback" style="margin-top:10px;" />
+            {{#if tags}}
+                <div class='tag-list'>
+                    {{#each tags}}
+                        <a class='topic-link' href='/tagged/{{this.name}}'>  <span class="label">{{this.display_name}}</span></a>
+                    {{/each}}
+                </div>
+            {{/if}}
         </div>
 
-        <div class="stream-post-info">
-            <div class="detail">
-                {{#if current_user.admin}}
+        {{#if current_user.admin}}
+            <div class="stream-post-info">
+                <div class="detail">
                     <a href="#" class="toggle-featured">
                         {{#featured}}
                         unfeature
@@ -63,18 +70,8 @@
                             add to staff pick
                         {{/staff_picked_at}}
                     </a>
-                {{/if}}
-
-                <span>
-                    <i class="icon-heart icon-grey"></i> {{interactions.likes_count}}
-                </span>
-                <span>
-                    <i class="icon-random icon-grey"></i> {{interactions.remix_count}}
-                </span>
-                <span>
-                    <i class="icon-comment icon-grey"></i> {{interactions.comments_count}}
-                </span>
+                </div>
             </div>
-        </div>
+        {{/if}}
     </div>
 </div>

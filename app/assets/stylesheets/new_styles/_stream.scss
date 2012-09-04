@@ -24,6 +24,20 @@ a.topic-link {
         padding:2px 8px;
         text-align: center;
         float:right;
+        cursor: pointer;
+      }
+
+      .tag-list {
+        padding:5px;
+        clear: both;
+        max-width:100%; 
+        white-space:nowrap; 
+        text-overflow:ellipsis; 
+
+        span.label {
+          background-color: #ccc;
+          text-shadow: none;
+        }
       }
     }
 
@@ -244,12 +258,10 @@ t
     }
 
     .stream-post-info {
-      margin-top : 10px;
+      margin-top : 5px;
 
       .detail {
         float : right;
-        margin-right: 30px;
-
         -moz-user-select: none;
         -khtml-user-select: none;
         -webkit-user-select: none;
