@@ -1,3 +1,11 @@
+{{#if loggedIn}}
+    <li {{#if onYou}}class="active"{{/if}}>
+        <a href="/feed">
+           Home 
+        </a>
+    </li>
+{{/if}}
+
 <li {{#if onExplore}}class="active"{{/if}}>
     <a href="/front_page">
         Explore
@@ -7,10 +15,3 @@
     </a>
 </li>
 
-{{#if loggedIn}}
-    <li {{#if onYou}}class="active"{{/if}}>
-        <a href="/feed">
-            You
-        </a>
-    </li>
-{{/if}}
