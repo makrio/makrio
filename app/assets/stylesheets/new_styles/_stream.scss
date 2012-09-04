@@ -18,6 +18,13 @@ a.topic-link {
     .frame-link {
       margin-left : 30px;
       background: white;
+
+      .aggregate-count {
+        background:#eee;
+        padding:2px 8px;
+        text-align: center;
+        float:right;
+      }
     }
 
     .original-frame,

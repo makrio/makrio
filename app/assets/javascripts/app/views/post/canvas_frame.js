@@ -38,11 +38,7 @@ app.views.Post.CanvasFrame = app.views.Post.SmallFrame.extend({
     "click .content": "showModalPostDetail"
   },
 
-  showModalPostDetail : function(evt){
-    evt && evt.preventDefault()
-    var postDetail = new app.views.InlinePostDetail({model : this.model})
-    this.showModal(postDetail)
-  },
+
 
   infoView : function() {
     return new app.views.Info({model : this.model})

@@ -11,7 +11,8 @@ app.views.Post.StreamFrame = app.views.Base.extend({
   events : {
     "click .toggle-featured" : "toggleFeatured",
     "click .toggle-staff-picked" : "toggleStaffPicked",
-    "click a.remove-post" : "destroyModel"
+    "click a.remove-post" : "destroyModel",
+    "click .aggregate-count" : "showModalPostDetail"
   },
 
   tooltipSelector : ".post-author",

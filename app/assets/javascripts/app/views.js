@@ -137,6 +137,12 @@ app.views.Base = Backbone.View.extend({
     var commentsView = new app.views.InlineComments({model : this.model})
     this.showModal(commentsView)
   },
+  
+  showModalPostDetail : function(evt){
+    evt && evt.preventDefault()
+    var postDetail = new app.views.InlinePostDetail({model : this.model})
+    this.showModal(postDetail)
+  },
 
   showModal : function(view) {
       if(view.model && view.model.interactions) {
