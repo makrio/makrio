@@ -6,25 +6,18 @@ class PersonPresenter < BasePresenter
   end
 
   def as_json(options={})
-    attrs = @person.as_api_response(:backbone).merge(
+    @person.as_api_response(:backbone).merge(
         {
             :username => self.username,
             :is_own_profile => is_own_profile,
             :relationship => self.relationship,
             :followers => @person.followers_count,
-            :following =>@person.followed_count 
-        })
-
-    if is_own_profile
-      attrs.merge!(
-        {
+            :following =>@person.followed_count, 
             :location => @person.profile.location,
-            :birthday => @person.profile.formatted_birthday,
+            :birthday => makr_birthday,
             :bio => @person.profile.bio
         })
-    end
 
-    attrs
   end
 
   def relationship
@@ -38,5 +31,9 @@ class PersonPresenter < BasePresenter
 
   def username
     @person.diaspora_handle.split("@").first
+  end
+
+  def makr_birthday
+    @person.created_at.strftime("%B %d, %Y")
   end
 end

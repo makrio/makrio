@@ -40,6 +40,7 @@ class Profile < ActiveRecord::Base
 
   validates_format_of :first_name, :with => /\A[^;]+\z/, :allow_blank => true
   validates_format_of :last_name, :with => /\A[^;]+\z/, :allow_blank => true
+  validates_length_of :bio, :maximum => 140
   validate :max_tags
   validate :valid_birthday
 

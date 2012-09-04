@@ -11,12 +11,19 @@
 
     <div id="profile-stats">
         {{#if location}}
-            <span class="stat">
+            <span class="stat" title='Location'>
                 <a href="http://maps.google.com/maps?q={{location}}" target="_blank">
-                    <i class="icon-map-marker icon-white"></i>
+                    <i class="icon-map-marker"></i>
                 </a>
                 {{location}}
             </span>
+        {{/if}}
+        {{#if birthday}}
+            <span class="stat" title='Makr Birthday'>
+                <img src='{{imageUrl "buttons/bday@2x.png"}}' class="cake" />
+                {{birthday}}
+            </span>
+            <span class="divider">•</span>
         {{/if}}
        {{#if current_user.admin}}
             <span> {{diaspora_id}} </span>
@@ -26,10 +33,14 @@
             <span class="edit-control">
                 <span class="divider">•</span>
                     <a href="/profile/edit" title="Edit Profile" rel="tooltip" style="margin-left:2px;">
-                        <i class="icon-cog icon-white"></i>
+                        <i class="icon-cog"></i>
                     </a>
                 </span>
             </span>
+        {{/if}}
+        <br/>
+        {{#if bio}}
+            <em>{{bio}}</em>
         {{/if}}
     </div>
 

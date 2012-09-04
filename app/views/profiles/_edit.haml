@@ -8,9 +8,11 @@
 = form_tag profile_path, :method => :put, :multipart => true, :id => 'update_profile_form' do
   = render 'profiles/edit_public', :profile => profile, :aspect => aspect, :person => person
 
+  
   %hr
-
-
+  %h4
+    = t('profiles.edit.your_bio') + " (max 140 characters)"
+  = text_area_tag 'profile[bio]', profile.bio, :rows => 5, :placeholder => t('fill_me_out')
   %br
 
   %h4
