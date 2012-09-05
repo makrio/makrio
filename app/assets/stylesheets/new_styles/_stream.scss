@@ -20,7 +20,8 @@ a.topic-link {
       background: white;
 
       .aggregate-count {
-        background:#eee;
+        background:#ccc;
+        color: white;
         padding:2px 8px;
         text-align: center;
         float:right;
@@ -179,10 +180,6 @@ t
   }
 
   .post-comment {
-    -moz-box-shadow: 0 3px 7px -5px #666;
-    -webkit-box-shadow: 0 3px 7px -5px #666;
-    box-shadow: 0 3px 7px -5px #666;
-
     border : none;
     padding-left : 0;
 
