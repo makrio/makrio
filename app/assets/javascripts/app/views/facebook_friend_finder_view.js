@@ -15,9 +15,6 @@ app.views.FacebookFriendFinder = app.views.Base.extend({
   },
 
   facebookPopupUrl : function(){
-
-    console.log(this.userConnected, app.currentUser.facebookToken())
-
     var p = this.presenter()
     if(this.userConnected){
       return 'https://www.facebook.com/dialog/apprequests?access_token=' + p.facebookToken + '&display=popup&app_id=' + p.appId + '&message=' + p.message + '&redirect_uri=' + p.redirectURI

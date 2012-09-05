@@ -1,0 +1,27 @@
+<section class='sidenav-el'> 
+ <a href='{{profileURL}}'>  <h3>Go to My Profile  <span> ></span></h3></a>
+</section>
+
+{{#if onFeed}}
+  <section class='sidenav-el'> 
+   <a href='/latest'>  <h3>Go to Latest  <span> ></span></h3></a>
+  </section>
+{{else}}
+  <section class='sidenav-el'> 
+   <a href='/feed'>  <h3>Go to My Feed  <span> ></span></h3></a>
+  </section>
+{{/if}}
+
+<section class='sidenav-el'> 
+  <h3> Updates</h3>
+  <p>EVERYTHING IS AWESOME</p>
+</section>
+
+<section class='sidenav-el'> 
+  <h3> Invite your Friends</h3>
+  <p> <a href='#' class='find-friends'> By Facebook</a>
+    <br/>
+    <br/>
+    <input type="text"class='form-inline' name=url value="https://makr.io" readonly>
+  </p>
+</section>

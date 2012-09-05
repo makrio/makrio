@@ -350,3 +350,26 @@ t
     background-position : center;
   }
 }
+
+.sidenav-el {
+  margin-bottom:10px;
+  p{
+    margin-top:-4px;
+    padding:10px;
+    background: #fff;
+  }
+  h3{
+    @include border-radius(6px);
+    padding: 10px;
+    background: #ccc;
+    color:white;
+    a{
+      color: white;
+    }
+    span {
+      float: right;
+      padding-right:10px;
+      color: #666;
+    }
+  }
+}

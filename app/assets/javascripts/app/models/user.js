@@ -1,4 +1,6 @@
 app.models.User = Backbone.Model.extend({
+  url : function(){return '/' + this.get('username')},
+  
   toggleNsfwState : function() {
     if(!app.currentUser.authenticated()){ return false }
     this.set({showNsfw : !this.get("showNsfw")});

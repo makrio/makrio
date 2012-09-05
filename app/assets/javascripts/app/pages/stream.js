@@ -3,7 +3,8 @@ app.pages.Stream = app.pages.Base.extend({
 
   subviews : {
     "#stream-content" : "streamView",
-    '#new_posts_zone' : 'newPostsView'
+    '#new_posts_zone' : 'newPostsView',
+    '#sidenav' : 'sideNavView'
   },
 
   initialize : function(options){
@@ -20,6 +21,7 @@ app.pages.Stream = app.pages.Base.extend({
 
   initSubviews : function(){
     this.streamView = new app.pages.Stream.InfiniteScrollView({ model : this.stream })
+    this.sideNavView = new app.views.SideNav({model: this.model})
   },
 
   bindEvents : function(){
