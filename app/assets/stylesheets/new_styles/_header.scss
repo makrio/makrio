@@ -12,7 +12,6 @@ $nav-background-color: rgba(250,250,250,0.8);
 #header_inner {
   @include nav-shadow();
   background-color: $nav-background-color;
-  -webkit-font-smoothing: antialiased;
 
   position:fixed;
 
@@ -245,7 +244,6 @@ ul.login {
 
 /* landing (sign up) banner */
 #landing_banner {
-  -webkit-font-smoothing: antialiased;
 
   padding-bottom: 40px;
   width:100%;
@@ -314,9 +312,6 @@ ul.login {
       height: 35px;
       text-align: center;
       margin:0 5px;
-    }
-    #typist {
-      -webkit-font-smoothing:antialiased;
     }
   }
 
