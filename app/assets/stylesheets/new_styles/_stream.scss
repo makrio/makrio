@@ -125,7 +125,7 @@ a.topic-link {
   width:250px; 
   position:fixed; 
   right:5%; 
-  z-index:-1;
+  z-index:0;
 }
 
 /* overrides */
@@ -375,18 +375,25 @@ t
     padding:10px;
     background: #fff;
   }
+
+  a{
+    &:hover {
+      text-decoration: none;
+      cursor: pointer;
+    };
+  }
   h3{
     @include border-radius(6px);
     padding: 10px;
     background: #ccc;
     color:white;
-    a{
-      color: white;
-    }
     span {
       float: right;
       padding-right:10px;
       color: #666;
     }
+    &:hover{
+      background: #999;
+    };
   }
 }
