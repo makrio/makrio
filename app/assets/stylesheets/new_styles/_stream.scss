@@ -34,7 +34,7 @@ a.topic-link {
       }
 
       .tag-list {
-        padding:5px;
+        padding:8px 5px 0px 5px;
         clear: both;
         max-width:100%; 
         white-space:nowrap; 
@@ -52,6 +52,7 @@ a.topic-link {
       display : inline-block;
       position : relative;
       vertical-align : middle;
+      padding-bottom:10px;
     }
 
     .original-frame-wrapper {
