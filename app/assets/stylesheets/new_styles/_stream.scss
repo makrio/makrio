@@ -8,6 +8,7 @@ a.topic-link {
     display : table-cell;
     vertical-align : middle;
     padding-right: 30px;
+    position: relative;
 
     .author-name {
       position : absolute;
@@ -81,7 +82,11 @@ a.topic-link {
         left: 50px;
       }
     }
-
+    .original-frame-container {
+      position: absolute;
+      top: 40%;
+      left: -200px;
+    }
     .original-frame {
       width : 120px;
 
@@ -109,6 +114,18 @@ a.topic-link {
       }
     }
   }
+}
+.with-sidebar {
+  float:left;
+  margin-left:100px; 
+  margin-right:20px;
+}
+
+.sidenav-wrapper {
+  width:250px; 
+  position:fixed; 
+  right:5%; 
+  z-index:-1;
 }
 
 /* overrides */

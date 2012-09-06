@@ -1,18 +1,20 @@
 <div id="{{guid}}" data-id="{{id}}" data-target="#{{guid}}" class="stream-frame-wrapper">
     <div class="stream-row">
-        {{#if parent}}
-            <div class="original-frame-wrapper">
-                {{#linkToPerson parent.author}}
-                    <div class="profile-image-container micro post-author" style="background-image : url('{{avatar.small}}');" title="{{name}}" data-placement="right"></div>
-                {{/linkToPerson}}
-                <a href="/p/{{parent.id}}" class="original-frame">
-                    <img src="{{parent.screenshot_url}}" />
-                </a>
-            </div>
-            <i class="icon-random icon-grey divider"></i>
-        {{else}}
-            <div class="original-frame holder"></div>
-        {{/if}}
+        <div class='original-frame-container'>
+            {{#if parent}}
+                <div class="original-frame-wrapper">
+                    {{#linkToPerson parent.author}}
+                        <div class="profile-image-container micro post-author" style="background-image : url('{{avatar.small}}');" title="{{name}}" data-placement="right"></div>
+                    {{/linkToPerson}}
+                    <a href="/p/{{parent.id}}" class="original-frame">
+                        <img src="{{parent.screenshot_url}}" />
+                    </a>
+                </div>
+                    <i class="icon-random icon-grey divider"></i>
+            {{else}}
+                <div class="original-frame holder"></div>
+            {{/if}}
+        </div>
 
         <div class="frame-link">
              <div class='media'> 
