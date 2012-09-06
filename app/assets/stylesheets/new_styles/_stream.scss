@@ -227,6 +227,7 @@ t
 
   .stream-frame {
     margin-bottom : 50px;
+    position: relative;
 
     .text-content {
       z-index: $stream-post-index;
