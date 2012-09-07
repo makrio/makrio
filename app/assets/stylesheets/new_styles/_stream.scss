@@ -391,10 +391,15 @@ t
     span {
       float: right;
       padding-right:10px;
-      color: #666;
+      color: #fff;
     }
-    &:hover{
-      background: #999;
-    };
+    a{ 
+      &:hover{
+        background: #999;
+        color: #666;
+        text-decoration: none;
+      };
+    }
+
   }
 }
