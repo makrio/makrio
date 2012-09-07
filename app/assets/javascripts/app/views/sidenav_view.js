@@ -12,7 +12,8 @@ app.views.SideNav = app.views.Base.extend({
   presenter : function() {
     return {
       profileURL : app.currentUser.url(),
-      onFeed : app.isOn('feed')
+      onFeed : app.isOn('feed'),
+      followingCount : app.currentUser.get('following')
     }
   },
 

@@ -76,6 +76,14 @@ a { color : $link-blue  }
   color: inherit;
 }
 
+.stream-author-name {
+  color: #666;
+  &:hover{
+
+    color:black;
+  };
+}
+
 .canvas-frame {
   @include box-shadow(0,1px,1px,rgba(0, 0, 0, 0.1));
   display : inline-block;

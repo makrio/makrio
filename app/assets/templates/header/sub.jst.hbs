@@ -1,5 +1,5 @@
-<div class="sub">
-    {{#if onExplore}}
+{{#if onExplore}}
+    <div class="sub">
         <ul class="nav-center">
             <ul class="sub-nav">
                 <li {{#if onFrontPage}}class="active"{{/if}}>
@@ -27,27 +27,5 @@
                 </li>
             </ul>
         </ul>
-    {{/if}}
-        
-    {{#if onYou}}
-        <ul class="sub-nav">
-            <li {{#if onFeed}}class="active"{{/if}}>
-                <a href="/feed">
-                    Feed
-                </a>
-            </li>
-
-            <li {{#if onLikes}}class="active"{{/if}}>
-                <a href="/likes">
-                    Likes
-                </a>
-            </li>
-
-            <li {{#if onPosts}}class="active"{{/if}}>
-                <a href="/{{current_user.username}}">
-                    Profile
-                </a>
-            </li>
-        </ul>
-    {{/if}}
-</div>
+    </div>
+{{/if}}

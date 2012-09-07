@@ -1,6 +1,7 @@
 class UserPresenter
   def initialize(user, current_user=nil)
     @user = user
+    @person = @user.person
     @current_user = current_user
   end
 
@@ -12,6 +13,8 @@ class UserPresenter
         username: @user.username,
         configured_services: self.configured_services,
         notifications_count: self.notifications_count,
+        :followers => @person.followers_count,
+        :following =>@person.followed_count, 
         getting_started: @user.getting_started
       }
     )

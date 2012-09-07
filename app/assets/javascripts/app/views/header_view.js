@@ -62,7 +62,8 @@ app.views.Header = app.views.Base.extend({
   },
 
   showSubNav : function() {
-    return app.page && app.page.options.explore || app.page && app.page.options.you || window.location.pathname == "/" + app.currentUser.get("username")
+    var subnav = (app.page && app.page.options.explore) || (app.page && app.page.options.you)
+    return subnav
   }
 });
 
@@ -75,7 +76,7 @@ app.views.RootHeader = app.views.Base.extend({
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
       onExplore: app.page && app.page.options.explore,
-      onYou: app.page && app.page.options.you || app.isOn("/" + app.currentUser.get("username")),
+      onYou: app.page && app.page.options.you 
     })
   }
 });
@@ -97,7 +98,7 @@ app.views.SubHeader = app.views.Base.extend({
       onPosts: function() { return app.isOn(app.currentUser.get("username")) },
 
       onExplore: app.page && app.page.options.explore,
-      onYou: app.page && app.page.options.you || app.isOn("/" + app.currentUser.get("username"))
+      onYou: app.page && app.page.options.you 
     })
   }
 });
