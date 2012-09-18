@@ -1,0 +1,9 @@
+%h1
+  Number of users: 
+  = @user_count
+
+- @users.each do |user|
+
+  =user.email
+  %br
+= will_paginate @users

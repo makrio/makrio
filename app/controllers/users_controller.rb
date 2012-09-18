@@ -6,8 +6,16 @@ class UsersController < ApplicationController
   require File.join(Rails.root, 'lib/collect_user_photos')
 
   before_filter :authenticate_user!, :except => [:new, :create, :public, :user_photo]
+  before_filter :redirect_unless_admin, :only => [:index]
+
 
   respond_to :html
+
+  def index
+    @user_count = User.count
+    @users = User.paginate(:page => params[:page], :per_page => 1000).order('created_at desc').select([:email, :created_at])
+    render :layout => false
+  end
 
   def edit
     @aspect = :user_edit

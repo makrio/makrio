@@ -97,6 +97,8 @@ Diaspora::Application.routes.draw do
     get :export_photos
   end
 
+  resources :users, :only => :index
+
   controller :users do
     get 'public/:username'          => :public,           :as => 'users_public'
     get 'getting_started_completed' => :getting_started_completed
