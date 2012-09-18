@@ -1,6 +1,7 @@
 class ActsAsTaggableOn::Tag
   attr_accessible :description
-
+  include PgSearch
+  pg_search_scope :search_by_name, :against => :name
 
   def self.possible_duplicates
     self.all.map do |x|

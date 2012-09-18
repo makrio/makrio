@@ -18,7 +18,11 @@ class TagsController < ApplicationController
 
   def index
     @page = :experimental  #gross hax to get bootstrap
-    @tags = StatusMessage.most_popular_tags(100).paginate(:page => params[:page], :per_page => 100)
+    if params[:q].present?
+      @tags = ActsAsTaggableOn::Tag.search_by_name(params[:q]).paginate(:page => params[:page])
+    else
+      @tags = StatusMessage.most_popular_tags(100).paginate(:page => params[:page], :per_page => 100)
+    end
   end
 
   def show
