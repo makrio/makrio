@@ -31,7 +31,7 @@ class StreamsController < ApplicationController
 
   def category
     name  = request.subdomain.present? ? request.subdomain : params[:name]
-    @category = Category.find_or_create_by_name!(name)
+    @category = Category.find_or_create_by_name!(name.downcase)
 
     #gross hax for open graph tags
     @post = @category

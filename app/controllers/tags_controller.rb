@@ -12,7 +12,7 @@ class TagsController < ApplicationController
   
   def set
     post = Post.find(params[:post_id])
-    post.update_tags!(params['tag_list'])
+    post.update_tags!(params['tag_list'].to_s.downcase)
     redirect_to :back
   end
 
@@ -22,7 +22,7 @@ class TagsController < ApplicationController
   end
 
   def show
-    @tag = ActsAsTaggableOn::Tag.find_by_name!(params[:name])
+    @tag = ActsAsTaggableOn::Tag.find_by_name!(params[:name].downcase)
     render json: TagPresenter.new(@tag, current_user)
   end
 
