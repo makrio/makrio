@@ -20,6 +20,7 @@ a.topic-link {
     .frame-link {
       margin-left : 30px;
       background: white;
+      width: 500px;
 
       .aggregate-count {
         background:#ccc;
@@ -39,6 +40,7 @@ a.topic-link {
         max-width:100%; 
         white-space:nowrap; 
         text-overflow:ellipsis; 
+        overflow: hidden;
 
         span.label {
           background-color: #ccc;
