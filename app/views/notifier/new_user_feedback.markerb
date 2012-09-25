@@ -14,7 +14,7 @@ I look forward to talking to you!
 Best,
 
 Rosanna
-rosanna@makr.io
+hello@makr.io
 
 [1]: <%='https://www.facebook.com/makrioapp' %>
 [2]: <%= new_user_session_url %>

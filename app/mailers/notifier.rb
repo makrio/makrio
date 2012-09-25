@@ -42,7 +42,7 @@ class Notifier < ActionMailer::Base
   def new_user_feedback(user, opts={})
     @receiver = user
     default_opts = {:to => @receiver.email,
-     :from => 'rosanna@makr.io',
+     :from => 'hello@makr.io',
        :subject => "How are you liking Makr.io?",  :host => AppConfig[:pod_uri].host
      }
        
