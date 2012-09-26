@@ -80,7 +80,7 @@
     - elsif @person.present?
       = og_page_specific_tags(@person)
 
-    %meta{:name => "twitter:card", :content=> "@makrioapp"}
+    %meta{:name => "twitter:creator", :content=> "@makrioapp"}
     = yield(:head)
     = csrf_meta_tag
 
