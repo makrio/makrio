@@ -2,19 +2,20 @@ Hi <%= @receiver.person.nickname %>!
 
 My name is Rosanna Yau and I'm one of the founders of Makr.io. First of all, I want to thank you again for being a part of our project. This is a new community, so as one of our first users you are incredibly important in shaping the future of the site!
 
-I'd love to talk to you more about your experience with Makr.io, and get to know you better so we can give you the best experience possible as a user. I really want to know your thoughts on Makr.io and how we can improve, so please shoot me an email if you'd be willing to answer a few questions - I promise it's nothing too time-consuming, and it would be a huge help for the team!  You can also chat with a team member on https://makr.io any time.
+I'd love to hear about your experience with Makr.io, and get to know you better so we can give you the best experience possible as a user. Please let us know how we can improve by shooting me an email anytime — it would be a huge help for the team! You can also chat with a team member on the chat at https://makr.io any time.
 
-If you want up-to-date notifications from the Makr.io team, be sure to like our [Facebook page][1]. 
+If you want up-to-date notifications from the Makr.io team, be sure to follow us on [Twitter][1] and like our [Facebook page][2]. 
 
 I look forward to talking to you!
 
 
-[Log in to Makr.io Now >][2]
+[Log in to Makr.io Now >][3]
 
 Best,
 
 Rosanna
 hello@makr.io
 
-[1]: <%='https://www.facebook.com/makrioapp' %>
-[2]: <%= new_user_session_url %>
+[1]: <%='https://twitter.com/MakrioApp' %>
+[2]: <%='https://www.facebook.com/makrioapp' %>
+[3]: <%= new_user_session_url %>
