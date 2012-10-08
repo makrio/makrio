@@ -2,11 +2,6 @@
     <div class="sub">
         <ul class="nav-center">
             <ul class="sub-nav">
-                <li {{#if onFrontPage}}class="active"{{/if}}>
-                    <a href="/front_page">
-                        Popular
-                    </a>
-                </li>
 
                 <li {{#if onLatest}}class="active"{{/if}}>
                     <a href="/latest">
@@ -14,6 +9,12 @@
                     </a>
                 </li>
 
+                <li {{#if onFrontPage}}class="active"{{/if}}>
+                    <a href="/front_page">
+                        Popular
+                    </a>
+                </li>
+                
                 <li {{#if onTopics}}class="active"{{/if}}>
                     <a href="/topics">
                         Topics
