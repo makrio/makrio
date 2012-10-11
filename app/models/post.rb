@@ -26,7 +26,7 @@ class Post < ActiveRecord::Base
   has_many :remixers, :class_name => 'Person', :through => :reshares, :source => :author
 
   has_many :photo_postings, :foreign_key => :post_id
-  has_many :photos, :through => :photo_postings, :dependent => :destroy
+  has_many :photos, :through => :photo_postings, :dependent => :destroy, :order => 'created_at asc'
 
   belongs_to :parent, :class_name => 'Post', :foreign_key => :parent_guid, :primary_key => :guid
   belongs_to :root, :class_name => 'Post', :foreign_key => :root_guid, :primary_key => :guid
