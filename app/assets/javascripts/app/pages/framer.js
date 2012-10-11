@@ -170,7 +170,7 @@ app.views.framerControls = app.views.Base.extend({
   templateName : 'framer/controls',
 
   events : {
-    "click input.done" : "saveFrame",
+    "click .done" : "saveFrame",
     "change input" : "setFormAttrs"
   },
 
