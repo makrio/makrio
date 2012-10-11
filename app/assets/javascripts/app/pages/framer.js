@@ -84,6 +84,7 @@ app.views.framerContent = app.views.Base.extend({
     this.model.bind("change:photos", this.resetFrame, this)
 
     this.photoForm.bind("uploaded", this.setPhotosFromForm, this)
+    
   },
 
   setPhotosFromForm : function() {
@@ -146,11 +147,14 @@ app.views.Post.EditableSmallFrame = app.views.Post.SmallFrame.extend({
   },
 
   removeImage : function(evt) {
+    console.log('old photos ', this.model.get("photos"))
     var imageId = $(evt.target).data('image-id')
-      , filteredPhotos = _.filter(this.model.get("photos"), function(item) {
-        return item.id !== imageId
+      , filteredPhotos = _.reject(this.model.get("photos"), function(item) {
+        console.log(item.id === imageId)
+        return item.id === imageId
       });
 
+    console.log('new photos ', filteredPhotos)
     this.model.set("photos", filteredPhotos)
     this.model.photos = new Backbone.Collection(filteredPhotos)
   },

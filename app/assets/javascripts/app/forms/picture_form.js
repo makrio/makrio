@@ -64,7 +64,8 @@ app.forms.Picture = app.forms.PictureBase.extend({
     newPhoto.prepareForFramer(url)
 
     newPhoto.save().done(_.bind(function(){
-      this.photos.add(newPhoto)
+      var photos = _.clone(this.model.photos)
+      this.photos = photos.add(newPhoto)
       this.trigger("uploaded")
     }, this))
   }
