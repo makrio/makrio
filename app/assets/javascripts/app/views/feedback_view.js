@@ -10,7 +10,9 @@ app.views.Feedback = app.views.Base.extend({
     "click .remix" : "showModalFramer",
     "click .modal-comment" : "showModalComments",
     "click .comment" : "comment",
-    "click .staff-pick" : "toggleStaffPicked"
+    "click .staff-pick" : "toggleStaffPicked",
+    "click .toggle-featured" : "toggleFeatured",
+    "click .toggle-staff-picked" : "toggleStaffPicked",
   },
 
   tooltipSelector : ".label",
@@ -51,5 +53,13 @@ app.views.Feedback = app.views.Base.extend({
     if(confirm("u sure you want to staff pick?")){
       this.model.toggleStaffPicked()
     }
+  },
+    
+  toggleFeatured : function(evt){
+    evt && evt.preventDefault()
+    if(confirm("u shore bro?")){
+      this.model.toggleFeatured()
+    }
   }
+
 });

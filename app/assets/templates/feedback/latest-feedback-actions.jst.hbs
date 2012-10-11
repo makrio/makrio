@@ -7,3 +7,22 @@
 <button class="btn new-btn remix frame-action" style="width:33%"><i class="icon-random icon-blue"/> Remix this</button>
 
 <a class='btn new-btn frame-action' href="/conversations/{{conversation_id}}" title="Permalink" style="padding-left:0;padding-right:0;">View Remixes</a>
+<br/>
+<br/>
+{{#if current_user.admin}}
+    <a href="#" class="toggle-featured">
+        {{#featured}}
+        unfeature
+        {{else}}
+        feature
+        {{/featured}}
+    </a>
+    |
+    <a href="#" class="toggle-staff-picked">
+        {{#staff_picked_at}}
+            remove from staff picks
+        {{else}}
+            add to staff pick
+        {{/staff_picked_at}}
+    </a>
+{{/if}}
