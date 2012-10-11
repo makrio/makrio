@@ -35,7 +35,7 @@ class PostPresenter
         :author => PersonPresenter.new(@post.author, current_user),
         :o_embed_cache => @post.o_embed_cache.try(:as_api_response, :backbone),
         :mentioned_people => [],
-        :photos => @post.photos.map {|p| p.as_api_response(:backbone)},
+        :photos => @post.photos.order('created_at asc').map {|p| p.as_api_response(:backbone)},
         :frame_name => @post.frame_name || template_name,
         :parent => (options.fetch(:include_root, true) ? parent(options) : nil),
         :title => title,
