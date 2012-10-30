@@ -33,6 +33,7 @@ class StatusMessagesController < ApplicationController
     normalize_public_flag!
     services = [*params[:services]].compact
 
+    params[:status_message][:tag_list] = params[:status_message][:tag_list].split(',')[0..2]
     @status_message = current_user.build_post(:status_message, params[:status_message])
     @status_message.featured = true 
     @status_message.attach_photos_by_ids(params[:photos])

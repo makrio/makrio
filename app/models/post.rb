@@ -243,7 +243,7 @@ class Post < ActiveRecord::Base
 
 
   def update_tags!(tag_list)
-    self.tag_list = tag_list
+    self.tag_list = tag_list.split(',')[0..2]
     save!
   end
 
