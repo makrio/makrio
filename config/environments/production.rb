@@ -58,7 +58,7 @@ Diaspora::Application.configure do
   config.threadsafe!
 
 
- config.middleware.insert_before(Rack::Lock, Rack::Block) do  
+ config.middleware.insert(0, Rack::Block) do  
   ips = ["90.21.93.220", "90.21.220.106", "90.44.151.94", "90.21.224.6", "90.44.224.170", "90.44.236.83", "90.21.231.138"]
   ips.each do |ip|
     ip_pattern ip do
