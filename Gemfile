@@ -16,7 +16,6 @@ gem 'rails_autolink'
 # cross-origin resource sharing
 
 gem 'rack-cors', '~> 0.2.4', :require => 'rack/cors'
-gem 'rack-block'
 #search
 # gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 gem 'pg_search'

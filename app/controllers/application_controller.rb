@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_filter :ensure_not_heroku
   before_filter :ensure_http_referer_is_set
   before_filter :set_locale
+  before_filter :filter_ips
   before_filter :set_git_header if (AppConfig[:git_update] && AppConfig[:git_revision])
   before_filter :set_grammatical_gender
   before_filter :tablet_device_fallback
@@ -22,6 +23,13 @@ class ApplicationController < ActionController::Base
                 :only_sharing_count,
                 :tag_followings,
                 :tags
+  def filter_ips
+    ips = [ "90.21.93.220", "90.21.220.106", "90.44.151.94", "90.21.224.6", "90.44.224.170", "90.44.236.83", "90.21.231.138"]
+    if request.ip.in?(ips)
+      render :file => 'public/404.html', :status => 404
+      return
+    end
+  end
 
   def ensure_not_heroku
     if request.url.match(/heroku/)
