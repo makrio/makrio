@@ -56,6 +56,16 @@ Diaspora::Application.configure do
   config.assets.digest = true
 
   config.threadsafe!
+
+
+ config.middleware.insert_before(Rack::Lock, Rack::Block) do  
+  ips = ["90.21.93.220", "90.21.220.106", "90.44.151.94", "90.21.224.6", "90.44.224.170", "90.44.236.83", "90.21.231.138"]
+  ips.each do |ip|
+    ip_pattern ip do
+      halt 404
+    end
+  end
+ end
 end
 
 GC.enable_stats if GC.respond_to?(:enable_stats)
