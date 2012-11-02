@@ -23,11 +23,13 @@ class ApplicationController < ActionController::Base
                 :only_sharing_count,
                 :tag_followings,
                 :tags
+
   def filter_ips
     ips = [ "90.21.93.220", "90.21.220.106", "90.44.151.94", "90.21.224.6", "90.44.224.170", "90.44.236.83", "90.21.231.138"]
-    if request.ip.in?(ips)
+    if request.ip.in?(ips) || (user_signed_in? && current_user.username.in?(ENV['BLOCKED_USERS'].to_s.split(',')))
       render :file => 'public/404.html', :status => 404
       return
+      raise
     end
   end
 
