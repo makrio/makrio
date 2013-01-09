@@ -27,13 +27,13 @@ class StatusMessagesController < ApplicationController
       @aspect_ids = @aspects.map{ |a| a.id }
     end
   end
-
+  
   def create
     params[:status_message][:aspect_ids] = [*params[:aspect_ids]]
     normalize_public_flag!
     services = [*params[:services]].compact
 
-    params[:status_message][:tag_list] = params[:status_message][:tag_list].split(',')[0..2]
+    params[:status_message][:tag_list] = params[:status_message][:tag_list].to_s.split(',')[0..2]
     @status_message = current_user.build_post(:status_message, params[:status_message])
     @status_message.featured = true 
     @status_message.attach_photos_by_ids(params[:photos])
