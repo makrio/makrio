@@ -32,7 +32,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-tumblr'
 gem 'omniauth-twitter'
 
-gem 'twitter', '2.0.2'
+gem 'twitter', '2.5.0'
 
 # mail
 

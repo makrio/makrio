@@ -166,7 +166,7 @@ GEM
     factory_girl_rails (1.7.0)
       factory_girl (~> 2.6.0)
       railties (>= 3.0.0)
-    faraday (0.8.1)
+    faraday (0.8.4)
       multipart-post (~> 1.1)
     faraday_middleware (0.8.7)
       faraday (>= 0.7.4, < 0.9)
@@ -425,7 +425,7 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
-    simple_oauth (0.1.8)
+    simple_oauth (0.1.9)
     sinatra (1.3.2)
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)
@@ -447,11 +447,10 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    twitter (2.0.2)
-      activesupport (>= 2.3.9, < 4)
-      faraday (~> 0.7)
-      multi_json (~> 1.0)
-      simple_oauth (~> 0.1)
+    twitter (2.5.0)
+      faraday (~> 0.8)
+      multi_json (~> 1.3)
+      simple_oauth (~> 0.1.6)
     typhoeus (0.4.2)
       ffi (~> 1.0)
       mime-types (~> 1.18)
@@ -555,7 +554,7 @@ DEPENDENCIES
   spork (~> 1.0rc2)
   thin (~> 1.3.1)
   timecop
-  twitter (= 2.0.2)
+  twitter (= 2.5.0)
   typhoeus
   uglifier
   webmock (~> 1.7)
