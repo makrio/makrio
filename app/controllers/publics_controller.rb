@@ -62,7 +62,7 @@ class PublicsController < ApplicationController
   end
 
   def receive
-    raise("receiving private federated messages, shouldn't be happening")
+    raise ActionController::RoutingError.new('Not Found') 
   end
 
   private
