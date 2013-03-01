@@ -14,7 +14,7 @@ xml.rss version: "2.0" do
         xml.guid post_url(article)
 
         xml.media(:description) do
-          xml << begin; image_tag(article.screenshot_url.to_s) rescue; end
+          xml << begin; image_tag(article.screenshot_url.to_s) rescue end
           xml << "<br/><br/><a href='https://makr.io/posts/#{article.id}/remix'>Remix This</a>"
         end
 
